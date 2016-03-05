@@ -12,10 +12,18 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JTable;
+import javax.swing.JTextField;
+
+import presentation.repaintComponent.TextBubbleBorder;
+
 import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
@@ -26,6 +34,8 @@ public class Marketui extends JPanel {
 	JButton button_1;
 	JButton btnX;
 	JButton button_2;
+	private JTextField textField;
+	private boolean click = false;
 
 	/**
 	 * Create the panel.
@@ -103,7 +113,7 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnX.setForeground(Color.red);
+				btnX.setForeground(new Color(252, 98, 93));
 			}
 
 			@Override
@@ -112,17 +122,17 @@ public class Marketui extends JPanel {
 			}
 		});
 		btnX.setForeground(new Color(216, 216, 216));
-		btnX.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		btnX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		btnX.setContentAreaFilled(false);
 		btnX.setBorder(null);
-		btnX.setBounds(931, 18, 12, 12);
+		btnX.setBounds(931, 15, 16, 16);
 		add(btnX);
 
-		button_2 = new JButton("\uFF0D");
+		button_2 = new JButton("—");
 		button_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button_2.setForeground(Color.orange);
+				button_2.setForeground(new Color(253, 188, 64));
 			}
 
 			@Override
@@ -137,10 +147,10 @@ public class Marketui extends JPanel {
 			}
 		});
 		button_2.setForeground(new Color(216, 216, 216));
-		button_2.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		button_2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		button_2.setContentAreaFilled(false);
 		button_2.setBorder(null);
-		button_2.setBounds(904, 18, 16, 12);
+		button_2.setBounds(904, 14, 16, 16);
 		add(button_2);
 
 		table = new JTable();
@@ -158,6 +168,88 @@ public class Marketui extends JPanel {
 		add(comboBox);
 
 		setDragable(frame);
+		
+		
+//		AliasingButton button = new AliasingButton();
+		JButton button = new JButton();
+		button.setBounds(854, 15, 18, 18);
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		ImageIcon image1 = new ImageIcon("image/search.png");
+		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(),
+						button.getHeight(),image1.getImage().SCALE_DEFAULT);
+		image1 = new ImageIcon(temp1);
+		button.setIcon(image1);
+//		button.setIcon(new ImageIcon("image/search.png"));
+//		button.setUI(new MyBottonUI());
+		button.setMargin(new Insets(0, 0, 0, 0));
+		add(button);
+		
+		textField = new JTextField();
+		textField.setFocusable(false);
+		textField.setOpaque(false);
+		textField.setForeground(new Color(150, 150, 150));
+		textField.setCaretColor(new Color(150, 150, 150));
+		textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197),1,30,0));
+		textField.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				textField.setBorder(new TextBubbleBorder(new Color(150, 150, 150),1,30,0));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (!click) {
+					textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197),1,30,0));
+				}
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				click = true;
+				textField.setBorder(new TextBubbleBorder(new Color(150, 150, 150),1,30,0));
+				textField.setFocusable(true);
+				textField.requestFocus();
+			}
+		});
+		textField.setBounds(686, 11, 196, 27);
+		add(textField);
+		textField.setColumns(10);
+		
+		
+		//点击其他地方使textfield不能输入
+		addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField.setFocusable(false);
+				textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197),1,30,0));
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		
 	}
 
 	// 边框圆滑
