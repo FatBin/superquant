@@ -1,43 +1,33 @@
 package presentation.stockcheckui;
 
-import java.awt.RenderingHints;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import presentation.repaintComponent.TextBubbleBorder;
-import presentation.stockmarketui.Marketui;
-
-import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class PersonalStock extends JPanel {
-
-	JButton btnNewButton;
-	JButton button;
-	JButton button_1;
+public class StockList extends JPanel {
 	JButton btnX;
 	JButton button_2;
 	private JTextField textField;
@@ -49,74 +39,11 @@ public class PersonalStock extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "static-access" })
-	public PersonalStock(final JFrame frame) {
+	public StockList(final JFrame frame) {
 		setBorder(null);
 
 		// setBounds(new Rectangle(960, 600));
 		setLayout(null);
-		final PersonalStock ppanel = this;
-		
-		// list
-//		StockList listui = new StockList(frame);
-//		listui.setVisible(true);
-//		frame.add(listui);
-//		listui.setBounds(frame.getX()+220, 0,getWidth()-220,getHeight());
-//		frame.setVisible(true);
-
-		btnNewButton = new JButton("\u5927\u76D8\u6570\u636E");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnNewButton.setForeground(new Color(248, 179, 29));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				btnNewButton.setForeground(new Color(216, 216, 216));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				frame.remove(ppanel);
-				Marketui mpanel = new Marketui(frame);
-				frame.getContentPane().add(mpanel);
-				frame.repaint();
-				frame.setVisible(true);
-			}
-		});
-		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnNewButton.setForeground(new Color(216, 216, 216));
-		btnNewButton.setBounds(68, 68, 117, 44);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setBorder(null);
-		add(btnNewButton);
-
-		button = new JButton("\u4E2A\u80A1\u6570\u636E");
-		button.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		button.setForeground(new Color(248, 179, 29));
-		button.setContentAreaFilled(false);
-		button.setBorder(null);
-		button.setBounds(68, 112, 117, 44);
-		add(button);
-
-		button_1 = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
-		button_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				button_1.setForeground(new Color(248, 179, 29));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				button_1.setForeground(new Color(216, 216, 216));
-			}
-		});
-		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		button_1.setForeground(new Color(216, 216, 216));
-		button_1.setContentAreaFilled(false);
-		button_1.setBorder(null);
-		button_1.setBounds(75, 156, 117, 44);
-		add(button_1);
 
 		btnX = new JButton("X");
 		btnX.addMouseListener(new MouseAdapter() {
@@ -139,7 +66,7 @@ public class PersonalStock extends JPanel {
 		btnX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		btnX.setContentAreaFilled(false);
 		btnX.setBorder(null);
-		btnX.setBounds(931, 15, 16, 16);
+		btnX.setBounds(711, 15, 16, 16);
 		add(btnX);
 
 		button_2 = new JButton("—");
@@ -163,11 +90,11 @@ public class PersonalStock extends JPanel {
 		button_2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		button_2.setContentAreaFilled(false);
 		button_2.setBorder(null);
-		button_2.setBounds(904, 14, 16, 16);
+		button_2.setBounds(684, 14, 16, 16);
 		add(button_2);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(247, 110, 696, 440);
+		scrollPane.setBounds(27, 110, 696, 440);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
@@ -206,7 +133,7 @@ public class PersonalStock extends JPanel {
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-				new String[] { "日期", "开盘价", "最高价",
+				new String[] { "股票代码", "开盘价", "最高价",
 						"收盘价", "最低价", "交易量（股）", "交易金额（元）" });
 		table.setModel(tableModel);
 
@@ -214,7 +141,7 @@ public class PersonalStock extends JPanel {
 
 		// AliasingButton button = new AliasingButton();
 		JButton button = new JButton();
-		button.setBounds(854, 15, 18, 18);
+		button.setBounds(634, 15, 18, 18);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.setBorder(null);
@@ -255,22 +182,14 @@ public class PersonalStock extends JPanel {
 				textField.requestFocus();
 			}
 		});
-		textField.setBounds(686, 11, 196, 27);
+		textField.setBounds(466, 11, 196, 27);
 		add(textField);
 		textField.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("\u4E2A\u80A1\u8BE6\u60C5");
-		lblNewLabel.setBounds(245, 65, 151, 32);
+		JLabel lblNewLabel = new JLabel("\u80A1\u7968\u5217\u8868");
+		lblNewLabel.setBounds(25, 65, 151, 32);
 		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
 		add(lblNewLabel);
-		
-		JButton btnBack = new JButton("back");
-		btnBack.setForeground(new Color(216, 216, 216));
-		btnBack.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		btnBack.setContentAreaFilled(false);
-		btnBack.setBorder(null);
-		btnBack.setBounds(247, 15, 46, 16);
-		add(btnBack);
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
