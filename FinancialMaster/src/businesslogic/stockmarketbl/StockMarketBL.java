@@ -1,12 +1,12 @@
 package businesslogic.stockmarketbl;
 
-import PO.StockMarketPO;
+import VO.StockMarketVO;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
 
 public class StockMarketBL implements StockMarketBLService {
 
 	@Override
-	public StockMarketPO getStockMarket(String key, String data) {
+	public StockMarketVO getStockMarket(String key, String data) {
 		// TODO Auto-generated method stub
 		return null;
 	}
