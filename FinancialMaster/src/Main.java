@@ -1,8 +1,7 @@
-import java.util.ArrayList;
-
-import PO.codeNamePO;
-import PO.stockStatisticPO;
+import PO.fieldStatisticPO;
+import data.FieldData.FieldData;
 import data.stockcheckdata.StockData;
+import data.stockmarketdata.BenchData;
 
 public class Main {
 	public static void main(String[] args){
@@ -11,9 +10,11 @@ public class Main {
 //		for(int i=0;i<codeNamePO.getResult().size();i++){
 //			System.out.println(codeNamePO.getResult().get(i));
 //		}
-		ArrayList<stockStatisticPO> arrayList =stockData.getStatisitcOfStock("sh600000", "2014-10-10", "2015-10-10");
-		for(int i=0;i<arrayList.size();i++){
-			System.out.println(arrayList.get(i).getDate()+" "+arrayList.get(i).getHigh()+" "+arrayList.get(i).getOpen()+" "+arrayList.get(i).getClose());
-		}
+//		ArrayList<stockStatisticPO> arrayList =stockData.getStatisitcOfStock("sh600000", "2014-10-10", "2015-10-10");
+
+		BenchData benchData=new BenchData();
+		FieldData fieldData=new FieldData();
+		fieldStatisticPO f=fieldData.getStatisticOfField();
+		System.out.print(f.getOpen()+" "+f.getHigh()+" "+f.getLow()+" "+f.getClose()+" "+f.getAdj_price()+" "+f.getVolume()+" "+f.getTurnover()+" "+f.getPb()+" "+f.getPe());
 	}
 }
