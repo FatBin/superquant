@@ -39,8 +39,7 @@ public class PersonalStock extends JPanel {
 	JButton btnX;
 	JButton button_2;
 	private JTextField textField;
-	private JLabel lblNewLabel;
-	private JButton btnBack;
+	private static JLabel lblNewLabel;
 	private boolean click = false;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
@@ -49,7 +48,7 @@ public class PersonalStock extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "static-access" })
-	public PersonalStock(final JFrame frame, final StockList listui) {
+	public PersonalStock(final JFrame frame, final StockDetail detail) {
 		setBorder(null);
 
 		// setBounds(new Rectangle(960, 600));
@@ -71,10 +70,10 @@ public class PersonalStock extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.remove(ppanel);
-				listui.setVisible(false);
+				detail.setVisible(false);
 				Marketui mpanel = new Marketui(frame);
 				mpanel.setBounds(0, 0, getWidth(), getHeight());
-				frame.add(mpanel);
+				frame.getContentPane().add(mpanel);
 				frame.repaint();
 				frame.setVisible(true);
 			}
@@ -161,6 +160,11 @@ public class PersonalStock extends JPanel {
 		button_2.setBounds(904, 14, 16, 16);
 		add(button_2);
 
+		lblNewLabel = new JLabel("\u80A1\u7968\u5217\u8868");
+		lblNewLabel.setBounds(245, 65, 151, 32);
+		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
+		add(lblNewLabel);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(247, 110, 696, 440);
 		scrollPane.setOpaque(false);
@@ -201,8 +205,20 @@ public class PersonalStock extends JPanel {
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-				new String[] { "日期", "开盘价", "最高价", "收盘价", "最低价", "交易量（股）", "交易金额（元）" });
+				new String[] { "股票代码", "开盘价", "最高价", "收盘价", "最低价", "交易量（股）", "交易金额（元）" });
 		table.setModel(tableModel);
+
+		// 表格双击
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					// rowpos 表格位置
+					detail.setVisible(true);
+					lblNewLabel.setVisible(false);
+				}
+			}
+		});
 
 		setDragable(frame);
 
@@ -253,19 +269,6 @@ public class PersonalStock extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 
-		lblNewLabel = new JLabel("\u4E2A\u80A1\u8BE6\u60C5");
-		lblNewLabel.setBounds(245, 65, 151, 32);
-		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		add(lblNewLabel);
-
-		btnBack = new JButton("back");
-		btnBack.setForeground(new Color(216, 216, 216));
-		btnBack.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		btnBack.setContentAreaFilled(false);
-		btnBack.setBorder(null);
-		btnBack.setBounds(247, 15, 46, 16);
-		add(btnBack);
-
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
 			@Override
@@ -298,22 +301,13 @@ public class PersonalStock extends JPanel {
 
 			}
 		});
-		
-	}
-	
-	public void removeBack(){
-		lblNewLabel.setVisible(false);
-		btnBack.setVisible(false);
-		button_2.setVisible(false);
-		btnX.setVisible(false);
-	}
-	
-	public void addBack(){
-		lblNewLabel.setVisible(true);
-		btnBack.setVisible(true);
-		repaint();
+   
 	}
 
+	public static void addLable(){
+		lblNewLabel.setVisible(true);
+	}
+	
 	// 边框圆滑
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/background.png");

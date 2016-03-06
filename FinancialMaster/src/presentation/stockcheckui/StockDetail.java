@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import presentation.repaintComponent.TextBubbleBorder;
 
 @SuppressWarnings("serial")
-public class StockList extends JPanel {
+public class StockDetail extends JPanel {
 	JButton btnX;
 	JButton button_2;
 	private JTextField textField;
@@ -39,12 +39,12 @@ public class StockList extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "static-access" })
-	public StockList(final JFrame frame) {
+	public StockDetail(final JFrame frame) {
 		setBorder(null);
 
 		// setBounds(new Rectangle(960, 600));
 		setLayout(null);
-		final StockList listui = this;
+		final StockDetail detail = this;
 
 		btnX = new JButton("X");
 		btnX.addMouseListener(new MouseAdapter() {
@@ -134,28 +134,8 @@ public class StockList extends JPanel {
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-				new String[] { "股票代码", "开盘价", "最高价", "收盘价", "最低价", "交易量（股）", "交易金额（元）" });
+				new String[] { "日期", "开盘价", "最高价", "收盘价", "最低价", "交易量（股）", "交易金额（元）" });
 		table.setModel(tableModel);
-
-		// 表格双击
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					// rowpos 表格位置
-					listui.setVisible(false);
-//					frame.remove(listui);
-//					frame.remove(frame.getContentPane());
-//					PersonalStock ppanel = new PersonalStock(frame, listui);
-//					ppanel.setBounds(0, 0, getWidth(), getHeight());
-//					ppanel.setVisible(true);
-//					ppanel.addBack();
-//					frame.add(ppanel);
-//					frame.repaint();
-//					frame.setVisible(true);
-				}
-			}
-		});
 
 		setDragable(frame);
 
@@ -206,11 +186,34 @@ public class StockList extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("\u80A1\u7968\u5217\u8868");
+		JLabel lblNewLabel = new JLabel("\u4E2A\u80A1\u8BE6\u60C5");
 		lblNewLabel.setBackground(new Color(245, 245, 245));
 		lblNewLabel.setBounds(25, 65, 151, 32);
 		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
 		add(lblNewLabel);
+		
+		button_1 = new JButton("back");
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				detail.setVisible(false);
+				PersonalStock.addLable();
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				button_1.setForeground(Color.GREEN);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				button_1.setForeground(new Color(216, 216, 216));
+			}
+		});
+		button_1.setForeground(new Color(216, 216, 216));
+		button_1.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		button_1.setContentAreaFilled(false);
+		button_1.setBorder(null);
+		button_1.setBounds(27, 15, 46, 16);
+		add(button_1);
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
@@ -259,6 +262,7 @@ public class StockList extends JPanel {
 	Point tmp = null;
 	boolean isDragged = false;
 	private JTable table;
+	private JButton button_1;
 
 	private void setDragable(final JFrame jFrame) {
 		this.addMouseListener(new java.awt.event.MouseAdapter() {
