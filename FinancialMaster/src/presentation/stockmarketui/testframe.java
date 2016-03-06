@@ -10,6 +10,7 @@ public class testframe extends JFrame {
 	public static void main(String[] args){
 		JFrame frame = new JFrame();
 		frame.setUndecorated(true); // È¥µô±ß¿ò
+		frame.setLayout(null);
 		frame.setBackground(new Color(0, 0, 0, 0));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(960, 600);
@@ -17,8 +18,8 @@ public class testframe extends JFrame {
 		frame.setResizable(false);
 		Marketui panel = new Marketui(frame);
 		panel.setBorder(null);
+		panel.setBounds(0,0,frame.getWidth(),frame.getHeight());
 		frame.add(panel);
-		panel.setLocation(frame.getX(), frame.getY());
 		frame.setVisible(true);
 	}
 	/**

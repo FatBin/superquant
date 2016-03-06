@@ -44,6 +44,7 @@ public class StockList extends JPanel {
 
 		// setBounds(new Rectangle(960, 600));
 		setLayout(null);
+		final StockList listui = this;
 
 		btnX = new JButton("X");
 		btnX.addMouseListener(new MouseAdapter() {
@@ -133,9 +134,28 @@ public class StockList extends JPanel {
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-				new String[] { "股票代码", "开盘价", "最高价",
-						"收盘价", "最低价", "交易量（股）", "交易金额（元）" });
+				new String[] { "股票代码", "开盘价", "最高价", "收盘价", "最低价", "交易量（股）", "交易金额（元）" });
 		table.setModel(tableModel);
+
+		// 表格双击
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					// rowpos 表格位置
+					listui.setVisible(false);
+//					frame.remove(listui);
+//					frame.remove(frame.getContentPane());
+//					PersonalStock ppanel = new PersonalStock(frame, listui);
+//					ppanel.setBounds(0, 0, getWidth(), getHeight());
+//					ppanel.setVisible(true);
+//					ppanel.addBack();
+//					frame.add(ppanel);
+//					frame.repaint();
+//					frame.setVisible(true);
+				}
+			}
+		});
 
 		setDragable(frame);
 
@@ -187,6 +207,7 @@ public class StockList extends JPanel {
 		textField.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("\u80A1\u7968\u5217\u8868");
+		lblNewLabel.setBackground(new Color(245, 245, 245));
 		lblNewLabel.setBounds(25, 65, 151, 32);
 		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
 		add(lblNewLabel);
@@ -228,11 +249,8 @@ public class StockList extends JPanel {
 
 	// 边框圆滑
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/background.png");
-		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		// g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
 
 	}
 

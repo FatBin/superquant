@@ -8,10 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -41,6 +39,8 @@ public class PersonalStock extends JPanel {
 	JButton btnX;
 	JButton button_2;
 	private JTextField textField;
+	private JLabel lblNewLabel;
+	private JButton btnBack;
 	private boolean click = false;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
@@ -49,19 +49,12 @@ public class PersonalStock extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "static-access" })
-	public PersonalStock(final JFrame frame) {
+	public PersonalStock(final JFrame frame, final StockList listui) {
 		setBorder(null);
 
 		// setBounds(new Rectangle(960, 600));
 		setLayout(null);
 		final PersonalStock ppanel = this;
-		
-		// list
-//		StockList listui = new StockList(frame);
-//		listui.setVisible(true);
-//		frame.add(listui);
-//		listui.setBounds(frame.getX()+220, 0,getWidth()-220,getHeight());
-//		frame.setVisible(true);
 
 		btnNewButton = new JButton("\u5927\u76D8\u6570\u636E");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -78,8 +71,10 @@ public class PersonalStock extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.remove(ppanel);
+				listui.setVisible(false);
 				Marketui mpanel = new Marketui(frame);
-				frame.getContentPane().add(mpanel);
+				mpanel.setBounds(0, 0, getWidth(), getHeight());
+				frame.add(mpanel);
 				frame.repaint();
 				frame.setVisible(true);
 			}
@@ -206,8 +201,7 @@ public class PersonalStock extends JPanel {
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-				new String[] { "日期", "开盘价", "最高价",
-						"收盘价", "最低价", "交易量（股）", "交易金额（元）" });
+				new String[] { "日期", "开盘价", "最高价", "收盘价", "最低价", "交易量（股）", "交易金额（元）" });
 		table.setModel(tableModel);
 
 		setDragable(frame);
@@ -259,12 +253,12 @@ public class PersonalStock extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("\u4E2A\u80A1\u8BE6\u60C5");
+		lblNewLabel = new JLabel("\u4E2A\u80A1\u8BE6\u60C5");
 		lblNewLabel.setBounds(245, 65, 151, 32);
 		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
 		add(lblNewLabel);
-		
-		JButton btnBack = new JButton("back");
+
+		btnBack = new JButton("back");
 		btnBack.setForeground(new Color(216, 216, 216));
 		btnBack.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		btnBack.setContentAreaFilled(false);
@@ -304,7 +298,20 @@ public class PersonalStock extends JPanel {
 
 			}
 		});
-
+		
+	}
+	
+	public void removeBack(){
+		lblNewLabel.setVisible(false);
+		btnBack.setVisible(false);
+		button_2.setVisible(false);
+		btnX.setVisible(false);
+	}
+	
+	public void addBack(){
+		lblNewLabel.setVisible(true);
+		btnBack.setVisible(true);
+		repaint();
 	}
 
 	// 边框圆滑
