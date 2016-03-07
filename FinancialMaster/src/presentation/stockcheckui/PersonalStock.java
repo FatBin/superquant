@@ -194,6 +194,8 @@ public class PersonalStock extends JPanel {
 		table.setBorder(null);
 		// table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
+		table.setShowGrid(false);
+		table.setBorder(null);
 		tableModel = new DefaultTableModel(
 				new Object[][] { { "", "", "", "", "", "", "" }, { null, null, null, null, null, null, null },
 						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },

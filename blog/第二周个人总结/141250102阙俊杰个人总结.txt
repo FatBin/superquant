@@ -1,0 +1,9 @@
+{\rtf1\ansi\ansicpg936\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \'cf\'ee\'c4\'bf\'b5\'fc\'b4\'fa\'d2\'bb\'d6\'f0\'b2\'bd\'bf\'aa\'ca\'bc\'b8\'f7\'cf\'ee\'b9\'a4\'d7\'f7\'a3\'ac\'d5\'e2\'d2\'bb\'d6\'dc\'b5\'c4\'ca\'b1\'bc\'e4\'c0\'ef\
+\'c7\'b0\'b0\'eb\'b8\'f6\'d6\'dc\'a3\'ba\'d6\'f7\'d2\'aa\'d4\'da\'d5\'d2\'d6\'ae\'ba\'f3\'d2\'aa\'d3\'c3\'b5\'bd\'b5\'c4\'cd\'bc\'b1\'ed\'bb\'e6\'cd\'bc\'b2\'e5\'bc\'fe\'ba\'cd\'b9\'b9\'cb\'bc\'c8\'ed\'bc\'fe\'bd\'bb\'bb\'a5\'d4\'ad\'d0\'cd\'d2\'d4\'bc\'b0\'ca\'d3\'be\'f5\'c9\'e8\'bc\'c6\
+\'ba\'f3\'b0\'eb\'b8\'f6\'d6\'dc\'a3\'ba\'b1\'e0\'d0\'b4\'d0\'e8\'c7\'f3\'b9\'e6\'b8\'f1\'ce\'c4\'b5\'b5\'bd\'e7\'c3\'e6\'cb\'b5\'c3\'f7\'b2\'bf\'b7\'d6\'a3\'ac\'cd\'ea\'b3\'c9\'bd\'e7\'c3\'e6\'c9\'e8\'bc\'c6\'cd\'bc\'a3\'ac\'d4\'da\'c0\'ee\'ea\'bb\'cb\'b7\'cd\'ea\'b3\'c9\'bd\'e7\'c3\'e6\'bf\'f2\'bc\'dc\'b1\'e0\'d0\'b4\'ba\'f3\'a3\'ac\'d6\'d8\'d0\'b4\'d7\'e9\'bc\'fe \'bd\'f8\'d0\'d0\'c3\'c0\'bb\'af \'d2\'d4\'b7\'fb\'ba\'cf\'c9\'e8\'bc\'c6\'b8\'e5\'d2\'aa\'c7\'f3}
