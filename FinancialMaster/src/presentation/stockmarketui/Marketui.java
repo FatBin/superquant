@@ -72,17 +72,11 @@ public class Marketui extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				frame.remove(mpanel);
 				
-//				// detail
-//				StockDetail detail = new StockDetail(frame);
-//				frame.add(detail);
-//				detail.setBounds(220, 0, getWidth() - 220, getHeight());
-//				detail.setVisible(false);
-				
 				StockList listui = new StockList(frame);
 				listui.setBounds(224, 0, getWidth()-223, getHeight());
 				frame.getContentPane().add(listui);
 				
-				PersonalStock ppanel = new PersonalStock(frame, listui);
+				PersonalStock ppanel = new PersonalStock(frame);
 				ppanel.setBounds(0,0,225,getHeight());  
 				frame.getContentPane().add(ppanel);
 				frame.repaint();

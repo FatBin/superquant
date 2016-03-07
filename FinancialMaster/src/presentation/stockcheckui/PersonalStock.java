@@ -33,11 +33,10 @@ public class PersonalStock extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PersonalStock(final JFrame frame, final StockList listui) {
+	public PersonalStock(final JFrame frame) {
 		setBorder(null);
 
 		setLayout(null);
-		final PersonalStock ppanel = this;
 
 		btnNewButton = new JButton("\u5927\u76D8\u6570\u636E");
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -53,8 +52,7 @@ public class PersonalStock extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.remove(ppanel);
-				frame.remove(listui);
+				frame.getContentPane().removeAll();
 				Marketui mpanel = new Marketui(frame);
 				mpanel.setBounds(0, 0,960, getHeight());
 				frame.getContentPane().add(mpanel);
