@@ -7,11 +7,13 @@ public class StockVO {
 	double max_price;//最高价
 	double min_price;//最低价
 	int trading_amout;//交易量
-	double  trading_money;//交易金额
 	String[][] history_data;//历史数据
-	
+		
+	public StockVO(String[][] history_data) {
+		super();
+		this.history_data = history_data;
+	}
 
-	
 	public StockVO(String id, double opening_price, double closing_price,
 			double max_price, double min_price, int trading_amout,
 			double trading_money, String[][] history_data) {
@@ -22,7 +24,6 @@ public class StockVO {
 		this.max_price = max_price;
 		this.min_price = min_price;
 		this.trading_amout = trading_amout;
-		this.trading_money = trading_money;
 		this.history_data = history_data;
 	}
 	
@@ -48,10 +49,6 @@ public class StockVO {
 
 	public int getTrading_amout() {
 		return trading_amout;
-	}
-
-	public double getTrading_money() {
-		return trading_money;
 	}
 
 	public String[][] getHistory_data() {
