@@ -24,7 +24,6 @@ import javax.swing.JTextField;
 
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
-import presentation.stockcheckui.StockDetail;
 import presentation.stockcheckui.StockList;
 
 import javax.swing.JComboBox;
@@ -47,7 +46,6 @@ public class Marketui extends JPanel {
 	public Marketui(final JFrame frame) {
 		setBorder(null);
 
-		// setBounds(new Rectangle(960, 600));
 		setLayout(null);
 		final Marketui mpanel = this;
 
@@ -74,19 +72,18 @@ public class Marketui extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				frame.remove(mpanel);
 				
-				// detail
-				StockDetail detail = new StockDetail(frame);
-				frame.add(detail);
-				detail.setBounds(220, 0, getWidth() - 220, getHeight());
-				detail.setVisible(false);
+//				// detail
+//				StockDetail detail = new StockDetail(frame);
+//				frame.add(detail);
+//				detail.setBounds(220, 0, getWidth() - 220, getHeight());
+//				detail.setVisible(false);
 				
-				StockList listui = new StockList(frame, detail);
-				listui.setBounds(220, 0, getWidth()-220, getHeight());
-				frame.add(listui);
+				StockList listui = new StockList(frame);
+				listui.setBounds(224, 0, getWidth()-223, getHeight());
+				frame.getContentPane().add(listui);
 				
-				PersonalStock ppanel = new PersonalStock(frame, detail, listui);
-//				ppanel.removeBack(); // remove back
-				ppanel.setBounds(0,0,getWidth(),getHeight());  // 此处需要修改
+				PersonalStock ppanel = new PersonalStock(frame, listui);
+				ppanel.setBounds(0,0,225,getHeight());  
 				frame.getContentPane().add(ppanel);
 				frame.repaint();
 				frame.setVisible(true);
@@ -192,8 +189,6 @@ public class Marketui extends JPanel {
 						button.getHeight(),image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button.setIcon(image1);
-//		button.setIcon(new ImageIcon("image/search.png"));
-//		button.setUI(new MyBottonUI());
 		button.setMargin(new Insets(0, 0, 0, 0));
 		add(button);
 		

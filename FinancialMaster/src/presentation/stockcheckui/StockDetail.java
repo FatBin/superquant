@@ -38,7 +38,7 @@ public class StockDetail extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings({ "static-access" })
+	@SuppressWarnings("static-access")
 	public StockDetail(final JFrame frame) {
 		setBorder(null);
 
@@ -67,7 +67,7 @@ public class StockDetail extends JPanel {
 		btnX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		btnX.setContentAreaFilled(false);
 		btnX.setBorder(null);
-		btnX.setBounds(711, 15, 16, 16);
+		btnX.setBounds(707, 15, 16, 16);
 		add(btnX);
 
 		button_2 = new JButton("¡ª");
@@ -91,11 +91,11 @@ public class StockDetail extends JPanel {
 		button_2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		button_2.setContentAreaFilled(false);
 		button_2.setBorder(null);
-		button_2.setBounds(684, 14, 16, 16);
+		button_2.setBounds(680, 14, 16, 16);
 		add(button_2);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(27, 110, 696, 440);
+		scrollPane.setBounds(23, 110, 696, 440);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
@@ -141,7 +141,7 @@ public class StockDetail extends JPanel {
 
 		// AliasingButton button = new AliasingButton();
 		JButton button = new JButton();
-		button.setBounds(634, 15, 18, 18);
+		button.setBounds(630, 15, 18, 18);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.setBorder(null);
@@ -182,7 +182,7 @@ public class StockDetail extends JPanel {
 				textField.requestFocus();
 			}
 		});
-		textField.setBounds(466, 11, 196, 27);
+		textField.setBounds(462, 11, 196, 27);
 		add(textField);
 		textField.setColumns(10);
 
@@ -196,10 +196,11 @@ public class StockDetail extends JPanel {
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				detail.setVisible(false);
-				StockList listui = new StockList(frame, detail);
-				frame.add(listui);
-				listui.setBounds(220, 0, getWidth() - 220, getHeight());
+				frame.remove(detail);
+				StockList listui = new StockList(frame);
+				listui.setBounds(224, 0, 737, getHeight());
+				frame.getContentPane().add(listui);
+				frame.repaint();
 				frame.setVisible(true);
 			}
 
@@ -257,6 +258,8 @@ public class StockDetail extends JPanel {
 
 	// ±ß¿òÔ²»¬
 	protected void paintComponent(Graphics g) {
+		ImageIcon image = new ImageIcon("image/right.png");
+		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
