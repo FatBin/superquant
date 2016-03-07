@@ -191,18 +191,23 @@ public class StockDetail extends JPanel {
 		lblNewLabel.setBounds(25, 65, 151, 32);
 		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
 		add(lblNewLabel);
-		
+
 		button_1 = new JButton("back");
 		button_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				detail.setVisible(false);
-				PersonalStock.addLable();
+				StockList listui = new StockList(frame, detail);
+				frame.add(listui);
+				listui.setBounds(220, 0, getWidth() - 220, getHeight());
+				frame.setVisible(true);
 			}
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				button_1.setForeground(Color.GREEN);
 			}
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				button_1.setForeground(new Color(216, 216, 216));

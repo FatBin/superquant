@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockDetail;
+import presentation.stockcheckui.StockList;
 
 import javax.swing.JComboBox;
 
@@ -75,14 +76,17 @@ public class Marketui extends JPanel {
 				
 				// detail
 				StockDetail detail = new StockDetail(frame);
-				detail.setBounds(220, 0, getWidth()-220, getHeight());
 				frame.add(detail);
+				detail.setBounds(220, 0, getWidth() - 220, getHeight());
 				detail.setVisible(false);
-//				frame.setVisible(true);
 				
-				PersonalStock ppanel = new PersonalStock(frame, detail);
+				StockList listui = new StockList(frame, detail);
+				listui.setBounds(220, 0, getWidth()-220, getHeight());
+				frame.add(listui);
+				
+				PersonalStock ppanel = new PersonalStock(frame, detail, listui);
 //				ppanel.removeBack(); // remove back
-				ppanel.setBounds(0,0,getWidth(),getHeight());
+				ppanel.setBounds(0,0,getWidth(),getHeight());  // 此处需要修改
 				frame.getContentPane().add(ppanel);
 				frame.repaint();
 				frame.setVisible(true);

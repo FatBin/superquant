@@ -39,11 +39,11 @@ public class StockList extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "static-access" })
-	public StockList(final JFrame frame, StockDetail detail) {
+	public StockList(final JFrame frame, final StockDetail detail) {
 		setBorder(null);
 
-		// setBounds(new Rectangle(960, 600));
 		setLayout(null);
+		final StockList listui = this;
 
 		btnX = new JButton("X");
 		btnX.addMouseListener(new MouseAdapter() {
@@ -136,6 +136,18 @@ public class StockList extends JPanel {
 				new String[] { "股票代码", "开盘价", "最高价", "收盘价", "最低价", "交易量（股）", "交易金额（元）" });
 		table.setModel(tableModel);
 
+		// 表格双击
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					// rowpos 表格位置
+					frame.remove(listui);
+					detail.setVisible(true);
+					frame.repaint();
+				}
+			}
+		});
 		setDragable(frame);
 
 		// AliasingButton button = new AliasingButton();
