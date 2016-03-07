@@ -123,17 +123,17 @@ public class StockList extends JPanel {
 		// table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
 		tableModel = new DefaultTableModel(
-				new Object[][] { { "", "", "", "", "", "", "" }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null }, { null, null, null, null, null, null, null }, },
-				new String[] { "股票代码", "开盘价", "最高价", "收盘价", "最低价", "交易量（股）", "交易金额（元）" });
+				new Object[][] { { "", "", "", "", "", "" }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
+				new String[] { "股票代码", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）" });
 		table.setModel(tableModel);
 
 		// 表格双击

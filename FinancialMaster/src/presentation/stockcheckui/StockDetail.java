@@ -216,7 +216,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button_1.setForeground(Color.GREEN);
+				button_1.setForeground(new Color(72, 77, 78));
 			}
 
 			@Override

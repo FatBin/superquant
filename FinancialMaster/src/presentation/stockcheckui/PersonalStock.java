@@ -64,6 +64,7 @@ public class PersonalStock extends JPanel {
 		btnNewButton.setForeground(new Color(216, 216, 216));
 		btnNewButton.setBounds(68, 68, 117, 44);
 		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setOpaque(false);
 		btnNewButton.setBorder(null);
 		add(btnNewButton);
 
