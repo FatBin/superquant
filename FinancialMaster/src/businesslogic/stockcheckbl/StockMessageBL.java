@@ -1,8 +1,6 @@
 package businesslogic.stockcheckbl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import PO.stockStatisticPO;
 import VO.StockVO;
@@ -13,25 +11,9 @@ import dataservice.stockcheckdataservice.StockDataService;
 public class StockMessageBL implements StockMessageBLService {
 
 	@Override
-	public StockVO getStockMessage(String id) {
-		  StockDataService sds=new StockData();
-		  Calendar   cal   =   Calendar.getInstance();
-		  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		  String today=format.format(cal.getTime());
-		  cal.add(Calendar.MONTH,-1);
-		  String todayOflast_month = format.format(cal.getTime());
-		  ArrayList<stockStatisticPO> ssPOlist=sds.getStatisitcOfStock(id, todayOflast_month, today);
-		  return trans(ssPOlist);
-	}
-
-	@Override
-	public StockVO updateStockList(String id, String startData, String overData) {
+	public StockVO getStockMessage(String id,String startData, String overData) {
 		  StockDataService sds=new StockData();
 		  ArrayList<stockStatisticPO> ssPOlist=sds.getStatisitcOfStock(id, startData, overData);
-		  return trans(ssPOlist);
-	}
-
-	private StockVO trans(ArrayList<stockStatisticPO> ssPOlist){
 		  int size=ssPOlist.size();
 		  String[][] list=new String[size][10];
 		  int index=0;
