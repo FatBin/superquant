@@ -12,6 +12,9 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -93,6 +96,26 @@ public class StockDetail extends JPanel {
 		button_2.setBorder(null);
 		button_2.setBounds(680, 14, 16, 16);
 		add(button_2);
+
+		Date today = new Date();
+		Date dbefore = new Date();
+		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Calendar calendar = Calendar.getInstance(); 
+		calendar.add(Calendar.MONTH, -1);   // 前一个月
+		dbefore = calendar.getTime();  
+		
+		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
+		JLabel showDate1 = new JLabel(dt.format(dbefore));
+		showDate1.setBounds(475, 75, 90, 22);
+		dateChooser1.register(showDate1);
+		add(showDate1);
+
+		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
+		JLabel showDate2 = new JLabel(dt.format(today));
+		showDate2.setBounds(606, 75, 90, 22);
+		dateChooser2.register(showDate2);
+		add(showDate2);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 110, 715, 440);
@@ -230,6 +253,11 @@ public class StockDetail extends JPanel {
 		button_1.setBorder(null);
 		button_1.setBounds(27, 15, 46, 16);
 		add(button_1);
+		
+		JLabel label = new JLabel("\u81F3");
+		label.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		label.setBounds(574, 75, 25, 22);
+		add(label);
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
