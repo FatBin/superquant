@@ -27,6 +27,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import VO.StockVO;
+import businesslogic.stockcheckbl.StockMessageBL;
+import businesslogicservice.stockcheckblservice.StockMessageBLService;
 import presentation.repaintComponent.DateChooser;
 import presentation.repaintComponent.TextBubbleBorder;
 
@@ -38,12 +41,13 @@ public class StockDetail extends JPanel {
 	private boolean click = false;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
+	StockMessageBLService Message = new StockMessageBL();
 
 	/**
 	 * Create the panel.
 	 */
 	@SuppressWarnings("static-access")
-	public StockDetail(final JFrame frame) {
+	public StockDetail(final JFrame frame, String id, final StockList listui) {
 		setBorder(null);
 
 		// setBounds(new Rectangle(960, 600));
@@ -101,19 +105,21 @@ public class StockDetail extends JPanel {
 		Date today = new Date();
 		Date dbefore = new Date();
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Calendar calendar = Calendar.getInstance(); 
-		calendar.add(Calendar.MONTH, -1);   // 前一个月
-		dbefore = calendar.getTime();  
-		
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, -1); // 前一个月
+		dbefore = calendar.getTime();
+
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel showDate1 = new JLabel(dt.format(dbefore));
+		String start = dt.format(dbefore);
+		JLabel showDate1 = new JLabel(start);
 		showDate1.setBounds(475, 75, 90, 22);
 		dateChooser1.register(showDate1);
 		add(showDate1);
 
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
-		JLabel showDate2 = new JLabel(dt.format(today));
+		String end = dt.format(today);
+		JLabel showDate2 = new JLabel(end);
 		showDate2.setBounds(606, 75, 90, 22);
 		dateChooser2.register(showDate2);
 		add(showDate2);
@@ -124,6 +130,9 @@ public class StockDetail extends JPanel {
 		scrollPane.setBorder(null);
 		scrollPane.getViewport().setOpaque(false);
 		add(scrollPane);
+
+		StockVO datavo = Message.getStockMessage(id, start, end);
+		String[][] data = datavo.getHistory_data();
 
 		table = new JTable();
 		table.setRowHeight(30);
@@ -147,29 +156,14 @@ public class StockDetail extends JPanel {
 		table.setBorder(null);
 		// table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
-		tableModel = new DefaultTableModel(
-				new Object[][] { { "", "", "", "", "", "", "", "", "", "" },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null },
-						{ null, null, null, null, null, null, null, null, null, null }, },
+		tableModel = new DefaultTableModel(data,
 				new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "后复权价", "交易量(股)", "换手率", "市盈率", "市净率" });
 		table.setModel(tableModel);
+
+		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		for (int i = 1; i < 6; i++) {
+			table.getColumnModel().getColumn(i).setPreferredWidth(70);
+		}
 
 		setDragable(frame);
 
@@ -231,11 +225,12 @@ public class StockDetail extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.remove(detail);
-				StockList listui = new StockList(frame);
-				listui.setBounds(224, 0, 737, getHeight());
-				frame.getContentPane().add(listui);
-				frame.repaint();
-				frame.setVisible(true);
+//				StockList listui = new StockList(frame);
+//				listui.setBounds(224, 0, 737, getHeight());
+//				frame.getContentPane().add(listui);
+				listui.setVisible(true);
+//				frame.repaint();
+//				frame.setVisible(true);
 			}
 
 			@Override
@@ -254,7 +249,7 @@ public class StockDetail extends JPanel {
 		button_1.setBorder(null);
 		button_1.setBounds(27, 15, 46, 16);
 		add(button_1);
-		
+
 		JLabel label = new JLabel("\u81F3");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		label.setBounds(574, 75, 25, 22);

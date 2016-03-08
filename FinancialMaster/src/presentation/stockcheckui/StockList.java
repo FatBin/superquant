@@ -125,22 +125,10 @@ public class StockList extends JPanel {
 		scrollPane.setViewportView(table);
 		table.setBorder(null);
 		table.setEnabled(false);
-		
-//		String[][] data = stocklistbl.getStockList();
-		
-		tableModel = new DefaultTableModel(
-				new Object[][] { { "", "", "", "", "", "" }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
-//				data,
-				new String[] { "股票代码", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）" });
+
+		String[][] data = stocklistbl.getStockList();
+
+		tableModel = new DefaultTableModel(data, new String[] { "股票代码", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）" });
 		table.setModel(tableModel);
 
 		// 表格双击
@@ -148,18 +136,17 @@ public class StockList extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					// rowpos 表格位置
-					frame.remove(listui);
-					StockDetail detail = new StockDetail(frame);
+//					frame.remove(listui);
+					listui.setVisible(false);
+					String id = table.getValueAt(rowpos, 0).toString();
+					StockDetail detail = new StockDetail(frame, id, listui);
 					frame.getContentPane().add(detail);
 					detail.setBounds(224, 0, 737, getHeight());
 					frame.repaint();
 				}
 			}
 		});
-		
-//		showTable(stocklistbl.getStockList());
-		
+
 		setDragable(frame);
 
 		// AliasingButton button = new AliasingButton();
@@ -249,7 +236,7 @@ public class StockList extends JPanel {
 		});
 
 	}
-	
+
 	// 边框圆滑
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/right.png");
