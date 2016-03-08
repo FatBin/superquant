@@ -21,6 +21,7 @@ public class StockListBL implements StockListBLService {
 		StockDataService sds = new StockData();
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		String today = format.format(cal.getTime());
 		cal.add(Calendar.DATE, -1);
 		String yestoday = format.format(cal.getTime());
 		codeNamePO sz_codeName = sds.getCodeName(2016, "sz");
@@ -34,7 +35,7 @@ public class StockListBL implements StockListBLService {
 		stockStatisticPO ssPO;
 		for (String sz_s : sz_list) {
 			list[index][0] = sz_s;
-			ssPOlist = sds.getStatisitcOfStock(sz_s, yestoday, yestoday);
+			ssPOlist = sds.getStatisitcOfStock(sz_s, yestoday, today);
 			if (!ssPOlist.isEmpty()) {
 				ssPO = ssPOlist.get(0);
 				list[index][1] = ssPO.getOpen() + "";
@@ -52,7 +53,7 @@ public class StockListBL implements StockListBLService {
 		}
 		for (String sh_s : sh_list) {
 			list[index][0] = sh_s;
-			ssPOlist = sds.getStatisitcOfStock(sh_s, yestoday, yestoday);
+			ssPOlist = sds.getStatisitcOfStock(sh_s, yestoday, today);
 			if (!ssPOlist.isEmpty()) {
 				ssPO = ssPOlist.get(0);
 				list[index][1] = ssPO.getOpen() + "";
