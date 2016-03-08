@@ -104,13 +104,19 @@ public class StockListBL implements StockListBLService {
 			}
 		}
 		int size = new_list.size();
-		String list[][] = new String[size][6];
-		int index = 0;
-		for (String[] strings : new_list) {
-			list[index] = strings;
-			index++;
+		if (size == 0) {
+			String[][] list = { { "-", "-", "-", "-", "-", "-" } };
+			return list;
+		} else {
+			String list[][] = new String[size][6];
+			int index = 0;
+			for (String[] strings : new_list) {
+				list[index] = strings;
+				index++;
+			}
+			return list;
 		}
-		return list;
+		
 	}
 
 }
