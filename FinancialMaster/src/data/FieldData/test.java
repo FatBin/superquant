@@ -16,11 +16,10 @@ public class test {
 //				"sh600769", "sh600975", "sh600622", "sh600803", "sh600365",
 //				"sh600223", "sh600071", "sh603008", "sh600085", "sh600827",
 //				"sh600077" };
-//		ArrayList<String> market_list=f.g
-//		for (String string : name_list) {
-//			System.out.println(string);
-//			f.getStatisitcOfStock(string, "2016-03-07", "2016-03-08");
-//		}
+		ArrayList<String> market_list=f.getBenchmark().getBenchmark();
+		for (String string : market_list) {
+			System.out.println(string);
+		}
 		
 	}
 
