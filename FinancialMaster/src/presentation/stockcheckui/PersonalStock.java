@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import presentation.OptionalStock.OptionalStock;
 import presentation.stockmarketui.Marketui;
 
 import javax.swing.JLabel;
@@ -54,7 +55,7 @@ public class PersonalStock extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				frame.getContentPane().removeAll();
 				Marketui mpanel = new Marketui(frame);
-				mpanel.setBounds(0, 0,960, getHeight());
+				mpanel.setBounds(0, 0, 960, getHeight());
 				frame.getContentPane().add(mpanel);
 				frame.repaint();
 				frame.setVisible(true);
@@ -87,6 +88,15 @@ public class PersonalStock extends JPanel {
 			public void mouseExited(MouseEvent e) {
 				button_1.setForeground(new Color(216, 216, 216));
 			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.getContentPane().removeAll();
+				OptionalStock opanel = new OptionalStock(frame);
+				frame.add(opanel);
+				opanel.setBounds(0, 0, 960, 600);
+				frame.repaint();
+			}
 		});
 		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		button_1.setForeground(new Color(216, 216, 216));
@@ -112,7 +122,6 @@ public class PersonalStock extends JPanel {
 
 		setDragable(frame);
 
-   
 	}
 
 	// ±ß¿òÔ²»¬

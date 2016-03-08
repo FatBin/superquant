@@ -1,4 +1,4 @@
-package presentation.stockmarketui;
+package presentation.OptionalStock;
 
 import java.awt.RenderingHints;
 
@@ -19,18 +19,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JTable;
 import javax.swing.JTextField;
 
-import presentation.OptionalStock.OptionalStock;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockList;
-
-import javax.swing.JComboBox;
+import presentation.stockmarketui.Marketui;
 
 @SuppressWarnings("serial")
-public class Marketui extends JPanel {
+public class OptionalStock extends JPanel {
 
 	JButton btnNewButton;
 	JButton button;
@@ -43,16 +40,37 @@ public class Marketui extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked", "static-access" })
-	public Marketui(final JFrame frame) {
+	@SuppressWarnings({ "static-access" })
+	public OptionalStock(final JFrame frame) {
 		setBorder(null);
 
 		setLayout(null);
-		final Marketui mpanel = this;
+		final OptionalStock opanel = this;
 
 		btnNewButton = new JButton("\u5927\u76D8\u6570\u636E");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnNewButton.setForeground(new Color(248, 179, 29));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnNewButton.setForeground(new Color(216, 216, 216));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.getContentPane().removeAll();
+				Marketui mpanel = new Marketui(frame);
+				frame.add(mpanel);
+				mpanel.setBounds(0, 0, 960, 600);
+				frame.repaint();
+				frame.setVisible(true);
+			}
+		});
 		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnNewButton.setForeground(new Color(248, 179, 29));
+		btnNewButton.setForeground(new Color(216, 216, 216));
 		btnNewButton.setBounds(68, 68, 117, 44);
 		btnNewButton.setContentAreaFilled(false);
 		btnNewButton.setBorder(null);
@@ -72,8 +90,7 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.remove(mpanel);
-
+				frame.remove(opanel);
 				StockList listui = new StockList(frame);
 				listui.setBounds(224, 0, getWidth() - 223, getHeight());
 				frame.getContentPane().add(listui);
@@ -93,28 +110,8 @@ public class Marketui extends JPanel {
 		add(button);
 
 		button_1 = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
-		button_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				button_1.setForeground(new Color(248, 179, 29));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				button_1.setForeground(new Color(216, 216, 216));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				frame.remove(mpanel);
-				OptionalStock opanel = new OptionalStock(frame);
-				frame.add(opanel);
-				opanel.setBounds(0, 0, getWidth(), getHeight());
-				frame.repaint();
-			}
-		});
 		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		button_1.setForeground(new Color(216, 216, 216));
+		button_1.setForeground(new Color(248, 179, 29));
 		button_1.setContentAreaFilled(false);
 		button_1.setBorder(null);
 		button_1.setBounds(75, 156, 117, 44);
@@ -167,20 +164,6 @@ public class Marketui extends JPanel {
 		button_2.setBorder(null);
 		button_2.setBounds(904, 14, 16, 16);
 		add(button_2);
-
-		table = new JTable();
-		table.setBounds(247, 110, 696, 440);
-		add(table);
-
-		final JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		comboBox.setBounds(245, 65, 151, 32);
-		comboBox.addItem("上证指数");
-		comboBox.addItem("深证指数");
-		comboBox.setSelectedIndex(0);
-		comboBox.setOpaque(false);
-		comboBox.setBorder(null);
-		add(comboBox);
 
 		// AliasingButton button = new AliasingButton();
 		JButton button = new JButton();
@@ -277,7 +260,6 @@ public class Marketui extends JPanel {
 	Point loc = null;
 	Point tmp = null;
 	boolean isDragged = false;
-	private JTable table;
 
 	private void setDragable(final JFrame jFrame) {
 		this.addMouseListener(new java.awt.event.MouseAdapter() {
