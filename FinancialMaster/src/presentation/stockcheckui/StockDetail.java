@@ -31,6 +31,7 @@ import VO.StockVO;
 import businesslogic.stockcheckbl.StockMessageBL;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
 import presentation.repaintComponent.DateChooser;
+import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
 
 @SuppressWarnings("serial")
@@ -128,6 +129,7 @@ public class StockDetail extends JPanel {
 		scrollPane.setBounds(10, 110, 715, 440);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
+		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		scrollPane.getViewport().setOpaque(false);
 		add(scrollPane);
 

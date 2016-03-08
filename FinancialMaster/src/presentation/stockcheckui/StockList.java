@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableModel;
 
 import businesslogic.stockcheckbl.StockListBL;
 import businesslogicservice.stockcheckblservice.StockListBLService;
+import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -103,6 +104,7 @@ public class StockList extends JPanel {
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(null);
 		scrollPane.setViewportBorder(null);
+		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		scrollPane.getViewport().setOpaque(false);
 		add(scrollPane);
 
