@@ -27,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import presentation.repaintComponent.DateChooser;
 import presentation.repaintComponent.TextBubbleBorder;
 
 @SuppressWarnings("serial")

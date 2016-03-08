@@ -124,7 +124,6 @@ public class StockList extends JPanel {
 		});
 		scrollPane.setViewportView(table);
 		table.setBorder(null);
-		// table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
 		
 //		String[][] data = stocklistbl.getStockList();
@@ -140,7 +139,7 @@ public class StockList extends JPanel {
 						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
 						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
 						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
-	//			data,
+//				data,
 				new String[] { "股票代码", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）" });
 		table.setModel(tableModel);
 

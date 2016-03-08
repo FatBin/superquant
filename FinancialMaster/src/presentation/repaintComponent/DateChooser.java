@@ -1,4 +1,4 @@
-package presentation.stockcheckui;
+package presentation.repaintComponent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
