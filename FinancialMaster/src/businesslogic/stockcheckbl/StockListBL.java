@@ -20,7 +20,7 @@ public class StockListBL implements StockListBLService {
 		// 股票代码、开盘价、最高价、最低价、收盘价、后复权价、成交量、换手率、市盈率、市净率
 		StockDataService sds = new StockData();
 		Calendar cal = Calendar.getInstance();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String today = format.format(cal.getTime());
 		cal.add(Calendar.DATE, -1);
 		String yestoday = format.format(cal.getTime());
