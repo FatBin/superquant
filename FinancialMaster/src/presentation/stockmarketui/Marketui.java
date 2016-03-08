@@ -22,7 +22,12 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import ENUM.date_enum;
+import VO.StockMarketVO;
+import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import javafx.scene.control.TabPane;
 import presentation.OptionalStock.OptionalStock;
 import presentation.repaintComponent.TextBubbleBorder;
@@ -41,6 +46,14 @@ public class Marketui extends JPanel {
 	JButton button_2;
 	private JTextField textField;
 	private boolean click = false;
+	private JTable dayTable;
+	private JTable weekTable;
+	private JTable monthTable;
+	private JTable halfYearTable;
+	private JTable yearTable;
+	private JTable fiveYearTable;
+	private JTable tenYearTable;
+	private StockMarketBLService stockMarketBL = new businesslogic.stockmarketbl.StockMarketBL();
 
 	/**
 	 * Create the panel.
@@ -170,12 +183,61 @@ public class Marketui extends JPanel {
 		button_2.setBounds(904, 14, 16, 16);
 		add(button_2);
 
-//		table = new JTable();
-//		table.setBounds(247, 110, 696, 440);
-//		add(table);
+		dayTable = new JTable();
+		dayTable.setBounds(247, 110, 696, 440);
+		add(dayTable);
+		
+		weekTable = new JTable();
+		weekTable.setBounds(247, 110, 696, 440);
+		add(weekTable);
+		
+		monthTable = new JTable();
+		monthTable.setBounds(247, 110, 696, 440);
+		add(monthTable);
+		
+		halfYearTable = new JTable();
+		halfYearTable.setBounds(247, 110, 696, 440);
+		add(halfYearTable);
+		
+		yearTable = new JTable();
+		yearTable.setBounds(247, 110, 696, 440);
+		add(yearTable);
+		
+		fiveYearTable = new JTable();
+		fiveYearTable.setBounds(247, 110, 696, 440);
+		add(fiveYearTable);
+		
+		tenYearTable = new JTable();
+		tenYearTable.setBounds(247, 110, 696, 440);
+		add(tenYearTable);
 		
 		JTabbedPane tabbedPane= new JTabbedPane();
-		tabbedPane.setBounds(247, 110, 696, 440);
+		tabbedPane.setBounds(247, 98, 696, 440);
+		tabbedPane.addTab("当天", dayTable);
+		tabbedPane.addTab("一周", weekTable);
+		tabbedPane.addTab("一个月", monthTable);
+		tabbedPane.addTab("半年", halfYearTable);
+		tabbedPane.addTab("一年", yearTable);
+		tabbedPane.addTab("五年", fiveYearTable);
+		tabbedPane.addTab("十年", tenYearTable);
+		tabbedPane.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				JTabbedPane tab = (JTabbedPane)e.getSource();
+				int selectedIndex = tab.getSelectedIndex();
+				switch (selectedIndex) {
+				case 0:
+					StockMarketVO stockMarketVO = stockMarketBL.getStockMarket("sh", date_enum.Day);
+//					String[][] data = stockMarketVO.
+					break;
+
+				default:
+					break;
+				}
+				
+			}
+		});
 		add(tabbedPane);
 		
 		
@@ -285,7 +347,9 @@ public class Marketui extends JPanel {
 	Point loc = null;
 	Point tmp = null;
 	boolean isDragged = false;
-	private JTable table;
+	
+	
+	
 
 	private void setDragable(final JFrame jFrame) {
 		this.addMouseListener(new java.awt.event.MouseAdapter() {
