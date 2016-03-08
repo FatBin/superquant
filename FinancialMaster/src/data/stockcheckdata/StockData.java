@@ -24,7 +24,7 @@ public class StockData implements StockDataService {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				arrayList.add(jsonArray.getJSONObject(i).getString("name"));
 			}
-		} catch (Exception e) {
+		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -47,6 +47,24 @@ public class StockData implements StockDataService {
 			JSONArray jsonArray = jsonObject2.getJSONArray("trading_info");
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject jsonObject3 = jsonArray.getJSONObject(i);
+				//这三个数据有些为空值
+				 Double turnover=-1.0,pe_ttm=-1.0,pb=-1.0;
+				 try {
+					turnover=jsonObject3.getDouble("turnover");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				 try {
+					 pe_ttm=jsonObject3.getDouble("pe_ttm");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+				 try {
+					 pb=jsonObject3.getDouble("pb");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}			 
+				 //////分割线//////
 				 stockStatisticPO stockStatisticPO=new
 				 stockStatisticPO(jsonObject3.getString("date"),
 				 jsonObject3.getDouble("open"),
@@ -55,14 +73,13 @@ public class StockData implements StockDataService {
 				 jsonObject3.getDouble("close"),
 				 jsonObject3.getDouble("adj_price"),
 				 jsonObject3.getInt("volume"),
-				 jsonObject3.getDouble("turnover"),
-				 jsonObject3.getDouble("pe_ttm"),				 
-				 jsonObject3.getDouble("pb"));
+				 turnover,
+				 pe_ttm,				 
+				 pb);
 				 arrayList.add(stockStatisticPO);
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
+		} catch (JSONException e){
+			e.printStackTrace();
 		}
 		return arrayList;
 	}

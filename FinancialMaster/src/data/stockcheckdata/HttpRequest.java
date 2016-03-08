@@ -1,12 +1,9 @@
 package data.stockcheckdata;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
-
-import org.json.JSONObject;
 public class HttpRequest {
 	  /**
      * 向指定URL发送GET方法的请求
@@ -36,9 +33,9 @@ public class HttpRequest {
             while ((line = in.readLine()) != null) {
             	result=result+line;
             }
-        } catch (Exception e) {
-            System.out.println("发送GET请求出现异常！" + e);
-            e.printStackTrace();
+        } catch (IOException e) {
+//            System.out.println("发送GET请求出现异常！" + e);
+//            e.printStackTrace();
         }
         // 使用finally块来关闭输入流
         finally {

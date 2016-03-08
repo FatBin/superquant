@@ -11,10 +11,13 @@ public class Main {
 //			System.out.println(codeNamePO.getResult().get(i));
 //		}
 		ArrayList<stockStatisticPO> arrayList =stockData.getStatisitcOfStock("sh600000", "2014-10-10", "2015-10-10");
-		
+		for(int i=0;i<arrayList.size();i++){
+			System.out.println(arrayList.get(i).getTurnover());
+		}
 //		BenchData benchData=new BenchData();
 //		FieldData fieldData=new FieldData();
 //		fieldStatisticPO f=fieldData.getStatisticOfField();
 //		System.out.print(f.getOpen()+" "+f.getHigh()+" "+f.getLow()+" "+f.getClose()+" "+f.getAdj_price()+" "+f.getVolume()+" "+f.getTurnover()+" "+f.getPb()+" "+f.getPe());
+//		stockData.getCodeName(201, "sh");
 	}
 }
