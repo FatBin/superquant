@@ -24,6 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import businesslogic.stockcheckbl.StockListBL;
+import businesslogicservice.stockcheckblservice.StockListBLService;
 import presentation.repaintComponent.TextBubbleBorder;
 
 @SuppressWarnings("serial")
@@ -34,6 +36,7 @@ public class StockList extends JPanel {
 	private boolean click = false;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
+	StockListBLService stocklistbl = new StockListBL();
 
 	/**
 	 * Create the panel.
@@ -122,6 +125,9 @@ public class StockList extends JPanel {
 		table.setBorder(null);
 		// table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
+		
+//		String[][] data = stocklistbl.getStockList();
+		
 		tableModel = new DefaultTableModel(
 				new Object[][] { { "", "", "", "", "", "" }, { null, null, null, null, null, null },
 						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
@@ -133,6 +139,7 @@ public class StockList extends JPanel {
 						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
 						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
 						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
+	//			data,
 				new String[] { "股票代码", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）" });
 		table.setModel(tableModel);
 
@@ -150,6 +157,9 @@ public class StockList extends JPanel {
 				}
 			}
 		});
+		
+//		showTable(stocklistbl.getStockList());
+		
 		setDragable(frame);
 
 		// AliasingButton button = new AliasingButton();
@@ -239,7 +249,7 @@ public class StockList extends JPanel {
 		});
 
 	}
-
+	
 	// 边框圆滑
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("image/right.png");
