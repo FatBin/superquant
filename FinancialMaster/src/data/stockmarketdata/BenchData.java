@@ -45,7 +45,39 @@ public class BenchData implements BenchDataService{
 					JSONArray jsonArray=jsonObject2.getJSONArray("trading_info");
 					for(int i=0;i<jsonArray.length();i++){
 						JSONObject jsonObject3=jsonArray.getJSONObject(i);
-						benchmarkStatisticPO benchmarkStatisticPO=new benchmarkStatisticPO(jsonObject3.getString("date"), jsonObject3.getDouble("close"), jsonObject3.getDouble("open"));
+						Double low=-1.0,high=-1.0,adj_price=-1.0,volume=-1.0;
+						try {
+							low=jsonObject3.getDouble("low");
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
+						try {
+							high=jsonObject3.getDouble("high");
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
+						try {
+							adj_price=jsonObject3.getDouble("adj_price");
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
+						try {
+							volume=jsonObject3.getDouble("volume");
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
+						benchmarkStatisticPO benchmarkStatisticPO=new benchmarkStatisticPO(
+								jsonObject3.getString("date"), 
+								jsonObject3.getDouble("close"), 
+								jsonObject3.getDouble("open"),
+								low,
+								high,
+								adj_price,
+								volume);
 						arrayList.add(benchmarkStatisticPO);
 					}
 				} catch (Exception e) {
