@@ -41,16 +41,16 @@ public class StockDetail extends JPanel {
 	private boolean click = false;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
+	private JLabel label_1;
 	StockMessageBLService Message = new StockMessageBL();
 
 	/**
 	 * Create the panel.
 	 */
 	@SuppressWarnings("static-access")
-	public StockDetail(final JFrame frame, String id, final StockList listui) {
+	public StockDetail(final JFrame frame, final String id, final StockList listui) {
 		setBorder(null);
 
-		// setBounds(new Rectangle(960, 600));
 		setLayout(null);
 		final StockDetail detail = this;
 
@@ -111,16 +111,16 @@ public class StockDetail extends JPanel {
 		dbefore = calendar.getTime();
 
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		String start = dt.format(dbefore);
-		JLabel showDate1 = new JLabel(start);
-		showDate1.setBounds(475, 75, 90, 22);
+		final String start = dt.format(dbefore);
+		final JLabel showDate1 = new JLabel(start);
+		showDate1.setBounds(455, 75, 90, 22);
 		dateChooser1.register(showDate1);
 		add(showDate1);
 
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
-		String end = dt.format(today);
-		JLabel showDate2 = new JLabel(end);
-		showDate2.setBounds(606, 75, 90, 22);
+		final String end = dt.format(today);
+		final JLabel showDate2 = new JLabel(end);
+		showDate2.setBounds(586, 75, 90, 22);
 		dateChooser2.register(showDate2);
 		add(showDate2);
 
@@ -167,7 +167,6 @@ public class StockDetail extends JPanel {
 
 		setDragable(frame);
 
-		// AliasingButton button = new AliasingButton();
 		JButton button = new JButton();
 		button.setBounds(630, 15, 18, 18);
 		button.setContentAreaFilled(false);
@@ -178,8 +177,6 @@ public class StockDetail extends JPanel {
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button.setIcon(image1);
-		// button.setIcon(new ImageIcon("image/search.png"));
-		// button.setUI(new MyBottonUI());
 		button.setMargin(new Insets(0, 0, 0, 0));
 		add(button);
 
@@ -225,12 +222,7 @@ public class StockDetail extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.remove(detail);
-//				StockList listui = new StockList(frame);
-//				listui.setBounds(224, 0, 737, getHeight());
-//				frame.getContentPane().add(listui);
 				listui.setVisible(true);
-//				frame.repaint();
-//				frame.setVisible(true);
 			}
 
 			@Override
@@ -252,8 +244,43 @@ public class StockDetail extends JPanel {
 
 		JLabel label = new JLabel("\u81F3");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		label.setBounds(574, 75, 25, 22);
+		label.setBounds(554, 75, 25, 22);
 		add(label);
+
+		label_1 = new JLabel("  \u203A");
+		label_1.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_1.setForeground(new Color(72, 77, 78));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_1.setForeground(new Color(216, 216, 216));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String newStart = showDate1.getText();
+				String newEnd = showDate2.getText();
+				StockVO datavo = Message.getStockMessage(id, newStart, newEnd);
+				String[][] data = datavo.getHistory_data();
+				tableModel = new DefaultTableModel(data,
+						new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "后复权价", "交易量(股)", "换手率", "市盈率", "市净率" });
+				table.setModel(tableModel);
+
+				table.getColumnModel().getColumn(0).setPreferredWidth(100);
+				for (int i = 1; i < 6; i++) {
+					table.getColumnModel().getColumn(i).setPreferredWidth(70);
+				}
+				repaint();
+			}
+		});
+		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		label_1.setForeground(new Color(216, 216, 216));
+		label_1.setBounds(682, 73, 25, 22);
+		add(label_1);
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {

@@ -27,6 +27,8 @@ import javax.swing.table.DefaultTableModel;
 import businesslogic.stockcheckbl.StockListBL;
 import businesslogicservice.stockcheckblservice.StockListBLService;
 import presentation.repaintComponent.TextBubbleBorder;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class StockList extends JPanel {
@@ -136,7 +138,6 @@ public class StockList extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-//					frame.remove(listui);
 					listui.setVisible(false);
 					String id = table.getValueAt(rowpos, 0).toString();
 					StockDetail detail = new StockDetail(frame, id, listui);
@@ -149,8 +150,14 @@ public class StockList extends JPanel {
 
 		setDragable(frame);
 
-		// AliasingButton button = new AliasingButton();
 		JButton button = new JButton();
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String key = textField.getText();
+				showTable(key);
+			}
+		});
 		button.setBounds(630, 15, 18, 18);
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
@@ -160,12 +167,25 @@ public class StockList extends JPanel {
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
 		button.setIcon(image1);
-		// button.setIcon(new ImageIcon("image/search.png"));
-		// button.setUI(new MyBottonUI());
 		button.setMargin(new Insets(0, 0, 0, 0));
 		add(button);
 
 		textField = new JTextField();
+		textField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					String key = textField.getText();
+					showTable(key);
+				}
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String key = textField.getText();
+				showTable(key);
+			}
+		});
 		textField.setFocusable(false);
 		textField.setOpaque(false);
 		textField.setForeground(new Color(150, 150, 150));
@@ -234,7 +254,13 @@ public class StockList extends JPanel {
 
 			}
 		});
+	}
 
+	public void showTable(String key) {
+		String[][] data = stocklistbl.updateStockList(key);
+		tableModel = new DefaultTableModel(data, new String[] { "股票代码", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）" });
+		table.setModel(tableModel);
+		repaint();
 	}
 
 	// 边框圆滑
