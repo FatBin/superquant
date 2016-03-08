@@ -1,4 +1,4 @@
-package dataservice.stockcheckdataservice;
+package dataservice.stockmarketdataservice;
 
 import java.util.ArrayList;
 
@@ -11,5 +11,6 @@ public interface BenchDataService {
 	public benchmarkPO getBenchmark();
 	
 	//获取指定大盘指数的数据,start:起始时间,格式 YYYY-mm-dd;end: 结束时间,格式 YYYY-mm-dd
+	//时间，开盘指数，收盘指数
 	public ArrayList<benchmarkStatisticPO> getStatisticOfBenchmark (String benchCode , String start,String end);
 }

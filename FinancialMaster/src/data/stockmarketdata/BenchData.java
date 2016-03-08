@@ -9,7 +9,7 @@ import PO.benchmarkPO;
 import PO.benchmarkStatisticPO;
 import PO.fieldStatisticPO;
 import data.stockcheckdata.HttpRequest;
-import dataservice.stockcheckdataservice.BenchDataService;
+import dataservice.stockmarketdataservice.BenchDataService;
 
 public class BenchData implements BenchDataService{
 

@@ -2,37 +2,71 @@ package PO;
 
 public class stockStatisticPO {
 	private String date;//日期
-	private double high;//最高指数
-	private double open;//开盘指数
-	private double close;//收盘指数
-	public stockStatisticPO(String date, double high, double open, double close) {
-		setDate(date);
-		setHigh(high);
-		setOpen(open);
-		setClose(close);
+	private double open;//开盘价
+	private double high;//最高价
+	private double low;//最低价
+	private double close;//收盘价
+	private double adj_price;//后复权价
+	private int volume;//成交量
+	private double turnover;//换手率
+	private double pe;//市盈率
+	private double pb;//市净率
+	
+	public stockStatisticPO(String date, double open, double high, double low,
+			double close, double adj_price, int volume, double turnover,
+			double pe, double pb) {
+		super();
+		this.date = date;
+		this.open = open;
+		this.high = high;
+		this.low = low;
+		this.close = close;
+		this.adj_price = adj_price;
+		this.volume = volume;
+		this.turnover = turnover;
+		this.pe = pe;
+		this.pb = pb;
 	}
+
 	public String getDate() {
 		return date;
 	}
-	private void setDate(String date) {
-		this.date = date;
-	}
-	public double getHigh() {
-		return high;
-	}
-	private void setHigh(double high2) {
-		this.high = high2;
-	}
+
 	public double getOpen() {
 		return open;
 	}
-	private void setOpen(double open2) {
-		this.open = open2;
+
+	public double getHigh() {
+		return high;
 	}
+
+	public double getLow() {
+		return low;
+	}
+
 	public double getClose() {
 		return close;
 	}
-	private void setClose(double close) {
-		this.close = close;
+
+	public double getAdj_price() {
+		return adj_price;
 	}
+
+	public int getVolume() {
+		return volume;
+	}
+
+	public double getTurnover() {
+		return turnover;
+	}
+
+	public double getPe() {
+		return pe;
+	}
+
+	public double getPb() {
+		return pb;
+	}
+
+	
 }
