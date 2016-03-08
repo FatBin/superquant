@@ -16,7 +16,7 @@ public class StockMarketBL implements StockMarketBLService {
 		BenchDataService benchDataservice=new BenchData();
 		//得到日期
 		Calendar   cal   =   Calendar.getInstance();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String today=format.format(cal.getTime());
 		switch(date){
 		case Day:

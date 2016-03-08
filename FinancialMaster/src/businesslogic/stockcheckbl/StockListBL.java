@@ -24,50 +24,73 @@ public class StockListBL implements StockListBLService {
 		String today = format.format(cal.getTime());
 		cal.add(Calendar.DATE, -1);
 		String yestoday = format.format(cal.getTime());
-		codeNamePO sz_codeName = sds.getCodeName(2016, "sz");
-		codeNamePO sh_codeName = sds.getCodeName(2016, "sh");
-		ArrayList<String> sz_list = sz_codeName.getResult();
-		ArrayList<String> sh_list = sz_codeName.getResult();
-		int size = sz_list.size() + sh_list.size();
-		String[][] list = new String[size][6];
-		int index = 0;
+		// codeNamePO sz_codeName = sds.getCodeName(2015, "sz");
+		// codeNamePO sh_codeName = sds.getCodeName(2015, "sh");
+		// ArrayList<String> sz_list = sz_codeName.getResult();
+		// ArrayList<String> sh_list = sz_codeName.getResult();
+		// int size = sz_list.size() + sh_list.size();
+		// String[][] list = new String[size][6];
+		// int index = 0;
 		ArrayList<stockStatisticPO> ssPOlist;
 		stockStatisticPO ssPO;
-		for (String sz_s : sz_list) {
-			list[index][0] = sz_s;
-			ssPOlist = sds.getStatisitcOfStock(sz_s, yestoday, today);
+		// for (String sz_s : sz_list) {
+		// list[index][0] = sz_s;
+		// ssPOlist = sds.getStatisitcOfStock(sz_s, yestoday, today);
+		// if (!ssPOlist.isEmpty()) {
+		// ssPO = ssPOlist.get(0);
+		// list[index][1] = ssPO.getOpen() + "";
+		// list[index][2] = ssPO.getHigh() + "";
+		// list[index][3] = ssPO.getLow() + "";
+		// list[index][4] = ssPO.getClose() + "";
+		// list[index][5] = ssPO.getVolume() + "";
+		// } else {
+		// for (int i = 1; i < 6; i++) {
+		// list[index][i] = "";
+		// }
+		// }
+		// init_list.add(list[index]);
+		// index++;
+		// }
+		// for (String sh_s : sh_list) {
+		// list[index][0] = sh_s;
+		// ssPOlist = sds.getStatisitcOfStock(sh_s, yestoday, today);
+		// if (!ssPOlist.isEmpty()) {
+		// ssPO = ssPOlist.get(0);
+		// list[index][1] = ssPO.getOpen() + "";
+		// list[index][2] = ssPO.getHigh() + "";
+		// list[index][3] = ssPO.getLow() + "";
+		// list[index][4] = ssPO.getClose() + "";
+		// list[index][5] = ssPO.getVolume() + "";
+		// } else {
+		// for (int i = 1; i < 6; i++) {
+		// list[index][i] = "";
+		// }
+		// }
+		// init_list.add(list[index]);
+		// index++;
+		// }
+		String[] name_list = { "sh600000", "sh600004", "sh600005", "sh600006",
+				"sh600007", "sh600008", "sh600009", "sh600300", "sh600316",
+				"sh600769", "sh600975", "sh600622", "sh600803", "sh600365",
+				"sh600223", "sh600071", "sh603008", "sh600085", "sh600827",
+				"sh600077" };
+		String list[][] = new String[20][6];
+		for (int i = 0; i < 20; i++) {
+			list[i][0] = name_list[i];
+			ssPOlist = sds.getStatisitcOfStock(name_list[i], yestoday, today);
 			if (!ssPOlist.isEmpty()) {
 				ssPO = ssPOlist.get(0);
-				list[index][1] = ssPO.getOpen() + "";
-				list[index][2] = ssPO.getHigh() + "";
-				list[index][3] = ssPO.getLow() + "";
-				list[index][4] = ssPO.getClose() + "";
-				list[index][5] = ssPO.getVolume() + "";
+				list[i][1] = ssPO.getOpen() + "";
+				list[i][2] = ssPO.getHigh() + "";
+				list[i][3] = ssPO.getLow() + "";
+				list[i][4] = ssPO.getClose() + "";
+				list[i][5] = ssPO.getVolume() + "";
 			} else {
-				for (int i = 1; i < 6; i++) {
-					list[index][i] = "";
+				for (int j = 1; j < 6; j++) {
+					list[i][i] = "-";
 				}
 			}
-			init_list.add(list[index]);
-			index++;
-		}
-		for (String sh_s : sh_list) {
-			list[index][0] = sh_s;
-			ssPOlist = sds.getStatisitcOfStock(sh_s, yestoday, today);
-			if (!ssPOlist.isEmpty()) {
-				ssPO = ssPOlist.get(0);
-				list[index][1] = ssPO.getOpen() + "";
-				list[index][2] = ssPO.getHigh() + "";
-				list[index][3] = ssPO.getLow() + "";
-				list[index][4] = ssPO.getClose() + "";
-				list[index][5] = ssPO.getVolume() + "";
-			} else {
-				for (int i = 1; i < 6; i++) {
-					list[index][i] = "";
-				}
-			}
-			init_list.add(list[index]);
-			index++;
+			init_list.add(list[i]);
 		}
 		return list;
 	}

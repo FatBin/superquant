@@ -16,7 +16,7 @@ public class StockMessageBL implements StockMessageBLService {
 	public StockVO getStockMessage(String id) {
 		  StockDataService sds=new StockData();
 		  Calendar   cal   =   Calendar.getInstance();
-		  SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		  SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		  String today=format.format(cal.getTime());
 		  cal.add(Calendar.MONTH,-1);
 		  String todayOflast_month = format.format(cal.getTime());
