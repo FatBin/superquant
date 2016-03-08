@@ -3,6 +3,7 @@ package presentation.stockmarketui;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,6 +23,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import javafx.scene.control.TabPane;
 import presentation.OptionalStock.OptionalStock;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
@@ -108,7 +110,7 @@ public class Marketui extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				frame.remove(mpanel);
 				OptionalStock opanel = new OptionalStock(frame);
-				frame.add(opanel);
+				frame.getContentPane().add(opanel);
 				opanel.setBounds(0, 0, getWidth(), getHeight());
 				frame.repaint();
 			}
@@ -168,9 +170,15 @@ public class Marketui extends JPanel {
 		button_2.setBounds(904, 14, 16, 16);
 		add(button_2);
 
-		table = new JTable();
-		table.setBounds(247, 110, 696, 440);
-		add(table);
+//		table = new JTable();
+//		table.setBounds(247, 110, 696, 440);
+//		add(table);
+		
+		JTabbedPane tabbedPane= new JTabbedPane();
+		tabbedPane.setBounds(247, 110, 696, 440);
+		add(tabbedPane);
+		
+		
 
 		final JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
