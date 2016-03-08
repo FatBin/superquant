@@ -27,7 +27,8 @@ public class StockMessageBL implements StockMessageBLService {
 			  list[index][6]=sp.getVolume()+"";
 			  list[index][7]=sp.getTurnover()+"";			  
 			  list[index][8]=sp.getPe()+"";
-			  list[index][9]=sp.getPb()+"";			  
+			  list[index][9]=sp.getPb()+"";		
+			  index++;
 		}
 		StockVO sv=new StockVO(list);
 		return sv;
