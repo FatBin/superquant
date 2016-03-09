@@ -213,9 +213,10 @@ public class StockDetail extends JPanel {
 		add(textField);
 		textField.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("\u4E2A\u80A1\u8BE6\u60C5");
+		JLabel lblNewLabel = new JLabel("¸ö¹ÉÏêÇé");
 		lblNewLabel.setBackground(new Color(245, 245, 245));
-		lblNewLabel.setBounds(25, 65, 151, 32);
+		lblNewLabel.setForeground(new Color(95, 99, 108));
+		lblNewLabel.setBounds(10, 65, 98, 32);
 		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
 		add(lblNewLabel);
 
@@ -241,7 +242,7 @@ public class StockDetail extends JPanel {
 		button_1.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		button_1.setContentAreaFilled(false);
 		button_1.setBorder(null);
-		button_1.setBounds(27, 15, 46, 16);
+		button_1.setBounds(10, 15, 46, 16);
 		add(button_1);
 
 		JLabel label = new JLabel("\u81F3");
@@ -249,7 +250,7 @@ public class StockDetail extends JPanel {
 		label.setBounds(554, 75, 25, 22);
 		add(label);
 
-		label_1 = new JLabel("  \u203A");
+		label_1 = new JLabel("\u203A");
 		label_1.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -259,7 +260,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				label_1.setForeground(new Color(216, 216, 216));
+				label_1.setForeground(new Color(150, 150, 150));
 			}
 
 			@Override
@@ -279,8 +280,8 @@ public class StockDetail extends JPanel {
 				repaint();
 			}
 		});
-		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		label_1.setForeground(new Color(216, 216, 216));
+		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		label_1.setForeground(new Color(150, 150, 150));
 		label_1.setBounds(682, 73, 25, 22);
 		add(label_1);
 

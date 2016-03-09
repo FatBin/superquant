@@ -220,6 +220,7 @@ public class StockList extends JPanel {
 
 		JLabel lblNewLabel = new JLabel("\u80A1\u7968\u5217\u8868");
 		lblNewLabel.setBackground(new Color(245, 245, 245));
+		lblNewLabel.setForeground(new Color(95, 99, 108));
 		lblNewLabel.setBounds(25, 65, 151, 32);
 		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
 		add(lblNewLabel);
