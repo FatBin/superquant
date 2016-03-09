@@ -25,6 +25,7 @@ import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockList;
 import presentation.stockmarketui.Marketui;
+import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
 public class OptionalStock extends JPanel {
@@ -63,7 +64,7 @@ public class OptionalStock extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				frame.getContentPane().removeAll();
 				Marketui mpanel = new Marketui(frame);
-				frame.add(mpanel);
+				frame.getContentPane().add(mpanel);
 				mpanel.setBounds(0, 0, 960, 600);
 				frame.repaint();
 				frame.setVisible(true);
@@ -209,6 +210,10 @@ public class OptionalStock extends JPanel {
 		textField.setBounds(686, 11, 196, 27);
 		add(textField);
 		textField.setColumns(10);
+		
+		JLabel label = new JLabel("\u656C\u8BF7\u671F\u5F85");
+		label.setBounds(296, 77, 85, 29);
+		add(label);
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {

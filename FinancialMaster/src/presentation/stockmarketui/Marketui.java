@@ -3,7 +3,9 @@ package presentation.stockmarketui;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,20 +27,16 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import ENUM.date_enum;
 import VO.StockMarketVO;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
-import javafx.scene.control.TabPane;
 import presentation.OptionalStock.OptionalStock;
 import presentation.repaintComponent.MyComboBox;
-import presentation.repaintComponent.MyComboBoxUI;
+import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockList;
-
-import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class Marketui extends JPanel {
@@ -50,20 +48,19 @@ public class Marketui extends JPanel {
 	JButton button_2;
 	private JTextField textField;
 	private boolean click = false;
-	private JTable dayTable;
-	private JTable weekTable;
-	private JTable monthTable;
-	private JTable halfYearTable;
-	private JTable yearTable;
-	private JTable fiveYearTable;
-	private JTable tenYearTable;
+
+	String[][] data;
+	
+	private JScrollPane[] scrollPane;
+	private JTable[] table;
+
 	private StockMarketBLService stockMarketBL = new businesslogic.stockmarketbl.StockMarketBL();
 	DefaultTableModel TableModel;
 
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked", "static-access" })
+	@SuppressWarnings({ "unchecked", "static-access" })
 	public Marketui(final JFrame frame) {
 		setBorder(null);
 
@@ -188,124 +185,48 @@ public class Marketui extends JPanel {
 		button_2.setBounds(904, 14, 16, 16);
 		add(button_2);
 
-		dayTable = new JTable();
-		dayTable.setBounds(247, 110, 696, 440);
-		add(dayTable);
+		scrollPane = new JScrollPane[7];
 
-		weekTable = new JTable();
-		weekTable.setBounds(247, 110, 696, 440);
-		add(weekTable);
-
-		monthTable = new JTable();
-		monthTable.setBounds(247, 110, 696, 440);
-		add(monthTable);
-
-		halfYearTable = new JTable();
-		halfYearTable.setBounds(247, 110, 696, 440);
-		add(halfYearTable);
-
-		yearTable = new JTable();
-		yearTable.setBounds(247, 110, 696, 440);
-		add(yearTable);
-
-		fiveYearTable = new JTable();
-		fiveYearTable.setBounds(247, 110, 696, 440);
-		add(fiveYearTable);
-
-		tenYearTable = new JTable();
-		tenYearTable.setBounds(247, 110, 696, 440);
-		add(tenYearTable);
-		
-//		StockMarketVO stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
-//		String[][] data = null;
-//		data = stockMarketVO.getData();
-//		TableModel = new DefaultTableModel(data,
-//				new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-//		dayTable.setModel(TableModel);
-//		add(dayTable);
-//		
-		
+		table = new JTable[7];
+		for (int i = 0; i < 7; i++) {
+			table[i] = new JTable();
+			scrollPane[i] = new JScrollPane();
+			scrollPane[i].setBounds(247, 110, 696, 440);
+			scrollPane[i].add(table[i]);
+			scrollPane[i].setViewportView(table[i]);
+			scrollPane[i].getVerticalScrollBar().setUI(new MyScrollBarUI());
+			scrollPane[i].setBorder(BorderFactory.createEmptyBorder());
+		}
 
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.setBounds(247, 98, 696, 440);
-		tabbedPane.addTab("当天", dayTable);
-		tabbedPane.addTab("一周", weekTable);
-		tabbedPane.addTab("一个月", monthTable);
-		tabbedPane.addTab("半年", halfYearTable);
-		tabbedPane.addTab("一年", yearTable);
-		tabbedPane.addTab("五年", fiveYearTable);
-		tabbedPane.addTab("十年", tenYearTable);
-		tabbedPane.addChangeListener(new ChangeListener() {
 
+		String title[] = { "当天", "一周", "一个月", "半年", "一年", "五年", "十年" };
+
+		for (int i = 0; i < 7; i++) {
+			tabbedPane.add(title[i], scrollPane[i]);
+		}
+
+		tabbedPane.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				StockMarketVO stockMarketVO;
-				String[][] data;
 				JTabbedPane tab = (JTabbedPane) e.getSource();
 				int selectedIndex = tab.getSelectedIndex();
-//				for (int i = 0; i < 7; i++) {
-//					if (selectedIndex == i) {
-//						stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.);
-//						data = stockMarketVO.getData();
-//						TableModel = new DefaultTableModel(data,
-//								new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-//						tab.getComponent(i).setModel(TableModel);
-//						break;
-//					}
-//				}
-				switch (selectedIndex) {
-				case 0:
-					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
-					data = stockMarketVO.getData();
-					TableModel = new DefaultTableModel(data,
-							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-					dayTable.setModel(TableModel);
-					break;
-					
-				case 1:
-					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Week);
-					data = stockMarketVO.getData();
-					TableModel = new DefaultTableModel(data,
-							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-					weekTable.setModel(TableModel);
-					break;
-				case 2:
-					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Month);
-					data = stockMarketVO.getData();
-					TableModel = new DefaultTableModel(data,
-							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-					monthTable.setModel(TableModel);
-				case 3:
-					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.HalfYear);
-					data = stockMarketVO.getData();
-					TableModel = new DefaultTableModel(data,
-							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-					halfYearTable.setModel(TableModel);
-				case 4:
-					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Year);
-					data = stockMarketVO.getData();
-					TableModel = new DefaultTableModel(data,
-							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-					yearTable.setModel(TableModel);
-				case 5:
-					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.FiveYear);
-					data = stockMarketVO.getData();
-					TableModel = new DefaultTableModel(data,
-							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-					fiveYearTable.setModel(TableModel);
-				case 6:
-					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.TenYear);
-					data = stockMarketVO.getData();
-					TableModel = new DefaultTableModel(data,
-							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-					tenYearTable.setModel(TableModel);
-				default:
-					break;
-				}
-
+				date_enum[] date = date_enum.values();
+				stockMarketVO = stockMarketBL.getStockMarket("hs300", date[selectedIndex]);
+				data = stockMarketVO.getData();
+				TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价" });
+				table[selectedIndex].setModel(TableModel);
 			}
 		});
 		add(tabbedPane);
+		
+		StockMarketVO stockMarketVO;
+		stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
+		data = stockMarketVO.getData();
+		TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价" });
+		table[0].setModel(TableModel);
 
 		final MyComboBox comboBox = new MyComboBox();
 		comboBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
@@ -317,7 +238,6 @@ public class Marketui extends JPanel {
 		comboBox.setBorder(null);
 		add(comboBox);
 
-		// AliasingButton button = new AliasingButton();
 		JButton button = new JButton();
 		button.setBounds(854, 15, 18, 18);
 		button.setContentAreaFilled(false);
