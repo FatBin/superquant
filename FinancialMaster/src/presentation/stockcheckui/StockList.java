@@ -13,6 +13,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -102,8 +103,7 @@ public class StockList extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(23, 110, 696, 440);
 		scrollPane.setOpaque(false);
-		scrollPane.setBorder(null);
-		scrollPane.setViewportBorder(null);
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		scrollPane.getViewport().setOpaque(false);
 		add(scrollPane);

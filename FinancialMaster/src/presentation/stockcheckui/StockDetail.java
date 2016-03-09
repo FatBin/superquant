@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -128,7 +129,7 @@ public class StockDetail extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 110, 715, 440);
 		scrollPane.setOpaque(false);
-		scrollPane.setBorder(null);
+		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		scrollPane.getViewport().setOpaque(false);
 		add(scrollPane);

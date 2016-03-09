@@ -50,6 +50,7 @@ public class StockMarketBL implements StockMarketBLService {
 			list[index][2]=bsPO.getHigh()+"";
 			list[index][3]=bsPO.getLow()+"";
 			list[index][4]=bsPO.getClose()+"";
+			index++;
 		}
         StockMarketVO sv=new StockMarketVO(list);
 		return sv;

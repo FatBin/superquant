@@ -215,6 +215,16 @@ public class Marketui extends JPanel {
 		tenYearTable = new JTable();
 		tenYearTable.setBounds(247, 110, 696, 440);
 		add(tenYearTable);
+		
+//		StockMarketVO stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
+//		String[][] data = null;
+//		data = stockMarketVO.getData();
+//		TableModel = new DefaultTableModel(data,
+//				new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
+//		dayTable.setModel(TableModel);
+//		add(dayTable);
+//		
+		
 
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.setBounds(247, 98, 696, 440);
@@ -229,22 +239,66 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
+				StockMarketVO stockMarketVO;
+				String[][] data;
 				JTabbedPane tab = (JTabbedPane) e.getSource();
 				int selectedIndex = tab.getSelectedIndex();
+//				for (int i = 0; i < 7; i++) {
+//					if (selectedIndex == i) {
+//						stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.);
+//						data = stockMarketVO.getData();
+//						TableModel = new DefaultTableModel(data,
+//								new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
+//						tab.getComponent(i).setModel(TableModel);
+//						break;
+//					}
+//				}
 				switch (selectedIndex) {
 				case 0:
-					StockMarketVO stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
-					String[][] data = stockMarketVO.getData();
+					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
+					data = stockMarketVO.getData();
 					TableModel = new DefaultTableModel(data,
 							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
 					dayTable.setModel(TableModel);
 					break;
-				case 2:
-					StockMarketVO stockMarketVO1 = stockMarketBL.getStockMarket("hs300", date_enum.Month);
-					String[][] data1 = stockMarketVO1.getData();
-					TableModel = new DefaultTableModel(data1,
+					
+				case 1:
+					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Week);
+					data = stockMarketVO.getData();
+					TableModel = new DefaultTableModel(data,
 							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
-					dayTable.setModel(TableModel);
+					weekTable.setModel(TableModel);
+					break;
+				case 2:
+					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Month);
+					data = stockMarketVO.getData();
+					TableModel = new DefaultTableModel(data,
+							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
+					monthTable.setModel(TableModel);
+				case 3:
+					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.HalfYear);
+					data = stockMarketVO.getData();
+					TableModel = new DefaultTableModel(data,
+							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
+					halfYearTable.setModel(TableModel);
+				case 4:
+					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Year);
+					data = stockMarketVO.getData();
+					TableModel = new DefaultTableModel(data,
+							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
+					yearTable.setModel(TableModel);
+				case 5:
+					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.FiveYear);
+					data = stockMarketVO.getData();
+					TableModel = new DefaultTableModel(data,
+							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
+					fiveYearTable.setModel(TableModel);
+				case 6:
+					stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.TenYear);
+					data = stockMarketVO.getData();
+					TableModel = new DefaultTableModel(data,
+							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价"});
+					tenYearTable.setModel(TableModel);
 				default:
 					break;
 				}
