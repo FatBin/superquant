@@ -12,8 +12,8 @@ public class codeNamePO {
 		return result;
 	}
 	private void setResult(ArrayList<String> list) {
-		for(int i=0;i<list.size();i++){
-			result.add(list.get(i));
+		for (String string : list) {
+			result.add(string);
 		}
 	}
 	

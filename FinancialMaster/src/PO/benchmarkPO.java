@@ -17,8 +17,8 @@ public class benchmarkPO {
 
 	private void setBenchmark(ArrayList<String> newbenchmark) {
 		benchmark=new ArrayList<String>();
-		for(int i=0;i<newbenchmark.size();i++){
-			benchmark.add(newbenchmark.get(i));
+		for (String string : newbenchmark) {
+			benchmark.add(string);
 		}
 	}
 	
