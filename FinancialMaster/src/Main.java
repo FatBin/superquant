@@ -22,7 +22,12 @@ public class Main {
 //		fieldStatisticPO f=fieldData.getStatisticOfField();
 //		System.out.print(f.getOpen()+" "+f.getHigh()+" "+f.getLow()+" "+f.getClose()+" "+f.getAdj_price()+" "+f.getVolume()+" "+f.getTurnover()+" "+f.getPb()+" "+f.getPe());
 //		stockData.getCodeName(201, "sh");
-		BenchData benchData=new BenchData();
-		ArrayList<benchmarkStatisticPO> arrayList=benchData.getStatisticOfBenchmark("hs300", "2015-01-01", "2015-12-30");
+//		BenchData benchData=new BenchData();
+//		ArrayList<benchmarkStatisticPO> arrayList=benchData.getStatisticOfBenchmark("hs300", "2015-01-01", "2015-12-30");
+		BenchData bench=new BenchData();
+		ArrayList<benchmarkStatisticPO> arrayList=bench.getStatisticOfBenchmark("hs300", "2014-01-01", "2014-12-30");
+		for (benchmarkStatisticPO benchmarkStatisticPO : arrayList) {
+			System.out.println(benchmarkStatisticPO.getHigh()+" "+benchmarkStatisticPO.getLow()+" "+benchmarkStatisticPO.getAdj_price()+" "+benchmarkStatisticPO.getVolume());
+		}
 	}
 }

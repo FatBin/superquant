@@ -7,9 +7,9 @@ public class benchmarkStatisticPO {
 	private double low;//最低价
 	private double high;//最高价
 	private double adj_price;//后复价权
-	private double volume;//成交量
+	private Long volume;//成交量
 	public benchmarkStatisticPO(String date, double close, double open, double low, double high, double adj_price,
-			double volume) {
+			Long volume) {
 		super();
 		this.date = date;
 		this.close = close;
@@ -37,7 +37,7 @@ public class benchmarkStatisticPO {
 	public double getAdj_price() {
 		return adj_price;
 	}
-	public double getVolume() {
+	public Long getVolume() {
 		return volume;
 	}
 	

@@ -39,13 +39,14 @@ public class BenchData implements BenchDataService{
 		// TODO Auto-generated method stub
 				ArrayList<benchmarkStatisticPO> arrayList=new ArrayList<benchmarkStatisticPO>();
 				try {
-					String result=HttpRequest.sendGet("http://121.41.106.89:8010/api/benchmark/"+benchCode, "start="+start+"&end="+end+"&fields=open+close");
+					String result=HttpRequest.sendGet("http://121.41.106.89:8010/api/benchmark/"+benchCode, "start="+start+"&end="+end+"&fields=open+close+high+volume+adj_price+low");
 					JSONObject jsonObject=new JSONObject(result);
 					JSONObject jsonObject2=jsonObject.getJSONObject("data");
 					JSONArray jsonArray=jsonObject2.getJSONArray("trading_info");
 					for(int i=0;i<jsonArray.length();i++){
 						JSONObject jsonObject3=jsonArray.getJSONObject(i);
-						Double low=-1.0,high=-1.0,adj_price=-1.0,volume=-1.0;
+						Double low=-1.0,high=-1.0,adj_price=-1.0;
+						long volume=-1;
 						try {
 							low=jsonObject3.getDouble("low");
 						} catch (Exception e) {
@@ -65,7 +66,7 @@ public class BenchData implements BenchDataService{
 							e.printStackTrace();
 						}
 						try {
-							volume=jsonObject3.getDouble("volume");
+							volume=jsonObject3.getLong("volume");
 						} catch (Exception e) {
 							// TODO: handle exception
 							e.printStackTrace();
