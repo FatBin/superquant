@@ -15,7 +15,6 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -41,12 +40,12 @@ import presentation.stockcheckui.StockList;
 @SuppressWarnings("serial")
 public class Marketui extends JPanel {
 
-	JButton btnNewButton;
-	JButton button;
-	JButton button_1;
-	JButton btnX;
-	JButton button_2;
-	private JTextField textField;
+	JButton marketBtn;
+	JButton shockListBtn;
+	JButton optionalStockBtn;
+	JButton closeBtn;
+	JButton miniBtn;
+	private JTextField searchTextField;
 	private boolean click = false;
 
 	String[][] data;
@@ -67,24 +66,24 @@ public class Marketui extends JPanel {
 		setLayout(null);
 		final Marketui mpanel = this;
 
-		btnNewButton = new JButton("\u5927\u76D8\u6570\u636E");
-		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnNewButton.setForeground(new Color(248, 179, 29));
-		btnNewButton.setBounds(68, 68, 117, 44);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setBorder(null);
-		add(btnNewButton);
+		marketBtn = new JButton("\u5927\u76D8\u6570\u636E");
+		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		marketBtn.setForeground(new Color(248, 179, 29));
+		marketBtn.setBounds(68, 68, 117, 44);
+		marketBtn.setContentAreaFilled(false);
+		marketBtn.setBorder(null);
+		add(marketBtn);
 
-		button = new JButton("\u4E2A\u80A1\u6570\u636E");
-		button.addMouseListener(new MouseAdapter() {
+		shockListBtn = new JButton("\u4E2A\u80A1\u6570\u636E");
+		shockListBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button.setForeground(new Color(248, 179, 29));
+				shockListBtn.setForeground(new Color(248, 179, 29));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button.setForeground(new Color(216, 216, 216));
+				shockListBtn.setForeground(new Color(216, 216, 216));
 			}
 
 			@Override
@@ -102,23 +101,23 @@ public class Marketui extends JPanel {
 				frame.setVisible(true);
 			}
 		});
-		button.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		button.setForeground(new Color(216, 216, 216));
-		button.setContentAreaFilled(false);
-		button.setBorder(null);
-		button.setBounds(68, 112, 117, 44);
-		add(button);
+		shockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		shockListBtn.setForeground(new Color(216, 216, 216));
+		shockListBtn.setContentAreaFilled(false);
+		shockListBtn.setBorder(null);
+		shockListBtn.setBounds(68, 112, 117, 44);
+		add(shockListBtn);
 
-		button_1 = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
-		button_1.addMouseListener(new MouseAdapter() {
+		optionalStockBtn = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
+		optionalStockBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button_1.setForeground(new Color(248, 179, 29));
+				optionalStockBtn.setForeground(new Color(248, 179, 29));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button_1.setForeground(new Color(216, 216, 216));
+				optionalStockBtn.setForeground(new Color(216, 216, 216));
 			}
 
 			@Override
@@ -130,15 +129,15 @@ public class Marketui extends JPanel {
 				frame.repaint();
 			}
 		});
-		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		button_1.setForeground(new Color(216, 216, 216));
-		button_1.setContentAreaFilled(false);
-		button_1.setBorder(null);
-		button_1.setBounds(75, 156, 117, 44);
-		add(button_1);
+		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		optionalStockBtn.setForeground(new Color(216, 216, 216));
+		optionalStockBtn.setContentAreaFilled(false);
+		optionalStockBtn.setBorder(null);
+		optionalStockBtn.setBounds(75, 156, 117, 44);
+		add(optionalStockBtn);
 
-		btnX = new JButton("X");
-		btnX.addMouseListener(new MouseAdapter() {
+		closeBtn = new JButton("X");
+		closeBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
@@ -146,31 +145,31 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnX.setForeground(new Color(252, 98, 93));
+				closeBtn.setForeground(new Color(252, 98, 93));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnX.setForeground(new Color(216, 216, 216));
+				closeBtn.setForeground(new Color(216, 216, 216));
 			}
 		});
-		btnX.setForeground(new Color(216, 216, 216));
-		btnX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		btnX.setContentAreaFilled(false);
-		btnX.setBorder(null);
-		btnX.setBounds(931, 15, 16, 16);
-		add(btnX);
+		closeBtn.setForeground(new Color(216, 216, 216));
+		closeBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		closeBtn.setContentAreaFilled(false);
+		closeBtn.setBorder(null);
+		closeBtn.setBounds(931, 15, 16, 16);
+		add(closeBtn);
 
-		button_2 = new JButton("—");
-		button_2.addMouseListener(new MouseAdapter() {
+		miniBtn = new JButton("—");
+		miniBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button_2.setForeground(new Color(253, 188, 64));
+				miniBtn.setForeground(new Color(253, 188, 64));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button_2.setForeground(new Color(216, 216, 216));
+				miniBtn.setForeground(new Color(216, 216, 216));
 			}
 
 			@Override
@@ -178,12 +177,12 @@ public class Marketui extends JPanel {
 				frame.setExtendedState(frame.ICONIFIED); // 最小化
 			}
 		});
-		button_2.setForeground(new Color(216, 216, 216));
-		button_2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		button_2.setContentAreaFilled(false);
-		button_2.setBorder(null);
-		button_2.setBounds(904, 14, 16, 16);
-		add(button_2);
+		miniBtn.setForeground(new Color(216, 216, 216));
+		miniBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		miniBtn.setContentAreaFilled(false);
+		miniBtn.setBorder(null);
+		miniBtn.setBounds(904, 14, 16, 16);
+		add(miniBtn);
 
 		scrollPane = new JScrollPane[7];
 
@@ -198,16 +197,16 @@ public class Marketui extends JPanel {
 			scrollPane[i].setBorder(BorderFactory.createEmptyBorder());
 		}
 
-		JTabbedPane tabbedPane = new JTabbedPane();
-		tabbedPane.setBounds(247, 98, 696, 440);
+		JTabbedPane marketPane = new JTabbedPane();
+		marketPane.setBounds(247, 98, 696, 440);
 
 		String title[] = { "当天", "一周", "一个月", "半年", "一年", "五年", "十年" };
 
 		for (int i = 0; i < 7; i++) {
-			tabbedPane.add(title[i], scrollPane[i]);
+			marketPane.add(title[i], scrollPane[i]);
 		}
 
-		tabbedPane.addChangeListener(new ChangeListener() {
+		marketPane.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				StockMarketVO stockMarketVO;
@@ -220,7 +219,7 @@ public class Marketui extends JPanel {
 				table[selectedIndex].setModel(TableModel);
 			}
 		});
-		add(tabbedPane);
+		add(marketPane);
 		
 		StockMarketVO stockMarketVO;
 		stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
@@ -228,66 +227,66 @@ public class Marketui extends JPanel {
 		TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价" });
 		table[0].setModel(TableModel);
 
-		final MyComboBox comboBox = new MyComboBox();
-		comboBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		comboBox.setBounds(255, 65, 125, 32);
-		comboBox.addItem("上证指数");
-		comboBox.addItem("深证指数");
-		comboBox.setSelectedIndex(0);
-		comboBox.setOpaque(false);
-		comboBox.setBorder(null);
-		add(comboBox);
+		final MyComboBox nameBox = new MyComboBox();
+		nameBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
+		nameBox.setBounds(255, 65, 125, 32);
+		nameBox.addItem("上证指数");
+		nameBox.addItem("深证指数");
+		nameBox.setSelectedIndex(0);
+		nameBox.setOpaque(false);
+		nameBox.setBorder(null);
+		add(nameBox);
 
-		JButton button = new JButton();
-		button.setBounds(854, 15, 18, 18);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		button.setBorder(null);
+		JButton searchBtn = new JButton();
+		searchBtn.setBounds(854, 15, 18, 18);
+		searchBtn.setContentAreaFilled(false);
+		searchBtn.setBorderPainted(false);
+		searchBtn.setBorder(null);
 //		ImageIcon image1 = new ImageIcon("image/search.png");
 //		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
 //				image1.getImage().SCALE_DEFAULT);
 //		image1 = new ImageIcon(temp1);
-		button.setIcon(new ImageIcon("image/search.png"));
-		button.setMargin(new Insets(0, 0, 0, 0));
-		add(button);
+		searchBtn.setIcon(new ImageIcon("image/search.png"));
+		searchBtn.setMargin(new Insets(0, 0, 0, 0));
+		add(searchBtn);
 
-		textField = new JTextField();
-		textField.setFocusable(false);
-		textField.setOpaque(false);
-		textField.setForeground(new Color(150, 150, 150));
-		textField.setCaretColor(new Color(150, 150, 150));
-		textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		textField.addMouseListener(new MouseAdapter() {
+		searchTextField = new JTextField();
+		searchTextField.setFocusable(false);
+		searchTextField.setOpaque(false);
+		searchTextField.setForeground(new Color(150, 150, 150));
+		searchTextField.setCaretColor(new Color(150, 150, 150));
+		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				textField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if (!click) {
-					textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+					searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				}
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				click = true;
-				textField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
-				textField.setFocusable(true);
-				textField.requestFocus();
+				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				searchTextField.setFocusable(true);
+				searchTextField.requestFocus();
 			}
 		});
-		textField.setBounds(686, 11, 196, 27);
-		add(textField);
-		textField.setColumns(10);
+		searchTextField.setBounds(686, 11, 196, 27);
+		add(searchTextField);
+		searchTextField.setColumns(10);
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textField.setFocusable(false);
-				textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				searchTextField.setFocusable(false);
+				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 			}
 
 			@Override

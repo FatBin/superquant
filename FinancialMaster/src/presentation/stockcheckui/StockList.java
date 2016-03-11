@@ -34,9 +34,9 @@ import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class StockList extends JPanel {
-	JButton btnX;
-	JButton button_2;
-	private JTextField textField;
+	JButton closeBtn;
+	JButton miniBtn;
+	private JTextField searchTextField;
 	private boolean click = false;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
@@ -52,8 +52,8 @@ public class StockList extends JPanel {
 		setLayout(null);
 		final StockList listui = this;
 
-		btnX = new JButton("X");
-		btnX.addMouseListener(new MouseAdapter() {
+		closeBtn = new JButton("X");
+		closeBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
@@ -61,31 +61,31 @@ public class StockList extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnX.setForeground(new Color(252, 98, 93));
+				closeBtn.setForeground(new Color(252, 98, 93));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnX.setForeground(new Color(216, 216, 216));
+				closeBtn.setForeground(new Color(216, 216, 216));
 			}
 		});
-		btnX.setForeground(new Color(216, 216, 216));
-		btnX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		btnX.setContentAreaFilled(false);
-		btnX.setBorder(null);
-		btnX.setBounds(707, 15, 16, 16);
-		add(btnX);
+		closeBtn.setForeground(new Color(216, 216, 216));
+		closeBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		closeBtn.setContentAreaFilled(false);
+		closeBtn.setBorder(null);
+		closeBtn.setBounds(707, 15, 16, 16);
+		add(closeBtn);
 
-		button_2 = new JButton("—");
-		button_2.addMouseListener(new MouseAdapter() {
+		miniBtn = new JButton("—");
+		miniBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button_2.setForeground(new Color(253, 188, 64));
+				miniBtn.setForeground(new Color(253, 188, 64));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button_2.setForeground(new Color(216, 216, 216));
+				miniBtn.setForeground(new Color(216, 216, 216));
 			}
 
 			@Override
@@ -93,20 +93,20 @@ public class StockList extends JPanel {
 				frame.setExtendedState(frame.ICONIFIED); // 最小化
 			}
 		});
-		button_2.setForeground(new Color(216, 216, 216));
-		button_2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		button_2.setContentAreaFilled(false);
-		button_2.setBorder(null);
-		button_2.setBounds(680, 14, 16, 16);
-		add(button_2);
+		miniBtn.setForeground(new Color(216, 216, 216));
+		miniBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		miniBtn.setContentAreaFilled(false);
+		miniBtn.setBorder(null);
+		miniBtn.setBounds(680, 14, 16, 16);
+		add(miniBtn);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(23, 110, 696, 440);
-		scrollPane.setOpaque(false);
-		scrollPane.setBorder(BorderFactory.createEmptyBorder());
-		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
-		scrollPane.getViewport().setOpaque(false);
-		add(scrollPane);
+		JScrollPane listPane = new JScrollPane();
+		listPane.setBounds(23, 110, 696, 440);
+		listPane.setOpaque(false);
+		listPane.setBorder(BorderFactory.createEmptyBorder());
+		listPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		listPane.getViewport().setOpaque(false);
+		add(listPane);
 
 		table = new JTable();
 		table.setRowHeight(30);
@@ -126,7 +126,7 @@ public class StockList extends JPanel {
 				table.setRowSelectionInterval(rowpos, rowpos);
 			}
 		});
-		scrollPane.setViewportView(table);
+		listPane.setViewportView(table);
 		table.setBorder(null);
 		table.setEnabled(false);
 
@@ -152,85 +152,85 @@ public class StockList extends JPanel {
 
 		setDragable(frame);
 
-		JButton button = new JButton();
-		button.addMouseListener(new MouseAdapter() {
+		JButton searchBtn = new JButton();
+		searchBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String key = textField.getText();
+				String key = searchTextField.getText();
 				showTable(key);
 			}
 		});
-		button.setBounds(630, 15, 18, 18);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		button.setBorder(null);
+		searchBtn.setBounds(630, 15, 18, 18);
+		searchBtn.setContentAreaFilled(false);
+		searchBtn.setBorderPainted(false);
+		searchBtn.setBorder(null);
 		ImageIcon image1 = new ImageIcon("image/search.png");
-		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
+		Image temp1 = image1.getImage().getScaledInstance(searchBtn.getWidth(), searchBtn.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
-		button.setIcon(image1);
-		button.setMargin(new Insets(0, 0, 0, 0));
-		add(button);
+		searchBtn.setIcon(image1);
+		searchBtn.setMargin(new Insets(0, 0, 0, 0));
+		add(searchBtn);
 
-		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
+		searchTextField = new JTextField();
+		searchTextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					String key = textField.getText();
+					String key = searchTextField.getText();
 					showTable(key);
 				}
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
-				String key = textField.getText();
+				String key = searchTextField.getText();
 				showTable(key);
 			}
 		});
-		textField.setFocusable(false);
-		textField.setOpaque(false);
-		textField.setForeground(new Color(150, 150, 150));
-		textField.setCaretColor(new Color(150, 150, 150));
-		textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		textField.addMouseListener(new MouseAdapter() {
+		searchTextField.setFocusable(false);
+		searchTextField.setOpaque(false);
+		searchTextField.setForeground(new Color(150, 150, 150));
+		searchTextField.setCaretColor(new Color(150, 150, 150));
+		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				textField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if (!click) {
-					textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+					searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				}
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				click = true;
-				textField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
-				textField.setFocusable(true);
-				textField.requestFocus();
+				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				searchTextField.setFocusable(true);
+				searchTextField.requestFocus();
 			}
 		});
-		textField.setBounds(462, 11, 196, 27);
-		add(textField);
-		textField.setColumns(10);
+		searchTextField.setBounds(462, 11, 196, 27);
+		add(searchTextField);
+		searchTextField.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("\u80A1\u7968\u5217\u8868");
-		lblNewLabel.setBackground(new Color(245, 245, 245));
-		lblNewLabel.setForeground(new Color(95, 99, 108));
-		lblNewLabel.setBounds(25, 65, 151, 32);
-		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		add(lblNewLabel);
+		JLabel namelbl = new JLabel("\u80A1\u7968\u5217\u8868");
+		namelbl.setBackground(new Color(245, 245, 245));
+		namelbl.setForeground(new Color(95, 99, 108));
+		namelbl.setBounds(25, 65, 151, 32);
+		namelbl.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
+		add(namelbl);
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textField.setFocusable(false);
-				textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				searchTextField.setFocusable(false);
+				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 			}
 
 			@Override

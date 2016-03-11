@@ -40,15 +40,15 @@ import presentation.repaintComponent.TextBubbleBorder;
 
 @SuppressWarnings("serial")
 public class StockDetail extends JPanel {
-	JButton btnX;
-	JButton button_2;
-	private JTextField textField;
+	JButton closeBtn;
+	JButton miniBtn;
+	private JTextField searchTextField;
 	private boolean click = false;
 	private boolean click1 = false;
 	private boolean click2 = false;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
-	private JLabel label_1;
+	private JLabel timeGotolbl;
 	StockMessageBLService Message = new StockMessageBL();
 
 	/**
@@ -61,8 +61,8 @@ public class StockDetail extends JPanel {
 		setLayout(null);
 		final StockDetail detail = this;
 
-		btnX = new JButton("X");
-		btnX.addMouseListener(new MouseAdapter() {
+		closeBtn = new JButton("X");
+		closeBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.exit(0);
@@ -70,31 +70,31 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnX.setForeground(new Color(252, 98, 93));
+				closeBtn.setForeground(new Color(252, 98, 93));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnX.setForeground(new Color(216, 216, 216));
+				closeBtn.setForeground(new Color(216, 216, 216));
 			}
 		});
-		btnX.setForeground(new Color(216, 216, 216));
-		btnX.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		btnX.setContentAreaFilled(false);
-		btnX.setBorder(null);
-		btnX.setBounds(707, 15, 16, 16);
-		add(btnX);
+		closeBtn.setForeground(new Color(216, 216, 216));
+		closeBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		closeBtn.setContentAreaFilled(false);
+		closeBtn.setBorder(null);
+		closeBtn.setBounds(707, 15, 16, 16);
+		add(closeBtn);
 
-		button_2 = new JButton("—");
-		button_2.addMouseListener(new MouseAdapter() {
+		miniBtn = new JButton("—");
+		miniBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button_2.setForeground(new Color(253, 188, 64));
+				miniBtn.setForeground(new Color(253, 188, 64));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button_2.setForeground(new Color(216, 216, 216));
+				miniBtn.setForeground(new Color(216, 216, 216));
 			}
 
 			@Override
@@ -102,12 +102,12 @@ public class StockDetail extends JPanel {
 				frame.setExtendedState(frame.ICONIFIED); // 最小化
 			}
 		});
-		button_2.setForeground(new Color(216, 216, 216));
-		button_2.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		button_2.setContentAreaFilled(false);
-		button_2.setBorder(null);
-		button_2.setBounds(680, 14, 16, 16);
-		add(button_2);
+		miniBtn.setForeground(new Color(216, 216, 216));
+		miniBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		miniBtn.setContentAreaFilled(false);
+		miniBtn.setBorder(null);
+		miniBtn.setBounds(680, 14, 16, 16);
+		add(miniBtn);
 
 		Date today = new Date();
 		Date dbefore = new Date();
@@ -119,25 +119,25 @@ public class StockDetail extends JPanel {
 
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		final String start = dt.format(dbefore);
-		final JLabel showDate1 = new JLabel(start);
-		showDate1.setBounds(455, 75, 90, 22);
-		dateChooser1.register(showDate1);
-		add(showDate1);
+		final JLabel startTimelbl = new JLabel(start);
+		startTimelbl.setBounds(455, 75, 90, 22);
+		dateChooser1.register(startTimelbl);
+		add(startTimelbl);
 
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		final String end = dt.format(today);
-		final JLabel showDate2 = new JLabel(end);
-		showDate2.setBounds(586, 75, 90, 22);
-		dateChooser2.register(showDate2);
-		add(showDate2);
+		final JLabel endTimelbl = new JLabel(end);
+		endTimelbl.setBounds(586, 75, 90, 22);
+		dateChooser2.register(endTimelbl);
+		add(endTimelbl);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 110, 715, 440);
-		scrollPane.setOpaque(false);
-		scrollPane.setBorder(BorderFactory.createEmptyBorder());
-		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
-		scrollPane.getViewport().setOpaque(false);
-		add(scrollPane);
+		JScrollPane stockDetailPane = new JScrollPane();
+		stockDetailPane.setBounds(10, 110, 715, 440);
+		stockDetailPane.setOpaque(false);
+		stockDetailPane.setBorder(BorderFactory.createEmptyBorder());
+		stockDetailPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		stockDetailPane.getViewport().setOpaque(false);
+		add(stockDetailPane);
 
 		StockVO datavo = Message.getStockMessage(id, start, end);
 		String[][] data = datavo.getHistory_data();
@@ -160,7 +160,7 @@ public class StockDetail extends JPanel {
 				table.setRowSelectionInterval(rowpos, rowpos);
 			}
 		});
-		scrollPane.setViewportView(table);
+		stockDetailPane.setViewportView(table);
 		table.setBorder(null);
 		// table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
@@ -175,59 +175,59 @@ public class StockDetail extends JPanel {
 
 		setDragable(frame);
 
-		JButton button = new JButton();
-		button.setBounds(630, 15, 18, 18);
-		button.setContentAreaFilled(false);
-		button.setBorderPainted(false);
-		button.setBorder(null);
+		JButton searchBtn = new JButton();
+		searchBtn.setBounds(630, 15, 18, 18);
+		searchBtn.setContentAreaFilled(false);
+		searchBtn.setBorderPainted(false);
+		searchBtn.setBorder(null);
 		ImageIcon image1 = new ImageIcon("image/search.png");
-		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
+		Image temp1 = image1.getImage().getScaledInstance(searchBtn.getWidth(), searchBtn.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
-		button.setIcon(image1);
-		button.setMargin(new Insets(0, 0, 0, 0));
-		add(button);
+		searchBtn.setIcon(image1);
+		searchBtn.setMargin(new Insets(0, 0, 0, 0));
+		add(searchBtn);
 
-		textField = new JTextField();
-		textField.setFocusable(false);
-		textField.setOpaque(false);
-		textField.setForeground(new Color(150, 150, 150));
-		textField.setCaretColor(new Color(150, 150, 150));
-		textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		textField.addMouseListener(new MouseAdapter() {
+		searchTextField = new JTextField();
+		searchTextField.setFocusable(false);
+		searchTextField.setOpaque(false);
+		searchTextField.setForeground(new Color(150, 150, 150));
+		searchTextField.setCaretColor(new Color(150, 150, 150));
+		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				textField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if (!click) {
-					textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+					searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				}
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				click = true;
-				textField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
-				textField.setFocusable(true);
-				textField.requestFocus();
+				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				searchTextField.setFocusable(true);
+				searchTextField.requestFocus();
 			}
 		});
-		textField.setBounds(462, 11, 196, 27);
-		add(textField);
-		textField.setColumns(10);
+		searchTextField.setBounds(462, 11, 196, 27);
+		add(searchTextField);
+		searchTextField.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("个股详情");
-		lblNewLabel.setBackground(new Color(245, 245, 245));
-		lblNewLabel.setForeground(new Color(95, 99, 108));
-		lblNewLabel.setBounds(10, 65, 98, 32);
-		lblNewLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		add(lblNewLabel);
+		JLabel namelbl = new JLabel("个股详情");
+		namelbl.setBackground(new Color(245, 245, 245));
+		namelbl.setForeground(new Color(95, 99, 108));
+		namelbl.setBounds(10, 65, 98, 32);
+		namelbl.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
+		add(namelbl);
 
-		button_1 = new JButton("back");
-		button_1.addMouseListener(new MouseAdapter() {
+		backBtn = new JButton("back");
+		backBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.remove(detail);
@@ -236,43 +236,43 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button_1.setForeground(new Color(72, 77, 78));
+				backBtn.setForeground(new Color(72, 77, 78));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button_1.setForeground(new Color(216, 216, 216));
+				backBtn.setForeground(new Color(216, 216, 216));
 			}
 		});
-		button_1.setForeground(new Color(216, 216, 216));
-		button_1.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
-		button_1.setContentAreaFilled(false);
-		button_1.setBorder(null);
-		button_1.setBounds(10, 15, 46, 16);
-		add(button_1);
+		backBtn.setForeground(new Color(216, 216, 216));
+		backBtn.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
+		backBtn.setContentAreaFilled(false);
+		backBtn.setBorder(null);
+		backBtn.setBounds(10, 15, 46, 16);
+		add(backBtn);
 
 		JLabel label = new JLabel("\u81F3");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		label.setBounds(554, 75, 25, 22);
 		add(label);
 
-		label_1 = new JLabel("\u203A");
-		label_1.addMouseListener(new MouseAdapter() {
+		timeGotolbl = new JLabel("\u203A");
+		timeGotolbl.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				label_1.setForeground(new Color(72, 77, 78));
+				timeGotolbl.setForeground(new Color(72, 77, 78));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				label_1.setForeground(new Color(150, 150, 150));
+				timeGotolbl.setForeground(new Color(150, 150, 150));
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String newStart = showDate1.getText();
-				String newEnd = showDate2.getText();
+				String newStart = startTimelbl.getText();
+				String newEnd = endTimelbl.getText();
 				StockVO datavo = Message.getStockMessage(id, newStart, newEnd);
 				String[][] data = datavo.getHistory_data();
 				tableModel = new DefaultTableModel(data,
@@ -286,47 +286,47 @@ public class StockDetail extends JPanel {
 				repaint();
 			}
 		});
-		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		label_1.setForeground(new Color(150, 150, 150));
-		label_1.setBounds(682, 73, 25, 22);
-		add(label_1);
+		timeGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		timeGotolbl.setForeground(new Color(150, 150, 150));
+		timeGotolbl.setBounds(682, 73, 25, 22);
+		add(timeGotolbl);
 
-		MyComboBox myComboBox = new MyComboBox();
-		myComboBox.setOpaque(false);
-		myComboBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 16));
+		MyComboBox conditionBox = new MyComboBox();
+		conditionBox.setOpaque(false);
+		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 16));
 		String[] item = { "筛选关键字", "开盘价", "最高价", "最低价", "收盘价", "后复权价", "成交量", "换手率", "市盈率", "市净率" };
 		for (int i = 0; i < 10; i++) {
-			myComboBox.addItem(item[i]);
+			conditionBox.addItem(item[i]);
 		}
-		myComboBox.setBorder(null);
-		myComboBox.setBounds(10, 562, 110, 25);
-		myComboBox.setSelectedIndex(0);
-		add(myComboBox);
+		conditionBox.setBorder(null);
+		conditionBox.setBounds(10, 562, 110, 25);
+		conditionBox.setSelectedIndex(0);
+		add(conditionBox);
 
-		textField_1 = new JTextField();
-		textField_1.addMouseListener(new MouseAdapter() {
+		belowTextField = new JTextField();
+		belowTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				textField_1.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				belowTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if (!click1) {
-					textField_1.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+					belowTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				}
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textField_1.setText("");
+				belowTextField.setText("");
 				click1 = true;
-				textField_1.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
-				textField_1.setFocusable(true);
-				textField_1.requestFocus();
+				belowTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				belowTextField.setFocusable(true);
+				belowTextField.requestFocus();
 			}
 		});
-		textField_1.addKeyListener(new KeyAdapter() {
+		belowTextField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				if (!(Character.isDigit(e.getKeyChar()) || e.getKeyChar() == '.')) {
 					e.consume();
@@ -334,76 +334,76 @@ public class StockDetail extends JPanel {
 			}
 		});
 
-		textField_1.setOpaque(false);
-		textField_1.setForeground(new Color(150, 150, 150));
-		textField_1.setFocusable(false);
-		textField_1.setColumns(10);
-		textField_1.setCaretColor(new Color(150, 150, 150));
-		textField_1.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		textField_1.setBounds(146, 562, 97, 27);
-		textField_1.setText("输入下限");
-		add(textField_1);
+		belowTextField.setOpaque(false);
+		belowTextField.setForeground(new Color(150, 150, 150));
+		belowTextField.setFocusable(false);
+		belowTextField.setColumns(10);
+		belowTextField.setCaretColor(new Color(150, 150, 150));
+		belowTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		belowTextField.setBounds(146, 562, 97, 27);
+		belowTextField.setText("输入下限");
+		add(belowTextField);
 
-		textField_2 = new JTextField();
-		textField_2.addMouseListener(new MouseAdapter() {
+		aboveTextField = new JTextField();
+		aboveTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				textField_2.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				aboveTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if (!click2) {
-					textField_2.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+					aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				}
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textField_2.setText("");
+				aboveTextField.setText("");
 				click2 = true;
-				textField_2.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
-				textField_2.setFocusable(true);
-				textField_2.requestFocus();
+				aboveTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				aboveTextField.setFocusable(true);
+				aboveTextField.requestFocus();
 			}
 		});
-		textField_2.addKeyListener(new KeyAdapter() {
+		aboveTextField.addKeyListener(new KeyAdapter() {
 			public void keyTyped(KeyEvent e) {
 				if (!(Character.isDigit(e.getKeyChar()) || e.getKeyChar() == '.')) {
 					e.consume();
 				}
 			}
 		});
-		textField_2.setOpaque(false);
-		textField_2.setForeground(new Color(150, 150, 150));
-		textField_2.setFocusable(false);
-		textField_2.setColumns(10);
-		textField_2.setCaretColor(new Color(150, 150, 150));
-		textField_2.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		textField_2.setBounds(269, 562, 97, 27);
-		textField_2.setText("输入下限");
-		add(textField_2);
+		aboveTextField.setOpaque(false);
+		aboveTextField.setForeground(new Color(150, 150, 150));
+		aboveTextField.setFocusable(false);
+		aboveTextField.setColumns(10);
+		aboveTextField.setCaretColor(new Color(150, 150, 150));
+		aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		aboveTextField.setBounds(269, 562, 97, 27);
+		aboveTextField.setText("输入上限");
+		add(aboveTextField);
 
-		JLabel label_2 = new JLabel("\u203A");
-		label_2.addMouseListener(new MouseAdapter() {
+		JLabel conditionGotolbl = new JLabel("\u203A");
+		conditionGotolbl.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				label_2.setForeground(new Color(72, 77, 78));
+				conditionGotolbl.setForeground(new Color(72, 77, 78));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				label_2.setForeground(new Color(150, 150, 150));
+				conditionGotolbl.setForeground(new Color(150, 150, 150));
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				String low = textField_1.getText();
-				String high = textField_2.getText();
+				String low = belowTextField.getText();
+				String high = aboveTextField.getText();
 
-				int index = myComboBox.getSelectedIndex();
+				int index = conditionBox.getSelectedIndex();
 				if (index != 0) {
 					StockVO datavo = Message.filterStockMessage(index, low, high);
 					String data2[][] = datavo.getHistory_data();
@@ -419,17 +419,17 @@ public class StockDetail extends JPanel {
 				}
 			}
 		});
-		label_2.setForeground(new Color(150, 150, 150));
-		label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		label_2.setBounds(382, 562, 25, 22);
-		add(label_2);
+		conditionGotolbl.setForeground(new Color(150, 150, 150));
+		conditionGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		conditionGotolbl.setBounds(382, 562, 25, 22);
+		add(conditionGotolbl);
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textField.setFocusable(false);
-				textField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				searchTextField.setFocusable(false);
+				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 			}
 
 			@Override
@@ -473,9 +473,9 @@ public class StockDetail extends JPanel {
 	Point tmp = null;
 	boolean isDragged = false;
 	private JTable table;
-	private JButton button_1;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JButton backBtn;
+	private JTextField belowTextField;
+	private JTextField aboveTextField;
 
 	private void setDragable(final JFrame jFrame) {
 		this.addMouseListener(new java.awt.event.MouseAdapter() {

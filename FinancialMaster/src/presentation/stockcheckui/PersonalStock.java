@@ -26,9 +26,9 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class PersonalStock extends JPanel {
 
-	JButton btnNewButton;
-	JButton button;
-	JButton button_1;
+	JButton marketBtn;
+	JButton stockListBtn;
+	JButton optionStockBtn;
 	DefaultTableModel tableModel;
 
 	/**
@@ -39,16 +39,16 @@ public class PersonalStock extends JPanel {
 
 		setLayout(null);
 
-		btnNewButton = new JButton("\u5927\u76D8\u6570\u636E");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		marketBtn = new JButton("\u5927\u76D8\u6570\u636E");
+		marketBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				btnNewButton.setForeground(new Color(248, 179, 29));
+				marketBtn.setForeground(new Color(248, 179, 29));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnNewButton.setForeground(new Color(216, 216, 216));
+				marketBtn.setForeground(new Color(216, 216, 216));
 			}
 
 			@Override
@@ -61,49 +61,49 @@ public class PersonalStock extends JPanel {
 				frame.setVisible(true);
 			}
 		});
-		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		btnNewButton.setForeground(new Color(216, 216, 216));
-		btnNewButton.setBounds(68, 68, 117, 44);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setOpaque(false);
-		btnNewButton.setBorder(null);
-		add(btnNewButton);
+		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		marketBtn.setForeground(new Color(216, 216, 216));
+		marketBtn.setBounds(68, 68, 117, 44);
+		marketBtn.setContentAreaFilled(false);
+		marketBtn.setOpaque(false);
+		marketBtn.setBorder(null);
+		add(marketBtn);
 
-		button = new JButton("\u4E2A\u80A1\u6570\u636E");
-		button.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		button.setForeground(new Color(248, 179, 29));
-		button.setContentAreaFilled(false);
-		button.setBorder(null);
-		button.setBounds(68, 112, 117, 44);
-		add(button);
+		stockListBtn = new JButton("\u4E2A\u80A1\u6570\u636E");
+		stockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		stockListBtn.setForeground(new Color(248, 179, 29));
+		stockListBtn.setContentAreaFilled(false);
+		stockListBtn.setBorder(null);
+		stockListBtn.setBounds(68, 112, 117, 44);
+		add(stockListBtn);
 
-		button_1 = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
-		button_1.addMouseListener(new MouseAdapter() {
+		optionStockBtn = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
+		optionStockBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				button_1.setForeground(new Color(248, 179, 29));
+				optionStockBtn.setForeground(new Color(248, 179, 29));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				button_1.setForeground(new Color(216, 216, 216));
+				optionStockBtn.setForeground(new Color(216, 216, 216));
 			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.getContentPane().removeAll();
 				OptionalStock opanel = new OptionalStock(frame);
-				frame.add(opanel);
+				frame.getContentPane().add(opanel);
 				opanel.setBounds(0, 0, 960, 600);
 				frame.repaint();
 			}
 		});
-		button_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		button_1.setForeground(new Color(216, 216, 216));
-		button_1.setContentAreaFilled(false);
-		button_1.setBorder(null);
-		button_1.setBounds(75, 156, 117, 44);
-		add(button_1);
+		optionStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		optionStockBtn.setForeground(new Color(216, 216, 216));
+		optionStockBtn.setContentAreaFilled(false);
+		optionStockBtn.setBorder(null);
+		optionStockBtn.setBounds(75, 156, 117, 44);
+		add(optionStockBtn);
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
