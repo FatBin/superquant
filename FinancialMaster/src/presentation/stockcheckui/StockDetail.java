@@ -9,12 +9,14 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -32,6 +34,7 @@ import VO.StockVO;
 import businesslogic.stockcheckbl.StockMessageBL;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
 import presentation.repaintComponent.DateChooser;
+import presentation.repaintComponent.MyComboBox;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
 
@@ -41,6 +44,8 @@ public class StockDetail extends JPanel {
 	JButton button_2;
 	private JTextField textField;
 	private boolean click = false;
+	private boolean click1 = false;
+	private boolean click2 = false;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
 	private JLabel label_1;
@@ -49,7 +54,7 @@ public class StockDetail extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access", "unchecked" })
 	public StockDetail(final JFrame frame, final String id, final StockList listui) {
 		setBorder(null);
 
@@ -286,6 +291,139 @@ public class StockDetail extends JPanel {
 		label_1.setBounds(682, 73, 25, 22);
 		add(label_1);
 
+		MyComboBox myComboBox = new MyComboBox();
+		myComboBox.setOpaque(false);
+		myComboBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 16));
+		String[] item = { "筛选关键字", "开盘价", "最高价", "最低价", "收盘价", "后复权价", "成交量", "换手率", "市盈率", "市净率" };
+		for (int i = 0; i < 10; i++) {
+			myComboBox.addItem(item[i]);
+		}
+		myComboBox.setBorder(null);
+		myComboBox.setBounds(10, 562, 110, 25);
+		myComboBox.setSelectedIndex(0);
+		add(myComboBox);
+
+		textField_1 = new JTextField();
+		textField_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				textField_1.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (!click1) {
+					textField_1.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				}
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField_1.setText("");
+				click1 = true;
+				textField_1.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				textField_1.setFocusable(true);
+				textField_1.requestFocus();
+			}
+		});
+		textField_1.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (!(Character.isDigit(e.getKeyChar()) || e.getKeyChar() == '.')) {
+					e.consume();
+				}
+			}
+		});
+
+		textField_1.setOpaque(false);
+		textField_1.setForeground(new Color(150, 150, 150));
+		textField_1.setFocusable(false);
+		textField_1.setColumns(10);
+		textField_1.setCaretColor(new Color(150, 150, 150));
+		textField_1.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		textField_1.setBounds(146, 562, 97, 27);
+		textField_1.setText("输入下限");
+		add(textField_1);
+
+		textField_2 = new JTextField();
+		textField_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				textField_2.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (!click2) {
+					textField_2.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				}
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				textField_2.setText("");
+				click2 = true;
+				textField_2.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
+				textField_2.setFocusable(true);
+				textField_2.requestFocus();
+			}
+		});
+		textField_2.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (!(Character.isDigit(e.getKeyChar()) || e.getKeyChar() == '.')) {
+					e.consume();
+				}
+			}
+		});
+		textField_2.setOpaque(false);
+		textField_2.setForeground(new Color(150, 150, 150));
+		textField_2.setFocusable(false);
+		textField_2.setColumns(10);
+		textField_2.setCaretColor(new Color(150, 150, 150));
+		textField_2.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		textField_2.setBounds(269, 562, 97, 27);
+		textField_2.setText("输入下限");
+		add(textField_2);
+
+		JLabel label_2 = new JLabel("\u203A");
+		label_2.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				label_2.setForeground(new Color(72, 77, 78));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				label_2.setForeground(new Color(150, 150, 150));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				String low = textField_1.getText();
+				String high = textField_2.getText();
+
+				int index = myComboBox.getSelectedIndex();
+				if (index != 0) {
+					StockVO datavo = Message.filterStockMessage(index, low, high);
+					String data2[][] = datavo.getHistory_data();
+					tableModel = new DefaultTableModel(data2,
+							new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "后复权价", "交易量(股)", "换手率", "市盈率", "市净率" });
+					table.setModel(tableModel);
+
+					table.getColumnModel().getColumn(0).setPreferredWidth(100);
+					for (int i = 1; i < 6; i++) {
+						table.getColumnModel().getColumn(i).setPreferredWidth(70);
+					}
+					repaint();
+				}
+			}
+		});
+		label_2.setForeground(new Color(150, 150, 150));
+		label_2.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		label_2.setBounds(382, 562, 25, 22);
+		add(label_2);
+
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
 			@Override
@@ -336,6 +474,8 @@ public class StockDetail extends JPanel {
 	boolean isDragged = false;
 	private JTable table;
 	private JButton button_1;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	private void setDragable(final JFrame jFrame) {
 		this.addMouseListener(new java.awt.event.MouseAdapter() {
