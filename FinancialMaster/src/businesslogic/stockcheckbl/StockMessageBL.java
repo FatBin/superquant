@@ -9,9 +9,11 @@ import data.stockcheckdata.StockData;
 import dataservice.stockcheckdataservice.StockDataService;
 
 public class StockMessageBL implements StockMessageBLService {
-
+ 
+	ArrayList<String[]> init_list=new ArrayList<String[]>();
 	@Override
 	public StockVO getStockMessage(String id,String startData, String overData) {
+		  init_list.clear();
 		  StockDataService sds=new StockData();
 		  ArrayList<stockStatisticPO> ssPOlist=sds.getStatisitcOfStock(id, startData, overData);
 		  int size=ssPOlist.size();
@@ -27,8 +29,29 @@ public class StockMessageBL implements StockMessageBLService {
 			  list[index][6]=sp.getVolume()+"";
 			  list[index][7]=sp.getTurnover()+"";			  
 			  list[index][8]=sp.getPe()+"";
-			  list[index][9]=sp.getPb()+"";		
+			  list[index][9]=sp.getPb()+"";	
+			  init_list.add(list[index]);
 			  index++;
+		}
+		StockVO sv=new StockVO(list);
+		return sv;
+	}
+
+	@Override
+	public StockVO filterStockMessage(int i, double low, double high) {
+		ArrayList<String[]> filterlist=new ArrayList<String[]>(); 
+		for (String[] strings : init_list) {
+			double value=Double.parseDouble(strings[i]);
+			if(value>=low&&value<=high){
+				filterlist.add(strings);
+			}
+		}
+		int size=filterlist.size();
+	    String[][] list=new String[size][10];
+		int index=0;
+		for (String[] strings : filterlist) {
+			list[index]=strings;
+			index++;
 		}
 		StockVO sv=new StockVO(list);
 		return sv;
