@@ -38,11 +38,22 @@ public class StockMessageBL implements StockMessageBLService {
 	}
 
 	@Override
-	public StockVO filterStockMessage(int i, double low, double high) {
+	public StockVO filterStockMessage(int i, String low, String high) {
+		double low_value,high_value;
+		if(low.length()==0){
+			low_value=Double.MIN_VALUE;
+		}else{
+			low_value=Double.parseDouble(low);
+		}
+		if(high.length()==0){
+			high_value=Double.MAX_VALUE;
+		}else{		
+			high_value=Double.parseDouble(high);
+		}
 		ArrayList<String[]> filterlist=new ArrayList<String[]>(); 
 		for (String[] strings : init_list) {
 			double value=Double.parseDouble(strings[i]);
-			if(value>=low&&value<=high){
+			if(value>=low_value&&value<=high_value){
 				filterlist.add(strings);
 			}
 		}

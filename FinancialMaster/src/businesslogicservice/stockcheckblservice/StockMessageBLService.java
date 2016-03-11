@@ -7,5 +7,5 @@ public interface StockMessageBLService {
 	public StockVO getStockMessage(String id,String startData, String overData);
 	
 	//根据关键字范围筛选股票
-	public StockVO filterStockMessage(int i,double low,double high);
+	public StockVO filterStockMessage(int i,String low,String high);
 }
