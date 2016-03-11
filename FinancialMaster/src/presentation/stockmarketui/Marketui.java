@@ -243,11 +243,11 @@ public class Marketui extends JPanel {
 		button.setContentAreaFilled(false);
 		button.setBorderPainted(false);
 		button.setBorder(null);
-		ImageIcon image1 = new ImageIcon("image/search.png");
-		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
-				image1.getImage().SCALE_DEFAULT);
-		image1 = new ImageIcon(temp1);
-		button.setIcon(image1);
+//		ImageIcon image1 = new ImageIcon("image/search.png");
+//		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
+//				image1.getImage().SCALE_DEFAULT);
+//		image1 = new ImageIcon(temp1);
+		button.setIcon(new ImageIcon("image/search.png"));
 		button.setMargin(new Insets(0, 0, 0, 0));
 		add(button);
 
