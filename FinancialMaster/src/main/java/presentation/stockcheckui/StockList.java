@@ -164,7 +164,7 @@ public class StockList extends JPanel {
 		searchBtn.setContentAreaFilled(false);
 		searchBtn.setBorderPainted(false);
 		searchBtn.setBorder(null);
-		ImageIcon image1 = new ImageIcon("image/search.png");
+		ImageIcon image1 = new ImageIcon("src/main/resources/image/search.png");
 		Image temp1 = image1.getImage().getScaledInstance(searchBtn.getWidth(), searchBtn.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
@@ -173,6 +173,7 @@ public class StockList extends JPanel {
 		add(searchBtn);
 
 		searchTextField = new JTextField();
+		searchTextField.setText("输入股票代码或名称搜索");
 		searchTextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -208,6 +209,7 @@ public class StockList extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchTextField.setText("");
 				click = true;
 				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 				searchTextField.setFocusable(true);
@@ -218,19 +220,20 @@ public class StockList extends JPanel {
 		add(searchTextField);
 		searchTextField.setColumns(10);
 
-		JLabel namelbl = new JLabel("\u80A1\u7968\u5217\u8868");
+		JLabel namelbl = new JLabel("股票列表");
 		namelbl.setBackground(new Color(245, 245, 245));
 		namelbl.setForeground(new Color(95, 99, 108));
 		namelbl.setBounds(25, 65, 151, 32);
 		namelbl.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
 		add(namelbl);
 
-		// 点击其他地方使textfield不能输入
+		// 点击其他地方使text field不能输入
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				searchTextField.setText("输入股票代码或名称搜索");
 			}
 
 			@Override
@@ -268,7 +271,7 @@ public class StockList extends JPanel {
 
 	// 边框圆滑
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/right.png");
+		ImageIcon image = new ImageIcon("src/main/resources/image/right.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

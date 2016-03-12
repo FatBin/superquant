@@ -3,8 +3,8 @@ package presentation.repaintComponent;
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
 import java.awt.geom.*;
-import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class TextBubbleBorder extends AbstractBorder{
 	private Color color;
     private int thickness = 4;

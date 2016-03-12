@@ -242,11 +242,7 @@ public class Marketui extends JPanel {
 		searchBtn.setContentAreaFilled(false);
 		searchBtn.setBorderPainted(false);
 		searchBtn.setBorder(null);
-//		ImageIcon image1 = new ImageIcon("image/search.png");
-//		Image temp1 = image1.getImage().getScaledInstance(button.getWidth(), button.getHeight(),
-//				image1.getImage().SCALE_DEFAULT);
-//		image1 = new ImageIcon(temp1);
-		searchBtn.setIcon(new ImageIcon("image/search.png"));
+		searchBtn.setIcon(new ImageIcon("src/main/resources/image/search.png"));
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
 
@@ -256,6 +252,7 @@ public class Marketui extends JPanel {
 		searchTextField.setForeground(new Color(150, 150, 150));
 		searchTextField.setCaretColor(new Color(150, 150, 150));
 		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		searchTextField.setText("输入股票代码或名称搜索");
 		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -271,6 +268,7 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchTextField.setText("");
 				click = true;
 				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 				searchTextField.setFocusable(true);
@@ -281,12 +279,13 @@ public class Marketui extends JPanel {
 		add(searchTextField);
 		searchTextField.setColumns(10);
 
-		// 点击其他地方使textfield不能输入
+		// 点击其他地方使text field不能输入
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				searchTextField.setText("输入股票代码或名称搜索");
 			}
 
 			@Override
@@ -319,12 +318,10 @@ public class Marketui extends JPanel {
 
 	// 边框圆滑
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/background.png");
+		ImageIcon image = new ImageIcon("src/main/resources/image/background.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		// g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
-
 	}
 
 	// 设置界面可拖动

@@ -85,7 +85,7 @@ public class StockDetail extends JPanel {
 		closeBtn.setBounds(707, 15, 16, 16);
 		add(closeBtn);
 
-		miniBtn = new JButton("¡ª");
+		miniBtn = new JButton("â€”");
 		miniBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -99,7 +99,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.setExtendedState(frame.ICONIFIED); // ×îĞ¡»¯
+				frame.setExtendedState(frame.ICONIFIED); // æœ€å°åŒ–
 			}
 		});
 		miniBtn.setForeground(new Color(216, 216, 216));
@@ -114,7 +114,7 @@ public class StockDetail extends JPanel {
 		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.MONTH, -1); // Ç°Ò»¸öÔÂ
+		calendar.add(Calendar.MONTH, -1); // å‰ä¸€ä¸ªæœˆ
 		dbefore = calendar.getTime();
 
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
@@ -144,14 +144,14 @@ public class StockDetail extends JPanel {
 
 		table = new JTable();
 		table.setRowHeight(30);
-		// Ê¹±í¸ñ¾ÓÖĞ
+		// ä½¿è¡¨æ ¼å±…ä¸­
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(Object.class, r);
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		table.setOpaque(false);
-		// Ñ¡È¡ĞĞ
+		// é€‰å–è¡Œ
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 				Point mousepoint;
@@ -162,10 +162,9 @@ public class StockDetail extends JPanel {
 		});
 		stockDetailPane.setViewportView(table);
 		table.setBorder(null);
-		// table.setBorder(new LineBorder(new Color(0, 0, 0), 0, true));
 		table.setEnabled(false);
 		tableModel = new DefaultTableModel(data,
-				new String[] { "ÈÕÆÚ", "¿ªÅÌ¼Û", "×î¸ß¼Û", "×îµÍ¼Û", "ÊÕÅÌ¼Û", "ºó¸´È¨¼Û", "½»Ò×Á¿(¹É)", "»»ÊÖÂÊ", "ÊĞÓ¯ÂÊ", "ÊĞ¾»ÂÊ" });
+				new String[] { "æ—¥æœŸ", "å¼€ç›˜ä»·", "æœ€é«˜ä»·", "æœ€ä½ä»·", "æ”¶ç›˜ä»·", "åå¤æƒä»·", "äº¤æ˜“é‡(è‚¡)", "æ¢æ‰‹ç‡", "å¸‚ç›ˆç‡", "å¸‚å‡€ç‡" });
 		table.setModel(tableModel);
 
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -180,7 +179,7 @@ public class StockDetail extends JPanel {
 		searchBtn.setContentAreaFilled(false);
 		searchBtn.setBorderPainted(false);
 		searchBtn.setBorder(null);
-		ImageIcon image1 = new ImageIcon("image/search.png");
+		ImageIcon image1 = new ImageIcon("src/main/resources/image/search.png");
 		Image temp1 = image1.getImage().getScaledInstance(searchBtn.getWidth(), searchBtn.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
@@ -194,6 +193,7 @@ public class StockDetail extends JPanel {
 		searchTextField.setForeground(new Color(150, 150, 150));
 		searchTextField.setCaretColor(new Color(150, 150, 150));
 		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		searchTextField.setText("è¾“å…¥è‚¡ç¥¨ä»£ç æˆ–åç§°æœç´¢");
 		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -209,6 +209,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchTextField.setText("");
 				click = true;
 				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 				searchTextField.setFocusable(true);
@@ -219,7 +220,7 @@ public class StockDetail extends JPanel {
 		add(searchTextField);
 		searchTextField.setColumns(10);
 
-		JLabel namelbl = new JLabel("¸ö¹ÉÏêÇé");
+		JLabel namelbl = new JLabel("ä¸ªè‚¡è¯¦æƒ…");
 		namelbl.setBackground(new Color(245, 245, 245));
 		namelbl.setForeground(new Color(95, 99, 108));
 		namelbl.setBounds(10, 65, 98, 32);
@@ -256,45 +257,10 @@ public class StockDetail extends JPanel {
 		label.setBounds(554, 75, 25, 22);
 		add(label);
 
-		timeGotolbl = new JLabel("\u203A");
-		timeGotolbl.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				timeGotolbl.setForeground(new Color(72, 77, 78));
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				timeGotolbl.setForeground(new Color(150, 150, 150));
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String newStart = startTimelbl.getText();
-				String newEnd = endTimelbl.getText();
-				StockVO datavo = Message.getStockMessage(id, newStart, newEnd);
-				String[][] data = datavo.getHistory_data();
-				tableModel = new DefaultTableModel(data,
-						new String[] { "ÈÕÆÚ", "¿ªÅÌ¼Û", "×î¸ß¼Û", "×îµÍ¼Û", "ÊÕÅÌ¼Û", "ºó¸´È¨¼Û", "½»Ò×Á¿(¹É)", "»»ÊÖÂÊ", "ÊĞÓ¯ÂÊ", "ÊĞ¾»ÂÊ" });
-				table.setModel(tableModel);
-
-				table.getColumnModel().getColumn(0).setPreferredWidth(100);
-				for (int i = 1; i < 6; i++) {
-					table.getColumnModel().getColumn(i).setPreferredWidth(70);
-				}
-				repaint();
-			}
-		});
-		timeGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		timeGotolbl.setForeground(new Color(150, 150, 150));
-		timeGotolbl.setBounds(682, 73, 25, 22);
-		add(timeGotolbl);
-
 		MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setOpaque(false);
 		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 16));
-		String[] item = { "É¸Ñ¡¹Ø¼ü×Ö", "¿ªÅÌ¼Û", "×î¸ß¼Û", "×îµÍ¼Û", "ÊÕÅÌ¼Û", "ºó¸´È¨¼Û", "³É½»Á¿", "»»ÊÖÂÊ", "ÊĞÓ¯ÂÊ", "ÊĞ¾»ÂÊ" };
+		String[] item = { "ç­›é€‰å…³é”®å­—", "å¼€ç›˜ä»·", "æœ€é«˜ä»·", "æœ€ä½ä»·", "æ”¶ç›˜ä»·", "åå¤æƒä»·", "æˆäº¤é‡", "æ¢æ‰‹ç‡", "å¸‚ç›ˆç‡", "å¸‚å‡€ç‡" };
 		for (int i = 0; i < 10; i++) {
 			conditionBox.addItem(item[i]);
 		}
@@ -304,6 +270,12 @@ public class StockDetail extends JPanel {
 		add(conditionBox);
 
 		belowTextField = new JTextField();
+		belowTextField.setOpaque(false);
+		belowTextField.setForeground(new Color(150, 150, 150));
+		belowTextField.setFocusable(false);
+		belowTextField.setColumns(10);
+		belowTextField.setCaretColor(new Color(150, 150, 150));
+		belowTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 		belowTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -333,15 +305,8 @@ public class StockDetail extends JPanel {
 				}
 			}
 		});
-
-		belowTextField.setOpaque(false);
-		belowTextField.setForeground(new Color(150, 150, 150));
-		belowTextField.setFocusable(false);
-		belowTextField.setColumns(10);
-		belowTextField.setCaretColor(new Color(150, 150, 150));
-		belowTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 		belowTextField.setBounds(146, 562, 97, 27);
-		belowTextField.setText("ÊäÈëÏÂÏŞ");
+		belowTextField.setText("è¾“å…¥ä¸‹é™");
 		add(belowTextField);
 
 		aboveTextField = new JTextField();
@@ -381,10 +346,50 @@ public class StockDetail extends JPanel {
 		aboveTextField.setCaretColor(new Color(150, 150, 150));
 		aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 		aboveTextField.setBounds(269, 562, 97, 27);
-		aboveTextField.setText("ÊäÈëÉÏÏŞ");
+		aboveTextField.setText("è¾“å…¥ä¸Šé™");
 		add(aboveTextField);
 
-		JLabel conditionGotolbl = new JLabel("\u203A");
+		timeGotolbl = new JLabel("â€º");
+		timeGotolbl.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				timeGotolbl.setForeground(new Color(72, 77, 78));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				timeGotolbl.setForeground(new Color(150, 150, 150));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String newStart = startTimelbl.getText();
+				String newEnd = endTimelbl.getText();
+				StockVO datavo = Message.getStockMessage(id, newStart, newEnd);
+				String[][] data = datavo.getHistory_data();
+				tableModel = new DefaultTableModel(data,
+						new String[] { "æ—¥æœŸ", "å¼€ç›˜ä»·", "æœ€é«˜ä»·", "æœ€ä½ä»·", "æ”¶ç›˜ä»·", "åå¤æƒä»·", "äº¤æ˜“é‡(è‚¡)", "æ¢æ‰‹ç‡", "å¸‚ç›ˆç‡", "å¸‚å‡€ç‡" });
+				table.setModel(tableModel);
+
+				table.getColumnModel().getColumn(0).setPreferredWidth(100);
+				for (int i = 1; i < 6; i++) {
+					table.getColumnModel().getColumn(i).setPreferredWidth(70);
+				}
+
+				conditionBox.setSelectedIndex(0);
+				belowTextField.setText("è¾“å…¥ä¸‹é™");
+				aboveTextField.setText("è¾“å…¥ä¸Šé™");
+				repaint();
+
+			}
+		});
+		timeGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		timeGotolbl.setForeground(new Color(150, 150, 150));
+		timeGotolbl.setBounds(682, 73, 25, 22);
+		add(timeGotolbl);
+
+		JLabel conditionGotolbl = new JLabel("â€º");
 		conditionGotolbl.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -408,7 +413,7 @@ public class StockDetail extends JPanel {
 					StockVO datavo = Message.filterStockMessage(index, low, high);
 					String data2[][] = datavo.getHistory_data();
 					tableModel = new DefaultTableModel(data2,
-							new String[] { "ÈÕÆÚ", "¿ªÅÌ¼Û", "×î¸ß¼Û", "×îµÍ¼Û", "ÊÕÅÌ¼Û", "ºó¸´È¨¼Û", "½»Ò×Á¿(¹É)", "»»ÊÖÂÊ", "ÊĞÓ¯ÂÊ", "ÊĞ¾»ÂÊ" });
+							new String[] { "æ—¥æœŸ", "å¼€ç›˜ä»·", "æœ€é«˜ä»·", "æœ€ä½ä»·", "æ”¶ç›˜ä»·", "åå¤æƒä»·", "äº¤æ˜“é‡(è‚¡)", "æ¢æ‰‹ç‡", "å¸‚ç›ˆç‡", "å¸‚å‡€ç‡" });
 					table.setModel(tableModel);
 
 					table.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -424,12 +429,21 @@ public class StockDetail extends JPanel {
 		conditionGotolbl.setBounds(382, 562, 25, 22);
 		add(conditionGotolbl);
 
-		// µã»÷ÆäËûµØ·½Ê¹textfield²»ÄÜÊäÈë
+		// ç‚¹å‡»å…¶ä»–åœ°æ–¹ä½¿text fieldä¸èƒ½è¾“å…¥
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				searchTextField.setText("è¾“å…¥è‚¡ç¥¨ä»£ç æˆ–åç§°æœç´¢");
+				
+				belowTextField.setFocusable(false);
+				belowTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				belowTextField.setText("è¾“å…¥ä¸‹é™");
+				
+				aboveTextField.setFocusable(false);
+				aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				aboveTextField.setText("è¾“å…¥ä¸Šé™");
 			}
 
 			@Override
@@ -459,16 +473,16 @@ public class StockDetail extends JPanel {
 
 	}
 
-	// ±ß¿òÔ²»¬
+	// è¾¹æ¡†åœ†æ»‘
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/right.png");
+		ImageIcon image = new ImageIcon("src/main/resources/image/right.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 	}
 
-	// ÉèÖÃ½çÃæ¿ÉÍÏ¶¯
+	// è®¾ç½®ç•Œé¢å¯æ‹–åŠ¨
 	Point loc = null;
 	Point tmp = null;
 	boolean isDragged = false;

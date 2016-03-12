@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
-import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
@@ -29,11 +28,12 @@ public class MyComboBoxUI extends BasicComboBoxUI {
 		super();
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	protected JButton createArrowButton() {
 		arrow = new JButton();
 		arrow.setSize(26, 20);
-		ImageIcon image1 = new ImageIcon("image/arrow-Enter.png");
+		ImageIcon image1 = new ImageIcon("src/main/resources/image/arrow-Enter.png");
 		Image temp1 = image1.getImage().getScaledInstance(arrow.getWidth(), arrow.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
@@ -56,7 +56,7 @@ public class MyComboBoxUI extends BasicComboBoxUI {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				arrow.setSize(26, 20);
-				ImageIcon image1 = new ImageIcon("image/arrow-Enter.png");
+				ImageIcon image1 = new ImageIcon("src/main/resources/image/arrow-Enter.png");
 				Image temp1 = image1.getImage().getScaledInstance(arrow.getWidth(), arrow.getHeight(),
 						image1.getImage().SCALE_DEFAULT);
 				image1 = new ImageIcon(temp1);
@@ -70,7 +70,7 @@ public class MyComboBoxUI extends BasicComboBoxUI {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				arrow.setSize(26, 20);
-				ImageIcon image1 = new ImageIcon("image/arrow.png");
+				ImageIcon image1 = new ImageIcon("src/main/resources/image/arrow.png");
 				Image temp1 = image1.getImage().getScaledInstance(arrow.getWidth(), arrow.getHeight(),
 						image1.getImage().SCALE_DEFAULT);
 				image1 = new ImageIcon(temp1);
@@ -133,63 +133,50 @@ public class MyComboBoxUI extends BasicComboBoxUI {
 		g.setColor(t);
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void paintCurrentValue(Graphics g, Rectangle bounds, boolean hasFocus) {
 		ListCellRenderer renderer = comboBox.getRenderer();
-        Component c;
-        if ( hasFocus && !isPopupVisible(comboBox) ) {
-            c = renderer.getListCellRendererComponent( listBox,
-                                                       comboBox.getSelectedItem(),
-                                                       -1,
-                                                       true,
-                                                       false );
-        }
-        else {
-            c = renderer.getListCellRendererComponent( listBox,
-                                                       comboBox.getSelectedItem(),
-                                                       -1,
-                                                       false,
-                                                       false );
-            c.setBackground(new Color(95, 99, 108));
-        }
-        c.setFont(comboBox.getFont());
-        if ( hasFocus && !isPopupVisible(comboBox) ) {
-            c.setForeground(new Color(95,99,108));
-            c.setBackground(new Color(0,0,0,0));
-        }
-        else {
-            if ( comboBox.isEnabled() ) {
-                c.setForeground(new Color(95,99,108));
-                c.setBackground(new Color(0,0,0,0));
-//                new Color(248, 179, 29)
-            }
-            else {
-                c.setForeground(DefaultLookup.getColor(
-                         comboBox, this, "ComboBox.disabledForeground", null));
-                c.setBackground(DefaultLookup.getColor(
-                         comboBox, this, "ComboBox.disabledBackground", null));
-            }
-        }
+		Component c;
+		if (hasFocus && !isPopupVisible(comboBox)) {
+			c = renderer.getListCellRendererComponent(listBox, comboBox.getSelectedItem(), -1, true, false);
+		} else {
+			c = renderer.getListCellRendererComponent(listBox, comboBox.getSelectedItem(), -1, false, false);
+			c.setBackground(new Color(95, 99, 108));
+		}
+		c.setFont(comboBox.getFont());
+		if (hasFocus && !isPopupVisible(comboBox)) {
+			c.setForeground(new Color(95, 99, 108));
+			c.setBackground(new Color(0, 0, 0, 0));
+		} else {
+			if (comboBox.isEnabled()) {
+				c.setForeground(new Color(95, 99, 108));
+				c.setBackground(new Color(0, 0, 0, 0));
+				// new Color(248, 179, 29)
+			} else {
+				c.setForeground(DefaultLookup.getColor(comboBox, this, "ComboBox.disabledForeground", null));
+				c.setBackground(DefaultLookup.getColor(comboBox, this, "ComboBox.disabledBackground", null));
+			}
+		}
 
-        // Fix for 4238829: should lay out the JPanel.
-        boolean shouldValidate = false;
-        if (c instanceof JPanel)  {
-            shouldValidate = true;
-        }
+		// Fix for 4238829: should lay out the JPanel.
+		boolean shouldValidate = false;
+		if (c instanceof JPanel) {
+			shouldValidate = true;
+		}
 
-        int x = bounds.x, y = bounds.y, w = bounds.width, h = bounds.height;
-        if (padding != null) {
-            x = bounds.x + padding.left;
-            y = bounds.y + padding.top;
-            w = bounds.width - (padding.left + padding.right);
-            h = bounds.height - (padding.top + padding.bottom);
-        }
+		int x = bounds.x, y = bounds.y, w = bounds.width, h = bounds.height;
+		if (padding != null) {
+			x = bounds.x + padding.left;
+			y = bounds.y + padding.top;
+			w = bounds.width - (padding.left + padding.right);
+			h = bounds.height - (padding.top + padding.bottom);
+		}
 
-        currentValuePane.paintComponent(g,c,comboBox,x,y,w,h,shouldValidate);
+		currentValuePane.paintComponent(g, c, comboBox, x, y, w, h, shouldValidate);
 	}
-	
-	
 
+	@SuppressWarnings("serial")
 	protected ComboPopup createPopup() {
 		ComboPopup popup = new BasicComboPopup(comboBox) {
 

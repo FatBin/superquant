@@ -1,4 +1,4 @@
-package presentation.stockmarketui;
+package presentation.mainui;
 import java.awt.Color;
 import javax.swing.JFrame;
 

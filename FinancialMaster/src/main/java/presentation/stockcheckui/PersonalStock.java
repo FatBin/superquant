@@ -39,7 +39,7 @@ public class PersonalStock extends JPanel {
 
 		setLayout(null);
 
-		marketBtn = new JButton("\u5927\u76D8\u6570\u636E");
+		marketBtn = new JButton("大盘数据");
 		marketBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -69,7 +69,7 @@ public class PersonalStock extends JPanel {
 		marketBtn.setBorder(null);
 		add(marketBtn);
 
-		stockListBtn = new JButton("\u4E2A\u80A1\u6570\u636E");
+		stockListBtn = new JButton("个股数据");
 		stockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		stockListBtn.setForeground(new Color(248, 179, 29));
 		stockListBtn.setContentAreaFilled(false);
@@ -77,7 +77,7 @@ public class PersonalStock extends JPanel {
 		stockListBtn.setBounds(68, 112, 117, 44);
 		add(stockListBtn);
 
-		optionStockBtn = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
+		optionStockBtn = new JButton("自选股分析");
 		optionStockBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -104,6 +104,7 @@ public class PersonalStock extends JPanel {
 		optionStockBtn.setBorder(null);
 		optionStockBtn.setBounds(75, 156, 117, 44);
 		add(optionStockBtn);
+		
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
@@ -126,7 +127,7 @@ public class PersonalStock extends JPanel {
 
 	// 边框圆滑
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/left.png");
+		ImageIcon image = new ImageIcon("src/main/resources/image/left.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

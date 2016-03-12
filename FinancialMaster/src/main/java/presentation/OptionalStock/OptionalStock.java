@@ -48,7 +48,7 @@ public class OptionalStock extends JPanel {
 		setLayout(null);
 		final OptionalStock opanel = this;
 
-		marketBtn = new JButton("\u5927\u76D8\u6570\u636E");
+		marketBtn = new JButton("大盘数据");
 		marketBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -77,7 +77,7 @@ public class OptionalStock extends JPanel {
 		marketBtn.setBorder(null);
 		add(marketBtn);
 
-		stockListBtn = new JButton("\u4E2A\u80A1\u6570\u636E");
+		stockListBtn = new JButton("个股数据");
 		stockListBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -110,7 +110,7 @@ public class OptionalStock extends JPanel {
 		stockListBtn.setBounds(68, 112, 117, 44);
 		add(stockListBtn);
 
-		optionalStockBtn = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
+		optionalStockBtn = new JButton("自选股分析");
 		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		optionalStockBtn.setForeground(new Color(248, 179, 29));
 		optionalStockBtn.setContentAreaFilled(false);
@@ -166,13 +166,12 @@ public class OptionalStock extends JPanel {
 		miniBtn.setBounds(904, 14, 16, 16);
 		add(miniBtn);
 
-		// AliasingButton button = new AliasingButton();
 		JButton searchBtn = new JButton();
 		searchBtn.setBounds(854, 15, 18, 18);
 		searchBtn.setContentAreaFilled(false);
 		searchBtn.setBorderPainted(false);
 		searchBtn.setBorder(null);
-		ImageIcon image1 = new ImageIcon("image/search.png");
+		ImageIcon image1 = new ImageIcon("src/main/resources/image/search.png");
 		Image temp1 = image1.getImage().getScaledInstance(searchBtn.getWidth(), searchBtn.getHeight(),
 				image1.getImage().SCALE_DEFAULT);
 		image1 = new ImageIcon(temp1);
@@ -186,6 +185,7 @@ public class OptionalStock extends JPanel {
 		searchTextField.setForeground(new Color(150, 150, 150));
 		searchTextField.setCaretColor(new Color(150, 150, 150));
 		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+		searchTextField.setText("输入股票代码或名称搜索");
 		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -201,6 +201,7 @@ public class OptionalStock extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchTextField.setText("");
 				click = true;
 				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 				searchTextField.setFocusable(true);
@@ -211,7 +212,7 @@ public class OptionalStock extends JPanel {
 		add(searchTextField);
 		searchTextField.setColumns(10);
 		
-		JLabel label = new JLabel("\u656C\u8BF7\u671F\u5F85");
+		JLabel label = new JLabel("敬请期待");
 		label.setBounds(296, 77, 85, 29);
 		add(label);
 
@@ -221,6 +222,7 @@ public class OptionalStock extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
+				searchTextField.setText("输入股票代码或名称搜索");
 			}
 
 			@Override
@@ -253,12 +255,10 @@ public class OptionalStock extends JPanel {
 
 	// 边框圆滑
 	protected void paintComponent(Graphics g) {
-		ImageIcon image = new ImageIcon("image/background.png");
+		ImageIcon image = new ImageIcon("src/main/resources/image/background.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		// g2d.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
-
 	}
 
 	// 设置界面可拖动

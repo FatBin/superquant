@@ -1,14 +1,11 @@
 package presentation.repaintComponent;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -53,6 +50,7 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 		g2d.fillRoundRect(thumbBounds.x+6,thumbBounds.y+1,width-7, height - 1, 10, 10);
 	}
 
+	@SuppressWarnings("serial")
 	@Override
 	protected JButton createIncreaseButton(int orientation) {
 		return new JButton() {
@@ -63,6 +61,7 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 		};
 	}
 
+	@SuppressWarnings("serial")
 	@Override
 	protected JButton createDecreaseButton(int orientation) {
 		return new JButton() {
