@@ -28,5 +28,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="src/main/resources/lib/jfreechart-1.0.19-experimental.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/lib/jfreechart-1.0.19-swt.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/lib/orsoncharts-1.4-eval-nofx.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/lib/orsonpdf-1.6-eval.jar"/>
+	<classpathentry kind="lib" path="src/main/resources/lib/servlet.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
