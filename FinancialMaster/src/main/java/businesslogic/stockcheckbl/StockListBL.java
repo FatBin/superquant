@@ -21,9 +21,9 @@ public class StockListBL implements StockListBLService {
 		StockDataService sds = new StockData();
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String today = format.format(cal.getTime());
-		cal.add(Calendar.DATE, -1);
-		String yestoday = format.format(cal.getTime());
+		String startDay = format.format(cal.getTime());
+		cal.add(Calendar.DATE, 1);
+		String endDay = format.format(cal.getTime());
 		// codeNamePO sz_codeName = sds.getCodeName(2015, "sz");
 		// codeNamePO sh_codeName = sds.getCodeName(2015, "sh");
 		// ArrayList<String> sz_list = sz_codeName.getResult();
@@ -74,22 +74,22 @@ public class StockListBL implements StockListBLService {
 				"sh600769", "sh600975", "sh600622", "sh600803", "sh600365",
 				"sh600223", "sh600071", "sh603008", "sh600085", "sh600827",
 				"sh600077" };
+		do {
+			cal.add(Calendar.DATE, -1);
+			startDay = format.format(cal.getTime());
+			ssPOlist = sds.getStatisitcOfStock(name_list[0], startDay, endDay);
+		} while (ssPOlist.isEmpty());
 		String list[][] = new String[20][6];
 		for (int i = 0; i < 20; i++) {
 			list[i][0] = name_list[i];
-			ssPOlist = sds.getStatisitcOfStock(name_list[i], yestoday, today);
-			if (!ssPOlist.isEmpty()) {
-				ssPO = ssPOlist.get(0);
-				list[i][1] = ssPO.getOpen() + "";
-				list[i][2] = ssPO.getHigh() + "";
-				list[i][3] = ssPO.getLow() + "";
-				list[i][4] = ssPO.getClose() + "";
-				list[i][5] = ssPO.getVolume() + "";
-			} else {
-				for (int j = 1; j < 6; j++) {
-					list[i][i] = "-";
-				}
-			}
+			ssPOlist = sds.getStatisitcOfStock(name_list[i], startDay, endDay);
+			ssPO = ssPOlist.get(0);
+			list[i][1] = ssPO.getOpen() + "";
+			list[i][2] = ssPO.getHigh() + "";
+			list[i][3] = ssPO.getLow() + "";
+			list[i][4] = ssPO.getClose() + "";
+			list[i][5] = ssPO.getVolume() + "";
+
 			init_list.add(list[i]);
 		}
 		return list;
@@ -116,7 +116,7 @@ public class StockListBL implements StockListBLService {
 			}
 			return list;
 		}
-		
+
 	}
 
 }
