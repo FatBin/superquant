@@ -257,7 +257,7 @@ public class StockDetail extends JPanel {
 		label.setBounds(554, 75, 25, 22);
 		add(label);
 
-		MyComboBox conditionBox = new MyComboBox();
+		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setOpaque(false);
 		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 16));
 		String[] item = { "筛选关键字", "开盘价", "最高价", "最低价", "收盘价", "后复权价", "成交量", "换手率", "市盈率", "市净率" };
@@ -389,7 +389,7 @@ public class StockDetail extends JPanel {
 		timeGotolbl.setBounds(682, 73, 25, 22);
 		add(timeGotolbl);
 
-		JLabel conditionGotolbl = new JLabel("\u203A");
+		final JLabel conditionGotolbl = new JLabel("\u203A");
 		conditionGotolbl.addMouseListener(new MouseAdapter() {
 
 			@Override
