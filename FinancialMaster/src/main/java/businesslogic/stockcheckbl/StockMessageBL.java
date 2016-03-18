@@ -40,12 +40,12 @@ public class StockMessageBL implements StockMessageBLService {
 	@Override
 	public StockVO filterStockMessage(int i, String low, String high) {
 		double low_value,high_value;
-		if(low.length()==0){
+		if(low.equals("输入下限")||low.length()==0){
 			low_value=Double.MIN_VALUE;
 		}else{
 			low_value=Double.parseDouble(low);
 		}
-		if(high.length()==0){
+		if(high.equals("输入上限")||high.length()==0){
 			high_value=Double.MAX_VALUE;
 		}else{		
 			high_value=Double.parseDouble(high);
