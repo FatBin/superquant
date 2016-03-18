@@ -143,7 +143,7 @@ public class StockDetail extends JPanel {
 		String[][] data = datavo.getHistory_data();
 
 		table = new JTable();
-		table.setRowHeight(30);
+		table.setRowHeight(26);
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);

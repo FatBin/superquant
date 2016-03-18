@@ -109,7 +109,7 @@ public class StockList extends JPanel {
 		add(listPane);
 
 		table = new JTable();
-		table.setRowHeight(30);
+		table.setRowHeight(26);
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);

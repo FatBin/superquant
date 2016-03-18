@@ -196,6 +196,7 @@ public class Marketui extends JPanel {
 
 		for (int i = 0; i < 7; i++) {
 			table[i] = new JTable();
+			table[i].setRowHeight(26);
 			table[i].setDefaultRenderer(Object.class, r);
 			table[i].setSelectionBackground(new Color(88, 93, 103, 200));
 			table[i].setSelectionForeground(new Color(255, 255, 255, 230));
