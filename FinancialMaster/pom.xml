@@ -43,53 +43,13 @@
 	<version>20160212</version>
 	</dependency>	
 	
-	<dependency>
-	<groupId>com.orsonpdf</groupId>
-	<artifactId>orsonpdf</artifactId>
-	<version>1.7</version>
-	</dependency>
 
-	<dependency>
-	<groupId>com.object-refinery</groupId>
-	<artifactId>orsoncharts</artifactId>
-	<version>1.5</version>
-	</dependency>
 
-	<dependency>
-	<groupId>javax.servlet</groupId>
-	<artifactId>javax.servlet-api</artifactId>
-	<version>3.1.0</version>
-	</dependency>
 	
-    <dependency>
-    	<groupId>org.jfree</groupId>
-    	<artifactId>jfreechart</artifactId>
-    	<version>1.0.19</version>
-    </dependency>
     
-    <dependency>
-    	<groupId>org.hamcrest</groupId>
-    	<artifactId>hamcrest-core</artifactId>
-    	<version>1.3</version>
-    </dependency>
     
-    <dependency>
-    	<groupId>org.jfree</groupId>
-    	<artifactId>jcommon</artifactId>
-    	<version>1.0.23</version>
-    </dependency>
     
-    <dependency>
-    	<groupId>org.jfree</groupId>
-    	<artifactId>jfreesvg</artifactId>
-    	<version>3.0</version>
-    </dependency>
     
-    <dependency>
-	<groupId>org.jfree</groupId>
-	<artifactId>swtgraphics2d</artifactId>
-	<version>1.0</version>
-	</dependency>
 	
   </dependencies> 
 </project>
