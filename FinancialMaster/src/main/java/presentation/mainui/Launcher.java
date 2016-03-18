@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 import presentation.stockmarketui.Marketui;;
 
 @SuppressWarnings("serial")
-public class testframe extends JFrame {
+public class Launcher extends JFrame {
 
 	public static void main(String[] args){
 		JFrame frame = new JFrame();

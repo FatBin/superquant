@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -25,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import ENUM.date_enum;
@@ -49,7 +51,7 @@ public class Marketui extends JPanel {
 	private boolean click = false;
 
 	String[][] data;
-	
+
 	private JScrollPane[] scrollPane;
 	private JTable[] table;
 
@@ -187,8 +189,17 @@ public class Marketui extends JPanel {
 		scrollPane = new JScrollPane[7];
 
 		table = new JTable[7];
+
+		// 使表格居中
+		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+
 		for (int i = 0; i < 7; i++) {
 			table[i] = new JTable();
+			table[i].setDefaultRenderer(Object.class, r);
+			table[i].setSelectionBackground(new Color(88, 93, 103, 200));
+			table[i].setSelectionForeground(new Color(255, 255, 255, 230));
+			table[i].setOpaque(false);
 			scrollPane[i] = new JScrollPane();
 			scrollPane[i].setBounds(247, 110, 696, 440);
 			scrollPane[i].add(table[i]);
@@ -220,7 +231,7 @@ public class Marketui extends JPanel {
 			}
 		});
 		add(marketPane);
-		
+
 		StockMarketVO stockMarketVO;
 		stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
 		data = stockMarketVO.getData();
