@@ -27,8 +27,11 @@ import javax.swing.table.DefaultTableModel;
 
 import businesslogic.stockcheckbl.StockListBL;
 import businesslogicservice.stockcheckblservice.StockListBLService;
+import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -51,6 +54,12 @@ public class StockList extends JPanel {
 
 		setLayout(null);
 		final StockList listui = this;
+		
+		
+		IntentPane intentPane = new IntentPane();
+		intentPane.setBounds(13,63,707,522);
+		intentPane.setLayout(null);
+		add(intentPane);
 
 		closeBtn = new JButton("X");
 		closeBtn.addMouseListener(new MouseAdapter() {
@@ -101,13 +110,14 @@ public class StockList extends JPanel {
 		add(miniBtn);
 
 		JScrollPane listPane = new JScrollPane();
-		listPane.setBounds(23, 110, 696, 440);
+		listPane.setBounds(0, 42, 707, 500);
 		listPane.setOpaque(false);
 		listPane.setBorder(BorderFactory.createEmptyBorder());
 		listPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		listPane.getViewport().setOpaque(false);
-		add(listPane);
+		intentPane.add(listPane);
 
+		
 		table = new JTable();
 		table.setRowHeight(26);
 		// 使表格居中
@@ -117,6 +127,7 @@ public class StockList extends JPanel {
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		table.setOpaque(false);
+		((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);		
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -223,9 +234,9 @@ public class StockList extends JPanel {
 		JLabel namelbl = new JLabel("股票列表");
 		namelbl.setBackground(new Color(245, 245, 245));
 		namelbl.setForeground(new Color(95, 99, 108));
-		namelbl.setBounds(25, 65, 151, 32);
+		namelbl.setBounds(10, 4, 151, 32);
 		namelbl.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		add(namelbl);
+		intentPane.add(namelbl);
 
 		// 点击其他地方使text field不能输入
 		addMouseListener(new MouseListener() {

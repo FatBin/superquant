@@ -151,6 +151,7 @@ public class StockDetail extends JPanel {
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		table.setOpaque(false);
+		((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);		
 		// Ñ¡È¡ÐÐ
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {

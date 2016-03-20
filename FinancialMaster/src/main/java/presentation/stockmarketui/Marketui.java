@@ -33,6 +33,7 @@ import ENUM.date_enum;
 import VO.StockMarketVO;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import presentation.OptionalStock.OptionalStock;
+import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyComboBox;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
@@ -67,6 +68,11 @@ public class Marketui extends JPanel {
 
 		setLayout(null);
 		final Marketui mpanel = this;
+		
+		IntentPane intentPane = new IntentPane();
+		intentPane.setBounds(237,63,707,522);
+		intentPane.setLayout(null);
+		add(intentPane);
 
 		marketBtn = new JButton("\u5927\u76D8\u6570\u636E");
 		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -210,7 +216,7 @@ public class Marketui extends JPanel {
 		}
 
 		JTabbedPane marketPane = new JTabbedPane();
-		marketPane.setBounds(247, 98, 696, 440);
+		marketPane.setBounds(7, 50, 696, 440);
 
 		String title[] = { "当天", "一周", "一个月", "半年", "一年", "五年", "十年" };
 
@@ -231,7 +237,7 @@ public class Marketui extends JPanel {
 				table[selectedIndex].setModel(TableModel);
 			}
 		});
-		add(marketPane);
+		intentPane.add(marketPane);
 
 		StockMarketVO stockMarketVO;
 		stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
@@ -241,13 +247,13 @@ public class Marketui extends JPanel {
 
 		final MyComboBox nameBox = new MyComboBox();
 		nameBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		nameBox.setBounds(255, 65, 125, 32);
+		nameBox.setBounds(10, 5, 125, 32);
 		nameBox.addItem("上证指数");
 		nameBox.addItem("深证指数");
 		nameBox.setSelectedIndex(0);
 		nameBox.setOpaque(false);
 		nameBox.setBorder(null);
-		add(nameBox);
+		intentPane.add(nameBox);
 
 		JButton searchBtn = new JButton();
 		searchBtn.setBounds(854, 15, 18, 18);
