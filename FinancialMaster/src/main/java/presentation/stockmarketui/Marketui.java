@@ -68,9 +68,9 @@ public class Marketui extends JPanel {
 
 		setLayout(null);
 		final Marketui mpanel = this;
-		
+
 		IntentPane intentPane = new IntentPane();
-		intentPane.setBounds(237,63,707,522);
+		intentPane.setBounds(237, 63, 707, 522);
 		intentPane.setLayout(null);
 		add(intentPane);
 
@@ -207,6 +207,10 @@ public class Marketui extends JPanel {
 			table[i].setSelectionBackground(new Color(88, 93, 103, 200));
 			table[i].setSelectionForeground(new Color(255, 255, 255, 230));
 			table[i].setOpaque(false);
+
+			table[i].setEnabled(false);
+			setSelect(table[i]);
+
 			scrollPane[i] = new JScrollPane();
 			scrollPane[i].setBounds(247, 110, 696, 440);
 			scrollPane[i].add(table[i]);
@@ -367,6 +371,19 @@ public class Marketui extends JPanel {
 							jFrame.getLocation().y + e.getY() - tmp.y);
 					jFrame.setLocation(loc);
 				}
+			}
+		});
+	}
+
+	// 设置表格可选择
+	public void setSelect(JTable table) {
+		table.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				int rowpos = -1;
+				Point mousepoint;
+				mousepoint = e.getPoint();
+				rowpos = table.rowAtPoint(mousepoint);
+				table.setRowSelectionInterval(rowpos, rowpos);
 			}
 		});
 	}
