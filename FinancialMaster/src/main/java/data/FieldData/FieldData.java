@@ -4,11 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import PO.fieldStatisticPO;
-import data.stockcheckdata.HttpRequest;
+import data.IO.HttpRequest;
 import dataservice.stockcheckdataservice.FieldDataService;
 
 public class FieldData implements FieldDataService {
 	@Override
+	//获取股票交易用语
 	public fieldStatisticPO getStatisticOfField() {
 		// TODO Auto-generated method stub
 		fieldStatisticPO fieldStatisticPO;
@@ -31,4 +32,6 @@ public class FieldData implements FieldDataService {
 		}
 		return fieldStatisticPO;
 	}
+	
+
 }

@@ -7,12 +7,11 @@ import org.json.JSONObject;
 
 import PO.benchmarkPO;
 import PO.benchmarkStatisticPO;
-import PO.fieldStatisticPO;
-import data.stockcheckdata.HttpRequest;
+import data.IO.HttpRequest;
 import dataservice.stockmarketdataservice.BenchDataService;
 
 public class BenchData implements BenchDataService{
-
+	//获取大盘指数代号
 	@Override
 	public benchmarkPO getBenchmark() {
 		// TODO Auto-generated method stub
@@ -33,6 +32,7 @@ public class BenchData implements BenchDataService{
 		return benchmarkPO;
 	}
 
+	//根据大盘代号和起始终止时间获取大盘指数数据
 	@Override
 	public ArrayList<benchmarkStatisticPO> getStatisticOfBenchmark(String benchCode, String start, String end) {
 		// TODO Auto-generated method stub

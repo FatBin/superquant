@@ -1,6 +1,5 @@
 package data.stockcheckdata;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -9,9 +8,11 @@ import org.json.JSONObject;
 
 import PO.codeNamePO;
 import PO.stockStatisticPO;
+import data.IO.HttpRequest;
 import dataservice.stockcheckdataservice.StockDataService;
 
 public class StockData implements StockDataService {
+	//输入年份及交易所返回所有股票名
 	public codeNamePO getCodeName(int year, String exchange) {
 		ArrayList<String> arrayList = new ArrayList<String>();
 		try {
@@ -32,6 +33,7 @@ public class StockData implements StockDataService {
 		return codeNamePO;
 	}
 
+	//输入股票代号及起始和终止时间，返回股票具体信息
 	@Override
 	public ArrayList<stockStatisticPO> getStatisitcOfStock(String codeName,
 			String start, String end) {
