@@ -74,24 +74,31 @@ public class Marketui extends JPanel {
 		intentPane.setLayout(null);
 		add(intentPane);
 
-		marketBtn = new JButton("\u5927\u76D8\u6570\u636E");
+		marketBtn = new JButton("   大盘数据");
 		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		marketBtn.setForeground(new Color(248, 179, 29));
-		marketBtn.setBounds(68, 68, 117, 44);
+		marketBtn.setBounds(0, 68, 224, 44);
+		marketBtn.setIcon(new ImageIcon("src/main/resources/image/line-enter.png"));
 		marketBtn.setContentAreaFilled(false);
 		marketBtn.setBorder(null);
 		add(marketBtn);
 
-		shockListBtn = new JButton("\u4E2A\u80A1\u6570\u636E");
+		shockListBtn = new JButton("   个股数据");
 		shockListBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				shockListBtn.setForeground(new Color(248, 179, 29));
+				shockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie-enter.png"));
+				shockListBtn.setContentAreaFilled(false);
+				shockListBtn.setBorder(null);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				shockListBtn.setForeground(new Color(216, 216, 216));
+				shockListBtn.setForeground(new Color(252, 241, 224));
+				shockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie.png"));
+				shockListBtn.setContentAreaFilled(false);
+				shockListBtn.setBorder(null);
 			}
 
 			@Override
@@ -110,22 +117,29 @@ public class Marketui extends JPanel {
 			}
 		});
 		shockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		shockListBtn.setForeground(new Color(216, 216, 216));
+		shockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie.png"));
+		shockListBtn.setForeground(new Color(252, 241, 224));
 		shockListBtn.setContentAreaFilled(false);
 		shockListBtn.setBorder(null);
-		shockListBtn.setBounds(68, 112, 117, 44);
+		shockListBtn.setBounds(0, 112, 224, 44);
 		add(shockListBtn);
 
-		optionalStockBtn = new JButton("\u81EA\u9009\u80A1\u5206\u6790");
+		optionalStockBtn = new JButton("   行业排行");
 		optionalStockBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				optionalStockBtn.setForeground(new Color(248, 179, 29));
+				optionalStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank-enter.png"));
+				optionalStockBtn.setContentAreaFilled(false);
+				optionalStockBtn.setBorder(null);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				optionalStockBtn.setForeground(new Color(216, 216, 216));
+				optionalStockBtn.setForeground(new Color(252, 241, 224));
+				optionalStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank.png"));
+				optionalStockBtn.setContentAreaFilled(false);
+				optionalStockBtn.setBorder(null);
 			}
 
 			@Override
@@ -138,10 +152,11 @@ public class Marketui extends JPanel {
 			}
 		});
 		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		optionalStockBtn.setForeground(new Color(216, 216, 216));
+		optionalStockBtn.setForeground(new Color(252, 241, 224));
+		optionalStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank.png"));
 		optionalStockBtn.setContentAreaFilled(false);
 		optionalStockBtn.setBorder(null);
-		optionalStockBtn.setBounds(75, 156, 117, 44);
+		optionalStockBtn.setBounds(0, 156, 224, 44);
 		add(optionalStockBtn);
 
 		closeBtn = new JButton("X");
@@ -158,7 +173,7 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				closeBtn.setForeground(new Color(216, 216, 216));
+				closeBtn.setForeground(new Color(252, 241, 224));
 			}
 		});
 		closeBtn.setForeground(new Color(216, 216, 216));
@@ -177,7 +192,7 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				miniBtn.setForeground(new Color(216, 216, 216));
+				miniBtn.setForeground(new Color(252, 241, 224));
 			}
 
 			@Override

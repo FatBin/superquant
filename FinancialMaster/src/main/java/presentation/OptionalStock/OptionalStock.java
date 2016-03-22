@@ -48,7 +48,7 @@ public class OptionalStock extends JPanel {
 		setLayout(null);
 		final OptionalStock opanel = this;
 
-		marketBtn = new JButton("大盘数据");
+		marketBtn = new JButton("   大盘数据");
 		marketBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -77,7 +77,7 @@ public class OptionalStock extends JPanel {
 		marketBtn.setBorder(null);
 		add(marketBtn);
 
-		stockListBtn = new JButton("个股数据");
+		stockListBtn = new JButton("   个股数据");
 		stockListBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -110,7 +110,7 @@ public class OptionalStock extends JPanel {
 		stockListBtn.setBounds(68, 112, 117, 44);
 		add(stockListBtn);
 
-		optionalStockBtn = new JButton("自选股分析");
+		optionalStockBtn = new JButton("   行业排行");
 		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		optionalStockBtn.setForeground(new Color(248, 179, 29));
 		optionalStockBtn.setContentAreaFilled(false);

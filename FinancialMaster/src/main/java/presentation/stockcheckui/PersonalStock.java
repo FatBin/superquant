@@ -39,16 +39,24 @@ public class PersonalStock extends JPanel {
 
 		setLayout(null);
 
-		marketBtn = new JButton("大盘数据");
+		marketBtn = new JButton("   大盘数据");
 		marketBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				marketBtn.setForeground(new Color(248, 179, 29));
+				marketBtn.setIcon(new ImageIcon("src/main/resources/image/line-enter.png"));
+				marketBtn.setContentAreaFilled(false);
+				marketBtn.setOpaque(false);
+				marketBtn.setBorder(null);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				marketBtn.setForeground(new Color(216, 216, 216));
+				marketBtn.setForeground(new Color(252, 241, 224));
+				marketBtn.setIcon(new ImageIcon("src/main/resources/image/line.png"));
+				marketBtn.setContentAreaFilled(false);
+				marketBtn.setOpaque(false);
+				marketBtn.setBorder(null);
 			}
 
 			@Override
@@ -62,31 +70,41 @@ public class PersonalStock extends JPanel {
 			}
 		});
 		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		marketBtn.setForeground(new Color(216, 216, 216));
-		marketBtn.setBounds(68, 68, 117, 44);
+		marketBtn.setForeground(new Color(252, 241, 224));
+		marketBtn.setBounds(0, 68, 224, 44);
+		marketBtn.setIcon(new ImageIcon("src/main/resources/image/line.png"));
 		marketBtn.setContentAreaFilled(false);
 		marketBtn.setOpaque(false);
 		marketBtn.setBorder(null);
 		add(marketBtn);
 
-		stockListBtn = new JButton("个股数据");
+		stockListBtn = new JButton("   个股数据");
 		stockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		stockListBtn.setForeground(new Color(248, 179, 29));
+		stockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie-enter.png"));
 		stockListBtn.setContentAreaFilled(false);
 		stockListBtn.setBorder(null);
-		stockListBtn.setBounds(68, 112, 117, 44);
+		stockListBtn.setBounds(0, 112, 224, 44);
 		add(stockListBtn);
 
-		optionStockBtn = new JButton("自选股分析");
+		optionStockBtn = new JButton("   行业排行");
+		optionStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank.png"));
 		optionStockBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				optionStockBtn.setForeground(new Color(248, 179, 29));
+//				optionStockBtn.setBackground(new Color(169, 107, 16));
+				optionStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank-enter.png"));
+				optionStockBtn.setContentAreaFilled(false);
+				optionStockBtn.setBorder(null);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				optionStockBtn.setForeground(new Color(216, 216, 216));
+				optionStockBtn.setForeground(new Color(252, 241, 224));
+				optionStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank.png"));
+				optionStockBtn.setContentAreaFilled(false);
+				optionStockBtn.setBorder(null);
 			}
 
 			@Override
@@ -99,10 +117,10 @@ public class PersonalStock extends JPanel {
 			}
 		});
 		optionStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		optionStockBtn.setForeground(new Color(216, 216, 216));
+		optionStockBtn.setForeground(new Color(252, 241, 224));
 		optionStockBtn.setContentAreaFilled(false);
 		optionStockBtn.setBorder(null);
-		optionStockBtn.setBounds(75, 156, 117, 44);
+		optionStockBtn.setBounds(0, 156, 224, 44);
 		add(optionStockBtn);
 		
 		// 使表格居中
