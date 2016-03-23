@@ -8,7 +8,9 @@ import java.util.Date;
 import PO.codeNamePO;
 import PO.stockStatisticPO;
 import businesslogicservice.stockcheckblservice.StockListBLService;
+import data.manageStockData.ManageStockData;
 import data.stockcheckdata.StockData;
+import dataservice.manageStockService.manageStockDataService;
 import dataservice.stockcheckdataservice.StockDataService;
 
 public class StockListBL implements StockListBLService {
@@ -19,6 +21,7 @@ public class StockListBL implements StockListBLService {
 	public String[][] getStockList() {
 		// 股票代码、开盘价、最高价、最低价、收盘价、后复权价、成交量、换手率、市盈率、市净率
 		StockDataService sds = new StockData();
+		manageStockDataService msds=new ManageStockData();
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String startDay = format.format(cal.getTime());
@@ -33,6 +36,8 @@ public class StockListBL implements StockListBLService {
 		// int index = 0;
 		ArrayList<stockStatisticPO> ssPOlist;
 		stockStatisticPO ssPO;
+		ArrayList<String> stockList;
+		stockList = msds.getCodeOfStock();
 		// for (String sz_s : sz_list) {
 		// list[index][0] = sz_s;
 		// ssPOlist = sds.getStatisitcOfStock(sz_s, yestoday, today);
@@ -69,20 +74,16 @@ public class StockListBL implements StockListBLService {
 		// init_list.add(list[index]);
 		// index++;
 		// }
-		String[] name_list = { "sh600000", "sh600004", "sh600005", "sh600006",
-				"sh600007", "sh600008", "sh600009", "sh600300", "sh600316",
-				"sh600769", "sh600975", "sh600622", "sh600803", "sh600365",
-				"sh600223", "sh600071", "sh603008", "sh600085", "sh600827",
-				"sh600077" };
+		int size=stockList.size();
 		do {
 			cal.add(Calendar.DATE, -1);
 			startDay = format.format(cal.getTime());
-			ssPOlist = sds.getStatisitcOfStock(name_list[0], startDay, endDay);
+			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), startDay, endDay);
 		} while (ssPOlist.isEmpty());
-		String list[][] = new String[20][6];
-		for (int i = 0; i < 20; i++) {
-			list[i][0] = name_list[i];
-			ssPOlist = sds.getStatisitcOfStock(name_list[i], startDay, endDay);
+		String list[][] = new String[size][6];
+		for (int i = 0; i < size; i++) {
+			list[i][0] = stockList.get(i);
+			ssPOlist = sds.getStatisitcOfStock(list[i][0], startDay, endDay);
 			ssPO = ssPOlist.get(0);
 			list[i][1] = ssPO.getOpen() + "";
 			list[i][2] = ssPO.getHigh() + "";

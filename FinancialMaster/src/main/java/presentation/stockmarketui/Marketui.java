@@ -252,7 +252,7 @@ public class Marketui extends JPanel {
 				date_enum[] date = date_enum.values();
 				stockMarketVO = stockMarketBL.getStockMarket("hs300", date[selectedIndex]);
 				data = stockMarketVO.getData();
-				TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价" });
+				TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价" ,"成交量（股）"});
 				table[selectedIndex].setModel(TableModel);
 			}
 		});
@@ -261,12 +261,13 @@ public class Marketui extends JPanel {
 		StockMarketVO stockMarketVO;
 		stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
 		data = stockMarketVO.getData();
-		TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价" });
+		TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价","成交量（股）" });
 		table[0].setModel(TableModel);
 
 		final MyComboBox nameBox = new MyComboBox();
 		nameBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		nameBox.setBounds(10, 5, 125, 32);
+		nameBox.setBounds(10, 5, 160, 32);
+		nameBox.addItem("沪深300指数");
 		nameBox.addItem("上证指数");
 		nameBox.addItem("深证指数");
 		nameBox.setSelectedIndex(0);
