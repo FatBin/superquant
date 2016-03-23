@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ENUM.date_enum;
 import VO.StockMarketVO;
+import businesslogic.stockmarketbl.StockMarketBL;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import presentation.OptionalStock.OptionalStock;
 import presentation.repaintComponent.IntentPane;
@@ -56,7 +57,7 @@ public class Marketui extends JPanel {
 	private JScrollPane[] scrollPane;
 	private JTable[] table;
 
-	private StockMarketBLService stockMarketBL = new businesslogic.stockmarketbl.StockMarketBL();
+	private StockMarketBLService stockMarketBL = new StockMarketBL();
 	DefaultTableModel TableModel;
 
 	/**
@@ -266,7 +267,7 @@ public class Marketui extends JPanel {
 
 		final MyComboBox nameBox = new MyComboBox();
 		nameBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		nameBox.setBounds(10, 5, 160, 32);
+		nameBox.setBounds(10, 5, 161, 32);
 		nameBox.addItem("沪深300指数");
 		nameBox.addItem("上证指数");
 		nameBox.addItem("深证指数");
