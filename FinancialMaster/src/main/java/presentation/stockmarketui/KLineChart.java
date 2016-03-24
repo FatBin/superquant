@@ -153,8 +153,8 @@ public class KLineChart extends JPanel {
 		plot1.setBackgroundPaint(new Color(255, 255, 255));
 		plot2.setBackgroundPaint(new Color(255, 255, 255));
 		
-		String title[] = {"时分图","日K线图","周K线图","月K线图"};
-		chart = new JFreeChart(title[index], JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
+//		String title[] = {"时分图","日K线图","周K线图","月K线图"};
+		chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
 		chart.setAntiAlias(true);
 		chart.setBackgroundPaint(new Color(246, 246, 246));
 		this.add(new ChartPanel(chart));
