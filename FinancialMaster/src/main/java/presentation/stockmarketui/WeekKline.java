@@ -17,6 +17,7 @@ import org.jfree.chart.axis.SegmentedTimeline;
 import org.jfree.chart.plot.CombinedDomainXYPlot;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.CandlestickRenderer;
+import org.jfree.chart.renderer.xy.StandardXYBarPainter;
 import org.jfree.chart.renderer.xy.XYBarRenderer;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
@@ -28,6 +29,7 @@ import ENUM.date_enum;
 import VO.StockMarketVO;
 import businesslogic.stockmarketbl.StockMarketBL;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
+import presentation.repaintComponent.MyCandlestickRender;
 
 @SuppressWarnings("serial")
 public class WeekKline extends JPanel {
@@ -113,11 +115,12 @@ public class WeekKline extends JPanel {
 			}
 		}
 
-		final CandlestickRenderer candlestickRender = new CandlestickRenderer();// 设置K线图的画图器，必须申明为final，后面要在匿名内部类里面用到
+		final MyCandlestickRender candlestickRender = new MyCandlestickRender();// 设置K线图的画图器，必须申明为final，后面要在匿名内部类里面用到
 		candlestickRender.setUseOutlinePaint(true); // 置是否使用自定义的边框线，程序自带的边框线的颜色不符合中国股票市场的习惯
+		
 		candlestickRender.setAutoWidthMethod(CandlestickRenderer.WIDTHMETHOD_AVERAGE);// 设置如何对K线图的宽度进行设定
 		candlestickRender.setAutoWidthGap(0.001);// 设置各个K线图之间的间隔
-		candlestickRender.setUpPaint(new Color(179, 8, 77));// 设置股票上涨的K线图颜色
+		candlestickRender.setUpPaint(new Color(206, 4, 14));// 设置股票上涨的K线图颜色
 		candlestickRender.setDownPaint(new Color(25, 155, 83));// 设置股票下跌的K线图颜色
 		DateAxis x1Axis = new DateAxis();// 设置x轴，也就是时间轴
 		
@@ -139,7 +142,9 @@ public class WeekKline extends JPanel {
 				}
 			}
 		};
-		xyBarRender.setMargin(0.1);// 设置柱形图之间的间隔
+		xyBarRender.setMargin(0.3);// 设置柱形图之间的间隔
+		xyBarRender.setShadowVisible(false);
+		xyBarRender.setBarPainter(new StandardXYBarPainter()); 
 		NumberAxis y2Axis = new NumberAxis();// 设置Y轴，为数值,后面的设置，参考上面的y轴设置
 		y2Axis.setRange(min2Value * 0.9, high2Value * 1.1);
 		XYPlot plot2 = new XYPlot(timeSeriesCollection, null, y2Axis, xyBarRender);// 建立第二个画图区域对象，主要此时的x轴设为了null值，因为要与第一个画图区域对象共享x轴
@@ -149,7 +154,7 @@ public class WeekKline extends JPanel {
 		combineddomainxyplot.add(plot2, 1);// 添加图形区域对象，后面的数字是计算这个区域对象应该占据多大的区域1/3
 		combineddomainxyplot.setGap(10);// 设置两个图形区域对象之间的间隔空间
 
-		chart = new JFreeChart("月k线图", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
+		chart = new JFreeChart("日k线图", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
 		chart.setAntiAlias(true);
 		this.add(new ChartPanel(chart));
 		
