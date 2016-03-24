@@ -80,16 +80,17 @@ public class StockListBL implements StockListBLService {
 			startDay = format.format(cal.getTime());
 			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), startDay, endDay);
 		} while (ssPOlist.isEmpty());
-		String list[][] = new String[size][6];
+		String list[][] = new String[size][7];
 		for (int i = 0; i < size; i++) {
 			list[i][0] = stockList.get(i);
 			ssPOlist = sds.getStatisitcOfStock(list[i][0], startDay, endDay);
 			ssPO = ssPOlist.get(0);
-			list[i][1] = ssPO.getOpen() + "";
-			list[i][2] = ssPO.getHigh() + "";
-			list[i][3] = ssPO.getLow() + "";
-			list[i][4] = ssPO.getClose() + "";
-			list[i][5] = ssPO.getVolume() + "";
+			list[i][1]=ssPO.getName();
+			list[i][2] = ssPO.getOpen() + "";
+			list[i][3] = ssPO.getHigh() + "";
+			list[i][4] = ssPO.getLow() + "";
+			list[i][5] = ssPO.getClose() + "";
+			list[i][6] = ssPO.getVolume() + "";
 
 			init_list.add(list[i]);
 		}
@@ -106,10 +107,10 @@ public class StockListBL implements StockListBLService {
 		}
 		int size = new_list.size();
 		if (size == 0) {
-			String[][] list = { { "-", "-", "-", "-", "-", "-" } };
+			String[][] list = { { "-", "-", "-", "-", "-", "-" ,"-"} };
 			return list;
 		} else {
-			String list[][] = new String[size][6];
+			String list[][] = new String[size][7];
 			int index = 0;
 			for (String[] strings : new_list) {
 				list[index] = strings;
