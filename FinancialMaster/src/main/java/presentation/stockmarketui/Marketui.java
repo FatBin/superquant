@@ -31,6 +31,8 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.chart.ChartPanel;
+
 import ENUM.date_enum;
 import VO.StockMarketVO;
 import businesslogic.stockmarketbl.StockMarketBL;
@@ -81,12 +83,20 @@ public class Marketui extends JPanel {
 		
 		JPanel content = new JPanel();
 		content.setOpaque(false);
-		content.setPreferredSize(new Dimension(710, 1000));
+		content.setPreferredSize(new Dimension(710, 700));
 		content.setLayout(new FlowLayout(FlowLayout.LEFT,14,14));
 
 		IntentPane intentPane1 = new IntentPane();
-		intentPane1.setPreferredSize(new Dimension(700, 300));
+		Dimension dim1 = new Dimension(700, 300);
+		intentPane1.setPreferredSize(dim1);
 		intentPane1.setLayout(null);
+		
+		WeekKline kline = new WeekKline();
+		ChartPanel chartPanel = kline.getChartPane();
+		chartPanel.setSize(dim1);
+		intentPane1.add(chartPanel);
+		kline.setVisible(true);
+		
 		content.add(intentPane1);
 		
 		IntentPane intentPane2 = new IntentPane();
@@ -256,7 +266,7 @@ public class Marketui extends JPanel {
 		}
 
 		JTabbedPane marketPane = new JTabbedPane();
-		marketPane.setBounds(7, 50, 680, 440);
+		marketPane.setBounds(7, 50, 680, 264);
 
 		String title[] = { "当天", "一周", "一个月", "半年", "一年", "五年", "十年" };
 
@@ -299,7 +309,7 @@ public class Marketui extends JPanel {
 		//添加scrollPane
 		content.add(intentPane1);
 		content.add(intentPane2);
-		contentScroll.getViewport().add(content);
+		contentScroll.setViewportView(content);
 		add(contentScroll);
 		
 
