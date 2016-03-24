@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import PO.fieldStatisticPO;
 import data.IO.HttpRequest;
-import dataservice.stockcheckdataservice.FieldDataService;
+import dataservice.fieldDataService.FieldDataService;
 
 public class FieldData implements FieldDataService {
 	@Override
