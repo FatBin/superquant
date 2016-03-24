@@ -304,8 +304,8 @@ public class Marketui extends JPanel {
 					data = stockMarketVO.getData();
 
 					KLineChart kline = new KLineChart(data, selectedIndex);
-//					kline.setSize(new Dimension(680, 100));
 					ChartPanel chartPanel = kline.getChartPane();
+					chartPanel.setPreferredSize(new Dimension(660, 350));
 //					panes[selectedIndex].setSize(new Dimension(680, 100));
 //					chartPanel.setSize(new Dimension(680, 100));
 					panes[selectedIndex].add(chartPanel);
