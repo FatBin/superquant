@@ -25,7 +25,7 @@ public class BenchKLineData implements BenchKLineDataService {
 		Calendar lastCal1 = Calendar.getInstance();// 用来记录上次更新到的日期
 		Calendar lastCal2 = Calendar.getInstance();
 		String yestoday = format.format(cal.getTime());
-		cal.add(Calendar.DATE, 1);
+//		cal.add(Calendar.DATE, 1);
 		try {
 			ArrayList<String> datelist = FileManager
 					.ReadFile("src/main/resources/Data/updateRecord.txt");
@@ -34,7 +34,7 @@ public class BenchKLineData implements BenchKLineDataService {
 			lastCal1.setTime(d);
 			lastCal2.setTime(d);
 			if (lastCal1.before(cal)) {
-				// 　　 更新周Ｋ
+				// 更新周Ｋ
 				updateWeek(lastCal1, cal);
 				// 更新月Ｋ
 				updateMonth(lastCal2, cal);
@@ -89,6 +89,11 @@ public class BenchKLineData implements BenchKLineDataService {
 			start.add(Calendar.DATE, -(dayOfWeek - 2));
 		}
 		while (start.before(end)) {
+			high = Double.MIN_VALUE;
+			low = Double.MAX_VALUE;
+			open = 0;
+			close = 0;
+			volume = 0;
 			String startday = format.format(start.getTime());
 			start.add(Calendar.DATE, 7);
 			String endday = format.format(start.getTime());
@@ -135,6 +140,11 @@ public class BenchKLineData implements BenchKLineDataService {
 			start.add(Calendar.DATE, -(dayOfMonth-1));
 		}
 		while (start.before(end)) {
+			high = Double.MIN_VALUE;
+			low = Double.MAX_VALUE;
+			open = 0;
+			close = 0;
+			volume = 0;
 			String startday = format.format(start.getTime());
 			start.add(Calendar.MONTH, 1);
 			String endday = format.format(start.getTime());

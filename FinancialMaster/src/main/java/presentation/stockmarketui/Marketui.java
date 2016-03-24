@@ -33,9 +33,13 @@ import javax.swing.table.DefaultTableModel;
 
 import org.jfree.chart.ChartPanel;
 
+import ENUM.ManageState;
 import ENUM.date_enum;
+import ENUM.marketKline_enum;
 import VO.StockMarketVO;
+import businesslogic.stockmarketbl.MarketKLineBL;
 import businesslogic.stockmarketbl.StockMarketBL;
+import businesslogicservice.stockmarketblservice.MarketKLineBLService;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import presentation.OptionalStock.OptionalStock;
 import presentation.repaintComponent.IntentPane;
@@ -60,8 +64,10 @@ public class Marketui extends JPanel {
 
 	private JScrollPane[] scrollPane;
 	private JTable[] table;
+	private JPanel[] panes;
 
 	private StockMarketBLService stockMarketBL = new StockMarketBL();
+	private MarketKLineBLService marketKLineBL = new MarketKLineBL();
 	DefaultTableModel TableModel;
 
 	/**
@@ -73,37 +79,41 @@ public class Marketui extends JPanel {
 
 		setLayout(null);
 		final Marketui mpanel = this;
-		
+
+		ManageState state = marketKLineBL.update();
+		if (state == ManageState.Fail) {
+			// 联网失败
+		}
+
 		JScrollPane contentScroll = new JScrollPane();
 		contentScroll.setBounds(224, 51, 730, 540);
 		contentScroll.setOpaque(false);
 		contentScroll.getViewport().setOpaque(false);
 		contentScroll.setBorder(BorderFactory.createEmptyBorder());
 		contentScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
-		
+
 		JPanel content = new JPanel();
 		content.setOpaque(false);
-		content.setPreferredSize(new Dimension(710, 700));
-		content.setLayout(new FlowLayout(FlowLayout.LEFT,14,14));
+		content.setPreferredSize(new Dimension(710, 900));
+		content.setLayout(new FlowLayout(FlowLayout.LEFT, 14, 14));
 
 		IntentPane intentPane1 = new IntentPane();
-		Dimension dim1 = new Dimension(700, 300);
-		intentPane1.setPreferredSize(dim1);
+		intentPane1.setPreferredSize(new Dimension(700, 450));
 		intentPane1.setLayout(null);
-		
-		WeekKline kline = new WeekKline();
-		ChartPanel chartPanel = kline.getChartPane();
-		chartPanel.setSize(dim1);
-		intentPane1.add(chartPanel);
-		kline.setVisible(true);
-		
+
+		//////
+		// KLineChart kline = new KLineChart(data);
+		// ChartPanel chartPanel = kline.getChartPane();
+		// chartPanel.setSize(dim1);
+		// intentPane1.add(chartPanel);
+		// kline.setVisible(true);
+
 		content.add(intentPane1);
-		
+
 		IntentPane intentPane2 = new IntentPane();
-		intentPane2.setPreferredSize(new Dimension(700, 300));
+		intentPane2.setPreferredSize(new Dimension(700, 450));
 		intentPane2.setLayout(null);
 		content.add(intentPane2);
-		
 
 		marketBtn = new JButton("   大盘数据");
 		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -258,15 +268,57 @@ public class Marketui extends JPanel {
 			setSelect(table[i]);
 
 			scrollPane[i] = new JScrollPane();
-			scrollPane[i].setBounds(247, 110, 680, 440);
+			scrollPane[i].setBounds(247, 110, 680, 390);
 			scrollPane[i].add(table[i]);
 			scrollPane[i].setViewportView(table[i]);
 			scrollPane[i].getVerticalScrollBar().setUI(new MyScrollBarUI());
 			scrollPane[i].setBorder(BorderFactory.createEmptyBorder());
 		}
 
+		// K线图
+		JTabbedPane KLinePane = new JTabbedPane();
+		KLinePane.setBounds(7, 50, 690, 400);
+
+		String kLineTitle[] = { "时分", "日K", "周K", "月K" };
+
+		panes = new JPanel[4];
+		for (int i = 0; i < 4; i++) {
+			panes[i] = new JPanel();
+			KLinePane.add(kLineTitle[i], panes[i]);
+		}
+
+		KLinePane.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				StockMarketVO stockMarketVO;
+				JTabbedPane tab = (JTabbedPane) e.getSource();
+				int selectedIndex = tab.getSelectedIndex();
+				marketKline_enum[] marketK = marketKline_enum.values();
+
+				// 时分暂时没实现
+				if (selectedIndex == 0) {
+					JLabel label = new JLabel("敬请期待");
+					panes[0].add(label);
+				} else {
+					stockMarketVO = marketKLineBL.getData(marketK[selectedIndex]);
+					data = stockMarketVO.getData();
+
+					KLineChart kline = new KLineChart(data, selectedIndex);
+					ChartPanel chartPanel = kline.getChartPane();
+					chartPanel.setPreferredSize(new Dimension(660, 350));
+//					panes[selectedIndex].setSize(new Dimension(680, 100));
+//					chartPanel.setSize(new Dimension(680, 100));
+					panes[selectedIndex].add(chartPanel);
+					kline.setVisible(true);
+					panes[selectedIndex].setVisible(true);
+				}
+			}
+		});
+		intentPane1.add(KLinePane);
+
+		// 表格
 		JTabbedPane marketPane = new JTabbedPane();
-		marketPane.setBounds(7, 50, 680, 264);
+		marketPane.setBounds(7, 50, 680, 370);
 
 		String title[] = { "当天", "一周", "一个月", "半年", "一年", "五年", "十年" };
 
@@ -283,7 +335,7 @@ public class Marketui extends JPanel {
 				date_enum[] date = date_enum.values();
 				stockMarketVO = stockMarketBL.getStockMarket("hs300", date[selectedIndex]);
 				data = stockMarketVO.getData();
-				TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价" ,"成交量（股）"});
+				TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "成交量（股）" });
 				table[selectedIndex].setModel(TableModel);
 			}
 		});
@@ -292,7 +344,7 @@ public class Marketui extends JPanel {
 		StockMarketVO stockMarketVO;
 		stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
 		data = stockMarketVO.getData();
-		TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价","成交量（股）" });
+		TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "成交量（股）" });
 		table[0].setModel(TableModel);
 
 		final MyComboBox nameBox = new MyComboBox();
@@ -305,13 +357,12 @@ public class Marketui extends JPanel {
 		nameBox.setOpaque(false);
 		nameBox.setBorder(null);
 		intentPane2.add(nameBox);
-		
-		//添加scrollPane
+
+		// 添加scrollPane
 		content.add(intentPane1);
 		content.add(intentPane2);
 		contentScroll.setViewportView(content);
 		add(contentScroll);
-		
 
 		JButton searchBtn = new JButton();
 		searchBtn.setBounds(854, 15, 18, 18);
@@ -321,7 +372,6 @@ public class Marketui extends JPanel {
 		searchBtn.setIcon(new ImageIcon("src/main/resources/image/search.png"));
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
-		
 
 		searchTextField = new JTextField();
 		searchTextField.setFocusable(false);

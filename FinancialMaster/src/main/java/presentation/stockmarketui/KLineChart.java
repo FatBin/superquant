@@ -25,30 +25,23 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.time.ohlc.OHLCSeries;
 import org.jfree.data.time.ohlc.OHLCSeriesCollection;
 
-import ENUM.date_enum;
-import VO.StockMarketVO;
-import businesslogic.stockmarketbl.StockMarketBL;
-import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import presentation.repaintComponent.MyCandlestickRender;
 
 @SuppressWarnings("serial")
-public class WeekKline extends JPanel {
+public class KLineChart extends JPanel {
 
 	JFreeChart chart;
-	String[][] data;
 	Date startDate;
 	Date endDate;
-	private StockMarketBLService stockMarketBL = new StockMarketBL();
-
-	public WeekKline() {
+		
+	public KLineChart(String[][] data, int index) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		double highValue = Double.MIN_VALUE; // 设置K线数据当中的最大值
 		double minValue = Double.MAX_VALUE; // 设置K线数据当中的最小值
 		double high2Value = Double.MIN_VALUE; // 设置成交量的最大值
 		double min2Value = Double.MAX_VALUE; // 设置成交量的最低值
 
-		StockMarketVO stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Month);
-		data = stockMarketVO.getData();
+		
 
 		try {
 			startDate = df.parse(data[0][0]);
@@ -142,7 +135,9 @@ public class WeekKline extends JPanel {
 				}
 			}
 		};
-		xyBarRender.setMargin(0.3);// 设置柱形图之间的间隔
+		
+		double[] margin = {0, 0.3, 0.05, 0.05};
+		xyBarRender.setMargin(margin[index]);// 设置柱形图之间的间隔
 		xyBarRender.setShadowVisible(false);
 		xyBarRender.setBarPainter(new StandardXYBarPainter()); 
 		NumberAxis y2Axis = new NumberAxis();// 设置Y轴，为数值,后面的设置，参考上面的y轴设置
@@ -158,7 +153,8 @@ public class WeekKline extends JPanel {
 		plot1.setBackgroundPaint(new Color(255, 255, 255));
 		plot2.setBackgroundPaint(new Color(255, 255, 255));
 		
-		chart = new JFreeChart("日k线图", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
+//		String title[] = {"时分图","日K线图","周K线图","月K线图"};
+		chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
 		chart.setAntiAlias(true);
 		chart.setBackgroundPaint(new Color(246, 246, 246));
 		this.add(new ChartPanel(chart));
