@@ -19,6 +19,16 @@ public class benchmarkStatisticPO {
 		this.adj_price = adj_price;
 		this.volume = volume;
 	}
+	public benchmarkStatisticPO(String date,  double open, double high,double low,double close,
+			Long volume) {
+		super();
+		this.date = date;
+		this.close = close;
+		this.open = open;
+		this.low = low;
+		this.high = high;
+		this.volume = volume;
+	}
 	public String getDate() {
 		return date;
 	}
