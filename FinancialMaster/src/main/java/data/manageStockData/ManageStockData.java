@@ -40,11 +40,10 @@ public class ManageStockData implements manageStockDataService{
 				}
 				
 				arrayList.add(code);
-				FileManager.WriteFile(arrayList, "src/main/resources/Data/ObservedStock.txt", true);
+				FileManager.WriteFile(arrayList, "src/main/resources/Data/ObservedStock.txt", false);
 				return ManageState.Succeed;
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			return ManageState.Succeed;
 		}
 	}

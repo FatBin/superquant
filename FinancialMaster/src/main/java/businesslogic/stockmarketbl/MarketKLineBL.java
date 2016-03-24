@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import data.stockmarketdata.BenchKLineData;
 import dataservice.stockmarketdataservice.BenchKLineDataService;
 import ENUM.ManageState;
+import ENUM.date_enum;
 import ENUM.marketKline_enum;
 import PO.benchmarkStatisticPO;
 import VO.StockMarketVO;
 import businesslogicservice.stockmarketblservice.MarketKLineBLService;
+import businesslogicservice.stockmarketblservice.StockMarketBLService;
 
 public class MarketKLineBL implements MarketKLineBLService {
     BenchKLineDataService bkds=new BenchKLineData();
@@ -19,6 +21,10 @@ public class MarketKLineBL implements MarketKLineBLService {
 
 	@Override
 	public StockMarketVO getData(marketKline_enum k) {
+		if(k==marketKline_enum.DayK){
+			StockMarketBLService sbs=new StockMarketBL();
+			return sbs.getStockMarket("hs300", date_enum.Day);
+		}
 		ArrayList<benchmarkStatisticPO> markdata_list=bkds.getStatisticData(k.toString());
         int size=markdata_list.size();
         String[][] list=new String[size][6];
@@ -32,7 +38,11 @@ public class MarketKLineBL implements MarketKLineBLService {
 			list[index][5]=bsPO.getVolume()+"";
 			index++;
 		}
-        StockMarketVO sv=new StockMarketVO(list);
+        String[][] result=new String[30][6];
+        for (int i = 0; i < result.length; i++) {
+			result[i]=list[size-30+i];
+		}
+        StockMarketVO sv=new StockMarketVO(result);
 		return sv;
 	}
 
