@@ -65,10 +65,21 @@ public class StockData implements StockDataService {
 					 pb=jsonObject3.getDouble("pb");
 				} catch (JSONException e) {
 					e.printStackTrace();
-				}			 
+				}
+				 //获取股票名
+				 String name="";
+				 try {
+			        String s=HttpRequest.sendGet("http://web.juhe.cn:8080/finance/stock/hs", "gid="+codeName+"&key=9867ab78e2748061825600a8f7c7258b");
+			        JSONObject juheshuju=new JSONObject(s);
+			        JSONArray newjsonArray=jsonObject.getJSONArray("result");
+			        JSONObject newjsonObject=newjsonArray.getJSONObject(0);
+			        name=newjsonObject.getJSONObject("dapandata").getString("name");
+				 } catch (Exception e) {
+					// TODO: handle exception
+				}
 				 //////分割线//////
 				 stockStatisticPO stockStatisticPO=new
-				 stockStatisticPO(jsonObject3.getString("date"),
+				 stockStatisticPO(name,jsonObject3.getString("date"),
 				 jsonObject3.getDouble("open"),
 				 jsonObject3.getDouble("high"),				 
 				 jsonObject3.getDouble("low"),
