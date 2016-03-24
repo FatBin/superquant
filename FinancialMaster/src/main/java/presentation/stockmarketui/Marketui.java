@@ -277,7 +277,7 @@ public class Marketui extends JPanel {
 
 		// K线图
 		JTabbedPane KLinePane = new JTabbedPane();
-		KLinePane.setBounds(7, 50, 680, 400);
+		KLinePane.setBounds(7, 50, 690, 400);
 
 		String kLineTitle[] = { "时分", "日K", "周K", "月K" };
 
