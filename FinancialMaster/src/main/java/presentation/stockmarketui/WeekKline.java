@@ -154,6 +154,10 @@ public class WeekKline extends JPanel {
 		combineddomainxyplot.add(plot2, 1);// 添加图形区域对象，后面的数字是计算这个区域对象应该占据多大的区域1/3
 		combineddomainxyplot.setGap(10);// 设置两个图形区域对象之间的间隔空间
 
+		// 背景透明
+		plot1.setBackgroundAlpha(0.1f);
+		plot2.setBackgroundAlpha(0.1f);
+		
 		chart = new JFreeChart("日k线图", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
 		chart.setAntiAlias(true);
 		this.add(new ChartPanel(chart));
