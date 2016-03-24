@@ -12,9 +12,9 @@ public class testChartFrame {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		
-		WeekKline weekKline = new WeekKline();
-		frame.add(weekKline);
-		frame.setVisible(true);
+//		KLineChart weekKline = new KLineChart();
+//		frame.add(weekKline);
+//		frame.setVisible(true);
 	}
 
 }

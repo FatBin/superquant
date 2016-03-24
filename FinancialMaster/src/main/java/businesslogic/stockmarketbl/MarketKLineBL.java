@@ -23,7 +23,7 @@ public class MarketKLineBL implements MarketKLineBLService {
 	public StockMarketVO getData(marketKline_enum k) {
 		if(k==marketKline_enum.DayK){
 			StockMarketBLService sbs=new StockMarketBL();
-			return sbs.getStockMarket("hs300", date_enum.Day);
+			return sbs.getStockMarket("hs300", date_enum.Month);
 		}
 		ArrayList<benchmarkStatisticPO> markdata_list=bkds.getStatisticData(k.toString());
         int size=markdata_list.size();
