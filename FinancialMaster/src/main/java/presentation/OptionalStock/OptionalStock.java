@@ -53,11 +53,17 @@ public class OptionalStock extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				marketBtn.setForeground(new Color(248, 179, 29));
+				marketBtn.setIcon(new ImageIcon("src/main/resources/image/line-enter.png"));
+				marketBtn.setContentAreaFilled(false);
+				marketBtn.setBorder(null);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				marketBtn.setForeground(new Color(216, 216, 216));
+				marketBtn.setIcon(new ImageIcon("src/main/resources/image/line.png"));
+				marketBtn.setContentAreaFilled(false);
+				marketBtn.setBorder(null);
 			}
 
 			@Override
@@ -72,7 +78,8 @@ public class OptionalStock extends JPanel {
 		});
 		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		marketBtn.setForeground(new Color(216, 216, 216));
-		marketBtn.setBounds(68, 68, 117, 44);
+		marketBtn.setBounds(0, 68, 224, 44);
+		marketBtn.setIcon(new ImageIcon("src/main/resources/image/line.png"));
 		marketBtn.setContentAreaFilled(false);
 		marketBtn.setBorder(null);
 		add(marketBtn);
@@ -82,11 +89,17 @@ public class OptionalStock extends JPanel {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				stockListBtn.setForeground(new Color(248, 179, 29));
+				stockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie-enter.png"));
+				stockListBtn.setContentAreaFilled(false);
+				stockListBtn.setBorder(null);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				stockListBtn.setForeground(new Color(216, 216, 216));
+				stockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie.png"));
+				stockListBtn.setContentAreaFilled(false);
+				stockListBtn.setBorder(null);
 			}
 
 			@Override
@@ -105,17 +118,19 @@ public class OptionalStock extends JPanel {
 		});
 		stockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		stockListBtn.setForeground(new Color(216, 216, 216));
+		stockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie.png"));
 		stockListBtn.setContentAreaFilled(false);
 		stockListBtn.setBorder(null);
-		stockListBtn.setBounds(68, 112, 117, 44);
+		stockListBtn.setBounds(0, 112, 224, 44);
 		add(stockListBtn);
 
 		optionalStockBtn = new JButton("   ––“µ≈≈––");
 		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		optionalStockBtn.setForeground(new Color(248, 179, 29));
+		optionalStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank-enter.png"));
 		optionalStockBtn.setContentAreaFilled(false);
 		optionalStockBtn.setBorder(null);
-		optionalStockBtn.setBounds(75, 156, 117, 44);
+		optionalStockBtn.setBounds(0, 156, 224, 44);
 		add(optionalStockBtn);
 
 		closeBtn = new JButton("X");

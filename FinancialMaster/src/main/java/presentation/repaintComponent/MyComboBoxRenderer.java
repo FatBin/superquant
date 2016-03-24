@@ -24,11 +24,11 @@ public class MyComboBoxRenderer implements ListCellRenderer {
 		JLabel renderer = (JLabel) defaultCellRenderer.getListCellRendererComponent(list, value, index, isSelected,
 				cellHasFocus);
 		if (isSelected) {
-			renderer.setBackground(new Color(95,99,108,200));
+			renderer.setBackground(new Color(62,56,49,230));
 			renderer.setForeground(new Color(248, 179, 28));
 		} else {
-			renderer.setBackground(new Color(245, 245, 245, 150));
-			renderer.setForeground(new Color(95,99,108));
+			renderer.setBackground(new Color(248, 247, 243));
+			renderer.setForeground(new Color(62,56,49,230));
 
 		}
 		list.setSelectionBackground(new Color(0, 0, 0, 0));

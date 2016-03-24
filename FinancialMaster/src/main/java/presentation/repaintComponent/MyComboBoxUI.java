@@ -146,11 +146,11 @@ public class MyComboBoxUI extends BasicComboBoxUI {
 		}
 		c.setFont(comboBox.getFont());
 		if (hasFocus && !isPopupVisible(comboBox)) {
-			c.setForeground(new Color(95, 99, 108));
+			c.setForeground(new Color(62,56,49,230));
 			c.setBackground(new Color(0, 0, 0, 0));
 		} else {
 			if (comboBox.isEnabled()) {
-				c.setForeground(new Color(95, 99, 108));
+				c.setForeground(new Color(62,56,49,230));
 				c.setBackground(new Color(0, 0, 0, 0));
 				// new Color(248, 179, 29)
 			} else {

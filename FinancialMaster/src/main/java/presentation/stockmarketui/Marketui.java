@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -69,11 +71,29 @@ public class Marketui extends JPanel {
 
 		setLayout(null);
 		final Marketui mpanel = this;
+		
+		JScrollPane contentScroll = new JScrollPane();
+		contentScroll.setBounds(224, 51, 730, 540);
+		contentScroll.setOpaque(false);
+		contentScroll.getViewport().setOpaque(false);
+		contentScroll.setBorder(BorderFactory.createEmptyBorder());
+		contentScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		
+		JPanel content = new JPanel();
+		content.setOpaque(false);
+		content.setPreferredSize(new Dimension(710, 1000));
+		content.setLayout(new FlowLayout(FlowLayout.LEFT,14,14));
 
-		IntentPane intentPane = new IntentPane();
-		intentPane.setBounds(237, 63, 707, 522);
-		intentPane.setLayout(null);
-		add(intentPane);
+		IntentPane intentPane1 = new IntentPane();
+		intentPane1.setPreferredSize(new Dimension(700, 300));
+		intentPane1.setLayout(null);
+		content.add(intentPane1);
+		
+		IntentPane intentPane2 = new IntentPane();
+		intentPane2.setPreferredSize(new Dimension(700, 300));
+		intentPane2.setLayout(null);
+		content.add(intentPane2);
+		
 
 		marketBtn = new JButton("   大盘数据");
 		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -228,7 +248,7 @@ public class Marketui extends JPanel {
 			setSelect(table[i]);
 
 			scrollPane[i] = new JScrollPane();
-			scrollPane[i].setBounds(247, 110, 696, 440);
+			scrollPane[i].setBounds(247, 110, 680, 440);
 			scrollPane[i].add(table[i]);
 			scrollPane[i].setViewportView(table[i]);
 			scrollPane[i].getVerticalScrollBar().setUI(new MyScrollBarUI());
@@ -236,7 +256,7 @@ public class Marketui extends JPanel {
 		}
 
 		JTabbedPane marketPane = new JTabbedPane();
-		marketPane.setBounds(7, 50, 696, 440);
+		marketPane.setBounds(7, 50, 680, 440);
 
 		String title[] = { "当天", "一周", "一个月", "半年", "一年", "五年", "十年" };
 
@@ -257,7 +277,7 @@ public class Marketui extends JPanel {
 				table[selectedIndex].setModel(TableModel);
 			}
 		});
-		intentPane.add(marketPane);
+		intentPane2.add(marketPane);
 
 		StockMarketVO stockMarketVO;
 		stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
@@ -274,7 +294,14 @@ public class Marketui extends JPanel {
 		nameBox.setSelectedIndex(0);
 		nameBox.setOpaque(false);
 		nameBox.setBorder(null);
-		intentPane.add(nameBox);
+		intentPane2.add(nameBox);
+		
+		//添加scrollPane
+		content.add(intentPane1);
+		content.add(intentPane2);
+		contentScroll.getViewport().add(content);
+		add(contentScroll);
+		
 
 		JButton searchBtn = new JButton();
 		searchBtn.setBounds(854, 15, 18, 18);
@@ -284,6 +311,7 @@ public class Marketui extends JPanel {
 		searchBtn.setIcon(new ImageIcon("src/main/resources/image/search.png"));
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
+		
 
 		searchTextField = new JTextField();
 		searchTextField.setFocusable(false);
