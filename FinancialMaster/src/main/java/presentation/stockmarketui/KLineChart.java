@@ -136,7 +136,7 @@ public class KLineChart extends JPanel {
 			}
 		};
 		
-		double[] margin = {0, 0, 0, 0};
+		double[] margin = {0, 0.3, 0.05, 0.05};
 		xyBarRender.setMargin(margin[index]);// 设置柱形图之间的间隔
 		xyBarRender.setShadowVisible(false);
 		xyBarRender.setBarPainter(new StandardXYBarPainter()); 
