@@ -30,7 +30,6 @@ import businesslogicservice.stockcheckblservice.StockListBLService;
 import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

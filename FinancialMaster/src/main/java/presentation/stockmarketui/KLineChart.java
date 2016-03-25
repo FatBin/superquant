@@ -33,15 +33,13 @@ public class KLineChart extends JPanel {
 	JFreeChart chart;
 	Date startDate;
 	Date endDate;
-		
+
 	public KLineChart(String[][] data, int index) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		double highValue = Double.MIN_VALUE; // 设置K线数据当中的最大值
 		double minValue = Double.MAX_VALUE; // 设置K线数据当中的最小值
 		double high2Value = Double.MIN_VALUE; // 设置成交量的最大值
 		double min2Value = Double.MAX_VALUE; // 设置成交量的最低值
-
-		
 
 		try {
 			startDate = df.parse(data[0][0]);
@@ -110,15 +108,20 @@ public class KLineChart extends JPanel {
 
 		final MyCandlestickRender candlestickRender = new MyCandlestickRender();// 设置K线图的画图器，必须申明为final，后面要在匿名内部类里面用到
 		candlestickRender.setUseOutlinePaint(true); // 置是否使用自定义的边框线，程序自带的边框线的颜色不符合中国股票市场的习惯
-		
+
 		candlestickRender.setAutoWidthMethod(CandlestickRenderer.WIDTHMETHOD_AVERAGE);// 设置如何对K线图的宽度进行设定
 		candlestickRender.setAutoWidthGap(0.001);// 设置各个K线图之间的间隔
 		candlestickRender.setUpPaint(new Color(206, 4, 14));// 设置股票上涨的K线图颜色
 		candlestickRender.setDownPaint(new Color(25, 155, 83));// 设置股票下跌的K线图颜色
 		DateAxis x1Axis = new DateAxis();// 设置x轴，也就是时间轴
-		
+
 		x1Axis.setRange(startDate, endDate);// 设置时间范围，注意时间的最大值要比已有的时间最大值要多一天
-		x1Axis.setTimeline(SegmentedTimeline.newMondayThroughFridayTimeline());// 设置时间线显示的规则，用这个方法就摒除掉了周六和周日这些没有交易的日期(很多人都不知道有此方法)，使图形看上去连续
+		if (index == 1) {
+			x1Axis.setTimeline(SegmentedTimeline.newMondayThroughFridayTimeline());// 设置时间线显示的规则，用这个方法就摒除掉了周六和周日这些没有交易的日期(很多人都不知道有此方法)，使图形看上去连续
+		} else if (index == 2) {
+			SegmentedTimeline timeline = new SegmentedTimeline(SegmentedTimeline.DAY_SEGMENT_SIZE, 30, 0);
+			x1Axis.setTimeline(timeline);
+		}
 		x1Axis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);// 设置标记的位置
 		x1Axis.setStandardTickUnits(DateAxis.createStandardDateTickUnits());// 设置标准的时间刻度单位
 		x1Axis.setDateFormatOverride(new SimpleDateFormat("yyyy-MM-dd"));
@@ -135,11 +138,11 @@ public class KLineChart extends JPanel {
 				}
 			}
 		};
-		
-		double[] margin = {0, 0.3, 0.05, 0.05};
+
+		double[] margin = { 0, 0.3, 0.1, 0.1 };
 		xyBarRender.setMargin(margin[index]);// 设置柱形图之间的间隔
 		xyBarRender.setShadowVisible(false);
-		xyBarRender.setBarPainter(new StandardXYBarPainter()); 
+		xyBarRender.setBarPainter(new StandardXYBarPainter());
 		NumberAxis y2Axis = new NumberAxis();// 设置Y轴，为数值,后面的设置，参考上面的y轴设置
 		y2Axis.setRange(min2Value * 0.9, high2Value * 1.1);
 		XYPlot plot2 = new XYPlot(timeSeriesCollection, null, y2Axis, xyBarRender);// 建立第二个画图区域对象，主要此时的x轴设为了null值，因为要与第一个画图区域对象共享x轴
@@ -152,15 +155,15 @@ public class KLineChart extends JPanel {
 		// 背景透明
 		plot1.setBackgroundPaint(new Color(255, 255, 255));
 		plot2.setBackgroundPaint(new Color(255, 255, 255));
-		
-//		String title[] = {"时分图","日K线图","周K线图","月K线图"};
+
+		// String title[] = {"时分图","日K线图","周K线图","月K线图"};
 		chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
 		chart.setAntiAlias(true);
 		chart.setBackgroundPaint(new Color(246, 246, 246));
 		this.add(new ChartPanel(chart));
 	}
-	
-	public ChartPanel getChartPane(){
+
+	public ChartPanel getChartPane() {
 		return new ChartPanel(chart);
 	}
 }

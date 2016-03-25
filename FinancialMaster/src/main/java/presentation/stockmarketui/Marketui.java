@@ -308,7 +308,8 @@ public class Marketui extends JPanel {
 				// 时分暂时没实现
 				if (selectedIndex == 0) {
 					JLabel label = new JLabel("敬请期待");
-					panes[0].add(label);
+					label.setSize(660, 350);
+					panes[selectedIndex].add(label);
 				} else {
 					stockMarketVO = marketKLineBL.getData(marketK[selectedIndex]);
 					data = stockMarketVO.getData();
@@ -316,11 +317,7 @@ public class Marketui extends JPanel {
 					KLineChart kline = new KLineChart(data, selectedIndex);
 					ChartPanel chartPanel = kline.getChartPane();
 					chartPanel.setPreferredSize(new Dimension(660, 350));
-//					panes[selectedIndex].setSize(new Dimension(680, 100));
-//					chartPanel.setSize(new Dimension(680, 100));
 					panes[selectedIndex].add(chartPanel);
-					kline.setVisible(true);
-					panes[selectedIndex].setVisible(true);
 				}
 			}
 		});

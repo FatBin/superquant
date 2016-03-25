@@ -71,7 +71,7 @@ public class StockData implements StockDataService {
 				 try {
 			        String s=HttpRequest.sendGet("http://web.juhe.cn:8080/finance/stock/hs", "gid="+codeName+"&key=9867ab78e2748061825600a8f7c7258b");
 			        JSONObject juheshuju=new JSONObject(s);
-			        JSONArray newjsonArray=jsonObject.getJSONArray("result");
+			        JSONArray newjsonArray=juheshuju.getJSONArray("result");
 			        JSONObject newjsonObject=newjsonArray.getJSONObject(0);
 			        name=newjsonObject.getJSONObject("dapandata").getString("name");
 				 } catch (Exception e) {
