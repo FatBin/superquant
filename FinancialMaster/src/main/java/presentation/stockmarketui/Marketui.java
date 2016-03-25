@@ -30,6 +30,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import org.jfree.chart.ChartPanel;
 
@@ -254,23 +255,32 @@ public class Marketui extends JPanel {
 
 		// 使表格居中
 		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
-		r.setHorizontalAlignment(JLabel.CENTER);
+		r.setHorizontalAlignment(JLabel.LEFT);
+//		r.setOpaque(false);
 
 		for (int i = 0; i < 7; i++) {
 			table[i] = new JTable();
 			table[i].setRowHeight(26);
 			table[i].setDefaultRenderer(Object.class, r);
-			table[i].setSelectionBackground(new Color(88, 93, 103, 200));
-			table[i].setSelectionForeground(new Color(255, 255, 255, 230));
-			table[i].setOpaque(false);
+			table[i].setSelectionBackground(new Color(62, 56, 49, 100));
+			table[i].setSelectionForeground(new Color(62, 56, 49, 240));
+//			table[i].setOpaque(false);
+			table[i].setShowGrid(false);
+			table[i].setIntercellSpacing(new Dimension(0, 1));
 
 			table[i].setEnabled(false);
 			setSelect(table[i]);
+			
+			JTableHeader header = table[i].getTableHeader();
+			header.setOpaque(false);
+			header.getTable().setOpaque(false);
 
 			scrollPane[i] = new JScrollPane();
 			scrollPane[i].setBounds(247, 110, 680, 390);
 			scrollPane[i].add(table[i]);
 			scrollPane[i].setViewportView(table[i]);
+			scrollPane[i].setColumnHeaderView(table[i].getTableHeader());
+			scrollPane[i].getColumnHeader().setOpaque(false);
 			scrollPane[i].getVerticalScrollBar().setUI(new MyScrollBarUI());
 			scrollPane[i].setBorder(BorderFactory.createEmptyBorder());
 		}
