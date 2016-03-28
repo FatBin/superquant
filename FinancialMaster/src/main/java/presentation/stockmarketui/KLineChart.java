@@ -110,11 +110,14 @@ public class KLineChart extends JPanel {
 		candlestickRender.setUseOutlinePaint(true); // 置是否使用自定义的边框线，程序自带的边框线的颜色不符合中国股票市场的习惯
 
 		candlestickRender.setAutoWidthMethod(CandlestickRenderer.WIDTHMETHOD_AVERAGE);// 设置如何对K线图的宽度进行设定
-		candlestickRender.setAutoWidthGap(0.001);// 设置各个K线图之间的间隔
+//		candlestickRender.setAutoWidthGap(0.001);// 设置各个K线图之间的间隔
+		////////
+		int[] candleWidth = {0, 20, 10, 5};
+		candlestickRender.setCandleWidth(candleWidth[index]);
 		candlestickRender.setUpPaint(new Color(206, 4, 14));// 设置股票上涨的K线图颜色
 		candlestickRender.setDownPaint(new Color(25, 155, 83));// 设置股票下跌的K线图颜色
 		DateAxis x1Axis = new DateAxis();// 设置x轴，也就是时间轴
-
+		
 		x1Axis.setRange(startDate, endDate);// 设置时间范围，注意时间的最大值要比已有的时间最大值要多一天
 		if (index == 1) {
 			x1Axis.setTimeline(SegmentedTimeline.newMondayThroughFridayTimeline());// 设置时间线显示的规则，用这个方法就摒除掉了周六和周日这些没有交易的日期(很多人都不知道有此方法)，使图形看上去连续
@@ -125,6 +128,8 @@ public class KLineChart extends JPanel {
 		x1Axis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);// 设置标记的位置
 		x1Axis.setStandardTickUnits(DateAxis.createStandardDateTickUnits());// 设置标准的时间刻度单位
 		x1Axis.setDateFormatOverride(new SimpleDateFormat("yyyy-MM-dd"));
+		
+		
 		NumberAxis y1Axis = new NumberAxis();// 设定y轴，就是数字轴
 		y1Axis.setRange(minValue * 0.98, highValue * 1.02);// 设定y轴值的范围，比最低值要低一些，比最大值要大一些，这样图形看起来会美观些
 		XYPlot plot1 = new XYPlot(seriesCollection, x1Axis, y1Axis, candlestickRender);// 设置画图区域对象
@@ -139,7 +144,7 @@ public class KLineChart extends JPanel {
 			}
 		};
 
-		double[] margin = { 0, 0.3, 0.1, 0.1 };
+		double[] margin = { 0, 0.3, 0.1, 0.01};
 		xyBarRender.setMargin(margin[index]);// 设置柱形图之间的间隔
 		xyBarRender.setShadowVisible(false);
 		xyBarRender.setBarPainter(new StandardXYBarPainter());
