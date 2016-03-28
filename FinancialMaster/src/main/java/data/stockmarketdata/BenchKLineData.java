@@ -33,7 +33,8 @@ public class BenchKLineData implements BenchKLineDataService {
 			Date d = format.parse(lastDate);
 			lastCal1.setTime(d);
 			lastCal2.setTime(d);
-			if (lastCal1.before(cal)) {
+			String lastDay = format.format(lastCal1.getTime());
+			if (!lastDay.equals(yestoday)) {
 				// 更新周Ｋ
 				updateWeek(lastCal1, cal);
 				// 更新月Ｋ
@@ -80,13 +81,13 @@ public class BenchKLineData implements BenchKLineDataService {
 		double close = 0;
 		long volume = 0;
 
-		int dayOfWeek = start.get(Calendar.DAY_OF_WEEK);
-		if (dayOfWeek != 1) {
+		int dayOfWeek = start.get(Calendar.DAY_OF_WEEK)-1;
+		if (dayOfWeek != 1&&dayOfWeek!=0&&dayOfWeek!=6) {
 			int old_size = old_datalist.size();
 			if (old_size > 0) {
 				old_datalist.remove(old_size - 1);
 			}
-			start.add(Calendar.DATE, -(dayOfWeek - 2));
+			start.add(Calendar.DATE, -(dayOfWeek - 1));
 		}
 		while (start.before(end)) {
 			high = Double.MIN_VALUE;
@@ -132,7 +133,7 @@ public class BenchKLineData implements BenchKLineDataService {
 		long volume = 0;
 
 		int dayOfMonth = start.get(Calendar.DAY_OF_MONTH);
-		if (dayOfMonth != 0) {
+		if (dayOfMonth != 1) {
 			int old_size = old_datalist.size();
 			if (old_size > 0) {
 				old_datalist.remove(old_size - 1);
