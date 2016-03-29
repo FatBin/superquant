@@ -1,61 +1,76 @@
 package VO;
 
 public class StockVO {
-	String id;//日期
-	double opening_price;//开盘价
-	double closing_price;//收盘价
-	double max_price;//最高价
-	double min_price;//最低价
-	int trading_amout;//交易量
+	private String name;//股票名
+	private String date;//日期
+	private double open;//开盘价
+	private double high;//最高价
+	private double low;//最低价
+	private double close;//收盘价
+	private double adj_price;//后复权价
+	private int volume;//成交量
+	private double turnover;//换手率
+	private double pe;//市盈率
+	private double pb;//市净率
 	String[][] history_data;//历史数据
 		
-	public StockVO(String[][] history_data) {
+	public StockVO(String name, String date, double open, double high,
+			double low, double close, double adj_price, int volume,
+			double turnover, double pe, double pb, String[][] history_data) {
 		super();
-		this.history_data = history_data;
-	}
-
-	public StockVO(String id, double opening_price, double closing_price,
-			double max_price, double min_price, int trading_amout,
-			double trading_money, String[][] history_data) {
-		super();
-		this.id = id;
-		this.opening_price = opening_price;
-		this.closing_price = closing_price;
-		this.max_price = max_price;
-		this.min_price = min_price;
-		this.trading_amout = trading_amout;
+		this.name = name;
+		this.date = date;
+		this.open = open;
+		this.high = high;
+		this.low = low;
+		this.close = close;
+		this.adj_price = adj_price;
+		this.volume = volume;
+		this.turnover = turnover;
+		this.pe = pe;
+		this.pb = pb;
 		this.history_data = history_data;
 	}
 	
-	public String getId() {
-		return id;
+	public String getName() {
+		return name;
 	}
-
-	public double getOpening_price() {
-		return opening_price;
+	public String getDate() {
+		return date;
 	}
-
-	public double getClosing_price() {
-		return closing_price;
+	public double getOpen() {
+		return open;
 	}
-
-	public double getMax_price() {
-		return max_price;
+	public double getHigh() {
+		return high;
 	}
-
-	public double getMin_price() {
-		return min_price;
+	public double getLow() {
+		return low;
 	}
-
-	public int getTrading_amout() {
-		return trading_amout;
+	public double getClose() {
+		return close;
 	}
-
+	public double getAdj_price() {
+		return adj_price;
+	}
+	public int getVolume() {
+		return volume;
+	}
+	public double getTurnover() {
+		return turnover;
+	}
+	public double getPe() {
+		return pe;
+	}
+	public double getPb() {
+		return pb;
+	}
 	public String[][] getHistory_data() {
 		return history_data;
 	}
+
 	public void setHistory_data(String[][] history_data) {
 		this.history_data = history_data;
-	}
+	}		
 
 }

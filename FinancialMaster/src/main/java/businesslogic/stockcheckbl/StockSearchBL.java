@@ -41,9 +41,9 @@ public class StockSearchBL implements StockSearchBLService {
 		}
 		int size=newList.size();
 		int index=0;
-		String[][] result=new String[1][size];
+		String[][] result=new String[size][1];
 		for (String string : newList) {
-			result[0][index]=string;
+			result[index][0]=string;
 			index++;
 		}
 		return result;
