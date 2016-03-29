@@ -2,6 +2,8 @@ package presentation.stockcheckui;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -34,6 +36,7 @@ import VO.StockVO;
 import businesslogic.stockcheckbl.StockMessageBL;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
 import presentation.repaintComponent.DateChooser;
+import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyComboBox;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
@@ -55,12 +58,39 @@ public class StockDetail extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "static-access", "unchecked" })
-	public StockDetail(final JFrame frame, final String id, final StockList listui) {
+	public StockDetail(final JFrame frame, final String id, final JPanel listui) {
 		setBorder(null);
 
 		setLayout(null);
 		final StockDetail detail = this;
 
+		JScrollPane contentScroll = new JScrollPane();
+		contentScroll.setBounds(0, 51, 730, 540);
+		contentScroll.setOpaque(false);
+		contentScroll.getViewport().setOpaque(false);
+		contentScroll.setBorder(BorderFactory.createEmptyBorder());
+		contentScroll.getVerticalScrollBar().setUI(new MyScrollBarUI());
+
+		JPanel content = new JPanel();
+		content.setOpaque(false);
+		content.setPreferredSize(new Dimension(710, 900));
+		content.setLayout(new FlowLayout(FlowLayout.LEFT, 14, 14));
+
+		IntentPane intentPane1 = new IntentPane();
+		intentPane1.setPreferredSize(new Dimension(700, 300));
+		intentPane1.setLayout(null);
+		content.add(intentPane1);
+
+		IntentPane intentPane2 = new IntentPane();
+		intentPane2.setPreferredSize(new Dimension(700, 450));
+		intentPane2.setLayout(null);
+		content.add(intentPane2);
+		
+		JLabel openLabel = new JLabel("开盘价");
+		openLabel.setBounds(44, 76, 70, 30);
+		openLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane1.add(openLabel);
+		
 		closeBtn = new JButton("X");
 		closeBtn.addMouseListener(new MouseAdapter() {
 			@Override
@@ -120,16 +150,18 @@ public class StockDetail extends JPanel {
 		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
 		final String start = dt.format(dbefore);
 		final JLabel startTimelbl = new JLabel(start);
-		startTimelbl.setBounds(455, 75, 90, 22);
+		startTimelbl.setLocation(546, 75);
+		startTimelbl.setPreferredSize(new Dimension(90, 22));
 		dateChooser1.register(startTimelbl);
-		add(startTimelbl);
+//		intentPane2.add(startTimelbl);
 
 		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
 		final String end = dt.format(today);
 		final JLabel endTimelbl = new JLabel(end);
-		endTimelbl.setBounds(586, 75, 90, 22);
+		endTimelbl.setLocation(586, 75);
+		endTimelbl.setPreferredSize(new Dimension(90, 22));
 		dateChooser2.register(endTimelbl);
-		add(endTimelbl);
+//		intentPane2.add(endTimelbl);
 
 		JScrollPane stockDetailPane = new JScrollPane();
 		stockDetailPane.setBounds(10, 110, 715, 440);
@@ -137,7 +169,7 @@ public class StockDetail extends JPanel {
 		stockDetailPane.setBorder(BorderFactory.createEmptyBorder());
 		stockDetailPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		stockDetailPane.getViewport().setOpaque(false);
-		add(stockDetailPane);
+//		add(stockDetailPane);
 
 		StockVO datavo = Message.getStockMessage(id, start, end);
 		String[][] data = datavo.getHistory_data();
@@ -151,7 +183,7 @@ public class StockDetail extends JPanel {
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		table.setOpaque(false);
-		((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);		
+		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -221,12 +253,13 @@ public class StockDetail extends JPanel {
 		add(searchTextField);
 		searchTextField.setColumns(10);
 
-		JLabel namelbl = new JLabel("个股详情");
+		JLabel namelbl = new JLabel();
+		namelbl.setText("("+id+")");
 		namelbl.setBackground(new Color(245, 245, 245));
 		namelbl.setForeground(new Color(95, 99, 108));
-		namelbl.setBounds(10, 65, 98, 32);
+		namelbl.setBounds(10, 5, 200, 32);
 		namelbl.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
-		add(namelbl);
+		intentPane1.add(namelbl);
 
 		backBtn = new JButton("back");
 		backBtn.addMouseListener(new MouseAdapter() {
@@ -256,7 +289,7 @@ public class StockDetail extends JPanel {
 		JLabel label = new JLabel("至");
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
 		label.setBounds(554, 75, 25, 22);
-		add(label);
+//		add(label);
 
 		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setOpaque(false);
@@ -268,7 +301,7 @@ public class StockDetail extends JPanel {
 		conditionBox.setBorder(null);
 		conditionBox.setBounds(10, 562, 110, 25);
 		conditionBox.setSelectedIndex(0);
-		add(conditionBox);
+//		add(conditionBox);
 
 		belowTextField = new JTextField();
 		belowTextField.setOpaque(false);
@@ -308,7 +341,7 @@ public class StockDetail extends JPanel {
 		});
 		belowTextField.setBounds(146, 562, 97, 27);
 		belowTextField.setText("输入下限");
-		add(belowTextField);
+//		add(belowTextField);
 
 		aboveTextField = new JTextField();
 		aboveTextField.addMouseListener(new MouseAdapter() {
@@ -348,7 +381,7 @@ public class StockDetail extends JPanel {
 		aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 		aboveTextField.setBounds(269, 562, 97, 27);
 		aboveTextField.setText("输入上限");
-		add(aboveTextField);
+//		add(aboveTextField);
 
 		timeGotolbl = new JLabel("\u203A");
 		timeGotolbl.addMouseListener(new MouseAdapter() {
@@ -388,7 +421,7 @@ public class StockDetail extends JPanel {
 		timeGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		timeGotolbl.setForeground(new Color(150, 150, 150));
 		timeGotolbl.setBounds(682, 73, 25, 22);
-		add(timeGotolbl);
+//		add(timeGotolbl);
 
 		final JLabel conditionGotolbl = new JLabel("\u203A");
 		conditionGotolbl.addMouseListener(new MouseAdapter() {
@@ -428,7 +461,14 @@ public class StockDetail extends JPanel {
 		conditionGotolbl.setForeground(new Color(150, 150, 150));
 		conditionGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		conditionGotolbl.setBounds(382, 562, 25, 22);
-		add(conditionGotolbl);
+//		add(conditionGotolbl);
+
+		// 添加scrollPane
+		content.add(intentPane1);
+		content.add(intentPane2);
+		contentScroll.setViewportView(content);
+		contentScroll.getVerticalScrollBar().setUnitIncrement(20);
+		add(contentScroll);
 
 		// 点击其他地方使text field不能输入
 		addMouseListener(new MouseListener() {
@@ -437,11 +477,11 @@ public class StockDetail extends JPanel {
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				searchTextField.setText("输入股票代码或名称搜索");
-				
+
 				belowTextField.setFocusable(false);
 				belowTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				belowTextField.setText("输入下限");
-				
+
 				aboveTextField.setFocusable(false);
 				aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				aboveTextField.setText("输入上限");
