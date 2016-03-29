@@ -29,7 +29,7 @@ public class StockSearchBL implements StockSearchBLService {
 	}
 	
 	@Override
-	public String[] getList(String key) {
+	public String[][] getList(String key) {
 		ArrayList<String> newList=new ArrayList<String>();
 		for (String string : totalList) {
 			if(string.contains(key)){
@@ -41,9 +41,9 @@ public class StockSearchBL implements StockSearchBLService {
 		}
 		int size=newList.size();
 		int index=0;
-		String[] result=new String[size];
+		String[][] result=new String[1][size];
 		for (String string : newList) {
-			result[index]=string;
+			result[0][index]=string;
 			index++;
 		}
 		return result;
