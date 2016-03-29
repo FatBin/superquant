@@ -15,6 +15,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -25,6 +27,8 @@ import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockList;
 import presentation.stockmarketui.Marketui;
+import presentation.stockmarketui.SearchBar;
+
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
@@ -37,6 +41,7 @@ public class OptionalStock extends JPanel {
 	JButton miniBtn;
 	private JTextField searchTextField;
 	private boolean click = false;
+	private SearchBar searchBar = new SearchBar();;
 
 	/**
 	 * Create the panel.
@@ -68,6 +73,7 @@ public class OptionalStock extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				frame.getContentPane().removeAll();
 				Marketui mpanel = new Marketui(frame);
 				frame.getContentPane().add(mpanel);
@@ -104,6 +110,7 @@ public class OptionalStock extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				frame.remove(opanel);
 				StockList listui = new StockList(frame);
 				listui.setBounds(224, 0, getWidth() - 223, getHeight());
@@ -194,6 +201,8 @@ public class OptionalStock extends JPanel {
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
 
+		frame.add(searchBar);
+		searchBar.setVisible(false);
 		searchTextField = new JTextField();
 		searchTextField.setFocusable(false);
 		searchTextField.setOpaque(false);
@@ -223,10 +232,34 @@ public class OptionalStock extends JPanel {
 				searchTextField.requestFocus();
 			}
 		});
+
+		searchTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					// String key = searchTextField.getText();
+					// 监听回车
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String key = searchTextField.getText();
+				if (key.equals("")) {
+					searchBar.setVisible(false);
+				} else {
+					searchBar.showTable(key);
+					searchBar.setBounds(frame.getX() + 537, frame.getY() - 45, searchBar.getWidth(),
+							searchBar.getHeight());
+					searchBar.setVisible(true);
+				}
+			}
+		});
+
 		searchTextField.setBounds(686, 11, 196, 27);
 		add(searchTextField);
 		searchTextField.setColumns(10);
-		
+
 		JLabel label = new JLabel("敬请期待");
 		label.setBounds(296, 77, 85, 29);
 		add(label);
@@ -238,6 +271,7 @@ public class OptionalStock extends JPanel {
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				searchTextField.setText("输入股票代码或名称搜索");
+				searchBar.setVisible(false);
 			}
 
 			@Override
