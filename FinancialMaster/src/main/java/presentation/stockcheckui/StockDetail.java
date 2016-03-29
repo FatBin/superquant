@@ -171,7 +171,7 @@ public class StockDetail extends JPanel {
 		stockDetailPane.getViewport().setOpaque(false);
 //		add(stockDetailPane);
 
-		StockVO datavo = Message.getStockMessage(id, start, end);
+		StockVO datavo = Message.getStockMessage(id);
 		String[][] data = datavo.getHistory_data();
 
 		table = new JTable();
@@ -400,7 +400,7 @@ public class StockDetail extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				String newStart = startTimelbl.getText();
 				String newEnd = endTimelbl.getText();
-				StockVO datavo = Message.getStockMessage(id, newStart, newEnd);
+				StockVO datavo = Message.updateStockMessage(newStart, newEnd);
 				String[][] data = datavo.getHistory_data();
 				tableModel = new DefaultTableModel(data,
 						new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "后复权价", "交易量(股)", "换手率", "市盈率", "市净率" });
