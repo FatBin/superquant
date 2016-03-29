@@ -40,8 +40,12 @@ public class StockList extends JPanel {
 	JButton miniBtn;
 	private JTextField searchTextField;
 	private boolean click = false;
+	private JTable table;
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
+	Point loc = null;
+	Point tmp = null;
+	boolean isDragged = false;
 	StockListBLService stocklistbl = new StockListBL();
 
 	/**
@@ -289,11 +293,6 @@ public class StockList extends JPanel {
 	}
 
 	// 设置界面可拖动
-	Point loc = null;
-	Point tmp = null;
-	boolean isDragged = false;
-	private JTable table;
-
 	private void setDragable(final JFrame jFrame) {
 		this.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseReleased(java.awt.event.MouseEvent e) {
