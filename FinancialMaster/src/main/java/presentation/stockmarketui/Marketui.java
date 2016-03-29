@@ -305,6 +305,7 @@ public class Marketui extends JPanel {
 			scrollPane[i].setColumnHeaderView(table[i].getTableHeader());
 			scrollPane[i].getColumnHeader().setOpaque(false);
 			scrollPane[i].getVerticalScrollBar().setUI(new MyScrollBarUI());
+			scrollPane[i].getVerticalScrollBar().setUnitIncrement(20);
 			scrollPane[i].setBorder(BorderFactory.createEmptyBorder());
 		}
 
@@ -392,6 +393,7 @@ public class Marketui extends JPanel {
 		content.add(intentPane1);
 		content.add(intentPane2);
 		contentScroll.setViewportView(content);
+		contentScroll.getVerticalScrollBar().setUnitIncrement(20);
 		add(contentScroll);
 
 		JButton searchBtn = new JButton();
