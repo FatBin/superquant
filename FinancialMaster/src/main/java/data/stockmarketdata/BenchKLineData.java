@@ -82,7 +82,7 @@ public class BenchKLineData implements BenchKLineDataService {
 		long volume = 0;
 
 		int dayOfWeek = start.get(Calendar.DAY_OF_WEEK)-1;
-		if (dayOfWeek != 1&&dayOfWeek!=0&&dayOfWeek!=6) {
+		if (dayOfWeek != 1) {
 			int old_size = old_datalist.size();
 			if (old_size > 0) {
 				old_datalist.remove(old_size - 1);

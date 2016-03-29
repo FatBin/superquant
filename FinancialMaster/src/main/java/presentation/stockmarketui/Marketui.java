@@ -260,9 +260,9 @@ public class Marketui extends JPanel {
 
 		for (int i = 0; i < 7; i++) {
 			table[i] = new JTable();
-			if ((Double)table[i].getModel().getValueAt(0, 2)>(Double)table[i].getModel().getValueAt(0, 1)) {
-				System.out.println("yeah");
-			}
+//			if ((Double)table[i].getModel().getValueAt(0, 2)>(Double)table[i].getModel().getValueAt(0, 1)) {
+//				System.out.println("yeah");
+//			}
 //				public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {    
 //			        int modelRow = convertRowIndexToModel(row);    
 //			        int modelColumn = convertColumnIndexToModel(column);    
