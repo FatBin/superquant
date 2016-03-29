@@ -1,17 +1,7 @@
 package presentation.stockmarketui;
 
-import java.awt.RenderingHints;
-
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -20,10 +10,19 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
@@ -31,6 +30,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 import org.jfree.chart.ChartPanel;
 
@@ -260,13 +260,36 @@ public class Marketui extends JPanel {
 
 		for (int i = 0; i < 7; i++) {
 			table[i] = new JTable();
+			if ((Double)table[i].getModel().getValueAt(0, 2)>(Double)table[i].getModel().getValueAt(0, 1)) {
+				System.out.println("yeah");
+			}
+//				public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {    
+//			        int modelRow = convertRowIndexToModel(row);    
+//			        int modelColumn = convertColumnIndexToModel(column);    
+//			        Component comp = super.prepareRenderer(renderer, row, column);    
+//			        if (!isRowSelected(modelRow)) {
+//			                if (modelColumn == 2) {     
+//			                	if((Double)this.getModel().getValueAt(modelRow, 2)>(Double)this.getModel().getValueAt(modelRow, 1)){
+//			                		comp.setForeground(Color.white);
+//			                		comp.setBackground(Color.RED);
+//			                	}
+//			                }
+//			                else                                                     //不符合条件的保持原表格样式  
+//			                   comp.setBackground(Color.white);  
+//			        }  
+//			        return comp;  
+//			    }  
+//			};
 			table[i].setRowHeight(26);
 			table[i].setDefaultRenderer(Object.class, r);
 			table[i].setSelectionBackground(new Color(62, 56, 49, 100));
 			table[i].setSelectionForeground(new Color(62, 56, 49, 240));
 //			table[i].setOpaque(false);
 			table[i].setShowGrid(false);
-			table[i].setIntercellSpacing(new Dimension(0, 1));
+			
+			
+			
+			
 
 			table[i].setEnabled(false);
 			setSelect(table[i]);
@@ -363,7 +386,7 @@ public class Marketui extends JPanel {
 		nameBox.setSelectedIndex(0);
 		nameBox.setOpaque(false);
 		nameBox.setBorder(null);
-		intentPane2.add(nameBox);
+		intentPane1.add(nameBox);
 
 		// 添加scrollPane
 		content.add(intentPane1);
