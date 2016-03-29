@@ -32,7 +32,7 @@ public class SearchBar extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SearchBar() {
+	public SearchBar(JFrame frame) {
 		searchPanel = this;
 		
 		this.setSize(175, 200);
@@ -52,6 +52,25 @@ public class SearchBar extends JPanel {
 		table.setRowHeight(26);
 		table.setPreferredSize(new Dimension(165, 195));
 		scrollPane.setViewportView(table);
+		
+		table.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				frame.getContentPane().removeAll();
+				
+				int pos = table.getSelectedRow();		
+				String id = table.getValueAt(pos, 0).toString();
+				
+				StockDetail detail = new StockDetail(frame, id, searchPanel);
+				detail.setBounds(224, 0, 737, frame.getHeight());
+				frame.getContentPane().add(detail);
+				
+				PersonalStock ppanel = new PersonalStock(frame);
+				ppanel.setBounds(0, 0, 225, frame.getHeight());
+				frame.getContentPane().add(ppanel);
+				
+				frame.repaint();
+			}
+		});
 	}
 	
 	public void showTable(String key){
@@ -61,26 +80,26 @@ public class SearchBar extends JPanel {
 		this.setVisible(true);
 	}
 
-	////////////////未完成
-	public void Jump(JFrame frame){
-		table.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent e) {
-				frame.getContentPane().removeAll();
-				
-				int pos = table.getSelectedRow();				
-				String id = table.getValueAt(pos, 0).toString();
-				
-				StockDetail detail = new StockDetail(frame, id, searchPanel);
-				detail.setBounds(224, 0, 737, getHeight());
-				frame.getContentPane().add(detail);
-				
-				PersonalStock ppanel = new PersonalStock(frame);
-				ppanel.setBounds(0, 0, 225, getHeight());
-				frame.getContentPane().add(ppanel);
-				
-				frame.repaint();
-			}
-		});
-	}
-	
+//	////////////////未完成
+//	public void Jump(JFrame frame){
+//		table.addMouseListener(new java.awt.event.MouseAdapter() {
+//			public void mouseClicked(java.awt.event.MouseEvent e) {
+//				frame.getContentPane().removeAll();
+//				
+//				int pos = table.getSelectedRow();				
+//				String id = table.getValueAt(pos, 0).toString();
+//				
+//				StockDetail detail = new StockDetail(frame, id, searchPanel);
+//				detail.setBounds(224, 0, 737, getHeight());
+//				frame.getContentPane().add(detail);
+//				
+//				PersonalStock ppanel = new PersonalStock(frame);
+//				ppanel.setBounds(0, 0, 225, getHeight());
+//				frame.getContentPane().add(ppanel);
+//				
+//				frame.repaint();
+//			}
+//		});
+//	}
+//	
 }

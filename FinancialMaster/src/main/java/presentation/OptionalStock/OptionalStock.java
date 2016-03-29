@@ -41,7 +41,7 @@ public class OptionalStock extends JPanel {
 	JButton miniBtn;
 	private JTextField searchTextField;
 	private boolean click = false;
-	private SearchBar searchBar = new SearchBar();;
+	private SearchBar searchBar;
 
 	/**
 	 * Create the panel.
@@ -52,6 +52,8 @@ public class OptionalStock extends JPanel {
 
 		setLayout(null);
 		final OptionalStock opanel = this;
+		
+		searchBar = new SearchBar(frame);
 
 		marketBtn = new JButton("   ¥Û≈Ã ˝æ›");
 		marketBtn.addMouseListener(new MouseAdapter() {
