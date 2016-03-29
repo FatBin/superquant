@@ -40,6 +40,7 @@ import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyComboBox;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.TextBubbleBorder;
+import presentation.repaintComponent.barPanel;
 
 @SuppressWarnings("serial")
 public class StockDetail extends JPanel {
@@ -86,10 +87,6 @@ public class StockDetail extends JPanel {
 		intentPane2.setLayout(null);
 		content.add(intentPane2);
 		
-		JLabel openLabel = new JLabel("开盘价");
-		openLabel.setBounds(44, 76, 70, 30);
-		openLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		intentPane1.add(openLabel);
 		
 		closeBtn = new JButton("X");
 		closeBtn.addMouseListener(new MouseAdapter() {
@@ -173,6 +170,39 @@ public class StockDetail extends JPanel {
 
 		StockVO datavo = Message.getStockMessage(id);
 		String[][] data = datavo.getHistory_data();
+		
+		//当前的数据展示
+		JLabel openLabel = new JLabel("开盘价");
+		openLabel.setBounds(44, 76, 70, 30);
+		openLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane1.add(openLabel);
+		
+		double high = datavo.getHigh();
+		
+		
+		barPanel bPanel1 = new barPanel(3, 5);
+		bPanel1.setLocation(50, 70);
+		bPanel1.setPreferredSize(new Dimension((int)(250*datavo.getOpen()/high), 26));
+		intentPane1.add(bPanel1);
+		barPanel bPanel2 = new barPanel(3,5);
+		bPanel2.setLocation(50, 90);
+		bPanel2.setPreferredSize(new Dimension(220, 26));
+		intentPane1.add(bPanel2);
+		barPanel bPanel3 = new barPanel(high, high);
+		bPanel3.setLocation(50, 224);
+		bPanel3.setPreferredSize(new Dimension((int)(250*datavo.getOpen()/high), 26));
+		intentPane1.add(bPanel3);
+		barPanel bPanel4 = new barPanel(datavo.getClose(), high);
+		bPanel4.setLocation(80, 265);
+		bPanel4.setPreferredSize(new Dimension((int)(250*datavo.getOpen()/high), 26));
+		intentPane1.add(bPanel4);
+		barPanel bPanel5 = new barPanel(datavo.getAdj_price(), high);
+		bPanel5.setLocation(80, 306);
+		bPanel5.setPreferredSize(new Dimension((int)(250*datavo.getOpen()/high), 26));
+		intentPane1.add(bPanel5);
+		
+		
+		
 
 		table = new JTable();
 		table.setRowHeight(26);
