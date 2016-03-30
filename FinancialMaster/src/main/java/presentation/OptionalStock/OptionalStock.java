@@ -253,9 +253,6 @@ public class OptionalStock extends JPanel {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(),
 							searchBar.getHeight());
-					
-					System.out.println(frame.getX() + 537);
-					System.out.println(frame.getY() - 45);
 					searchBar.setVisible(true);
 				}
 			}
