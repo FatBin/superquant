@@ -112,7 +112,7 @@ public class KLineChart extends JPanel {
 		candlestickRender.setAutoWidthMethod(CandlestickRenderer.WIDTHMETHOD_AVERAGE);// 设置如何对K线图的宽度进行设定
 //		candlestickRender.setAutoWidthGap(0.001);// 设置各个K线图之间的间隔
 		////////
-		int[] candleWidth = {0, 20, 14, 15};
+		int[] candleWidth = {0, 10, 10, 10};
 		candlestickRender.setCandleWidth(candleWidth[index]);
 		candlestickRender.setUpPaint(new Color(206, 4, 14));// 设置股票上涨的K线图颜色
 		candlestickRender.setDownPaint(new Color(25, 155, 83));// 设置股票下跌的K线图颜色
@@ -126,7 +126,7 @@ public class KLineChart extends JPanel {
 			timeline.setStartTime(SegmentedTimeline.FIRST_MONDAY_AFTER_1900);
 			x1Axis.setTimeline(timeline);
 		} else if(index==3){
-			SegmentedTimeline timeline = new SegmentedTimeline(SegmentedTimeline.DAY_SEGMENT_SIZE, 1, 6);
+			SegmentedTimeline timeline = new SegmentedTimeline(SegmentedTimeline.DAY_SEGMENT_SIZE, 1, 27);
 			timeline.setStartTime(SegmentedTimeline.FIRST_MONDAY_AFTER_1900);
 			x1Axis.setTimeline(timeline);
 		}
