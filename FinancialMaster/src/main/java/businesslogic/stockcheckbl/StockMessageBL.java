@@ -40,10 +40,10 @@ public class StockMessageBL implements StockMessageBLService {
 		}
 		int size = filterlist.size();
 		String[][] list = new String[size][10];
-		int index = 0;
+		int index = size-1;
 		for (String[] strings : filterlist) {
 			list[index] = strings;
-			index++;
+			index--;
 		}
 		sv.setHistory_data(list);
 		return sv;
@@ -69,8 +69,7 @@ public class StockMessageBL implements StockMessageBLService {
 			ssPOlist = sds.getStatisitcOfStock(id, startDay, endDay);
 		} while (ssPOlist.isEmpty());
 
-		ssPO = ssPOlist.get(0);
-
+		ssPO = ssPOlist.get(0);		
 		String name = ssPO.getName();// 股票名
 		String date = ssPO.getDate();// 日期
 		double open = ssPO.getOpen();// 开盘价
@@ -83,10 +82,17 @@ public class StockMessageBL implements StockMessageBLService {
 		double pe = ssPO.getPb();// 市盈率
 		double pb = ssPO.getPe();// 市净率
 
+		cal.add(Calendar.DATE, -1);				
+		String yesStartDay=format.format(cal.getTime());
+		ssPOlist = sds.getStatisitcOfStock(id, yesStartDay,startDay);
+		ssPO = ssPOlist.get(0);	
+		double lase_close = ssPO.getClose();// 最新前一天的收盘价
+		Double ups_and_downs=(close-lase_close)/lase_close;
+						
 		ssPOlist = sds.getStatisitcOfStock(id, lastMonth, endDay);
 		int size = ssPOlist.size();
 		String[][] list = new String[size][10];// 历史数据
-		int index = 0;
+		int index = size-1;
 		for (stockStatisticPO sp : ssPOlist) {
 			list[index][0] = sp.getDate();
 			list[index][1] = sp.getOpen() + "";
@@ -99,10 +105,10 @@ public class StockMessageBL implements StockMessageBLService {
 			list[index][8] = sp.getPe() + "";
 			list[index][9] = sp.getPb() + "";
 			init_list.add(list[index]);
-			index++;
+			index--;
 		}
 		sv = new StockVO(name, date, open, high, low, close, adj_price,
-				volume, turnover, pe, pb, list);
+				volume, turnover, pe, pb,ups_and_downs, list);
 
 		return sv;
 	}
@@ -115,7 +121,7 @@ public class StockMessageBL implements StockMessageBLService {
 				startData, overData);
 		int size = ssPOlist.size();
 		String[][] list = new String[size][10];
-		int index = 0;
+		int index = size-1;
 		for (stockStatisticPO sp : ssPOlist) {
 			list[index][0] = sp.getDate();
 			list[index][1] = sp.getOpen() + "";
@@ -128,7 +134,7 @@ public class StockMessageBL implements StockMessageBLService {
 			list[index][8] = sp.getPe() + "";
 			list[index][9] = sp.getPb() + "";
 			init_list.add(list[index]);
-			index++;
+			index--;
 		}
 		sv.setHistory_data(list);
 		return sv;

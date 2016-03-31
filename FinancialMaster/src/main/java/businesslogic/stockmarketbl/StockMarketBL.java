@@ -43,7 +43,7 @@ public class StockMarketBL implements StockMarketBLService {
 		ArrayList<benchmarkStatisticPO> markdata_list=benchDataservice.getStatisticOfBenchmark(key, start_day, today);
         int size=markdata_list.size();
         String[][] list=new String[size][6];
-        int index=0;
+        int index=size-1;
         for (benchmarkStatisticPO bsPO : markdata_list) {
 			list[index][0]=bsPO.getDate();
 			list[index][1]=bsPO.getOpen()+"";
@@ -51,7 +51,7 @@ public class StockMarketBL implements StockMarketBLService {
 			list[index][3]=bsPO.getLow()+"";
 			list[index][4]=bsPO.getClose()+"";
 			list[index][5]=bsPO.getVolume()+"";
-			index++;
+			index--;
 		}
         StockMarketVO sv=new StockMarketVO(list);
 		return sv;

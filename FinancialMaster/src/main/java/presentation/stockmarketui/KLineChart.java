@@ -112,7 +112,7 @@ public class KLineChart extends JPanel {
 		candlestickRender.setAutoWidthMethod(CandlestickRenderer.WIDTHMETHOD_AVERAGE);// 设置如何对K线图的宽度进行设定
 //		candlestickRender.setAutoWidthGap(0.001);// 设置各个K线图之间的间隔
 		////////
-		int[] candleWidth = {0, 20, 10, 5};
+		int[] candleWidth = {0, 20, 14, 15};
 		candlestickRender.setCandleWidth(candleWidth[index]);
 		candlestickRender.setUpPaint(new Color(206, 4, 14));// 设置股票上涨的K线图颜色
 		candlestickRender.setDownPaint(new Color(25, 155, 83));// 设置股票下跌的K线图颜色
@@ -122,7 +122,12 @@ public class KLineChart extends JPanel {
 		if (index == 1) {
 			x1Axis.setTimeline(SegmentedTimeline.newMondayThroughFridayTimeline());// 设置时间线显示的规则，用这个方法就摒除掉了周六和周日这些没有交易的日期(很多人都不知道有此方法)，使图形看上去连续
 		} else if (index == 2) {
-			SegmentedTimeline timeline = new SegmentedTimeline(SegmentedTimeline.DAY_SEGMENT_SIZE, 30, 0);
+			SegmentedTimeline timeline = new SegmentedTimeline(SegmentedTimeline.DAY_SEGMENT_SIZE, 1, 6);
+			timeline.setStartTime(SegmentedTimeline.FIRST_MONDAY_AFTER_1900);
+			x1Axis.setTimeline(timeline);
+		} else if(index==3){
+			SegmentedTimeline timeline = new SegmentedTimeline(SegmentedTimeline.DAY_SEGMENT_SIZE, 1, 6);
+			timeline.setStartTime(SegmentedTimeline.FIRST_MONDAY_AFTER_1900);
 			x1Axis.setTimeline(timeline);
 		}
 		x1Axis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);// 设置标记的位置
@@ -144,7 +149,7 @@ public class KLineChart extends JPanel {
 			}
 		};
 
-		double[] margin = { 0, 0.3, 0.1, 0.01};
+		double[] margin = { 0, 0.3, 0.3, 0.3};
 		xyBarRender.setMargin(margin[index]);// 设置柱形图之间的间隔
 		xyBarRender.setShadowVisible(false);
 		xyBarRender.setBarPainter(new StandardXYBarPainter());

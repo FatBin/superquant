@@ -3,9 +3,7 @@ package VO;
 public class StockListVO {
 
 	double ups_and_downs[];
-	String data[][];
-	
-	
+	String data[][];	
 	
 	public StockListVO(double[] ups_and_downs, String[][] data) {
 		super();
