@@ -91,9 +91,8 @@ public class SearchBar extends JPanel {
 		frame.getContentPane().add(detail);
 
 		PersonalStock ppanel = new PersonalStock(frame);
-		ppanel.setBounds(0, 0, 225, frame.getHeight());
+		ppanel.setBounds(0, 0, 225, frame.getHeight());		
 		frame.getContentPane().add(ppanel);
-
 		frame.repaint();
 	}
 

@@ -558,7 +558,6 @@ public class StockDetail extends JPanel {
 
 			}
 		});
-
 	}
 
 	// ±ß¿òÔ²»¬
