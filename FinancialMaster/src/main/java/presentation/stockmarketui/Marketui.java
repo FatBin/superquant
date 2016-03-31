@@ -259,31 +259,36 @@ public class Marketui extends JPanel {
 //		r.setOpaque(false);
 
 		for (int i = 0; i < 7; i++) {
-			table[i] = new JTable();
-//			if ((Double)table[i].getModel().getValueAt(0, 2)>(Double)table[i].getModel().getValueAt(0, 1)) {
-//				System.out.println("yeah");
-//			}
-//				public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {    
-//			        int modelRow = convertRowIndexToModel(row);    
-//			        int modelColumn = convertColumnIndexToModel(column);    
-//			        Component comp = super.prepareRenderer(renderer, row, column);    
+			table[i] = new JTable(){
+				public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {    
+			        int modelRow = convertRowIndexToModel(row);    
+			        int modelColumn = convertColumnIndexToModel(column);    
+			        Component comp = super.prepareRenderer(renderer, row, column);    
 //			        if (!isRowSelected(modelRow)) {
-//			                if (modelColumn == 2) {     
-//			                	if((Double)this.getModel().getValueAt(modelRow, 2)>(Double)this.getModel().getValueAt(modelRow, 1)){
-//			                		comp.setForeground(Color.white);
-//			                		comp.setBackground(Color.RED);
-//			                	}
-//			                }
-//			                else                                                     //不符合条件的保持原表格样式  
-//			                   comp.setBackground(Color.white);  
+			        		int temp = modelRow;
+			        		double close = Double.parseDouble(this.getModel().getValueAt(temp++, 4).toString());
+			                if (modelColumn==1||modelColumn == 2||modelColumn==3||modelColumn==4) {     
+			                	if(Double.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString())>close){
+			                		comp.setForeground(new Color(179, 43, 56));
+			                	}
+			                	else if(Double.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) == close){
+			                		comp.setForeground(new Color(62, 56, 49, 240)); 
+								}
+			                	else {
+									comp.setForeground(new Color(37, 120, 38));
+								}
+			                }
+			                else                                                     //不符合条件的保持原表格样式  
+			                	comp.setForeground(new Color(62, 56, 49, 240)); 
 //			        }  
-//			        return comp;  
-//			    }  
-//			};
+			        return comp;  
+			    }  
+			};
 			table[i].setRowHeight(26);
 			table[i].setDefaultRenderer(Object.class, r);
-			table[i].setSelectionBackground(new Color(62, 56, 49, 100));
+			table[i].setSelectionBackground(new Color(62, 56, 49, 30));
 			table[i].setSelectionForeground(new Color(62, 56, 49, 240));
+			table[i].setIntercellSpacing(new Dimension(0, getHeight()));
 //			table[i].setOpaque(false);
 			table[i].setShowGrid(false);
 			
@@ -297,6 +302,7 @@ public class Marketui extends JPanel {
 			JTableHeader header = table[i].getTableHeader();
 			header.setOpaque(false);
 			header.getTable().setOpaque(false);
+			header.getTable().setIntercellSpacing(new Dimension(0, getHeight()));
 
 			scrollPane[i] = new JScrollPane();
 			scrollPane[i].setBounds(247, 110, 680, 390);

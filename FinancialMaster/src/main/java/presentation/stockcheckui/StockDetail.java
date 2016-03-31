@@ -80,12 +80,10 @@ public class StockDetail extends JPanel {
 		IntentPane intentPane1 = new IntentPane();
 		intentPane1.setPreferredSize(new Dimension(700, 300));
 		intentPane1.setLayout(null);
-		content.add(intentPane1);
 
 		IntentPane intentPane2 = new IntentPane();
 		intentPane2.setPreferredSize(new Dimension(700, 450));
 		intentPane2.setLayout(null);
-		content.add(intentPane2);
 		
 		
 		closeBtn = new JButton("X");
@@ -172,33 +170,53 @@ public class StockDetail extends JPanel {
 		String[][] data = datavo.getHistory_data();
 		
 		//当前的数据展示
-		JLabel openLabel = new JLabel("开盘价");
-		openLabel.setBounds(44, 76, 70, 30);
-		openLabel.setFont(new Font("微软雅黑", Font.PLAIN, 20));
-		intentPane1.add(openLabel);
+		JLabel openLabel1 = new JLabel("开盘价");
+		openLabel1.setBounds(44, 76, 70, 30);
+		openLabel1.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane1.add(openLabel1);
+		JLabel openLabel2 = new JLabel("最低价");
+		openLabel2.setBounds(44, 118, 70, 30);
+		openLabel2.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane1.add(openLabel2);
+		JLabel openLabel3 = new JLabel("最高价");
+		openLabel3.setBounds(44, 159, 70, 30);
+		openLabel3.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane1.add(openLabel3);
+		JLabel openLabel4 = new JLabel("收盘价");
+		openLabel4.setBounds(44, 200, 70, 30);
+		openLabel4.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane1.add(openLabel4);
+		JLabel openLabel5 = new JLabel("后复权价");
+		openLabel5.setBounds(44, 241, 90, 30);
+		openLabel5.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane1.add(openLabel5);
 		
 		double high = datavo.getHigh();
+		double open = datavo.getOpen()/high;
+		double low = datavo.getLow()/high;
+		double close = datavo.getClose()/high;
+		double adj_price = datavo.getAdj_price()/high;
 		
+		//当前价格条
 		
-		barPanel bPanel1 = new barPanel(3, 5);
-		bPanel1.setLocation(50, 70);
-		bPanel1.setPreferredSize(new Dimension((int)(250*datavo.getOpen()/high), 26));
+		barPanel bPanel1 = new barPanel(datavo.getOpen(), high);
+		bPanel1.setBounds(150,78,(int)(210*Math.pow(open, 12)), 26);
 		intentPane1.add(bPanel1);
-		barPanel bPanel2 = new barPanel(3,5);
-		bPanel2.setLocation(50, 90);
-		bPanel2.setPreferredSize(new Dimension(220, 26));
+		
+		barPanel bPanel2 = new barPanel(datavo.getLow(),high);
+		bPanel2.setBounds(150,120,(int)(210*Math.pow(low, 12)), 26);
 		intentPane1.add(bPanel2);
+		
 		barPanel bPanel3 = new barPanel(high, high);
-		bPanel3.setLocation(50, 224);
-		bPanel3.setPreferredSize(new Dimension((int)(250*datavo.getOpen()/high), 26));
+		bPanel3.setBounds(150,161,210, 26);
 		intentPane1.add(bPanel3);
+		
 		barPanel bPanel4 = new barPanel(datavo.getClose(), high);
-		bPanel4.setLocation(80, 265);
-		bPanel4.setPreferredSize(new Dimension((int)(250*datavo.getOpen()/high), 26));
+		bPanel4.setBounds(150,202,(int)(210*Math.pow(close, 12)), 26);
 		intentPane1.add(bPanel4);
+		
 		barPanel bPanel5 = new barPanel(datavo.getAdj_price(), high);
-		bPanel5.setLocation(80, 306);
-		bPanel5.setPreferredSize(new Dimension((int)(250*datavo.getOpen()/high), 26));
+		bPanel5.setBounds(150,243,(int)(210*Math.pow(adj_price, 12)), 26);
 		intentPane1.add(bPanel5);
 		
 		
