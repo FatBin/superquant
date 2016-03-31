@@ -1,5 +1,6 @@
 package businesslogic.stockcheckbl;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,71 +28,44 @@ public class StockListBL implements StockListBLService {
 		String startDay = format.format(cal.getTime());
 		cal.add(Calendar.DATE, 1);
 		String endDay = format.format(cal.getTime());
-		// codeNamePO sz_codeName = sds.getCodeName(2015, "sz");
-		// codeNamePO sh_codeName = sds.getCodeName(2015, "sh");
-		// ArrayList<String> sz_list = sz_codeName.getResult();
-		// ArrayList<String> sh_list = sz_codeName.getResult();
-		// int size = sz_list.size() + sh_list.size();
-		// String[][] list = new String[size][6];
-		// int index = 0;
+
 		ArrayList<stockStatisticPO> ssPOlist;
 		stockStatisticPO ssPO;
 		ArrayList<String> stockList;
 		stockList = msds.getCodeOfStock();
-		// for (String sz_s : sz_list) {
-		// list[index][0] = sz_s;
-		// ssPOlist = sds.getStatisitcOfStock(sz_s, yestoday, today);
-		// if (!ssPOlist.isEmpty()) {
-		// ssPO = ssPOlist.get(0);
-		// list[index][1] = ssPO.getOpen() + "";
-		// list[index][2] = ssPO.getHigh() + "";
-		// list[index][3] = ssPO.getLow() + "";
-		// list[index][4] = ssPO.getClose() + "";
-		// list[index][5] = ssPO.getVolume() + "";
-		// } else {
-		// for (int i = 1; i < 6; i++) {
-		// list[index][i] = "";
-		// }
-		// }
-		// init_list.add(list[index]);
-		// index++;
-		// }
-		// for (String sh_s : sh_list) {
-		// list[index][0] = sh_s;
-		// ssPOlist = sds.getStatisitcOfStock(sh_s, yestoday, today);
-		// if (!ssPOlist.isEmpty()) {
-		// ssPO = ssPOlist.get(0);
-		// list[index][1] = ssPO.getOpen() + "";
-		// list[index][2] = ssPO.getHigh() + "";
-		// list[index][3] = ssPO.getLow() + "";
-		// list[index][4] = ssPO.getClose() + "";
-		// list[index][5] = ssPO.getVolume() + "";
-		// } else {
-		// for (int i = 1; i < 6; i++) {
-		// list[index][i] = "";
-		// }
-		// }
-		// init_list.add(list[index]);
-		// index++;
-		// }
+
 		int size=stockList.size();
 		do {
 			cal.add(Calendar.DATE, -1);
 			startDay = format.format(cal.getTime());
 			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), startDay, endDay);
 		} while (ssPOlist.isEmpty());
-		String list[][] = new String[size][7];
+		cal.add(Calendar.DATE, -1);
+		
+		
+		String yesStartDay=format.format(cal.getTime());
+		String list[][] = new String[size][8];
+		Double close[][]=new Double[size][2];
+		Double ups_and_downs;
+		NumberFormat nf = NumberFormat.getPercentInstance(); 
+		nf.setMinimumFractionDigits(2);// 小数点后保留几位
+		  
 		for (int i = 0; i < size; i++) {
 			list[i][0] = stockList.get(i);
 			ssPOlist = sds.getStatisitcOfStock(list[i][0], startDay, endDay);
 			ssPO = ssPOlist.get(0);
+			close[i][1]=ssPO.getClose();
 			list[i][1]=ssPO.getName();
 			list[i][2] = ssPO.getOpen() + "";
 			list[i][3] = ssPO.getHigh() + "";
 			list[i][4] = ssPO.getLow() + "";
 			list[i][5] = ssPO.getClose() + "";
 			list[i][6] = ssPO.getVolume() + "";
-
+			ssPOlist = sds.getStatisitcOfStock(list[i][0], yesStartDay,startDay);
+			ssPO = ssPOlist.get(0);
+			close[i][0]=ssPO.getClose();
+			ups_and_downs=(close[i][1]-close[i][0])/close[i][0];
+			list[i][7]=nf.format(ups_and_downs);
 			init_list.add(list[i]);
 		}
 		return list;

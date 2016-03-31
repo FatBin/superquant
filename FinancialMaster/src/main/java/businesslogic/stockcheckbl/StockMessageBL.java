@@ -101,7 +101,7 @@ public class StockMessageBL implements StockMessageBLService {
 			init_list.add(list[index]);
 			index++;
 		}
-		StockVO sv = new StockVO(name, date, open, high, low, close, adj_price,
+		sv = new StockVO(name, date, open, high, low, close, adj_price,
 				volume, turnover, pe, pb, list);
 
 		return sv;

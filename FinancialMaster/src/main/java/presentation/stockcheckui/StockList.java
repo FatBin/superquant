@@ -146,7 +146,7 @@ public class StockList extends JPanel {
 
 		String[][] data = stocklistbl.getStockList();
 
-		tableModel = new DefaultTableModel(data, new String[] { "股票代码","股票名称", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）" });
+		tableModel = new DefaultTableModel(data, new String[] { "股票代码","股票名称", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）","涨跌幅" });
 		table.setModel(tableModel);
 
 		// 表格双击
@@ -278,7 +278,7 @@ public class StockList extends JPanel {
 
 	public void showTable(String key) {
 		String[][] data = stocklistbl.updateStockList(key);
-		tableModel = new DefaultTableModel(data, new String[] { "股票代码", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）" });
+		tableModel = new DefaultTableModel(data, new String[] { "股票代码", "股票名称","开盘价", "最高价", "最低价", "收盘价", "交易量（股）","涨跌幅" });
 		table.setModel(tableModel);
 		repaint();
 	}
