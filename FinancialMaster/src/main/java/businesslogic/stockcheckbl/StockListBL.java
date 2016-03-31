@@ -40,9 +40,8 @@ public class StockListBL implements StockListBLService {
 			startDay = format.format(cal.getTime());
 			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), startDay, endDay);
 		} while (ssPOlist.isEmpty());
-		cal.add(Calendar.DATE, -1);
-		
-		
+
+		cal.add(Calendar.DATE, -1);				
 		String yesStartDay=format.format(cal.getTime());
 		String list[][] = new String[size][8];
 		Double close[][]=new Double[size][2];
