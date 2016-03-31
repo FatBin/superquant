@@ -42,6 +42,7 @@ public class OptionalStock extends JPanel {
 	private JTextField searchTextField;
 	private boolean click = false;
 	private SearchBar searchBar;
+	private int rowpos = -1;
 
 	/**
 	 * Create the panel.
@@ -52,7 +53,7 @@ public class OptionalStock extends JPanel {
 
 		setLayout(null);
 		final OptionalStock opanel = this;
-		
+
 		searchBar = new SearchBar(frame);
 
 		marketBtn = new JButton("   大盘数据");
@@ -232,6 +233,7 @@ public class OptionalStock extends JPanel {
 				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 				searchTextField.setFocusable(true);
 				searchTextField.requestFocus();
+				rowpos = -1;
 			}
 		});
 
@@ -239,8 +241,7 @@ public class OptionalStock extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					// String key = searchTextField.getText();
-					// 监听回车
+					searchBar.jump(frame);
 				}
 			}
 
@@ -251,9 +252,18 @@ public class OptionalStock extends JPanel {
 					searchBar.setVisible(false);
 				} else {
 					searchBar.showTable(key);
-					searchBar.setBounds(697, 38, searchBar.getWidth(),
-							searchBar.getHeight());
+					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
 					searchBar.setVisible(true);
+				}
+
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					rowpos++;
+					searchBar.setSelect(rowpos);
+				}
+
+				if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > -1) {
+					rowpos--;
+					searchBar.setSelect(rowpos);
 				}
 			}
 		});
