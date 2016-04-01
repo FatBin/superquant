@@ -27,7 +27,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
@@ -43,9 +42,13 @@ import businesslogic.stockmarketbl.StockMarketBL;
 import businesslogicservice.stockmarketblservice.MarketKLineBLService;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import presentation.OptionalStock.OptionalStock;
+import presentation.repaintComponent.HeaderCellRenderer;
 import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyComboBox;
 import presentation.repaintComponent.MyScrollBarUI;
+import presentation.repaintComponent.MyTabbedPaneUI;
+import presentation.repaintComponent.MyTabbedPaneUI2;
+import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockList;
@@ -254,12 +257,13 @@ public class Marketui extends JPanel {
 		table = new JTable[7];
 
 		// 使表格居中
-		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		MyTableCellRenderer r = new MyTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.LEFT);
 //		r.setOpaque(false);
 
 		for (int i = 0; i < 7; i++) {
-			table[i] = new JTable(){
+			table[i] = new JTable()
+			{
 				public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {    
 			        int modelRow = convertRowIndexToModel(row);    
 			        int modelColumn = convertColumnIndexToModel(column);    
@@ -286,10 +290,7 @@ public class Marketui extends JPanel {
 			};
 			table[i].setRowHeight(26);
 			table[i].setDefaultRenderer(Object.class, r);
-			table[i].setSelectionBackground(new Color(62, 56, 49, 30));
-			table[i].setSelectionForeground(new Color(62, 56, 49, 240));
 			table[i].setIntercellSpacing(new Dimension(0, getHeight()));
-//			table[i].setOpaque(false);
 			table[i].setShowGrid(false);
 			
 			
@@ -303,6 +304,7 @@ public class Marketui extends JPanel {
 			header.setOpaque(false);
 			header.getTable().setOpaque(false);
 			header.getTable().setIntercellSpacing(new Dimension(0, getHeight()));
+			header.setDefaultRenderer(new HeaderCellRenderer());
 
 			scrollPane[i] = new JScrollPane();
 			scrollPane[i].setBounds(247, 110, 680, 390);
@@ -318,6 +320,7 @@ public class Marketui extends JPanel {
 		// K线图
 		JTabbedPane KLinePane = new JTabbedPane();
 		KLinePane.setBounds(7, 50, 690, 400);
+		KLinePane.setUI(new MyTabbedPaneUI2());
 
 		String kLineTitle[] = { "时分", "日K", "周K", "月K" };
 
@@ -355,6 +358,7 @@ public class Marketui extends JPanel {
 
 		// 表格
 		JTabbedPane marketPane = new JTabbedPane();
+		marketPane.setUI(new MyTabbedPaneUI());
 		marketPane.setBounds(7, 50, 680, 370);
 
 		String title[] = { "当天", "一周", "一个月", "半年", "一年", "五年", "十年" };

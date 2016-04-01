@@ -31,14 +31,17 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import VO.StockVO;
 import businesslogic.stockcheckbl.StockMessageBL;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
 import presentation.repaintComponent.DateChooser;
+import presentation.repaintComponent.HeaderCellRenderer;
 import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyComboBox;
 import presentation.repaintComponent.MyScrollBarUI;
+import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.repaintComponent.barPanel;
 
@@ -225,7 +228,7 @@ public class StockDetail extends JPanel {
 		table = new JTable();
 		table.setRowHeight(26);
 		// 使表格居中
-		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		MyTableCellRenderer r = new MyTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(Object.class, r);
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
@@ -252,6 +255,12 @@ public class StockDetail extends JPanel {
 		for (int i = 1; i < 6; i++) {
 			table.getColumnModel().getColumn(i).setPreferredWidth(70);
 		}
+		
+		JTableHeader header = table.getTableHeader();
+		header.setOpaque(false);
+		header.getTable().setOpaque(false);
+		header.getTable().setIntercellSpacing(new Dimension(0, getHeight()));
+		header.setDefaultRenderer(new HeaderCellRenderer());
 
 		setDragable(frame);
 

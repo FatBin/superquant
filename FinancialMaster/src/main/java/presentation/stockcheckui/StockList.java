@@ -2,6 +2,7 @@ package presentation.stockcheckui;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -24,11 +25,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import businesslogic.stockcheckbl.StockListBL;
 import businesslogicservice.stockcheckblservice.StockListBLService;
+import presentation.repaintComponent.HeaderCellRenderer;
 import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyScrollBarUI;
+import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 
 import java.awt.event.KeyAdapter;
@@ -124,7 +128,7 @@ public class StockList extends JPanel {
 		table = new JTable();
 		table.setRowHeight(26);
 		// 使表格居中
-		DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+		MyTableCellRenderer r = new MyTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
 		table.setDefaultRenderer(Object.class, r);
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
@@ -163,6 +167,13 @@ public class StockList extends JPanel {
 				}
 			}
 		});
+		
+		
+		JTableHeader header = table.getTableHeader();
+		header.setOpaque(false);
+		header.getTable().setOpaque(false);
+		header.getTable().setIntercellSpacing(new Dimension(0, getHeight()));
+		header.setDefaultRenderer(new HeaderCellRenderer());
 
 		setDragable(frame);
 
