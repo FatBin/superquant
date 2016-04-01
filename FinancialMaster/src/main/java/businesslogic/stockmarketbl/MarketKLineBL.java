@@ -25,7 +25,7 @@ public class MarketKLineBL implements MarketKLineBLService {
 	public StockMarketVO getData(marketKline_enum k) {
 		String[][] list;
 		int size;
-		int k_size=40;
+		int k_size=120;
 		String[][] result=new String[k_size][6];
 		if(k==marketKline_enum.DayK){		
 			StockMarketBLService sbs=new StockMarketBL();
