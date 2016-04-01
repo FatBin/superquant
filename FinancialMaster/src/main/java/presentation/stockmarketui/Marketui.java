@@ -11,6 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -69,10 +71,14 @@ public class Marketui extends JPanel {
 	private JScrollPane[] scrollPane;
 	private JTable[] table;
 	private JPanel[] panes;
+	private int selectedIndex = 0;
 
 	private StockMarketBLService stockMarketBL = new StockMarketBL();
 	private MarketKLineBLService marketKLineBL = new MarketKLineBL();
 	DefaultTableModel TableModel;
+
+	private SearchBar searchBar;
+	private int rowpos = -1;
 
 	/**
 	 * Create the panel.
@@ -83,6 +89,8 @@ public class Marketui extends JPanel {
 
 		setLayout(null);
 		final Marketui mpanel = this;
+
+		searchBar = new SearchBar(frame, mpanel);
 
 		ManageState state = marketKLineBL.update();
 		if (state == ManageState.Fail) {
@@ -102,15 +110,8 @@ public class Marketui extends JPanel {
 		content.setLayout(new FlowLayout(FlowLayout.LEFT, 14, 14));
 
 		IntentPane intentPane1 = new IntentPane();
-		intentPane1.setPreferredSize(new Dimension(700, 450));
+		intentPane1.setPreferredSize(new Dimension(700, 440));
 		intentPane1.setLayout(null);
-
-		//////
-		// KLineChart kline = new KLineChart(data);
-		// ChartPanel chartPanel = kline.getChartPane();
-		// chartPanel.setSize(dim1);
-		// intentPane1.add(chartPanel);
-		// kline.setVisible(true);
 
 		content.add(intentPane1);
 
@@ -148,6 +149,7 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				frame.remove(mpanel);
 
 				StockList listui = new StockList(frame);
@@ -189,6 +191,7 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				frame.remove(mpanel);
 				OptionalStock opanel = new OptionalStock(frame);
 				frame.getContentPane().add(opanel);
@@ -259,47 +262,40 @@ public class Marketui extends JPanel {
 		// 使表格居中
 		MyTableCellRenderer r = new MyTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.LEFT);
-//		r.setOpaque(false);
+		// r.setOpaque(false);
 
 		for (int i = 0; i < 7; i++) {
-			table[i] = new JTable()
-			{
-				public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {    
-			        int modelRow = convertRowIndexToModel(row);    
-			        int modelColumn = convertColumnIndexToModel(column);    
-			        Component comp = super.prepareRenderer(renderer, row, column);    
-//			        if (!isRowSelected(modelRow)) {
-			        		int temp = modelRow;
-			        		double close = Double.parseDouble(this.getModel().getValueAt(temp++, 4).toString());
-			                if (modelColumn==1||modelColumn == 2||modelColumn==3||modelColumn==4) {     
-			                	if(Double.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString())>close){
-			                		comp.setForeground(new Color(179, 43, 56));
-			                	}
-			                	else if(Double.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) == close){
-			                		comp.setForeground(new Color(62, 56, 49, 240)); 
-								}
-			                	else {
-									comp.setForeground(new Color(37, 120, 38));
-								}
-			                }
-			                else                                                     //不符合条件的保持原表格样式  
-			                	comp.setForeground(new Color(62, 56, 49, 240)); 
-//			        }  
-			        return comp;  
-			    }  
+			table[i] = new JTable() {
+				public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+					int modelRow = convertRowIndexToModel(row);
+					int modelColumn = convertColumnIndexToModel(column);
+					Component comp = super.prepareRenderer(renderer, row, column);
+					// if (!isRowSelected(modelRow)) {
+					int temp = modelRow;
+					double close = Double.parseDouble(this.getModel().getValueAt(temp++, 4).toString());
+					if (modelColumn == 1 || modelColumn == 2 || modelColumn == 3 || modelColumn == 4) {
+						if (Double.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) > close) {
+							comp.setForeground(new Color(179, 43, 56));
+						} else if (Double
+								.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) == close) {
+							comp.setForeground(new Color(62, 56, 49, 240));
+						} else {
+							comp.setForeground(new Color(37, 120, 38));
+						}
+					} else // 不符合条件的保持原表格样式
+						comp.setForeground(new Color(62, 56, 49, 240));
+					// }
+					return comp;
+				}
 			};
 			table[i].setRowHeight(26);
 			table[i].setDefaultRenderer(Object.class, r);
 			table[i].setIntercellSpacing(new Dimension(0, getHeight()));
 			table[i].setShowGrid(false);
-			
-			
-			
-			
 
 			table[i].setEnabled(false);
 			setSelect(table[i]);
-			
+
 			JTableHeader header = table[i].getTableHeader();
 			header.setOpaque(false);
 			header.getTable().setOpaque(false);
@@ -335,7 +331,7 @@ public class Marketui extends JPanel {
 			public void stateChanged(ChangeEvent e) {
 				StockMarketVO stockMarketVO;
 				JTabbedPane tab = (JTabbedPane) e.getSource();
-				int selectedIndex = tab.getSelectedIndex();
+				selectedIndex = tab.getSelectedIndex();
 				marketKline_enum[] marketK = marketKline_enum.values();
 
 				// 时分暂时没实现
@@ -415,6 +411,8 @@ public class Marketui extends JPanel {
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
 
+		mpanel.add(searchBar);
+		searchBar.setVisible(false);
 		searchTextField = new JTextField();
 		searchTextField.setFocusable(false);
 		searchTextField.setOpaque(false);
@@ -442,8 +440,43 @@ public class Marketui extends JPanel {
 				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 				searchTextField.setFocusable(true);
 				searchTextField.requestFocus();
+
+				rowpos = -1;
+				searchBar.setVisible(false);
 			}
 		});
+
+		searchTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					searchBar.jump(frame, mpanel);
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				String key = searchTextField.getText();
+				if (key.equals("")) {
+					searchBar.setVisible(false);
+				} else {
+					searchBar.showTable(key);
+					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
+					searchBar.setVisible(true);
+				}
+
+				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+					rowpos++;
+					searchBar.setSelect(rowpos);
+				}
+
+				if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > -1) {
+					rowpos--;
+					searchBar.setSelect(rowpos);
+				}
+			}
+		});
+
 		searchTextField.setBounds(686, 11, 196, 27);
 		add(searchTextField);
 		searchTextField.setColumns(10);
@@ -455,6 +488,7 @@ public class Marketui extends JPanel {
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				searchTextField.setText("输入股票代码或名称搜索");
+				searchBar.setVisible(false);
 			}
 
 			@Override

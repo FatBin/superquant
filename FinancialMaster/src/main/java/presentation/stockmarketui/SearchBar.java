@@ -3,7 +3,6 @@ package presentation.stockmarketui;
 import java.awt.Color;
 //import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Point;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -18,9 +17,6 @@ import businesslogicservice.stockcheckblservice.StockSearchBLService;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockDetail;
-import presentation.stockcheckui.StockList;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 @SuppressWarnings("serial")
 public class SearchBar extends JPanel {
@@ -29,13 +25,11 @@ public class SearchBar extends JPanel {
 	DefaultTableModel tableModel;
 	private StockSearchBLService searchBL = new StockSearchBL();
 	private String[][] data;
-	private SearchBar searchPanel;
 
 	/**
 	 * Create the panel.
 	 */
-	public SearchBar(JFrame frame) {
-		searchPanel = this;
+	public SearchBar(JFrame frame, JPanel fromPanel) {
 
 		this.setSize(175, 200);
 		this.setBackground(new Color(255, 255, 255));
@@ -53,6 +47,8 @@ public class SearchBar extends JPanel {
 		table = new JTable();
 		table.setRowHeight(26);
 		table.setPreferredSize(new Dimension(165, 195));
+		table.setSelectionBackground(new Color(88, 93, 103, 200));
+		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		scrollPane.setViewportView(table);
 
 		// Êó±ê¼àÌý
@@ -60,9 +56,10 @@ public class SearchBar extends JPanel {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 
 				int pos = table.getSelectedRow();
+				table.setRowSelectionInterval(pos, pos);
+				
 				String id = table.getValueAt(pos, 0).toString();
-
-				Jump(frame, id);
+				Jump(frame, id, fromPanel);
 			}
 		});
 
@@ -75,31 +72,31 @@ public class SearchBar extends JPanel {
 		this.setVisible(true);
 	}
 
-	public void jump(JFrame frame) {
+	public void jump(JFrame frame, JPanel fromPanel) {
 		int pos = table.getSelectedRow();
 		if (pos != -1) {
 			String id = table.getValueAt(pos, 0).toString();
-			Jump(frame, id);
+			Jump(frame, id, fromPanel);
 		}
 	}
 
-	public void Jump(JFrame frame, String id) {
+	public void Jump(JFrame frame, String id, JPanel fromPanel) {
 		frame.getContentPane().removeAll();
 
-		StockDetail detail = new StockDetail(frame, id, searchPanel);
+		StockDetail detail = new StockDetail(frame, id, fromPanel, false);
 		detail.setBounds(224, 0, 737, frame.getHeight());
-		frame.getContentPane().add(detail);
 
 		PersonalStock ppanel = new PersonalStock(frame);
-		ppanel.setBounds(0, 0, 225, frame.getHeight());		
+		ppanel.setBounds(0, 0, 225, frame.getHeight());	
+		
 		frame.getContentPane().add(ppanel);
+		frame.getContentPane().add(detail);
 		frame.repaint();
+		frame.validate();
 	}
 
 	public void setSelect(int row) {
 		table.setRowSelectionInterval(row, row);
-		table.setSelectionBackground(new Color(88, 93, 103, 200));
-		table.setSelectionForeground(new Color(255, 255, 255, 230));
 	}
 
 }

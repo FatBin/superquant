@@ -54,7 +54,7 @@ public class OptionalStock extends JPanel {
 		setLayout(null);
 		final OptionalStock opanel = this;
 
-		searchBar = new SearchBar(frame);
+		searchBar = new SearchBar(frame, opanel);
 
 		marketBtn = new JButton("   ¥Û≈Ã ˝æ›");
 		marketBtn.addMouseListener(new MouseAdapter() {
@@ -204,7 +204,7 @@ public class OptionalStock extends JPanel {
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
 
-		frame.add(searchBar);
+		opanel.add(searchBar);
 		searchBar.setVisible(false);
 		searchTextField = new JTextField();
 		searchTextField.setFocusable(false);
@@ -233,7 +233,9 @@ public class OptionalStock extends JPanel {
 				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
 				searchTextField.setFocusable(true);
 				searchTextField.requestFocus();
+
 				rowpos = -1;
+				searchBar.setVisible(false);
 			}
 		});
 
@@ -241,7 +243,7 @@ public class OptionalStock extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					searchBar.jump(frame);
+					searchBar.jump(frame, opanel);
 				}
 			}
 

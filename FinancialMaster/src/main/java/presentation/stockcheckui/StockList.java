@@ -160,7 +160,7 @@ public class StockList extends JPanel {
 				if (e.getClickCount() == 2) {
 					listui.setVisible(false);
 					String id = table.getValueAt(rowpos, 0).toString();
-					StockDetail detail = new StockDetail(frame, id, listui);
+					StockDetail detail = new StockDetail(frame, id, listui, true);
 					frame.getContentPane().add(detail);
 					detail.setBounds(224, 0, 737, getHeight());
 					frame.repaint();
