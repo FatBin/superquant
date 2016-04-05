@@ -13,6 +13,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.DateTickMarkPosition;
+import org.jfree.chart.axis.DateTickUnit;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.SegmentedTimeline;
 import org.jfree.chart.plot.CombinedDomainXYPlot;
@@ -139,15 +140,21 @@ public class KLineChart extends JPanel {
 			cal.setTime(startDate);
 			cal2.setTime(endDate);
 			Date dateToException;
+			cal.add(Calendar.HOUR, 12);
 			while (cal.before(cal2)) {
-				if (cal.get(Calendar.DAY_OF_MONTH) != 1) {
+				if (cal.get(Calendar.DAY_OF_MONTH)!= 1) {
 					dateToException = cal.getTime();
 					timeline.addException(dateToException);
+					System.out.println(dateToException.toString());
 				}
 				cal.add(Calendar.DATE, 1);
 			}
-
 			x1Axis.setTimeline(timeline);
+//			x1Axis.setAutoRange(true);
+//            x1Axis.setVerticalTickLabels(true);
+//			x1Axis.setAutoTickUnitSelection(false);
+			x1Axis.setTickUnit(new DateTickUnit(DateTickUnit.DAY, 20));// 设置时间刻度的间隔，一般以周为单位
+//			x1Axis.setTickLabelsVisible(true);
 		}
 		x1Axis.setTickMarkPosition(DateTickMarkPosition.MIDDLE);// 设置标记的位置
 		x1Axis.setStandardTickUnits(DateAxis.createStandardDateTickUnits());// 设置标准的时间刻度单位
@@ -169,7 +176,7 @@ public class KLineChart extends JPanel {
 			}
 		};
 
-		double[] margin = { 0, 0.3, 0.3, 0.3 };
+		double[] margin = { 0, 0.3, 0.3, 0 };
 		xyBarRender.setMargin(margin[index]);// 设置柱形图之间的间隔
 		xyBarRender.setShadowVisible(false);
 		xyBarRender.setBarPainter(new StandardXYBarPainter());
