@@ -27,9 +27,10 @@ public class MarketKLineBL implements MarketKLineBLService {
 		String[][] result=new String[k_size][6];
 		if(k==marketKline_enum.DayK){		
 			StockMarketBLService sbs=new StockMarketBL();
-			StockMarketVO sv=sbs.getStockMarket("hs300", date_enum.HalfYear);
+			StockMarketVO sv=sbs.getStockMarket("hs300", date_enum.Year);
 			list=sv.getData();
 			size=list.length;	
+			System.out.println(size);
 	        for (int i = 0; i < k_size; i++) {
 				result[i]=list[k_size-1-i];
 			}

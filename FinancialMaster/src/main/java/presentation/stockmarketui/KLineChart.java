@@ -145,7 +145,6 @@ public class KLineChart extends JPanel {
 				if (cal.get(Calendar.DAY_OF_MONTH)!= 1) {
 					dateToException = cal.getTime();
 					timeline.addException(dateToException);
-					System.out.println(dateToException.toString());
 				}
 				cal.add(Calendar.DATE, 1);
 			}
