@@ -1,5 +1,6 @@
 package data.stockmarketdata;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,10 +14,11 @@ import dataservice.stockmarketdataservice.BenchDataService;
 import dataservice.stockmarketdataservice.BenchKLineDataService;
 
 public class BenchKLineData implements BenchKLineDataService {
-	ArrayList<benchmarkStatisticPO> old_datalist;
+	ArrayList<String> old_datalist;
 	ArrayList<benchmarkStatisticPO> new_datalist;
 	BenchDataService benchDataService = new BenchData();
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+	DecimalFormat df = new DecimalFormat( "0.00");
 
 	@Override
 	public ManageState update() {
@@ -48,44 +50,38 @@ public class BenchKLineData implements BenchKLineDataService {
 		}
 		return ManageState.Succeed;
 	}
-
+	
 	@Override
-	public ArrayList<benchmarkStatisticPO> getStatisticData(String kLine_enum) {
-		ArrayList<benchmarkStatisticPO> arrayList = new ArrayList<benchmarkStatisticPO>();
-		benchmarkStatisticPO bp;
-		String date;
-		double open, high, low, close;
-		long volume;
+	public String[][] getStatisticData(String kLine_enum) {
 		String path = "src/main/resources/Data/" + kLine_enum + ".txt";
 		ArrayList<String> datalist = FileManager.ReadFile(path);
-		for (String string : datalist) {
-			String statisticData[] = string.split(";");
-			date = statisticData[0];
-			open = Double.parseDouble(statisticData[1]);
-			high = Double.parseDouble(statisticData[2]);
-			low = Double.parseDouble(statisticData[3]);
-			close = Double.parseDouble(statisticData[4]);
-			volume = Long.parseLong(statisticData[5]);
-			bp = new benchmarkStatisticPO(date, open, high, low, close, volume);
-			arrayList.add(bp);
+		int size=datalist.size();
+		String[][] result=new String[size][9];
+		int index=0;
+		for (String strings : datalist) {
+			result[index]=strings.split(";");
+			index++;
 		}
-		return arrayList;
-	}
+		return result;		
+	}	
 
 	// 更新周k
 	private void updateWeek(Calendar start, Calendar end) {
-		old_datalist = getStatisticData("WeekK");
+		old_datalist =FileManager.ReadFile("src/main/resources/Data/WeekK.txt"); 
 		double high = Double.MIN_VALUE;
 		double low = Double.MAX_VALUE;
 		double open = 0;
 		double close = 0;
-		long volume = 0;
+		long volume = 0;		
 
 		start.add(Calendar.DATE, 1);
 		int dayOfWeek = start.get(Calendar.DAY_OF_WEEK) - 1;
-		if (dayOfWeek == 0 || dayOfWeek == 6)
-			return;
-		if (dayOfWeek != 1) {
+		if (dayOfWeek == 0 ){
+			start.add(Calendar.DATE, 1);
+		}else if(dayOfWeek == 6){
+			start.add(Calendar.DATE, 2);
+		}
+		else if(dayOfWeek != 1) {
 			int old_size = old_datalist.size();
 			if (old_size > 0) {
 				old_datalist.remove(old_size - 1);
@@ -93,18 +89,24 @@ public class BenchKLineData implements BenchKLineDataService {
 			start.add(Calendar.DATE, -(dayOfWeek - 1));
 		}
 		while (start.before(end)) {
+			String update="";
 			high = Double.MIN_VALUE;
 			low = Double.MAX_VALUE;
 			open = 0;
 			close = 0;
 			volume = 0;
 			String startday = format.format(start.getTime());
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(start.getTime());
+			cal.add(Calendar.MONTH, -2);
+			String two_month_ago=format.format(cal.getTime());
 			start.add(Calendar.DATE, 7);
 			String endday = format.format(start.getTime());
 			new_datalist = benchDataService.getStatisticOfBenchmark("hs300",
 					startday, endday);
+			int new_size;
 			if (!new_datalist.isEmpty()) {
-				int new_size = new_datalist.size();
+				new_size = new_datalist.size();
 				benchmarkStatisticPO firstBench = new_datalist.get(0);
 				benchmarkStatisticPO lastBench = new_datalist.get(new_size - 1);
 				open = firstBench.getOpen();
@@ -118,23 +120,47 @@ public class BenchKLineData implements BenchKLineDataService {
 					}
 					volume += benchmarkStatisticPO.getVolume();
 				}
-				benchmarkStatisticPO new_bench = new benchmarkStatisticPO(
-						startday, open, high, low, close, volume);
-				old_datalist.add(new_bench);
+				update+=startday+";"+open+";"+high+";"+low+";"+close+";"+volume;
+
+				new_datalist = benchDataService.getStatisticOfBenchmark("hs300",
+						two_month_ago,startday);
+				new_size = new_datalist.size();
+				double[] closelist=new double[new_size];
+				int index=0;
+				for (benchmarkStatisticPO benchmarkStatisticPO : new_datalist) {
+					closelist[index]=benchmarkStatisticPO.getClose();
+					index++;
+				}
+				double sum=0;
+				for (int i = new_size-5; i < new_size; i++) {
+					sum+=closelist[i];
+				}
+				update+=";"+df.format(sum/5);
+				for (int i = new_size-10; i < new_size-5; i++) {
+					sum+=closelist[i];
+				}
+				update+=";"+df.format(sum/10);
+				for (int i = new_size-30; i < new_size-10; i++) {
+					sum+=closelist[i];
+				}
+				update+=";"+df.format(sum/30);
+				old_datalist.add(update);
 			}
+			
 		}
-		write(old_datalist, "src/main/resources/Data/WeekK.txt");
+		FileManager.WriteFile(old_datalist, "src/main/resources/Data/WeekK.txt", false);
 	}
 
 	// 更新月k
 	private void updateMonth(Calendar start, Calendar end) {
-		old_datalist = getStatisticData("MonthK");
+		old_datalist =FileManager.ReadFile("src/main/resources/Data/MonthK.txt"); 
 		double high = Double.MIN_VALUE;
 		double low = Double.MAX_VALUE;
 		double open = 0;
 		double close = 0;
 		long volume = 0;
 
+		
 		start.add(Calendar.DATE, 1);
 		int dayOfMonth = start.get(Calendar.DAY_OF_MONTH);
 		if (dayOfMonth != 1) {
@@ -145,18 +171,22 @@ public class BenchKLineData implements BenchKLineDataService {
 			start.add(Calendar.DATE, -(dayOfMonth - 1));
 		}
 		while (start.before(end)) {
+			String update="";
 			high = Double.MIN_VALUE;
 			low = Double.MAX_VALUE;
 			open = 0;
 			close = 0;
 			volume = 0;
 			String startday = format.format(start.getTime());
-			start.add(Calendar.MONTH, 1);
+			start.add(Calendar.MONTH, -2);
+			String two_month_ago=format.format(start.getTime());
+			start.add(Calendar.MONTH, 3);
 			String endday = format.format(start.getTime());
 			new_datalist = benchDataService.getStatisticOfBenchmark("hs300",
 					startday, endday);
+			int new_size;
 			if (!new_datalist.isEmpty()) {
-				int new_size = new_datalist.size();
+				new_size = new_datalist.size();
 				benchmarkStatisticPO firstBench = new_datalist.get(0);
 				benchmarkStatisticPO lastBench = new_datalist.get(new_size - 1);
 				open = firstBench.getOpen();
@@ -170,22 +200,35 @@ public class BenchKLineData implements BenchKLineDataService {
 					}
 					volume += benchmarkStatisticPO.getVolume();
 				}
-				benchmarkStatisticPO new_bench = new benchmarkStatisticPO(
-						startday, open, high, low, close, volume);
-				old_datalist.add(new_bench);
+                update+=startday+";"+open+";"+high+";"+low+";"+close+";"+volume;
+
+				
 			}
+			new_datalist = benchDataService.getStatisticOfBenchmark("hs300",
+					two_month_ago,startday);
+			new_size = new_datalist.size();
+			double[] closelist=new double[new_size];
+			int index=0;
+			for (benchmarkStatisticPO benchmarkStatisticPO : new_datalist) {
+				closelist[index]=benchmarkStatisticPO.getClose();
+				index++;
+			}
+			double sum=0;
+			for (int i = new_size-5; i < new_size; i++) {
+				sum+=closelist[i];
+			}
+			update+=";"+df.format(sum/5);
+			for (int i = new_size-10; i < new_size-5; i++) {
+				sum+=closelist[i];
+			}
+			update+=";"+df.format(sum/10);
+			for (int i = new_size-30; i < new_size-10; i++) {
+				sum+=closelist[i];
+			}
+			update+=";"+df.format(sum/30);
+			old_datalist.add(update);
 		}
-		write(old_datalist, "src/main/resources/Data/MonthK.txt");
+		FileManager.WriteFile(old_datalist, "src/main/resources/Data/MonthK.txt", false);
 	}
 
-	private void write(ArrayList<benchmarkStatisticPO> list, String path) {
-		ArrayList<String> datalist = new ArrayList<String>();
-		for (benchmarkStatisticPO PO : list) {
-			String s = "";
-			s += PO.getDate() + ";" + PO.getOpen() + ";" + PO.getHigh() + ";"
-					+ PO.getLow() + ";" + PO.getClose() + ";" + PO.getVolume();
-			datalist.add(s);
-		}
-		FileManager.WriteFile(datalist, path, false);
-	}
 }
