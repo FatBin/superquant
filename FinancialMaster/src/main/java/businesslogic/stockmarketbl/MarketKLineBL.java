@@ -42,15 +42,15 @@ public class MarketKLineBL implements MarketKLineBLService {
 				}
 				sum=0;
 				for (int j = i+25; j < i+30; j++) {
-					sum++;
+					sum+=close[j];
 				}
 				result[i][6]=sum/5+"";
 				for (int j = i+20; j < i+25; j++) {
-					sum++;
+					sum+=close[j];
 				}
 				result[i][7]=sum/10+"";
 				for (int j = i; j < i+20; j++) {
-					sum++;
+					sum+=close[j];
 				}
 				result[i][8]=sum/30+"";
 			}
