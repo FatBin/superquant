@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.awt.Color;
 import java.awt.Paint;
+import java.awt.Rectangle;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -11,6 +12,7 @@ import javax.swing.JPanel;
 
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.LegendItemCollection;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.DateTickMarkPosition;
 import org.jfree.chart.axis.DateTickUnit;
@@ -22,11 +24,13 @@ import org.jfree.chart.renderer.xy.CandlestickRenderer;
 import org.jfree.chart.renderer.xy.StandardXYBarPainter;
 import org.jfree.chart.renderer.xy.XYBarRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.chart.title.LegendTitle;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.time.ohlc.OHLCSeries;
 import org.jfree.data.time.ohlc.OHLCSeriesCollection;
+import org.jfree.ui.RectangleEdge;
 
 import presentation.repaintComponent.MyCandlestickRender;
 
@@ -56,9 +60,9 @@ public class KLineChart extends JPanel {
 		TimeSeries series2 = new TimeSeries(""); // 对应时间成交量数据
 
 		// 均线图
-		TimeSeries seriesAvg5 = new TimeSeries("");
-		TimeSeries seriesAvg10 = new TimeSeries("");
-		TimeSeries seriesAvg30 = new TimeSeries("");
+		TimeSeries seriesAvg5 = new TimeSeries("5日均线图");
+		TimeSeries seriesAvg10 = new TimeSeries("10日均线图");
+		TimeSeries seriesAvg30 = new TimeSeries("30日均线图");
 
 		for (int i = 0; i < data.length; i++) {
 
@@ -176,12 +180,16 @@ public class KLineChart extends JPanel {
 		XYLineAndShapeRenderer lineRender = new XYLineAndShapeRenderer();
 		lineRender.setBaseShapesVisible(false);
 
-		// 5日k线图
+		// k线图
 		plot1.setRenderer(1, lineRender);
 		plot1.setDataset(1, avgLine);
 		lineRender.setSeriesPaint(0, Color.black);
 		lineRender.setSeriesPaint(1, Color.blue);
-
+		
+		// 图例
+//		LegendTitle legendTitle = new LegendTitle(plot1);
+//		legendTitle.setPosition(RectangleEdge.BOTTOM);
+		
 		XYBarRenderer xyBarRender = new XYBarRenderer() {
 			public Paint getItemPaint(int i, int j) {// 匿名内部类用来处理当日的成交量柱形图的颜色与K线图的颜色保持一致
 				if (seriesCollection.getCloseValue(i, j) > seriesCollection.getOpenValue(i, j)) {// 收盘价高于开盘价，股票上涨，选用股票上涨的颜色
@@ -213,10 +221,12 @@ public class KLineChart extends JPanel {
 		chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
 		chart.setAntiAlias(true);
 		chart.setBackgroundPaint(new Color(246, 246, 246));
+		
 		this.add(new ChartPanel(chart));
 	}
 
 	public ChartPanel getChartPane() {
 		return new ChartPanel(chart);
 	}
+	
 }
