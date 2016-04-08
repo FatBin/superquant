@@ -18,7 +18,7 @@ import org.jfree.data.category.CategoryDataset;
 @SuppressWarnings("serial")
 public class MySpiderWebPlot extends SpiderWebPlot {
 	private int ticks = DEFAULT_TICKS;
-	private static final int DEFAULT_TICKS = 4;
+	private static final int DEFAULT_TICKS = 5;
 	private NumberFormat format = NumberFormat.getInstance();
 	private static final double PERPENDICULAR = 90;
 	private static final double TICK_SCALE = 0.015;
@@ -114,5 +114,10 @@ public class MySpiderWebPlot extends SpiderWebPlot {
 			}
 			g2.setComposite(saveComposite);
 		}
+	}
+
+	// …Ë÷√øÃ∂»√‹∂»
+	public void setTicks(int ticks) {
+		this.ticks = ticks;
 	}
 }
