@@ -10,7 +10,7 @@ import java.awt.geom.Arc2D;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 import org.jfree.chart.plot.SpiderWebPlot;
 import org.jfree.data.category.CategoryDataset;
@@ -19,14 +19,14 @@ import org.jfree.data.category.CategoryDataset;
 public class MySpiderWebPlot extends SpiderWebPlot {
 	private int ticks = DEFAULT_TICKS;
 	private static final int DEFAULT_TICKS = 5;
-	private NumberFormat format = NumberFormat.getInstance();
+	DecimalFormat format = new DecimalFormat("0.0");
 	private static final double PERPENDICULAR = 90;
 	private static final double TICK_SCALE = 0.015;
 	private int valueLabelGap = DEFAULT_GAP;
 	private static final int DEFAULT_GAP = 10;
 	private static final double THRESHOLD = 15;
 
-	MySpiderWebPlot(CategoryDataset createCategoryDataset) {
+	public MySpiderWebPlot(CategoryDataset createCategoryDataset) {
 		super(createCategoryDataset);
 	}
 
@@ -110,7 +110,8 @@ public class MySpiderWebPlot extends SpiderWebPlot {
 				}
 				g2.setPaint(getLabelPaint());
 				g2.setFont(getLabelFont());
-				g2.drawString(label, (float) labelX, (float) labelY);
+				
+				g2.drawString(label, (int) labelX, (int) labelY);
 			}
 			g2.setComposite(saveComposite);
 		}

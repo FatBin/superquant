@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,9 +21,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 
+import org.jfree.chart.ChartPanel;
+
+import com.sun.xml.internal.bind.v2.runtime.Name;
+
+import businesslogic.stockContrastbl.StockContrastBL;
+import businesslogicservice.stockContrastblservice.StockContrastBLService;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockList;
@@ -30,6 +38,8 @@ import presentation.stockmarketui.Marketui;
 import presentation.stockmarketui.SearchBar;
 
 import javax.swing.JLabel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class OptionalStock extends JPanel {
@@ -39,10 +49,14 @@ public class OptionalStock extends JPanel {
 	JButton optionalStockBtn;
 	JButton closeBtn;
 	JButton miniBtn;
+	JCheckBox checkBox[];
 	private JTextField searchTextField;
 	private boolean click = false;
 	private SearchBar searchBar;
+	private SpiderChart spiderChart;
 	private int rowpos = -1;
+	private ArrayList<String> nameList;
+	StockContrastBLService stockContrastBL = new StockContrastBL();
 
 	/**
 	 * Create the panel.
@@ -274,9 +288,46 @@ public class OptionalStock extends JPanel {
 		add(searchTextField);
 		searchTextField.setColumns(10);
 
-		JLabel label = new JLabel("敬请期待");
-		label.setBounds(296, 77, 85, 29);
-		add(label);
+		// 雷达图
+		JPanel chartPanel = new JPanel();
+		chartPanel.setBounds(402, 92, 509, 380);
+		add(chartPanel);
+
+		String name[] = stockContrastBL.getList();
+		int count = name.length;
+		checkBox = new JCheckBox[count];
+		for (int i = 0; i < count; i++) {
+			checkBox[i] = new JCheckBox(name[i]);
+			checkBox[i].setBounds(245, 110 + 30 * i, 125, 25);
+			checkBox[i].setOpaque(true);
+			checkBox[i].setContentAreaFilled(false);
+			add(checkBox[i]);
+		}
+
+		for (int i = 0; i < count; i++) {
+			checkBox[i].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// 每勾一次遍历一次
+					nameList = new ArrayList<>();
+					for (int j = 0; j < count; j++) {
+						if (checkBox[j].isSelected()) {
+							String name = checkBox[j].getText();
+							nameList.add(name);
+						}
+					}
+					// 获取新的图
+					chartPanel.removeAll();
+					spiderChart = new SpiderChart(nameList, stockContrastBL);
+					ChartPanel cpanel = spiderChart.getChart();
+					cpanel.setMouseZoomable(true);
+					cpanel.setPreferredSize(new Dimension(500, 350));
+					chartPanel.add(cpanel);
+					repaint();
+					validate();
+				}
+			});
+		}
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
