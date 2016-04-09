@@ -56,12 +56,13 @@ public class StockContrastBL implements StockContrastBLService {
 
 		cal.add(Calendar.DATE, -1);
 		String yesStartDay = format.format(cal.getTime());
-		double[] data = new double[4];
+		
 		Double close[][] = new Double[size][2];
 		String[] id = new String[size];
 		String name;
 
 		for (int i = 0; i < size; i++) {
+			double[] data = new double[4];
 			id[i] = stockList.get(i);
 			ssPOlist = sds.getStatisitcOfStock(id[i], startDay, endDay);
 			ssPO = ssPOlist.get(0);
