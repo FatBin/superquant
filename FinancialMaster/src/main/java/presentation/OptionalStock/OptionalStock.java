@@ -3,7 +3,9 @@ package presentation.OptionalStock;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -37,6 +39,7 @@ import businesslogic.stockcheckbl.StockItemBL;
 import businesslogicservice.stockContrastblservice.StockContrastBLService;
 import businesslogicservice.stockcheckblservice.StockItemRankBLService;
 import presentation.repaintComponent.MyComboBox;
+import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
@@ -348,7 +351,7 @@ public class OptionalStock extends JPanel {
 		// 排行
 		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
-		conditionBox.setBounds(770, 70, 160, 25);
+		conditionBox.setBounds(770, 80, 160, 25);
 		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率" };
 
 		for (int i = 0; i < conditionstr.length; i++) {
@@ -361,9 +364,14 @@ public class OptionalStock extends JPanel {
 		add(conditionBox);
 
 		// 排行表格
-		JPanel rankPane = new JPanel();
-		rankPane.setBounds(770, 105, 160, 400);
+		JScrollPane rankPane = new JScrollPane();
+		rankPane.setBounds(770, 115, 160, 400);
+		rankPane.setOpaque(false);
+		rankPane.setBorder(BorderFactory.createEmptyBorder());
+		rankPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		rankPane.getViewport().setOpaque(false);
 		add(rankPane);
+		
 		table = new JTable();
 		table.setRowHeight(26);
 		// 使表格居中
@@ -385,7 +393,7 @@ public class OptionalStock extends JPanel {
 		});
 		table.setBorder(null);
 		table.setEnabled(false);
-		rankPane.add(table);
+		rankPane.setViewportView(table);
 		rankPane.setOpaque(false);
 
 		rankDataList = new ArrayList<>();
@@ -395,15 +403,17 @@ public class OptionalStock extends JPanel {
 				condition = conditionBox.getSelectedItem().toString();
 				rankDataList = stockItemBL.getRank(condition);
 
-				String data[][] = new String[rankDataList.size()][2];
+				String data[][] = new String[rankDataList.size()][3];
 				for (int i = 0; i < rankDataList.size(); i++) {
-					data[i][0] = rankDataList.get(i).getStockname();
-					data[i][1] = rankDataList.get(i).getItem();
+					data[i][0] = i + 1 + "";
+					data[i][1] = rankDataList.get(i).getStockname();
+					data[i][2] = rankDataList.get(i).getItem();
 				}
 
-				tableModel = new DefaultTableModel(data, new String[] { "股票名称", condition });
+				tableModel = new DefaultTableModel(data, new String[] { "排名", "股票名称", condition });
 				table.setModel(tableModel);
-				
+				table.getColumnModel().getColumn(0).setPreferredWidth(35);
+
 				rankPane.repaint();
 				rankPane.validate();
 			}
