@@ -75,7 +75,9 @@ public class Marketui extends JPanel {
 
 	private StockMarketBLService stockMarketBL = new StockMarketBL();
 	private MarketKLineBLService marketKLineBL = new MarketKLineBL();
+	private StockMarketVO stockMarketVO;
 	DefaultTableModel TableModel;
+	private marketKline_enum[] marketK = marketKline_enum.values();
 
 	private SearchBar searchBar;
 	private int rowpos = -1;
@@ -318,7 +320,7 @@ public class Marketui extends JPanel {
 		KLinePane.setBounds(7, 50, 690, 388);
 		KLinePane.setUI(new MyTabbedPaneUI2());
 
-		String kLineTitle[] = { "时分", "日K", "周K", "月K" };
+		String kLineTitle[] = { "日K", "周K", "月K", "时分" };
 
 		panes = new JPanel[4];
 		for (int i = 0; i < 4; i++) {
@@ -326,28 +328,38 @@ public class Marketui extends JPanel {
 			KLinePane.add(kLineTitle[i], panes[i]);
 		}
 
+		// 初始化时显示日k图
+		// 后期改成时分图
+		stockMarketVO = marketKLineBL.getData(marketK[1]);
+		data = stockMarketVO.getData();
+
+		KLineChart kline = new KLineChart(data, 1);
+		ChartPanel chartPanel = kline.getChartPane();
+		chartPanel.setPreferredSize(new Dimension(660, 345));
+		panes[0].add(chartPanel);
+
 		KLinePane.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				StockMarketVO stockMarketVO;
 				JTabbedPane tab = (JTabbedPane) e.getSource();
 				selectedIndex = tab.getSelectedIndex();
-				marketKline_enum[] marketK = marketKline_enum.values();
 
 				// 时分暂时没实现
 				panes[selectedIndex].removeAll();
-				if (selectedIndex == 0) {
+				if (selectedIndex == 3) {
 					JLabel label = new JLabel("敬请期待");
 					label.setSize(660, 350);
 					panes[selectedIndex].add(label);
 				} else {
-					stockMarketVO = marketKLineBL.getData(marketK[selectedIndex]);
+					stockMarketVO = marketKLineBL.getData(marketK[selectedIndex + 1]);
 					data = stockMarketVO.getData();
 
-					KLineChart kline = new KLineChart(data, selectedIndex);
+					KLineChart kline = new KLineChart(data, selectedIndex + 1);
 					ChartPanel chartPanel = kline.getChartPane();
 					chartPanel.setPreferredSize(new Dimension(660, 345));
 					panes[selectedIndex].add(chartPanel);
+					panes[selectedIndex].repaint();
+					panes[selectedIndex].validate();
 				}
 			}
 		});
