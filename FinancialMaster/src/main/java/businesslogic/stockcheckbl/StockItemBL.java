@@ -84,7 +84,7 @@ public class StockItemBL implements StockItemRankBLService{
 		ArrayList<StockItemVO> arrayList=new ArrayList<>();
 		Set set=hashMap.entrySet();
 		Iterator iterator=set.iterator();
-		if (item.equals("open")) {
+		if (item.equals("开盘价")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();
@@ -92,7 +92,7 @@ public class StockItemBL implements StockItemRankBLService{
 				StockItemVO stockItemVO=new StockItemVO(s.getName(), code, ""+s.getOpen());
 				arrayList.add(stockItemVO);
 			}
-		}else if (item.equals("high")) {
+		}else if (item.equals("最高价")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();
@@ -100,7 +100,7 @@ public class StockItemBL implements StockItemRankBLService{
 				StockItemVO stockItemVO=new StockItemVO(s.getName(), code, ""+s.getHigh());
 				arrayList.add(stockItemVO);
 			}
-		}else if (item.equals("low")) {
+		}else if (item.equals("最低价")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();
@@ -108,7 +108,7 @@ public class StockItemBL implements StockItemRankBLService{
 				StockItemVO stockItemVO=new StockItemVO(s.getName(), code, ""+s.getOpen());
 				arrayList.add(stockItemVO);
 			}
-		}else if (item.equals("close")) {
+		}else if (item.equals("收盘价")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();
@@ -116,7 +116,7 @@ public class StockItemBL implements StockItemRankBLService{
 				StockItemVO stockItemVO=new StockItemVO(s.getName(), code, ""+s.getClose());
 				arrayList.add(stockItemVO);
 			}
-		}else if (item.equals("adj_price")) {
+		}else if (item.equals("后复权价")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();
@@ -124,7 +124,7 @@ public class StockItemBL implements StockItemRankBLService{
 				StockItemVO stockItemVO=new StockItemVO(s.getName(), code, ""+s.getAdj_price());
 				arrayList.add(stockItemVO);
 			}
-		}else if (item.equals("volume")) {
+		}else if (item.equals("成交量")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();
@@ -132,7 +132,7 @@ public class StockItemBL implements StockItemRankBLService{
 				StockItemVO stockItemVO=new StockItemVO(s.getName(), code, ""+s.getVolume());
 				arrayList.add(stockItemVO);
 			}
-		}else if (item.equals("turnover")) {
+		}else if (item.equals("换手率")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();
@@ -140,7 +140,7 @@ public class StockItemBL implements StockItemRankBLService{
 				StockItemVO stockItemVO=new StockItemVO(s.getName(), code, ""+s.getTurnover());
 				arrayList.add(stockItemVO);
 			}
-		}else if (item.equals("pe")) {
+		}else if (item.equals("市盈率")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();
@@ -148,7 +148,7 @@ public class StockItemBL implements StockItemRankBLService{
 				StockItemVO stockItemVO=new StockItemVO(s.getName(), code, ""+s.getPe());
 				arrayList.add(stockItemVO);
 			}
-		}else if (item.equals("pb")) {
+		}else if (item.equals("市净率")) {
 			while (iterator.hasNext()) {
 				Map.Entry entry=(Map.Entry) iterator.next();
 				String code=(String) entry.getKey();

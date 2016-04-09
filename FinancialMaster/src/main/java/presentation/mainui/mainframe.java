@@ -44,8 +44,13 @@ public class mainframe extends JFrame implements Observer{
 				this.add(connectionReminder);
 				repaint();
 			}else {
-				this.remove(connectionReminder);
-				repaint();
+				try {
+					this.remove(connectionReminder);
+					repaint();
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+
 			}
 		}
 	}
