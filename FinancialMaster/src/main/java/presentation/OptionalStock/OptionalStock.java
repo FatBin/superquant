@@ -286,15 +286,17 @@ public class OptionalStock extends JPanel {
 
 		// À×´ïÍ¼
 		JPanel chartPanel = new JPanel();
-		chartPanel.setBounds(402, 92, 509, 380);
+		chartPanel.setBounds(240, 70, 505, 380);
+		chartPanel.setOpaque(true);
 		add(chartPanel);
 
 		String name[] = stockContrastBL.getList();
 		int count = name.length;
 		checkBox = new JCheckBox[count];
+
 		for (int i = 0; i < count; i++) {
 			checkBox[i] = new JCheckBox(name[i]);
-			checkBox[i].setBounds(245, 110 + 30 * i, 125, 25);
+			checkBox[i].setBounds(252 + i % 5 * 95, 465 + i / 5 * 35, 85, 25);
 			checkBox[i].setOpaque(true);
 			checkBox[i].setContentAreaFilled(false);
 			add(checkBox[i]);
@@ -317,7 +319,7 @@ public class OptionalStock extends JPanel {
 					spiderChart = new SpiderChart(nameList, stockContrastBL);
 					ChartPanel cpanel = spiderChart.getChart();
 					cpanel.setMouseZoomable(true);
-					cpanel.setPreferredSize(new Dimension(500, 350));
+					cpanel.setPreferredSize(new Dimension(500, 370));
 					chartPanel.add(cpanel);
 					chartPanel.repaint();
 					chartPanel.validate();

@@ -215,7 +215,8 @@ public class KLineChart extends JPanel {
 		// String title[] = {"时分图","日K线图","周K线图","月K线图"};
 		chart = new JFreeChart("", JFreeChart.DEFAULT_TITLE_FONT, combineddomainxyplot, false);
 		chart.setAntiAlias(true);
-		chart.setBackgroundPaint(new Color(246, 246, 246));
+		chart.setBackgroundImageAlpha(0f);
+
 		// 图例
 		LegendTitle legendTitle = new LegendTitle(plot1);
 		legendTitle.setPosition(RectangleEdge.BOTTOM);
