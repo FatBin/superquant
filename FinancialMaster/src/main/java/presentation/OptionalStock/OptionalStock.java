@@ -3,9 +3,11 @@ package presentation.OptionalStock;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -24,11 +26,18 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 import org.jfree.chart.ChartPanel;
 
+import VO.StockItemVO;
 import businesslogic.stockContrastbl.StockContrastBL;
+import businesslogic.stockcheckbl.StockItemBL;
 import businesslogicservice.stockContrastblservice.StockContrastBLService;
+import businesslogicservice.stockcheckblservice.StockItemRankBLService;
+import presentation.repaintComponent.MyComboBox;
+import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.stockcheckui.PersonalStock;
 import presentation.stockcheckui.StockList;
@@ -52,12 +61,17 @@ public class OptionalStock extends JPanel {
 	private SpiderChart spiderChart;
 	private int rowpos = -1;
 	private ArrayList<String> nameList;
+	private JTable table;
+	private ArrayList<StockItemVO> rankDataList;
+	DefaultTableModel tableModel;
+	private String condition;
 	StockContrastBLService stockContrastBL = new StockContrastBL();
+	StockItemRankBLService stockItemBL = new StockItemBL();
 
 	/**
 	 * Create the panel.
 	 */
-	@SuppressWarnings({ "static-access" })
+	@SuppressWarnings({ "static-access", "unchecked" })
 	public OptionalStock(final JFrame frame) {
 		setBorder(null);
 
@@ -287,7 +301,7 @@ public class OptionalStock extends JPanel {
 		// 雷达图
 		JPanel chartPanel = new JPanel();
 		chartPanel.setBounds(240, 70, 505, 380);
-		chartPanel.setOpaque(true);
+		chartPanel.setOpaque(false);
 		add(chartPanel);
 
 		String name[] = stockContrastBL.getList();
@@ -316,9 +330,13 @@ public class OptionalStock extends JPanel {
 					}
 					// 获取新的图
 					chartPanel.removeAll();
+					// 如果为空，默认显示第一个
+					if (nameList.isEmpty()) {
+						nameList.add(checkBox[0].getText());
+						checkBox[0].setSelected(true);
+					}
 					spiderChart = new SpiderChart(nameList, stockContrastBL);
 					ChartPanel cpanel = spiderChart.getChart();
-					cpanel.setMouseZoomable(true);
 					cpanel.setPreferredSize(new Dimension(500, 370));
 					chartPanel.add(cpanel);
 					chartPanel.repaint();
@@ -326,6 +344,70 @@ public class OptionalStock extends JPanel {
 				}
 			});
 		}
+
+		// 排行
+		final MyComboBox conditionBox = new MyComboBox();
+		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
+		conditionBox.setBounds(770, 70, 160, 25);
+		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率" };
+
+		for (int i = 0; i < conditionstr.length; i++) {
+			conditionBox.addItem(conditionstr[i]);
+		}
+
+		conditionBox.setSelectedIndex(0);
+		conditionBox.setOpaque(false);
+		conditionBox.setBorder(null);
+		add(conditionBox);
+
+		// 排行表格
+		JPanel rankPane = new JPanel();
+		rankPane.setBounds(770, 105, 160, 400);
+		add(rankPane);
+		table = new JTable();
+		table.setRowHeight(26);
+		// 使表格居中
+		MyTableCellRenderer r = new MyTableCellRenderer();
+		r.setHorizontalAlignment(JLabel.CENTER);
+		table.setDefaultRenderer(Object.class, r);
+		table.setSelectionBackground(new Color(88, 93, 103, 200));
+		table.setSelectionForeground(new Color(255, 255, 255, 230));
+		table.setOpaque(false);
+		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		// 选取行
+		table.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				Point mousepoint;
+				mousepoint = e.getPoint();
+				rowpos = table.rowAtPoint(mousepoint);
+				table.setRowSelectionInterval(rowpos, rowpos);
+			}
+		});
+		table.setBorder(null);
+		table.setEnabled(false);
+		rankPane.add(table);
+		rankPane.setOpaque(false);
+
+		rankDataList = new ArrayList<>();
+		conditionBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				condition = conditionBox.getSelectedItem().toString();
+				rankDataList = stockItemBL.getRank(condition);
+
+				String data[][] = new String[rankDataList.size()][2];
+				for (int i = 0; i < rankDataList.size(); i++) {
+					data[i][0] = rankDataList.get(i).getStockname();
+					data[i][1] = rankDataList.get(i).getItem();
+				}
+
+				tableModel = new DefaultTableModel(data, new String[] { "股票名称", condition });
+				table.setModel(tableModel);
+				
+				rankPane.repaint();
+				rankPane.validate();
+			}
+		});
 
 		// 点击其他地方使textfield不能输入
 		addMouseListener(new MouseListener() {
