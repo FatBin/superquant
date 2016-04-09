@@ -22,9 +22,9 @@ public class SpiderChart {
 
 	public SpiderChart(ArrayList<String> nameList, StockContrastBLService stockContrastBL) {
 
-		String series[] = { "涨跌幅(+0.5*20)", "市净率(+2*2)", "市盈率(*0.15)", "换手率(+1*2)" };
-		double polishPlus[] = { 0.5, 2, 0, 1 };
-		double polishMul[] = { 20, 2, 0.15, 2 };
+		String series[] = { "涨跌幅(+0.05*200)", "市净率(*3)", "市盈率(*0.15)", "换手率(+1*2)" };
+		double polishPlus[] = { 0.05, 0, 0, 1 };
+		double polishMul[] = {200, 3, 0.15, 2 };
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (String name : nameList) {
