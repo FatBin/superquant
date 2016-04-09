@@ -352,7 +352,7 @@ public class OptionalStock extends JPanel {
 		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
 		conditionBox.setBounds(770, 80, 160, 25);
-		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率" };
+		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率","涨跌幅" };
 
 		for (int i = 0; i < conditionstr.length; i++) {
 			conditionBox.addItem(conditionstr[i]);
@@ -402,12 +402,15 @@ public class OptionalStock extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				condition = conditionBox.getSelectedItem().toString();
 				rankDataList = stockItemBL.getRank(condition);
-
-				String data[][] = new String[rankDataList.size()][3];
-				for (int i = 0; i < rankDataList.size(); i++) {
+                int size=rankDataList.size();
+				StockItemVO vo;
+				String data[][] = new String[size][3];
+				
+				for (int i = 0; i < size; i++) {					
 					data[i][0] = i + 1 + "";
-					data[i][1] = rankDataList.get(i).getStockname();
-					data[i][2] = rankDataList.get(i).getItem();
+					vo=rankDataList.get(i);
+					data[i][1] = vo.getStockname();
+					data[i][2] = vo.getItem();
 				}
 
 				tableModel = new DefaultTableModel(data, new String[] { "排名", "股票名称", condition });
