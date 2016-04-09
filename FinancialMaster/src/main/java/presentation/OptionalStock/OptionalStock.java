@@ -66,10 +66,12 @@ public class OptionalStock extends JPanel {
 	private SpiderChart spiderChart;
 	private int rowpos = -1;
 	private ArrayList<String> nameList;
+	private JScrollPane rankPane;
 	private JTable table;
 	private ArrayList<StockItemVO> rankDataList;
+	private JPanel chartPanel;
+
 	DefaultTableModel tableModel;
-	private String condition;
 	StockContrastBLService stockContrastBL = new StockContrastBL();
 	StockItemRankBLService stockItemBL = new StockItemBL();
 
@@ -304,7 +306,7 @@ public class OptionalStock extends JPanel {
 		searchTextField.setColumns(10);
 
 		// 雷达图
-		JPanel chartPanel = new JPanel();
+		chartPanel = new JPanel();
 		chartPanel.setBounds(240, 70, 505, 380);
 		chartPanel.setOpaque(false);
 		add(chartPanel);
@@ -325,35 +327,18 @@ public class OptionalStock extends JPanel {
 			checkBox[i].addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					// 每勾一次遍历一次
-					nameList = new ArrayList<>();
-					for (int j = 0; j < count; j++) {
-						if (checkBox[j].isSelected()) {
-							String name = checkBox[j].getText();
-							nameList.add(name);
-						}
-					}
-					// 获取新的图
-					chartPanel.removeAll();
-					// 如果为空，默认显示第一个
-					if (nameList.isEmpty()) {
-						nameList.add(checkBox[0].getText());
-						checkBox[0].setSelected(true);
-					}
-					spiderChart = new SpiderChart(nameList, stockContrastBL);
-					ChartPanel cpanel = spiderChart.getChart();
-					cpanel.setPreferredSize(new Dimension(500, 370));
-					chartPanel.add(cpanel);
-					chartPanel.repaint();
-					chartPanel.validate();
+					showChart(count);
 				}
 			});
 		}
+		
+		showChart(count);
 
 		// 排行
 		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
-		conditionBox.setBounds(770, 80, 160, 25);
+		conditionBox.setBounds(770, 80, 80, 25);
+		conditionBox.setMaximumRowCount(20);
 		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率", "涨跌幅" };
 
 		for (int i = 0; i < conditionstr.length; i++) {
@@ -366,7 +351,7 @@ public class OptionalStock extends JPanel {
 		add(conditionBox);
 
 		// 排行表格
-		JScrollPane rankPane = new JScrollPane();
+		rankPane = new JScrollPane();
 		rankPane.setBounds(770, 115, 160, 400);
 		rankPane.setOpaque(false);
 		rankPane.setBorder(BorderFactory.createEmptyBorder());
@@ -398,31 +383,14 @@ public class OptionalStock extends JPanel {
 		rankPane.setViewportView(table);
 		rankPane.setOpaque(false);
 
+		showRank(conditionBox.getItemAt(0).toString());
+		
 		rankDataList = new ArrayList<>();
 		conditionBox.addItemListener(new ItemListener() {
-
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-
-				condition = e.getItem().toString();
-				rankDataList = stockItemBL.getRank(condition);
-				int size = rankDataList.size();
-				StockItemVO vo;
-				String data[][] = new String[size][3];
-
-				for (int i = 0; i < size; i++) {
-					data[i][0] = i + 1 + "";
-					vo = rankDataList.get(i);
-					data[i][1] = vo.getStockname();
-					data[i][2] = vo.getItem();
-				}
-
-				tableModel = new DefaultTableModel(data, new String[] { "排名", "股票名称", condition });
-				table.setModel(tableModel);
-				table.getColumnModel().getColumn(0).setPreferredWidth(35);
-
-				rankPane.repaint();
-				rankPane.validate();
+				String condition = e.getItem().toString();
+				showRank(condition);
 			}
 		});
 
@@ -499,5 +467,53 @@ public class OptionalStock extends JPanel {
 				}
 			}
 		});
+	}
+
+	// 显示排行
+	public void showRank(String condition) {
+
+		rankDataList = stockItemBL.getRank(condition);
+		int size = rankDataList.size();
+		StockItemVO vo;
+		String data[][] = new String[size][3];
+
+		for (int i = 0; i < size; i++) {
+			data[i][0] = i + 1 + "";
+			vo = rankDataList.get(i);
+			data[i][1] = vo.getStockname();
+			data[i][2] = vo.getItem();
+		}
+
+		tableModel = new DefaultTableModel(data, new String[] { "排名", "股票名称", condition });
+		table.setModel(tableModel);
+		table.getColumnModel().getColumn(0).setPreferredWidth(35);
+
+		rankPane.repaint();
+		rankPane.validate();
+	}
+	
+	public void showChart(int count){
+		// 每勾一次遍历一次
+		nameList = new ArrayList<>();
+		for (int j = 0; j < count; j++) {
+			if (checkBox[j].isSelected()) {
+				String name = checkBox[j].getText();
+				nameList.add(name);
+			}
+		}
+		// 获取新的图
+		chartPanel.removeAll();
+		// 如果为空，默认显示第一个
+		if (nameList.isEmpty()) {
+			nameList.add(checkBox[0].getText());
+			checkBox[0].setSelected(true);
+		}
+		spiderChart = new SpiderChart(nameList, stockContrastBL);
+		ChartPanel cpanel = spiderChart.getChart();
+		cpanel.setPreferredSize(new Dimension(500, 370));
+		chartPanel.add(cpanel);
+		
+		chartPanel.repaint();
+		chartPanel.validate();
 	}
 }

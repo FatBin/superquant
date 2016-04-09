@@ -114,6 +114,7 @@ public class PersonalStock extends JPanel {
 				frame.getContentPane().add(opanel);
 				opanel.setBounds(0, 0, 960, 600);
 				frame.repaint();
+				frame.validate();
 			}
 		});
 		optionStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));

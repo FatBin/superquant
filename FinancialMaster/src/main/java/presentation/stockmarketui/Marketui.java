@@ -199,6 +199,7 @@ public class Marketui extends JPanel {
 				frame.getContentPane().add(opanel);
 				opanel.setBounds(0, 0, getWidth(), getHeight());
 				frame.repaint();
+				frame.validate();
 			}
 		});
 		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -330,13 +331,7 @@ public class Marketui extends JPanel {
 
 		// 初始化时显示日k图
 		// 后期改成时分图
-		stockMarketVO = marketKLineBL.getData(marketK[1]);
-		data = stockMarketVO.getData();
-
-		KLineChart kline = new KLineChart(data, 1);
-		ChartPanel chartPanel = kline.getChartPane();
-		chartPanel.setPreferredSize(new Dimension(660, 345));
-		panes[0].add(chartPanel);
+		showKline(0);
 
 		KLinePane.addChangeListener(new ChangeListener() {
 			@Override
@@ -351,15 +346,7 @@ public class Marketui extends JPanel {
 					label.setSize(660, 350);
 					panes[selectedIndex].add(label);
 				} else {
-					stockMarketVO = marketKLineBL.getData(marketK[selectedIndex + 1]);
-					data = stockMarketVO.getData();
-
-					KLineChart kline = new KLineChart(data, selectedIndex + 1);
-					ChartPanel chartPanel = kline.getChartPane();
-					chartPanel.setPreferredSize(new Dimension(660, 345));
-					panes[selectedIndex].add(chartPanel);
-					panes[selectedIndex].repaint();
-					panes[selectedIndex].validate();
+					showKline(selectedIndex);
 				}
 			}
 		});
@@ -580,5 +567,19 @@ public class Marketui extends JPanel {
 				table.setRowSelectionInterval(rowpos, rowpos);
 			}
 		});
+	}
+	
+	// 显示k线图
+	public void showKline(int selectedIndex){
+		
+		stockMarketVO = marketKLineBL.getData(marketK[selectedIndex + 1]);
+		data = stockMarketVO.getData();
+
+		KLineChart kline = new KLineChart(data, selectedIndex + 1);
+		ChartPanel chartPanel = kline.getChartPane();
+		chartPanel.setPreferredSize(new Dimension(660, 345));
+		panes[selectedIndex].add(chartPanel);
+		panes[selectedIndex].repaint();
+		panes[selectedIndex].validate();
 	}
 }

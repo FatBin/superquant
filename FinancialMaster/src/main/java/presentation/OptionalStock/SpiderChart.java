@@ -42,6 +42,7 @@ public class SpiderChart {
 		spiderwebplot.setStartAngle(45D); // 第一条坐标轴的角度
 		spiderwebplot.setInteriorGap(0.2D); // 图显示的大小
 		spiderwebplot.setToolTipGenerator(new StandardCategoryToolTipGenerator());
+		spiderwebplot.setBackgroundPaint(null);
 
 		spiderwebplot.setTicks(3);
 
@@ -50,6 +51,7 @@ public class SpiderChart {
 		legendtitle.setPosition(RectangleEdge.BOTTOM);
 		chart.addSubtitle(legendtitle);
 		chart.setAntiAlias(true);
+		chart.setBorderPaint(null);
 	}
 
 	public ChartPanel getChart() {
@@ -70,6 +72,7 @@ public class SpiderChart {
 			}
 		});
 
+		chartPanel.setOpaque(false);
 		return chartPanel;
 	}
 }
