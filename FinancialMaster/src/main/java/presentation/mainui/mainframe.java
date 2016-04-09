@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
-import businesslogic.connectionSubject.connectionSubject;
+import businesslogic.connection.connectionSubject;
 import presentation.stockmarketui.Marketui;
 import sun.launcher.resources.launcher;;
 
@@ -44,13 +44,8 @@ public class mainframe extends JFrame implements Observer{
 				this.add(connectionReminder);
 				repaint();
 			}else {
-				try {
-					this.remove(connectionReminder);
-					repaint();
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-
+				this.remove(connectionReminder);
+				repaint();
 			}
 		}
 	}
