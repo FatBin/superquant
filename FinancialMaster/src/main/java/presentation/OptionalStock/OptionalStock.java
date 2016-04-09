@@ -20,6 +20,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -352,7 +354,7 @@ public class OptionalStock extends JPanel {
 		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
 		conditionBox.setBounds(770, 80, 160, 25);
-		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率","涨跌幅" };
+		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率", "涨跌幅" };
 
 		for (int i = 0; i < conditionstr.length; i++) {
 			conditionBox.addItem(conditionstr[i]);
@@ -371,7 +373,7 @@ public class OptionalStock extends JPanel {
 		rankPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		rankPane.getViewport().setOpaque(false);
 		add(rankPane);
-		
+
 		table = new JTable();
 		table.setRowHeight(26);
 		// 使表格居中
@@ -397,18 +399,20 @@ public class OptionalStock extends JPanel {
 		rankPane.setOpaque(false);
 
 		rankDataList = new ArrayList<>();
-		conditionBox.addMouseListener(new MouseAdapter() {
+		conditionBox.addItemListener(new ItemListener() {
+
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				condition = conditionBox.getSelectedItem().toString();
+			public void itemStateChanged(ItemEvent e) {
+
+				condition = e.getItem().toString();
 				rankDataList = stockItemBL.getRank(condition);
-                int size=rankDataList.size();
+				int size = rankDataList.size();
 				StockItemVO vo;
 				String data[][] = new String[size][3];
-				
-				for (int i = 0; i < size; i++) {					
+
+				for (int i = 0; i < size; i++) {
 					data[i][0] = i + 1 + "";
-					vo=rankDataList.get(i);
+					vo = rankDataList.get(i);
 					data[i][1] = vo.getStockname();
 					data[i][2] = vo.getItem();
 				}
