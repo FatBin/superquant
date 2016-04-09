@@ -315,7 +315,7 @@ public class Marketui extends JPanel {
 
 		// K线图
 		JTabbedPane KLinePane = new JTabbedPane();
-		KLinePane.setBounds(7, 50, 690, 400);
+		KLinePane.setBounds(7, 50, 690, 388);
 		KLinePane.setUI(new MyTabbedPaneUI2());
 
 		String kLineTitle[] = { "时分", "日K", "周K", "月K" };
@@ -335,6 +335,7 @@ public class Marketui extends JPanel {
 				marketKline_enum[] marketK = marketKline_enum.values();
 
 				// 时分暂时没实现
+				panes[selectedIndex].removeAll();
 				if (selectedIndex == 0) {
 					JLabel label = new JLabel("敬请期待");
 					label.setSize(660, 350);
@@ -345,7 +346,7 @@ public class Marketui extends JPanel {
 
 					KLineChart kline = new KLineChart(data, selectedIndex);
 					ChartPanel chartPanel = kline.getChartPane();
-					chartPanel.setPreferredSize(new Dimension(660, 350));
+					chartPanel.setPreferredSize(new Dimension(660, 345));
 					panes[selectedIndex].add(chartPanel);
 				}
 			}

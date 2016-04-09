@@ -27,8 +27,6 @@ import javax.swing.JTextField;
 
 import org.jfree.chart.ChartPanel;
 
-import com.sun.xml.internal.bind.v2.runtime.Name;
-
 import businesslogic.stockContrastbl.StockContrastBL;
 import businesslogicservice.stockContrastblservice.StockContrastBLService;
 import presentation.repaintComponent.TextBubbleBorder;
@@ -37,9 +35,7 @@ import presentation.stockcheckui.StockList;
 import presentation.stockmarketui.Marketui;
 import presentation.stockmarketui.SearchBar;
 
-import javax.swing.JLabel;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class OptionalStock extends JPanel {
