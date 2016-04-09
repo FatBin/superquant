@@ -323,8 +323,8 @@ public class OptionalStock extends JPanel {
 					cpanel.setMouseZoomable(true);
 					cpanel.setPreferredSize(new Dimension(500, 350));
 					chartPanel.add(cpanel);
-					repaint();
-					validate();
+					chartPanel.repaint();
+					chartPanel.validate();
 				}
 			});
 		}

@@ -31,7 +31,7 @@ public class SpiderChart {
 		}
 
 		MySpiderWebPlot spiderwebplot = new MySpiderWebPlot(dataset);
-		spiderwebplot.setStartAngle(0D); // 第一条坐标轴的角度
+		spiderwebplot.setStartAngle(45D); // 第一条坐标轴的角度
 		spiderwebplot.setInteriorGap(0.40000000000000002D); // 图显示的大小
 		spiderwebplot.setToolTipGenerator(new StandardCategoryToolTipGenerator());
 
