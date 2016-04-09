@@ -1,6 +1,6 @@
 package presentation.mainui;
 
-import businesslogic.connectionSubject.connectionSubject;
+import businesslogic.connection.connectionSubject;
 
 public class Launcher {
 	public static void main(String[] args){

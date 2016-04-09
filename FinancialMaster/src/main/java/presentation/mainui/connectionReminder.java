@@ -8,7 +8,7 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
-import businesslogic.connectionSubject.connectionSubject;
+import businesslogic.connection.connectionSubject;
 
 import javax.swing.JLabel;
 

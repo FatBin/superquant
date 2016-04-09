@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import businesslogic.connectionSubject.connectionSubject;
+import businesslogic.connection.connectionSubject;
 
 public class testframe extends JFrame implements Observer{
 

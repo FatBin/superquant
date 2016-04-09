@@ -1,4 +1,4 @@
-package businesslogic.connectionSubject;
+package businesslogic.connection;
 
 import java.util.Observable;
 
