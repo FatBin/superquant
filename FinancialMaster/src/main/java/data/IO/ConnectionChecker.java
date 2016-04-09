@@ -1,5 +1,12 @@
 package data.IO;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
 import dataservice.connection.connection;
 
 public class ConnectionChecker implements connection{
@@ -7,12 +14,17 @@ public class ConnectionChecker implements connection{
 	@Override
 	public boolean checkconnection() {
 		// TODO Auto-generated method stub
-		String result=HttpRequest.sendGet("https://www.baidu.com/", "");
-		if(result.equals("")){
-			return true;
-		}else{
-			return false;
-		}
-	}
+        try{
+            URL myurl = new URL("http://www.baidu.cn");
+            URLConnection myurlcon = myurl.openConnection();
+            myurlcon.setConnectTimeout(1000);
+            myurlcon.setReadTimeout(1000);
+            BufferedReader in = new BufferedReader(new InputStreamReader(myurlcon.getInputStream(),"UTF-8"));
+            return false;
+        } catch (IOException e) {
+          e.printStackTrace();
+          return true;
+        }
+ 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -14,28 +15,26 @@ import businesslogic.connectionSubject.connectionSubject;
 public class testframe extends JFrame implements Observer{
 
 	private JPanel contentPane;
-	private connectionSubject subject;
+	connectionReminder connectionReminder;
+	private Observable subject;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					testframe frame = new testframe();
+					connectionSubject connectionSubject=new connectionSubject();
+					Thread thread=new Thread(connectionSubject);
+					thread.start();
+					testframe frame = new testframe(connectionSubject);
 					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public testframe() {
+	public testframe(Observable o) {
+		JLabel test=new JLabel("hello");
+		this.add(test);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -43,13 +42,9 @@ public class testframe extends JFrame implements Observer{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(39, 25, 202, 131);
-		contentPane.add(panel);
-		
-		JButton btnNewButton = new JButton("New button");
-		panel.add(btnNewButton);
-		subject=new connectionSubject();
+		connectionReminder = new connectionReminder();
+		connectionReminder.setBounds(100, 100, 450, 300);
+		subject=o;
 		subject.addObserver(this);
 	}
 
@@ -57,9 +52,19 @@ public class testframe extends JFrame implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		connectionSubject connectionSubject=(connectionSubject) o;
-		System.out.println(connectionSubject.getState());
-		this.setEnabled(connectionSubject.getState());
+		Reminder(connectionSubject.getState());
+	}
+	
+	public void Reminder(boolean state) {
+		if (state) {
+			this.add(connectionReminder);
+			System.out.println("yes");
+			repaint();
+		}else {
+			this.remove(connectionReminder);
+			System.out.println("false");
+			repaint();
+		}
 	}
 }

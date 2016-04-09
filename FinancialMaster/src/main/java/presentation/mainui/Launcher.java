@@ -1,29 +1,12 @@
 package presentation.mainui;
-import java.awt.Color;
-import javax.swing.JFrame;
 
-import presentation.stockmarketui.Marketui;;
+import businesslogic.connectionSubject.connectionSubject;
 
-@SuppressWarnings("serial")
-public class Launcher extends JFrame {
-
+public class Launcher {
 	public static void main(String[] args){
-		JFrame frame = new JFrame();
-		frame.setUndecorated(true); // È¥µô±ß¿ò
-		frame.setLayout(null);
-		frame.setBackground(new Color(0, 0, 0, 0));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(960, 600);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		Marketui panel = new Marketui(frame);
-		panel.setBorder(null);
-		panel.setBounds(0,0,frame.getWidth(),frame.getHeight());
-		frame.add(panel);
-		frame.setVisible(true);
+		connectionSubject connectionSubject=new connectionSubject();
+		Thread thread=new Thread(connectionSubject);
+		thread.start();
+		mainframe mainframe=new mainframe(connectionSubject);
 	}
-	/**
-	 * Create the frame.
-	 */
-
 }

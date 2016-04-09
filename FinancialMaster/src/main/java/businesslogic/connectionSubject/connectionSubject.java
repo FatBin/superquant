@@ -7,8 +7,9 @@ import dataservice.connection.connection;
 
 public class connectionSubject extends Observable implements Runnable{
 	private	boolean state;
-	
-	public connectionSubject(){}
+	public connectionSubject(){
+		state=false;
+	}
 	
 	public void measurementsChanged(){
 		setChanged();
@@ -35,7 +36,10 @@ public class connectionSubject extends Observable implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			setMeasurements(connection.checkconnection());
+			if (connection.checkconnection()!=state) {
+				state=connection.checkconnection();
+				setMeasurements(state);
+			}
 		}
 	}
 }
