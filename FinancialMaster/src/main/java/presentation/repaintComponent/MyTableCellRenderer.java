@@ -43,7 +43,7 @@ public class MyTableCellRenderer extends DefaultTableCellRenderer{
                 super.paintComponent(g);  
              }  
          };  
-//         label.setText(value != null ? value.toString() : "unknown");   
+         label.setText(value != null ? value.toString() : "unknown");   
          label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
          label.setHorizontalAlignment(JLabel.CENTER);
          label.addMouseListener(new MouseListener() {
