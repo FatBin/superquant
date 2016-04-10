@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businesslogic.connection.connectionSubject;
+import javafx.scene.control.Labeled;
 
 public class testframe extends JFrame implements Observer{
 
@@ -39,11 +40,16 @@ public class testframe extends JFrame implements Observer{
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel label = new JLabel("ssss");
+		label.setBounds(10, 10, 20, 10);
+		contentPane.add(label);
+		
 		connectionReminder = new connectionReminder();
-		connectionReminder.setBounds(100, 100, 450, 300);
+		connectionReminder.setBounds(0, 0, 960, 600);
 		subject=o;
 		subject.addObserver(this);
 	}

@@ -44,7 +44,7 @@ public class MyTableCellRenderer extends DefaultTableCellRenderer{
              }  
          };  
          label.setText(value != null ? value.toString() : "unknown");   
-         label.setFont(new Font("Arial", Font.PLAIN, 13));
+         label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
          label.setHorizontalAlignment(JLabel.CENTER);
          label.addMouseListener(new MouseListener() {
 			

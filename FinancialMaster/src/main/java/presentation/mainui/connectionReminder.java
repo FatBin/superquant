@@ -2,9 +2,13 @@ package presentation.mainui;
 
 import javax.swing.JPanel;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
@@ -15,20 +19,23 @@ import javax.swing.JLabel;
 public class connectionReminder extends JPanel implements Runnable{
 
 	private JLabel label;
+	private ImageIcon image = new ImageIcon("");
 
 	public connectionReminder() {
 		setLayout(null);
-		
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(168, 46, 97, 17);
-		add(toolBar);
-		
-		label = new JLabel("重连中");
-		label.setBounds(400, 500, 100, 100);
-		toolBar.add(label);
-		
 	}
 
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.setColor(new Color(0, 0, 0,50));
+		g2d.fillRoundRect(0, 0, 960, 600, 12, 12);
+		g2d.setColor(new Color(248, 247, 243));
+		g2d.fillRoundRect(280, 132, 400, 270, 6, 6);
+	}
+	
+	
 	@Override
 	public void run() {
 		while (true) {//运行动画
