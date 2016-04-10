@@ -570,7 +570,7 @@ public class StockDetail extends JPanel {
 			tabbedPane.add(title[i], panes[i]);
 		}
 
-//		showKline();
+		showKline();
 
 		tabbedPane.addChangeListener(new ChangeListener() {
 			@Override
@@ -707,19 +707,18 @@ public class StockDetail extends JPanel {
 
 	public void showKline() {
 
-		int length = data.length;
-		
-		String[][] newData = new String[length][6];
-		for(int i=0;i< length;i++){
-			newData[i][0] = data[length-1-i][0];
-			newData[i][1] = data[length-1-i][1];
-			newData[i][2] = data[length-1-i][2];
-			newData[i][3] = data[length-1-i][3];
-			newData[i][4] = data[length-1-i][4];
-			newData[i][5] = data[length-1-i][6];
-		}
+		String klineData[][] = datavo.getKLine_data();
+//		String[][] newData = new String[length][6];
+//		for(int i=0;i< length;i++){
+//			newData[i][0] = data[length-1-i][0];
+//			newData[i][1] = data[length-1-i][1];
+//			newData[i][2] = data[length-1-i][2];
+//			newData[i][3] = data[length-1-i][3];
+//			newData[i][4] = data[length-1-i][4];
+//			newData[i][5] = data[length-1-i][6];
+//		}
 
-		KLineChart kline = new KLineChart(newData, selectedIndex);
+		KLineChart kline = new KLineChart(klineData, selectedIndex);
 		ChartPanel chartPanel = kline.getChartPane();
 		chartPanel.setPreferredSize(new Dimension(660, 345));
 		panes[0].add(chartPanel);

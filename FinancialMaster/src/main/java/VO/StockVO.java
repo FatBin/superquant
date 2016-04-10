@@ -72,7 +72,7 @@ public class StockVO {
 	public double getUps_and_lows() {
 		return ups_and_lows;
 	}
-	public String[][] KLine_data() {
+	public String[][] getKLine_data() {
 		return KLine_data;
 	}
 
