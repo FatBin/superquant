@@ -11,6 +11,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -38,13 +40,9 @@ import javax.swing.table.JTableHeader;
 
 import org.jfree.chart.ChartPanel;
 
-import ENUM.marketKline_enum;
-import VO.StockMarketVO;
 import VO.StockVO;
-import businesslogic.factory.InitFactory;
 import businesslogic.stockcheckbl.StockMessageBL;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
-import businesslogicservice.stockmarketblservice.MarketKLineBLService;
 import presentation.repaintComponent.DateChooser;
 import presentation.repaintComponent.HeaderCellRenderer;
 import presentation.repaintComponent.IntentPane;
@@ -71,7 +69,8 @@ public class StockDetail extends JPanel {
 	private StockVO datavo;
 	private JPanel panes[];
 	private int selectedIndex;
-	String data[][];
+	private String data[][];
+	private String linestr[] = { "开盘价", "最高价", "最低价", "收盘价", "后复权价", "成交量", "换手率", "市盈率", "市净率" };
 
 	/**
 	 * Create the panel.
@@ -572,44 +571,60 @@ public class StockDetail extends JPanel {
 
 		showKline();
 
+		panes[1].setLayout(new FlowLayout());
+
+		final MyComboBox lineBox = new MyComboBox();
+		lineBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
+		lineBox.setPreferredSize(new Dimension(90, 25));
+		lineBox.setMaximumRowCount(20);
+
+		for (int i = 0; i < linestr.length; i++) {
+			lineBox.addItem(linestr[i]);
+		}
+
+		JLabel label2 = new JLabel("近一个月浮动情况");
+		label2.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
+		label2.setPreferredSize(new Dimension(150, 30));
+
+		lineBox.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+				panes[1].removeAll();
+				panes[1].add(lineBox);
+				panes[1].add(label2);
+
+				String line = e.getItem().toString();
+				showLineChart(line);
+			}
+		});
+
+		JLabel remindlabel = new JLabel("敬请期待");
+		label.setSize(660, 350);
+		panes[2].add(remindlabel);
+
 		tabbedPane.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 				JTabbedPane tab = (JTabbedPane) e.getSource();
 				selectedIndex = tab.getSelectedIndex();
 
-				// 时分暂时没实现
-				panes[selectedIndex].removeAll();
-				
-				if (selectedIndex > 0) {
-					
-				} 
-				if(selectedIndex == 0) {
+				if (selectedIndex == 0) {
 					// 日K
+					panes[0].removeAll();
 					showKline();
-				}else if(selectedIndex == 1){
+				} else if (selectedIndex == 1) {
 					// 折线图
-					int length = data.length;
-					
-					String[][] lineData = new String[length][2];
-					for(int i=0;i<length;i++){
-						lineData[i][0] = data[length-i-1][0];
-						lineData[i][1] = data[length-i-1][1];
-					}
-					
-					LineChart lineChart = new LineChart(data, "开盘价");
-					ChartPanel chartPanel = lineChart.getChartPane();
-					chartPanel.setPreferredSize(new Dimension(660, 335));
-					panes[selectedIndex].add(chartPanel);
-					panes[selectedIndex].repaint();
-					panes[selectedIndex].validate();
-					
-				}else{
-					JLabel label = new JLabel("敬请期待");
-					label.setSize(660, 350);
-					panes[selectedIndex].add(label);
+					panes[1].removeAll();
+					panes[1].add(lineBox);
+					panes[1].add(label2);
+
+					showLineChart("开盘价");
+				} else {
+					// 柱状图
+
 				}
-				
+
 			}
 		});
 
@@ -706,23 +721,38 @@ public class StockDetail extends JPanel {
 	}
 
 	public void showKline() {
-
 		String klineData[][] = datavo.getKLine_data();
-//		String[][] newData = new String[length][6];
-//		for(int i=0;i< length;i++){
-//			newData[i][0] = data[length-1-i][0];
-//			newData[i][1] = data[length-1-i][1];
-//			newData[i][2] = data[length-1-i][2];
-//			newData[i][3] = data[length-1-i][3];
-//			newData[i][4] = data[length-1-i][4];
-//			newData[i][5] = data[length-1-i][6];
-//		}
 
-		KLineChart kline = new KLineChart(klineData, selectedIndex);
+		KLineChart kline = new KLineChart(klineData, 1);
 		ChartPanel chartPanel = kline.getChartPane();
 		chartPanel.setPreferredSize(new Dimension(660, 345));
 		panes[0].add(chartPanel);
 		panes[0].repaint();
 		panes[0].validate();
+	}
+
+	public void showLineChart(String line) {
+		int length = data.length;
+		String[][] lineData = new String[length][2];
+
+		int index = 0;
+		for (int i = 0; i < 9; i++) {
+			if (linestr[i].equals(line)) {
+				index = i;
+				break;
+			}
+		}
+
+		for (int i = 0; i < length; i++) {
+			lineData[i][0] = data[length - i - 1][0];
+			lineData[i][1] = data[length - i - 1][index + 1];
+		}
+
+		LineChart lineChart = new LineChart(lineData, line);
+		ChartPanel chartPanel = lineChart.getChartPane();
+		chartPanel.setPreferredSize(new Dimension(660, 335));
+		panes[1].add(chartPanel);
+		panes[1].repaint();
+		panes[1].validate();
 	}
 }

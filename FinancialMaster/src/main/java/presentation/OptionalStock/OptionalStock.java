@@ -338,7 +338,7 @@ public class OptionalStock extends JPanel {
 		// 排行
 		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
-		conditionBox.setBounds(770, 80, 80, 25);
+		conditionBox.setBounds(770, 80, 90, 25);
 		conditionBox.setMaximumRowCount(20);
 		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率", "涨跌幅" };
 

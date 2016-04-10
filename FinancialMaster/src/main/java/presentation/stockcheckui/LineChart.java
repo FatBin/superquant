@@ -34,7 +34,7 @@ public class LineChart {
 			linedataset.addValue(Double.parseDouble(data[i][1]), serie, df.format(date));
 		}
 
-		chart = ChartFactory.createLineChart(serie + "近一个月波动情况", "", "", linedataset, PlotOrientation.VERTICAL, false,
+		chart = ChartFactory.createLineChart("", "", "", linedataset, PlotOrientation.VERTICAL, false,
 				true, false);
 		
 		CategoryPlot plot = chart.getCategoryPlot();
