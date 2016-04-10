@@ -78,7 +78,7 @@ public class StockDetail extends JPanel {
 
 		JPanel content = new JPanel();
 		content.setOpaque(false);
-		content.setPreferredSize(new Dimension(710, 900));
+		content.setPreferredSize(new Dimension(710, 1400));
 		content.setLayout(new FlowLayout(FlowLayout.LEFT, 14, 14));
 
 		IntentPane intentPane1 = new IntentPane();
@@ -88,6 +88,10 @@ public class StockDetail extends JPanel {
 		IntentPane intentPane2 = new IntentPane();
 		intentPane2.setPreferredSize(new Dimension(700, 450));
 		intentPane2.setLayout(null);
+		
+		IntentPane intentPane3 = new IntentPane();
+		intentPane3.setPreferredSize(new Dimension(700, 450));
+		intentPane3.setLayout(null);
 
 		closeBtn = new JButton("X");
 		closeBtn.addMouseListener(new MouseAdapter() {
@@ -204,6 +208,17 @@ public class StockDetail extends JPanel {
 
 		barPanel bPanel1 = new barPanel(datavo.getOpen(), high);
 		bPanel1.setBounds(150, 78, (int) (210 * Math.pow(open, 12)), 26);
+		bPanel1.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				JLabel label = new JLabel(datavo.getOpen()+"");
+				label.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 2));
+				label.setPreferredSize(new Dimension(60, 20));
+				bPanel1.add(label);
+			}
+			
+		});
 		intentPane1.add(bPanel1);
 
 		barPanel bPanel2 = new barPanel(datavo.getLow(), high);
@@ -528,6 +543,7 @@ public class StockDetail extends JPanel {
 		// Ìí¼ÓscrollPane
 		content.add(intentPane1);
 		content.add(intentPane2);
+		content.add(intentPane3);
 		contentScroll.setViewportView(content);
 		contentScroll.getVerticalScrollBar().setUnitIncrement(20);
 		add(contentScroll);
