@@ -17,10 +17,8 @@ import dataservice.stockcheckdataservice.StockDataService;
 public class StockListBL implements StockListBLService {
 
 	ArrayList<String[]> init_list = new ArrayList<String[]>();
-
-	@Override
-	public String[][] getStockList() {
-		// 股票代码、开盘价、最高价、最低价、收盘价、后复权价、成交量、换手率、市盈率、市净率
+	String list[][];
+	public StockListBL(){
 		StockDataService sds = new StockData();
 		manageStockDataService msds=new ManageStockData();
 		Calendar cal = Calendar.getInstance();
@@ -43,7 +41,7 @@ public class StockListBL implements StockListBLService {
 
 		cal.add(Calendar.DATE, -1);				
 		String yesStartDay=format.format(cal.getTime());
-		String list[][] = new String[size][8];
+		list = new String[size][8];
 		Double close[][]=new Double[size][2];
 		Double ups_and_downs;
 		NumberFormat nf = NumberFormat.getPercentInstance(); 
@@ -67,6 +65,14 @@ public class StockListBL implements StockListBLService {
 			list[i][7]=nf.format(ups_and_downs);
 			init_list.add(list[i]);
 		}
+	}
+	
+	
+	
+	@Override
+	public String[][] getStockList() {
+		// 股票代码、开盘价、最高价、最低价、收盘价、后复权价、成交量、换手率、市盈率、市净率
+		
 		return list;
 	}
 
