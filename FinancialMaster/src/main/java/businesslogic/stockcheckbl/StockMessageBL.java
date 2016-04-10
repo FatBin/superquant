@@ -110,11 +110,12 @@ public class StockMessageBL implements StockMessageBLService {
 			init_list.add(history_data[index]);
 			index--;
 		}
-		String[][] k_data = new String[size][10];//为k线图提供历史数据		
+		
 		ssPOlist = sds.getStatisitcOfStock(id, halfYearAgo, endDay);
 		size=ssPOlist.size();
 		index = size-1;
 		int k_size = 60;
+		String[][] k_data = new String[size][10];//为k线图提供历史数据		
 		String[][] KLine_data=new String[k_size][9];//返回k线图
 		double[] closeForKLine=new double[k_size+30];
 		for (stockStatisticPO sp : ssPOlist) {
@@ -138,6 +139,7 @@ public class StockMessageBL implements StockMessageBLService {
 			for (int j = 0; j < 5; j++) {
 				KLine_data[i][j] = k_data[k_size - 1 - i][j];
 			}
+			KLine_data[i][5] = k_data[k_size - 1 - i][6];
 			sum=0;
 			for (int j = i+25; j < i+30; j++) {
 				sum+=closeForKLine[j];
