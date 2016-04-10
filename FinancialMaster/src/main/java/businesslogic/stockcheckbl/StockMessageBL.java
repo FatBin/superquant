@@ -59,8 +59,10 @@ public class StockMessageBL implements StockMessageBLService {
 		String startDay = format.format(cal.getTime());
 		cal.add(Calendar.DATE, 1);
 		String endDay = format.format(cal.getTime());
-		cal2.add(Calendar.MONTH, -2);
+		cal2.add(Calendar.MONTH, -1);
 		String lastMonth = format.format(cal2.getTime());
+		cal2.add(Calendar.MONTH, -5);
+		String halfYearAgo =format.format(cal2.getTime());
 		ArrayList<stockStatisticPO> ssPOlist;
 		stockStatisticPO ssPO;
 		do {
@@ -75,7 +77,7 @@ public class StockMessageBL implements StockMessageBLService {
 		double open = ssPO.getOpen();// 开盘价
 		double high = ssPO.getHigh();// 最高价
 		double low = ssPO.getLow();// 最低价
-		double close = ssPO.getClose();// 收盘价
+		double closelist = ssPO.getClose();// 收盘价
 		double adj_price = ssPO.getAdj_price();// 后复权价
 		int volume = ssPO.getVolume();// 成交量
 		double turnover = ssPO.getTurnover();// 换手率
@@ -87,29 +89,73 @@ public class StockMessageBL implements StockMessageBLService {
 		ssPOlist = sds.getStatisitcOfStock(id, yesStartDay,startDay);
 		ssPO = ssPOlist.get(0);	
 		double lase_close = ssPO.getClose();// 最新前一天的收盘价
-		Double ups_and_downs=(close-lase_close)/lase_close;
+		Double ups_and_downs=(closelist-lase_close)/lase_close;
 						
 		ssPOlist = sds.getStatisitcOfStock(id, lastMonth, endDay);
 		int size = ssPOlist.size();
-		String[][] list = new String[size][10];// 历史数据
+		String[][] history_data = new String[size][10];// 历史数据
+		
 		int index = size-1;
 		for (stockStatisticPO sp : ssPOlist) {
-			list[index][0] = sp.getDate();
-			list[index][1] = sp.getOpen() + "";
-			list[index][2] = sp.getHigh() + "";
-			list[index][3] = sp.getLow() + "";
-			list[index][4] = sp.getClose() + "";
-			list[index][5] = sp.getAdj_price() + "";
-			list[index][6] = sp.getVolume() + "";
-			list[index][7] = sp.getTurnover() + "";
-			list[index][8] = sp.getPe() + "";
-			list[index][9] = sp.getPb() + "";
-			init_list.add(list[index]);
+			history_data[index][0] = sp.getDate();
+			history_data[index][1] = sp.getOpen() + "";
+			history_data[index][2] = sp.getHigh() + "";
+			history_data[index][3] = sp.getLow() + "";
+			history_data[index][4] = sp.getClose() + "";
+			history_data[index][5] = sp.getAdj_price() + "";
+			history_data[index][6] = sp.getVolume() + "";
+			history_data[index][7] = sp.getTurnover() + "";
+			history_data[index][8] = sp.getPe() + "";
+			history_data[index][9] = sp.getPb() + "";
+			init_list.add(history_data[index]);
 			index--;
 		}
-		sv = new StockVO(name, date, open, high, low, close, adj_price,
-				volume, turnover, pe, pb,ups_and_downs, list);
-
+		
+		ssPOlist = sds.getStatisitcOfStock(id, halfYearAgo, endDay);
+		size=ssPOlist.size();
+		index = size-1;
+		int k_size = 60;
+		String[][] k_data = new String[size][10];//为k线图提供历史数据		
+		String[][] KLine_data=new String[k_size][9];//返回k线图
+		double[] closeForKLine=new double[k_size+30];
+		for (stockStatisticPO sp : ssPOlist) {
+			k_data[index][0] = sp.getDate();
+			k_data[index][1] = sp.getOpen() + "";
+			k_data[index][2] = sp.getHigh() + "";
+			k_data[index][3] = sp.getLow() + "";
+			k_data[index][4] = sp.getClose() + "";
+			k_data[index][5] = sp.getAdj_price() + "";
+			k_data[index][6] = sp.getVolume() + "";
+			k_data[index][7] = sp.getTurnover() + "";
+			k_data[index][8] = sp.getPe() + "";
+			k_data[index][9] = sp.getPb() + "";
+			index--;
+		}
+		for (int i = 0; i < closeForKLine.length; i++) {
+			closeForKLine[i]=Double.parseDouble(k_data[k_size +29 - i][4]);
+		}
+		double sum;
+		for (int i = 0; i < k_size; i++) {
+			for (int j = 0; j < 5; j++) {
+				KLine_data[i][j] = k_data[k_size - 1 - i][j];
+			}
+			KLine_data[i][5] = k_data[k_size - 1 - i][6];
+			sum=0;
+			for (int j = i+25; j < i+30; j++) {
+				sum+=closeForKLine[j];
+			}
+			KLine_data[i][6]=sum/5+"";
+			for (int j = i+20; j < i+25; j++) {
+				sum+=closeForKLine[j];
+			}
+			KLine_data[i][7]=sum/10+"";
+			for (int j = i; j < i+20; j++) {
+				sum+=closeForKLine[j];
+			}
+			KLine_data[i][8]=sum/30+"";
+		}				
+		sv = new StockVO(name, date, open, high, low, closelist, adj_price,
+				volume, turnover, pe, pb,ups_and_downs,KLine_data, history_data);
 		return sv;
 	}
 
