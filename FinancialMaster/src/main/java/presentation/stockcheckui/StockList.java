@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import businesslogic.stockcheckbl.StockListBL;
+import businesslogic.factory.InitFactory;
 import businesslogicservice.stockcheckblservice.StockListBLService;
 import presentation.repaintComponent.HeaderCellRenderer;
 import presentation.repaintComponent.IntentPane;
@@ -50,7 +50,9 @@ public class StockList extends JPanel {
 	Point loc = null;
 	Point tmp = null;
 	boolean isDragged = false;
-	StockListBLService stocklistbl = new StockListBL();
+	
+	InitFactory factory = InitFactory.getFactory();
+	StockListBLService stocklistbl = factory.getStockListBL();
 
 	/**
 	 * Create the panel.

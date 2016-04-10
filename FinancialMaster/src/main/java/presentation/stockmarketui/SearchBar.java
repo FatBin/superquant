@@ -1,7 +1,6 @@
 package presentation.stockmarketui;
 
 import java.awt.Color;
-//import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -9,10 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-//import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import businesslogic.stockcheckbl.StockSearchBL;
+import businesslogic.factory.InitFactory;
 import businesslogicservice.stockcheckblservice.StockSearchBLService;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.stockcheckui.PersonalStock;
@@ -23,7 +21,9 @@ public class SearchBar extends JPanel {
 
 	private JTable table;
 	DefaultTableModel tableModel;
-	private StockSearchBLService searchBL = new StockSearchBL();
+	
+	InitFactory factory = InitFactory.getFactory();
+	private StockSearchBLService searchBL = factory.getStockSearchBL();
 	private String[][] data;
 
 	/**

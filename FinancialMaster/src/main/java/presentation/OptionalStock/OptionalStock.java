@@ -36,8 +36,7 @@ import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartPanel;
 
 import VO.StockItemVO;
-import businesslogic.stockContrastbl.StockContrastBL;
-import businesslogic.stockcheckbl.StockItemBL;
+import businesslogic.factory.InitFactory;
 import businesslogicservice.stockContrastblservice.StockContrastBLService;
 import businesslogicservice.stockcheckblservice.StockItemRankBLService;
 import presentation.repaintComponent.MyComboBox;
@@ -72,8 +71,10 @@ public class OptionalStock extends JPanel {
 	private JPanel chartPanel;
 
 	DefaultTableModel tableModel;
-	StockContrastBLService stockContrastBL = new StockContrastBL();
-	StockItemRankBLService stockItemBL = new StockItemBL();
+	
+	InitFactory factory = InitFactory.getFactory();
+	StockContrastBLService stockContrastBL = factory.getStockContrastBL();
+	StockItemRankBLService stockItemBL = factory.getStockItemBL();
 
 	/**
 	 * Create the panel.

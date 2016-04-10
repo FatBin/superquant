@@ -39,7 +39,7 @@ import ENUM.ManageState;
 import ENUM.date_enum;
 import ENUM.marketKline_enum;
 import VO.StockMarketVO;
-import businesslogic.stockmarketbl.MarketKLineBL;
+import businesslogic.factory.InitFactory;
 import businesslogic.stockmarketbl.StockMarketBL;
 import businesslogicservice.stockmarketblservice.MarketKLineBLService;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
@@ -73,8 +73,9 @@ public class Marketui extends JPanel {
 	private JPanel[] panes;
 	private int selectedIndex = 0;
 
+	InitFactory factory = InitFactory.getFactory();
 	private StockMarketBLService stockMarketBL = new StockMarketBL();
-	private MarketKLineBLService marketKLineBL = new MarketKLineBL();
+	private MarketKLineBLService marketKLineBL = factory.getMarketKLineBL();
 	private StockMarketVO stockMarketVO;
 	DefaultTableModel TableModel;
 	private marketKline_enum[] marketK = marketKline_enum.values();
