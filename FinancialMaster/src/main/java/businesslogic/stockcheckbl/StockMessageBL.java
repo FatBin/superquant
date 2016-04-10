@@ -59,7 +59,7 @@ public class StockMessageBL implements StockMessageBLService {
 		String startDay = format.format(cal.getTime());
 		cal.add(Calendar.DATE, 1);
 		String endDay = format.format(cal.getTime());
-		cal2.add(Calendar.MONTH, -1);
+		cal2.add(Calendar.MONTH, -2);
 		String lastMonth = format.format(cal2.getTime());
 		ArrayList<stockStatisticPO> ssPOlist;
 		stockStatisticPO ssPO;
