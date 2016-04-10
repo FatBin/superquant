@@ -1,6 +1,7 @@
 package presentation.stockcheckui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -26,6 +27,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 import businesslogic.factory.InitFactory;
 import businesslogicservice.stockcheckblservice.StockListBLService;
@@ -50,7 +52,7 @@ public class StockList extends JPanel {
 	Point loc = null;
 	Point tmp = null;
 	boolean isDragged = false;
-	
+
 	InitFactory factory = InitFactory.getFactory();
 	StockListBLService stocklistbl = factory.getStockListBL();
 
@@ -63,10 +65,9 @@ public class StockList extends JPanel {
 
 		setLayout(null);
 		final StockList listui = this;
-		
-		
+
 		IntentPane intentPane = new IntentPane();
-		intentPane.setBounds(13,63,707,522);
+		intentPane.setBounds(13, 63, 707, 522);
 		intentPane.setLayout(null);
 		add(intentPane);
 
@@ -126,8 +127,39 @@ public class StockList extends JPanel {
 		listPane.getViewport().setOpaque(false);
 		intentPane.add(listPane);
 
-		
-		table = new JTable();
+		table = new JTable() {
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				int modelRow = convertRowIndexToModel(row);
+				int modelColumn = convertColumnIndexToModel(column);
+				Component comp = super.prepareRenderer(renderer, row, column);
+				// if (!isRowSelected(modelRow)) {
+				int temp = modelRow;
+				double close = Double.parseDouble(this.getModel().getValueAt(temp, 2).toString());
+				if (modelColumn == 2 || modelColumn == 3 || modelColumn == 4 || modelColumn == 5) {
+					if (Double.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) > close) {
+						comp.setForeground(new Color(179, 43, 56));
+					} else if (Double
+							.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) == close) {
+						comp.setForeground(new Color(62, 56, 49, 240));
+					}  else {
+						comp.setForeground(new Color(37, 120, 38));
+					}
+				}else if (modelColumn == 7) {
+					if (this.getModel().getValueAt(modelRow, 7).toString().charAt(0) == '-') {
+						comp.setForeground(new Color(37, 120, 38));
+					} else if (this.getModel().getValueAt(modelRow, 7).toString().charAt(0) != '-') {
+						comp.setForeground(new Color(179, 43, 56));
+						if (this.getModel().getValueAt(modelRow, 7).toString().charAt(0) == '0') {
+							comp.setForeground(new Color(62, 56, 49, 240));
+						}
+				    }
+				}
+				else // 不符合条件的保持原表格样式
+					comp.setForeground(new Color(62, 56, 49, 240));
+				// }
+				return comp;
+			}
+		};
 		table.setRowHeight(26);
 		// 使表格居中
 		MyTableCellRenderer r = new MyTableCellRenderer();
@@ -136,7 +168,7 @@ public class StockList extends JPanel {
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		table.setOpaque(false);
-		((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);		
+		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -152,7 +184,8 @@ public class StockList extends JPanel {
 
 		String[][] data = stocklistbl.getStockList();
 
-		tableModel = new DefaultTableModel(data, new String[] { "股票代码","股票名称", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）","涨跌幅" });
+		tableModel = new DefaultTableModel(data,
+				new String[] { "股票代码", "股票名称", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）", "涨跌幅" });
 		table.setModel(tableModel);
 
 		// 表格双击
@@ -169,8 +202,7 @@ public class StockList extends JPanel {
 				}
 			}
 		});
-		
-		
+
 		JTableHeader header = table.getTableHeader();
 		header.setOpaque(false);
 		header.getTable().setOpaque(false);
@@ -209,7 +241,7 @@ public class StockList extends JPanel {
 					showTable(key);
 				}
 			}
-			
+
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String key = searchTextField.getText();
@@ -291,7 +323,8 @@ public class StockList extends JPanel {
 
 	public void showTable(String key) {
 		String[][] data = stocklistbl.updateStockList(key);
-		tableModel = new DefaultTableModel(data, new String[] { "股票代码", "股票名称","开盘价", "最高价", "最低价", "收盘价", "交易量（股）","涨跌幅" });
+		tableModel = new DefaultTableModel(data,
+				new String[] { "股票代码", "股票名称", "开盘价", "最高价", "最低价", "收盘价", "交易量（股）", "涨跌幅" });
 		table.setModel(tableModel);
 		repaint();
 	}
