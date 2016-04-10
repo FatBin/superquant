@@ -10,5 +10,6 @@ public class Launcher {
 		Thread thread=new Thread(connectionSubject);
 		thread.start();
 		mainframe mainframe=new mainframe(connectionSubject);
+		mainframe.setVisible(true);
 	}
 }

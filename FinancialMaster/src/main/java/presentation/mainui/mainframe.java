@@ -41,10 +41,15 @@ public class mainframe extends JFrame implements Observer{
 			connectionSubject connectionSubject=(connectionSubject) o;
 			if(connectionSubject.getState()==true){
 				connectionReminder= new connectionReminder();
+				connectionReminder.setBounds(0, 0, 960, 600);
 				this.add(connectionReminder);
+				System.out.println("good");
+//				connectionReminder.setVisible(true);
+				invalidate();
 				repaint();
 			}else {
 				this.remove(connectionReminder);
+				invalidate();
 				repaint();
 			}
 		}
