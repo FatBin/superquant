@@ -35,7 +35,6 @@ import javax.swing.table.TableCellRenderer;
 
 import org.jfree.chart.ChartPanel;
 
-import ENUM.ManageState;
 import ENUM.date_enum;
 import ENUM.marketKline_enum;
 import VO.StockMarketVO;
@@ -94,11 +93,6 @@ public class Marketui extends JPanel {
 		final Marketui mpanel = this;
 
 		searchBar = new SearchBar(frame, mpanel);
-
-		ManageState state = marketKLineBL.update();
-		if (state == ManageState.Fail) {
-			// ÁªÍøÊ§°Ü
-		}
 
 		JScrollPane contentScroll = new JScrollPane();
 		contentScroll.setBounds(224, 51, 730, 540);
