@@ -44,8 +44,12 @@ public class StockItemBL implements StockItemRankBLService{
 			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), startDay, endDay);
 		} while (ssPOlist.isEmpty());
 
-		cal.add(Calendar.DATE, -1);
-		String yesStartDay = format.format(cal.getTime());
+		String yesStartDay;
+		do {
+			cal.add(Calendar.DATE, -1);
+			yesStartDay = format.format(cal.getTime());
+			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), yesStartDay, startDay);
+		} while (ssPOlist.isEmpty());
 		
 		Double close[][] = new Double[size][2];
 		String[] key={"id","股票名","开盘价","最高价","最低价","收盘价",

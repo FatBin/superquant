@@ -84,8 +84,12 @@ public class StockMessageBL implements StockMessageBLService {
 		double pe = ssPO.getPb();// 市盈率
 		double pb = ssPO.getPe();// 市净率
 
-		cal.add(Calendar.DATE, -1);				
-		String yesStartDay=format.format(cal.getTime());
+		String yesStartDay;
+		do {
+			cal.add(Calendar.DATE, -1);
+			yesStartDay = format.format(cal.getTime());
+			ssPOlist = sds.getStatisitcOfStock(id, yesStartDay, startDay);
+		} while (ssPOlist.isEmpty());
 		ssPOlist = sds.getStatisitcOfStock(id, yesStartDay,startDay);
 		ssPO = ssPOlist.get(0);	
 		double lase_close = ssPO.getClose();// 最新前一天的收盘价

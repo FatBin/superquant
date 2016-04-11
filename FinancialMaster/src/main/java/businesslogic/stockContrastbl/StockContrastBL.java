@@ -43,8 +43,13 @@ public class StockContrastBL implements StockContrastBLService {
 					endDay);
 		} while (ssPOlist.isEmpty());
 
-		cal.add(Calendar.DATE, -1);
-		String yesStartDay = format.format(cal.getTime());
+		String yesStartDay;
+		do {
+			cal.add(Calendar.DATE, -1);
+			yesStartDay = format.format(cal.getTime());
+			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), yesStartDay, startDay);
+		} while (ssPOlist.isEmpty());
+		
 		cal.add(Calendar.MONTH, -1);
 		String lastMonth=format.format(cal.getTime());
 
@@ -66,7 +71,7 @@ public class StockContrastBL implements StockContrastBLService {
 			ssPO = ssPOlist.get(0);
 			close[i][0] = ssPO.getClose();
 			data[0] = (close[i][1] - close[i][0]) / close[i][0];
-			ssPOlist = sds.getStatisitcOfStock(id[i], lastMonth, startDay);
+			ssPOlist = sds.getStatisitcOfStock(id[i], lastMonth, endDay);
 			int listSize=ssPOlist.size();
 			double[] closeList=new double[listSize];
 			double[] volumeList=new double[listSize];
