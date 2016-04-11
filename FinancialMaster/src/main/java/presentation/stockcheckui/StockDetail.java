@@ -40,8 +40,11 @@ import javax.swing.table.JTableHeader;
 
 import org.jfree.chart.ChartPanel;
 
+import ENUM.attentionState;
 import VO.StockVO;
+import businesslogic.managestockbl.ManageStockBL;
 import businesslogic.stockcheckbl.StockMessageBL;
+import businesslogicservice.managestockblservice.ManageStockBLService;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
 import presentation.repaintComponent.DateChooser;
 import presentation.repaintComponent.HeaderCellRenderer;
@@ -62,6 +65,7 @@ public class StockDetail extends JPanel {
 	private boolean click = false;
 	private boolean click1 = false;
 	private boolean click2 = false;
+	private ManageStockBLService manageStockBL = new ManageStockBL();
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
 	private JLabel timeGotolbl;
@@ -225,13 +229,13 @@ public class StockDetail extends JPanel {
 		bPanel1.setBounds(150, 78, (int) (210 * Math.pow(open, 12)), 26);
 		bPanel1.addMouseListener(new MouseAdapter() {
 
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				JLabel label = new JLabel(datavo.getOpen() + "");
-				label.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 2));
-				label.setPreferredSize(new Dimension(60, 20));
-				bPanel1.add(label);
-			}
+			// @Override
+			// public void mouseEntered(MouseEvent e) {
+			// JLabel label = new JLabel(datavo.getOpen() + "");
+			// label.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 2));
+			// label.setPreferredSize(new Dimension(60, 20));
+			// bPanel1.add(label);
+			// }
 
 		});
 		intentPane1.add(bPanel1);
@@ -251,6 +255,61 @@ public class StockDetail extends JPanel {
 		barPanel bPanel5 = new barPanel(datavo.getAdj_price(), high);
 		bPanel5.setBounds(150, 243, (int) (210 * Math.pow(adj_price, 12)), 26);
 		intentPane1.add(bPanel5);
+
+		JButton likeButton = new JButton();
+		likeButton.setBounds(640, 11, 26, 23);
+		likeButton.setContentAreaFilled(false);
+		likeButton.setBorderPainted(false);
+		// image2 未关注图标
+		ImageIcon image2 = new ImageIcon("src/main/resources/image/heart.png");
+		Image temp2 = image2.getImage().getScaledInstance(likeButton.getWidth(), likeButton.getHeight(),
+				image2.getImage().SCALE_SMOOTH);
+		image2 = new ImageIcon(temp2);
+		// image3 已关注图标
+		ImageIcon image3 = new ImageIcon("src/main/resources/image/heart-selected.png");
+		Image temp3 = image3.getImage().getScaledInstance(likeButton.getWidth(), likeButton.getHeight(),
+				image3.getImage().SCALE_SMOOTH);
+
+		image3 = new ImageIcon(temp3);
+
+		attentionState state = manageStockBL.isAttented(id);
+		if (state == attentionState.No) {
+			likeButton.setIcon(image2);
+		} else {
+			likeButton.setIcon(image3);
+		}
+		intentPane1.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+		});
+		intentPane1.add(likeButton);
 
 		table = new JTable();
 		table.setRowHeight(26);
@@ -582,20 +641,29 @@ public class StockDetail extends JPanel {
 			lineBox.addItem(linestr[i]);
 		}
 
-		JLabel label2 = new JLabel("近一个月浮动情况");
-		label2.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
-		label2.setPreferredSize(new Dimension(150, 30));
+		JLabel lineLabel = new JLabel("近一个月浮动情况");
+		lineLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
+		lineLabel.setPreferredSize(new Dimension(150, 30));
+
+		JLabel barLabel = new JLabel("近一个月浮动情况");
+		barLabel.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
+		barLabel.setPreferredSize(new Dimension(150, 30));
 
 		lineBox.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 
-				panes[1].removeAll();
-				panes[1].add(lineBox);
-				panes[1].add(label2);
+				panes[selectedIndex].removeAll();
+				panes[selectedIndex].add(lineBox);
 
-				String line = e.getItem().toString();
-				showLineChart(line);
+				if (selectedIndex == 1) {
+					panes[1].add(lineLabel);
+				} else if (selectedIndex == 2) {
+					panes[2].add(barLabel);
+				}
+
+				String name = e.getItem().toString();
+				showChart(name);
 			}
 		});
 
@@ -617,12 +685,16 @@ public class StockDetail extends JPanel {
 					// 折线图
 					panes[1].removeAll();
 					panes[1].add(lineBox);
-					panes[1].add(label2);
+					panes[1].add(lineLabel);
 
-					showLineChart("开盘价");
+					showChart("开盘价");
 				} else {
 					// 柱状图
+					panes[2].removeAll();
+					panes[2].add(lineBox);
+					panes[2].add(barLabel);
 
+					showChart("开盘价");
 				}
 
 			}
@@ -731,28 +803,37 @@ public class StockDetail extends JPanel {
 		panes[0].validate();
 	}
 
-	public void showLineChart(String line) {
+	public void showChart(String name) {
 		int length = data.length;
-		String[][] lineData = new String[length][2];
+		String[][] chartData = new String[length][2];
 
 		int index = 0;
 		for (int i = 0; i < 9; i++) {
-			if (linestr[i].equals(line)) {
+			if (linestr[i].equals(name)) {
 				index = i;
 				break;
 			}
 		}
 
 		for (int i = 0; i < length; i++) {
-			lineData[i][0] = data[length - i - 1][0];
-			lineData[i][1] = data[length - i - 1][index + 1];
+			chartData[i][0] = data[length - i - 1][0];
+			chartData[i][1] = data[length - i - 1][index + 1];
 		}
 
-		LineChart lineChart = new LineChart(lineData, line);
-		ChartPanel chartPanel = lineChart.getChartPane();
+		ChartPanel chartPanel = null;
+
+		if (selectedIndex == 1) {
+			LineChart lineChart = new LineChart(chartData, name);
+			chartPanel = lineChart.getChartPane();
+		} else if (selectedIndex == 2) {
+			BarChart barChart = new BarChart(chartData, name);
+			chartPanel = barChart.getChartPane();
+		}
+
 		chartPanel.setPreferredSize(new Dimension(660, 335));
-		panes[1].add(chartPanel);
-		panes[1].repaint();
-		panes[1].validate();
+
+		panes[selectedIndex].add(chartPanel);
+		panes[selectedIndex].repaint();
+		panes[selectedIndex].validate();
 	}
 }
