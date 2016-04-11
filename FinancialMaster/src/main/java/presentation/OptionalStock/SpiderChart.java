@@ -22,9 +22,9 @@ public class SpiderChart {
 
 	public SpiderChart(ArrayList<String> nameList, StockContrastBLService stockContrastBL) {
 
-		String series[] = { "涨跌幅(+0.05*200)", "市净率(*3)", "市盈率(*0.15)", "换手率(+1*2)" };
-		double polishPlus[] = { 0.05, 0, 0, 1 };
-		double polishMul[] = {200, 3, 0.15, 2 };
+		String series[] = { "涨跌幅(+0.05*200)", "市净率(*3)", "市盈率(*0.15)", "换手率(+1*2)", "成交价稳定性(*200)", "成交量稳定性(*30)" };
+		double polishPlus[] = { 0.05, 0, 0, 1, 0, 0 };
+		double polishMul[] = { 200, 3, 0.15, 2, 200, 30 };
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (String name : nameList) {
@@ -39,7 +39,7 @@ public class SpiderChart {
 		}
 
 		MySpiderWebPlot spiderwebplot = new MySpiderWebPlot(dataset);
-		spiderwebplot.setStartAngle(45D); // 第一条坐标轴的角度
+		spiderwebplot.setStartAngle(0D); // 第一条坐标轴的角度
 		spiderwebplot.setInteriorGap(0.2D); // 图显示的大小
 		spiderwebplot.setToolTipGenerator(new StandardCategoryToolTipGenerator());
 		spiderwebplot.setBackgroundPaint(null);

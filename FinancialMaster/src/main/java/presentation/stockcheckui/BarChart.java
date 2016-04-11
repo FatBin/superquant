@@ -1,8 +1,11 @@
 package presentation.stockcheckui;
 
+import java.awt.Font;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -15,19 +18,10 @@ public class BarChart {
 
 	// data[时间][数据]
 	public BarChart(String[][] data, String serie) {
-//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
 		DefaultCategoryDataset bardataset = new DefaultCategoryDataset();
 
 		for (int i = 0; i < data.length; i++) {
-
-//			Date date = null;
-//			try {
-//				date = df.parse(data[i][0]);
-//			} catch (ParseException e) {
-//				e.printStackTrace();
-//			}
-
 			bardataset.addValue(Double.parseDouble(data[i][1]), serie, data[i][0]);
 		}
 
@@ -41,9 +35,17 @@ public class BarChart {
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 		rangeAxis.setAutoRangeIncludesZero(false);
 		rangeAxis.setUpperMargin(0.30);
-		
+		plot.setRangeAxis(rangeAxis);
+
+		CategoryAxis domainAxis = plot.getDomainAxis();
+		domainAxis.setTickLabelFont(new Font("sans-serif", Font.PLAIN, 11));
+		domainAxis.setLabelFont(new Font("宋体", Font.PLAIN, 12));
+		domainAxis.setMaximumCategoryLabelLines(10);
+//		plot.setDomainAxis(domainAxis);
+//		CategoryAxis xAxis = plot.getDomainAxis();
+//		xAxis.setMaximumCategoryLabelLines(10);
+
 		BarRenderer renderer = new BarRenderer();
-//		renderer.setSeriesPaint(0, Color.gray);
 		renderer.setShadowVisible(false);
 		renderer.setBarPainter(new StandardBarPainter());
 		plot.setRenderer(renderer);
