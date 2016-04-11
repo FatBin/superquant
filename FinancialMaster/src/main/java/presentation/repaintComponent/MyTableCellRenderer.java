@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -46,6 +47,7 @@ public class MyTableCellRenderer extends DefaultTableCellRenderer{
          label.setText(value != null ? value.toString() : "unknown");   
          label.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 13));
          label.setHorizontalAlignment(JLabel.CENTER);
+         label.setBorder(BorderFactory.createEmptyBorder());
          label.addMouseListener(new MouseListener() {
 			
 			@Override

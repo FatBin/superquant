@@ -40,8 +40,11 @@ import javax.swing.table.JTableHeader;
 
 import org.jfree.chart.ChartPanel;
 
+import ENUM.attentionState;
 import VO.StockVO;
+import businesslogic.managestockbl.ManageStockBL;
 import businesslogic.stockcheckbl.StockMessageBL;
+import businesslogicservice.managestockblservice.ManageStockBLService;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
 import presentation.repaintComponent.DateChooser;
 import presentation.repaintComponent.HeaderCellRenderer;
@@ -62,6 +65,7 @@ public class StockDetail extends JPanel {
 	private boolean click = false;
 	private boolean click1 = false;
 	private boolean click2 = false;
+	private ManageStockBLService manageStockBL = new ManageStockBL();
 	DefaultTableModel tableModel;
 	private int rowpos = -1;
 	private JLabel timeGotolbl;
@@ -225,13 +229,13 @@ public class StockDetail extends JPanel {
 		bPanel1.setBounds(150, 78, (int) (210 * Math.pow(open, 12)), 26);
 		bPanel1.addMouseListener(new MouseAdapter() {
 
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				JLabel label = new JLabel(datavo.getOpen() + "");
-				label.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 2));
-				label.setPreferredSize(new Dimension(60, 20));
-				bPanel1.add(label);
-			}
+//			@Override
+//			public void mouseEntered(MouseEvent e) {
+//				JLabel label = new JLabel(datavo.getOpen() + "");
+//				label.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 2));
+//				label.setPreferredSize(new Dimension(60, 20));
+//				bPanel1.add(label);
+//			}
 
 		});
 		intentPane1.add(bPanel1);
@@ -251,6 +255,61 @@ public class StockDetail extends JPanel {
 		barPanel bPanel5 = new barPanel(datavo.getAdj_price(), high);
 		bPanel5.setBounds(150, 243, (int) (210 * Math.pow(adj_price, 12)), 26);
 		intentPane1.add(bPanel5);
+
+		JButton likeButton = new JButton();
+		likeButton.setBounds(640, 11, 26, 23);
+		likeButton.setContentAreaFilled(false);
+		likeButton.setBorderPainted(false);
+		//image2 未关注图标
+		ImageIcon image2 = new ImageIcon("src/main/resources/image/heart.png");
+		Image temp2 = image2.getImage().getScaledInstance(likeButton.getWidth(), likeButton.getHeight(),
+				image2.getImage().SCALE_SMOOTH);
+		image2 = new ImageIcon(temp2);
+		//image3 已关注图标
+		ImageIcon image3 = new ImageIcon("src/main/resources/image/heart-selected.png");
+		Image temp3 = image3.getImage().getScaledInstance(likeButton.getWidth(), likeButton.getHeight(),
+				image3.getImage().SCALE_SMOOTH);
+		
+		image3 = new ImageIcon(temp3);
+		
+		attentionState state = manageStockBL.isAttented(id);
+		if (state == attentionState.No) {
+			likeButton.setIcon(image2);
+		}else{
+			likeButton.setIcon(image3);
+		}
+		intentPane1.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		intentPane1.add(likeButton);
 
 		table = new JTable();
 		table.setRowHeight(26);
