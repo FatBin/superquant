@@ -75,7 +75,9 @@ public class StockDetail extends JPanel {
 	private int selectedIndex;
 	private String data[][];
 	private String linestr[] = { "开盘价", "最高价", "最低价", "收盘价", "后复权价", "成交量", "换手率", "市盈率", "市净率" };
-
+	private JButton likeButton;
+	private ImageIcon image2;
+	private ImageIcon image3;
 	/**
 	 * Create the panel.
 	 */
@@ -256,17 +258,17 @@ public class StockDetail extends JPanel {
 		bPanel5.setBounds(150, 243, (int) (210 * Math.pow(adj_price, 12)), 26);
 		intentPane1.add(bPanel5);
 
-		JButton likeButton = new JButton();
+		likeButton = new JButton();
 		likeButton.setBounds(640, 11, 26, 23);
 		likeButton.setContentAreaFilled(false);
 		likeButton.setBorderPainted(false);
 		// image2 未关注图标
-		ImageIcon image2 = new ImageIcon("src/main/resources/image/heart.png");
+		image2 = new ImageIcon("src/main/resources/image/heart.png");
 		Image temp2 = image2.getImage().getScaledInstance(likeButton.getWidth(), likeButton.getHeight(),
 				image2.getImage().SCALE_SMOOTH);
 		image2 = new ImageIcon(temp2);
 		// image3 已关注图标
-		ImageIcon image3 = new ImageIcon("src/main/resources/image/heart-selected.png");
+		image3 = new ImageIcon("src/main/resources/image/heart-selected.png");
 		Image temp3 = image3.getImage().getScaledInstance(likeButton.getWidth(), likeButton.getHeight(),
 				image3.getImage().SCALE_SMOOTH);
 
@@ -305,8 +307,13 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-
+				if (state == attentionState.Yes) {
+					likeButton.setIcon(image2);
+					manageStockBL.deleteStock(id);
+				}else {
+					likeButton.setIcon(image3);
+					manageStockBL.addStock(id);
+				}
 			}
 		});
 		intentPane1.add(likeButton);
@@ -401,8 +408,11 @@ public class StockDetail extends JPanel {
 		namelbl.setBackground(new Color(245, 245, 245));
 		namelbl.setForeground(new Color(95, 99, 108));
 		namelbl.setBounds(10, 5, 250, 32);
-		namelbl.setFont(new Font("Lantinghei TC", Font.PLAIN, 22));
+		namelbl.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		intentPane1.add(namelbl);
+		
+		JLabel raiseRate = new JLabel();
+//		raiseRate.setText(datavo.get);
 
 		backBtn = new JButton("back");
 		backBtn.addMouseListener(new MouseAdapter() {
@@ -830,7 +840,7 @@ public class StockDetail extends JPanel {
 			chartPanel = barChart.getChartPane();
 		}
 
-		chartPanel.setPreferredSize(new Dimension(660, 335));
+		chartPanel.setPreferredSize(new Dimension(660, 315));
 
 		panes[selectedIndex].add(chartPanel);
 		panes[selectedIndex].repaint();

@@ -145,11 +145,12 @@ public class StockList extends JPanel {
 						comp.setForeground(new Color(37, 120, 38));
 					}
 				}else if (modelColumn == 7) {
-					if (this.getModel().getValueAt(modelRow, 7).toString().charAt(0) == '-') {
+					String upAndDown = this.getModel().getValueAt(modelRow, 7).toString();
+					if (upAndDown.charAt(0) == '-') {
 						comp.setForeground(new Color(37, 120, 38));
-					} else if (this.getModel().getValueAt(modelRow, 7).toString().charAt(0) != '-') {
+					} else if (upAndDown.charAt(0) != '-') {
 						comp.setForeground(new Color(179, 43, 56));
-						if (this.getModel().getValueAt(modelRow, 7).toString().charAt(0) == '0') {
+						if (Double.parseDouble(upAndDown.substring(0,upAndDown.length()-1)) == 0) {
 							comp.setForeground(new Color(62, 56, 49, 240));
 						}
 				    }
