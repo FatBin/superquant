@@ -39,7 +39,6 @@ import ENUM.date_enum;
 import ENUM.marketKline_enum;
 import VO.StockMarketVO;
 import businesslogic.factory.InitFactory;
-import businesslogic.stockmarketbl.StockMarketBL;
 import businesslogicservice.stockmarketblservice.MarketKLineBLService;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import presentation.OptionalStock.OptionalStock;
@@ -73,7 +72,7 @@ public class Marketui extends JPanel {
 	private int selectedIndex = 0;
 
 	InitFactory factory = InitFactory.getFactory();
-	private StockMarketBLService stockMarketBL = new StockMarketBL();
+	private StockMarketBLService stockMarketBL = factory.getStockMarketBL();
 	private MarketKLineBLService marketKLineBL = factory.getMarketKLineBL();
 	private StockMarketVO stockMarketVO;
 	DefaultTableModel TableModel;
@@ -458,6 +457,7 @@ public class Marketui extends JPanel {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
 					searchBar.setVisible(true);
+//					searchBar.requestFocus();
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {

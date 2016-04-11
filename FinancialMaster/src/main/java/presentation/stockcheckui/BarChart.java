@@ -1,7 +1,5 @@
 package presentation.stockcheckui;
 
-import java.awt.Font;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -20,10 +18,21 @@ public class BarChart {
 	// data[时间][数据]
 	public BarChart(String[][] data, String serie) {
 
+		double minum = Double.parseDouble(data[0][1]);
+		double maxnum = Double.parseDouble(data[0][1]);
+
 		DefaultCategoryDataset bardataset = new DefaultCategoryDataset();
 
 		for (int i = 0; i < data.length; i++) {
 			bardataset.addValue(Double.parseDouble(data[i][1]), serie, data[i][0]);
+
+			double num = Double.parseDouble(data[i][1]);
+			if (minum > num) {
+				minum = num;
+			}
+			if (maxnum < num) {
+				maxnum = num;
+			}
 		}
 
 		chart = ChartFactory.createBarChart("", "", "", bardataset, PlotOrientation.VERTICAL, false, true, false);
@@ -34,13 +43,14 @@ public class BarChart {
 		plot.setRangeGridlinesVisible(true);
 
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-		rangeAxis.setAutoRangeIncludesZero(false);
+//		rangeAxis.setAutoRangeIncludesZero(false);
 		rangeAxis.setUpperMargin(0.30);
-		plot.setRangeAxis(rangeAxis);
+		rangeAxis.setRange(minum*0.95, maxnum*1.05);
+		// plot.setRangeAxis(rangeAxis);
 
 		CategoryAxis domainAxis = plot.getDomainAxis();
-		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); 
-		
+		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+
 		BarRenderer renderer = new BarRenderer();
 		renderer.setShadowVisible(false);
 		renderer.setBarPainter(new StandardBarPainter());
