@@ -11,6 +11,8 @@ import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class LineChart {
@@ -50,6 +52,10 @@ public class LineChart {
 		rangeAxis.setAutoRangeIncludesZero(false);
 		rangeAxis.setUpperMargin(0.20);
 		rangeAxis.setLabelAngle(Math.PI / 2.0);
+		
+		LineAndShapeRenderer renderer = new LineAndShapeRenderer();
+		renderer.setBaseShapesVisible(true);
+		plot.setRenderer(0,renderer);
 	}
 
 	public ChartPanel getChartPane() {
