@@ -6,6 +6,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -38,13 +39,8 @@ public class BarChart {
 		plot.setRangeAxis(rangeAxis);
 
 		CategoryAxis domainAxis = plot.getDomainAxis();
-		domainAxis.setTickLabelFont(new Font("sans-serif", Font.PLAIN, 11));
-		domainAxis.setLabelFont(new Font("ËÎÌו", Font.PLAIN, 12));
-		domainAxis.setMaximumCategoryLabelLines(10);
-//		plot.setDomainAxis(domainAxis);
-//		CategoryAxis xAxis = plot.getDomainAxis();
-//		xAxis.setMaximumCategoryLabelLines(10);
-
+		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); 
+		
 		BarRenderer renderer = new BarRenderer();
 		renderer.setShadowVisible(false);
 		renderer.setBarPainter(new StandardBarPainter());

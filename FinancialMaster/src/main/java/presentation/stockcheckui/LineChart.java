@@ -8,6 +8,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -46,7 +47,7 @@ public class LineChart {
 		
 		CategoryAxis xAxis = plot.getDomainAxis();
 		xAxis.setMaximumCategoryLabelLines(10);
-//		xAxis.setCategoryMargin(0.5);
+		xAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); 
 		
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
 		rangeAxis.setAutoRangeIncludesZero(false);
