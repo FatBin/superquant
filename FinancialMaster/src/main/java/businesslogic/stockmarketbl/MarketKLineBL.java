@@ -7,6 +7,7 @@ import ENUM.date_enum;
 import ENUM.marketKline_enum;
 import PO.benchmarkStatisticPO;
 import VO.StockMarketVO;
+import businesslogic.factory.InitFactory;
 import businesslogicservice.stockmarketblservice.MarketKLineBLService;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import data.stockmarketdata.BenchKLineData;
@@ -62,7 +63,10 @@ public class MarketKLineBL implements MarketKLineBLService {
 				result[i] = list[size - k_size + i];
 			}
 		}
-		StockMarketVO sv = new StockMarketVO(result);
+		InitFactory factory=InitFactory.getFactory();
+		StockMarketInfo stockMarketInfo = factory.getStockMarketBL();
+		StockMarketVO sv=stockMarketInfo.getStockMarketVO();
+		sv.setData(result);
 		return sv;
 	}
 

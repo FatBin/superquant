@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import PO.stockStatisticPO;
+import VO.StockMarketVO;
 import VO.StockVO;
+import businesslogic.factory.InitFactory;
+import businesslogic.stockmarketbl.StockMarketInfo;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
 import data.manageStockData.ManageStockData;
 import data.stockcheckdata.StockData;
@@ -157,9 +160,14 @@ public class StockMessageBL implements StockMessageBLService {
 				sum+=closeForKLine[j];
 			}
 			KLine_data[i][8]=sum/30+"";
-		}				
+		}
+		
+		InitFactory factory=InitFactory.getFactory();
+		StockMarketInfo stockMarketInfo = factory.getStockMarketBL();
+		StockMarketVO stockMarketVO=stockMarketInfo.getStockMarketVO();
+		
 		sv = new StockVO(name, date, open, high, low, closelist, adj_price,
-				volume, turnover, pe, pb,ups_and_downs,KLine_data, history_data);
+				volume, turnover, pe, pb,ups_and_downs,stockMarketVO,KLine_data, history_data);
 		return sv;
 	}
 

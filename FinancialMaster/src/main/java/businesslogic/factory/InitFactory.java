@@ -5,6 +5,7 @@ import businesslogic.stockcheckbl.StockItemBL;
 import businesslogic.stockcheckbl.StockListBL;
 import businesslogic.stockcheckbl.StockSearchBL;
 import businesslogic.stockmarketbl.MarketKLineBL;
+import businesslogic.stockmarketbl.StockMarketBL;
 
 public class InitFactory {
 
@@ -14,7 +15,7 @@ public class InitFactory {
 	private StockContrastBL stockContrastBL;//行情对比--雷达图
 	private MarketKLineBL marketKLineBL;//更新本地周k和月k数据；（update）
 	private static InitFactory factory = null;
-	
+	private StockMarketBL stockMarketBL;//大盘数据
 	
 	private InitFactory() {
 		stockItemBL =new StockItemBL();
@@ -23,6 +24,7 @@ public class InitFactory {
 		stockContrastBL =new StockContrastBL();
 		marketKLineBL =new MarketKLineBL();
 		marketKLineBL.update();
+		stockMarketBL=new StockMarketBL();
 	}
 	
    
@@ -63,6 +65,11 @@ public class InitFactory {
 
 	public MarketKLineBL getMarketKLineBL() {
 		return marketKLineBL;
+	}
+
+
+	public StockMarketBL getStockMarketBL() {
+		return stockMarketBL;
 	}
 	
 	

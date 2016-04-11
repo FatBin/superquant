@@ -7,19 +7,69 @@ import java.util.Calendar;
 import ENUM.date_enum;
 import PO.benchmarkPO;
 import PO.benchmarkStatisticPO;
+import PO.stockStatisticPO;
 import VO.StockMarketVO;
 import businesslogicservice.stockmarketblservice.StockMarketBLService;
 import data.stockmarketdata.BenchData;
 import dataservice.stockmarketdataservice.BenchDataService;
 
-public class StockMarketBL implements StockMarketBLService {
+public class StockMarketBL implements StockMarketBLService,StockMarketInfo {
 
+	
+	 StockMarketVO sv;
+	 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");	 
+	 BenchDataService benchDataservice=new BenchData();
+	 ArrayList<benchmarkStatisticPO> markdata_list;
+	 
+	 
+	public StockMarketBL(){
+		Calendar cal = Calendar.getInstance();		
+		String startDay = format.format(cal.getTime());
+		cal.add(Calendar.DATE, 1);
+		String endDay = format.format(cal.getTime());
+		double volume;
+		double close;
+		double ups_and_downs;
+		double changeRange;
+		double[] closelist=new double[2];
+
+		do {
+			cal.add(Calendar.DATE, -1);
+			startDay = format.format(cal.getTime());
+			markdata_list=benchDataservice.getStatisticOfBenchmark("hs300", startDay, endDay);
+		} while (markdata_list.isEmpty());
+
+		 String[][] list=new String[1][6];
+		benchmarkStatisticPO bsPO=markdata_list.get(0);
+		list[0][0]=bsPO.getDate();
+		list[0][1]=bsPO.getOpen()+"";
+		list[0][2]=bsPO.getHigh()+"";
+		list[0][3]=bsPO.getLow()+"";
+		list[0][4]=bsPO.getClose()+"";
+		list[0][5]=bsPO.getVolume()+"";
+		closelist[1]=bsPO.getClose();
+		volume=bsPO.getVolume();
+		close=bsPO.getClose();
+		String yesStartDay;
+		do {
+			cal.add(Calendar.DATE, -1);
+			yesStartDay = format.format(cal.getTime());
+			markdata_list=benchDataservice.getStatisticOfBenchmark("hs300", yesStartDay, startDay);
+		} while (markdata_list.isEmpty());
+		bsPO=markdata_list.get(0);
+		closelist[0]=bsPO.getClose();
+		
+		changeRange=closelist[1]-closelist[0];
+		ups_and_downs=changeRange/closelist[0];
+        sv=new StockMarketVO(list,volume,changeRange,ups_and_downs,close);
+		
+	}
+	
 	@Override
 	public StockMarketVO getStockMarket(String key, date_enum date) {
-		BenchDataService benchDataservice=new BenchData();
+		
 		//得到日期
 		Calendar   cal   =   Calendar.getInstance();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String today=format.format(cal.getTime());
 		switch(date){
 		case Day:
@@ -53,7 +103,7 @@ public class StockMarketBL implements StockMarketBLService {
 			list[index][5]=bsPO.getVolume()+"";
 			index--;
 		}
-        StockMarketVO sv=new StockMarketVO(list);
+        sv.setData(list);
 		return sv;
 	}
 
@@ -63,6 +113,11 @@ public class StockMarketBL implements StockMarketBLService {
 		benchmarkPO bp=benchDataservice.getBenchmark();
 		ArrayList<String> benchmark_list=bp.getBenchmark();
 		return benchmark_list;
+	}
+
+	@Override
+	public StockMarketVO getStockMarketVO() {
+		return sv;
 	} 
 
 }

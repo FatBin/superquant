@@ -13,12 +13,15 @@ public class StockVO {
 	private double pe;//市盈率
 	private double pb;//市净率
 	private double ups_and_lows;//涨跌幅
+	private StockMarketVO stockMarketVO;//最新大盘的数据
 	private String[][] KLine_data;//k线图数据
 	private String[][] history_data;//历史数据
-		
+			
 	public StockVO(String name, String date, double open, double high,
 			double low, double close, double adj_price, int volume,
-			double turnover, double pe, double pb, double ups_and_lows,String[][] KLine_data,String[][] history_data) {
+			double turnover, double pe, double pb, double ups_and_lows,
+			StockMarketVO stockMarketVO, String[][] kLine_data,
+			String[][] history_data) {
 		super();
 		this.name = name;
 		this.date = date;
@@ -31,11 +34,11 @@ public class StockVO {
 		this.turnover = turnover;
 		this.pe = pe;
 		this.pb = pb;
-		this.ups_and_lows=ups_and_lows;
-		this.KLine_data=KLine_data;
+		this.ups_and_lows = ups_and_lows;
+		this.stockMarketVO = stockMarketVO;
+		this.KLine_data = kLine_data;
 		this.history_data = history_data;
 	}
-	
 	public String getName() {
 		return name;
 	}
@@ -71,6 +74,10 @@ public class StockVO {
 	}
 	public double getUps_and_lows() {
 		return ups_and_lows;
+	}
+	
+	public StockMarketVO getStockMarketVO() {
+		return stockMarketVO;
 	}
 	public String[][] getKLine_data() {
 		return KLine_data;
