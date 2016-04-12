@@ -1,13 +1,10 @@
 package businesslogic.stockcheckbl;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -21,30 +18,39 @@ import dataservice.stockcheckdataservice.StockDataService;
 
 public class StockItemBL implements StockItemRankBLService{
 
-	private Map<String, ArrayList<StockItemVO>> Data_MAP = new HashMap<String, ArrayList<StockItemVO>>();
-	
+	private Map<String, ArrayList<StockItemVO>> Data_MAP;
+	StockDataService sds;
+	String data[][];
+	String startDay;
+	String endDay;
+	String yesStartDay;
+	String[] key;
+	DecimalFormat df = new DecimalFormat( "0.0000");
+    double ups_and_downs;
+    int size;
+	ArrayList<stockStatisticPO> ssPOlist;
+	stockStatisticPO ssPO;
+    
 	public StockItemBL(){
-		StockDataService sds = new StockData();
+		Data_MAP = new HashMap<String, ArrayList<StockItemVO>>();
+		sds = new StockData();
 		manageStockDataService msds = new ManageStockData();
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		String startDay = format.format(cal.getTime());
+		startDay = format.format(cal.getTime());
 		cal.add(Calendar.DATE, 1);
-		String endDay = format.format(cal.getTime());
-
-		ArrayList<stockStatisticPO> ssPOlist;
-		stockStatisticPO ssPO;
+		endDay = format.format(cal.getTime());
+		
 		ArrayList<String> stockList;
 		stockList = msds.getCodeOfStock();
 
-		int size = stockList.size();
+		size = stockList.size();
 		do {
 			cal.add(Calendar.DATE, -1);
 			startDay = format.format(cal.getTime());
 			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), startDay, endDay);
 		} while (ssPOlist.isEmpty());
 
-		String yesStartDay;
 		do {
 			cal.add(Calendar.DATE, -1);
 			yesStartDay = format.format(cal.getTime());
@@ -52,11 +58,11 @@ public class StockItemBL implements StockItemRankBLService{
 		} while (ssPOlist.isEmpty());
 		
 		Double close[][] = new Double[size][2];
-		String[] key={"id","股票名","开盘价","最高价","最低价","收盘价",
+		String[] keylist={"id","股票名","开盘价","最高价","最低价","收盘价",
 				"后复权价","成交量","换手率","市盈率","市净率","涨跌幅"};
-		String data[][]=new String[size][12];		
-		DecimalFormat df = new DecimalFormat( "0.0000");
-        double ups_and_downs;
+		key=keylist;
+		data=new String[size][12];		
+		df = new DecimalFormat( "0.0000");
 		
 		for (int i = 0; i < size; i++) {
 			data[i][0] = stockList.get(i);
@@ -80,6 +86,58 @@ public class StockItemBL implements StockItemRankBLService{
 			data[i][11] = df.format(ups_and_downs);
 		}
 		
+		add_to_map();
+		
+		
+	}
+	public void update(String id,int i){
+		int length= data.length;
+		size= length+i;
+		
+		String[][] new_data= new String[size][12];
+		int index=0;
+		if (i == -1) {
+			for (int j = 0; j < length; j++) {
+				if(!data[j][0].equals(id)){
+					for (int j2 = 0; j2 < 12; j2++) {
+						new_data[index][j2]=data[j][j2];
+					}
+					index++;
+				}
+			}			
+		} else {
+			for (int j = 0; j < length; j++) {			
+					for (int j2 = 0; j2 < 12; j2++) {
+						new_data[index][j2]=data[j][j2];
+					}
+					index++;
+			}
+			double close[]=new double[2];
+			new_data[index][0] = id;
+			ssPOlist = sds.getStatisitcOfStock(id, startDay, endDay);
+			ssPO = ssPOlist.get(0);
+			new_data[index][1]=ssPO.getName();
+			new_data[index][2]=ssPO.getOpen()+"";
+			new_data[index][3]=ssPO.getHigh()+"";			
+			new_data[index][4]=ssPO.getLow()+"";
+			new_data[index][5]=ssPO.getClose()+"";
+			new_data[index][6]=ssPO.getAdj_price()+"";
+			new_data[index][7]=ssPO.getVolume()+"";
+			new_data[index][8]=ssPO.getTurnover()+"";
+			new_data[index][9]=ssPO.getPe()+"";
+			new_data[index][10]=ssPO.getPb()+"";			
+			close[1] = ssPO.getClose();
+			ssPOlist = sds.getStatisitcOfStock(id, yesStartDay, startDay);
+			ssPO = ssPOlist.get(0);
+			close[0] = ssPO.getClose();
+			ups_and_downs=(close[1] - close[0]) / close[0];
+			new_data[index][11] = df.format(ups_and_downs);						
+		}
+		data=new_data;
+		add_to_map();
+		
+	}
+	private void add_to_map(){
 		for (int i = 2; i < 12; i++) {
 			ArrayList<StockItemVO> VOlist=new ArrayList<StockItemVO>(); 
 			for (int j = 0; j < size; j++) {
@@ -89,9 +147,7 @@ public class StockItemBL implements StockItemRankBLService{
 			Data_MAP.put(key[i], rank(VOlist));
 		}
 		
-		
 	}
-	
 	private ArrayList<StockItemVO> rank(ArrayList<StockItemVO> oldList) {
 		ArrayList<StockItemVO> newlist=new ArrayList<StockItemVO>();
 		int size=oldList.size();

@@ -7,7 +7,7 @@ import businesslogic.stockcheckbl.StockSearchBL;
 import businesslogic.stockmarketbl.MarketKLineBL;
 import businesslogic.stockmarketbl.StockMarketBL;
 
-public class InitFactory {
+public class InitFactory implements Runnable{
 
 	private StockItemBL stockItemBL;//行情对比--排行榜
 	private StockListBL stockListBL;//股票列表
@@ -16,6 +16,8 @@ public class InitFactory {
 	private MarketKLineBL marketKLineBL;//更新本地周k和月k数据；（update）
 	private static InitFactory factory = null;
 	private StockMarketBL stockMarketBL;//大盘数据
+	private String id;
+	private int i;
 	
 	private InitFactory() {
 		stockItemBL =new StockItemBL();
@@ -36,10 +38,14 @@ public class InitFactory {
 	}
 	
 	 //关注或取消关注时重新初始化
-	public void update(){
-		stockItemBL =new StockItemBL();
-		stockListBL =new StockListBL();
-		stockContrastBL =new StockContrastBL();
+	public void update(String id,int i){
+
+
+		stockListBL.update(id, i);
+		this.id=id;
+		this.i=i;
+		Thread t = new Thread(this);
+		t.start();
 	}
 
 
@@ -70,6 +76,14 @@ public class InitFactory {
 
 	public StockMarketBL getStockMarketBL() {
 		return stockMarketBL;
+	}
+
+
+	@Override
+	public void run() {
+		stockContrastBL.update(id, i);
+		stockItemBL.update(id, i);
+		
 	}
 	
 	
