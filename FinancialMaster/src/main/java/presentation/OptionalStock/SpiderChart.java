@@ -22,7 +22,7 @@ public class SpiderChart {
 
 	public SpiderChart(ArrayList<String> nameList, StockContrastBLService stockContrastBL) {
 
-		String series[] = { "涨跌幅", "市净率", "市盈率", "换手率", "成交价稳定性", "成交量稳定性" };
+		String series[] = { "修正涨跌幅", "修正市净率", "修正市盈率", "修正换手率", "修正成交价稳定性", "修正成交量稳定性" };
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (String name : nameList) {
