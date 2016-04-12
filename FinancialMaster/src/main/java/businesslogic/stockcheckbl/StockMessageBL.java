@@ -62,10 +62,8 @@ public class StockMessageBL implements StockMessageBLService {
 		String startDay = format.format(cal.getTime());
 		cal.add(Calendar.DATE, 1);
 		String endDay = format.format(cal.getTime());
-		cal2.add(Calendar.MONTH, -1);
-		String lastMonth = format.format(cal2.getTime());
-		cal2.add(Calendar.MONTH, -5);
-		String halfYearAgo =format.format(cal2.getTime());
+		cal2.add(Calendar.MONTH, -3);
+		String threeMonthAgo =format.format(cal2.getTime());
 		ArrayList<stockStatisticPO> ssPOlist;
 		stockStatisticPO ssPO;
 		do {
@@ -97,35 +95,32 @@ public class StockMessageBL implements StockMessageBLService {
 		ssPO = ssPOlist.get(0);	
 		double lase_close = ssPO.getClose();// 最新前一天的收盘价
 		Double ups_and_downs=(closelist-lase_close)/lase_close;
-						
-		ssPOlist = sds.getStatisitcOfStock(id, lastMonth, endDay);
+		
+		String[][] history_data = new String[24][10];// 历史数据
+		
+
+		System.out.println("历史数据");
+		ssPOlist = sds.getStatisitcOfStock(id, threeMonthAgo, endDay);
 		int size = ssPOlist.size();
-		String[][] history_data = new String[size][10];// 历史数据
-		
 		int index = size-1;
-		for (stockStatisticPO sp : ssPOlist) {
-			history_data[index][0] = sp.getDate();
-			history_data[index][1] = sp.getOpen() + "";
-			history_data[index][2] = sp.getHigh() + "";
-			history_data[index][3] = sp.getLow() + "";
-			history_data[index][4] = sp.getClose() + "";
-			history_data[index][5] = sp.getAdj_price() + "";
-			history_data[index][6] = sp.getVolume() + "";
-			history_data[index][7] = sp.getTurnover() + "";
-			history_data[index][8] = sp.getPe() + "";
-			history_data[index][9] = sp.getPb() + "";
-			init_list.add(history_data[index]);
-			index--;
-		}
-		
-		ssPOlist = sds.getStatisitcOfStock(id, halfYearAgo, endDay);
-		size=ssPOlist.size();
-		index = size-1;
-		int k_size = 60;
+		int k_size = 30;
 		String[][] k_data = new String[size][10];//为k线图提供历史数据		
 		String[][] KLine_data=new String[k_size][9];//返回k线图
 		double[] closeForKLine=new double[k_size+30];
 		for (stockStatisticPO sp : ssPOlist) {
+			if(index<24){
+				history_data[index][0] = sp.getDate();
+				history_data[index][1] = sp.getOpen() + "";
+				history_data[index][2] = sp.getHigh() + "";
+				history_data[index][3] = sp.getLow() + "";
+				history_data[index][4] = sp.getClose() + "";
+				history_data[index][5] = sp.getAdj_price() + "";
+				history_data[index][6] = sp.getVolume() + "";
+				history_data[index][7] = sp.getTurnover() + "";
+				history_data[index][8] = sp.getPe() + "";
+				history_data[index][9] = sp.getPb() + "";
+				init_list.add(history_data[index]);
+			}
 			k_data[index][0] = sp.getDate();
 			k_data[index][1] = sp.getOpen() + "";
 			k_data[index][2] = sp.getHigh() + "";
@@ -138,6 +133,7 @@ public class StockMessageBL implements StockMessageBLService {
 			k_data[index][9] = sp.getPb() + "";
 			index--;
 		}
+		System.out.println("k线数据");
 		for (int i = 0; i < closeForKLine.length; i++) {
 			closeForKLine[i]=Double.parseDouble(k_data[k_size +29 - i][4]);
 		}
@@ -161,7 +157,7 @@ public class StockMessageBL implements StockMessageBLService {
 			}
 			KLine_data[i][8]=sum/30+"";
 		}
-		
+		System.out.println("均线数据");
 		InitFactory factory=InitFactory.getFactory();
 		StockMarketInfo stockMarketInfo = factory.getStockMarketBL();
 		StockMarketVO stockMarketVO=stockMarketInfo.getStockMarketVO();
