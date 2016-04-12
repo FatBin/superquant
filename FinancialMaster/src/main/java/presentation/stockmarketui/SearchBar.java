@@ -42,12 +42,13 @@ public class SearchBar extends JPanel {
 		scrollPane.setBounds(1, 1, 168, 209);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(BorderFactory.createEmptyBorder());
-		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		sBar = scrollPane.getVerticalScrollBar();
+		sBar.setUI(new MyScrollBarUI());
 		scrollPane.getViewport().setOpaque(false);
 		scrollPane.getViewport().setPreferredSize(new Dimension(165, 206));
 		add(scrollPane);
 
-		sBar = scrollPane.getVerticalScrollBar();
+		
 
 		table = new JTable();
 		table.setRowHeight(26);

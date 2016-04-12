@@ -284,20 +284,23 @@ public class OptionalStock extends JPanel {
 				String key = searchTextField.getText();
 				if (key.equals("")) {
 					searchBar.setVisible(false);
-				} else {
+				} else if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP) {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
 					searchBar.setVisible(true);
+					rowpos = -1;
 				}
 
-				if (e.getKeyCode() == KeyEvent.VK_DOWN && rowpos < searchBar.getRowCount() - 1) {
-					rowpos++;
-					searchBar.setSelect(rowpos, true);
-				}
+				if (searchBar.getRowCount() > 0) {
+					if (e.getKeyCode() == KeyEvent.VK_DOWN && rowpos < searchBar.getRowCount() - 1) {
+						rowpos++;
+						searchBar.setSelect(rowpos, true);
+					}
 
-				if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > 0) {
-					rowpos--;
-					searchBar.setSelect(rowpos, false);
+					if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > 0) {
+						rowpos--;
+						searchBar.setSelect(rowpos, false);
+					}
 				}
 			}
 		});
