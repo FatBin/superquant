@@ -15,7 +15,7 @@ public class ManageStockBL implements ManageStockBLService {
 	public ManageState addStock(String id) {
 		ManageState result=msds.addStock(id);
 		InitFactory factory=InitFactory.getFactory();
-		factory.update();
+		factory.update(id,1);
 		return result;
 	}
 
@@ -23,7 +23,7 @@ public class ManageStockBL implements ManageStockBLService {
 	public ManageState deleteStock(String id) {
 		ManageState result=msds.deleteStock(id);
 		InitFactory factory=InitFactory.getFactory();
-		factory.update();
+		factory.update(id,-1);
 		return result;
 	}
 
