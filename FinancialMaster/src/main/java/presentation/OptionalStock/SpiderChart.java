@@ -22,19 +22,13 @@ public class SpiderChart {
 
 	public SpiderChart(ArrayList<String> nameList, StockContrastBLService stockContrastBL) {
 
-		String series[] = { "涨跌幅(+0.05*200)", "市净率(*3)", "市盈率(*0.15)", "换手率(+1*2)", "成交价稳定性(*200)", "成交量稳定性(*30)" };
-		double polishPlus[] = { 0.05, 0, 0, 1, 0, 0 };
-		double polishMul[] = { 200, 3, 0.15, 2, 200, 30 };
+		String series[] = { "涨跌幅", "市净率", "市盈率", "换手率", "成交价稳定性", "成交量稳定性" };
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (String name : nameList) {
 			data = stockContrastBL.getData(name);
 			for (int i = 0; i < series.length; i++) {
-
-				double dataPolish = 0;
-				dataPolish = (data[i] + polishPlus[i]) * polishMul[i];
-
-				dataset.addValue(dataPolish, name, series[i]);
+				dataset.addValue(data[i], name, series[i]);
 			}
 		}
 
