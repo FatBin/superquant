@@ -92,6 +92,8 @@ public class Marketui extends JPanel {
 		final Marketui mpanel = this;
 
 		searchBar = new SearchBar(frame, mpanel);
+		mpanel.add(searchBar);
+		searchBar.setVisible(false);
 
 		JScrollPane contentScroll = new JScrollPane();
 		contentScroll.setBounds(224, 51, 730, 540);
@@ -405,7 +407,6 @@ public class Marketui extends JPanel {
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
 
-		mpanel.add(searchBar,mpanel);
 		searchBar.setVisible(false);
 		searchTextField = new JTextField();
 		searchTextField.setFocusable(false);
@@ -456,12 +457,15 @@ public class Marketui extends JPanel {
 				} else {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
+					
+					
 					searchBar.setVisible(true);
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 					rowpos++;
 					searchBar.setSelect(rowpos);
+//					searchBar.getTalbe().requestFocus();
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > -1) {

@@ -34,7 +34,7 @@ public class SearchBar extends JPanel {
 		this.setSize(175, 200);
 		this.setBackground(new Color(255, 255, 255));
 		setLayout(null);
-
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBackground(new Color(255, 255, 255));
 		scrollPane.setBounds(1, 1, 168, 198);
@@ -42,14 +42,16 @@ public class SearchBar extends JPanel {
 		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		scrollPane.getViewport().setOpaque(false);
+		scrollPane.getViewport().setSize(168, 198);
+		scrollPane.getViewport().setPreferredSize(new Dimension(165, 195));
 		add(scrollPane);
 
 		table = new JTable();
 		table.setRowHeight(26);
-		table.setPreferredSize(new Dimension(165, 195));
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		scrollPane.setViewportView(table);
+		
 
 		// Êó±ê¼àÌý
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,4 +101,7 @@ public class SearchBar extends JPanel {
 		table.setRowSelectionInterval(row, row);
 	}
 
+	public JTable getTalbe(){
+		return table;
+	}
 }

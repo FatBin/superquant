@@ -87,6 +87,7 @@ public class OptionalStock extends JPanel {
 		final OptionalStock opanel = this;
 
 		searchBar = new SearchBar(frame, opanel);
+		opanel.add(searchBar);
 
 		marketBtn = new JButton("   ¥Û≈Ã ˝æ›");
 		marketBtn.addMouseListener(new MouseAdapter() {
@@ -236,7 +237,6 @@ public class OptionalStock extends JPanel {
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
 
-		opanel.add(searchBar);
 		searchBar.setVisible(false);
 		searchTextField = new JTextField();
 		searchTextField.setFocusable(false);
