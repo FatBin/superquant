@@ -12,9 +12,19 @@ import javax.swing.JComponent;
 import javax.swing.JScrollBar;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
+import com.sun.media.jfxmedia.track.Track;
+
 public class MyScrollBarUI extends BasicScrollBarUI {
 
 	private final Dimension d = new Dimension();
+
+	private Rectangle Track;
+	
+	@Override
+	protected Rectangle getTrackBounds() {
+//		trackRect.setSize(12.0,trackRect.getHeight());
+		return super.getTrackBounds();
+	}
 
 	@Override
 	protected void paintTrack(Graphics g, JComponent c, Rectangle trackBounds) {
@@ -26,6 +36,7 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 //		Graphics2D g2d = (Graphics2D) g;
 //		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 //		g2d.fillRoundRect(x+width/2, y, width / 2, height, 2, 2);
+		
 	}
 
 	@Override
