@@ -405,7 +405,7 @@ public class Marketui extends JPanel {
 		searchBtn.setMargin(new Insets(0, 0, 0, 0));
 		add(searchBtn);
 
-		mpanel.add(searchBar);
+		mpanel.add(searchBar,mpanel);
 		searchBar.setVisible(false);
 		searchTextField = new JTextField();
 		searchTextField.setFocusable(false);
@@ -457,7 +457,6 @@ public class Marketui extends JPanel {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
 					searchBar.setVisible(true);
-//					searchBar.requestFocus();
 				}
 
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {

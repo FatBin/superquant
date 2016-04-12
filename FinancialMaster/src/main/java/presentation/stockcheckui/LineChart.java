@@ -1,6 +1,7 @@
 package presentation.stockcheckui;
 
 import java.util.Date;
+import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -13,7 +14,6 @@ import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 public class LineChart {
@@ -56,6 +56,7 @@ public class LineChart {
 		
 		LineAndShapeRenderer renderer = new LineAndShapeRenderer();
 		renderer.setBaseShapesVisible(true);
+		renderer.setSeriesPaint(0, new Color(206, 4, 14));
 		plot.setRenderer(0,renderer);
 	}
 

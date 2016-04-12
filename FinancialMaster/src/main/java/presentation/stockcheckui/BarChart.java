@@ -1,5 +1,7 @@
 package presentation.stockcheckui;
 
+import java.awt.Color;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -43,15 +45,14 @@ public class BarChart {
 		plot.setRangeGridlinesVisible(true);
 
 		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-//		rangeAxis.setAutoRangeIncludesZero(false);
 		rangeAxis.setUpperMargin(0.30);
 		rangeAxis.setRange(minum*0.95, maxnum*1.05);
-		// plot.setRangeAxis(rangeAxis);
 
 		CategoryAxis domainAxis = plot.getDomainAxis();
 		domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
 
 		BarRenderer renderer = new BarRenderer();
+		renderer.setSeriesPaint(0, new Color(206, 4, 14));  ////////
 		renderer.setShadowVisible(false);
 		renderer.setBarPainter(new StandardBarPainter());
 		plot.setRenderer(renderer);
