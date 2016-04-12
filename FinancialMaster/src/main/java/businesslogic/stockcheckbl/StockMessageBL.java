@@ -98,8 +98,6 @@ public class StockMessageBL implements StockMessageBLService {
 		
 		String[][] history_data = new String[24][10];// 历史数据
 		
-
-		System.out.println("历史数据");
 		ssPOlist = sds.getStatisitcOfStock(id, threeMonthAgo, endDay);
 		int size = ssPOlist.size();
 		int index = size-1;
@@ -133,7 +131,6 @@ public class StockMessageBL implements StockMessageBLService {
 			k_data[index][9] = sp.getPb() + "";
 			index--;
 		}
-		System.out.println("k线数据");
 		for (int i = 0; i < closeForKLine.length; i++) {
 			closeForKLine[i]=Double.parseDouble(k_data[k_size +29 - i][4]);
 		}
@@ -157,7 +154,6 @@ public class StockMessageBL implements StockMessageBLService {
 			}
 			KLine_data[i][8]=sum/30+"";
 		}
-		System.out.println("均线数据");
 		InitFactory factory=InitFactory.getFactory();
 		StockMarketInfo stockMarketInfo = factory.getStockMarketBL();
 		StockMarketVO stockMarketVO=stockMarketInfo.getStockMarketVO();

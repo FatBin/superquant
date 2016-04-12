@@ -58,6 +58,7 @@ public class ManageStockData implements manageStockDataService{
 			for (int i=0;i<arrayList.size();i++) {
 				if(arrayList.get(i).equals(code)){
 					arrayList.remove(i);
+					FileManager.WriteFile(arrayList, "src/main/resources/Data/ObservedStock.txt", false);
 					return ManageState.Succeed;
 				}
 			}
