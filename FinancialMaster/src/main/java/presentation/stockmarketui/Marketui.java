@@ -457,20 +457,18 @@ public class Marketui extends JPanel {
 				} else {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
-					
-					
+
 					searchBar.setVisible(true);
 				}
 
-				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN && rowpos < searchBar.getRowCount() - 1) {
 					rowpos++;
-					searchBar.setSelect(rowpos);
-//					searchBar.getTalbe().requestFocus();
+					searchBar.setSelect(rowpos, true);
 				}
 
-				if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > -1) {
+				if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > 0) {
 					rowpos--;
-					searchBar.setSelect(rowpos);
+					searchBar.setSelect(rowpos, false);
 				}
 			}
 		});
@@ -566,10 +564,10 @@ public class Marketui extends JPanel {
 			}
 		});
 	}
-	
+
 	// œ‘ ækœﬂÕº
-	public void showKline(int selectedIndex){
-		
+	public void showKline(int selectedIndex) {
+
 		stockMarketVO = marketKLineBL.getData(marketK[selectedIndex + 1]);
 		data = stockMarketVO.getData();
 

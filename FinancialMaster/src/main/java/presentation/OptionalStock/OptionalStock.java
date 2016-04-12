@@ -71,7 +71,7 @@ public class OptionalStock extends JPanel {
 	private JPanel chartPanel;
 
 	DefaultTableModel tableModel;
-	
+
 	InitFactory factory = InitFactory.getFactory();
 	StockContrastBLService stockContrastBL = factory.getStockContrastBL();
 	StockItemRankBLService stockItemBL = factory.getStockItemBL();
@@ -290,14 +290,14 @@ public class OptionalStock extends JPanel {
 					searchBar.setVisible(true);
 				}
 
-				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+				if (e.getKeyCode() == KeyEvent.VK_DOWN && rowpos < searchBar.getRowCount() - 1) {
 					rowpos++;
-					searchBar.setSelect(rowpos);
+					searchBar.setSelect(rowpos, true);
 				}
 
-				if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > -1) {
+				if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > 0) {
 					rowpos--;
-					searchBar.setSelect(rowpos);
+					searchBar.setSelect(rowpos, false);
 				}
 			}
 		});
@@ -332,7 +332,7 @@ public class OptionalStock extends JPanel {
 				}
 			});
 		}
-		
+
 		showChart(count);
 
 		// 排行
@@ -385,7 +385,7 @@ public class OptionalStock extends JPanel {
 		rankPane.setOpaque(false);
 
 		showRank(conditionBox.getItemAt(0).toString());
-		
+
 		rankDataList = new ArrayList<>();
 		conditionBox.addItemListener(new ItemListener() {
 			@Override
@@ -492,8 +492,8 @@ public class OptionalStock extends JPanel {
 		rankPane.repaint();
 		rankPane.validate();
 	}
-	
-	public void showChart(int count){
+
+	public void showChart(int count) {
 		// 每勾一次遍历一次
 		nameList = new ArrayList<>();
 		for (int j = 0; j < count; j++) {
@@ -513,7 +513,7 @@ public class OptionalStock extends JPanel {
 		ChartPanel cpanel = spiderChart.getChart();
 		cpanel.setPreferredSize(new Dimension(500, 370));
 		chartPanel.add(cpanel);
-		
+
 		chartPanel.repaint();
 		chartPanel.validate();
 	}

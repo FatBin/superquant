@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -21,7 +22,8 @@ public class SearchBar extends JPanel {
 
 	private JTable table;
 	DefaultTableModel tableModel;
-	
+	private JScrollBar sBar;
+
 	InitFactory factory = InitFactory.getFactory();
 	private StockSearchBLService searchBL = factory.getStockSearchBL();
 	private String[][] data;
@@ -31,27 +33,27 @@ public class SearchBar extends JPanel {
 	 */
 	public SearchBar(JFrame frame, JPanel fromPanel) {
 
-		this.setSize(175, 200);
+		this.setSize(175, 211);
 		this.setBackground(new Color(255, 255, 255));
 		setLayout(null);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBackground(new Color(255, 255, 255));
-		scrollPane.setBounds(1, 1, 168, 198);
+		scrollPane.setBounds(1, 1, 168, 209);
 		scrollPane.setOpaque(false);
 		scrollPane.setBorder(BorderFactory.createEmptyBorder());
 		scrollPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		scrollPane.getViewport().setOpaque(false);
-		scrollPane.getViewport().setSize(168, 198);
-		scrollPane.getViewport().setPreferredSize(new Dimension(165, 195));
+		scrollPane.getViewport().setPreferredSize(new Dimension(165, 206));
 		add(scrollPane);
+
+		sBar = scrollPane.getVerticalScrollBar();
 
 		table = new JTable();
 		table.setRowHeight(26);
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		scrollPane.setViewportView(table);
-		
 
 		// Êó±ê¼àÌý
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -59,7 +61,7 @@ public class SearchBar extends JPanel {
 
 				int pos = table.getSelectedRow();
 				table.setRowSelectionInterval(pos, pos);
-				
+
 				String id = table.getValueAt(pos, 0).toString();
 				Jump(frame, id, fromPanel);
 			}
@@ -89,19 +91,30 @@ public class SearchBar extends JPanel {
 		detail.setBounds(224, 0, 737, frame.getHeight());
 
 		PersonalStock ppanel = new PersonalStock(frame);
-		ppanel.setBounds(0, 0, 225, frame.getHeight());	
-		
+		ppanel.setBounds(0, 0, 225, frame.getHeight());
+
 		frame.getContentPane().add(ppanel);
 		frame.getContentPane().add(detail);
 		frame.repaint();
 		frame.validate();
 	}
 
-	public void setSelect(int row) {
+	public void setSelect(int row, boolean isDown) {
 		table.setRowSelectionInterval(row, row);
-	}
 
-	public JTable getTalbe(){
-		return table;
+		if (row > 7 && isDown == true) {
+			int barPos = (sBar.getValue() + 30) / 26 * 26;
+			if (barPos <= sBar.getMaximum())
+				sBar.setValue(barPos);
+		} else if (isDown == false) {
+			int barPos = (sBar.getValue() - 26) / 26 * 26;
+			if (barPos > sBar.getMinimum()) {
+				sBar.setValue(barPos);
+			}
+		}
+	}
+	
+	public int getRowCount(){
+		return table.getRowCount();
 	}
 }
