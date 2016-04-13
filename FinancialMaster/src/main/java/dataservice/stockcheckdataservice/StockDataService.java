@@ -15,4 +15,7 @@ public interface StockDataService {
 	//根据股票代号codeName，起始时间start，终止时间end（时间格式'YYYY-mm-dd'）返回股票交易数据
 	//交易数据包括日期、开盘价、最高价、最低价、收盘价、后复权价、成交量、换手率、市盈率、市净率
 	public ArrayList<stockStatisticPO> getStatisitcOfStock(String codeName,String start,String end);
+	
+	//初始化时调用的方法
+	public ArrayList<stockStatisticPO> getStatisitcOfStock(String codeName); 
 }
