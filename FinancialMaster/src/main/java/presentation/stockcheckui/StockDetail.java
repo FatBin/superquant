@@ -48,6 +48,7 @@ import businesslogic.managestockbl.ManageStockBL;
 import businesslogic.stockcheckbl.StockMessageBL;
 import businesslogicservice.managestockblservice.ManageStockBLService;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
+import presentation.mainui.loadingPanel;
 import presentation.repaintComponent.DateChooser;
 import presentation.repaintComponent.HeaderCellRenderer;
 import presentation.repaintComponent.IntentPane;
@@ -90,7 +91,24 @@ public class StockDetail extends JPanel {
 	@SuppressWarnings({ "static-access", "unchecked" })
 	// boolean 用来判断跳转回到哪里，true返回股票列表，false返回任意界面
 	public StockDetail(final JFrame frame, final String id, final JPanel fromPanel, boolean where) {
+		
+		JFrame loadframe = new JFrame();
+		loadframe.setAlwaysOnTop(true);
+		loadframe.setUndecorated(true);
+		loadingPanel loadingPanel = new loadingPanel();
+		loadingPanel.setOpaque(false);
+		
+		loadframe.setSize(120, 120);
+		loadframe.setBackground(new Color(0, 0, 0, 0));
+		loadframe.getContentPane().add(loadingPanel);
+		loadframe.setBounds(frame.getX()+533, frame.getY()+215, 120,120);
+		loadframe.repaint();
+		loadframe.setVisible(true);
+		
 		datavo = Message.getStockMessage(id);
+		
+//		loadframe.dispose();
+		
 		stockMarketVO = datavo.getStockMarketVO();
 		data = datavo.getHistory_data();
 
