@@ -2,10 +2,11 @@ package data.stockcheckdata;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,6 +21,11 @@ import dataservice.stockcheckdataservice.StockDataService;
 public class StockData implements StockDataService {
 	// 输入年份及交易所返回所有股票名
 	public codeNamePO getCodeName(int year, String exchange) {
+		//先判斷是否在文件中
+//		File file=new File("src/main/resources/Data/LocalDataBuffer/"+year+".txt");
+//		if(!file.exists()||file.isDirectory()){
+//			
+//		}
 		ArrayList<String> arrayList = new ArrayList<String>();
 		try {
 			String result = HttpRequest.sendGet("http://121.41.106.89:8010/api/stocks/",
@@ -30,6 +36,7 @@ public class StockData implements StockDataService {
 			for (int i = 0; i < jsonArray.length(); i++) {
 				arrayList.add(jsonArray.getJSONObject(i).getString("name"));
 			}
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,6 +114,7 @@ public class StockData implements StockDataService {
 			Calendar calendar=Calendar.getInstance();
 			SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 			String end=simpleDateFormat.format(calendar.getTime());
+			calendar.add(Calendar.DATE, 1);
 			calendar.add(Calendar.MONTH, -3);
 			String start=simpleDateFormat.format(calendar.getTime());
 			ArrayList<stockStatisticPO> arrayList=getStatisitcOfStock(codeName, start, end);
@@ -142,16 +150,43 @@ public class StockData implements StockDataService {
 				Calendar calendar=Calendar.getInstance();
 				SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
 				String end=simpleDateFormat.format(calendar.getTime());
+				calendar.add(Calendar.DATE, 1);
 				calendar.add(Calendar.MONTH, -3);
 				String start=simpleDateFormat.format(calendar.getTime());
 				arrayList=getStatisitcOfStock(codeName, start, end);
 			}else{
 				Calendar calendar=Calendar.getInstance();
 				SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
-				String end=simpleDateFormat.format(calendar.getTime());
-				String lastday=dataBuffer.get(dataBuffer.size()-1);
-				ArrayList<stockStatisticPO> otherStatisticPOs=getStatisitcOfStock(codeName, lastday.split(";")[0], end);
-				arrayList.addAll(otherStatisticPOs);
+				String today=simpleDateFormat.format(calendar.getTime());//當天
+				calendar.add(Calendar.DATE, 1);
+				String end=simpleDateFormat.format(calendar.getTime());//當天+1
+				String lastday=dataBuffer.get(dataBuffer.size()-1).split(";")[1];//緩存中的最新數據
+				//緩存數據日期加一
+						Date lastDate;
+						try {
+							lastDate = simpleDateFormat.parse(lastday);
+							calendar.setTime(lastDate);
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				calendar.add(Calendar.DATE,1);
+				String lastday1=simpleDateFormat.format(calendar.getTime());//
+				//如果已經是最新的一天，不再請求
+				if (!lastday.equals(today)) {
+					ArrayList<stockStatisticPO> otherStatisticPOs=getStatisitcOfStock(codeName, lastday1, end);
+					arrayList.addAll(otherStatisticPOs);
+					for (stockStatisticPO stockStatisticPO : otherStatisticPOs) {
+						String result=stockStatisticPO.getName()+";"+stockStatisticPO.getDate()+";"+
+									  stockStatisticPO.getOpen()+";"+stockStatisticPO.getHigh()+";"+
+									  stockStatisticPO.getLow()+";"+stockStatisticPO.getClose()+";"+
+									  stockStatisticPO.getAdj_price()+";"+stockStatisticPO.getVolume()+";"+
+									  stockStatisticPO.getTurnover()+";"+stockStatisticPO.getPe()+";"+
+									  stockStatisticPO.getPb();
+						dataBuffer.add(result);
+					}
+					FileManager.WriteFile(dataBuffer, "src/main/resources/Data/LocalDataBuffer/"+codeName+".txt", false);
+				}
 			}
 			return arrayList;
 		}
