@@ -177,38 +177,6 @@ public class StockDetail extends JPanel {
 		miniBtn.setBounds(680, 14, 16, 16);
 		add(miniBtn);
 
-		Date today = new Date();
-		Date dbefore = new Date();
-		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
-
-		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.MONTH, -1); // 前一个月
-		dbefore = calendar.getTime();
-
-		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
-		final String start = dt.format(dbefore);
-		final JLabel startTimelbl = new JLabel(start);
-		startTimelbl.setLocation(546, 75);
-		startTimelbl.setPreferredSize(new Dimension(90, 22));
-		dateChooser1.register(startTimelbl);
-		// intentPane2.add(startTimelbl);
-
-		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
-		final String end = dt.format(today);
-		final JLabel endTimelbl = new JLabel(end);
-		endTimelbl.setLocation(586, 75);
-		endTimelbl.setPreferredSize(new Dimension(90, 22));
-		dateChooser2.register(endTimelbl);
-		// intentPane2.add(endTimelbl);
-
-		JScrollPane stockDetailPane = new JScrollPane();
-		stockDetailPane.setBounds(10, 110, 715, 440);
-		stockDetailPane.setOpaque(false);
-		stockDetailPane.setBorder(BorderFactory.createEmptyBorder());
-		stockDetailPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
-		stockDetailPane.getViewport().setOpaque(false);
-		// add(stockDetailPane);
-
 		String[][] data = datavo.getHistory_data();
 
 		// 当前的数据展示
@@ -332,6 +300,36 @@ public class StockDetail extends JPanel {
 			}
 		});
 		intentPane1.add(likeButton);
+
+		Date today = new Date();
+		Date dbefore = new Date();
+		SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, -1); // 前一个月
+		dbefore = calendar.getTime();
+
+		DateChooser dateChooser1 = DateChooser.getInstance("yyyy-MM-dd");
+		final String start = dt.format(dbefore);
+		final JLabel startTimelbl = new JLabel(start);
+		startTimelbl.setBounds(456, 15, 90, 22);
+		dateChooser1.register(startTimelbl);
+		intentPane3.add(startTimelbl);
+
+		DateChooser dateChooser2 = DateChooser.getInstance("yyyy-MM-dd");
+		final String end = dt.format(today);
+		final JLabel endTimelbl = new JLabel(end);
+		endTimelbl.setBounds(586, 15, 90, 22);
+		dateChooser2.register(endTimelbl);
+		intentPane3.add(endTimelbl);
+
+		JScrollPane stockDetailPane = new JScrollPane();
+		stockDetailPane.setBounds(10, 50, 715, 300);
+		stockDetailPane.setOpaque(false);
+		stockDetailPane.setBorder(BorderFactory.createEmptyBorder());
+		stockDetailPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		stockDetailPane.getViewport().setOpaque(false);
+		intentPane3.add(stockDetailPane);
 
 		table = new JTable();
 		table.setRowHeight(26);
@@ -596,10 +594,10 @@ public class StockDetail extends JPanel {
 		backBtn.setBounds(10, 15, 46, 16);
 		add(backBtn);
 
-		JLabel label = new JLabel("至");
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
-		label.setBounds(554, 75, 25, 22);
-		// add(label);
+		JLabel labelz = new JLabel("至");
+		labelz.setFont(new Font("Lucida Grande", Font.PLAIN, 14));
+		labelz.setBounds(554, 13, 25, 22);
+		intentPane3.add(labelz);
 
 		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setOpaque(false);
@@ -609,9 +607,9 @@ public class StockDetail extends JPanel {
 			conditionBox.addItem(item[i]);
 		}
 		conditionBox.setBorder(null);
-		conditionBox.setBounds(10, 562, 110, 25);
+		conditionBox.setBounds(10, 362, 110, 25);
 		conditionBox.setSelectedIndex(0);
-		// add(conditionBox);
+		intentPane3.add(conditionBox);
 
 		belowTextField = new JTextField();
 		belowTextField.setOpaque(false);
@@ -649,9 +647,9 @@ public class StockDetail extends JPanel {
 				}
 			}
 		});
-		belowTextField.setBounds(146, 562, 97, 27);
+		belowTextField.setBounds(146, 362, 97, 27);
 		belowTextField.setText("输入下限");
-		// add(belowTextField);
+		intentPane3.add(belowTextField);
 
 		aboveTextField = new JTextField();
 		aboveTextField.addMouseListener(new MouseAdapter() {
@@ -690,9 +688,9 @@ public class StockDetail extends JPanel {
 		aboveTextField.setColumns(10);
 		aboveTextField.setCaretColor(new Color(150, 150, 150));
 		aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		aboveTextField.setBounds(269, 562, 97, 27);
+		aboveTextField.setBounds(269, 362, 97, 27);
 		aboveTextField.setText("输入上限");
-		// add(aboveTextField);
+		intentPane3.add(aboveTextField);
 
 		timeGotolbl = new JLabel("\u203A");
 		timeGotolbl.addMouseListener(new MouseAdapter() {
@@ -732,8 +730,8 @@ public class StockDetail extends JPanel {
 		});
 		timeGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		timeGotolbl.setForeground(new Color(150, 150, 150));
-		timeGotolbl.setBounds(682, 73, 25, 22);
-		// add(timeGotolbl);
+		timeGotolbl.setBounds(682, 13, 25, 22);
+		intentPane3.add(timeGotolbl);
 
 		final JLabel conditionGotolbl = new JLabel("\u203A");
 		conditionGotolbl.addMouseListener(new MouseAdapter() {
@@ -773,8 +771,8 @@ public class StockDetail extends JPanel {
 		});
 		conditionGotolbl.setForeground(new Color(150, 150, 150));
 		conditionGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		conditionGotolbl.setBounds(382, 562, 25, 22);
-		// add(conditionGotolbl);
+		conditionGotolbl.setBounds(382, 362, 25, 22);
+		intentPane3.add(conditionGotolbl);
 
 		// k线图
 		String title[] = { "日K", "折线图", "柱状图" };
@@ -830,7 +828,7 @@ public class StockDetail extends JPanel {
 		});
 
 		JLabel remindlabel = new JLabel("敬请期待");
-		label.setSize(660, 350);
+		remindlabel.setSize(660, 350);
 		panes[2].add(remindlabel);
 
 		tabbedPane.addChangeListener(new ChangeListener() {
