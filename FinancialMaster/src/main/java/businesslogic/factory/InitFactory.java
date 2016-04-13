@@ -80,7 +80,7 @@ public class InitFactory implements Runnable{
 
 
 	@Override
-	public void run() {
+	public synchronized void run() {
 		stockContrastBL.update(id, i);
 		stockItemBL.update(id, i);
 		
