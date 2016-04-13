@@ -48,8 +48,6 @@ public class SearchBar extends JPanel {
 		scrollPane.getViewport().setPreferredSize(new Dimension(165, 206));
 		add(scrollPane);
 
-		
-
 		table = new JTable();
 		table.setRowHeight(26);
 		table.setSelectionBackground(new Color(88, 93, 103, 200));
@@ -114,8 +112,8 @@ public class SearchBar extends JPanel {
 			}
 		}
 	}
-	
-	public int getRowCount(){
+
+	public int getRowCount() {
 		return table.getRowCount();
 	}
 }

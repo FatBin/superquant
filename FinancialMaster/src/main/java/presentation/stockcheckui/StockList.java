@@ -36,6 +36,7 @@ import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
+import presentation.stockmarketui.SearchBar;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -55,6 +56,7 @@ public class StockList extends JPanel {
 
 	InitFactory factory = InitFactory.getFactory();
 	StockListBLService stocklistbl = factory.getStockListBL();
+	private SearchBar searchBar;
 
 	/**
 	 * Create the panel.
@@ -65,6 +67,10 @@ public class StockList extends JPanel {
 
 		setLayout(null);
 		final StockList listui = this;
+
+		searchBar = new SearchBar(frame, listui);
+		listui.add(searchBar);
+		searchBar.setVisible(false);
 
 		IntentPane intentPane = new IntentPane();
 		intentPane.setBounds(13, 63, 707, 522);
@@ -141,21 +147,20 @@ public class StockList extends JPanel {
 					} else if (Double
 							.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) == close) {
 						comp.setForeground(new Color(62, 56, 49, 240));
-					}  else {
+					} else {
 						comp.setForeground(new Color(37, 120, 38));
 					}
-				}else if (modelColumn == 7) {
+				} else if (modelColumn == 7) {
 					String upAndDown = this.getModel().getValueAt(modelRow, 7).toString();
 					if (upAndDown.charAt(0) == '-') {
 						comp.setForeground(new Color(37, 120, 38));
 					} else if (upAndDown.charAt(0) != '-') {
 						comp.setForeground(new Color(179, 43, 56));
-						if (Double.parseDouble(upAndDown.substring(0,upAndDown.length()-1)) == 0) {
+						if (Double.parseDouble(upAndDown.substring(0, upAndDown.length() - 1)) == 0) {
 							comp.setForeground(new Color(62, 56, 49, 240));
 						}
-				    }
-				}
-				else // 不符合条件的保持原表格样式
+					}
+				} else // 不符合条件的保持原表格样式
 					comp.setForeground(new Color(62, 56, 49, 240));
 				// }
 				return comp;
@@ -173,6 +178,7 @@ public class StockList extends JPanel {
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
+				searchBar.setVisible(false);
 				Point mousepoint;
 				mousepoint = e.getPoint();
 				rowpos = table.rowAtPoint(mousepoint);
@@ -194,8 +200,10 @@ public class StockList extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					listui.setVisible(false);
 					String id = table.getValueAt(rowpos, 0).toString();
+
+					searchBar.setVisible(false);
+					listui.setVisible(false);
 					StockDetail detail = new StockDetail(frame, id, listui, true);
 					frame.getContentPane().add(detail);
 					detail.setBounds(224, 0, 737, getHeight());
@@ -216,8 +224,10 @@ public class StockList extends JPanel {
 		searchBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String key = searchTextField.getText();
-				showTable(key);
+				searchBar.setVisible(false);
+				if (!searchTextField.getText().equals("")) {
+					searchBar.jump(frame, listui);
+				}
 			}
 		});
 		searchBtn.setBounds(630, 15, 18, 18);
@@ -238,8 +248,7 @@ public class StockList extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					String key = searchTextField.getText();
-					showTable(key);
+					searchBar.jump(frame, listui);
 				}
 			}
 
@@ -247,6 +256,33 @@ public class StockList extends JPanel {
 			public void keyReleased(KeyEvent e) {
 				String key = searchTextField.getText();
 				showTable(key);
+
+				if (key.equals("")) {
+					searchBar.setVisible(false);
+				} else if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP) {
+					searchBar.showTable(key);
+					searchBar.setBounds(476, 38, searchBar.getWidth(), searchBar.getHeight());
+
+					if (searchBar.getRowCount() > 0) {
+						searchBar.setVisible(true);
+					} else {
+						searchBar.setVisible(false);
+					}
+
+					rowpos = -1;
+				}
+
+				if (searchBar.getRowCount() > 0) {
+					if (e.getKeyCode() == KeyEvent.VK_DOWN && rowpos < searchBar.getRowCount() - 1) {
+						rowpos++;
+						searchBar.setSelect(rowpos, true);
+					}
+
+					if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > 0) {
+						rowpos--;
+						searchBar.setSelect(rowpos, false);
+					}
+				}
 			}
 		});
 		searchTextField.setFocusable(false);
@@ -291,6 +327,7 @@ public class StockList extends JPanel {
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				searchTextField.setText("输入股票代码或名称搜索");

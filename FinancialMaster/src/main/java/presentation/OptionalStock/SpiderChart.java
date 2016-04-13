@@ -37,8 +37,9 @@ public class SpiderChart {
 		spiderwebplot.setInteriorGap(0.2D); // 图显示的大小
 		spiderwebplot.setToolTipGenerator(new StandardCategoryToolTipGenerator());
 		spiderwebplot.setBackgroundPaint(null);
-
-		spiderwebplot.setTicks(3);
+		
+//		spiderwebplot.setLabelFont(new Font("宋体", Font.PLAIN, 12));
+		spiderwebplot.setTicks(4);
 
 		chart = new JFreeChart("", TextTitle.DEFAULT_FONT, spiderwebplot, false);
 		LegendTitle legendtitle = new LegendTitle(spiderwebplot);
@@ -47,6 +48,7 @@ public class SpiderChart {
 		chart.setAntiAlias(true);
 		chart.setBorderPaint(null);
 	}
+		
 
 	public ChartPanel getChart() {
 		ChartPanel chartPanel = new ChartPanel(chart);
