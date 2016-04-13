@@ -120,11 +120,11 @@ public class StockData implements StockDataService {
 							  stockStatisticPO.getPb();
 				DataBuffer.add(result);
 			}
-			FileManager.WriteFile(DataBuffer, "src/main/resources/Data/LocalDataBuffer"+codeName+".txt", false);
+			FileManager.WriteFile(DataBuffer, "src/main/resources/Data/LocalDataBuffer/"+codeName+".txt", false);
 			return arrayList;
 		}else{
 			//Æî‘≠ÅÌ”–æè¥Êïr
-			ArrayList<String> dataBuffer=FileManager.ReadFile("src/main/resources/Data/LocalDataBuffer"+codeName+".txt");
+			ArrayList<String> dataBuffer=FileManager.ReadFile("src/main/resources/Data/LocalDataBuffer/"+codeName+".txt");
 			ArrayList<stockStatisticPO> arrayList=new ArrayList<>();
 			for (String string : dataBuffer) {
 				String[] s=string.split(";");
