@@ -98,7 +98,7 @@ public class StockMessageBL implements StockMessageBLService {
 		
 		String[][] history_data = new String[24][10];// 历史数据
 		
-		ssPOlist = sds.getStatisitcOfStock(id, threeMonthAgo, endDay);
+		ssPOlist = sds.getStatisitcOfStock(id);
 		int size = ssPOlist.size();
 		int index = size-1;
 		int k_size = 30;
