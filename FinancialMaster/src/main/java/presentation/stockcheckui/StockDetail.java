@@ -58,6 +58,7 @@ import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.repaintComponent.barPanel;
 import presentation.stockmarketui.KLineChart;
+import presentation.stockmarketui.SearchBar;
 
 @SuppressWarnings("serial")
 public class StockDetail extends JPanel {
@@ -80,8 +81,9 @@ public class StockDetail extends JPanel {
 	private JButton likeButton;
 	private ImageIcon image2;
 	private ImageIcon image3;
-	private StockMarketVO stockMarketVO ;
-	
+	private StockMarketVO stockMarketVO;
+	private SearchBar searchBar;
+
 	/**
 	 * Create the panel.
 	 */
@@ -89,15 +91,19 @@ public class StockDetail extends JPanel {
 	// boolean 用来判断跳转回到哪里，true返回股票列表，false返回任意界面
 	public StockDetail(final JFrame frame, final String id, final JPanel fromPanel, boolean where) {
 		datavo = Message.getStockMessage(id);
-		stockMarketVO=datavo.getStockMarketVO();
+		stockMarketVO = datavo.getStockMarketVO();
 		data = datavo.getHistory_data();
-		
-		NumberFormat nf = NumberFormat.getPercentInstance(); 
+
+		NumberFormat nf = NumberFormat.getPercentInstance();
 		nf.setMinimumFractionDigits(2);
 
 		setBorder(null);
 		setLayout(null);
 		final StockDetail detail = this;
+
+		searchBar = new SearchBar(frame, detail);
+		detail.add(searchBar);
+		searchBar.setVisible(false);
 
 		JScrollPane contentScroll = new JScrollPane();
 		contentScroll.setBounds(0, 51, 730, 540);
@@ -315,10 +321,11 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				if (state == attentionState.Yes) {
 					likeButton.setIcon(image2);
 					manageStockBL.deleteStock(id);
-				}else {
+				} else {
 					likeButton.setIcon(image3);
 					manageStockBL.addStock(id);
 				}
@@ -339,6 +346,7 @@ public class StockDetail extends JPanel {
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
+				searchBar.setVisible(false);
 				Point mousepoint;
 				mousepoint = e.getPoint();
 				rowpos = table.rowAtPoint(mousepoint);
@@ -400,6 +408,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				searchTextField.setText("");
 				click = true;
 				searchTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
@@ -411,6 +420,47 @@ public class StockDetail extends JPanel {
 		add(searchTextField);
 		searchTextField.setColumns(10);
 
+		searchTextField.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					searchBar.jump(frame, detail);
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+				String key = searchTextField.getText();
+				if (key.equals("")) {
+					searchBar.setVisible(false);
+				} else if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP) {
+					searchBar.showTable(key);
+					searchBar.setBounds(476, 38, searchBar.getWidth(), searchBar.getHeight());
+
+					if (searchBar.getRowCount() > 0) {
+						searchBar.setVisible(true);
+					} else {
+						searchBar.setVisible(false);
+					}
+
+					rowpos = -1;
+				}
+
+				if (searchBar.getRowCount() > 0) {
+					if (e.getKeyCode() == KeyEvent.VK_DOWN && rowpos < searchBar.getRowCount() - 1) {
+						rowpos++;
+						searchBar.setSelect(rowpos, true);
+					}
+
+					if (e.getKeyCode() == KeyEvent.VK_UP && rowpos > 0) {
+						rowpos--;
+						searchBar.setSelect(rowpos, false);
+					}
+				}
+			}
+		});
+
 		JLabel namelbl = new JLabel();
 		namelbl.setText(datavo.getName() + "(" + id + ")");
 		namelbl.setBackground(new Color(245, 245, 245));
@@ -418,16 +468,12 @@ public class StockDetail extends JPanel {
 		namelbl.setBounds(10, 5, 250, 32);
 		namelbl.setFont(new Font("微软雅黑", Font.PLAIN, 22));
 		intentPane1.add(namelbl);
-		
-		
-		
-		
-		
+
 		JLabel name = new JLabel("沪深300");
 		name.setBounds(70, 14, 80, 24);
-//		name.setForeground();
+		// name.setForeground();
 		add(name);
-		
+
 		// 个股涨跌幅数据
 		JLabel raiseRate = new JLabel();
 		double upAndDown = datavo.getUps_and_lows();
@@ -436,40 +482,40 @@ public class StockDetail extends JPanel {
 		raiseRate.setForeground(new Color(62, 56, 49, 240));
 		if (upAndDown > 0) {
 			raiseRate.setForeground(new Color(179, 43, 56));
-		}else if (upAndDown < 0) {
+		} else if (upAndDown < 0) {
 			raiseRate.setForeground(new Color(37, 120, 38));
 		}
 		raiseRate.setBounds(250, 10, 250, 24);
 		intentPane1.add(raiseRate);
-		
-		//大盘涨跌量
+
+		// 大盘涨跌量
 		JLabel change = new JLabel();
 		double changeRange = stockMarketVO.getChangeRange();
-		change.setText((changeRange+"").substring(0, 7));
+		change.setText((changeRange + "").substring(0, 7));
 		change.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		change.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			change.setForeground(new Color(179, 43, 56));
-		}else if (changeRange < 0) {
+		} else if (changeRange < 0) {
 			change.setForeground(new Color(37, 120, 38));
 		}
 		change.setBounds(210, 14, 80, 24);
 		add(change);
-		
-		//大盘现价
+
+		// 大盘现价
 		JLabel nowMarket = new JLabel();
 		double now = stockMarketVO.getClose();
-		nowMarket.setText((now+"").substring(0, 7));
+		nowMarket.setText((now + "").substring(0, 7));
 		nowMarket.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		nowMarket.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			nowMarket.setForeground(new Color(179, 43, 56));
-		}else if (changeRange < 0) {
+		} else if (changeRange < 0) {
 			nowMarket.setForeground(new Color(37, 120, 38));
 		}
 		nowMarket.setBounds(135, 14, 80, 24);
 		add(nowMarket);
-		
+
 		// 大盘涨跌幅
 		JLabel marketUpAndDown = new JLabel();
 		double marketup = stockMarketVO.getUps_and_downs();
@@ -478,52 +524,49 @@ public class StockDetail extends JPanel {
 		marketUpAndDown.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			marketUpAndDown.setForeground(new Color(179, 43, 56));
-		}else if (changeRange < 0) {
+		} else if (changeRange < 0) {
 			marketUpAndDown.setForeground(new Color(37, 120, 38));
 		}
 		marketUpAndDown.setBounds(283, 14, 80, 24);
 		add(marketUpAndDown);
-		//成交量
+		// 成交量
 		JLabel volumeLabel = new JLabel();
 		double volume = datavo.getVolume();
-		volumeLabel.setText((volume/10000+"")+"W");
+		volumeLabel.setText((volume / 10000 + "") + "W");
 		volumeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		volumeLabel.setForeground(new Color(62, 56, 49, 240));
 		volumeLabel.setBounds(471, 143, 80, 24);
 		intentPane1.add(volumeLabel);
-		//换手率
+		// 换手率
 		JLabel turnoverLabel = new JLabel();
 		double turnover = datavo.getTurnover();
-		turnoverLabel.setText((turnover+"")+"%");
+		turnoverLabel.setText((turnover + "") + "%");
 		turnoverLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		turnoverLabel.setForeground(new Color(62, 56, 49, 240));
 		turnoverLabel.setBounds(576, 143, 80, 24);
 		intentPane1.add(turnoverLabel);
-		//市盈率
+		// 市盈率
 		JLabel peLabel = new JLabel();
 		double pe = datavo.getPe();
-		peLabel.setText((pe+"")+"%");
+		peLabel.setText((pe + "") + "%");
 		peLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		peLabel.setForeground(new Color(62, 56, 49, 240));
 		peLabel.setBounds(471, 247, 80, 24);
 		intentPane1.add(peLabel);
-		//市净率
+		// 市净率
 		JLabel pbLabel = new JLabel();
 		double pb = datavo.getPb();
-		pbLabel.setText((pb+"")+"%");
+		pbLabel.setText((pb + "") + "%");
 		pbLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		pbLabel.setForeground(new Color(62, 56, 49, 240));
 		pbLabel.setBounds(576, 247, 80, 24);
 		intentPane1.add(pbLabel);
 
-		
-		
-		
-
 		backBtn = new JButton("back");
 		backBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				if (where == true) {
 					frame.remove(detail);
 					fromPanel.setVisible(true);
@@ -626,6 +669,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				aboveTextField.setText("");
 				click2 = true;
 				aboveTextField.setBorder(new TextBubbleBorder(new Color(150, 150, 150), 1, 30, 0));
@@ -665,6 +709,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				String newStart = startTimelbl.getText();
 				String newEnd = endTimelbl.getText();
 				StockVO datavo = Message.updateStockMessage(newStart, newEnd);
@@ -705,6 +750,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 
 				String low = belowTextField.getText();
 				String high = aboveTextField.getText();
@@ -790,6 +836,7 @@ public class StockDetail extends JPanel {
 		tabbedPane.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
+				searchBar.setVisible(false);
 				JTabbedPane tab = (JTabbedPane) e.getSource();
 				selectedIndex = tab.getSelectedIndex();
 
@@ -828,6 +875,7 @@ public class StockDetail extends JPanel {
 		addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				searchBar.setVisible(false);
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
 				searchTextField.setText("输入股票代码或名称搜索");

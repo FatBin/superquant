@@ -451,14 +451,20 @@ public class Marketui extends JPanel {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				
+
 				String key = searchTextField.getText();
 				if (key.equals("")) {
 					searchBar.setVisible(false);
 				} else if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP) {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
-					searchBar.setVisible(true);
+
+					if (searchBar.getRowCount() > 0) {
+						searchBar.setVisible(true);
+					} else {
+						searchBar.setVisible(false);
+					}
+
 					rowpos = -1;
 				}
 

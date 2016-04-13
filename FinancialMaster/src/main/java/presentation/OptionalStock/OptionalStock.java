@@ -287,7 +287,13 @@ public class OptionalStock extends JPanel {
 				} else if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP) {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
-					searchBar.setVisible(true);
+					
+					if (searchBar.getRowCount() > 0) {
+						searchBar.setVisible(true);
+					}else {
+						searchBar.setVisible(false);
+					}
+					
 					rowpos = -1;
 				}
 
