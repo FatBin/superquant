@@ -1,5 +1,7 @@
 package presentation.repaintComponent;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
 import java.awt.geom.*;
@@ -102,4 +104,5 @@ public class TextBubbleBorder extends AbstractBorder{
         
         
 }
+    
 }

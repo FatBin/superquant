@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ItemEvent;
@@ -58,6 +59,7 @@ import presentation.repaintComponent.MyTabbedPaneUI2;
 import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.repaintComponent.barPanel;
+import presentation.repaintComponent.circlePanel;
 import presentation.stockmarketui.KLineChart;
 import presentation.stockmarketui.SearchBar;
 
@@ -82,6 +84,11 @@ public class StockDetail extends JPanel {
 	private JButton likeButton;
 	private ImageIcon image2;
 	private ImageIcon image3;
+	private ImageIcon imageVolume;
+	// private ImageIcon imageTurnover;
+	// private ImageIcon imagePe;
+	// private ImageIcon imagePb;
+
 	private StockMarketVO stockMarketVO;
 	private SearchBar searchBar;
 
@@ -91,24 +98,24 @@ public class StockDetail extends JPanel {
 	@SuppressWarnings({ "static-access", "unchecked" })
 	// boolean 用来判断跳转回到哪里，true返回股票列表，false返回任意界面
 	public StockDetail(final JFrame frame, final String id, final JPanel fromPanel, boolean where) {
-		
-		JFrame loadframe = new JFrame();
-		loadframe.setAlwaysOnTop(true);
-		loadframe.setUndecorated(true);
-		loadingPanel loadingPanel = new loadingPanel();
-		loadingPanel.setOpaque(false);
-		
-		loadframe.setSize(120, 120);
-		loadframe.setBackground(new Color(0, 0, 0, 0));
-		loadframe.getContentPane().add(loadingPanel);
-		loadframe.setBounds(frame.getX()+533, frame.getY()+215, 120,120);
-		loadframe.repaint();
-		loadframe.setVisible(true);
-		
+
+		// JFrame loadframe = new JFrame();
+		// loadframe.setAlwaysOnTop(true);
+		// loadframe.setUndecorated(true);
+		// loadingPanel loadingPanel = new loadingPanel();
+		// loadingPanel.setOpaque(false);
+		//
+		// loadframe.setSize(120, 120);
+		// loadframe.setBackground(new Color(0, 0, 0, 0));
+		// loadframe.getContentPane().add(loadingPanel);
+		// loadframe.setBounds(frame.getX()+533, frame.getY()+215, 120,120);
+		// loadframe.repaint();
+		// loadframe.setVisible(true);
+
 		datavo = Message.getStockMessage(id);
-		
-//		loadframe.dispose();
-		
+
+		// loadframe.dispose();
+
 		stockMarketVO = datavo.getStockMarketVO();
 		data = datavo.getHistory_data();
 
@@ -146,6 +153,47 @@ public class StockDetail extends JPanel {
 		IntentPane intentPane3 = new IntentPane();
 		intentPane3.setPreferredSize(new Dimension(700, 450));
 		intentPane3.setLayout(null);
+
+		// 另外四个数据图标
+		JLabel volumePanel = new JLabel();
+		volumePanel.setBounds(453, 74, 60, 60);
+		imageVolume = new ImageIcon("src/main/resources/image/volume.png");
+		Image tempCircle = imageVolume.getImage().getScaledInstance(volumePanel.getWidth(), volumePanel.getHeight(),
+				imageVolume.getImage().SCALE_SMOOTH);
+		imageVolume = new ImageIcon(tempCircle);
+		volumePanel.setOpaque(false);
+		volumePanel.setIcon(imageVolume);
+		intentPane1.add(volumePanel);
+
+		JLabel turnoverPanel = new JLabel();
+		turnoverPanel.setBounds(565, 74, 60, 60);
+		imageVolume = new ImageIcon("src/main/resources/image/turnover.png");
+		tempCircle = imageVolume.getImage().getScaledInstance(turnoverPanel.getWidth(), turnoverPanel.getHeight(),
+				imageVolume.getImage().SCALE_SMOOTH);
+		ImageIcon imageTurnOver = new ImageIcon(tempCircle);
+		turnoverPanel.setIcon(imageTurnOver);
+		turnoverPanel.setOpaque(false);
+		intentPane1.add(turnoverPanel);
+
+		JLabel pePanel = new JLabel();
+		pePanel.setBounds(453, 175, 60, 60);
+		imageVolume = new ImageIcon("src/main/resources/image/pe.png");
+		tempCircle = imageVolume.getImage().getScaledInstance(pePanel.getWidth(), pePanel.getHeight(),
+				imageVolume.getImage().SCALE_SMOOTH);
+		ImageIcon imagePe = new ImageIcon(tempCircle);
+		pePanel.setIcon(imagePe);
+		pePanel.setOpaque(false);
+		intentPane1.add(pePanel);
+
+		JLabel pbPanel = new JLabel();
+		pbPanel.setBounds(565, 175, 60, 60);
+		imageVolume = new ImageIcon("src/main/resources/image/pb.png");
+		tempCircle = imageVolume.getImage().getScaledInstance(pbPanel.getWidth(), pbPanel.getHeight(),
+				imageVolume.getImage().SCALE_SMOOTH);
+		ImageIcon imagePb = new ImageIcon(tempCircle);
+		pbPanel.setIcon(imagePb);
+		pbPanel.setOpaque(false);
+		intentPane1.add(pbPanel);
 
 		closeBtn = new JButton("X");
 		closeBtn.addMouseListener(new MouseAdapter() {
@@ -228,6 +276,7 @@ public class StockDetail extends JPanel {
 		// 当前价格条
 
 		barPanel bPanel1 = new barPanel(datavo.getOpen(), high);
+		bPanel1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		bPanel1.setBounds(150, 78, (int) (210 * Math.pow(open, 12)), 26);
 		bPanel1.addMouseListener(new MouseAdapter() {
 
@@ -240,22 +289,46 @@ public class StockDetail extends JPanel {
 			// }
 
 		});
+		JLabel label5 = new JLabel(datavo.getOpen() + "");
+		label5.setBounds(15, 6, 20, 18);
+		label5.setForeground(new Color(105, 76, 36));
+		bPanel1.add(label5);
 		intentPane1.add(bPanel1);
 
 		barPanel bPanel2 = new barPanel(datavo.getLow(), high);
+		bPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
 		bPanel2.setBounds(150, 120, (int) (210 * Math.pow(low, 12)), 26);
+		JLabel label1 = new JLabel(datavo.getLow() + "");
+		label1.setBounds(15, 6, 20, 18);
+		label1.setForeground(new Color(105, 76, 36));
+		bPanel2.add(label1);
 		intentPane1.add(bPanel2);
 
 		barPanel bPanel3 = new barPanel(high, high);
+		bPanel3.setLayout(new FlowLayout(FlowLayout.LEFT));
 		bPanel3.setBounds(150, 161, 210, 26);
+		JLabel label2 = new JLabel(datavo.getHigh() + "");
+		label2.setBounds(15, 6, 20, 18);
+		label2.setForeground(new Color(105, 76, 36));
+		bPanel3.add(label2);
 		intentPane1.add(bPanel3);
 
 		barPanel bPanel4 = new barPanel(datavo.getClose(), high);
+		bPanel4.setLayout(new FlowLayout(FlowLayout.LEFT));
 		bPanel4.setBounds(150, 202, (int) (210 * Math.pow(close, 12)), 26);
+		JLabel label3 = new JLabel(datavo.getClose() + "");
+		label3.setBounds(15, 6, 20, 18);
+		label3.setForeground(new Color(105, 76, 36));
+		bPanel4.add(label3);
 		intentPane1.add(bPanel4);
 
 		barPanel bPanel5 = new barPanel(datavo.getAdj_price(), high);
+		bPanel5.setLayout(new FlowLayout(FlowLayout.LEFT));
 		bPanel5.setBounds(150, 243, (int) (210 * Math.pow(adj_price, 12)), 26);
+		JLabel label4 = new JLabel(datavo.getAdj_price() + "");
+		label4.setBounds(15, 6, 20, 18);
+		label4.setForeground(new Color(105, 76, 36));
+		bPanel5.add(label4);
 		intentPane1.add(bPanel5);
 
 		likeButton = new JButton();
@@ -440,7 +513,14 @@ public class StockDetail extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					searchBar.jump(frame, detail);
+					searchBar.setVisible(false);
+					detail.setVisible(false);
+					String anotherID = searchBar.getID();
+					StockDetail another = new StockDetail(frame, anotherID, detail, true);
+					frame.getContentPane().add(another);
+					another.setBounds(224, 0, 737, getHeight());
+					another.setVisible(true);
+					frame.repaint();
 				}
 			}
 
@@ -551,7 +631,7 @@ public class StockDetail extends JPanel {
 		volumeLabel.setText((volume / 10000 + "") + "W");
 		volumeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		volumeLabel.setForeground(new Color(62, 56, 49, 240));
-		volumeLabel.setBounds(471, 143, 80, 24);
+		volumeLabel.setBounds(441, 143, 80, 24);
 		intentPane1.add(volumeLabel);
 		// 换手率
 		JLabel turnoverLabel = new JLabel();
@@ -567,7 +647,7 @@ public class StockDetail extends JPanel {
 		peLabel.setText((pe + "") + "%");
 		peLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		peLabel.setForeground(new Color(62, 56, 49, 240));
-		peLabel.setBounds(471, 247, 80, 24);
+		peLabel.setBounds(451, 247, 80, 24);
 		intentPane1.add(peLabel);
 		// 市净率
 		JLabel pbLabel = new JLabel();
