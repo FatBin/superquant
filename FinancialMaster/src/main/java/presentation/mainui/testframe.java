@@ -1,5 +1,6 @@
 package presentation.mainui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.util.Observable;
 import java.util.Observer;
@@ -44,14 +45,22 @@ public class testframe extends JFrame implements Observer{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("ssss");
-		label.setBounds(10, 10, 20, 10);
-		contentPane.add(label);
+
 		
 		connectionReminder = new connectionReminder();
 		connectionReminder.setBounds(0, 0, 960, 600);
 		subject=o;
 		subject.addObserver(this);
+		
+		JPanel panel=new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(0,0,500,400);
+		panel.setForeground(Color.green);
+		
+		JLabel label = new JLabel("ssss");
+		label.setBounds(100, 100, 40, 30);
+		panel.add(label);
+		add(panel);
 	}
 
 

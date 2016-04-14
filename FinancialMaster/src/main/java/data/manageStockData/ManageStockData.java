@@ -28,10 +28,10 @@ public class ManageStockData implements manageStockDataService{
 		// TODO Auto-generated method stub
 		try {
 			ArrayList<String> arrayList=FileManager.ReadFile("src/main/resources/Data/ObservedStock.txt");
-			//大于等于10时无效
-			if(arrayList.size()>9){
-				return ManageState.Fail;
-			}else{
+//			//大于等于10时无效
+//			if(arrayList.size()>9){
+//				return ManageState.Fail;
+//			}else{
 				//有重复时无效
 				for (String string : arrayList) {
 					if (string.equals(code)) {
@@ -42,7 +42,7 @@ public class ManageStockData implements manageStockDataService{
 				arrayList.add(code);
 				FileManager.WriteFile(arrayList, "src/main/resources/Data/ObservedStock.txt", false);
 				return ManageState.Succeed;
-			}
+//			}
 		} catch (Exception e) {
 			return ManageState.Succeed;
 		}

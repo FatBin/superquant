@@ -43,7 +43,6 @@ public class mainframe extends JFrame implements Observer{
 				connectionReminder= new connectionReminder();
 				connectionReminder.setBounds(0, 0, 960, 600);
 				this.add(connectionReminder);
-				this.setComponentZOrder(connectionReminder, 1);
 				connectionReminder.updateUI();
 				invalidate();
 				repaint();
