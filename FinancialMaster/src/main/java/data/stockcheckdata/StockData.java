@@ -21,28 +21,59 @@ import dataservice.stockcheckdataservice.StockDataService;
 public class StockData implements StockDataService {
 	// 输入年份及交易所返回所有股票名
 	public codeNamePO getCodeName(int year, String exchange) {
-		//先判斷是否在文件中
-//		File file=new File("src/main/resources/Data/LocalDataBuffer/"+year+".txt");
-//		if(!file.exists()||file.isDirectory()){
-//			
-//		}
-		ArrayList<String> arrayList = new ArrayList<String>();
-		try {
-			String result = HttpRequest.sendGet("http://121.41.106.89:8010/api/stocks/",
-					"year=" + year + "&exchange=" + exchange);
-			JSONObject jsonObject = new JSONObject(result);
-			JSONArray jsonArray = jsonObject.getJSONArray("data");
+		ArrayList<String> arrayList = new ArrayList<String>();//返回的arraylist
 
-			for (int i = 0; i < jsonArray.length(); i++) {
-				arrayList.add(jsonArray.getJSONObject(i).getString("name"));
+		//先判斷是否在文件中
+		File file=new File("src/main/resources/Data/LocalDataBuffer/"+year+"_"+exchange+".txt");
+		if(!file.exists()||file.isDirectory()){
+				try {
+					file.createNewFile();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			try {
+				//数据处理
+				String result = HttpRequest.sendGet("http://121.41.106.89:8010/api/stocks/",
+						"year=" + year + "&exchange=" + exchange);
+				JSONObject jsonObject = new JSONObject(result);
+				JSONArray jsonArray = jsonObject.getJSONArray("data");
+	
+				for (int i = 0; i < jsonArray.length(); i++) {
+					arrayList.add(jsonArray.getJSONObject(i).getString("name"));
+				}
+				//写入
+				FileManager.WriteFile(arrayList, "src/main/resources/Data/LocalDataBuffer/"+year+"_"+exchange+".txt", false);
+			} catch (JSONException e) {
+				e.printStackTrace();
 			}
-			
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}else{
+			Calendar calendar=Calendar.getInstance();
+			SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy");
+			String thisYear=simpleDateFormat.format(calendar.getTime());
+			//同一年的也要 更新
+			if (thisYear.equals(""+year)) {
+				try {
+					//数据处理
+					String result = HttpRequest.sendGet("http://121.41.106.89:8010/api/stocks/",
+							"year=" + year + "&exchange=" + exchange);
+					JSONObject jsonObject = new JSONObject(result);
+					JSONArray jsonArray = jsonObject.getJSONArray("data");
+		
+					for (int i = 0; i < jsonArray.length(); i++) {
+						arrayList.add(jsonArray.getJSONObject(i).getString("name"));
+					}
+					//写入
+					FileManager.WriteFile(arrayList, "src/main/resources/Data/LocalDataBuffer/"+year+"_"+exchange+".txt", false);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}else{
+				arrayList=FileManager.ReadFile("src/main/resources/Data/LocalDataBuffer/"+year+"_"+exchange+".txt");
+			}
 		}
 		codeNamePO codeNamePO = new codeNamePO(arrayList);
 		return codeNamePO;
+		
 	}
 
 	// 输入股票代号及起始和终止时间，返回股票具体信息
