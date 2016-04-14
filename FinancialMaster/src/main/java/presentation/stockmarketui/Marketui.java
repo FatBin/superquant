@@ -169,7 +169,7 @@ public class Marketui extends JPanel {
 		shockListBtn.setBounds(0, 112, 224, 44);
 		add(shockListBtn);
 
-		optionalStockBtn = new JButton("   行业排行");
+		optionalStockBtn = new JButton("   行情对比");
 		optionalStockBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {

@@ -167,7 +167,7 @@ public class OptionalStock extends JPanel {
 		stockListBtn.setBounds(0, 112, 224, 44);
 		add(stockListBtn);
 
-		optionalStockBtn = new JButton("   行业排行");
+		optionalStockBtn = new JButton("   行情对比");
 		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		optionalStockBtn.setForeground(new Color(248, 179, 29));
 		optionalStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank-enter.png"));

@@ -87,7 +87,7 @@ public class PersonalStock extends JPanel {
 		stockListBtn.setBounds(0, 112, 224, 44);
 		add(stockListBtn);
 
-		optionStockBtn = new JButton("   行业排行");
+		optionStockBtn = new JButton("   行情对比");
 		optionStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank.png"));
 		optionStockBtn.addMouseListener(new MouseAdapter() {
 			@Override

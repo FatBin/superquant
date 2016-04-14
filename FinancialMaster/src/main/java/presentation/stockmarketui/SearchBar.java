@@ -116,4 +116,9 @@ public class SearchBar extends JPanel {
 	public int getRowCount() {
 		return table.getRowCount();
 	}
+	
+	public String getID(){
+		int pos = table.getSelectedRow();
+		return table.getValueAt(pos, 0).toString();
+	}
 }

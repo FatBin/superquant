@@ -201,13 +201,7 @@ public class StockList extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					String id = table.getValueAt(rowpos, 0).toString();
-
-					searchBar.setVisible(false);
-					listui.setVisible(false);
-					StockDetail detail = new StockDetail(frame, id, listui, true);
-					frame.getContentPane().add(detail);
-					detail.setBounds(224, 0, 737, getHeight());
-					frame.repaint();
+					listToDetail(frame, listui, id);
 				}
 			}
 		});
@@ -225,8 +219,10 @@ public class StockList extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				searchBar.setVisible(false);
-				if (!searchTextField.getText().equals("")) {
-					searchBar.jump(frame, listui);
+
+				String id = searchBar.getID();
+				if (!id.equals("")) {
+					listToDetail(frame, listui, id);
 				}
 			}
 		});
@@ -248,7 +244,11 @@ public class StockList extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					searchBar.jump(frame, listui);
+					
+					String id = searchBar.getID();
+					if (!id.equals("")) {
+						listToDetail(frame, listui, id);
+					}
 				}
 			}
 
@@ -399,5 +399,15 @@ public class StockList extends JPanel {
 				}
 			}
 		});
+	}
+
+	public void listToDetail(JFrame frame, JPanel listui, String id) {
+		searchBar.setVisible(false);
+		listui.setVisible(false);
+		StockDetail detail = new StockDetail(frame, id, listui, true);
+		frame.getContentPane().add(detail);
+		detail.setBounds(224, 0, 737, getHeight());
+		detail.setVisible(true);
+		frame.repaint();
 	}
 }
