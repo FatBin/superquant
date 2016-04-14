@@ -362,7 +362,7 @@ public class OptionalStock extends JPanel {
 
 		// 排行表格
 		rankPane = new JScrollPane();
-		rankPane.setBounds(770, 115, 160, 400);
+		rankPane.setBounds(765, 115, 175, 400);
 		rankPane.setOpaque(false);
 		rankPane.setBorder(BorderFactory.createEmptyBorder());
 		rankPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
@@ -497,6 +497,7 @@ public class OptionalStock extends JPanel {
 		tableModel = new DefaultTableModel(data, new String[] { "排名", "股票名称", condition });
 		table.setModel(tableModel);
 		table.getColumnModel().getColumn(0).setPreferredWidth(35);
+		table.getColumnModel().getColumn(2).setPreferredWidth(80);
 
 		rankPane.repaint();
 		rankPane.validate();
