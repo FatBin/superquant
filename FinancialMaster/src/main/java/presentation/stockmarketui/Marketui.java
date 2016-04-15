@@ -65,6 +65,7 @@ public class Marketui extends JPanel {
 	private boolean click = false;
 
 	String[][] data;
+	String[][] tableData;
 
 	private JScrollPane[] scrollPane;
 	private JTable[] table;
@@ -75,11 +76,13 @@ public class Marketui extends JPanel {
 	private StockMarketBLService stockMarketBL = factory.getStockMarketBL();
 	private MarketKLineBLService marketKLineBL = factory.getMarketKLineBL();
 	private StockMarketVO stockMarketVO;
+	private StockMarketVO stockTableVO;
 	DefaultTableModel TableModel;
 	private marketKline_enum[] marketK = marketKline_enum.values();
 
 	private SearchBar searchBar;
 	private int rowpos = -1;
+	private int startPos = 0;
 
 	/**
 	 * Create the panel.
@@ -313,6 +316,35 @@ public class Marketui extends JPanel {
 		}
 
 		// K线图
+		stockMarketVO = marketKLineBL.getData(marketK[1]);
+		data = stockMarketVO.getData();
+
+		JButton shortenBtn = new JButton("缩短K线");
+		shortenBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (startPos + 10 < data.length - 15) {
+					startPos += 10;
+					showKline(selectedIndex);
+				}
+			}
+		});
+		shortenBtn.setBounds(545, 50, 60, 20);
+		intentPane1.add(shortenBtn);
+
+		JButton lenBtn = new JButton("拉长K线");
+		lenBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (startPos - 10 > 0) {
+					startPos -= 10;
+					showKline(selectedIndex);
+				}
+			}
+		});
+		lenBtn.setBounds(615, 50, 60, 20);
+		intentPane1.add(lenBtn);
+
 		JTabbedPane KLinePane = new JTabbedPane();
 		KLinePane.setBounds(7, 50, 690, 388);
 		KLinePane.setUI(new MyTabbedPaneUI2());
@@ -332,16 +364,19 @@ public class Marketui extends JPanel {
 		KLinePane.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
+				startPos = 0;
 				JTabbedPane tab = (JTabbedPane) e.getSource();
 				selectedIndex = tab.getSelectedIndex();
 
 				// 时分暂时没实现
-				panes[selectedIndex].removeAll();
 				if (selectedIndex == 3) {
+					panes[selectedIndex].removeAll();
 					JLabel label = new JLabel("敬请期待");
 					label.setSize(660, 350);
 					panes[selectedIndex].add(label);
 				} else {
+					stockMarketVO = marketKLineBL.getData(marketK[selectedIndex + 1]);
+					data = stockMarketVO.getData();
 					showKline(selectedIndex);
 				}
 			}
@@ -362,22 +397,20 @@ public class Marketui extends JPanel {
 		marketPane.addChangeListener(new ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				StockMarketVO stockMarketVO;
 				JTabbedPane tab = (JTabbedPane) e.getSource();
 				int selectedIndex = tab.getSelectedIndex();
 				date_enum[] date = date_enum.values();
-				stockMarketVO = stockMarketBL.getStockMarket("hs300", date[selectedIndex]);
-				data = stockMarketVO.getData();
-				TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "成交量（股）" });
+				stockTableVO = stockMarketBL.getStockMarket("hs300", date[selectedIndex]);
+				tableData = stockTableVO.getData();
+				TableModel = new DefaultTableModel(tableData, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "成交量（股）" });
 				table[selectedIndex].setModel(TableModel);
 			}
 		});
 		intentPane2.add(marketPane);
 
-		StockMarketVO stockMarketVO;
-		stockMarketVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
-		data = stockMarketVO.getData();
-		TableModel = new DefaultTableModel(data, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "成交量（股）" });
+		stockTableVO = stockMarketBL.getStockMarket("hs300", date_enum.Day);
+		String[][] tableData = stockTableVO.getData();
+		TableModel = new DefaultTableModel(tableData, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "成交量（股）" });
 		table[0].setModel(TableModel);
 
 		final MyComboBox nameBox = new MyComboBox();
@@ -577,10 +610,9 @@ public class Marketui extends JPanel {
 	// 显示k线图
 	public void showKline(int selectedIndex) {
 
-		stockMarketVO = marketKLineBL.getData(marketK[selectedIndex + 1]);
-		data = stockMarketVO.getData();
+		panes[selectedIndex].removeAll();
 
-		KLineChart kline = new KLineChart(data, selectedIndex + 1);
+		KLineChart kline = new KLineChart(data, selectedIndex + 1, startPos);
 		ChartPanel chartPanel = kline.getChartPane();
 		chartPanel.setPreferredSize(new Dimension(660, 345));
 		panes[selectedIndex].add(chartPanel);

@@ -39,8 +39,19 @@ public class KLineChart extends JPanel {
 	Date startDate;
 	Date endDate;
 
+	// 用来放大缩小k线
+	public KLineChart(String data[][], int index, int startPos) {
+		// TODO Auto-generated constructor stub
+		CreateChart(data, index, startPos);
+	}
+
+	// 一半初始化
+	public KLineChart(String data[][], int index) {
+		CreateChart(data, index, 0);
+	}
+
 	@SuppressWarnings("deprecation")
-	public KLineChart(String[][] data, int index) {
+	public void CreateChart(String[][] data, int index, int startPos) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		double highValue = Double.MIN_VALUE; // 设置K线数据当中的最大值
 		double minValue = Double.MAX_VALUE; // 设置K线数据当中的最小值
@@ -48,7 +59,7 @@ public class KLineChart extends JPanel {
 		double min2Value = Double.MAX_VALUE; // 设置成交量的最低值
 
 		try {
-			startDate = df.parse(data[0][0]);
+			startDate = df.parse(data[startPos][0]);
 			endDate = df.parse(data[data.length - 1][0]);
 		} catch (ParseException e1) {
 			e1.printStackTrace();
@@ -69,7 +80,7 @@ public class KLineChart extends JPanel {
 		TimeSeries seriesAvg10 = new TimeSeries("10日均线");
 		TimeSeries seriesAvg30 = new TimeSeries("30日均线");
 
-		for (int i = 0; i < data.length; i++) {
+		for (int i = startPos; i < data.length; i++) {
 
 			Date date = new Date();
 			try {
