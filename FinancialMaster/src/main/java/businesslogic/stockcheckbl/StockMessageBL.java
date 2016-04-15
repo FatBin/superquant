@@ -10,17 +10,16 @@ import VO.StockVO;
 import businesslogic.factory.InitFactory;
 import businesslogic.stockmarketbl.StockMarketInfo;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
-import data.manageStockData.ManageStockData;
 import data.stockcheckdata.StockData;
-import dataservice.manageStockService.manageStockDataService;
 import dataservice.stockcheckdataservice.StockDataService;
 
 public class StockMessageBL implements StockMessageBLService {
 
-	ArrayList<String[]> init_list = new ArrayList<String[]>();
+	ArrayList<String[]> init_list = new ArrayList<String[]>();// 股票不同日期数据列表
 	StockVO sv;
-	String id;
+	String id; // 当前查看的股票的id
 
+	// 根据关键字范围筛选股票
 	@Override
 	public StockVO filterStockMessage(int i, String low, String high) {
 		double low_value, high_value;
@@ -41,11 +40,11 @@ public class StockMessageBL implements StockMessageBLService {
 				filterlist.add(strings);
 			}
 		}
-		int all_size=init_list.size();
+		int all_size = init_list.size();
 		int size = filterlist.size();
-		double ratio=size*1.0/all_size;
+		double ratio = size * 1.0 / all_size;
 		String[][] list = new String[size][10];
-		int index = size-1;
+		int index = size - 1;
 		for (String[] strings : filterlist) {
 			list[index] = strings;
 			index--;
@@ -55,6 +54,7 @@ public class StockMessageBL implements StockMessageBLService {
 		return sv;
 	}
 
+	// 返回所选股票的详细信息，打包成StockVO
 	@Override
 	public StockVO getStockMessage(String id) {
 		this.id = id;
@@ -72,7 +72,7 @@ public class StockMessageBL implements StockMessageBLService {
 			ssPOlist = sds.getStatisitcOfStock(id, startDay, endDay);
 		} while (ssPOlist.isEmpty());
 
-		ssPO = ssPOlist.get(0);		
+		ssPO = ssPOlist.get(0);
 		String name = ssPO.getName();// 股票名
 		String date = ssPO.getDate();// 日期
 		double open = ssPO.getOpen();// 开盘价
@@ -80,11 +80,10 @@ public class StockMessageBL implements StockMessageBLService {
 		double low = ssPO.getLow();// 最低价
 		double close = ssPO.getClose();// 收盘价
 		double adj_price = ssPO.getAdj_price();// 后复权价
-		int volume = ssPO.getVolume();// 成交量 
+		int volume = ssPO.getVolume();// 成交量
 		double turnover = ssPO.getTurnover();// 换手率
 		double pe = ssPO.getPb();// 市盈率
 		double pb = ssPO.getPe();// 市净率
-		
 
 		String yesStartDay;
 		do {
@@ -92,24 +91,24 @@ public class StockMessageBL implements StockMessageBLService {
 			yesStartDay = format.format(cal.getTime());
 			ssPOlist = sds.getStatisitcOfStock(id, yesStartDay, startDay);
 		} while (ssPOlist.isEmpty());
-		ssPOlist = sds.getStatisitcOfStock(id, yesStartDay,startDay);
-		ssPO = ssPOlist.get(0);	
+		ssPOlist = sds.getStatisitcOfStock(id, yesStartDay, startDay);
+		ssPO = ssPOlist.get(0);
 		double last_close = ssPO.getClose();// 最新前一天的收盘价
-		double ups_and_downs=(close-last_close)/last_close;
-		double amplitude=(high-low)/last_close;
-		
+		double ups_and_downs = (close - last_close) / last_close;
+		double amplitude = (high - low) / last_close;
+
 		String[][] history_data = new String[24][10];// 历史数据
-		
+
 		ssPOlist = sds.getStatisitcOfStock(id);
 		int size = ssPOlist.size();
-		int index = size-1;
+		int index = size - 1;
 		int k_size = 30;
-		String[][] k_data = new String[size][10];//为k线图提供历史数据		
-		String[][] KLine_data=new String[k_size][9];//返回k线图
-		double[] closeForKLine=new double[k_size+30];
-		double volume_avg=0;
+		String[][] k_data = new String[size][10];// 为k线图提供历史数据
+		String[][] KLine_data = new String[k_size][9];// 返回k线图
+		double[] closeForKLine = new double[k_size + 30];
+		double volume_avg = 0;
 		for (stockStatisticPO sp : ssPOlist) {
-			if(index<24){
+			if (index < 24) {
 				history_data[index][0] = sp.getDate();
 				history_data[index][1] = sp.getOpen() + "";
 				history_data[index][2] = sp.getHigh() + "";
@@ -122,8 +121,8 @@ public class StockMessageBL implements StockMessageBLService {
 				history_data[index][9] = sp.getPb() + "";
 				init_list.add(history_data[index]);
 			}
-			if(index<30){
-				volume_avg+=sp.getVolume()/30.0;
+			if (index < 30) {
+				volume_avg += sp.getVolume() / 30.0;
 			}
 			k_data[index][0] = sp.getDate();
 			k_data[index][1] = sp.getOpen() + "";
@@ -137,9 +136,9 @@ public class StockMessageBL implements StockMessageBLService {
 			k_data[index][9] = sp.getPb() + "";
 			index--;
 		}
-		double quantity_relative_ratio=volume/volume_avg;
+		double quantity_relative_ratio = volume / volume_avg;
 		for (int i = 0; i < closeForKLine.length; i++) {
-			closeForKLine[i]=Double.parseDouble(k_data[k_size +29 - i][4]);
+			closeForKLine[i] = Double.parseDouble(k_data[k_size + 29 - i][4]);
 		}
 		double sum;
 		for (int i = 0; i < k_size; i++) {
@@ -147,32 +146,32 @@ public class StockMessageBL implements StockMessageBLService {
 				KLine_data[i][j] = k_data[k_size - 1 - i][j];
 			}
 			KLine_data[i][5] = k_data[k_size - 1 - i][6];
-			sum=0;
-			for (int j = i+25; j < i+30; j++) {
-				sum+=closeForKLine[j];
+			sum = 0;
+			for (int j = i + 25; j < i + 30; j++) {
+				sum += closeForKLine[j];
 			}
-			KLine_data[i][6]=sum/5+"";
-			for (int j = i+20; j < i+25; j++) {
-				sum+=closeForKLine[j];
+			KLine_data[i][6] = sum / 5 + "";
+			for (int j = i + 20; j < i + 25; j++) {
+				sum += closeForKLine[j];
 			}
-			KLine_data[i][7]=sum/10+"";
-			for (int j = i; j < i+20; j++) {
-				sum+=closeForKLine[j];
+			KLine_data[i][7] = sum / 10 + "";
+			for (int j = i; j < i + 20; j++) {
+				sum += closeForKLine[j];
 			}
-			KLine_data[i][8]=sum/30+"";
+			KLine_data[i][8] = sum / 30 + "";
 		}
-		
-		
-		InitFactory factory=InitFactory.getFactory();
+
+		InitFactory factory = InitFactory.getFactory();
 		StockMarketInfo stockMarketInfo = factory.getStockMarketBL();
-		StockMarketVO stockMarketVO=stockMarketInfo.getStockMarketVO();
-		
-		sv = new StockVO(name, date, open, high, low, close, adj_price,
-				volume, turnover, pe, pb,ups_and_downs,stockMarketVO,
-				amplitude,quantity_relative_ratio,KLine_data, history_data);
+		StockMarketVO stockMarketVO = stockMarketInfo.getStockMarketVO();
+
+		sv = new StockVO(name, date, open, high, low, close, adj_price, volume,
+				turnover, pe, pb, ups_and_downs, stockMarketVO, amplitude,
+				quantity_relative_ratio, KLine_data, history_data);
 		return sv;
 	}
 
+	// 根据选择日期段更新历史数据列表列表
 	@Override
 	public StockVO updateStockMessage(String startData, String overData) {
 		init_list.clear();
@@ -181,7 +180,7 @@ public class StockMessageBL implements StockMessageBLService {
 				startData, overData);
 		int size = ssPOlist.size();
 		String[][] list = new String[size][10];
-		int index = size-1;
+		int index = size - 1;
 		for (stockStatisticPO sp : ssPOlist) {
 			list[index][0] = sp.getDate();
 			list[index][1] = sp.getOpen() + "";

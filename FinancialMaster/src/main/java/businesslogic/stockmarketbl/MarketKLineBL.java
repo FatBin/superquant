@@ -1,11 +1,8 @@
 package businesslogic.stockmarketbl;
 
-import java.util.ArrayList;
-
 import ENUM.ManageState;
 import ENUM.date_enum;
 import ENUM.marketKline_enum;
-import PO.benchmarkStatisticPO;
 import VO.StockMarketVO;
 import businesslogic.factory.InitFactory;
 import businesslogicservice.stockmarketblservice.MarketKLineBLService;
@@ -15,12 +12,12 @@ import dataservice.stockmarketdataservice.BenchKLineDataService;
 
 public class MarketKLineBL implements MarketKLineBLService {
 	BenchKLineDataService bkds = new BenchKLineData();
-
+	 //读取网上最新的数据，更新数据文件中的数据
 	@Override
 	public ManageState update() {
 		return bkds.update();
 	}
-
+	//返回k线图所需要的数据
 	@Override
 	public StockMarketVO getData(marketKline_enum k) {
 		String[][] list;
