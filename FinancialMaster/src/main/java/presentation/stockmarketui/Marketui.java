@@ -323,26 +323,48 @@ public class Marketui extends JPanel {
 		shortenBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (startPos + 10 < data.length - 15) {
+				if (startPos + 10 < data.length - 15 && selectedIndex != 3) {
 					startPos += 10;
 					showKline(selectedIndex);
 				}
 			}
+
+			public void mouseEntered(MouseEvent e) {
+				shortenBtn.setForeground(new Color(252, 98, 93));
+			}
+
+			public void mouseExited(MouseEvent e) {
+				shortenBtn.setForeground(Color.BLACK);
+			}
 		});
-		shortenBtn.setBounds(545, 50, 60, 20);
+		shortenBtn.setBounds(515, 50, 75, 20);
+		shortenBtn.setBorder(null);
+		shortenBtn.setContentAreaFilled(false);
+		shortenBtn.setOpaque(false);
 		intentPane1.add(shortenBtn);
 
 		JButton lenBtn = new JButton("拉长K线");
 		lenBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (startPos - 10 > 0) {
+				if (startPos - 10 > 0 && selectedIndex != 3) {
 					startPos -= 10;
 					showKline(selectedIndex);
 				}
 			}
+
+			public void mouseEntered(MouseEvent e) {
+				lenBtn.setForeground(new Color(252, 98, 93));
+			}
+
+			public void mouseExited(MouseEvent e) {
+				lenBtn.setForeground(Color.BLACK);
+			}
 		});
-		lenBtn.setBounds(615, 50, 60, 20);
+		lenBtn.setBounds(600, 50, 75, 20);
+		lenBtn.setBorder(null);
+		lenBtn.setContentAreaFilled(false);
+		lenBtn.setOpaque(false);
 		intentPane1.add(lenBtn);
 
 		JTabbedPane KLinePane = new JTabbedPane();
@@ -402,7 +424,8 @@ public class Marketui extends JPanel {
 				date_enum[] date = date_enum.values();
 				stockTableVO = stockMarketBL.getStockMarket("hs300", date[selectedIndex]);
 				tableData = stockTableVO.getData();
-				TableModel = new DefaultTableModel(tableData, new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "成交量（股）" });
+				TableModel = new DefaultTableModel(tableData,
+						new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "成交量（股）" });
 				table[selectedIndex].setModel(TableModel);
 			}
 		});
