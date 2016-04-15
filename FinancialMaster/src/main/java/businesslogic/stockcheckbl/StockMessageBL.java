@@ -41,13 +41,16 @@ public class StockMessageBL implements StockMessageBLService {
 				filterlist.add(strings);
 			}
 		}
+		int all_size=init_list.size();
 		int size = filterlist.size();
+		double ratio=size*1.0/all_size;
 		String[][] list = new String[size][10];
 		int index = size-1;
 		for (String[] strings : filterlist) {
 			list[index] = strings;
 			index--;
 		}
+		sv.setRatio(ratio);
 		sv.setHistory_data(list);
 		return sv;
 	}
@@ -57,13 +60,10 @@ public class StockMessageBL implements StockMessageBLService {
 		this.id = id;
 		StockDataService sds = new StockData();
 		Calendar cal = Calendar.getInstance();
-		Calendar cal2 = Calendar.getInstance();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String startDay = format.format(cal.getTime());
 		cal.add(Calendar.DATE, 1);
 		String endDay = format.format(cal.getTime());
-		cal2.add(Calendar.MONTH, -3);
-		String threeMonthAgo =format.format(cal2.getTime());
 		ArrayList<stockStatisticPO> ssPOlist;
 		stockStatisticPO ssPO;
 		do {
@@ -78,12 +78,13 @@ public class StockMessageBL implements StockMessageBLService {
 		double open = ssPO.getOpen();// 开盘价
 		double high = ssPO.getHigh();// 最高价
 		double low = ssPO.getLow();// 最低价
-		double closelist = ssPO.getClose();// 收盘价
+		double close = ssPO.getClose();// 收盘价
 		double adj_price = ssPO.getAdj_price();// 后复权价
-		int volume = ssPO.getVolume();// 成交量
+		int volume = ssPO.getVolume();// 成交量 
 		double turnover = ssPO.getTurnover();// 换手率
 		double pe = ssPO.getPb();// 市盈率
 		double pb = ssPO.getPe();// 市净率
+		
 
 		String yesStartDay;
 		do {
@@ -93,8 +94,9 @@ public class StockMessageBL implements StockMessageBLService {
 		} while (ssPOlist.isEmpty());
 		ssPOlist = sds.getStatisitcOfStock(id, yesStartDay,startDay);
 		ssPO = ssPOlist.get(0);	
-		double lase_close = ssPO.getClose();// 最新前一天的收盘价
-		Double ups_and_downs=(closelist-lase_close)/lase_close;
+		double last_close = ssPO.getClose();// 最新前一天的收盘价
+		double ups_and_downs=(close-last_close)/last_close;
+		double amplitude=(high-low)/last_close;
 		
 		String[][] history_data = new String[24][10];// 历史数据
 		
@@ -105,6 +107,7 @@ public class StockMessageBL implements StockMessageBLService {
 		String[][] k_data = new String[size][10];//为k线图提供历史数据		
 		String[][] KLine_data=new String[k_size][9];//返回k线图
 		double[] closeForKLine=new double[k_size+30];
+		double volume_avg=0;
 		for (stockStatisticPO sp : ssPOlist) {
 			if(index<24){
 				history_data[index][0] = sp.getDate();
@@ -119,6 +122,9 @@ public class StockMessageBL implements StockMessageBLService {
 				history_data[index][9] = sp.getPb() + "";
 				init_list.add(history_data[index]);
 			}
+			if(index<30){
+				volume_avg+=sp.getVolume()/30.0;
+			}
 			k_data[index][0] = sp.getDate();
 			k_data[index][1] = sp.getOpen() + "";
 			k_data[index][2] = sp.getHigh() + "";
@@ -131,6 +137,7 @@ public class StockMessageBL implements StockMessageBLService {
 			k_data[index][9] = sp.getPb() + "";
 			index--;
 		}
+		double quantity_relative_ratio=volume/volume_avg;
 		for (int i = 0; i < closeForKLine.length; i++) {
 			closeForKLine[i]=Double.parseDouble(k_data[k_size +29 - i][4]);
 		}
@@ -154,12 +161,15 @@ public class StockMessageBL implements StockMessageBLService {
 			}
 			KLine_data[i][8]=sum/30+"";
 		}
+		
+		
 		InitFactory factory=InitFactory.getFactory();
 		StockMarketInfo stockMarketInfo = factory.getStockMarketBL();
 		StockMarketVO stockMarketVO=stockMarketInfo.getStockMarketVO();
 		
-		sv = new StockVO(name, date, open, high, low, closelist, adj_price,
-				volume, turnover, pe, pb,ups_and_downs,stockMarketVO,KLine_data, history_data);
+		sv = new StockVO(name, date, open, high, low, close, adj_price,
+				volume, turnover, pe, pb,ups_and_downs,stockMarketVO,
+				amplitude,quantity_relative_ratio,KLine_data, history_data);
 		return sv;
 	}
 
