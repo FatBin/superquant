@@ -14,13 +14,17 @@ public class StockVO {
 	private double pb;//市净率
 	private double ups_and_lows;//涨跌幅
 	private StockMarketVO stockMarketVO;//最新大盘的数据
+	private double amplitude;//振幅
+	private double quantity_relative_ratio;//量比
 	private String[][] KLine_data;//k线图数据
 	private String[][] history_data;//历史数据
+	private double ratio;
 			
 	public StockVO(String name, String date, double open, double high,
 			double low, double close, double adj_price, int volume,
 			double turnover, double pe, double pb, double ups_and_lows,
-			StockMarketVO stockMarketVO, String[][] kLine_data,
+			StockMarketVO stockMarketVO, double amplitude,
+			double quantity_relative_ratio,String[][] kLine_data,
 			String[][] history_data) {
 		super();
 		this.name = name;
@@ -36,8 +40,11 @@ public class StockVO {
 		this.pb = pb;
 		this.ups_and_lows = ups_and_lows;
 		this.stockMarketVO = stockMarketVO;
+		this.amplitude=amplitude;
+		this.quantity_relative_ratio=quantity_relative_ratio;
 		this.KLine_data = kLine_data;
 		this.history_data = history_data;
+		this.ratio=1;
 	}
 	public String getName() {
 		return name;
@@ -75,10 +82,18 @@ public class StockVO {
 	public double getUps_and_lows() {
 		return ups_and_lows;
 	}
-	
 	public StockMarketVO getStockMarketVO() {
 		return stockMarketVO;
 	}
+	public double getTamplitude() {
+		return amplitude;
+	}
+
+	public double getQuantity_relative_ratio() {
+		return quantity_relative_ratio;
+	}
+	
+	
 	public String[][] getKLine_data() {
 		return KLine_data;
 	}
@@ -90,5 +105,7 @@ public class StockVO {
 	public void setHistory_data(String[][] history_data) {
 		this.history_data = history_data;
 	}		
-
+	public void setRatio(double ratio) {
+		this.ratio = ratio;;
+	}	
 }
