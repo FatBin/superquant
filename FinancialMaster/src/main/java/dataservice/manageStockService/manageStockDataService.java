@@ -3,7 +3,6 @@ package dataservice.manageStockService;
 import java.util.ArrayList;
 
 import ENUM.ManageState;
-import PO.ObservedStockPO;
 
 public interface manageStockDataService {
 	//获取已被观察的股票代号

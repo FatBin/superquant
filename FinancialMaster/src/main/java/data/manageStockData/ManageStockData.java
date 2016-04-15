@@ -1,6 +1,5 @@
 package data.manageStockData;
 
-import java.io.FileReader;
 import java.util.ArrayList;
 
 import ENUM.ManageState;
