@@ -54,6 +54,13 @@ public class KLineChart extends JPanel {
 			e1.printStackTrace();
 		}
 
+		// endDate增加一天使得数据显示完全
+		Calendar c = Calendar.getInstance();
+		c.setTime(endDate);
+		int dayAdd = c.get(Calendar.DATE);
+		c.set(Calendar.DATE, dayAdd + 1);
+		endDate = c.getTime();
+
 		OHLCSeries series = new OHLCSeries(""); // 高开低收数据序列，股票K线图的四个数据，依次是开，高，低，收
 		TimeSeries series2 = new TimeSeries(""); // 对应时间成交量数据
 
