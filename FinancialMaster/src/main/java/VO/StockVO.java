@@ -101,6 +101,9 @@ public class StockVO {
 	public String[][] getHistory_data() {
 		return history_data;
 	}
+	public double getRatio() {
+		return ratio;
+	}	
 	
 	public void setHistory_data(String[][] history_data) {
 		this.history_data = history_data;
