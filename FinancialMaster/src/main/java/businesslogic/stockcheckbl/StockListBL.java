@@ -4,9 +4,7 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
-import PO.codeNamePO;
 import PO.stockStatisticPO;
 import businesslogicservice.stockcheckblservice.StockListBLService;
 import data.manageStockData.ManageStockData;
@@ -79,7 +77,7 @@ public class StockListBL implements StockListBLService {
 			init_list.add(list[i]);
 		}
 	}
-
+    //关注或取消关注时更新股票列表
 	public void update(String id, int i) {
 		int size = list.length;
 		list = new String[size + i][10];
@@ -123,14 +121,14 @@ public class StockListBL implements StockListBLService {
 
 		}
 	}
-
+	// 返回预选股票的列表，用二维数组展示
 	@Override
 	public String[][] getStockList() {
 		// 股票代码、开盘价、最高价、最低价、收盘价、后复权价、成交量、换手率、市盈率、市净率
 
 		return list;
 	}
-
+	// 返回筛选过后的列表
 	@Override
 	public String[][] updateStockList(String key) {
 		ArrayList<String[]> new_list = new ArrayList<String[]>();

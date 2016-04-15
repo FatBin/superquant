@@ -1,6 +1,5 @@
 package businesslogic.stockContrastbl;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,12 +7,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import PO.stockStatisticPO;
+import businesslogicservice.stockContrastblservice.StockContrastBLService;
 import data.manageStockData.ManageStockData;
 import data.stockcheckdata.StockData;
 import dataservice.manageStockService.manageStockDataService;
 import dataservice.stockcheckdataservice.StockDataService;
-import PO.stockStatisticPO;
-import businesslogicservice.stockContrastblservice.StockContrastBLService;
 
 public class StockContrastBL implements StockContrastBLService {
 
@@ -95,6 +94,7 @@ public class StockContrastBL implements StockContrastBLService {
 		}
 	}
 
+	// 添加关注和取消关注是更新
 	public void update(String id, int i) {
 		int size = idlist.length;
 		String[][] new_idlist = new String[size + i][10];
@@ -154,6 +154,7 @@ public class StockContrastBL implements StockContrastBLService {
 
 	}
 
+	// 根据股票编号得到雷达图需要显示的数据，依次是：涨跌幅、市净率、市盈率、换手率、成交价稳定性、成交量稳定性
 	@Override
 	public double[] getData(String id) {
 		double[] result = null;
@@ -166,6 +167,7 @@ public class StockContrastBL implements StockContrastBLService {
 
 	}
 
+	// 得到股票名称列表
 	@Override
 	public String[] getList() {
 		int length = idlist.length;
@@ -176,6 +178,7 @@ public class StockContrastBL implements StockContrastBLService {
 		return nameList;
 	}
 
+	// 得到数组的标准差
 	private double getAmendatoryStandardDevition(double[] data, int n) {
 		double result = 0;
 		double avg = 0;
@@ -194,30 +197,30 @@ public class StockContrastBL implements StockContrastBLService {
 		return result;
 	}
 
+	// 数据统一修正处理
 	private double[] unitizeData(double[] olddata) {
 
 		double ups_and_downs = olddata[0];
-		double pb = olddata[1];//市净率
-		double pe = olddata[2];//市盈率
+		double pb = olddata[1];// 市净率
+		double pe = olddata[2];// 市盈率
 		double turnover = olddata[3];
 		double closeStability = olddata[4];
 		double volumeStability = olddata[5];
 
 		double[] newdata = new double[6];
-		newdata[0]=(ups_and_downs*100)/0.4+5;
-		newdata[1]=pb*2;
-		newdata[2]=10-Math.abs(pe-17)/2.4;
-		newdata[3]=turnover*10;
-		newdata[4]=10-closeStability*100;
-		newdata[5]=10-volumeStability*10;
-		
-		
+		newdata[0] = (ups_and_downs * 100) / 0.4 + 5;
+		newdata[1] = pb * 2;
+		newdata[2] = 10 - Math.abs(pe - 17) / 2.4;
+		newdata[3] = turnover * 10;
+		newdata[4] = 10 - closeStability * 100;
+		newdata[5] = 10 - volumeStability * 10;
+
 		for (int i = 0; i < 6; i++) {
 			if (newdata[i] > 10) {
 				newdata[i] = 10;
 			} else if (newdata[i] < 0) {
 				newdata[i] = 0;
-			} 
+			}
 		}
 		return newdata;
 	}
