@@ -48,7 +48,6 @@ import businesslogic.managestockbl.ManageStockBL;
 import businesslogic.stockcheckbl.StockMessageBL;
 import businesslogicservice.managestockblservice.ManageStockBLService;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
-import presentation.mainui.loadingPanel;
 import presentation.repaintComponent.DateChooser;
 import presentation.repaintComponent.HeaderCellRenderer;
 import presentation.repaintComponent.IntentPane;
@@ -58,7 +57,6 @@ import presentation.repaintComponent.MyTabbedPaneUI2;
 import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.repaintComponent.barPanel;
-import presentation.repaintComponent.circlePanel;
 import presentation.stockmarketui.KLineChart;
 import presentation.stockmarketui.SearchBar;
 
