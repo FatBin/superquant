@@ -175,6 +175,8 @@ public class StockList extends JPanel {
 		table.setSelectionForeground(new Color(255, 255, 255, 230));
 		table.setOpaque(false);
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		table.getTableHeader().setReorderingAllowed(false); // 设置不可整列移动
+
 		// 选取行
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
