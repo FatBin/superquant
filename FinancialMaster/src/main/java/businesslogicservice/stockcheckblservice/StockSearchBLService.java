@@ -1,6 +1,5 @@
 package businesslogicservice.stockcheckblservice;
 
-import java.util.ArrayList;
 
 public interface StockSearchBLService {
 

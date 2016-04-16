@@ -1,15 +1,11 @@
 package businesslogic.stockcheckbl;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import data.manageStockData.ManageStockData;
-import data.stockcheckdata.StockData;
-import dataservice.manageStockService.manageStockDataService;
-import dataservice.stockcheckdataservice.StockDataService;
 import PO.codeNamePO;
 import businesslogicservice.stockcheckblservice.StockSearchBLService;
+import data.stockcheckdata.StockData;
+import dataservice.stockcheckdataservice.StockDataService;
 
 public class StockSearchBL implements StockSearchBLService {
 
@@ -27,7 +23,7 @@ public class StockSearchBL implements StockSearchBLService {
 				totalList.add(string);
 		 }
 	}
-	
+	//根据输入的关键字，实时更新股票代号列表
 	@Override
 	public String[][] getList(String key) {
 		ArrayList<String> newList=new ArrayList<String>();

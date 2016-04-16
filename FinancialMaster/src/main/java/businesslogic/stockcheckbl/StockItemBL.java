@@ -90,6 +90,7 @@ public class StockItemBL implements StockItemRankBLService{
 		
 		
 	}
+	//添加关注和取消关注时更新
 	public void update(String id,int i){
 		int length= data.length;
 		size= length+i;
@@ -137,6 +138,7 @@ public class StockItemBL implements StockItemRankBLService{
 		add_to_map();
 		
 	}
+	//添加到map中
 	private void add_to_map(){
 		for (int i = 2; i < 12; i++) {
 			ArrayList<StockItemVO> VOlist=new ArrayList<StockItemVO>(); 
@@ -148,6 +150,7 @@ public class StockItemBL implements StockItemRankBLService{
 		}
 		
 	}
+	//将Arraylist中的值从大到小排序
 	private ArrayList<StockItemVO> rank(ArrayList<StockItemVO> oldList) {
 		ArrayList<StockItemVO> newlist=new ArrayList<StockItemVO>();
 		int size=oldList.size();
@@ -164,7 +167,8 @@ public class StockItemBL implements StockItemRankBLService{
 		return newlist;
 	}
 	
-	
+	// 根据string参数（指想查看的单项数据）获得观察股票最近时间（一个月内）的排行（后期修改为"根据string参数获得所有股中的前十"）
+	// 开盘价，最高价，最低价，收盘价，后复权价，成交量，换手率，市盈率，市净率
 	@Override
 	public ArrayList<StockItemVO> getRank(String item) {
 		ArrayList<StockItemVO> result=new ArrayList<StockItemVO>();

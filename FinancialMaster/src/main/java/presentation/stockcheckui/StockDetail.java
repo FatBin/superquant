@@ -9,7 +9,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Panel;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ItemEvent;
@@ -49,7 +48,6 @@ import businesslogic.managestockbl.ManageStockBL;
 import businesslogic.stockcheckbl.StockMessageBL;
 import businesslogicservice.managestockblservice.ManageStockBLService;
 import businesslogicservice.stockcheckblservice.StockMessageBLService;
-import presentation.mainui.loadingPanel;
 import presentation.repaintComponent.DateChooser;
 import presentation.repaintComponent.HeaderCellRenderer;
 import presentation.repaintComponent.IntentPane;
@@ -59,7 +57,6 @@ import presentation.repaintComponent.MyTabbedPaneUI2;
 import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
 import presentation.repaintComponent.barPanel;
-import presentation.repaintComponent.circlePanel;
 import presentation.stockmarketui.KLineChart;
 import presentation.stockmarketui.SearchBar;
 
@@ -657,7 +654,7 @@ public class StockDetail extends JPanel {
 		volumeLabel.setText((volume / 10000 + "") + "W");
 		volumeLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		volumeLabel.setForeground(new Color(62, 56, 49, 240));
-		volumeLabel.setBounds(441, 143, 80, 24);
+		volumeLabel.setBounds(446, 143, 80, 24);
 		intentPane1.add(volumeLabel);
 		// »»ÊÖÂÊ
 		JLabel turnoverLabel = new JLabel();
@@ -673,7 +670,7 @@ public class StockDetail extends JPanel {
 		peLabel.setText((pe + "") + "%");
 		peLabel.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		peLabel.setForeground(new Color(62, 56, 49, 240));
-		peLabel.setBounds(451, 247, 80, 24);
+		peLabel.setBounds(458, 247, 80, 24);
 		intentPane1.add(peLabel);
 		// ÊÐ¾»ÂÊ
 		JLabel pbLabel = new JLabel();

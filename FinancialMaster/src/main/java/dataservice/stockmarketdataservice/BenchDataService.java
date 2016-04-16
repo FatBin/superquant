@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import PO.benchmarkPO;
 import PO.benchmarkStatisticPO;
-import PO.fieldStatisticPO;
 
 public interface BenchDataService {
 	//获取所有可用的benchmark，大盘指数，目前只有沪深300指数
