@@ -95,6 +95,7 @@ public class StockDetail extends JPanel {
 	private Color green = new Color(37, 120, 38);
 	private Color red = new Color(179, 43, 56);
 	private Font labelFont = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 18);
+	private attentionState state;
 
 	/**
 	 * Create the panel.
@@ -365,7 +366,7 @@ public class StockDetail extends JPanel {
 
 		image3 = new ImageIcon(temp3);
 
-		attentionState state = manageStockBL.isAttented(id);
+		state= manageStockBL.isAttented(id);
 		if (state == attentionState.No) {
 			likeButton.setIcon(image2);
 		} else {
@@ -401,9 +402,11 @@ public class StockDetail extends JPanel {
 				searchBar.setVisible(false);
 				if (state == attentionState.Yes) {
 					likeButton.setIcon(image2);
+					state =attentionState.No;
 					manageStockBL.deleteStock(id);
 				} else {
 					likeButton.setIcon(image3);
+					state =attentionState.Yes;
 					manageStockBL.addStock(id);
 				}
 			}
