@@ -369,10 +369,10 @@ public class OptionalStock extends JPanel {
 
 		JPanel tempPanel = new JPanel();
 		tempPanel.setBackground(Color.WHITE);
-		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 9, 10));
 		for (int i = 0; i < count; i++) {
 			checkBox[i] = new JCheckBox(name[i]);
-			checkBox[i].setSize(85,25);
+			checkBox[i].setPreferredSize(new Dimension(84, 25));
 			checkBox[i].setForeground(brown);
 			tempPanel.add(checkBox[i]);
 			checkBox[i].setOpaque(true);
