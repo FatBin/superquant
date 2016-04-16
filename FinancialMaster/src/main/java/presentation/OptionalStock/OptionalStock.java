@@ -331,13 +331,13 @@ public class OptionalStock extends JPanel {
 		searchTextField.setBounds(686, 11, 196, 27);
 		add(searchTextField);
 		searchTextField.setColumns(10);
-		
+
 		JLabel namelbl = new JLabel("多维对比");
 		namelbl.setForeground(brown);
 		namelbl.setBounds(10, 4, 250, 32);
 		namelbl.setFont(new Font("微软雅黑", Font.PLAIN, 20));
 		intentPane1.add(namelbl);
-		
+
 		JLabel namelbl2 = new JLabel("单项排行");
 		namelbl2.setForeground(brown);
 		namelbl2.setBounds(10, 4, 250, 32);
@@ -346,7 +346,7 @@ public class OptionalStock extends JPanel {
 
 		// 雷达图
 		chartPanel = new JPanel();
-		chartPanel.setBounds(0,38,490, 380);
+		chartPanel.setBounds(0, 38, 490, 380);
 		chartPanel.setOpaque(false);
 		intentPane1.add(chartPanel);
 
@@ -359,13 +359,32 @@ public class OptionalStock extends JPanel {
 			checkBox[0] = new JCheckBox();
 		}
 
+		JScrollPane boxPane = new JScrollPane();
+		boxPane.setBounds(0, 420, 490, 90);
+		boxPane.setOpaque(false);
+		boxPane.setBorder(BorderFactory.createEmptyBorder());
+		boxPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
+		boxPane.getViewport().setOpaque(false);
+		intentPane1.add(boxPane);
+
+		JPanel tempPanel = new JPanel();
+		tempPanel.setBackground(Color.WHITE);
+		tempPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 		for (int i = 0; i < count; i++) {
 			checkBox[i] = new JCheckBox(name[i]);
-			checkBox[i].setBounds(10 + i % 5 * 95, 430 + i / 5 * 35, 85, 25);
+			checkBox[i].setSize(85,25);
+			checkBox[i].setForeground(brown);
+			tempPanel.add(checkBox[i]);
 			checkBox[i].setOpaque(true);
 			checkBox[i].setContentAreaFilled(false);
-			intentPane1.add(checkBox[i]);
 		}
+
+		int div = 0;
+		if (count % 5 != 0) {
+			div++;
+		}
+		tempPanel.setPreferredSize(new Dimension(470, 35 * (count / 5 + div)));
+		boxPane.setViewportView(tempPanel);
 
 		for (int i = 0; i < count; i++) {
 			checkBox[i].addMouseListener(new MouseAdapter() {
@@ -402,11 +421,10 @@ public class OptionalStock extends JPanel {
 		rankPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		rankPane.getViewport().setOpaque(false);
 		intentPane2.add(rankPane);
-		
 
 		table = new JTable();
 		table.setRowHeight(26);
-		
+
 		JTableHeader header = table.getTableHeader();
 		header.setOpaque(false);
 		header.getTable().setOpaque(false);
