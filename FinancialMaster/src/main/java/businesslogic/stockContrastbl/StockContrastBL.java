@@ -74,8 +74,14 @@ public class StockContrastBL implements StockContrastBLService {
 			ssPOlist = sds.getStatisitcOfStock(idlist[i][0], yesStartDay,
 					startDay);
 			ssPO = ssPOlist.get(0);
-			close[i][0] = ssPO.getClose();
-			data[0] = (close[i][1] - close[i][0]) / close[i][0];
+			close[i][0] = ssPO.getClose();			
+			
+			if(close[i][0]==0){
+				data[0] = 0.0 ;
+				
+			}else{
+				data[0] = (close[i][1] - close[i][0]) / close[i][0];
+			}
 			ssPOlist = sds.getStatisitcOfStock(idlist[i][0], lastMonth, endDay);
 			int listSize = ssPOlist.size();
 			double[] closeList = new double[listSize];
@@ -134,7 +140,12 @@ public class StockContrastBL implements StockContrastBLService {
 			ssPOlist = sds.getStatisitcOfStock(id, yesStartDay, startDay);
 			ssPO = ssPOlist.get(0);
 			close[0] = ssPO.getClose();
-			data[0] = (close[1] - close[0]) / close[0];
+						
+			if(close[0]==0){
+				data[0] = 0.0 ;				
+			}else{
+				data[0] = (close[1] - close[0]) / close[0];
+			}
 			ssPOlist = sds.getStatisitcOfStock(id, lastMonth, endDay);
 			int listSize = ssPOlist.size();
 			double[] closeList = new double[listSize];

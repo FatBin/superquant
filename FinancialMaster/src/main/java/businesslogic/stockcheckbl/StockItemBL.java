@@ -82,7 +82,12 @@ public class StockItemBL implements StockItemRankBLService{
 			ssPOlist = sds.getStatisitcOfStock(data[i][0], yesStartDay, startDay);
 			ssPO = ssPOlist.get(0);
 			close[i][0] = ssPO.getClose();
-			ups_and_downs=(close[i][1] - close[i][0]) / close[i][0];
+			if(close[i][0]==0){
+				ups_and_downs = 0.0 ;
+				
+			}else{
+				ups_and_downs = (close[i][1] - close[i][0]) / close[i][0];
+			}
 			data[i][11] = df.format(ups_and_downs);
 		}
 		
@@ -131,7 +136,12 @@ public class StockItemBL implements StockItemRankBLService{
 			ssPOlist = sds.getStatisitcOfStock(id, yesStartDay, startDay);
 			ssPO = ssPOlist.get(0);
 			close[0] = ssPO.getClose();
-			ups_and_downs=(close[1] - close[0]) / close[0];
+			if(close[0]==0){
+				ups_and_downs = 0.0 ;
+				
+			}else{
+				ups_and_downs = (close[1] - close[0]) / close[0];
+			}
 			new_data[index][11] = df.format(ups_and_downs);						
 		}
 		data=new_data;

@@ -42,7 +42,12 @@ public class StockMessageBL implements StockMessageBLService {
 		}
 		int all_size = init_list.size();
 		int size = filterlist.size();
-		double ratio = size * 1.0 / all_size;
+		double ratio;
+		if (all_size == 0) {
+			ratio = 0;
+		} else {
+			ratio = size * 1.0 / all_size;
+		}
 		String[][] list = new String[size][10];
 		int index = size - 1;
 		for (String[] strings : filterlist) {
@@ -94,8 +99,17 @@ public class StockMessageBL implements StockMessageBLService {
 		ssPOlist = sds.getStatisitcOfStock(id, yesStartDay, startDay);
 		ssPO = ssPOlist.get(0);
 		double last_close = ssPO.getClose();// 最新前一天的收盘价
-		double ups_and_downs = (close - last_close) / last_close;
-		double amplitude = (high - low) / last_close;
+		double ups_and_downs;
+		double amplitude ;
+		
+		if(last_close!=0){
+			ups_and_downs = (close - last_close) / last_close;
+			amplitude = (high - low) / last_close;
+		}else{
+			ups_and_downs = 0;
+			amplitude = 0;
+		}
+	
 
 		String[][] history_data = new String[24][10];// 历史数据
 
@@ -136,7 +150,13 @@ public class StockMessageBL implements StockMessageBLService {
 			k_data[index][9] = sp.getPb() + "";
 			index--;
 		}
-		double quantity_relative_ratio = volume / volume_avg;
+
+		double quantity_relative_ratio;
+		if (volume_avg != 0) {
+			quantity_relative_ratio = volume / volume_avg;
+		} else {
+			quantity_relative_ratio = 0;
+		}
 		for (int i = 0; i < closeForKLine.length; i++) {
 			closeForKLine[i] = Double.parseDouble(k_data[k_size + 29 - i][4]);
 		}
