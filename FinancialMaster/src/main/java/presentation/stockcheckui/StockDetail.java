@@ -306,10 +306,21 @@ public class StockDetail extends JPanel {
 		intentPane1.add(openLabel5);
 
 		double high = datavo.getHigh();
-		double open = datavo.getOpen() / high;
-		double low = datavo.getLow() / high;
-		double close = datavo.getClose() / high;
-		double adj_price = datavo.getAdj_price() / high;
+		double open;
+		double low;
+		double close;
+		double adj_price;
+		if(high==0){
+			open = 0;
+			low = 0;
+			close = 0;
+			adj_price =0;
+		}else{
+			open = datavo.getOpen() / high;
+			low = datavo.getLow() / high;
+			close = datavo.getClose() / high;
+			adj_price = datavo.getAdj_price() / high;
+		}
 
 		// 当前价格条
 
