@@ -88,6 +88,11 @@ public class StockDetail extends JPanel {
 
 	private StockMarketVO stockMarketVO;
 	private SearchBar searchBar;
+	
+	private Color brown = new Color(54, 42, 29);
+	private Color green = new Color(37, 120, 38);
+	private Color red = new Color(179, 43, 56);
+	private Font labelFont = new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20);
 
 	/**
 	 * Create the panel.
@@ -245,23 +250,23 @@ public class StockDetail extends JPanel {
 		// µ±Ç°µÄÊý¾ÝÕ¹Ê¾
 		JLabel openLabel1 = new JLabel("¿ªÅÌ¼Û");
 		openLabel1.setBounds(44, 76, 70, 30);
-		openLabel1.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		openLabel1.setFont(labelFont);
 		intentPane1.add(openLabel1);
 		JLabel openLabel2 = new JLabel("×îµÍ¼Û");
 		openLabel2.setBounds(44, 118, 70, 30);
-		openLabel2.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		openLabel2.setFont(labelFont);
 		intentPane1.add(openLabel2);
 		JLabel openLabel3 = new JLabel("×î¸ß¼Û");
 		openLabel3.setBounds(44, 159, 70, 30);
-		openLabel3.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		openLabel3.setFont(labelFont);
 		intentPane1.add(openLabel3);
 		JLabel openLabel4 = new JLabel("ÊÕÅÌ¼Û");
 		openLabel4.setBounds(44, 200, 70, 30);
-		openLabel4.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		openLabel4.setFont(labelFont);
 		intentPane1.add(openLabel4);
 		JLabel openLabel5 = new JLabel("ºó¸´È¨¼Û");
 		openLabel5.setBounds(44, 241, 90, 30);
-		openLabel5.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 20));
+		openLabel5.setFont(labelFont);
 		intentPane1.add(openLabel5);
 
 		double high = datavo.getHigh();
@@ -275,17 +280,6 @@ public class StockDetail extends JPanel {
 		barPanel bPanel1 = new barPanel(datavo.getOpen(), high);
 		bPanel1.setLayout(new FlowLayout(FlowLayout.LEFT));
 		bPanel1.setBounds(150, 78, (int) (210 * Math.pow(open, 12)), 26);
-		bPanel1.addMouseListener(new MouseAdapter() {
-
-			// @Override
-			// public void mouseEntered(MouseEvent e) {
-			// JLabel label = new JLabel(datavo.getOpen() + "");
-			// label.setLayout(new FlowLayout(FlowLayout.LEFT, 2, 2));
-			// label.setPreferredSize(new Dimension(60, 20));
-			// bPanel1.add(label);
-			// }
-
-		});
 		JLabel label5 = new JLabel(datavo.getOpen() + "");
 		label5.setBounds(15, 6, 20, 18);
 		label5.setForeground(new Color(105, 76, 36));
@@ -412,7 +406,7 @@ public class StockDetail extends JPanel {
 		intentPane3.add(endTimelbl);
 
 		JScrollPane stockDetailPane = new JScrollPane();
-		stockDetailPane.setBounds(10, 50, 715, 300);
+		stockDetailPane.setBounds(0, 50, 700, 300);
 		stockDetailPane.setOpaque(false);
 		stockDetailPane.setBorder(BorderFactory.createEmptyBorder());
 		stockDetailPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
@@ -557,7 +551,7 @@ public class StockDetail extends JPanel {
 		JLabel namelbl = new JLabel();
 		namelbl.setText(datavo.getName() + "(" + id + ")");
 		namelbl.setBackground(new Color(245, 245, 245));
-		namelbl.setForeground(new Color(95, 99, 108));
+		namelbl.setForeground(brown);
 		namelbl.setBounds(10, 5, 250, 32);
 		namelbl.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 22));
 		intentPane1.add(namelbl);
@@ -574,27 +568,48 @@ public class StockDetail extends JPanel {
 		raiseRate.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		raiseRate.setForeground(new Color(62, 56, 49, 240));
 		if (upAndDown > 0) {
-			raiseRate.setForeground(new Color(179, 43, 56));
+			raiseRate.setForeground(red);
 		} else if (upAndDown < 0) {
-			raiseRate.setForeground(new Color(37, 120, 38));
+			raiseRate.setForeground(green);
 		}
 		raiseRate.setBounds(250, 10, 250, 24);
 		intentPane1.add(raiseRate);
 
+		
 		// ´óÅÌÕÇµøÁ¿
+		
 		JLabel change = new JLabel();
 		double changeRange = stockMarketVO.getChangeRange();
 		change.setText((changeRange + "").substring(0, 7));
 		change.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		change.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
-			change.setForeground(new Color(179, 43, 56));
+			change.setForeground(red);
 		} else if (changeRange < 0) {
-			change.setForeground(new Color(37, 120, 38));
+			change.setForeground(green);
 		}
-		change.setBounds(210, 14, 80, 24);
+		change.setBounds(231, 14, 60, 24);
 		add(change);
-
+		
+		ImageIcon upArrowIcon = new ImageIcon("src/main/resources/image/upArrow.png");
+		Image tempArrow = upArrowIcon.getImage().getScaledInstance(14, 9,
+				upArrowIcon.getImage().SCALE_SMOOTH);
+		upArrowIcon = new ImageIcon(tempArrow);
+		ImageIcon downArrowIcon = new ImageIcon("src/main/resources/image/downArrow.png");
+		tempArrow = downArrowIcon.getImage().getScaledInstance(14, 9,
+				downArrowIcon.getImage().SCALE_SMOOTH);
+		downArrowIcon = new ImageIcon(tempArrow);
+		
+		JLabel upArrow = new JLabel();
+		upArrow.setBounds(210, 22, 14, 9);
+		upArrow.setOpaque(false);
+		if (changeRange > 0) {
+			upArrow.setIcon(upArrowIcon);
+		}else {
+			upArrow.setIcon(downArrowIcon);
+		}
+		add(upArrow);
+		
 		// ´óÅÌÏÖ¼Û
 		JLabel nowMarket = new JLabel();
 		double now = stockMarketVO.getClose();
@@ -602,11 +617,11 @@ public class StockDetail extends JPanel {
 		nowMarket.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		nowMarket.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
-			nowMarket.setForeground(new Color(179, 43, 56));
+			nowMarket.setForeground(red);
 		} else if (changeRange < 0) {
-			nowMarket.setForeground(new Color(37, 120, 38));
+			nowMarket.setForeground(green);
 		}
-		nowMarket.setBounds(135, 14, 80, 24);
+		nowMarket.setBounds(135, 14, 60, 24);
 		add(nowMarket);
 
 		// ´óÅÌÕÇµø·ù
@@ -616,12 +631,23 @@ public class StockDetail extends JPanel {
 		marketUpAndDown.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		marketUpAndDown.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
-			marketUpAndDown.setForeground(new Color(179, 43, 56));
+			marketUpAndDown.setForeground(red);
 		} else if (changeRange < 0) {
-			marketUpAndDown.setForeground(new Color(37, 120, 38));
+			marketUpAndDown.setForeground(green);
 		}
-		marketUpAndDown.setBounds(283, 14, 80, 24);
+		marketUpAndDown.setBounds(328, 14, 60, 24);
 		add(marketUpAndDown);
+		
+		JLabel downArrow = new JLabel();
+		downArrow.setBounds(305, 22, 14, 9);
+		downArrow.setOpaque(false);
+		if (changeRange > 0) {
+			downArrow.setIcon(upArrowIcon);
+		}else {
+			downArrow.setIcon(downArrowIcon);
+		}
+		add(downArrow);
+		
 		// ³É½»Á¿
 		JLabel volumeLabel = new JLabel();
 		double volume = datavo.getVolume();
