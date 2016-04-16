@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.RenderingHints;
@@ -16,6 +17,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -56,6 +58,8 @@ import presentation.stockcheckui.StockList;
 @SuppressWarnings("serial")
 public class Marketui extends JPanel {
 
+	private Color green = new Color(37, 120, 38);
+	private Color red = new Color(179, 43, 56);
 	JButton marketBtn;
 	JButton shockListBtn;
 	JButton optionalStockBtn;
@@ -122,7 +126,7 @@ public class Marketui extends JPanel {
 		content.add(intentPane2);
 
 		marketBtn = new JButton("   大盘数据");
-		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		marketBtn.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		marketBtn.setForeground(new Color(248, 179, 29));
 		marketBtn.setBounds(0, 68, 224, 44);
 		marketBtn.setIcon(new ImageIcon("src/main/resources/image/line-enter.png"));
@@ -164,7 +168,7 @@ public class Marketui extends JPanel {
 				frame.setVisible(true);
 			}
 		});
-		shockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		shockListBtn.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		shockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie.png"));
 		shockListBtn.setForeground(new Color(252, 241, 224));
 		shockListBtn.setContentAreaFilled(false);
@@ -201,7 +205,7 @@ public class Marketui extends JPanel {
 				frame.validate();
 			}
 		});
-		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		optionalStockBtn.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		optionalStockBtn.setForeground(new Color(252, 241, 224));
 		optionalStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank.png"));
 		optionalStockBtn.setContentAreaFilled(false);
@@ -408,7 +412,7 @@ public class Marketui extends JPanel {
 		// 表格
 		JTabbedPane marketPane = new JTabbedPane();
 		marketPane.setUI(new MyTabbedPaneUI());
-		marketPane.setBounds(7, 50, 680, 370);
+		marketPane.setBounds(7, 12, 680, 370);
 
 		String title[] = { "当天", "一周", "一个月", "半年", "一年", "五年", "十年" };
 
@@ -446,6 +450,78 @@ public class Marketui extends JPanel {
 		nameBox.setOpaque(false);
 		nameBox.setBorder(null);
 		intentPane1.add(nameBox);
+
+		NumberFormat nf = NumberFormat.getPercentInstance();
+		nf.setMinimumFractionDigits(2);
+		// 大盘涨跌量
+
+		JLabel change = new JLabel();
+		double changeRange = stockMarketVO.getChangeRange();
+		change.setText((changeRange + "").substring(0, 7));
+		change.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		change.setForeground(new Color(62, 56, 49, 240));
+		if (changeRange > 0) {
+			change.setForeground(red);
+		} else if (changeRange < 0) {
+			change.setForeground(green);
+		}
+		change.setBounds(276, 10, 60, 24);
+		intentPane1.add(change);
+
+		ImageIcon upArrowIcon = new ImageIcon("src/main/resources/image/upArrow.png");
+		Image tempArrow = upArrowIcon.getImage().getScaledInstance(14, 9, upArrowIcon.getImage().SCALE_SMOOTH);
+		upArrowIcon = new ImageIcon(tempArrow);
+		ImageIcon downArrowIcon = new ImageIcon("src/main/resources/image/downArrow.png");
+		tempArrow = downArrowIcon.getImage().getScaledInstance(14, 9, downArrowIcon.getImage().SCALE_SMOOTH);
+		downArrowIcon = new ImageIcon(tempArrow);
+
+		JLabel upArrow = new JLabel();
+		upArrow.setBounds(255, 18, 14, 9);
+		upArrow.setOpaque(false);
+		if (changeRange > 0) {
+			upArrow.setIcon(upArrowIcon);
+		} else {
+			upArrow.setIcon(downArrowIcon);
+		}
+		intentPane1.add(upArrow);
+
+		// 大盘现价
+		JLabel nowMarket = new JLabel();
+		double now = stockMarketVO.getClose();
+		nowMarket.setText((now + "").substring(0, 7));
+		nowMarket.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		nowMarket.setForeground(new Color(62, 56, 49, 240));
+		if (changeRange > 0) {
+			nowMarket.setForeground(red);
+		} else if (changeRange < 0) {
+			nowMarket.setForeground(green);
+		}
+		nowMarket.setBounds(180, 10, 60, 24);
+		intentPane1.add(nowMarket);
+
+		// 大盘涨跌幅
+		JLabel marketUpAndDown = new JLabel();
+		double marketup = stockMarketVO.getUps_and_downs();
+		marketUpAndDown.setText(nf.format(marketup));
+		marketUpAndDown.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		marketUpAndDown.setForeground(new Color(62, 56, 49, 240));
+		if (changeRange > 0) {
+			marketUpAndDown.setForeground(red);
+		} else if (changeRange < 0) {
+			marketUpAndDown.setForeground(green);
+		}
+		marketUpAndDown.setBounds(373, 10, 60, 24);
+		intentPane1.add(marketUpAndDown);
+
+		JLabel downArrow = new JLabel();
+		downArrow.setBounds(350, 18, 14, 9);
+		downArrow.setOpaque(false);
+		if (changeRange > 0) {
+			downArrow.setIcon(upArrowIcon);
+		} else {
+			downArrow.setIcon(downArrowIcon);
+		}
+		intentPane1.add(downArrow);
 
 		// 添加scrollPane
 		content.add(intentPane1);

@@ -69,7 +69,7 @@ public class PersonalStock extends JPanel {
 				frame.setVisible(true);
 			}
 		});
-		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		marketBtn.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
 		marketBtn.setForeground(new Color(252, 241, 224));
 		marketBtn.setBounds(0, 68, 224, 44);
 		marketBtn.setIcon(new ImageIcon("src/main/resources/image/line.png"));
@@ -79,7 +79,7 @@ public class PersonalStock extends JPanel {
 		add(marketBtn);
 
 		stockListBtn = new JButton("   ¸ö¹ÉÊý¾Ý");
-		stockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		stockListBtn.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
 		stockListBtn.setForeground(new Color(248, 179, 29));
 		stockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie-enter.png"));
 		stockListBtn.setContentAreaFilled(false);
@@ -117,7 +117,7 @@ public class PersonalStock extends JPanel {
 				frame.validate();
 			}
 		});
-		optionStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		optionStockBtn.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 16));
 		optionStockBtn.setForeground(new Color(252, 241, 224));
 		optionStockBtn.setContentAreaFilled(false);
 		optionStockBtn.setBorder(null);

@@ -1,6 +1,7 @@
 package presentation.stockcheckui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -38,6 +39,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 
 import org.jfree.chart.ChartPanel;
 
@@ -88,11 +90,11 @@ public class StockDetail extends JPanel {
 
 	private StockMarketVO stockMarketVO;
 	private SearchBar searchBar;
-	
+
 	private Color brown = new Color(54, 42, 29);
 	private Color green = new Color(37, 120, 38);
 	private Color red = new Color(179, 43, 56);
-	private Font labelFont = new Font("微软雅黑", Font.PLAIN, 20);
+	private Font labelFont = new Font("微软雅黑", Font.PLAIN, 18);
 
 	/**
 	 * Create the panel.
@@ -153,12 +155,12 @@ public class StockDetail extends JPanel {
 		intentPane2.setLayout(null);
 
 		IntentPane intentPane3 = new IntentPane();
-		intentPane3.setPreferredSize(new Dimension(700, 450));
+		intentPane3.setPreferredSize(new Dimension(700, 404));
 		intentPane3.setLayout(null);
 
 		// 另外四个数据图标
 		JLabel volumePanel = new JLabel();
-		volumePanel.setBounds(453, 74, 60, 60);
+		volumePanel.setBounds(430, 74, 60, 60);
 		imageVolume = new ImageIcon("src/main/resources/image/volume.png");
 		Image tempCircle = imageVolume.getImage().getScaledInstance(volumePanel.getWidth(), volumePanel.getHeight(),
 				imageVolume.getImage().SCALE_SMOOTH);
@@ -168,7 +170,7 @@ public class StockDetail extends JPanel {
 		intentPane1.add(volumePanel);
 
 		JLabel turnoverPanel = new JLabel();
-		turnoverPanel.setBounds(565, 74, 60, 60);
+		turnoverPanel.setBounds(518, 74, 60, 60);
 		imageVolume = new ImageIcon("src/main/resources/image/turnover.png");
 		tempCircle = imageVolume.getImage().getScaledInstance(turnoverPanel.getWidth(), turnoverPanel.getHeight(),
 				imageVolume.getImage().SCALE_SMOOTH);
@@ -178,7 +180,7 @@ public class StockDetail extends JPanel {
 		intentPane1.add(turnoverPanel);
 
 		JLabel pePanel = new JLabel();
-		pePanel.setBounds(453, 175, 60, 60);
+		pePanel.setBounds(430, 175, 60, 60);
 		imageVolume = new ImageIcon("src/main/resources/image/pe.png");
 		tempCircle = imageVolume.getImage().getScaledInstance(pePanel.getWidth(), pePanel.getHeight(),
 				imageVolume.getImage().SCALE_SMOOTH);
@@ -188,7 +190,7 @@ public class StockDetail extends JPanel {
 		intentPane1.add(pePanel);
 
 		JLabel pbPanel = new JLabel();
-		pbPanel.setBounds(565, 175, 60, 60);
+		pbPanel.setBounds(518, 175, 60, 60);
 		imageVolume = new ImageIcon("src/main/resources/image/pb.png");
 		tempCircle = imageVolume.getImage().getScaledInstance(pbPanel.getWidth(), pbPanel.getHeight(),
 				imageVolume.getImage().SCALE_SMOOTH);
@@ -196,6 +198,26 @@ public class StockDetail extends JPanel {
 		pbPanel.setIcon(imagePb);
 		pbPanel.setOpaque(false);
 		intentPane1.add(pbPanel);
+
+		JLabel amplitudePanel = new JLabel();
+		amplitudePanel.setBounds(606, 74, 60, 60);
+		imageVolume = new ImageIcon("src/main/resources/image/amplitude.png");
+		tempCircle = imageVolume.getImage().getScaledInstance(amplitudePanel.getWidth(), amplitudePanel.getHeight(),
+				imageVolume.getImage().SCALE_SMOOTH);
+		ImageIcon imageamplitude = new ImageIcon(tempCircle);
+		amplitudePanel.setIcon(imagePb);
+		amplitudePanel.setOpaque(false);
+		intentPane1.add(amplitudePanel);
+
+		JLabel quantityPanel = new JLabel();
+		quantityPanel.setBounds(606, 175, 60, 60);
+		imageVolume = new ImageIcon("src/main/resources/image/quantity.png");
+		tempCircle = imageVolume.getImage().getScaledInstance(quantityPanel.getWidth(), quantityPanel.getHeight(),
+				imageVolume.getImage().SCALE_SMOOTH);
+		ImageIcon imagequantity = new ImageIcon(tempCircle);
+		quantityPanel.setIcon(imagePb);
+		quantityPanel.setOpaque(false);
+		intentPane1.add(quantityPanel);
 
 		closeBtn = new JButton("X");
 		closeBtn.addMouseListener(new MouseAdapter() {
@@ -251,22 +273,27 @@ public class StockDetail extends JPanel {
 		JLabel openLabel1 = new JLabel("开盘价");
 		openLabel1.setBounds(44, 76, 70, 30);
 		openLabel1.setFont(labelFont);
+		openLabel1.setForeground(brown);
 		intentPane1.add(openLabel1);
 		JLabel openLabel2 = new JLabel("最低价");
 		openLabel2.setBounds(44, 118, 70, 30);
 		openLabel2.setFont(labelFont);
+		openLabel2.setForeground(brown);
 		intentPane1.add(openLabel2);
 		JLabel openLabel3 = new JLabel("最高价");
 		openLabel3.setBounds(44, 159, 70, 30);
 		openLabel3.setFont(labelFont);
+		openLabel3.setForeground(brown);
 		intentPane1.add(openLabel3);
 		JLabel openLabel4 = new JLabel("收盘价");
 		openLabel4.setBounds(44, 200, 70, 30);
 		openLabel4.setFont(labelFont);
+		openLabel4.setForeground(brown);
 		intentPane1.add(openLabel4);
 		JLabel openLabel5 = new JLabel("后复权价");
 		openLabel5.setBounds(44, 241, 90, 30);
 		openLabel5.setFont(labelFont);
+		openLabel5.setForeground(brown);
 		intentPane1.add(openLabel5);
 
 		double high = datavo.getHigh();
@@ -413,7 +440,31 @@ public class StockDetail extends JPanel {
 		stockDetailPane.getViewport().setOpaque(false);
 		intentPane3.add(stockDetailPane);
 
-		table = new JTable();
+		// init the table
+		table = new JTable() {
+			public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+				int modelRow = convertRowIndexToModel(row);
+				int modelColumn = convertColumnIndexToModel(column);
+				Component comp = super.prepareRenderer(renderer, row, column);
+				// if (!isRowSelected(modelRow)) {
+				int temp = modelRow;
+				double close = Double.parseDouble(this.getModel().getValueAt(temp, 1).toString());
+				if (modelColumn == 2 || modelColumn == 3 || modelColumn == 4 || modelColumn == 5) {
+					if (Double.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) > close) {
+						comp.setForeground(red);
+					} else if (Double
+							.parseDouble(this.getModel().getValueAt(modelRow, modelColumn).toString()) == close) {
+						comp.setForeground(new Color(62, 56, 49, 240));
+					} else {
+						comp.setForeground(green);
+					}
+				} else // 不符合条件的保持原表格样式
+					comp.setForeground(new Color(62, 56, 49, 240));
+				// }
+				return comp;
+			}
+		};
+
 		table.setRowHeight(26);
 		// 使表格居中
 		MyTableCellRenderer r = new MyTableCellRenderer();
@@ -440,10 +491,11 @@ public class StockDetail extends JPanel {
 				new String[] { "日期", "开盘价", "最高价", "最低价", "收盘价", "后复权价", "交易量(股)", "换手率", "市盈率", "市净率" });
 		table.setModel(tableModel);
 
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setPreferredWidth(118);
 		for (int i = 1; i < 6; i++) {
-			table.getColumnModel().getColumn(i).setPreferredWidth(70);
+			table.getColumnModel().getColumn(i).setPreferredWidth(63);
 		}
+		table.getColumnModel().getColumn(6).setPreferredWidth(118);
 
 		JTableHeader header = table.getTableHeader();
 		header.setOpaque(false);
@@ -557,8 +609,8 @@ public class StockDetail extends JPanel {
 		intentPane1.add(namelbl);
 
 		JLabel name = new JLabel("沪深300");
-		name.setBounds(70, 14, 80, 24);
-		// name.setForeground();
+		name.setBounds(70, 14, 80, 26);
+		name.setForeground(brown);
 		add(name);
 
 		// 个股涨跌幅数据
@@ -575,9 +627,8 @@ public class StockDetail extends JPanel {
 		raiseRate.setBounds(250, 10, 250, 24);
 		intentPane1.add(raiseRate);
 
-		
 		// 大盘涨跌量
-		
+
 		JLabel change = new JLabel();
 		double changeRange = stockMarketVO.getChangeRange();
 		change.setText((changeRange + "").substring(0, 7));
@@ -590,26 +641,24 @@ public class StockDetail extends JPanel {
 		}
 		change.setBounds(231, 14, 60, 24);
 		add(change);
-		
+
 		ImageIcon upArrowIcon = new ImageIcon("src/main/resources/image/upArrow.png");
-		Image tempArrow = upArrowIcon.getImage().getScaledInstance(14, 9,
-				upArrowIcon.getImage().SCALE_SMOOTH);
+		Image tempArrow = upArrowIcon.getImage().getScaledInstance(14, 9, upArrowIcon.getImage().SCALE_SMOOTH);
 		upArrowIcon = new ImageIcon(tempArrow);
 		ImageIcon downArrowIcon = new ImageIcon("src/main/resources/image/downArrow.png");
-		tempArrow = downArrowIcon.getImage().getScaledInstance(14, 9,
-				downArrowIcon.getImage().SCALE_SMOOTH);
+		tempArrow = downArrowIcon.getImage().getScaledInstance(14, 9, downArrowIcon.getImage().SCALE_SMOOTH);
 		downArrowIcon = new ImageIcon(tempArrow);
-		
+
 		JLabel upArrow = new JLabel();
 		upArrow.setBounds(210, 22, 14, 9);
 		upArrow.setOpaque(false);
 		if (changeRange > 0) {
 			upArrow.setIcon(upArrowIcon);
-		}else {
+		} else {
 			upArrow.setIcon(downArrowIcon);
 		}
 		add(upArrow);
-		
+
 		// 大盘现价
 		JLabel nowMarket = new JLabel();
 		double now = stockMarketVO.getClose();
@@ -637,24 +686,24 @@ public class StockDetail extends JPanel {
 		}
 		marketUpAndDown.setBounds(328, 14, 60, 24);
 		add(marketUpAndDown);
-		
+
 		JLabel downArrow = new JLabel();
 		downArrow.setBounds(305, 22, 14, 9);
 		downArrow.setOpaque(false);
 		if (changeRange > 0) {
 			downArrow.setIcon(upArrowIcon);
-		}else {
+		} else {
 			downArrow.setIcon(downArrowIcon);
 		}
 		add(downArrow);
-		
+
 		// 成交量
 		JLabel volumeLabel = new JLabel();
 		double volume = datavo.getVolume();
 		volumeLabel.setText((volume / 10000 + "") + "W");
 		volumeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		volumeLabel.setForeground(new Color(62, 56, 49, 240));
-		volumeLabel.setBounds(446, 143, 80, 24);
+		volumeLabel.setBounds(432, 143, 80, 24);
 		intentPane1.add(volumeLabel);
 		// 换手率
 		JLabel turnoverLabel = new JLabel();
@@ -662,7 +711,7 @@ public class StockDetail extends JPanel {
 		turnoverLabel.setText((turnover + "") + "%");
 		turnoverLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		turnoverLabel.setForeground(new Color(62, 56, 49, 240));
-		turnoverLabel.setBounds(576, 143, 80, 24);
+		turnoverLabel.setBounds(529, 143, 80, 24);
 		intentPane1.add(turnoverLabel);
 		// 市盈率
 		JLabel peLabel = new JLabel();
@@ -670,7 +719,7 @@ public class StockDetail extends JPanel {
 		peLabel.setText((pe + "") + "%");
 		peLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		peLabel.setForeground(new Color(62, 56, 49, 240));
-		peLabel.setBounds(458, 247, 80, 24);
+		peLabel.setBounds(441, 247, 80, 24);
 		intentPane1.add(peLabel);
 		// 市净率
 		JLabel pbLabel = new JLabel();
@@ -678,8 +727,24 @@ public class StockDetail extends JPanel {
 		pbLabel.setText((pb + "") + "%");
 		pbLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		pbLabel.setForeground(new Color(62, 56, 49, 240));
-		pbLabel.setBounds(576, 247, 80, 24);
+		pbLabel.setBounds(529, 247, 80, 24);
 		intentPane1.add(pbLabel);
+		// 振幅
+		JLabel amplitudeLabel = new JLabel();
+		double amplitude = datavo.getTamplitude();
+		amplitudeLabel.setText(nf.format(amplitude));
+		amplitudeLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		amplitudeLabel.setForeground(new Color(62, 56, 49, 240));
+		amplitudeLabel.setBounds(616, 143, 80, 24);
+		intentPane1.add(amplitudeLabel);
+		// 量比
+		JLabel quantityLabel = new JLabel();
+		double quantity = datavo.getQuantity_relative_ratio();
+		quantityLabel.setText(nf.format(quantity));
+		quantityLabel.setFont(new Font("微软雅黑", Font.PLAIN, 14));
+		quantityLabel.setForeground(new Color(62, 56, 49, 240));
+		quantityLabel.setBounds(616, 247, 80, 24);
+		intentPane1.add(quantityLabel);
 
 		backBtn = new JButton("back");
 		backBtn.addMouseListener(new MouseAdapter() {

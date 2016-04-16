@@ -5,6 +5,8 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import com.sun.awt.AWTUtilities;
+
 import businesslogic.connection.connectionSubject;
 import oracle.jrockit.jfr.JFR;
 import presentation.stockmarketui.Marketui;
@@ -24,6 +26,7 @@ public class mainframe extends JFrame implements Observer{
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(960, 600);
+		AWTUtilities.setWindowOpaque(this, false);
 		this.setBackground(new Color(0, 0, 0, 0));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);

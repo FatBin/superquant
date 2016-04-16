@@ -1,8 +1,8 @@
 package presentation.mainui;
 
-import java.awt.Color;
-
 import javax.swing.JFrame;
+
+import com.sun.awt.AWTUtilities;
 
 import businesslogic.connection.connectionSubject;
 import businesslogic.factory.InitFactory;
@@ -15,7 +15,7 @@ public class Launcher {
 		gif.setOpaque(false);
 		
 		frame.setSize(600, 600);
-		frame.setBackground(new Color(0, 0, 0, 0));
+		AWTUtilities.setWindowOpaque(frame, false);
 		frame.getContentPane().add(gif);
 		frame.setLocationRelativeTo(null);
 		frame.repaint();
