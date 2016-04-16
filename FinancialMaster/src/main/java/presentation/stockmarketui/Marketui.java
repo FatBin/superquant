@@ -577,7 +577,7 @@ public class Marketui extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					searchBar.jump(frame, mpanel);
+					searchBar.jump(frame);
 				}
 			}
 

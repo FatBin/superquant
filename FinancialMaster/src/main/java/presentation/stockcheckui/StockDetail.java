@@ -102,7 +102,7 @@ public class StockDetail extends JPanel {
 	 */
 	@SuppressWarnings({ "static-access", "unchecked" })
 	// boolean 用来判断跳转回到哪里，true返回股票列表，false返回任意界面
-	public StockDetail(final JFrame frame, final String id, final JPanel fromPanel, boolean where) {
+	public StockDetail(final JFrame frame, final String id) {
 
 		// JFrame loadframe = new JFrame();
 		// loadframe.setAlwaysOnTop(true);
@@ -206,7 +206,7 @@ public class StockDetail extends JPanel {
 		tempCircle = imageVolume.getImage().getScaledInstance(amplitudePanel.getWidth(), amplitudePanel.getHeight(),
 				imageVolume.getImage().SCALE_SMOOTH);
 		ImageIcon imageamplitude = new ImageIcon(tempCircle);
-		amplitudePanel.setIcon(imagePb);
+		amplitudePanel.setIcon(imageamplitude);
 		amplitudePanel.setOpaque(false);
 		intentPane1.add(amplitudePanel);
 
@@ -216,7 +216,7 @@ public class StockDetail extends JPanel {
 		tempCircle = imageVolume.getImage().getScaledInstance(quantityPanel.getWidth(), quantityPanel.getHeight(),
 				imageVolume.getImage().SCALE_SMOOTH);
 		ImageIcon imagequantity = new ImageIcon(tempCircle);
-		quantityPanel.setIcon(imagePb);
+		quantityPanel.setIcon(imagequantity);
 		quantityPanel.setOpaque(false);
 		intentPane1.add(quantityPanel);
 
@@ -366,7 +366,7 @@ public class StockDetail extends JPanel {
 
 		image3 = new ImageIcon(temp3);
 
-		state= manageStockBL.isAttented(id);
+		state = manageStockBL.isAttented(id);
 		if (state == attentionState.No) {
 			likeButton.setIcon(image2);
 		} else {
@@ -402,11 +402,11 @@ public class StockDetail extends JPanel {
 				searchBar.setVisible(false);
 				if (state == attentionState.Yes) {
 					likeButton.setIcon(image2);
-					state =attentionState.No;
+					state = attentionState.No;
 					manageStockBL.deleteStock(id);
 				} else {
 					likeButton.setIcon(image3);
-					state =attentionState.Yes;
+					state = attentionState.Yes;
 					manageStockBL.addStock(id);
 				}
 			}
@@ -562,7 +562,7 @@ public class StockDetail extends JPanel {
 					searchBar.setVisible(false);
 					detail.setVisible(false);
 					String anotherID = searchBar.getID();
-					StockDetail another = new StockDetail(frame, anotherID, detail, true);
+					StockDetail another = new StockDetail(frame, anotherID);
 					frame.getContentPane().add(another);
 					another.setBounds(224, 0, 737, getHeight());
 					another.setVisible(true);
@@ -754,16 +754,12 @@ public class StockDetail extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				searchBar.setVisible(false);
-				if (where == true) {
-					frame.remove(detail);
-					fromPanel.setVisible(true);
-				} else {
-					frame.getContentPane().removeAll();
-					frame.add(fromPanel);
-					fromPanel.setBounds(0, 0, 960, frame.getHeight());
-					frame.repaint();
-					frame.validate();
-				}
+				frame.remove(detail);
+				StockList listui = new StockList(frame);
+				listui.setBounds(224, 0, 737, getHeight());
+				frame.getContentPane().add(listui);
+				frame.repaint();
+				frame.validate();
 			}
 
 			@Override

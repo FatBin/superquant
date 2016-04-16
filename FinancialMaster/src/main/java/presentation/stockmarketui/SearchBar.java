@@ -58,11 +58,12 @@ public class SearchBar extends JPanel {
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent e) {
 
-				int pos = table.getSelectedRow();
-				table.setRowSelectionInterval(pos, pos);
-
-				String id = table.getValueAt(pos, 0).toString();
-				Jump(frame, id, fromPanel);
+//				int pos = table.getSelectedRow();
+//				table.setRowSelectionInterval(pos, pos);
+//
+//				String id = table.getValueAt(pos, 0).toString();
+//				Jump(frame, id);
+				jump(frame);
 			}
 		});
 
@@ -75,18 +76,18 @@ public class SearchBar extends JPanel {
 		this.setVisible(true);
 	}
 
-	public void jump(JFrame frame, JPanel fromPanel) {
+	public void jump(JFrame frame) {
 		int pos = table.getSelectedRow();
 		if (pos != -1) {
 			String id = table.getValueAt(pos, 0).toString();
-			Jump(frame, id, fromPanel);
+			Jump(frame, id);
 		}
 	}
 
-	public void Jump(JFrame frame, String id, JPanel fromPanel) {
+	public void Jump(JFrame frame, String id) {
 		frame.getContentPane().removeAll();
 
-		StockDetail detail = new StockDetail(frame, id, fromPanel, false);
+		StockDetail detail = new StockDetail(frame, id);
 		detail.setBounds(224, 0, 737, frame.getHeight());
 
 		PersonalStock ppanel = new PersonalStock(frame);
@@ -116,8 +117,8 @@ public class SearchBar extends JPanel {
 	public int getRowCount() {
 		return table.getRowCount();
 	}
-	
-	public String getID(){
+
+	public String getID() {
 		int pos = table.getSelectedRow();
 		return table.getValueAt(pos, 0).toString();
 	}
