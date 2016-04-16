@@ -48,13 +48,13 @@ public class StockItemBL implements StockItemRankBLService{
 		do {
 			cal.add(Calendar.DATE, -1);
 			startDay = format.format(cal.getTime());
-			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), startDay, endDay);
+			ssPOlist = sds.getStatisitcOfStock("sh600600", startDay, endDay);
 		} while (ssPOlist.isEmpty());
 
 		do {
 			cal.add(Calendar.DATE, -1);
 			yesStartDay = format.format(cal.getTime());
-			ssPOlist = sds.getStatisitcOfStock(stockList.get(0), yesStartDay, startDay);
+			ssPOlist = sds.getStatisitcOfStock("sh600600", yesStartDay, startDay);
 		} while (ssPOlist.isEmpty());
 		
 		Double close[][] = new Double[size][2];
