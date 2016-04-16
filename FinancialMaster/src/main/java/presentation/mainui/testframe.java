@@ -47,7 +47,7 @@ public class testframe extends JFrame implements Observer{
 		
 
 		
-		connectionReminder = new connectionReminder();
+		connectionReminder = new connectionReminder(false);
 		connectionReminder.setBounds(0, 0, 960, 600);
 		subject=o;
 		subject.addObserver(this);

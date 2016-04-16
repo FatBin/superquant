@@ -261,7 +261,7 @@ public class OptionalStock extends JPanel {
 		searchTextField.setForeground(new Color(150, 150, 150));
 		searchTextField.setCaretColor(new Color(150, 150, 150));
 		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		searchTextField.setText("输入股票代码或名称搜索");
+		searchTextField.setText("输入股票代码搜索");
 		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -469,7 +469,7 @@ public class OptionalStock extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-				searchTextField.setText("输入股票代码或名称搜索");
+				searchTextField.setText("输入股票代码搜索");
 				searchBar.setVisible(false);
 			}
 

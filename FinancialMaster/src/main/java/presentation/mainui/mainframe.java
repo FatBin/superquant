@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import com.sun.awt.AWTUtilities;
@@ -50,21 +51,24 @@ public class mainframe extends JFrame implements Observer{
 				connection = new JFrame();
 				connection.setUndecorated(true);
 				connection.setAlwaysOnTop(true);
-				connection.setSize(960, 600);
-				connection.setOpacity(0);
+				connection.setSize(400, 270);
 				connection.setLocationRelativeTo(null);
 				
 				
-				connectionReminder= new connectionReminder();
-				connection.getContentPane().add(connectionReminder);
-				connection.repaint();
-				connection.setVisible(true);
+				connectionReminder= new connectionReminder(false);
 //				connectionReminder.updateUI();
 //				connectionReminder.setEnabled(false);
-//				this.setComponentZOrder(connectionReminder, 0);
+//				JButton j=new JButton("hh");
+//				System.out.println("ccccc");
+				connection.getContentPane().add(connectionReminder);
+				connection.setComponentZOrder(connectionReminder, 0);
+				connection.repaint();
+				connection.setVisible(true);
 //				invalidate();
 //				repaint();
 			}else {
+				connectionReminder.setConnect(true);
+				connection.repaint();
 				connection.dispose();
 			}
 		}

@@ -241,7 +241,7 @@ public class StockList extends JPanel {
 		add(searchBtn);
 
 		searchTextField = new JTextField();
-		searchTextField.setText("输入股票代码或名称搜索");
+		searchTextField.setText("输入股票代码搜索");
 		searchTextField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -332,7 +332,7 @@ public class StockList extends JPanel {
 				searchBar.setVisible(false);
 				searchTextField.setFocusable(false);
 				searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-				searchTextField.setText("输入股票代码或名称搜索");
+				searchTextField.setText("输入股票代码搜索");
 			}
 
 			@Override
