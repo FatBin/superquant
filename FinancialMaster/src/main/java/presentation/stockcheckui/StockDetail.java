@@ -96,6 +96,7 @@ public class StockDetail extends JPanel {
 	private Color red = new Color(179, 43, 56);
 	private Font labelFont = new Font("微软雅黑", Font.PLAIN, 18);
 	private attentionState state;
+	private JLabel percentLbl;
 
 	/**
 	 * Create the panel.
@@ -144,7 +145,7 @@ public class StockDetail extends JPanel {
 
 		JPanel content = new JPanel();
 		content.setOpaque(false);
-		content.setPreferredSize(new Dimension(710, 1400));
+		content.setPreferredSize(new Dimension(710, 1220));
 		content.setLayout(new FlowLayout(FlowLayout.LEFT, 14, 14));
 
 		IntentPane intentPane1 = new IntentPane();
@@ -158,6 +159,13 @@ public class StockDetail extends JPanel {
 		IntentPane intentPane3 = new IntentPane();
 		intentPane3.setPreferredSize(new Dimension(700, 404));
 		intentPane3.setLayout(null);
+
+		JLabel historyLbl = new JLabel("历史数据");
+		historyLbl.setBackground(new Color(245, 245, 245));
+		historyLbl.setForeground(brown);
+		historyLbl.setFont(new Font("微软雅黑", Font.PLAIN, 22));
+		historyLbl.setBounds(10, 5, 200, 32);
+		intentPane3.add(historyLbl);
 
 		// 另外四个数据图标
 		JLabel volumePanel = new JLabel();
@@ -792,7 +800,7 @@ public class StockDetail extends JPanel {
 			conditionBox.addItem(item[i]);
 		}
 		conditionBox.setBorder(null);
-		conditionBox.setBounds(10, 362, 110, 25);
+		conditionBox.setBounds(10, 362, 120, 25);
 		conditionBox.setSelectedIndex(0);
 		intentPane3.add(conditionBox);
 
@@ -893,6 +901,7 @@ public class StockDetail extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				searchBar.setVisible(false);
+
 				String newStart = startTimelbl.getText();
 				String newEnd = endTimelbl.getText();
 				StockVO datavo = Message.updateStockMessage(newStart, newEnd);
@@ -909,8 +918,9 @@ public class StockDetail extends JPanel {
 				conditionBox.setSelectedIndex(0);
 				belowTextField.setText("输入下限");
 				aboveTextField.setText("输入上限");
-				repaint();
-
+				
+				frame.repaint();
+				frame.validate();
 			}
 		});
 		timeGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
@@ -950,7 +960,11 @@ public class StockDetail extends JPanel {
 					for (int i = 1; i < 6; i++) {
 						table.getColumnModel().getColumn(i).setPreferredWidth(70);
 					}
-					repaint();
+
+					percentLbl.setText("筛选结果占比：" + nf.format(datavo.getRatio()));
+
+					frame.repaint();
+					frame.validate();
 				}
 			}
 		});
@@ -958,6 +972,12 @@ public class StockDetail extends JPanel {
 		conditionGotolbl.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		conditionGotolbl.setBounds(382, 362, 25, 22);
 		intentPane3.add(conditionGotolbl);
+
+		// 筛选比例
+		percentLbl = new JLabel("筛选结果占比: " + nf.format(datavo.getRatio()));
+		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 18));
+		percentLbl.setBounds(530, 367, 250, 25);
+		intentPane3.add(percentLbl);
 
 		// k线图
 		String title[] = { "日K", "折线图", "柱状图" };
@@ -1055,7 +1075,7 @@ public class StockDetail extends JPanel {
 		add(contentScroll);
 
 		// 点击其他地方使text field不能输入
-		addMouseListener(new MouseListener() {
+		frame.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				searchBar.setVisible(false);
