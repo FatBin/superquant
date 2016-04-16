@@ -45,7 +45,7 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 		int height = thumbBounds.height;
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		Color color = null;
+		Color color = null;  
         JScrollBar sb = (JScrollBar)c;
         if(!sb.isEnabled() || thumbBounds.width>thumbBounds.height) {
           return;
@@ -81,6 +81,42 @@ public class MyScrollBarUI extends BasicScrollBarUI {
 				return d;
 			}
 		};
+	}
+	
+	@Override
+	protected void setThumbBounds(int x, int y, int width, int height) {
+		/* If the thumbs bounds haven't changed, we're done.
+         */
+        if ((thumbRect.x == x) &&
+            (thumbRect.y == y) &&
+            (thumbRect.width == width) &&
+            (thumbRect.height == height)) {
+            return;
+        }
+
+//        /* Update thumbRect, and repaint the union of x,y,w,h and
+//         * the old thumbRect.
+//         */
+//        int minX = Math.min(x, thumbRect.x);
+//        int minY = Math.min(y, thumbRect.y);
+//        int maxX = Math.max(x + width, thumbRect.x + thumbRect.width);
+//        int maxY;
+//        if (thumbRect.height<100) {
+//        	maxY = Math.max(y + (int)this.getTrackBounds().getHeight(), thumbRect.y + 100);
+//		}else {
+//			maxY = Math.max(y + (int)this.getTrackBounds().getHeight(), thumbRect.y + thumbRect.height*2);
+//		}
+        if (height<50) {
+        	thumbRect.setBounds(x, y, width, height);
+        	scrollbar.repaint(x, y, width, 50);
+		}else {
+			thumbRect.setBounds(x, y, width, height);
+        	scrollbar.repaint(x, y, width, height);
+		}
+
+        // Once there is API to determine the mouse location this will need
+        // to be changed.
+        setThumbRollover(false);
 	}
 
 }

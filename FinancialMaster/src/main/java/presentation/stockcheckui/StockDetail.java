@@ -306,7 +306,7 @@ public class StockDetail extends JPanel {
 
 		barPanel bPanel1 = new barPanel(datavo.getOpen(), high);
 		bPanel1.setLayout(new FlowLayout(FlowLayout.LEFT));
-		bPanel1.setBounds(150, 78, (int) (210 * Math.pow(open, 12)), 26);
+		bPanel1.setBounds(150, 78, Math.max(30, (int) (210 * Math.pow(open, 12))), 26);
 		JLabel label5 = new JLabel(datavo.getOpen() + "");
 		label5.setBounds(15, 6, 20, 18);
 		label5.setForeground(new Color(105, 76, 36));
@@ -315,7 +315,7 @@ public class StockDetail extends JPanel {
 
 		barPanel bPanel2 = new barPanel(datavo.getLow(), high);
 		bPanel2.setLayout(new FlowLayout(FlowLayout.LEFT));
-		bPanel2.setBounds(150, 120, (int) (210 * Math.pow(low, 12)), 26);
+		bPanel2.setBounds(150, 120, Math.max(20,(int) (210 * Math.pow(low, 12))), 26);
 		JLabel label1 = new JLabel(datavo.getLow() + "");
 		label1.setBounds(15, 6, 20, 18);
 		label1.setForeground(new Color(105, 76, 36));
@@ -324,7 +324,11 @@ public class StockDetail extends JPanel {
 
 		barPanel bPanel3 = new barPanel(high, high);
 		bPanel3.setLayout(new FlowLayout(FlowLayout.LEFT));
-		bPanel3.setBounds(150, 161, 210, 26);
+		if (high == 0) {
+			bPanel3.setBounds(150, 161, 20, 26);
+		}else {
+			bPanel3.setBounds(150, 161, 210, 26);
+		}
 		JLabel label2 = new JLabel(datavo.getHigh() + "");
 		label2.setBounds(15, 6, 20, 18);
 		label2.setForeground(new Color(105, 76, 36));
@@ -333,7 +337,7 @@ public class StockDetail extends JPanel {
 
 		barPanel bPanel4 = new barPanel(datavo.getClose(), high);
 		bPanel4.setLayout(new FlowLayout(FlowLayout.LEFT));
-		bPanel4.setBounds(150, 202, (int) (210 * Math.pow(close, 12)), 26);
+		bPanel4.setBounds(150, 202,Math.max(20, (int) (210 * Math.pow(close, 12))) , 26);
 		JLabel label3 = new JLabel(datavo.getClose() + "");
 		label3.setBounds(15, 6, 20, 18);
 		label3.setForeground(new Color(105, 76, 36));
@@ -342,7 +346,7 @@ public class StockDetail extends JPanel {
 
 		barPanel bPanel5 = new barPanel(datavo.getAdj_price(), high);
 		bPanel5.setLayout(new FlowLayout(FlowLayout.LEFT));
-		bPanel5.setBounds(150, 243, (int) (210 * Math.pow(adj_price, 12)), 26);
+		bPanel5.setBounds(150, 243, Math.max(20, (int) (210 * Math.pow(adj_price, 12))), 26);
 		JLabel label4 = new JLabel(datavo.getAdj_price() + "");
 		label4.setBounds(15, 6, 20, 18);
 		label4.setForeground(new Color(105, 76, 36));
@@ -602,7 +606,6 @@ public class StockDetail extends JPanel {
 
 		JLabel namelbl = new JLabel();
 		namelbl.setText(datavo.getName() + "(" + id + ")");
-		namelbl.setBackground(new Color(245, 245, 245));
 		namelbl.setForeground(brown);
 		namelbl.setBounds(10, 5, 250, 32);
 		namelbl.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 22));

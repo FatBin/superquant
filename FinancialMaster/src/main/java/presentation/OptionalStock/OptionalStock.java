@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import org.jfree.chart.ChartPanel;
 
@@ -39,6 +41,8 @@ import VO.StockItemVO;
 import businesslogic.factory.InitFactory;
 import businesslogicservice.stockContrastblservice.StockContrastBLService;
 import businesslogicservice.stockcheckblservice.StockItemRankBLService;
+import presentation.repaintComponent.HeaderCellRenderer;
+import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyComboBox;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.MyTableCellRenderer;
@@ -59,6 +63,7 @@ public class OptionalStock extends JPanel {
 	JButton closeBtn;
 	JButton miniBtn;
 	JCheckBox checkBox[];
+	private Color brown = new Color(54, 42, 29);
 	private JTextField searchTextField;
 	private boolean click = false;
 	private SearchBar searchBar;
@@ -82,12 +87,24 @@ public class OptionalStock extends JPanel {
 	@SuppressWarnings({ "static-access", "unchecked" })
 	public OptionalStock(final JFrame frame) {
 		setBorder(null);
-
 		setLayout(null);
 		final OptionalStock opanel = this;
 
 		searchBar = new SearchBar(frame, opanel);
 		opanel.add(searchBar);
+
+		JPanel content = new JPanel();
+		content.setOpaque(false);
+		content.setBounds(224, 51, 730, 540);
+		content.setLayout(null);
+
+		IntentPane intentPane1 = new IntentPane();
+		intentPane1.setBounds(14, 14, 490, 515);
+		intentPane1.setLayout(null);
+
+		IntentPane intentPane2 = new IntentPane();
+		intentPane2.setBounds(518, 14, 200, 515);
+		intentPane2.setLayout(null);
 
 		marketBtn = new JButton("   大盘数据");
 		marketBtn.addMouseListener(new MouseAdapter() {
@@ -118,7 +135,7 @@ public class OptionalStock extends JPanel {
 				frame.setVisible(true);
 			}
 		});
-		marketBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		marketBtn.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		marketBtn.setForeground(new Color(216, 216, 216));
 		marketBtn.setBounds(0, 68, 224, 44);
 		marketBtn.setIcon(new ImageIcon("src/main/resources/image/line.png"));
@@ -159,7 +176,7 @@ public class OptionalStock extends JPanel {
 				frame.setVisible(true);
 			}
 		});
-		stockListBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		stockListBtn.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		stockListBtn.setForeground(new Color(216, 216, 216));
 		stockListBtn.setIcon(new ImageIcon("src/main/resources/image/pie.png"));
 		stockListBtn.setContentAreaFilled(false);
@@ -168,7 +185,7 @@ public class OptionalStock extends JPanel {
 		add(stockListBtn);
 
 		optionalStockBtn = new JButton("   行情对比");
-		optionalStockBtn.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		optionalStockBtn.setFont(new Font("微软雅黑", Font.PLAIN, 16));
 		optionalStockBtn.setForeground(new Color(248, 179, 29));
 		optionalStockBtn.setIcon(new ImageIcon("src/main/resources/image/rank-enter.png"));
 		optionalStockBtn.setContentAreaFilled(false);
@@ -287,13 +304,13 @@ public class OptionalStock extends JPanel {
 				} else if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP) {
 					searchBar.showTable(key);
 					searchBar.setBounds(697, 38, searchBar.getWidth(), searchBar.getHeight());
-					
+
 					if (searchBar.getRowCount() > 0) {
 						searchBar.setVisible(true);
-					}else {
+					} else {
 						searchBar.setVisible(false);
 					}
-					
+
 					rowpos = -1;
 				}
 
@@ -314,12 +331,24 @@ public class OptionalStock extends JPanel {
 		searchTextField.setBounds(686, 11, 196, 27);
 		add(searchTextField);
 		searchTextField.setColumns(10);
+		
+		JLabel namelbl = new JLabel("多维对比");
+		namelbl.setForeground(brown);
+		namelbl.setBounds(10, 4, 250, 32);
+		namelbl.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane1.add(namelbl);
+		
+		JLabel namelbl2 = new JLabel("单项排行");
+		namelbl2.setForeground(brown);
+		namelbl2.setBounds(10, 4, 250, 32);
+		namelbl2.setFont(new Font("微软雅黑", Font.PLAIN, 20));
+		intentPane2.add(namelbl2);
 
 		// 雷达图
 		chartPanel = new JPanel();
-		chartPanel.setBounds(240, 70, 505, 380);
+		chartPanel.setBounds(0,38,490, 380);
 		chartPanel.setOpaque(false);
-		add(chartPanel);
+		intentPane1.add(chartPanel);
 
 		String name[] = stockContrastBL.getList();
 		int count = name.length;
@@ -327,10 +356,10 @@ public class OptionalStock extends JPanel {
 
 		for (int i = 0; i < count; i++) {
 			checkBox[i] = new JCheckBox(name[i]);
-			checkBox[i].setBounds(252 + i % 5 * 95, 465 + i / 5 * 35, 85, 25);
+			checkBox[i].setBounds(10 + i % 5 * 95, 430 + i / 5 * 35, 85, 25);
 			checkBox[i].setOpaque(true);
 			checkBox[i].setContentAreaFilled(false);
-			add(checkBox[i]);
+			intentPane1.add(checkBox[i]);
 		}
 
 		for (int i = 0; i < count; i++) {
@@ -347,7 +376,7 @@ public class OptionalStock extends JPanel {
 		// 排行
 		final MyComboBox conditionBox = new MyComboBox();
 		conditionBox.setFont(new Font("Lantinghei TC", Font.PLAIN, 15));
-		conditionBox.setBounds(770, 80, 90, 25);
+		conditionBox.setBounds(110, 10, 90, 25);
 		conditionBox.setMaximumRowCount(20);
 		String conditionstr[] = { "开盘价", "收盘价", "最高价", "最低价", "后复权价", "成交量", "换手率", "市盈率", "市净率", "涨跌幅" };
 
@@ -358,19 +387,26 @@ public class OptionalStock extends JPanel {
 		conditionBox.setSelectedIndex(0);
 		conditionBox.setOpaque(false);
 		conditionBox.setBorder(null);
-		add(conditionBox);
+		intentPane2.add(conditionBox);
 
 		// 排行表格
 		rankPane = new JScrollPane();
-		rankPane.setBounds(765, 115, 175, 400);
+		rankPane.setBounds(0, 42, 200, 400);
 		rankPane.setOpaque(false);
 		rankPane.setBorder(BorderFactory.createEmptyBorder());
 		rankPane.getVerticalScrollBar().setUI(new MyScrollBarUI());
 		rankPane.getViewport().setOpaque(false);
-		add(rankPane);
+		intentPane2.add(rankPane);
+		
 
 		table = new JTable();
 		table.setRowHeight(26);
+		
+		JTableHeader header = table.getTableHeader();
+		header.setOpaque(false);
+		header.getTable().setOpaque(false);
+		header.getTable().setIntercellSpacing(new Dimension(0, getHeight()));
+		header.setDefaultRenderer(new HeaderCellRenderer());
 		// 使表格居中
 		MyTableCellRenderer r = new MyTableCellRenderer();
 		r.setHorizontalAlignment(JLabel.CENTER);
@@ -438,7 +474,9 @@ public class OptionalStock extends JPanel {
 
 			}
 		});
-
+		content.add(intentPane1);
+		content.add(intentPane2);
+		add(content);
 		setDragable(frame);
 	}
 
@@ -521,7 +559,8 @@ public class OptionalStock extends JPanel {
 		}
 		spiderChart = new SpiderChart(nameList, stockContrastBL);
 		ChartPanel cpanel = spiderChart.getChart();
-		cpanel.setPreferredSize(new Dimension(500, 370));
+		cpanel.setPreferredSize(new Dimension(490, 370));
+		cpanel.setBackground(Color.white);
 		chartPanel.add(cpanel);
 
 		chartPanel.repaint();

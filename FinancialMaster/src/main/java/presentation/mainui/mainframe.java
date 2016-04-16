@@ -26,7 +26,6 @@ public class mainframe extends JFrame implements Observer{
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(960, 600);
-		AWTUtilities.setWindowOpaque(this, false);
 		this.setBackground(new Color(0, 0, 0, 0));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);

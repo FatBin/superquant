@@ -1,5 +1,6 @@
 package presentation.OptionalStock;
 
+import java.awt.Color;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
@@ -47,11 +48,13 @@ public class SpiderChart {
 		chart.addSubtitle(legendtitle);
 		chart.setAntiAlias(true);
 		chart.setBorderPaint(null);
+		chart.setBackgroundPaint(Color.white);
 	}
 		
 
 	public ChartPanel getChart() {
 		ChartPanel chartPanel = new ChartPanel(chart);
+		chartPanel.setBorder(null);
 
 		// 通过鼠标滚轮放大缩小放大，整体都放大缩小
 		chartPanel.addMouseWheelListener(new MouseWheelListener() {
@@ -67,7 +70,7 @@ public class SpiderChart {
 				}
 			}
 		});
-
+		
 		chartPanel.setOpaque(false);
 		return chartPanel;
 	}

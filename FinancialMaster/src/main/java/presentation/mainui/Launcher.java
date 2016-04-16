@@ -28,9 +28,10 @@ public class Launcher {
 		Thread thread=new Thread(connectionSubject);
 		thread.start();
 		mainframe mainframe=new mainframe(connectionSubject);
-		mainframe.repaint();
 		mainframe.validate();
 		mainframe.setVisible(true);
+		mainframe.repaint();
+		mainframe.getContentPane().repaint();
 		
 	}
 }
