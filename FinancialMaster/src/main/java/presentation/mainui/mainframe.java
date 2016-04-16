@@ -6,6 +6,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 
 import businesslogic.connection.connectionSubject;
+import oracle.jrockit.jfr.JFR;
 import presentation.stockmarketui.Marketui;
 import sun.launcher.resources.launcher;;
 
@@ -13,15 +14,17 @@ import sun.launcher.resources.launcher;;
 public class mainframe extends JFrame implements Observer{
 	private Observable observable;
 	private connectionReminder connectionReminder;
+	private JFrame connection;
 	/**
 	 * Create the frame.
 	 */
 	public mainframe(Observable observable) {
 		this.setUndecorated(true); // È¥µô±ß¿ò
 		this.setLayout(null);
-		this.setBackground(new Color(0, 0, 0, 0));
+
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(960, 600);
+		this.setBackground(new Color(0, 0, 0, 0));
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		Marketui panel = new Marketui(this);
@@ -40,16 +43,25 @@ public class mainframe extends JFrame implements Observer{
 		if (o instanceof connectionSubject) {
 			connectionSubject connectionSubject=(connectionSubject) o;
 			if(connectionSubject.getState()==true){
+				connection = new JFrame();
+				connection.setUndecorated(true);
+				connection.setAlwaysOnTop(true);
+				connection.setSize(960, 600);
+				connection.setOpacity(0);
+				connection.setLocationRelativeTo(null);
+				
+				
 				connectionReminder= new connectionReminder();
-				connectionReminder.setBounds(0, 0, 960, 600);
-				this.add(connectionReminder);
-				connectionReminder.updateUI();
-				invalidate();
-				repaint();
+				connection.getContentPane().add(connectionReminder);
+				connection.repaint();
+				connection.setVisible(true);
+//				connectionReminder.updateUI();
+//				connectionReminder.setEnabled(false);
+//				this.setComponentZOrder(connectionReminder, 0);
+//				invalidate();
+//				repaint();
 			}else {
-				this.remove(connectionReminder);
-				invalidate();
-				repaint();
+				connection.dispose();
 			}
 		}
 	}
