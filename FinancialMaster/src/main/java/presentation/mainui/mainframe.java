@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.sun.awt.AWTUtilities;
@@ -25,6 +26,7 @@ public class mainframe extends JFrame implements Observer{
 		this.setLayout(null);
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setIconImage(new ImageIcon("src/main/resources/image/Superman.png").getImage());
 		this.setSize(960, 600);
 		this.setBackground(new Color(0, 0, 0, 0));
 		this.setLocationRelativeTo(null);

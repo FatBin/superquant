@@ -1,5 +1,6 @@
 package presentation.mainui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 import com.sun.awt.AWTUtilities;
@@ -16,6 +17,7 @@ public class Launcher {
 		
 		frame.setSize(600, 600);
 		AWTUtilities.setWindowOpaque(frame, false);
+		frame.setIconImage(new ImageIcon("src/main/resources/image/Superman.png").getImage());
 		frame.getContentPane().add(gif);
 		frame.setLocationRelativeTo(null);
 		frame.repaint();
