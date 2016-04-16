@@ -19,7 +19,7 @@ public class TestStockListBL {
 	private String key;
 	@Parameters
 	public static Collection DatabaseMetaData(){
-		return Arrays.asList(new Object[][] { { "300","sz300027"}, { "-","-"}});
+		return Arrays.asList(new Object[][] { { "300","sz300027"}, { "-",""}});
 	}
 	
 	@Before
@@ -31,11 +31,6 @@ public class TestStockListBL {
 		this.result=result;
 	}
 	
-	@Test
-	public void testgetStockList(){
-		String[][] r=stockListBL.getStockList();
-		Assert.assertEquals("sh600597,π‚√˜»È“µ,11.84,11.88,11.44,11.63", r[0][0]+","+r[0][1]+","+r[0][2]+","+r[0][3]+","+r[0][4]+","+r[0][5]);
-	}
 	
 	@Test
 	public void testupdateStockList(){
@@ -44,7 +39,6 @@ public class TestStockListBL {
 		for (int i = 0; i < array.length; i++) {
 			r=r+array[i][0];
 		}
-		System.out.print(array[0][0]);
 		Assert.assertEquals(result, r);
 	}
 }

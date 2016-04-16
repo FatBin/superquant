@@ -292,7 +292,7 @@ public class OptionalStock extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					searchBar.jump(frame, opanel);
+					searchBar.jump(frame);
 				}
 			}
 
@@ -353,6 +353,11 @@ public class OptionalStock extends JPanel {
 		String name[] = stockContrastBL.getList();
 		int count = name.length;
 		checkBox = new JCheckBox[count];
+
+		if (count == 0) {
+			checkBox = new JCheckBox[1];
+			checkBox[0] = new JCheckBox();
+		}
 
 		for (int i = 0; i < count; i++) {
 			checkBox[i] = new JCheckBox(name[i]);

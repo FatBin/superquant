@@ -27,9 +27,18 @@ public class SpiderChart {
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (String name : nameList) {
-			data = stockContrastBL.getData(name);
+			int isEmpty = 0;// 用来判断是否没有收藏列表
+
+			if (!name.equals("")) {
+				data = stockContrastBL.getData(name);
+				isEmpty = data.length;
+			}
 			for (int i = 0; i < series.length; i++) {
-				dataset.addValue(data[i], name, series[i]);
+				if (isEmpty > 0) {
+					dataset.addValue(data[i], name, series[i]);
+				} else {
+					dataset.addValue(10, name, series[i]);
+				}
 			}
 		}
 
@@ -38,8 +47,8 @@ public class SpiderChart {
 		spiderwebplot.setInteriorGap(0.2D); // 图显示的大小
 		spiderwebplot.setToolTipGenerator(new StandardCategoryToolTipGenerator());
 		spiderwebplot.setBackgroundPaint(null);
-		
-//		spiderwebplot.setLabelFont(new Font("宋体", Font.PLAIN, 12));
+
+		// spiderwebplot.setLabelFont(new Font("宋体", Font.PLAIN, 12));
 		spiderwebplot.setTicks(4);
 
 		chart = new JFreeChart("", TextTitle.DEFAULT_FONT, spiderwebplot, false);
@@ -50,7 +59,6 @@ public class SpiderChart {
 		chart.setBorderPaint(null);
 		chart.setBackgroundPaint(Color.white);
 	}
-		
 
 	public ChartPanel getChart() {
 		ChartPanel chartPanel = new ChartPanel(chart);
