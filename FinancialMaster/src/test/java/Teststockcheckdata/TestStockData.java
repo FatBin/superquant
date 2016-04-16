@@ -47,7 +47,7 @@ public class TestStockData {
 	public void testgetStatisticOfStock(){
 		ArrayList<stockStatisticPO> arrayList=stockData.getStatisitcOfStock("sh600000", "2014-10-10", "2015-10-10");
 		stockStatisticPO statisticPO1=arrayList.get(0),statisticPO2=arrayList.get(1);
-		Assert.assertEquals(""+9.83, ""+statisticPO1.getHigh());
-		Assert.assertEquals(""+9.82, ""+statisticPO2.getHigh());
+		Assert.assertEquals(""+9.91, ""+statisticPO1.getHigh());
+		Assert.assertEquals(""+9.83, ""+statisticPO2.getHigh());
 	}
 }

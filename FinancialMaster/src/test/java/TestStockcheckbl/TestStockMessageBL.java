@@ -36,7 +36,22 @@ public class TestStockMessageBL {
 	public void testgetCodeName(){
 		System.out.println(StockMessageBL.getStockMessage(key).getName());
 		System.out.println(StockMessageBL.getStockMessage(key).getDate());
+		System.out.println(StockMessageBL.getStockMessage(key).getOpen());
+		System.out.println(StockMessageBL.getStockMessage(key).getHigh());
+		System.out.println(StockMessageBL.getStockMessage(key).getLow());
+		System.out.println(StockMessageBL.getStockMessage(key).getClose());
+		System.out.println(StockMessageBL.getStockMessage(key).getAdj_price());
+		System.out.println(StockMessageBL.getStockMessage(key).getVolume());
+		System.out.println(StockMessageBL.getStockMessage(key).getTurnover());
+		System.out.println(StockMessageBL.getStockMessage(key).getPe());
+		System.out.println(StockMessageBL.getStockMessage(key).getPb());
+		System.out.println(StockMessageBL.getStockMessage(key).getUps_and_lows());
+		System.out.println(StockMessageBL.getStockMessage(key).getStockMarketVO().getChangeRange());
+		System.out.println(StockMessageBL.getStockMessage(key).getTamplitude());
 		System.out.println(StockMessageBL.getStockMessage(key).getQuantity_relative_ratio());
+		System.out.println(StockMessageBL.getStockMessage(key).getKLine_data()[0][0]);
+		System.out.println(StockMessageBL.getStockMessage(key).getHistory_data()[0][0]);
+		System.out.println(StockMessageBL.getStockMessage(key).getRatio());
 
 		Assert.assertEquals(null, StockMessageBL.getStockMessage(key));
 	}
