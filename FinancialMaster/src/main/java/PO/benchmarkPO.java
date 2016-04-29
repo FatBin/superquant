@@ -3,7 +3,7 @@ package PO;
 import java.util.ArrayList;
 
 public class benchmarkPO {
-	//所有大盘的代號
+
 	private ArrayList<String> benchmark;
 
 	public benchmarkPO(ArrayList<String> benchmark) {
