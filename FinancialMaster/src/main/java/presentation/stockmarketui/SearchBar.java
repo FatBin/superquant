@@ -15,7 +15,7 @@ import businesslogic.factory.InitFactory;
 import businesslogicservice.stockcheckblservice.StockSearchBLService;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.stockcheckui.PersonalStock;
-import presentation.stockcheckui.StockDetail;
+import presentation.stockcheckui.stockdetailui.StockDetail;
 
 @SuppressWarnings("serial")
 public class SearchBar extends JPanel {

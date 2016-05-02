@@ -36,6 +36,7 @@ import presentation.repaintComponent.IntentPane;
 import presentation.repaintComponent.MyScrollBarUI;
 import presentation.repaintComponent.MyTableCellRenderer;
 import presentation.repaintComponent.TextBubbleBorder;
+import presentation.stockcheckui.stockdetailui.StockDetail;
 import presentation.stockmarketui.SearchBar;
 
 import java.awt.event.KeyAdapter;
