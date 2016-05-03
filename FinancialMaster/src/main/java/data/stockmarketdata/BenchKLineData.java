@@ -22,9 +22,9 @@ public class BenchKLineData implements BenchKLineDataService {
 
 	@Override
 	public ManageState update() {
-		Calendar cal = Calendar.getInstance();// 用来记录现在的日期
-		cal.add(Calendar.DATE, -1);// 由于API的原因，暂时提前到昨天
-		Calendar lastCal1 = Calendar.getInstance();// 用来记录上次更新到的日期
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		Calendar lastCal1 = Calendar.getInstance();
 		Calendar lastCal2 = Calendar.getInstance();
 		String yestoday = format.format(cal.getTime());
 		// cal.add(Calendar.DATE, 1);
@@ -37,9 +37,9 @@ public class BenchKLineData implements BenchKLineDataService {
 			lastCal2.setTime(d);
 			String lastDay = format.format(lastCal1.getTime());
 			if (!lastDay.equals(yestoday)) {
-				// 更新周Ｋ
+				// update week kline
 				updateWeek(lastCal1, cal);
-				// 更新月Ｋ
+				// update month kline
 				updateMonth(lastCal2, cal);
 				FileManager.WriteFile(yestoday,
 						"src/main/resources/Data/updateRecord.txt", false);
@@ -65,7 +65,7 @@ public class BenchKLineData implements BenchKLineDataService {
 		return result;		
 	}	
 
-	// 更新周k
+	// update week kline
 	private void updateWeek(Calendar start, Calendar end) {
 		old_datalist =FileManager.ReadFile("src/main/resources/Data/WeekK.txt"); 
 		double high = Double.MIN_VALUE;
@@ -151,7 +151,7 @@ public class BenchKLineData implements BenchKLineDataService {
 		FileManager.WriteFile(old_datalist, "src/main/resources/Data/WeekK.txt", false);
 	}
 
-	// 更新月k
+	// update month kline
 	private void updateMonth(Calendar start, Calendar end) {
 		old_datalist =FileManager.ReadFile("src/main/resources/Data/MonthK.txt"); 
 		double high = Double.MIN_VALUE;
