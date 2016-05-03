@@ -59,7 +59,6 @@ public class StockDetail extends JPanel {
 	 * Create the panel.
 	 */
 	@SuppressWarnings({ "static-access" })
-	// boolean 用来判断跳转回到哪里，true返回股票列表，false返回任意界面
 	public StockDetail(final JFrame frame, final String id) {
 
 		// JFrame loadframe = new JFrame();
