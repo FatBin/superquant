@@ -135,7 +135,7 @@ public class StockDetail extends JPanel {
 		closeBtn.setBounds(707, 15, 16, 16);
 		add(closeBtn);
 
-		miniBtn = new JButton("—");
+		miniBtn = new JButton("－");
 		miniBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -149,7 +149,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.setExtendedState(frame.ICONIFIED); // 最小化
+				frame.setExtendedState(frame.ICONIFIED); // 最小化窗口
 			}
 		});
 		miniBtn.setForeground(new Color(216, 216, 216));
