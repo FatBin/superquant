@@ -135,7 +135,7 @@ public class StockDetail extends JPanel {
 		closeBtn.setBounds(707, 15, 16, 16);
 		add(closeBtn);
 
-		miniBtn = new JButton("£­");
+		miniBtn = new JButton("ï¼");
 		miniBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -149,7 +149,7 @@ public class StockDetail extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.setExtendedState(frame.ICONIFIED); // ×îÐ¡»¯´°¿Ú
+				frame.setExtendedState(frame.ICONIFIED); // æœ€å°åŒ–çª—å£
 			}
 		});
 		miniBtn.setForeground(new Color(216, 216, 216));
@@ -180,7 +180,7 @@ public class StockDetail extends JPanel {
 		searchTextField.setForeground(new Color(150, 150, 150));
 		searchTextField.setCaretColor(new Color(150, 150, 150));
 		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		searchTextField.setText("ÊäÈë¹ÉÆ±´úÂëËÑË÷");
+		searchTextField.setText("ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -256,16 +256,16 @@ public class StockDetail extends JPanel {
 			}
 		});
 
-		JLabel name = new JLabel("»¦Éî300");
+		JLabel name = new JLabel("ï¿½ï¿½ï¿½ï¿½300");
 		name.setBounds(70, 14, 80, 26);
 		name.setForeground(brown);
 		add(name);
 
-		// ´óÅÌÕÇµøÁ¿
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½
 		JLabel change = new JLabel();
 		double changeRange = stockMarketVO.getChangeRange();
 		change.setText((changeRange + "").substring(0, 7));
-		change.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		change.setFont(new Font("Î¢ï¿½ï¿½ï¿½Åºï¿½", Font.PLAIN, 14));
 		change.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			change.setForeground(red);
@@ -292,11 +292,11 @@ public class StockDetail extends JPanel {
 		}
 		add(upArrow);
 
-		// ´óÅÌÏÖ¼Û
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½
 		JLabel nowMarket = new JLabel();
 		double now = stockMarketVO.getClose();
 		nowMarket.setText((now + "").substring(0, 7));
-		nowMarket.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		nowMarket.setFont(new Font("Î¢ï¿½ï¿½ï¿½Åºï¿½", Font.PLAIN, 14));
 		nowMarket.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			nowMarket.setForeground(red);
@@ -306,11 +306,11 @@ public class StockDetail extends JPanel {
 		nowMarket.setBounds(135, 14, 60, 24);
 		add(nowMarket);
 
-		// ´óÅÌÕÇµø·ù
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½
 		JLabel marketUpAndDown = new JLabel();
 		double marketup = stockMarketVO.getUps_and_downs();
 		marketUpAndDown.setText(nf.format(marketup));
-		marketUpAndDown.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
+		marketUpAndDown.setFont(new Font("Î¢ï¿½ï¿½ï¿½Åºï¿½", Font.PLAIN, 14));
 		marketUpAndDown.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			marketUpAndDown.setForeground(red);
@@ -360,7 +360,7 @@ public class StockDetail extends JPanel {
 		backBtn.setBounds(10, 15, 46, 16);
 		add(backBtn);
 
-		// Ìí¼ÓscrollPane
+		// ï¿½ï¿½ï¿½scrollPane
 		content.add(intentPane1);
 		content.add(intentPane2);
 		content.add(intentPane3);
@@ -368,7 +368,7 @@ public class StockDetail extends JPanel {
 		contentScroll.getVerticalScrollBar().setUnitIncrement(20);
 		add(contentScroll);
 
-		// µã»÷ÆäËûµØ·½Ê¹text field²»ÄÜÊäÈë
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø·ï¿½Ê¹text fieldï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -402,7 +402,7 @@ public class StockDetail extends JPanel {
 		});
 	}
 
-	// ±ß¿òÔ²»¬
+	// ï¿½ß¿ï¿½Ô²ï¿½ï¿½
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("src/main/resources/image/right.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
@@ -411,7 +411,7 @@ public class StockDetail extends JPanel {
 
 	}
 
-	// ÉèÖÃ½çÃæ¿ÉÍÏ¶¯
+	// ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½
 	Point loc = null;
 	Point tmp = null;
 
@@ -443,14 +443,14 @@ public class StockDetail extends JPanel {
 		searchBar.setVisible(false);
 		searchTextField.setFocusable(false);
 		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		searchTextField.setText("ÊäÈë¹ÉÆ±´úÂëËÑË÷");
+		searchTextField.setText("ï¿½ï¿½ï¿½ï¿½ï¿½Æ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		belowTextField.setFocusable(false);
 		belowTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		belowTextField.setText("ÊäÈëÏÂÏÞ");
+		belowTextField.setText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
 		aboveTextField.setFocusable(false);
 		aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		aboveTextField.setText("ÊäÈëÉÏÏÞ");
+		aboveTextField.setText("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	}
 }

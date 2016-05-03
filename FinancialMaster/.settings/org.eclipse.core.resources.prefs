@@ -2,3 +2,4 @@ eclipse.preferences.version=1
 encoding//src/main/java/data=GBK
 encoding//src/main/java/data/stockmarketdata/BenchKLineData.java=GBK
 encoding//src/main/java/dataservice/stockmarketdataservice/BenchKLineDataService.java=GBK
+encoding//src/main/java/presentation/stockcheckui/stockdetailui/StockDetail.java=UTF-8
