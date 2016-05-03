@@ -23,7 +23,7 @@ public class BenchKLineData implements BenchKLineDataService {
 	@Override
 	public ManageState update() {
 		Calendar cal = Calendar.getInstance();// 用来记录现在的日期
-		cal.add(Calendar.DATE, -1);// 由于API的原因，暂时提前到昨天
+		cal.add(Calendar.DATE, -1);// 由于API原因，暂时更新到昨天
 		Calendar lastCal1 = Calendar.getInstance();// 用来记录上次更新到的日期
 		Calendar lastCal2 = Calendar.getInstance();
 		String yestoday = format.format(cal.getTime());
@@ -37,9 +37,9 @@ public class BenchKLineData implements BenchKLineDataService {
 			lastCal2.setTime(d);
 			String lastDay = format.format(lastCal1.getTime());
 			if (!lastDay.equals(yestoday)) {
-				// 更新周Ｋ
+				// 更新周k
 				updateWeek(lastCal1, cal);
-				// 更新月Ｋ
+				// 更新月k
 				updateMonth(lastCal2, cal);
 				FileManager.WriteFile(yestoday,
 						"src/main/resources/Data/updateRecord.txt", false);
