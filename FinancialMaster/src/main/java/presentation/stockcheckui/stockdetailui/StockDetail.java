@@ -180,7 +180,7 @@ public class StockDetail extends JPanel {
 		searchTextField.setForeground(new Color(150, 150, 150));
 		searchTextField.setCaretColor(new Color(150, 150, 150));
 		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		searchTextField.setText("�����Ʊ��������");
+		searchTextField.setText("输入股票代码搜索");
 		searchTextField.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -256,16 +256,16 @@ public class StockDetail extends JPanel {
 			}
 		});
 
-		JLabel name = new JLabel("����300");
+		JLabel name = new JLabel("沪深300");
 		name.setBounds(70, 14, 80, 26);
 		name.setForeground(brown);
 		add(name);
 
-		// �����ǵ���
+		// 大盘涨跌量
 		JLabel change = new JLabel();
 		double changeRange = stockMarketVO.getChangeRange();
 		change.setText((changeRange + "").substring(0, 7));
-		change.setFont(new Font("΢���ź�", Font.PLAIN, 14));
+		change.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		change.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			change.setForeground(red);
@@ -292,11 +292,11 @@ public class StockDetail extends JPanel {
 		}
 		add(upArrow);
 
-		// �����ּ�
+		// 大盘现价
 		JLabel nowMarket = new JLabel();
 		double now = stockMarketVO.getClose();
 		nowMarket.setText((now + "").substring(0, 7));
-		nowMarket.setFont(new Font("΢���ź�", Font.PLAIN, 14));
+		nowMarket.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		nowMarket.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			nowMarket.setForeground(red);
@@ -306,11 +306,11 @@ public class StockDetail extends JPanel {
 		nowMarket.setBounds(135, 14, 60, 24);
 		add(nowMarket);
 
-		// �����ǵ���
+		// 大盘涨跌幅
 		JLabel marketUpAndDown = new JLabel();
 		double marketup = stockMarketVO.getUps_and_downs();
 		marketUpAndDown.setText(nf.format(marketup));
-		marketUpAndDown.setFont(new Font("΢���ź�", Font.PLAIN, 14));
+		marketUpAndDown.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		marketUpAndDown.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
 			marketUpAndDown.setForeground(red);
@@ -360,7 +360,7 @@ public class StockDetail extends JPanel {
 		backBtn.setBounds(10, 15, 46, 16);
 		add(backBtn);
 
-		// ���scrollPane
+		// 添加scrollPane
 		content.add(intentPane1);
 		content.add(intentPane2);
 		content.add(intentPane3);
@@ -368,7 +368,7 @@ public class StockDetail extends JPanel {
 		contentScroll.getVerticalScrollBar().setUnitIncrement(20);
 		add(contentScroll);
 
-		// ��������ط�ʹtext field��������
+		// 点击其他地方使text field不能输入
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -402,7 +402,7 @@ public class StockDetail extends JPanel {
 		});
 	}
 
-	// �߿�Բ��
+	// 边框圆滑
 	protected void paintComponent(Graphics g) {
 		ImageIcon image = new ImageIcon("src/main/resources/image/right.png");
 		g.drawImage(image.getImage(), 0, 0, getSize().width - 1, getSize().height - 1, this);
@@ -411,7 +411,7 @@ public class StockDetail extends JPanel {
 
 	}
 
-	// ���ý�����϶�
+	// 设置界面可拖动
 	Point loc = null;
 	Point tmp = null;
 
@@ -443,14 +443,14 @@ public class StockDetail extends JPanel {
 		searchBar.setVisible(false);
 		searchTextField.setFocusable(false);
 		searchTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		searchTextField.setText("�����Ʊ��������");
+		searchTextField.setText("输入股票代码搜索");
 
 		belowTextField.setFocusable(false);
 		belowTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		belowTextField.setText("��������");
+		belowTextField.setText("输入下限");
 
 		aboveTextField.setFocusable(false);
 		aboveTextField.setBorder(new TextBubbleBorder(new Color(197, 197, 197), 1, 30, 0));
-		aboveTextField.setText("��������");
+		aboveTextField.setText("输入上限");
 	}
 }
