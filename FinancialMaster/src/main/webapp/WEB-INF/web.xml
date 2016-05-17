@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <welcome-file-list>
+    <welcome-file>Home_Page/HomePage.jsp</welcome-file>
+  </welcome-file-list>
+  
+<!-- 工厂初始化 -->  
+  <servlet>
+    <servlet-name>factory</servlet-name>
+    <servlet-class>servlet.factory.InitFactoryServlet</servlet-class>
+ <!--<load-on-startup>1</load-on-startup> 自动初始化工厂-->  
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>factory</servlet-name>
+    <url-pattern>/servlet/factory/InitFactoryServlet</url-pattern>
+  </servlet-mapping>
+ 
+ <!-- 跳转到主页 -->   
+   <servlet>
+      <servlet-name>ToHomePageServlet</servlet-name>
+      <servlet-class>servlet.main.ToHomePageServlet</servlet-class>
+   </servlet>
+   <servlet-mapping>
+      <servlet-name>ToHomePageServlet</servlet-name>
+      <url-pattern>/servlet/main/ToHomePageServlet</url-pattern>
+   </servlet-mapping>
+  
 </web-app>

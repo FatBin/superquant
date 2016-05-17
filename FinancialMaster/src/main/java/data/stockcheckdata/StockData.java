@@ -17,6 +17,7 @@ import PO.stockStatisticPO;
 import data.IO.FileManager;
 import data.IO.HttpRequest;
 import dataservice.stockcheckdataservice.StockDataService;
+import servlet.factory.InitFactoryServlet;
 
 public class StockData implements StockDataService {
 	// 输入年份及交易所返回所有股票名
@@ -24,7 +25,8 @@ public class StockData implements StockDataService {
 		ArrayList<String> arrayList = new ArrayList<String>();//返回的arraylist
 
 		//先判斷是否在文件中
-		File file=new File("src/main/resources/Data/LocalDataBuffer/"+year+"_"+exchange+".txt");
+		String path=InitFactoryServlet.getPath();
+		File file=new File(path+"Data/LocalDataBuffer/"+year+"_"+exchange+".txt");
 		if(!file.exists()||file.isDirectory()){
 				try {
 					file.createNewFile();
@@ -42,7 +44,7 @@ public class StockData implements StockDataService {
 					arrayList.add(jsonArray.getJSONObject(i).getString("name"));
 				}
 				//写入
-				FileManager.WriteFile(arrayList, "src/main/resources/Data/LocalDataBuffer/"+year+"_"+exchange+".txt", false);
+				FileManager.WriteFile(arrayList, "Data/LocalDataBuffer/"+year+"_"+exchange+".txt", false);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
@@ -63,12 +65,12 @@ public class StockData implements StockDataService {
 						arrayList.add(jsonArray.getJSONObject(i).getString("name"));
 					}
 					//写入
-					FileManager.WriteFile(arrayList, "src/main/resources/Data/LocalDataBuffer/"+year+"_"+exchange+".txt", false);
+					FileManager.WriteFile(arrayList, "Data/LocalDataBuffer/"+year+"_"+exchange+".txt", false);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
 			}else{
-				arrayList=FileManager.ReadFile("src/main/resources/Data/LocalDataBuffer/"+year+"_"+exchange+".txt");
+				arrayList=FileManager.ReadFile("Data/LocalDataBuffer/"+year+"_"+exchange+".txt");
 			}
 		}
 		codeNamePO codeNamePO = new codeNamePO(arrayList);
@@ -133,7 +135,7 @@ public class StockData implements StockDataService {
 
 	// 初始化时调用这个方法
 	public ArrayList<stockStatisticPO> getStatisitcOfStock(String codeName){
-		File target=new File("src/main/resources/Data/LocalDataBuffer/"+codeName+".txt");
+		File target=new File("Data/LocalDataBuffer/"+codeName+".txt");
 		//如果該緩存不存在,新建一個
 		if (!target.exists() || target.isDirectory()) {
 			try {
@@ -159,11 +161,11 @@ public class StockData implements StockDataService {
 							  stockStatisticPO.getPb();
 				DataBuffer.add(result);
 			}
-			FileManager.WriteFile(DataBuffer, "src/main/resources/Data/LocalDataBuffer/"+codeName+".txt", false);
+			FileManager.WriteFile(DataBuffer, "Data/LocalDataBuffer/"+codeName+".txt", false);
 			return arrayList;
 		}else{
 			//當原來有緩存時
-			ArrayList<String> dataBuffer=FileManager.ReadFile("src/main/resources/Data/LocalDataBuffer/"+codeName+".txt");
+			ArrayList<String> dataBuffer=FileManager.ReadFile("Data/LocalDataBuffer/"+codeName+".txt");
 			ArrayList<stockStatisticPO> arrayList=new ArrayList<>();
 			for (String string : dataBuffer) {
 				String[] s=string.split(";");
@@ -216,7 +218,7 @@ public class StockData implements StockDataService {
 									  stockStatisticPO.getPb();
 						dataBuffer.add(result);
 					}
-					FileManager.WriteFile(dataBuffer, "src/main/resources/Data/LocalDataBuffer/"+codeName+".txt", false);
+					FileManager.WriteFile(dataBuffer, "Data/LocalDataBuffer/"+codeName+".txt", false);
 				}
 			}
 			return arrayList;

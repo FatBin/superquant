@@ -30,7 +30,7 @@ public class BenchKLineData implements BenchKLineDataService {
 		// cal.add(Calendar.DATE, 1);
 		try {
 			ArrayList<String> datelist = FileManager
-					.ReadFile("src/main/resources/Data/updateRecord.txt");
+					.ReadFile("Data/updateRecord.txt");
 			String lastDate = datelist.get(0);
 			Date d = format.parse(lastDate);
 			lastCal1.setTime(d);
@@ -42,7 +42,7 @@ public class BenchKLineData implements BenchKLineDataService {
 				// update month kline
 				updateMonth(lastCal2, cal);
 				FileManager.WriteFile(yestoday,
-						"src/main/resources/Data/updateRecord.txt", false);
+						"Data/updateRecord.txt", false);
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class BenchKLineData implements BenchKLineDataService {
 	
 	@Override
 	public String[][] getStatisticData(String kLine_enum) {
-		String path = "src/main/resources/Data/" + kLine_enum + ".txt";
+		String path = "Data/" + kLine_enum + ".txt";
 		ArrayList<String> datalist = FileManager.ReadFile(path);
 		int size=datalist.size();
 		String[][] result=new String[size][9];
@@ -67,7 +67,7 @@ public class BenchKLineData implements BenchKLineDataService {
 
 	// update week kline
 	private void updateWeek(Calendar start, Calendar end) {
-		old_datalist =FileManager.ReadFile("src/main/resources/Data/WeekK.txt"); 
+		old_datalist =FileManager.ReadFile("Data/WeekK.txt"); 
 		double high = Double.MIN_VALUE;
 		double low = Double.MAX_VALUE;
 		double open = 0;
@@ -148,12 +148,12 @@ public class BenchKLineData implements BenchKLineDataService {
 			}
 			
 		}
-		FileManager.WriteFile(old_datalist, "src/main/resources/Data/WeekK.txt", false);
+		FileManager.WriteFile(old_datalist, "Data/WeekK.txt", false);
 	}
 
 	// update month kline
 	private void updateMonth(Calendar start, Calendar end) {
-		old_datalist =FileManager.ReadFile("src/main/resources/Data/MonthK.txt"); 
+		old_datalist =FileManager.ReadFile("Data/MonthK.txt"); 
 		double high = Double.MIN_VALUE;
 		double low = Double.MAX_VALUE;
 		double open = 0;
@@ -228,7 +228,7 @@ public class BenchKLineData implements BenchKLineDataService {
 			update+=";"+df.format(sum/30);
 			old_datalist.add(update);
 		}
-		FileManager.WriteFile(old_datalist, "src/main/resources/Data/MonthK.txt", false);
+		FileManager.WriteFile(old_datalist, "Data/MonthK.txt", false);
 	}
 
 }

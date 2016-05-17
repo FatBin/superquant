@@ -3,6 +3,8 @@ package data.IO;
 import java.io.File;
 import java.util.ArrayList;
 
+import servlet.factory.InitFactoryServlet;
+
 public class Main {
 
     public void renameFile(String file, String toFile) {
@@ -21,12 +23,13 @@ public class Main {
         } else {
             System.out.println("Error renmaing file");
         }
-		ArrayList<String> arrayList=FileManager.ReadFile("src/main/resources/Data/file2.txt");
+		ArrayList<String> arrayList=FileManager.ReadFile("Data/file2.txt");
 		for (String string : arrayList) {
 			System.out.println(string);
 		}
 		try {
-			File file2=new File("src/main/resources/Data/yes.txt");
+			String path=InitFactoryServlet.getPath();
+			File file2=new File(path+"Data/yes.txt");
 			file2.createNewFile();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -34,6 +37,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new Main().renameFile("src/main/resources/Data/file1.txt", "src/main/resources/Data/file2.txt");
+        new Main().renameFile("Data/file1.txt", "Data/file2.txt");
     }
 }

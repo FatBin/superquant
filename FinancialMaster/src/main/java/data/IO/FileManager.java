@@ -5,12 +5,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import servlet.factory.InitFactoryServlet;
+
 public class FileManager {
-	// 读文件，参数为文件地址
+	 // 读文件，参数为文件地址
+	static String source_path=InitFactoryServlet.getPath();
 	public static ArrayList<String> ReadFile(String path) {
 		ArrayList<String> list = new ArrayList<>();
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(path));
+			BufferedReader br = new BufferedReader(new FileReader(source_path+path));
 			String temp = "";
 			while ((temp = br.readLine()) != null) {
 				list.add(temp);
@@ -25,7 +28,7 @@ public class FileManager {
 	public static void WriteFile(ArrayList<String> arrayList, String path,
 			boolean overwrite) {
 		try {
-			FileWriter fileWriter = new FileWriter(path, overwrite);
+			FileWriter fileWriter = new FileWriter(source_path+path, overwrite);
 			for (String string : arrayList) {
 				fileWriter.write(string+"\n");
 			}
@@ -37,7 +40,7 @@ public class FileManager {
 
 	public static void WriteFile(String string, String path, boolean overwrite) {
 		try {
-			FileWriter fileWriter = new FileWriter(path, overwrite);
+			FileWriter fileWriter = new FileWriter(source_path+path, overwrite);
 			fileWriter.write(string+"\n");
 			fileWriter.close();
 		} catch (Exception e) {
