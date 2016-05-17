@@ -18,43 +18,34 @@
 	type="text/css">
 
 <style>
-.vc-list {
-	padding: 20px 0 40px 0;
+#logo {
+	width: 172px;
+	height: 32px;
+	position: relative;
+	left: 19px;
+	top: 10px;
 }
 
-.vc-list
-.tzjg {
-	overflow: hidden;
-	margin-top: 30px;
+.navbar-left {
+	float: left !important;
+	margin-left: 35px;
 }
 
-.vc-list
-li {
-	width: 150px;
-	height: 60px;
-	margin: 0 10px 18px 10px;
-	float: left;
-	background-color: #fff;
-	list-style-type: none;
-}
-
-.vc-list
-li img {
-	width: 150px;
-	height: 60px;
-	border: 1px solid #f0f0f0;
-	padding: 8px 14px;
-}
-
-.tzjg li {
-	float: left;
+#searchbtn {
+	display: in-line;
+	width: 20px;
+	height: 20px;
+	float: right;
+	margin-top: -35px;
+	margin-right: 50px;
 }
 </style>
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" style="background-color: #4A433B;">
 
 	<nav class="navbar navbar-default navbar-fixed-top">
+
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header page-scroll">
@@ -65,17 +56,13 @@ li img {
 					class="icon-bar"></span>
 			</button>
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
-			<img src="../webImage/logo.png" title="返回顶部" width=180
-				height=35>
-			<style>
-
-</style>
+			<img src="../webImage/logo.png" title="返回顶部" id="logo">
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
-			<ul class="nav navbar-nav navbar-right">
+			id="bs-example-navbar-collapse-1" style="height: 216px;">
+			<ul class="nav navbar-nav navbar-left">
 				<li class="hidden"><a href="#page-top"></a></li>
 
 				<li><a class="page-scroll" href="#services">首页</a></li>
@@ -87,16 +74,28 @@ li img {
 				<li><a class="page-scroll" href="#contact">策略</a></li>
 			</ul>
 		</div>
+
+		<div id="searchbtn">
+			<img src="../webImage/search.png" title="搜索">
+		</div>
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
 
 	<!-- Header -->
 	<header>
-	<div class="container">
-		<div class="intro-text">
-			<div class="intro-lead-in">唯智资本 | WITS Capital</div>
-			<div class="intro-heading">与优秀的你共成长</div>
+	<div class="container" style="height: 479px;">
+		<div>
+			<img src="../webImage/decorate.png"
+				style="width: 570px; height: 187px; float: left; margin-top: 150px;">
+		</div>
+
+		<div class="intro-text"
+			style="margin-left: 566px; margin-top: -145px;">
+			<div class="intro-lead-in">
+				Super<a style="color: orange;">Quant</a>
+			</div>
+			<div class="intro-heading">您的第一手证券信息</div>
 			<a href="#services" class="page-scroll btn btn-xl">了解更多</a>
 		</div>
 	</div>
@@ -104,7 +103,7 @@ li img {
 
 
 	<!-- Services Section -->
-	<section id="services">
+	<section id="services" style="background-color:#FFFCF6;">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -178,6 +177,35 @@ li img {
 		</div>
 	</div>
 	</section>
+
+	<!-- bottom section -->
+	<section style="background-color:#766F67;">
+	<div style="height: 203px;"></div>
+	</section>
+
+	<section style="background-color:#645D55;">
+	<div style="height: 79x;"></div>
+	</section>
+
+
+	<!-- jQuery -->
+	<script src="../js/jquery.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="../js/bootstrap.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="../js/classie.js"></script>
+	<script src="../js/cbpAnimatedHeader.js"></script>
+
+	<!-- Contact Form JavaScript -->
+	<script src="../js/jqBootstrapValidation.js"></script>
+	<script src="../js/contact_me.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="../js/agency.js"></script>
 
 </body>
 </html>
