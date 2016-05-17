@@ -39,6 +39,15 @@
 	margin-top: -35px;
 	margin-right: 50px;
 }
+
+.twobtns {
+	position: relative;
+	top: -30px;
+	margin: 5px;
+	height: 28px;
+	border-radius: 3px;
+	font-family: "PingFangSC-Regular";
+}
 </style>
 </head>
 
@@ -96,24 +105,29 @@
 				Super<a style="color: orange;">Quant</a>
 			</div>
 			<div class="intro-heading">您的第一手证券信息</div>
-			<a href="#services" class="page-scroll btn btn-xl">了解更多</a>
+			<input type="button" value="立即注册" name="regbtn" class="twobtns"
+				style="width: 75px; background-color: #F8B31D; color: black; border-color: #F8B31D;" />
+
+			<input type="button" value="登录" name="login" class="twobtns"
+				style="width: 47px;" />
 		</div>
 	</div>
 	</header>
 
 
 	<!-- Services Section -->
-	<section id="services" style="background-color:#FFFCF6;">
+	<section id="services" style="background-color:#FFFCF6;height:500px;">
 	<div class="container">
-		<div class="row">
+		<div class="row" style="margin-top: -120px;">
 			<div class="col-lg-12 text-center">
 				<h2 class="section-heading">我们的服务</h2>
 				<h3 class="section-subheading text-muted">孵化、加速、上市 -
 					企业生命周期的咨询及金融服务！</h3>
 			</div>
 		</div>
+
 		<div class="row text-center">
-			<div class="col-md-4">
+			<div class="col-md-4" style="margin-top: -140px;">
 				<span class="fa-stack fa-4x"> <i
 					class="fa fa-circle fa-stack-2x text-primary"></i> <i
 					class="fa fa-cog fa-stack-1x fa-inverse"></i>
@@ -132,10 +146,10 @@
 					<li align="left" class="text-muted">法务：股权架构设计、法律文书等。</li>
 				</ul>
 
-
 				</p>
 			</div>
-			<div class="col-md-4">
+
+			<div class="col-md-4" style="margin-top: -140px;">
 				<span class="fa-stack fa-4x"> <i
 					class="fa fa-circle fa-stack-2x text-primary"></i> <i
 					class="fa fa-bar-chart fa-stack-1x fa-inverse"></i>
@@ -152,15 +166,14 @@
 					<li align="left" class="text-muted">对项目进行辅导，让项目更加成熟。</li>
 					<li align="left" class="text-muted">为项目注入资源，帮助其加速成长。</li>
 				</ul>
-
-
 			</div>
-			<div class="col-md-4">
+
+			<div class="col-md-4" style="margin-top: -140px;">
 				<span class="fa-stack fa-4x"> <i
 					class="fa fa-circle fa-stack-2x text-primary"></i> <i
 					class="fa fa-magic fa-stack-1x fa-inverse"></i>
 				</span>
-				<h4 class="service-heading" align="left">挂牌、上市、并购</h4>
+				<h4 class="service-heading">挂牌、上市、并购</h4>
 				<p class="text-muted" align="left">
 					<strong>让企业更加成功</strong> -
 					对于拟上市企业或上市公司，我们将提供更加丰富的资金与资源支持，并配合进行并购、重组、管理升级等，有了资金、资源、人才更加全面的支持，相信企业能够获得更大的成功。
@@ -174,19 +187,18 @@
 				</ul>
 
 			</div>
+
 		</div>
 	</div>
 	</section>
 
 	<!-- bottom section -->
-	<section style="background-color:#766F67;">
-	<div style="height: 203px;"></div>
-	</section>
+	<div style="background-color: #766F67; height: 200px;"></div>
 
-	<section style="background-color:#645D55;">
-	<div style="height: 79x;"></div>
-	</section>
-
+	<div style="background-color: #645D55; height: 50px;">
+		<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+			SuperQuant</p>
+	</div>
 
 	<!-- jQuery -->
 	<script src="../js/jquery.js"></script>
