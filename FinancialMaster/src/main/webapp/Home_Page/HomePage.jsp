@@ -8,18 +8,14 @@
 
 
 <!-- Bootstrap Core CSS -->
-<link
-	href="../css/bootstrap.min.css"
-	rel="stylesheet" type="text/css">
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
 <!-- Custom CSS -->
-<link href="../css/agency.css"
-	rel="stylesheet" type="text/css">
+<link href="../css/agency.css" rel="stylesheet" type="text/css">
 
 <!-- Custom Fonts -->
-<link
-	href="../css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
+<link href="../css/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
 
 <style>
 .vc-list {
@@ -68,7 +64,12 @@ li img {
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>
+			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
+			<img src="../webImage/logo.png" title="返回顶部" width=180
+				height=35>
+			<style>
+
+</style>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
