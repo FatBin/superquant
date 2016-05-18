@@ -75,7 +75,7 @@
 			<ul class="nav navbar-nav navbar-left">
 				<li class="hidden"><a href="#page-top"></a></li>
 
-				<li><a class="page-scroll" href="#services">首页</a></li>
+				<li><a class="page-scroll" href="#header">首页</a></li>
 				<li><a class="page-scroll" href="#portfolio">大盘</a></li>
 
 
@@ -94,7 +94,7 @@
 
 	<!-- Header -->
 	<header>
-	<div class="container" style="height: 479px;">
+	<div class="container" style="height: 479px;" id="header">
 		<div>
 			<img src="../webImage/decorate.png"
 				style="width: 570px; height: 187px; float: left; margin-top: 150px;">
@@ -133,10 +133,13 @@
 					class="fa fa-circle fa-stack-2x text-primary"></i> <i
 					class="fa fa-cog fa-stack-1x fa-inverse"></i>
 				</span>
-				<h4 class="service-heading">创业及孵化</h4>
+
+				<div
+					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-bottom: 20px;"></div>
+
 				<p class="text-muted" align="left">
 					<strong>让创业更简单</strong> -
-					我们为创客提供精装修的创业空间，创客可拎包入住。我们还提供全方位的孵化与辅导服务，帮助创业企业从一个
+					我们提供全方位的孵化与辅导服务，帮助创业企业从一个
 					idea，到建立团队、注册公司、项目开发并完善，从0-1。
 				</p>
 				<p class="text-muted" align="left">
@@ -144,7 +147,6 @@
 				<ul align="left">
 					<li align="left" class="text-muted">人力：公司注册、社保、招聘等。</li>
 					<li align="left" class="text-muted">财务：会计、帐务、报税、发票等。</li>
-					<li align="left" class="text-muted">法务：股权架构设计、法律文书等。</li>
 				</ul>
 
 				</p>
@@ -155,17 +157,19 @@
 					class="fa fa-circle fa-stack-2x text-primary"></i> <i
 					class="fa fa-bar-chart fa-stack-1x fa-inverse"></i>
 				</span>
-				<h4 class="service-heading">加速与成长</h4>
+
+				<div
+					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-bottom: 20px;"></div>
+
 				<p class="text-muted" align="left">
 					<strong>让成长更快速</strong> -
-					针对成熟的项目及团队，我们提供全方位的加速与辅导服务，通过各种活动与导师授课，让项目团队对行业及自己项目有更清晰的认识，同时，提供中期的资金与资源的支持，从1-100。
+					针对成熟的项目及团队，我们提供全方位的加速与辅导服务，同时，提供中期的资金与资源的支持，从1-100。
 				</p>
 				<p class="text-muted" align="left">
 					<strong>主要内容</strong>
 				<ul align="left">
 					<li align="left" class="text-muted">提供免费或低价的办公场所。</li>
 					<li align="left" class="text-muted">对项目进行辅导，让项目更加成熟。</li>
-					<li align="left" class="text-muted">为项目注入资源，帮助其加速成长。</li>
 				</ul>
 			</div>
 
@@ -174,17 +178,19 @@
 					class="fa fa-circle fa-stack-2x text-primary"></i> <i
 					class="fa fa-magic fa-stack-1x fa-inverse"></i>
 				</span>
-				<h4 class="service-heading">挂牌、上市、并购</h4>
+
+				<div
+					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-bottom: 20px;"></div>
+
 				<p class="text-muted" align="left">
 					<strong>让企业更加成功</strong> -
-					对于拟上市企业或上市公司，我们将提供更加丰富的资金与资源支持，并配合进行并购、重组、管理升级等，有了资金、资源、人才更加全面的支持，相信企业能够获得更大的成功。
+					对于拟上市企业或上市公司，我们将提供更加丰富的资金与资源支持。
 				</p>
 				<p class="text-muted" align="left">
 					<strong>主要内容</strong>
 				<ul align="left">
 					<li align="left" class="text-muted">为项目提供高层次的资本与资源支持！</li>
 					<li align="left" class="text-muted">协助项目完成并购、重组，提升竞争力！</li>
-					<li align="left" class="text-muted">全面提升企业资本市场运作能力！</li>
 				</ul>
 
 			</div>
