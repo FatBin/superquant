@@ -32,15 +32,6 @@
 	margin-left: 35px;
 }
 
-#searchbtn {
-	display: in-line;
-	width: 20px;
-	height: 20px;
-	float: right;
-	margin-top: -35px;
-	margin-right: 50px;
-}
-
 .twobtns {
 	position: relative;
 	top: -30px;
@@ -49,7 +40,103 @@
 	border-radius: 3px;
 	font-family: "PingFangSC-Regular";
 }
+
+#searchform {
+	float: right;
+	margin-right: 20px;
+	margin-top:-55px;
+}
+
+
+#searchform input[type="text"] {
+	background: #e8e8e8;
+	border: none;
+	border-radius:5px;
+	float: left;
+	padding: 0px 10px 0px 12px;
+	margin: 0px;
+	width: 50px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 12px;
+	transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	-moz-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	-webkit-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	-o-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	color: #585858;
+}
+
+#searchform input[type="text"]:hover, #searchform input[type="text"]:focus
+	{
+	width: 200px;
+}
+
+#searchform input[type="submit"] {
+	background: url('../webImage/search.png') center no-repeat;
+	cursor: pointer;
+	margin: 0px;
+	padding: 0px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+}
+
+input[type="submit"] {
+	padding: 4px 17px;
+	color: #ffffcolor:#585858; ff;
+	text-transform: uppercase;
+	border: none;
+	border-radius:5px;
+	font-size:20px;
+	background: url(gradient.png) bottom repeat-x;
+	cursor: pointer;
+	float: left;
+	overflow: visible;
+	transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	-webkit-transition: all .3s linear;
+}
+
+#searchform input[type="submit"]:hover {
+	background-color: #333232;
+}
+
+.style_5 #searchform input[type='submit'] {
+	background-color: #ff8a00;
+}
+
+.style_5 {
+	margin: 10px;
+	display: block;
+	clear: both;
+}
 </style>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+
+		//download script
+		jQuery('.s_download').on("click", function(e) {
+			var semail = jQuery("#itzurkarthi_email").val();
+			if (semail == '') {
+				alert('Enter Email');
+				return false;
+			}
+			var str = "sub_email=" + semail
+			jQuery.ajax({
+				type : "POST",
+				url : "download.php",
+				data : str,
+				cache : false,
+				success : function(htmld) {
+					jQuery('#down_update').html(htmld);
+				}
+			});
+		});
+	});
+</script>
+
 </head>
 
 <body id="page-top" class="index" style="background-color: #4A433B;">
@@ -85,9 +172,24 @@
 			</ul>
 		</div>
 
+		<!--
 		<div id="searchbtn">
 			<img src="../webImage/search.png" title="搜索">
 		</div>
+  -->
+
+		<div class="style_5">
+			<form method="get" id="searchform" action="">
+				<fieldset>
+					<input id="s" name="s" type="text" value="搜索"
+						class="text_input"
+						onblur="if(this.value==''){this.value=搜索';}"
+						onfocus="if(this.value =='搜索') {this.value=''; }" /> <input
+						name="submit" type="submit" value='' />
+				</fieldset>
+			</form>
+		</div>
+
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
@@ -138,8 +240,7 @@
 					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
-					<strong>让创业更简单</strong> -
-					我们提供全方位的孵化与辅导服务，帮助创业企业从一个
+					<strong>让创业更简单</strong> - 我们提供全方位的孵化与辅导服务，帮助创业企业从一个
 					idea，到建立团队、注册公司、项目开发并完善，从0-1。
 				</p>
 				<p class="text-muted" align="left">
@@ -183,8 +284,7 @@
 					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
-					<strong>让企业更加成功</strong> -
-					对于拟上市企业或上市公司，我们将提供更加丰富的资金与资源支持。
+					<strong>让企业更加成功</strong> - 对于拟上市企业或上市公司，我们将提供更加丰富的资金与资源支持。
 				</p>
 				<p class="text-muted" align="left">
 					<strong>主要内容</strong>
