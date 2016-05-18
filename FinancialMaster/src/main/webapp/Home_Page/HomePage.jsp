@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SuperQuant--您的第一手证券信息</title>
 
+<link href="../css/LoginAndReg.css" rel="stylesheet">
 
 <!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -106,10 +107,10 @@
 			</div>
 			<div class="intro-heading">您的第一手证券信息</div>
 			<input type="button" value="立即注册" name="regbtn" class="twobtns"
-				style="width: 75px; background-color: #F8B31D; color: black; border-color: #F8B31D;" />
-
-			<input type="button" value="登录" name="login" class="twobtns"
-				style="width: 47px;" />
+				style="width: 75px; background-color: #F8B31D; color: black; border-color: #F8B31D;"
+				data-toggle="modal" data-target="#modalReg" /> <input type="button"
+				value="登录" name="login" class="twobtns" style="width: 47px;"
+				data-toggle="modal" data-target="#modalLogin" />
 		</div>
 	</div>
 	</header>
@@ -200,6 +201,117 @@
 			SuperQuant</p>
 	</div>
 
+	<!-- login and register -->
+	<!-- Modal -->
+	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"
+		aria-labelledby="modalLogin" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">登录悦合同</h4>
+					<p>合同从此简单</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade in"
+						role="alert" id='modalLoginErr'>
+						<span id='modalLoginErrCont'></span>
+					</div>
+					<div class='form-group'>
+						<input type="text" class="form-control" id="modal-login-name"
+							placeholder='邮箱/手机号/昵称'>
+					</div>
+					<div class='form-group'>
+						<input type="password" class="form-control" id="modal-login-pwd"
+							placeholder='密码'>
+					</div>
+				</div>
+				<!-- modal-body -->
+
+				<div class="modal-footer">
+					<a role="button" href="javascript:login();" class="btn btn-login"
+						data-loading-text="验证中...">登录</a>
+					<div class='modal-footer-tips'>
+						<label style='float: left;'><input type="checkbox"
+							id="chk-rmb" value="rmb" checked='checked'> 下次自动登陆</label> <a
+							href='javascript:switchToModal("reg");'>没有账号？</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End Modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalReg" tabindex="-1" role="dialog"
+		aria-labelledby="modalReg" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">加入悦合同</h4>
+					<p>合同从此简单</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade in"
+						role="alert" id='modalRegErr'>
+						<span id='modalRegErrCont'></span>
+					</div>
+
+					<div class='form-group'>
+						<input type="text" class="form-control" id="modal-reg-name"
+							placeholder='邮箱或手机号'>
+					</div>
+
+
+					<div class='form-group' id='reg-captcha'>
+						<input type="text" class="form-control" id="modal-reg-captcha"
+							placeholder='验证码'> <a href='#' id='captcha-a'
+							onclick="document.getElementById('captcha').src='/account/captcha?rnd='+Math.random();captchaPass = false;"><img
+							src="/account/captcha?rnd=1463563352" id="captcha" /></a>
+					</div>
+
+
+					<div class='form-group' id='pcode-area'>
+						<input type="text" class="form-control" id="modal-reg-pcode"
+							placeholder='输入手机验证码'>
+						<button
+							onclick='javascript:sendPCode("pcode-a","modal-reg-name");return false;'
+							role='button' class='btn' id='pcode-a' disabled='disabled'>
+							<span id='pcode-a-cd'>60</span> 秒后可以重新发送
+						</button>
+					</div>
+					<div class='form-group'>
+						<input type="password" class="form-control" id="modal-reg-pwd"
+							placeholder='密码（不少于6位）'>
+					</div>
+
+				</div>
+				<!-- modal-body -->
+
+				<div class="modal-footer">
+					<div id='reg-succ-tips'></div>
+					<a role="button" href="javascript:reg();" class="btn btn-reg"
+						data-loading-text="注册中...">注册</a>
+					<div class='modal-footer-tips'>
+						<a href='javascript:switchToModal("login");'>已有账号？直接登陆</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End Modal -->
+
 	<!-- jQuery -->
 	<script src="../js/jquery.js"></script>
 
@@ -219,5 +331,26 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="../js/agency.js"></script>
 
+	<script src='http://s1.yuehetong.com/sitemedia/js/jquery-2.2.1.min.js'></script>
+	<script
+		src="http://s1.yuehetong.com/sitemedia/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+
+	<script src="http://s1.yuehetong.com/sitemedia/js/common.min.js"></script>
+</body>
+
 </body>
 </html>
+
+<script>
+	(function() {
+		var bp = document.createElement('script');
+		var curProtocol = window.location.protocol.split(':')[0];
+		if (curProtocol === 'https') {
+			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		} else {
+			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		}
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(bp, s);
+	})();
+</script>
