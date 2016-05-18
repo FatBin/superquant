@@ -212,8 +212,8 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">登录悦合同</h4>
-					<p>合同从此简单</p>
+					<h4 class="modal-title">登录SuperQuant</h4>
+					<p>再添人生一桶金</p>
 				</div>
 
 				<div class="modal-body">
@@ -223,7 +223,7 @@
 					</div>
 					<div class='form-group'>
 						<input type="text" class="form-control" id="modal-login-name"
-							placeholder='邮箱/手机号/昵称'>
+							placeholder='昵称'>
 					</div>
 					<div class='form-group'>
 						<input type="password" class="form-control" id="modal-login-pwd"
@@ -257,8 +257,8 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">加入悦合同</h4>
-					<p>合同从此简单</p>
+					<h4 class="modal-title">加入SuperQuant</h4>
+					<p>再添人生一桶金</p>
 				</div>
 
 				<div class="modal-body">
@@ -269,30 +269,18 @@
 
 					<div class='form-group'>
 						<input type="text" class="form-control" id="modal-reg-name"
-							placeholder='邮箱或手机号'>
+							placeholder='昵称'>
 					</div>
 
-
-					<div class='form-group' id='reg-captcha'>
-						<input type="text" class="form-control" id="modal-reg-captcha"
-							placeholder='验证码'> <a href='#' id='captcha-a'
-							onclick="document.getElementById('captcha').src='/account/captcha?rnd='+Math.random();captchaPass = false;"><img
-							src="/account/captcha?rnd=1463563352" id="captcha" /></a>
-					</div>
-
-
-					<div class='form-group' id='pcode-area'>
-						<input type="text" class="form-control" id="modal-reg-pcode"
-							placeholder='输入手机验证码'>
-						<button
-							onclick='javascript:sendPCode("pcode-a","modal-reg-name");return false;'
-							role='button' class='btn' id='pcode-a' disabled='disabled'>
-							<span id='pcode-a-cd'>60</span> 秒后可以重新发送
-						</button>
-					</div>
 					<div class='form-group'>
 						<input type="password" class="form-control" id="modal-reg-pwd"
 							placeholder='密码（不少于6位）'>
+					</div>
+
+
+					<div class='form-group'>
+						<input type="password" class="form-control" id="modal-reg-pwd"
+							placeholder='请再次确认密码'>
 					</div>
 
 				</div>
@@ -332,10 +320,9 @@
 	<script src="../js/agency.js"></script>
 
 	<script src='http://s1.yuehetong.com/sitemedia/js/jquery-2.2.1.min.js'></script>
-	<script
-		src="http://s1.yuehetong.com/sitemedia/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 
-	<script src="http://s1.yuehetong.com/sitemedia/js/common.min.js"></script>
+	<script src="../js/common.min.js"></script>
 </body>
 
 </body>
