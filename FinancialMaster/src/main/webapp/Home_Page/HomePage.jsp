@@ -112,30 +112,6 @@ input[type="submit"] {
 }
 </style>
 
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-
-		//download script
-		jQuery('.s_download').on("click", function(e) {
-			var semail = jQuery("#itzurkarthi_email").val();
-			if (semail == '') {
-				alert('Enter Email');
-				return false;
-			}
-			var str = "sub_email=" + semail
-			jQuery.ajax({
-				type : "POST",
-				url : "download.php",
-				data : str,
-				cache : false,
-				success : function(htmld) {
-					jQuery('#down_update').html(htmld);
-				}
-			});
-		});
-	});
-</script>
-
 </head>
 
 <body id="page-top" class="index" style="background-color: #4A433B;">
@@ -420,7 +396,6 @@ input[type="submit"] {
 
 	<!-- Contact Form JavaScript -->
 	<script src="../js/jqBootstrapValidation.js"></script>
-	<script src="../js/contact_me.js"></script>
 
 	<!-- Custom Theme JavaScript -->
 	<script src="../js/agency.js"></script>
