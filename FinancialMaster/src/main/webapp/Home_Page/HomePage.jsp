@@ -44,14 +44,13 @@
 #searchform {
 	float: right;
 	margin-right: 20px;
-	margin-top:-55px;
+	margin-top: -55px;
 }
-
 
 #searchform input[type="text"] {
 	background: #e8e8e8;
 	border: none;
-	border-radius:5px;
+	border-radius: 5px;
 	float: left;
 	padding: 0px 10px 0px 12px;
 	margin: 0px;
@@ -86,8 +85,8 @@ input[type="submit"] {
 	color: #ffffcolor:#585858; ff;
 	text-transform: uppercase;
 	border: none;
-	border-radius:5px;
-	font-size:20px;
+	border-radius: 5px;
+	font-size: 20px;
 	background: url(gradient.png) bottom repeat-x;
 	cursor: pointer;
 	float: left;
@@ -181,13 +180,12 @@ input[type="submit"] {
 		<div class="style_5">
 			<form method="get" id="searchform" action="">
 				<fieldset>
-					<input id="s" name="s" type="text" value="搜索"
-						class="text_input"
-						onblur="if(this.value==''){this.value=搜索';}"
+					<input id="s" name="s" type="text" value="搜索" class="text_input"
+						onblur="if(this.value==''){this.value='搜索';}"
 						onfocus="if(this.value =='搜索') {this.value=''; }" /> <input
 						name="submit" type="submit" value='' />
 				</fieldset>
-			</form>
+							</form>
 		</div>
 
 		<!-- /.navbar-collapse -->
