@@ -180,14 +180,14 @@ input[type="submit"] {
 		<div class="style_5">
 			<form method="get" id="searchform" action="">
 				<fieldset>
-					<input id="s" name="s" type="text" placeholder="搜索" class="text_input"
-						onblur="this.placeholder='搜索';"
+					<input id="s" name="s" type="text" placeholder="搜索"
+						class="text_input" onblur="this.placeholder='搜索';"
 						onfocus="this.placeholder='输入股票代码搜索';"
 						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';"/> <input
-						name="submit" type="submit" value='' />
+						onmouseout="this.placeholder='搜索';" /> <input name="submit"
+						type="submit" value='' />
 				</fieldset>
-							</form>
+			</form>
 		</div>
 
 		<!-- /.navbar-collapse -->
