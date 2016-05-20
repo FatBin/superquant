@@ -7,7 +7,7 @@
 <title>hello</title>
 </head>
 <body>
-   <h1>hello shabin!</h1>
-     <a href="servlet/main/ToHomePageServlet">  get请求tohome_page </a>
+   <h1>中文!</h1>
+     <a href="ToStrategyPageServlet">  get请求tohome_page </a>
 </body>
 </html>

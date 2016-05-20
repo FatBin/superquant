@@ -1,4 +1,4 @@
-package servlet.main;
+package servlet.stockmarket;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,27 +8,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ToPageServlet
+ * Servlet implementation class MarketServlet
  */
-@WebServlet("/ToPageServlet")
-public class ToHomePageServlet extends HttpServlet {
+@WebServlet("/MarketServlet")
+public class MarketPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ToHomePageServlet() {
+    public MarketPageServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
- 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-//		request.getRequestDispatcher("/test/home_page.jsp").forward(request, response);
-		response.sendRedirect(request.getContextPath()+"/Web_Pages/HomePage.jsp");
+		response.sendRedirect(request.getContextPath()+"/Web_Pages/MarketPage.jsp");
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 
 }
