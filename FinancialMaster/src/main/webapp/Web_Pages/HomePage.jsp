@@ -404,7 +404,6 @@ input[type="submit"] {
 	<script src="../js/bootstrap.min.js"></script>
 
 	<script src="../js/common.min.js"></script>
-</body>
 
 </body>
 </html>
