@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-20 23:45:10 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="testobject.UserStock" table="user_stock" catalog="superquant">
+        <composite-id name="id" class="testobject.UserStockId">
+            <key-property name="userId" type="int">
+                <column name="userID" />
+            </key-property>
+            <key-property name="stockId" type="string">
+                <column name="stockID" length="20" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>
