@@ -137,21 +137,13 @@ input[type="submit"] {
 			<ul class="nav navbar-nav navbar-left">
 				<li class="hidden"><a href="#page-top"></a></li>
 
-				<li><a class="page-scroll" href="#header">首页</a></li>
-				<li><a class="page-scroll" href="#portfolio">大盘</a></li>
-
-
-				<li><a class="page-scroll" href="#team">个股</a></li>
-				<li><a class="page-scroll" href="#about">行业</a></li>
-				<li><a class="page-scroll" href="#contact">策略</a></li>
+				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
+				<li><a class="page-scroll" href="MarketPage.jsp">大盘</a></li>
+				<li><a class="page-scroll" href="StockPage.jsp">个股</a></li>
+				<li><a class="page-scroll" href="BusinessPage.jsp">行业</a></li>
+				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
-
-		<!--
-		<div id="searchbtn">
-			<img src="../webImage/search.png" title="搜索">
-		</div>
-  -->
 
 		<div class="style_5">
 			<form method="get" id="searchform" action="">
