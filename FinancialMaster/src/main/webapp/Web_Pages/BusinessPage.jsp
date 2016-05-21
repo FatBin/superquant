@@ -20,9 +20,9 @@
 
 </head>
 
-<body id="page-top" class="index" style="background-color: #4A433B;">
+<body id="page-top" class="index">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -69,7 +69,7 @@
 	<!-- /.container-fluid --> </nav>
 
 	<div>
-		<h1 style="text-align: center; margin-top: 200px; color: white;">行业</h1>
+		<h1 style="text-align: center; margin-top: 200px; color: black;">行业</h1>
 	</div>
 
 	<!-- Plugin JavaScript -->

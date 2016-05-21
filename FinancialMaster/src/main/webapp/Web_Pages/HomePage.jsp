@@ -24,7 +24,8 @@
 
 <body id="page-top" class="index" style="background-color: #4A433B;">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -56,14 +57,13 @@
 		<div class="style_5">
 			<form method="get" id="searchform" action="">
 				<fieldset>
-					<input name="submit"
-						type="submit" value=''/>
-					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索';"
+					<input name="submit" type="submit" value='' /> <input id="s"
+						name="s" type="text" placeholder="搜索" class="text_input"
+						onblur="this.placeholder='搜索';"
 						onfocus="this.placeholder='输入股票代码搜索';"
 						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';"/> 
-					
+						onmouseout="this.placeholder='搜索';" />
+
 				</fieldset>
 			</form>
 		</div>
@@ -86,10 +86,10 @@
 				Super<a style="color: orange;">Quant</a>
 			</div>
 			<div class="intro-heading">您的第一手证券信息</div>
-			<input type="button" value="立即注册" name="regbtn" class="bottons regbtns"
-					data-toggle="modal" data-target="#modalReg" /> 
-				<input type="button"
-				value="登录" name="login" class="bottons loginbtn" data-toggle="modal" data-target="#modalLogin" />
+			<input type="button" value="立即注册" name="regbtn"
+				class="bottons regbtns" data-toggle="modal" data-target="#modalReg" />
+			<input type="button" value="登录" name="login" class="bottons loginbtn"
+				data-toggle="modal" data-target="#modalLogin" />
 		</div>
 	</div>
 	</header>
@@ -108,13 +108,9 @@
 
 		<div class="row text-center">
 			<div class="col-md-4" style="margin-top: -140px;">
-				<span class="fa-stack fa-4x"> <i
-					class="fa fa-circle fa-stack-2x text-primary"></i> <i
-					class="fa fa-cog fa-stack-1x fa-inverse"></i>
-				</span>
 
 				<div
-					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-bottom: 20px;"></div>
+					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
 					<strong>让创业更简单</strong> - 我们提供全方位的孵化与辅导服务，帮助创业企业从一个
@@ -131,13 +127,9 @@
 			</div>
 
 			<div class="col-md-4" style="margin-top: -140px;">
-				<span class="fa-stack fa-4x"> <i
-					class="fa fa-circle fa-stack-2x text-primary"></i> <i
-					class="fa fa-bar-chart fa-stack-1x fa-inverse"></i>
-				</span>
 
 				<div
-					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-bottom: 20px;"></div>
+					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
 					<strong>让成长更快速</strong> -
@@ -152,13 +144,9 @@
 			</div>
 
 			<div class="col-md-4" style="margin-top: -140px;">
-				<span class="fa-stack fa-4x"> <i
-					class="fa fa-circle fa-stack-2x text-primary"></i> <i
-					class="fa fa-magic fa-stack-1x fa-inverse"></i>
-				</span>
 
 				<div
-					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-bottom: 20px;"></div>
+					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
 					<strong>让企业更加成功</strong> - 对于拟上市企业或上市公司，我们将提供更加丰富的资金与资源支持。
@@ -305,7 +293,7 @@
 	<script src="../js/bootstrap.min.js"></script>
 
 	<script src="../js/common.min.js"></script>
-	
+
 </body>
 </html>
 
