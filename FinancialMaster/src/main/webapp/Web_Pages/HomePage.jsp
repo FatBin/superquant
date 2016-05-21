@@ -18,99 +18,7 @@
 <link href="../css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 
-<style>
-#logo {
-	width: 172px;
-	height: 32px;
-	position: relative;
-	left: 19px;
-	top: 10px;
-}
-
-.navbar-left {
-	float: left !important;
-	margin-left: 35px;
-}
-
-.twobtns {
-	position: relative;
-	top: -30px;
-	margin: 5px;
-	height: 28px;
-	border-radius: 3px;
-	font-family: "PingFangSC-Regular";
-}
-
-#searchform {
-	float: right;
-	margin-right: 20px;
-	margin-top: -55px;
-}
-
-#searchform input[type="text"] {
-	background: #e8e8e8;
-	border: none;
-	border-radius: 5px;
-	float: left;
-	padding: 0px 10px 0px 12px;
-	margin: 0px;
-	width: 50px;
-	height: 25px;
-	line-height: 25px;
-	font-size: 12px;
-	transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-	-moz-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-	-webkit-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-	-o-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-	color: #585858;
-}
-
-#searchform input[type="text"]:hover, #searchform input[type="text"]:focus
-	{
-	width: 200px;
-}
-
-#searchform input[type="submit"] {
-	background: url('../webImage/search.png') center no-repeat;
-	cursor: pointer;
-	margin: 0px;
-	padding: 0px;
-	width: 25px;
-	height: 25px;
-	line-height: 25px;
-}
-
-input[type="submit"] {
-	padding: 4px 17px;
-	color: #ffffcolor:#585858; ff;
-	text-transform: uppercase;
-	border: none;
-	border-radius: 5px;
-	font-size: 20px;
-	background: url(gradient.png) bottom repeat-x;
-	cursor: pointer;
-	float: left;
-	overflow: visible;
-	transition: all .3s linear;
-	-moz-transition: all .3s linear;
-	-o-transition: all .3s linear;
-	-webkit-transition: all .3s linear;
-}
-
-#searchform input[type="submit"]:hover {
-	background-color: #333232;
-}
-
-.style_5 #searchform input[type='submit'] {
-	background-color: #ff8a00;
-}
-
-.style_5 {
-	margin: 10px;
-	display: block;
-	clear: both;
-}
-</style>
+<link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -148,12 +56,14 @@ input[type="submit"] {
 		<div class="style_5">
 			<form method="get" id="searchform" action="">
 				<fieldset>
+					<input name="submit"
+						type="submit" value='' />
 					<input id="s" name="s" type="text" placeholder="搜索"
 						class="text_input" onblur="this.placeholder='搜索';"
 						onfocus="this.placeholder='输入股票代码搜索';"
 						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> <input name="submit"
-						type="submit" value='' />
+						onmouseout="this.placeholder='搜索';" /> 
+					
 				</fieldset>
 			</form>
 		</div>
@@ -176,11 +86,10 @@ input[type="submit"] {
 				Super<a style="color: orange;">Quant</a>
 			</div>
 			<div class="intro-heading">您的第一手证券信息</div>
-			<input type="button" value="立即注册" name="regbtn" class="twobtns"
-				style="width: 75px; background-color: #F8B31D; color: black; border-color: #F8B31D;"
-				data-toggle="modal" data-target="#modalReg" /> <input type="button"
-				value="登录" name="login" class="twobtns" style="width: 47px;"
-				data-toggle="modal" data-target="#modalLogin" />
+			<input type="button" value="立即注册" name="regbtn" class="bottons regbtns"
+					data-toggle="modal" data-target="#modalReg" /> 
+				<input type="button"
+				value="登录" name="login" class="bottons loginbtn" data-toggle="modal" data-target="#modalLogin" />
 		</div>
 	</div>
 	</header>

@@ -1,0 +1,123 @@
+#logo {
+	width: 172px;
+	height: 39px;
+	position: relative;
+	left: 19px;
+	top: 6px;
+}
+
+.navbar-left {
+	float: left !important;
+	margin-left: 35px;
+}
+
+
+
+
+#searchform input[type="submit"] {
+	background: url('../webImage/search.svg') center no-repeat;
+	cursor: pointer;
+	margin: 0px;
+	padding: 0px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+}
+
+input[type="submit"] {
+	padding: 4px 17px;
+	color: #ffffcolor:#585858; ff;
+	text-transform: uppercase;
+	border: none;
+	border-radius: 5px;
+	font-size: 20px;
+	background: url(gradient.png) bottom repeat-x;
+	cursor: pointer;
+	float: right;
+	overflow: visible;
+	transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	-webkit-transition: all .3s linear;
+}
+
+#searchform input[type="submit"]:hover {
+	background-color: #333232;
+}
+
+#searchform input[type="text"] {
+	background: transparent; 
+	border-color: #FDA428;
+	border-top-width: 0px; 
+	border-right-width: 0px; 
+	border-bottom-width: 1.5px; 
+	border-left-width: 0px; 
+	border-radius: 1px; 
+	float: right;
+	padding: 10px 4px;
+	margin: 0px;
+	width: 40px;
+	height: 25px;
+	line-height: 20px;
+	font-size: 12px;
+	transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	-moz-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	-webkit-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	-o-transition: all 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+	color: #FDA428;
+}
+
+#searchform input[type="text"]:hover, #searchform input[type="text"]:focus
+	{
+	width: 150px;
+}
+
+
+.style_5 #searchform input[type='submit'] {
+	/* background-color: #ff8a00; */
+}
+
+ input[type='submit']:hover {
+	 /* background-color: #ff8a00;  */
+}
+
+.style_5 {
+	margin: 10px;
+	display: block;
+	clear: both;
+}
+
+.regbtns{
+	width: 75px; 
+	background-color: #F8B31D; 
+	color: #4A433B; 
+	border-color: #F8B31D;
+}
+
+.regbtns:hover{
+	background-color: #FFFFFF; 
+	color: #4A433B; 
+	border-color: #FFFFFF; 
+}
+
+
+.loginbtn{
+	background-color: transparent; 
+	color: #FFFFFF; 
+	border-color: #FFFFFF;
+}
+
+.loginbtn:hover{
+	background-color: #FFFFFF; 
+	color: #4A433B; 
+}
+
+.bottons{
+	position: relative;
+	top: -30px;
+	margin: 5px;
+	border: 3px solid;
+	height: 28px;
+	border-radius: 3px;
+	font-family: "PingFangSC-Light";
+}
