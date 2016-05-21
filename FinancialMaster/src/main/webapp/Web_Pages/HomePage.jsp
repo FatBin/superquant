@@ -57,12 +57,12 @@
 			<form method="get" id="searchform" action="">
 				<fieldset>
 					<input name="submit"
-						type="submit" value='' />
+						type="submit" value=''/>
 					<input id="s" name="s" type="text" placeholder="搜索"
 						class="text_input" onblur="this.placeholder='搜索';"
 						onfocus="this.placeholder='输入股票代码搜索';"
 						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> 
+						onmouseout="this.placeholder='搜索';"/> 
 					
 				</fieldset>
 			</form>
