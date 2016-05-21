@@ -3,7 +3,6 @@
   <welcome-file-list>
     <welcome-file>ToHomePageServlet</welcome-file>
   </welcome-file-list>
-<!-- 工厂 -->
   <servlet>
     <servlet-name>factory</servlet-name>
     <servlet-class>servlet.factory.InitFactoryServlet</servlet-class>
@@ -12,7 +11,6 @@
     <servlet-name>factory</servlet-name>
     <url-pattern>/servlet/factory/InitFactoryServlet</url-pattern>
   </servlet-mapping>
-<!-- 首页 -->  
   <servlet>
     <servlet-name>ToHomePageServlet</servlet-name>
     <servlet-class>servlet.main.HomePageServlet</servlet-class>
@@ -21,8 +19,7 @@
     <servlet-name>ToHomePageServlet</servlet-name>
     <url-pattern>/ToHomePageServlet</url-pattern>
   </servlet-mapping>
-<!-- 大盘 -->  
-    <servlet>
+  <servlet>
     <servlet-name>ToMarketPageServlet</servlet-name>
     <servlet-class>servlet.stockmarket.MarketPageServlet</servlet-class>
   </servlet>
@@ -30,8 +27,7 @@
     <servlet-name>ToMarketPageServlet</servlet-name>
     <url-pattern>/ToMarketPageServlet</url-pattern>
   </servlet-mapping>
-<!-- 个股 -->  
-    <servlet>
+  <servlet>
     <servlet-name>ToStockPageServlet</servlet-name>
     <servlet-class>servlet.stockcheck.StockPageServlet</servlet-class>
   </servlet>
@@ -39,8 +35,7 @@
     <servlet-name>ToStockPageServlet</servlet-name>
     <url-pattern>/ToStockPageServlet</url-pattern>
   </servlet-mapping>
-<!-- 行业 -->  
-    <servlet>
+  <servlet>
     <servlet-name>ToBusinessPageServlet</servlet-name>
     <servlet-class>servlet.business.BusinessPageServlet</servlet-class>
   </servlet>
@@ -48,8 +43,7 @@
     <servlet-name>ToBusinessPageServlet</servlet-name>
     <url-pattern>/ToBusinessPageServlet</url-pattern>
   </servlet-mapping>
-<!-- 策略 -->  
-    <servlet>
+  <servlet>
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <servlet-class>servlet.strategy.StrategyPageServlet</servlet-class>
   </servlet>
@@ -57,5 +51,12 @@
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <url-pattern>/ToStrategyPageServlet</url-pattern>
   </servlet-mapping>
-  
+   <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>servlet.login.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
 </web-app>
