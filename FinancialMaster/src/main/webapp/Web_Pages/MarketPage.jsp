@@ -22,7 +22,27 @@
 .combox {
 	font-size: 28px;
 }
+
+#senfe {
+	border-top: #000 1px solid;
+	border-left: #000 1px solid;
+}
+
+#senfe td {
+	border-right: #000 1px solid;
+	border-bottom: #000 1px solid;
+}
 </style>
+
+<script language="javascript">
+	function senfe(o, a, b, c, d) {
+		var t = document.getElementById(o).getElementsByTagName("tr");
+		for (var i = 0; i < t.length; i++) {
+			t[i].style.backgroundColor = (t[i].sectionRowIndex % 2 == 0) ? a
+					: b;
+		}
+	}
+</script>
 
 </head>
 
@@ -114,11 +134,56 @@
 	<!-- history data -->
 	<div
 		style="float: left; height: 300px; width: 1000px; background-color: rgb(239, 239, 239); margin-left: 185px; margin-top: 20px;">
-		<p style="line-height: 300px;">历史数据</p>
+
+
+		<div>
+
+			<table id="senfe">
+				<thead>
+					<tr align="center" valign="middle">
+						<td width="130" height="23" bgcolor="#FFFFFF">日期</td>
+						<td width="100" bgcolor="#FFFFFF">开盘价</td>
+						<td width="100" bgcolor="#FFFFFF">最高价</td>
+						<td width="100" bgcolor="#FFFFFF">最低价</td>
+						<td width="100" bgcolor="#FFFFFF">收盘价</td>
+						<td width="100" bgcolor="#FFFFFF">成交量(股)</td>
+					</tr>
+				</thead>
+
+				<tbody id="group_one">
+					<%
+						for (int i = 0; i < 50; i++) {
+					%>
+					<tr>
+						<td><%=i + 1%></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<%
+						}
+					%>
+
+				</tbody>
+			</table>
+
+		</div>
+		<div>
+			<a href="#" onclick="page.firstPage();">首 页</a>/<a href="#"
+				onclick="page.nextPage();">下一页</a>/<a href="#"
+				onclick="page.prePage();">上一页</a>/<a href="#"
+				onclick="page.lastPage();">末
+				页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><span id="divFood">
+			</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
+				value="1" style="width: 20px" />页/<a href="#"
+				onclick="page.aimPage();">跳转</a>
+		</div>
 	</div>
 
 	<!-- bottom section -->
-	<div style="margin-top:1380px;">
+	<div style="margin-top: 1380px;">
 		<div style="background-color: #766F67; height: 200px;"></div>
 
 		<div style="background-color: #645D55; height: 50px;">
@@ -131,6 +196,8 @@
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
+
+	<script src="../js/table_pages.js"></script>
 
 	<script src="../js/echarts.min.js"></script>
 	<script src="../js/jquery.min.js"></script>
