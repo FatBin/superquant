@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-22 0:50:17 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="UserStrategy" table="user_strategy" catalog="superquant">
+        <composite-id name="id" class="UserStrategyId">
+            <key-property name="userName" type="string">
+                <column name="userName" length="20" />
+            </key-property>
+            <key-property name="strategy" type="string">
+                <column name="strategy" length="20" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

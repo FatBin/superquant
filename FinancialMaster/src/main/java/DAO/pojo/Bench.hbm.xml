@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-22 0:50:17 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Bench" table="bench" catalog="superquant">
+        <id name="benchId" type="string">
+            <column name="benchID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="benchName" type="string">
+            <column name="benchName" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
