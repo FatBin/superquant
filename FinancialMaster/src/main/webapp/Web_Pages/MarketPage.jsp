@@ -18,11 +18,18 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<style>
+.combox {
+	font-size: 40px;
+}
+</style>
+
 </head>
 
-<body id="page-top" class="index" style="background-color: #4A433B;">
+<body id="page-top" class="index">
 
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -68,13 +75,31 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
+	<div style="margin-top: 140px; margin-left: 280px;">
+		<form name="stockName">
+			<select class="combox">
+				<option value="000001">上证指数(000001)</option>
+				<option value="000300">沪深300(000300)</option>
+			</select>
+		</form>
+	</div>
+	
+	<div style="height:50px; width:800px; background-color:rgb(249,248,243); margin-left:225px;margin-top:20px;"></div>
+
+	<div id="klinechart"
+		style="width: 850px; height: 400px; margin-left: 200px; margin-top: 20px;"></div>
+
 	<div>
-		<h1 style="text-align: center; margin-top: 200px; color: white;">大盘</h1>
+		<h1 style="text-align: center; margin-top: 200px; color: black; height:600px;">大盘</h1>
 	</div>
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
+
+	<script src="../js/echarts.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/kLineChart.js"></script>
 
 </body>
 </html>
