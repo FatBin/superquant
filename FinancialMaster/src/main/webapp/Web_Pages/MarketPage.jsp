@@ -20,7 +20,7 @@
 
 <style>
 .combox {
-	font-size: 40px;
+	font-size: 28px;
 }
 </style>
 
@@ -75,7 +75,7 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div style="margin-top: 140px; margin-left: 280px;">
+	<div style="margin-top: 140px; margin-left: 140px;">
 		<form name="stockName">
 			<select class="combox">
 				<option value="000001">上证指数(000001)</option>
@@ -83,17 +83,50 @@
 			</select>
 		</form>
 	</div>
-	
-	<div style="height:50px; width:800px; background-color:rgb(249,248,243); margin-left:225px;margin-top:20px;"></div>
-
-	<div id="klinechart"
-		style="width: 850px; height: 400px; margin-left: 200px; margin-top: 20px;"></div>
-		
-	<div id="barchart" style="width: 850px; height:300px; margin-left:200px; margin-top:20px;"></div>
 
 	<div>
-		<h1 style="text-align: center; margin-top: 200px; color: black;">大盘</h1>
+		<!-- left part -->
+		<div style="float: left;">
+			<div
+				style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 95px; margin-top: 20px;">
+				<p style="line-height: 50px;">最新数据</p>
+			</div>
+
+			<div id="klinechart"
+				style="width: 850px; height: 400px; margin-left: 60px; margin-top: 20px;"></div>
+
+			<div id="barchart"
+				style="width: 850px; height: 270px; margin-left: 60px; margin-top: 20px;"></div>
+
+			<div id="linechart"
+				style="width: 850px; height: 240px; margin-left: 60px; margin-top: 20px;"></div>
+
+		</div>
+
+		<!-- right part -->
+		<div
+			style="float: right; background-color: rgb(239, 239, 239); height: 1000px; width: 300px; margin-right: 40px; margin-top: 20px;">
+			<p>分析模块</p>
+		</div>
+
 	</div>
+
+	<!-- history data -->
+	<div
+		style="float: left; height: 300px; width: 1000px; background-color: rgb(239, 239, 239); margin-left: 185px; margin-top: 20px;">
+		<p style="line-height: 300px;">历史数据</p>
+	</div>
+
+	<!-- bottom section -->
+	<div style="margin-top:1380px;">
+		<div style="background-color: #766F67; height: 200px;"></div>
+
+		<div style="background-color: #645D55; height: 50px;">
+			<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+				SuperQuant</p>
+		</div>
+	</div>
+
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
@@ -103,6 +136,7 @@
 	<script src="../js/jquery.min.js"></script>
 	<script src="../jschart/kLineChart.js"></script>
 	<script src="../jschart/barChart.js"></script>
+	<script src="../jschart/lineChart.js"></script>
 
 </body>
 </html>
