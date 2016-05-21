@@ -89,10 +89,10 @@
 	<div id="klinechart"
 		style="width: 850px; height: 400px; margin-left: 200px; margin-top: 20px;"></div>
 		
-	<div id="barchart" style="width: 850px; height:300; margin-left:200px; margin-top:20px;"></div>
+	<div id="barchart" style="width: 850px; height:300px; margin-left:200px; margin-top:20px;"></div>
 
 	<div>
-		<h1 style="text-align: center; margin-top: 200px; color: black; height:600px;">大盘</h1>
+		<h1 style="text-align: center; margin-top: 200px; color: black;">大盘</h1>
 	</div>
 
 	<!-- Plugin JavaScript -->
