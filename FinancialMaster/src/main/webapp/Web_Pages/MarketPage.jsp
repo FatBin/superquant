@@ -24,13 +24,12 @@
 }
 
 #senfe {
-	border-top: #000 1px solid;
-	border-left: #000 1px solid;
+	border: none;
 }
 
 #senfe td {
-	border-right: #000 1px solid;
-	border-bottom: #000 1px solid;
+	border-right: none;
+	border-bottom: none;
 }
 </style>
 
@@ -82,7 +81,7 @@
 			<form method="get" id="searchform" action="">
 				<fieldset>
 					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索';"
+						class="text_input" onblur="this.placeholder='搜索'"
 						onfocus="this.placeholder='输入股票代码搜索';"
 						onmouseover="this.placeholder='输入股票代码搜索';"
 						onmouseout="this.placeholder='搜索';" /> <input name="submit"
@@ -138,7 +137,7 @@
 
 		<div>
 
-			<table id="senfe">
+			<table id="senfe" style="">
 				<thead>
 					<tr align="center" valign="middle">
 						<td width="130" height="23" bgcolor="#FFFFFF">日期</td>
@@ -170,14 +169,14 @@
 			</table>
 
 		</div>
-		<div>
+		<div style="margin-left: 100px;">
 			<a href="#" onclick="page.firstPage();">首 页</a>/<a href="#"
 				onclick="page.nextPage();">下一页</a>/<a href="#"
 				onclick="page.prePage();">上一页</a>/<a href="#"
-				onclick="page.lastPage();">末
-				页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><span id="divFood">
-			</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
-				value="1" style="width: 20px" />页/<a href="#"
+				onclick="page.lastPage();">末 页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
+				id="divFood"> </span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
+				value="1" style="width: 20px" />页<a>&nbsp;&nbsp;</a><a href="#"
 				onclick="page.aimPage();">跳转</a>
 		</div>
 	</div>
@@ -204,6 +203,6 @@
 	<script src="../jschart/kLineChart.js"></script>
 	<script src="../jschart/barChart.js"></script>
 	<script src="../jschart/lineChart.js"></script>
-
+	
 </body>
 </html>

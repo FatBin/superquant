@@ -118,6 +118,7 @@ Page.prototype.__updateTableRows__ = function() {
 	var cssColor = "";
 	divFood.appendChild(rightBar);
 	// //页脚显示分页结
+	
 };
 /**//*
 	 * 克隆原始操作行集合
@@ -134,5 +135,5 @@ window.onload = function() {
 	page = new Page(10, 'senfe', 'group_one');
 };
 
-//senfe("表格名称","奇数行背景","偶数行背景","鼠标经过背景","点击后背景"); 
-senfe("senfe", "#fff", "rgb(239,239,239)", "#ccc", "#f00");
+// senfe("表格名称","奇数行背景","偶数行背景","鼠标经过背景","点击后背景");
+senfe("senfe", "rgb(239,239,239)", "#fff", "#ccc", "#f00");
