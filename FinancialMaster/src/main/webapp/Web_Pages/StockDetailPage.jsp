@@ -18,6 +18,8 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<link href="../css/bootstrapSwitch.css" rel="stylesheet" type="text/css">
+
 <script src="../js/jquery.min.js"></script>
 <script src="../js/echarts.min.js"></script>
 
@@ -80,6 +82,12 @@
 		<p style="line-height: 50px;">最新数据</p>
 	</blockquote>
 
+	<div class="switch switch-small"
+		style="float: right; margin-right: 300px; margin-bottom: -30px;"
+		data-on-label=" " data-off-label="对比">
+		<input type="checkbox" unchecked />
+	</div>
+
 	<div id="klinechart"
 		style="width: 850px; height: 910px; margin: 20px auto;"></div>
 
@@ -115,6 +123,8 @@
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 	<script src="../jschart/kLineChart.js"></script>
+
+	<script src="../js/bootstrapSwitch.js"></script>
 
 </body>
 </html>
