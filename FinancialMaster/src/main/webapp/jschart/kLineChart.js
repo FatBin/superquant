@@ -99,7 +99,7 @@ option = {
 		orient : 'vertical',
 		x : 'right',
 		y : '50%',
-		data : [ '成交量', 'MA5', 'MA10' ]
+		data : [ '成交量', 'VOL5', 'VOL10' ]
 	}, {
 		gridIndex : 2,
 		orient : 'vertical',
@@ -290,7 +290,7 @@ option = {
 			}
 		}
 	}, {
-		name : 'MA5',
+		name : 'VOL5',
 		type : 'line',
 		xAxisIndex : 1,
 		yAxisIndex : 1,
@@ -298,11 +298,11 @@ option = {
 		smooth : true,
 		lineStyle : {
 			normal : {
-				opacity : 0.5
+//				opacity : 0.5
 			}
 		}
 	}, {
-		name : 'MA10',
+		name : 'VOL10',
 		type : 'line',
 		xAxisIndex : 1,
 		yAxisIndex : 1,
@@ -310,7 +310,7 @@ option = {
 		smooth : true,
 		lineStyle : {
 			normal : {
-				opacity : 0.5
+//				opacity : 0.5
 			}
 		}
 	}, {
@@ -322,7 +322,7 @@ option = {
 		smooth : true,
 		lineStyle : {
 			normal : {
-				opacity : 0.5
+//				opacity : 0.5
 			}
 		}
 	}, {
@@ -334,7 +334,7 @@ option = {
 		smooth : true,
 		lineStyle : {
 			normal : {
-				opacity : 0.5
+//				opacity : 0.5
 			}
 		}
 	}, {
@@ -346,8 +346,8 @@ option = {
 		smooth : true,
 		lineStyle : {
 			normal : {
-				opacity : 10,
-				color: 'rgb(41,60,85)'
+//				opacity : 10,
+//				color: 'rgb(41,60,85)'
 			}
 		}
 	} ]
