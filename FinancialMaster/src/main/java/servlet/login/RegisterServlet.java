@@ -58,7 +58,7 @@ public class RegisterServlet extends HttpServlet {
 		if (RegistResult == ManageState.Succeed) {
 			request.getSession().setAttribute("User", user);
 			
-			request.getRequestDispatcher("../webapp/Web_Pages/HomePage.jsp").forward(request, response);
+			request.getRequestDispatcher("../Web_Pages/HomePage.jsp").forward(request, response);
 		}
 	}
 

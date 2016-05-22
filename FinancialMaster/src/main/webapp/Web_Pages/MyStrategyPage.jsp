@@ -48,7 +48,7 @@
 				<li class="hidden"><a href="#page-top"></a></li>
 
 				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
-				<li><a class="page-scroll" href="MarketPage.jsp">大盘</a></li>
+				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="StockPage.jsp">个股</a></li>
 				<li><a class="page-scroll" href="BusinessPage.jsp">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
