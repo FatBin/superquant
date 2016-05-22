@@ -7,27 +7,20 @@ import org.hibernate.cfg.Configuration;
 public class DBconnection {
 	private static final String config="DAO/pojo/hibernate.cfg.xml";
 	private Configuration configuration;
-	private SessionFactory sessionFactory;
-	private Session session;
+	private static SessionFactory sessionFactory;
 	public DBconnection(){
 		try {
 			configuration=new Configuration().configure(config);
 			sessionFactory=configuration.buildSessionFactory();
-			session=sessionFactory.openSession();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 	
-	public Session getSession() throws Exception{
+	public static Session getSession() throws Exception{
+		Session session=sessionFactory.openSession();
 		return session;
 	}
 	
-	public void closeSession() throws Exception{
-		if(this.session!=null){
-			session.close();
-			sessionFactory.close();
-		}
-	}
 }
