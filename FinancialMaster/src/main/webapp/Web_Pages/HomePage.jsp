@@ -250,7 +250,7 @@
 
 
 					<div class='form-group'>
-						<input type="password" class="form-control" id="modal-reg-pwd"
+						<input type="password" class="form-control" id="modal-reg-pwd2"
 							placeholder='请再次确认密码'>
 					</div>
 
@@ -258,12 +258,12 @@
 				<!-- modal-body -->
 
 				<div class="modal-footer">
-					<div id='reg-succ-tips'></div>
-					<a role="button" href="javascript:reg();" class="btn btn-reg"
-						data-loading-text="注册中...">注册</a>
-					<div class='modal-footer-tips'>
-						<a href='javascript:switchToModal("login");'>已有账号？直接登陆</a>
-					</div>
+						<div id='reg-succ-tips'></div>
+						<a role="button" href="javascript:reg();" class="btn btn-reg"
+							data-loading-text="注册中...">注册</a>
+						<div class='modal-footer-tips'>
+							<a href='javascript:switchToModal("login");'>已有账号？直接登陆</a>
+						</div>
 				</div>
 
 			</div>

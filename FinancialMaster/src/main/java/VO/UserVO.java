@@ -7,7 +7,7 @@ public class UserVO {
 	private StrategyVO strategy;
 	private String[] stockList;
 	
-	public void UserVO(){}
+	public UserVO(){}
 	
 	public StrategyVO getStrategy() {
 		return strategy;
@@ -40,8 +40,5 @@ public class UserVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
 
 }

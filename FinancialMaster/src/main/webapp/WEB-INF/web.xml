@@ -57,8 +57,18 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login</url-pattern>
+    <url-pattern>/Log</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>servlet.login.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/Reg</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
      <servlet-name>GetKLineDataServlet</servlet-name>
      <servlet-class>servlet.stockmarket.GetKLineDataServlet</servlet-class>
