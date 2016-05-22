@@ -107,10 +107,10 @@
 	<div>
 		<!-- left part -->
 		<div style="float: left;">
-			<div
+			<blockquote
 				style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 95px; margin-top: 20px;">
 				<p style="line-height: 50px;">最新数据</p>
-			</div>
+			</blockquote>
 
 			<div id="klinechart"
 				style="width: 850px; height: 910px; margin-left: 60px; margin-top: 20px;"></div>

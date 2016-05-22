@@ -18,11 +18,15 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<script src="../js/jquery.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+
 </head>
 
 <body id="page-top" class="index">
 
-	<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #4A433B;">
+	<nav class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -67,20 +71,50 @@
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
-	
-	<div>
-	<p style="margin-top:120px; font-size:22px; margin-left:180px;">股票列表</p>
-	<div style="width:850px; height:489px; margin-left:180px; background-color:rgb(239,239,239);">
-	</div>
+
+	<div
+		style="height: 40px; font-size: 28px; line-height: 40px; font-family: PingFangSC-Regular; margin-top: 140px; margin-left: 250px;">股票名称(编号)</div>
+
+	<blockquote
+		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
+		<p style="line-height: 50px;">最新数据</p>
+	</blockquote>
+
+	<div id="klinechart"
+		style="width: 850px; height: 910px; margin: 20px auto;"></div>
+
+	<blockquote
+		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
+		<p style="line-height: 50px;">大盘分析</p>
+	</blockquote>
+
+	<div
+		style="height: 143px; width: 910px; background-color: gray; margin: 20px auto;">
 	</div>
 
-	<div>
-		<h1 style="text-align: center; margin-top: 200px; color: black;">个股</h1>
+	<blockquote
+		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
+		<p style="line-height: 50px;">行业对比</p>
+	</blockquote>
+
+	<div
+		style="height: 400px; width: 910px; background-color: gray; margin: 20px auto;">
+	</div>
+
+	<blockquote
+		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
+		<p style="line-height: 50px;">详细数据</p>
+	</blockquote>
+
+	<div
+		style="height: 400px; width: 910px; background-color: gray; margin: 20px auto;">表格
 	</div>
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
+
+	<script src="../jschart/kLineChart.js"></script>
 
 </body>
 </html>
