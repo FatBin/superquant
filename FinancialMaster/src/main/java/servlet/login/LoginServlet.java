@@ -51,8 +51,7 @@ public class LoginServlet extends HttpServlet {
 		if(LoginResule==ManageState.Succeed){			 
 		    request.getSession().setAttribute("User", user);
 		}
-				
-		doGet(request, response);
+		
 	}
 
 }
