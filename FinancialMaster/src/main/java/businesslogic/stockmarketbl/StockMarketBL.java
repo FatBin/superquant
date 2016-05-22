@@ -107,7 +107,7 @@ public class StockMarketBL implements StockMarketBLService, StockMarketInfo {
 			list[index][2] = bsPO.getHigh() + "";
 			list[index][3] = bsPO.getLow() + "";
 			list[index][4] = bsPO.getClose() + "";
-			list[index][5] = bsPO.getVolume() + "";
+			list[index][5] = bsPO.getVolume()/1000000 + "";
 			index--;
 		}
 		sv.setData(list);

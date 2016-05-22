@@ -2,11 +2,16 @@ package servlet.login;
 
 import java.io.IOException;
 import VO.UserVO;
+import businesslogic.loginbl.LoginBL;
+import businesslogicservice.loginblservice.LoginBLService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import ENUM.ManageState;
 
 /**
  * Servlet implementation class LoginServlet
@@ -35,7 +40,18 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserVO  u=new UserVO();
+		UserVO  user=new UserVO();
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
+		user.setUsername(username);
+		user.setPassword(password);
+		LoginBLService loginbl=new LoginBL();
+		ManageState LoginResule =loginbl.login(user);
+		request.getSession().setAttribute("LoginResult", LoginResule);
+		if(LoginResule==ManageState.Succeed){			 
+		    request.getSession().setAttribute("User", user);
+		}
+				
 		doGet(request, response);
 	}
 

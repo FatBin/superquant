@@ -1,11 +1,16 @@
 package servlet.stockmarket;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import VO.StockMarketVO;
+import businesslogic.factory.InitFactory;
+import businesslogic.stockmarketbl.StockMarketInfo;
 
 /**
  * Servlet implementation class MarketServlet
@@ -26,6 +31,10 @@ public class MarketPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		InitFactory factory=InitFactory.getFactory();
+		StockMarketInfo sb=factory.getStockMarketBL();
+		StockMarketVO sv=sb.getStockMarketVO();
+		request.getSession().setAttribute("BenchMarket", sv);
 		response.sendRedirect(request.getContextPath()+"/Web_Pages/MarketPage.jsp");
 	}
 
