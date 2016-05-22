@@ -86,7 +86,7 @@
 				class="glyphicon glyphicon-remove"></span></span> <span
 				class="input-group-addon"
 				style="float: left; height: 34px; width: 37px;"><span
-				class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
+				class="glyphicon glyphicon-calendar" style="margin: auto;"></span></span>
 		</div>
 		<input type="hidden" id="dtp_input2" value="" /><br />
 	</div>

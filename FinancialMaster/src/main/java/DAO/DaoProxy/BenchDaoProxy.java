@@ -1,8 +1,9 @@
 package DAO.DaoProxy;
 
+import java.util.List;
+
 import DAO.dao.BenchDao;
 import DAO.pojo.Bench;
-import antlr.collections.List;
 
 public class BenchDaoProxy implements BenchDao{
 

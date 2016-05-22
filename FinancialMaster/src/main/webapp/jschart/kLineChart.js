@@ -110,7 +110,7 @@ option = {
 	grid : [ {
 		left : '10%',
 		right : '10%',
-		height : '38%'
+		height : '36%'
 	}, {
 		left : '10%',
 		right : '10%',
@@ -146,25 +146,27 @@ option = {
 		data : date
 	} ],
 	yAxis : [ {
+		name : '单位：元',
 		scale : true,
 		splitArea : {
 			show : true
 		}
 	}, {
+		name : '单位：百万',
 		gridIndex : 1,
 	}, {
 		gridIndex : 2,
 	} ],
 	dataZoom : [ {
 		type : 'inside',
-		start : 50,
+		start : 96,
 		end : 100,
 		xAxisIndex : [ 0, 1, 2 ]
 	}, {
 		show : true,
 		type : 'slider',
 		y : '92%',
-		start : 50,
+		start : 96,
 		end : 100,
 		xAxisIndex : [ 0, 1, 2 ]
 	} ],

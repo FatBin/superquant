@@ -1,68 +1,60 @@
 package DAO.DAOimpl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import DAO.connection.DBconnection;
+import DAO.dao.StockDao;
+import DAO.pojo.Bench;
 import DAO.pojo.Stock;
 
-/**
- * Home object for domain model class Stock.
- * @see .Stock
- * @author Hibernate Tools
- */
-public class StockImpl {
 
-	private static final Log log = LogFactory.getLog(StockImpl.class);
+public class StockImpl implements StockDao{
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(Stock transientInstance) {
-		log.debug("persisting Stock instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
+	@Override
+	public boolean insert(Stock stock) throws Exception {
+		Session session=DBconnection.getSession();
+		if(findByID(stock.getStockId())==null){
+			session.save(stock);
+			Transaction tx=session.beginTransaction();
+			tx.commit();
+			session.close();
+			return true;
+		}else{
+			return false;
 		}
 	}
 
-	public void remove(Stock persistentInstance) {
-		log.debug("removing Stock instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
+	@Override
+	public Stock findByID(String stockId) throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(Stock.class);
+		criteria.add(Restrictions.eq("stockId", stockId));
+		List stockList=criteria.list();
+		session.close();
+		if(stockList.size()==0){
+			return null;
+		}else{
+			return (Stock)stockList.get(0);
 		}
 	}
 
-	public Stock merge(Stock detachedInstance) {
-		log.debug("merging Stock instance");
-		try {
-			Stock result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
+	@Override
+	public List findAll() throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(Stock.class);
+		List StockList=criteria.list();
+		session.close();
+		return StockList;
 	}
 
-	public Stock findById(String id) {
-		log.debug("getting Stock instance with id: " + id);
-		try {
-			Stock instance = entityManager.find(Stock.class, id);
-			log.debug("get successful");
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
 }

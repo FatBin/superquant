@@ -3,7 +3,7 @@ package DAO.dao;
 import DAO.pojo.Bench;
 import DAO.pojo.UserStock;
 import DAO.pojo.UserStockId;
-import antlr.collections.List;
+import java.util.List;
 
 public interface UserStockDao {
 	//insert a PO

@@ -1,33 +1,33 @@
 package data.UserData;
 
 import DAO.pojo.User;
+import ENUM.ManageState;
 import ENUM.UserState;
 import dataservice.UserDataService.UserDataService;
 
 public class UserData implements UserDataService{
-/*
- * annotation refers to the UserDataService
- */
+	/*
+	 * annotation refers to the UserDataService
+	 */
 	@Override
-	public UserState insertUser(User user) {
-		try {
-			return null;
-		} catch (Exception e) {
-			return UserState.Others;
-		}
+	public ManageState insertUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	/*
+	 * annotation refers to the UserDataService
+	 */
+	@Override
+	public ManageState verifyUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
+
 	
-/*
- * annotation refers to the UserDataService
- */
-	@Override
-	public UserState searchUser(User user) {
-		try {
-			return null;
-		} catch (Exception e) {
-			return UserState.Others;
-		}
-	}
+
 	
 }
