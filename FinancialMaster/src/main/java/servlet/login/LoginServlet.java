@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 		if (LoginResult == ManageState.Succeed) {
 			request.getSession().setAttribute("User", user);
 		}
-		String result="{'LoginResult':'"+LoginResult+"'}";
+		String result="[{'LoginResult':'"+LoginResult+"'}]";
 		JSONArray json = new JSONArray(result);
 		PrintWriter out = response.getWriter();
 		out.println(json);

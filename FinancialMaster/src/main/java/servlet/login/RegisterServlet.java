@@ -63,7 +63,7 @@ public class RegisterServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("../Web_Pages/HomePage.jsp").forward(request, response);
 		}
-		String result="{'RegistResult':'"+RegistResult+"'}";
+		String result="[{'RegistResult':'"+RegistResult+"'}]";
 		JSONArray json = new JSONArray(result);
 		PrintWriter out = response.getWriter();
 		out.println(json);
