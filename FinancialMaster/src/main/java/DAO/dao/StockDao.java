@@ -2,7 +2,7 @@ package DAO.dao;
 
 import DAO.pojo.Bench;
 import DAO.pojo.Stock;
-import antlr.collections.List;
+import java.util.List;
 
 public interface StockDao {
 	//insert a PO

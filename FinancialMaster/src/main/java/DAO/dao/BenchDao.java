@@ -1,7 +1,8 @@
 package DAO.dao;
 
+import java.util.List;
+
 import DAO.pojo.Bench;
-import antlr.collections.List;
 
 public interface BenchDao {
 	//insert a PO

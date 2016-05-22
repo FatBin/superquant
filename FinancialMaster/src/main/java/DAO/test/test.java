@@ -34,10 +34,10 @@ public class test {
 //		session.save(bench);
 //		session.save(benchdata);
 		DBconnection dBconnection=new DBconnection();
-		Bench bench=new Bench("1","3");
 		BenchDaoImpl benchDaoImpl=new BenchDaoImpl();
 		try {
-			benchDaoImpl.insert(bench);
+			Bench bench=benchDaoImpl.findByID(1+"");
+			System.out.println(bench.getBenchName());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

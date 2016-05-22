@@ -1,69 +1,61 @@
 package DAO.DAOimpl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import DAO.connection.DBconnection;
+import DAO.dao.BenchdataDao;
+import DAO.pojo.Bench;
 import DAO.pojo.Benchdata;
 import DAO.pojo.BenchdataId;
 
-/**
- * Home object for domain model class Benchdata.
- * @see .Benchdata
- * @author Hibernate Tools
- */
-public class BenchdataDaoImpl {
+public class BenchdataDaoImpl implements BenchdataDao{
 
-	private static final Log log = LogFactory.getLog(BenchdataDaoImpl.class);
-
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(Benchdata transientInstance) {
-		log.debug("persisting Benchdata instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
+	@Override
+	public boolean insert(Benchdata benchdata) throws Exception {
+		Session session=DBconnection.getSession();
+		if(findByID(benchdata.getId())==null){
+			session.save(benchdata);
+			Transaction tx=session.beginTransaction();
+			tx.commit();
+			session.close();
+			return true;
+		}else{
+			return false;
 		}
 	}
 
-	public void remove(Benchdata persistentInstance) {
-		log.debug("removing Benchdata instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
+	@Override
+	public Benchdata findByID(BenchdataId benchdataId) throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(Benchdata.class);
+		criteria.add(Restrictions.eq("benchId", benchdataId.getBenchId()));
+		criteria.add(Restrictions.eq("date", benchdataId.getDate()));
+		List benchdataList=criteria.list();
+		session.close();
+		if(benchdataList.size()==0){
+			return null;
+		}else{
+			return (Benchdata)benchdataList.get(0);
 		}
 	}
 
-	public Benchdata merge(Benchdata detachedInstance) {
-		log.debug("merging Benchdata instance");
-		try {
-			Benchdata result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
+	@Override
+	public List findAll() throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(Benchdata.class);
+		List benchdataList=criteria.list();
+		session.close();
+		return benchdataList;
 	}
 
-	public Benchdata findById(BenchdataId id) {
-		log.debug("getting Benchdata instance with id: " + id);
-		try {
-			Benchdata instance = entityManager.find(Benchdata.class, id);
-			log.debug("get successful");
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
 }

@@ -3,7 +3,7 @@ package DAO.dao;
 import DAO.pojo.Bench;
 import DAO.pojo.TradeRecord;
 import DAO.pojo.TradeRecordId;
-import antlr.collections.List;
+import java.util.List;
 
 public interface TradeRecordDao {
 	//insert a PO

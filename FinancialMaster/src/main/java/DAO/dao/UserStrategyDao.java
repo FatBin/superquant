@@ -3,7 +3,7 @@ package DAO.dao;
 import DAO.pojo.Bench;
 import DAO.pojo.UserStrategy;
 import DAO.pojo.UserStrategyId;
-import antlr.collections.List;
+import java.util.List;
 
 public interface UserStrategyDao {
 	//insert a PO
