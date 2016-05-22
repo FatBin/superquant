@@ -18,11 +18,15 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
+	media="screen">
+
 </head>
 
 <body id="page-top" class="index">
 
-	<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #4A433B;">
+	<nav class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -68,6 +72,25 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
+	<div style="height: 300px;"></div>
+
+	<div class="form-group">
+		<label for="dtp_input2" class="col-md-2 control-label">StartTime</label>
+		<div class="input-group date form_date col-md-5" data-date=""
+			data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+			data-link-format="yyyy-mm-dd">
+
+			<input class="form-control" size="16" type="text" value="" readonly
+				style="width: 100px;"> <span class="input-group-addon"
+				style="float: left; height: 34px; width: 37px;"><span
+				class="glyphicon glyphicon-remove"></span></span> <span
+				class="input-group-addon"
+				style="float: left; height: 34px; width: 37px;"><span
+				class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
+		</div>
+		<input type="hidden" id="dtp_input2" value="" /><br />
+	</div>
+
 	<div>
 		<h1 style="text-align: center; margin-top: 200px; color: black;">策略</h1>
 	</div>
@@ -75,6 +98,26 @@
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
+
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
+		charset="UTF-8"></script>
+	<script type="text/javascript"
+		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+	<script type="text/javascript">
+		$('.form_date').datetimepicker({
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0,
+			format : 'yyyy-mm-dd'
+		});
+	</script>
 
 </body>
 </html>
