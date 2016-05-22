@@ -36,5 +36,4 @@ public class StockPageServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
