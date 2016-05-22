@@ -18,11 +18,15 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
+	media="screen">
+
 </head>
 
 <body id="page-top" class="index">
 
-	<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #4A433B;">
+	<nav class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -67,16 +71,48 @@
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
-	
-	<div>
-	<p style="margin-top:120px; font-size:22px; margin-left:180px;">股票列表</p>
-	<div style="width:850px; height:489px; margin-left:180px; background-color:rgb(239,239,239);">
+
+	<div style="margin-top: 140px; margin-left: 220px;">
+		<p
+			style="height: 33px; font-size: 21px; line-height: 33px; font-family: PingFangSC-Regular;">我的策略</p>
+
+		<input type="button"
+			style="width: 50px; height: 29px; border-radius: 6px; background-color: rgb(250, 250, 250); float: right; margin-right: 210px; margin-top: -45px;"
+			value="新建" />
 	</div>
+
+	<div
+		style="height: 300px; width: 850px; margin: 10px auto; background-color: gray;"></div>
+
+
+
+	<div>
+		<h1 style="text-align: center; margin-top: 200px; color: black;">我的策略</h1>
 	</div>
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
+
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
+		charset="UTF-8"></script>
+	<script type="text/javascript"
+		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+	<script type="text/javascript">
+		$('.form_date').datetimepicker({
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0,
+			format : 'yyyy-mm-dd'
+		});
+	</script>
 
 </body>
 </html>
