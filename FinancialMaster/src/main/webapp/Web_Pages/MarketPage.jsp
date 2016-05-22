@@ -95,6 +95,7 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
+	<!-- 
 	<div style="margin-top: 140px; margin-left: 140px;">
 		<form name="stockName">
 			<select class="combox">
@@ -102,6 +103,20 @@
 				<option value="000300">沪深300(000300)</option>
 			</select>
 		</form>
+	</div>
+ -->
+
+	<div class="dropdown" style="margin-top: 140px; margin-left: 140px;">
+		<button class="btn btn-default dropdown-toggle" type="button"
+			id="dropdownMenu1" data-toggle="dropdown">
+			上证指数(000001) <span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+			<li role="presentation"><a role="menuitem" tabindex="-1"
+				href="#" onclick="changeToSZ()">上证指数(000001)</a></li>
+			<li role="presentation"><a role="menuitem" tabindex="-1"
+				href="#" onclick="changeToHS()">沪深300 (000300)</a></li>
+		</ul>
 	</div>
 
 	<div>
@@ -193,9 +208,22 @@
 
 	<script src="../js/table_pages.js"></script>
 
-
 	<script src="../jschart/kLineChart.js"></script>
 
-	
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+
+	<script>
+		function changeToSZ() {
+			//	document.getElementById("dropdownMenu1").innerHTML = "上证指数(000001) ▾";
+			$(".dropdown-toggle").html("上证指数(000001) ▾");
+		}
+
+		function changeToHS() {
+			//  document.getElementById("dropdownMenu1").innerHTML = "沪深300 (000300) ▾";
+			$(".dropdown-toggle").html("沪深300 (000300) ▾");
+		}
+	</script>
+
 </body>
 </html>
