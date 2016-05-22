@@ -1,68 +1,51 @@
 package DAO.DAOimpl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import DAO.connection.DBconnection;
+import DAO.dao.BenchDao;
 import DAO.pojo.Bench;
+import antlr.collections.List;
 
-/**
- * Home object for domain model class Bench.
- * @see .Bench
- * @author Hibernate Tools
- */
-public class BenchDaoImpl {
 
-	private static final Log log = LogFactory.getLog(BenchDaoImpl.class);
+public class BenchDaoImpl implements BenchDao{
+	
+	@Override
+	public boolean insert(Bench bench) throws Exception {
+		Session session=DBconnection.getSession();
+		if(findByID(bench.getBenchId())==null){
+			session.save(bench);
+			Transaction tx=session.beginTransaction();
+			tx.commit();
+			return true;
+		}else{
+			return false;
+		}
 
-	@PersistenceContext
-	private EntityManager entityManager;
+	}
 
-	public void persist(Bench transientInstance) {
-		log.debug("persisting Bench instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
+	@Override
+	public Bench findByID(String benchID) throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(Bench.class);
+		criteria.add(Restrictions.eq("benchId", benchID));
+		ArrayList benchList=(ArrayList) criteria.list();
+		if(benchList.size()==0){
+			return null;
+		}else{
+			return (Bench)benchList.get(0);
 		}
 	}
 
-	public void remove(Bench persistentInstance) {
-		log.debug("removing Bench instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
+	@Override
+	public List findAll() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public Bench merge(Bench detachedInstance) {
-		log.debug("merging Bench instance");
-		try {
-			Bench result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
-	}
-
-	public Bench findById(String id) {
-		log.debug("getting Bench instance with id: " + id);
-		try {
-			Bench instance = entityManager.find(Bench.class, id);
-			log.debug("get successful");
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
 }
