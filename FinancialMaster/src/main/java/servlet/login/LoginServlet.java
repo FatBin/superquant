@@ -1,6 +1,8 @@
 package servlet.login;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import VO.UserVO;
 import businesslogic.loginbl.LoginBL;
 import businesslogicservice.loginblservice.LoginBLService;
@@ -10,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
 
 import ENUM.ManageState;
 
@@ -54,11 +58,15 @@ public class LoginServlet extends HttpServlet {
 		user.setPassword(password);
 		LoginBLService loginbl = new LoginBL();
 		ManageState LoginResult = loginbl.login(user);
-		request.getSession().setAttribute("LoginResult", LoginResult);
 		if (LoginResult == ManageState.Succeed) {
 			request.getSession().setAttribute("User", user);
 		}
-
+		String result="{'LoginResult':'"+LoginResult+"'}";
+		JSONArray json = new JSONArray(result);
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
 	}
 
 }
