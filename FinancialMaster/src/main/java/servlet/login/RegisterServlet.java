@@ -1,11 +1,15 @@
 package servlet.login;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
 
 import ENUM.ManageState;
 import VO.UserVO;
@@ -54,12 +58,17 @@ public class RegisterServlet extends HttpServlet {
 		LoginBLService loginbl = new LoginBL();
 		ManageState RegistResult = loginbl.add(user);
 		
-		request.getSession().setAttribute("RegistResult", RegistResult);
 		if (RegistResult == ManageState.Succeed) {
 			request.getSession().setAttribute("User", user);
 			
 			request.getRequestDispatcher("../webapp/Web_Pages/HomePage.jsp").forward(request, response);
 		}
+		String result="{'RegistResult':'"+RegistResult+"'}";
+		JSONArray json = new JSONArray(result);
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
 	}
 
 }

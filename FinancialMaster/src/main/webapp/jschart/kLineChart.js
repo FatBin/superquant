@@ -8,8 +8,8 @@ var volume = [];
 $.ajax({
 	type : "post",
 	async : false, //同步执行
-	url : "../stockmarket/GetKLineDataServlet",
-	//	data : {id:parm},
+	url : "../ToMarketPageServlet",
+	data : {id:'kline'},
 	dataType : "json", //返回数据形式为json
 	success : function(result) {
 		if (result) {
