@@ -38,21 +38,23 @@ public class StockImpl implements StockDao{
 	public Stock findByID(String stockId) throws Exception {
 		Session session=DBconnection.getSession();
 		Criteria criteria=session.createCriteria(Stock.class);
-		criteria.add(Restrictions.eq("benchId", benchID));
-		List benchList=criteria.list();
+		criteria.add(Restrictions.eq("stockId", stockId));
+		List stockList=criteria.list();
 		session.close();
-		if(benchList.size()==0){
+		if(stockList.size()==0){
 			return null;
 		}else{
-			return (Bench)benchList.get(0);
+			return (Stock)stockList.get(0);
 		}
-		return null;
 	}
 
 	@Override
 	public List findAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(Stock.class);
+		List StockList=criteria.list();
+		session.close();
+		return StockList;
 	}
 
 }
