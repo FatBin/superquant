@@ -5,9 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>hello</title>
+	<script src="js/echarts.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 </head>
 <body>
    <h1>中文!</h1>
      <a href="ToStrategyPageServlet">  get请求tohome_page </a>
+     
+     <div id="klinechart" style="width: 700px; height: 800px;"></div>
+
+	<script src="jschart/kLineChart.js"></script>
 </body>
 </html>

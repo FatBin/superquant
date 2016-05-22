@@ -32,7 +32,8 @@
 	border-bottom: none;
 }
 </style>
-
+<script src="../js/echarts.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <script language="javascript">
 	function senfe(o, a, b, c, d) {
 		var t = document.getElementById(o).getElementsByTagName("tr");
@@ -112,13 +113,7 @@
 			</div>
 
 			<div id="klinechart"
-				style="width: 850px; height: 400px; margin-left: 60px; margin-top: 20px;"></div>
-
-			<div id="barchart"
-				style="width: 850px; height: 270px; margin-left: 60px; margin-top: 20px;"></div>
-
-			<div id="linechart"
-				style="width: 850px; height: 240px; margin-left: 60px; margin-top: 20px;"></div>
+				style="width: 850px; height: 910px; margin-left: 60px; margin-top: 20px;"></div>
 
 		</div>
 
@@ -198,11 +193,9 @@
 
 	<script src="../js/table_pages.js"></script>
 
-	<script src="../js/echarts.min.js"></script>
-	<script src="../js/jquery.min.js"></script>
+
 	<script src="../jschart/kLineChart.js"></script>
-	<script src="../jschart/barChart.js"></script>
-	<script src="../jschart/lineChart.js"></script>
+
 	
 </body>
 </html>

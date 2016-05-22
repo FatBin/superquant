@@ -51,7 +51,7 @@
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <url-pattern>/ToStrategyPageServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>servlet.login.LoginServlet</servlet-class>
   </servlet>
@@ -59,4 +59,12 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
+  <servlet>
+     <servlet-name>GetKLineDataServlet</servlet-name>
+     <servlet-class>servlet.stockmarket.GetKLineDataServlet</servlet-class>
+  </servlet>
+ <servlet-mapping>
+    <servlet-name>GetKLineDataServlet</servlet-name>
+    <url-pattern>/stockmarket/GetKLineDataServlet</url-pattern>
+ </servlet-mapping>
 </web-app>
