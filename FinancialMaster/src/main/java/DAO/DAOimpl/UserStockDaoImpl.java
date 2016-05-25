@@ -1,69 +1,68 @@
 package DAO.DAOimpl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import DAO.connection.DBconnection;
+import DAO.dao.UserStockDao;
+import DAO.pojo.Bench;
 import DAO.pojo.UserStock;
 import DAO.pojo.UserStockId;
 
-/**
- * Home object for domain model class UserStock.
- * @see .UserStock
- * @author Hibernate Tools
- */
-public class UserStockDaoImpl {
+public class UserStockDaoImpl implements UserStockDao{
 
-	private static final Log log = LogFactory.getLog(UserStockDaoImpl.class);
+	@Override
+	public boolean insert(UserStock userStock) throws Exception {
+		Session session=DBconnection.getSession();
+		session.save(userStock);
+		Transaction tx=session.beginTransaction();
+		tx.commit();
+		session.close();
+		return true;
+	}
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(UserStock transientInstance) {
-		log.debug("persisting UserStock instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
+	@Override
+	public UserStock findByID(UserStockId userStockId) throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(UserStock.class);
+		criteria.add(Restrictions.eq("id.userName", userStockId.getUserName()));
+		criteria.add(Restrictions.eq("id.stockId", userStockId.getStockId()));
+		List UserStockList=criteria.list();
+		session.close();
+		if(UserStockList.size()==0){
+			return null;
+		}else{
+			return (UserStock)UserStockList.get(0);
 		}
 	}
 
-	public void remove(UserStock persistentInstance) {
-		log.debug("removing UserStock instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
+	@Override
+	public List findAll() throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(UserStock.class);
+		List UserStockList=criteria.list();
+		session.close();
+		return UserStockList;
 	}
 
-	public UserStock merge(UserStock detachedInstance) {
-		log.debug("merging UserStock instance");
-		try {
-			UserStock result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
+	@Override
+	public boolean delete(UserStockId userStockId) throws Exception {
+		Session session=DBconnection.getSession();
+		Transaction tx=session.beginTransaction();
+		UserStock userStock=new UserStock(userStockId);
+		session.delete(userStock);
+		tx.commit();
+		session.close();
+		return true;
 	}
 
-	public UserStock findById(UserStockId id) {
-		log.debug("getting UserStock instance with id: " + id);
-		try {
-			UserStock instance = entityManager.find(UserStock.class, id);
-			log.debug("get successful");
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
 }

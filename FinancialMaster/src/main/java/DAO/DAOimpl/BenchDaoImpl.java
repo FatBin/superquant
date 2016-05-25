@@ -20,15 +20,11 @@ public class BenchDaoImpl implements BenchDao{
 	@Override
 	public boolean insert(Bench bench) throws Exception {
 		Session session=DBconnection.getSession();
-		if(findByID(bench.getBenchId())==null){
 			session.save(bench);
 			Transaction tx=session.beginTransaction();
 			tx.commit();
 			session.close();
 			return true;
-		}else{
-			return false;
-		}
 	}
 
 	@Override

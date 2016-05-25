@@ -34,5 +34,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="lib" path="src/main/java/DAO/test/jsoup-1.8.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

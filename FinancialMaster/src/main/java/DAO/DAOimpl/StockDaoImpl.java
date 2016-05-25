@@ -18,20 +18,16 @@ import DAO.pojo.Bench;
 import DAO.pojo.Stock;
 
 
-public class StockImpl implements StockDao{
+public class StockDaoImpl implements StockDao{
 
 	@Override
 	public boolean insert(Stock stock) throws Exception {
 		Session session=DBconnection.getSession();
-		if(findByID(stock.getStockId())==null){
-			session.save(stock);
-			Transaction tx=session.beginTransaction();
-			tx.commit();
-			session.close();
-			return true;
-		}else{
-			return false;
-		}
+		session.save(stock);
+		Transaction tx=session.beginTransaction();
+		tx.commit();
+		session.close();
+		return true;
 	}
 
 	@Override

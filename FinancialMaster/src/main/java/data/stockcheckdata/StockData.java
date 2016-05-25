@@ -118,7 +118,6 @@ public class StockData implements StockDataService {
 					JSONObject newjsonObject = newjsonArray.getJSONObject(0);
 					name = newjsonObject.getJSONObject("dapandata").getString("name");
 				} catch (Exception e) {
-					// TODO: handle exception
 				}
 				////// ·Ö¸îÏß//////
 				stockStatisticPO stockStatisticPO = new stockStatisticPO(name, jsonObject3.getString("date"),

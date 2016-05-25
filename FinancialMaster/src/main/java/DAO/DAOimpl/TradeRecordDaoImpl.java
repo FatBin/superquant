@@ -1,69 +1,52 @@
 package DAO.DAOimpl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import DAO.connection.DBconnection;
+import DAO.dao.TradeRecordDao;
+import DAO.pojo.Bench;
 import DAO.pojo.TradeRecord;
 import DAO.pojo.TradeRecordId;
 
-/**
- * Home object for domain model class TradeRecord.
- * @see .TradeRecord
- * @author Hibernate Tools
- */
-public class TradeRecordDaoImpl {
+public class TradeRecordDaoImpl implements TradeRecordDao{
 
-	private static final Log log = LogFactory.getLog(TradeRecordDaoImpl.class);
+	@Override
+	public boolean insert(TradeRecord tradeRecord) throws Exception {
+		Session session=DBconnection.getSession();
+		session.save(tradeRecord);
+		Transaction tx=session.beginTransaction();
+		tx.commit();
+		session.close();
+		return true;
+	}
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(TradeRecord transientInstance) {
-		log.debug("persisting TradeRecord instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
+	@Override
+	public TradeRecord findByID(TradeRecordId tradeRecordId) throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(TradeRecord.class);
+		criteria.add(Restrictions.eq("id.stockId", tradeRecordId.getStockId()));
+		criteria.add(Restrictions.eq("id.date", tradeRecordId.getDate()));
+		List TradeRecordList=criteria.list();
+		session.close();
+		if(TradeRecordList.size()==0){
+			return null;
+		}else{
+			return (TradeRecord)TradeRecordList.get(0);
 		}
 	}
 
-	public void remove(TradeRecord persistentInstance) {
-		log.debug("removing TradeRecord instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
+	@Override
+	public List findAll() throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(TradeRecord.class);
+		List TradeRecordList=criteria.list();
+		session.close();
+		return TradeRecordList;
 	}
 
-	public TradeRecord merge(TradeRecord detachedInstance) {
-		log.debug("merging TradeRecord instance");
-		try {
-			TradeRecord result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
-	}
-
-	public TradeRecord findById(TradeRecordId id) {
-		log.debug("getting TradeRecord instance with id: " + id);
-		try {
-			TradeRecord instance = entityManager.find(TradeRecord.class, id);
-			log.debug("get successful");
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
 }

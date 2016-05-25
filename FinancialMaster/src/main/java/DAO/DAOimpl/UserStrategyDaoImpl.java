@@ -1,68 +1,65 @@
 package DAO.DAOimpl;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import DAO.connection.DBconnection;
+import DAO.dao.UserStrategyDao;
+import DAO.pojo.Bench;
+import DAO.pojo.UserStock;
 import DAO.pojo.UserStrategy;
 import DAO.pojo.UserStrategyId;
 
-/**
- * Home object for domain model class UserStrategy.
- * @see .UserStrategy
- * @author Hibernate Tools
- */
-public class UserStrategyDaoImpl {
+public class UserStrategyDaoImpl implements UserStrategyDao{
 
-	private static final Log log = LogFactory.getLog(UserStrategyDaoImpl.class);
+	@Override
+	public boolean insert(UserStrategy userStrategy) throws Exception {
+		Session session=DBconnection.getSession();
+		session.save(userStrategy);
+		Transaction tx=session.beginTransaction();
+		tx.commit();
+		session.close();
+		return true;
+	}
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(UserStrategy transientInstance) {
-		log.debug("persisting UserStrategy instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
+	@Override
+	public UserStrategy findByID(UserStrategyId userStrategyId) throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(UserStrategy.class);
+		criteria.add(Restrictions.eq("id.userName", userStrategyId.getUserName()));
+		criteria.add(Restrictions.eq("id.strategy", userStrategyId.getStrategy()));		
+		List UserStrategyList=criteria.list();
+		session.close();
+		if(UserStrategyList.size()==0){
+			return null;
+		}else{
+			return (UserStrategy)UserStrategyList.get(0);
 		}
 	}
 
-	public void remove(UserStrategy persistentInstance) {
-		log.debug("removing UserStrategy instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
+	@Override
+	public List findAll() throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(UserStrategy.class);
+		List UserStrategyList=criteria.list();
+		session.close();
+		return UserStrategyList;
 	}
 
-	public UserStrategy merge(UserStrategy detachedInstance) {
-		log.debug("merging UserStrategy instance");
-		try {
-			UserStrategy result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
+	@Override
+	public boolean delete(UserStrategyId userStrategyId) throws Exception {
+		Session session=DBconnection.getSession();
+		Transaction tx=session.beginTransaction();
+		UserStrategy userStrategy=new UserStrategy(userStrategyId);
+		session.delete(userStrategy);
+		tx.commit();
+		session.close();
+		return true;
 	}
 
-	public UserStrategy findById(UserStrategyId id) {
-		log.debug("getting UserStrategy instance with id: " + id);
-		try {
-			UserStrategy instance = entityManager.find(UserStrategy.class, id);
-			log.debug("get successful");
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
-	}
+	
 }

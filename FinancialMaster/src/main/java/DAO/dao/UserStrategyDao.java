@@ -14,4 +14,7 @@ public interface UserStrategyDao {
 	
 	//get all UserStrategy data
 	public List findAll()throws Exception;
+	
+	//delete the UserStrategy data
+	public boolean delete(UserStrategyId userStrategyId)throws Exception;
 }
