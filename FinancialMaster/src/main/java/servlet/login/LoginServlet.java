@@ -3,10 +3,6 @@ package servlet.login;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import VO.UserVO;
-import businesslogic.loginbl.LoginBL;
-import businesslogicservice.loginblservice.LoginBLService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 
 import ENUM.ManageState;
+import VO.UserVO;
+import web.bl.userImpl.LoginImpl;
+import web.blservice.userInfo.LoginInfo;
 
 /**
  * Servlet implementation class LoginServlet
@@ -56,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		user.setUsername(username);
 		user.setPassword(password);
-		LoginBLService loginbl = new LoginBL();
+		LoginInfo loginbl = new LoginImpl();
 		ManageState LoginResult = loginbl.login(user);
 		if (LoginResult == ManageState.Succeed) {
 			request.getSession().setAttribute("User", user);

@@ -21,6 +21,7 @@ public class UserData implements UserDataService{
 				return ManageState.Fail;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return ManageState.Others;
 		}
 	}

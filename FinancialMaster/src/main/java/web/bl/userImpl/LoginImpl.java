@@ -1,4 +1,4 @@
-package businesslogic.loginbl;
+package web.bl.userImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -6,11 +6,11 @@ import java.util.Calendar;
 import DAO.pojo.User;
 import ENUM.ManageState;
 import VO.UserVO;
-import businesslogicservice.loginblservice.LoginBLService;
 import data.UserData.UserData;
 import dataservice.UserDataService.UserDataService;
+import web.blservice.userInfo.LoginInfo;
 
-public class LoginBL implements LoginBLService {
+public class LoginImpl implements LoginInfo {
 	UserDataService userData=new UserData();
 	@Override
 	public ManageState add(UserVO user) {				
@@ -22,6 +22,7 @@ public class LoginBL implements LoginBLService {
 		if(userState==ManageState.Succeed){
 			addUserMessage(user);
 		}
+		System.out.println(user.getUsername()+user.getPassword()+addDate+userState);
 		return userState;
 	}
 
@@ -40,4 +41,5 @@ public class LoginBL implements LoginBLService {
 	private ManageState addUserMessage(UserVO user){
 		return null;
 	}
+
 }

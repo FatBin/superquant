@@ -13,8 +13,8 @@ import org.json.JSONArray;
 
 import ENUM.ManageState;
 import VO.UserVO;
-import businesslogic.loginbl.LoginBL;
-import businesslogicservice.loginblservice.LoginBLService;
+import web.bl.userImpl.LoginImpl;
+import web.blservice.userInfo.LoginInfo;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -55,16 +55,16 @@ public class RegisterServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		user.setUsername(username);
 		user.setPassword(password);
-		LoginBLService loginbl = new LoginBL();
+		LoginInfo loginbl = new LoginImpl();
 		ManageState RegistResult = loginbl.add(user);
-		
 		if (RegistResult == ManageState.Succeed) {
 			request.getSession().setAttribute("User", user);
 			
-			request.getRequestDispatcher("../Web_Pages/HomePage.jsp").forward(request, response);
+//			request.getRequestDispatcher(request.getContextPath()+"/Web_Pages/HomePage.jsp").forward(request, response);
 		}
 		String result="[{'RegistResult':'"+RegistResult+"'}]";
 		JSONArray json = new JSONArray(result);
+		System.out.println(result);
 		PrintWriter out = response.getWriter();
 		out.println(json);
 		out.flush();

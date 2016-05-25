@@ -6,6 +6,7 @@
   <servlet>
     <servlet-name>factory</servlet-name>
     <servlet-class>servlet.factory.InitFactoryServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>factory</servlet-name>
