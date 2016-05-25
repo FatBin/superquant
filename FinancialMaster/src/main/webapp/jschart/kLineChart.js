@@ -5,6 +5,7 @@ var date = [];
 //数据意义：开盘(open)，收盘(close)，最低(lowest)，最高(highest)
 var values = []
 var volume = [];
+myChart.showloading();
 $.ajax({
 	type : "post",
 	async : false, //同步执行
@@ -23,7 +24,7 @@ $.ajax({
 	},
 	error : function(errorMsg) {
 		alert("不好意思，大爷，图表请求数据失败啦!");
-		myChart.hideLoading();
+		
 	}
 })
 
@@ -354,5 +355,5 @@ option = {
 		}
 	} ]
 };
-
+myChart.hideLoading();
 myChart.setOption(option);
