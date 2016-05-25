@@ -151,8 +151,21 @@
 				<i
 					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">买入策略</i>
 
-				<input class="form-control" size="16" type="text" value=""
-					style="width: 100px;">
+				<div class="dropdown" style="float: left;">
+					<button class="btn btn-default dropdown-toggle" type="button"
+						id="buyin" data-toggle="dropdown"
+						style="width: 100px; height: 34px;">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu"
+						aria-labelledby="dropdownMenu1">
+						<li role="presentation"><a role="menuitem" tabindex="-1"
+							href="#" onclick="changeContent1(this.innerHTML)">策略一</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1"
+							href="#" onclick="changeContent1(this.innerHTML)">策略二</a></li>
+					</ul>
+				</div>
+
 			</div>
 
 			<div style="margin-top: 10px;">
@@ -160,8 +173,22 @@
 				<i
 					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">卖出策略</i>
 
-				<input class="form-control" size="16" type="text" value=""
-					style="width: 100px;">
+				<div class="dropdown" style="float: left; margin-top: 10px;">
+					<button class="btn btn-default dropdown-toggle" type="button"
+						id="soldout" data-toggle="dropdown"
+						style="width: 100px; height: 34px;">
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu"
+						aria-labelledby="dropdownMenu1">
+						<li role="presentation"><a role="menuitem" tabindex="-1"
+							href="#" onclick="changeContent2(this.innerHTML)">策略一</a></li>
+						<li role="presentation"><a role="menuitem" tabindex="-1"
+							href="#" onclick="changeContent2(this.innerHTML)">策略二</a></li>
+					</ul>
+				</div>
+
+
 			</div>
 		</div>
 
@@ -175,8 +202,9 @@
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.js"></script>
 
 	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
 		charset="UTF-8"></script>
@@ -191,6 +219,17 @@
 			forceParse : 0,
 			format : 'yyyy-mm-dd'
 		});
+
+		function changeContent1(con) {
+			document.getElementById('buyin').innerHTML = con;
+		}
+
+		function changeContent2(con) {
+			document.getElementById('soldout').innerHTML = con;
+		}
+
+		document.getElementById('buyin').innerHTML = '';
+		document.getElementById('soldout').innerHTML = '';
 	</script>
 
 </body>
