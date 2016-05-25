@@ -20,9 +20,10 @@
 
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" style="height: 2000px;">
 
-	<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #4A433B;">
+	<nav class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -67,16 +68,64 @@
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
-	
+
 	<div>
-	<p style="margin-top:120px; font-size:22px; margin-left:180px;">股票列表</p>
-	<div style="width:850px; height:489px; margin-left:180px; background-color:rgb(239,239,239);">
-	</div>
+		<p style="margin-top: 120px; font-size: 22px; margin-left: 180px;">股票列表</p>
+		<div
+			style="width: 850px; height: 489px; margin-left: 180px;">
+
+			<!-- 股票列表 -->
+			<div>
+				<table id="senfe">
+					<thead>
+						<tr align="center" valign="middle">
+							<td width="200" height="23" bgcolor="#ccc">日期</td>
+							<td width="130" bgcolor="#ccc">开盘价</td>
+							<td width="130" bgcolor="#ccc">最高价</td>
+							<td width="130" bgcolor="#ccc">最低价</td>
+							<td width="130" bgcolor="#ccc">收盘价</td>
+							<td width="130" bgcolor="#ccc">成交量(股)</td>
+						</tr>
+					</thead>
+
+					<tbody id="group_one">
+						<%
+							for (int i = 0; i < 50; i++) {
+						%>
+						<tr>
+							<td height="23"><%=i + 1%></td>
+							<td height="23"></td>
+							<td height="23"></td>
+							<td height="23"></td>
+							<td height="23"></td>
+							<td height="23"></td>
+						</tr>
+						<%
+							}
+						%>
+
+					</tbody>
+				</table>
+
+			</div>
+			<div style="margin-left: 240px;">
+				<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
+					onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
+					页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
+					id="divFood"> </span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
+					value="1" style="width: 20px" />页<a>&nbsp;&nbsp;</a><a
+					onclick="page.aimPage();">跳转</a>
+			</div>
+		</div>
 	</div>
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
+	<script src="../js/table_pages.js"></script>
+
 </body>
+
 </html>
