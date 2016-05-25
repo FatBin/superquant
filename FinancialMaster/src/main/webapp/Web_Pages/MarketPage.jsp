@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="VO.StockMarketVO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -111,7 +111,7 @@
 
 		<!-- right part -->
 		<div
-			style="float: right; background-color: rgb(239, 239, 239); height: 1000px; width: 300px; margin-right: 40px; margin-top: 20px;">
+			style="float: right; background-color: rgb(239, 239, 239); height: 900px; width: 300px; margin-right: 40px; margin-top: 20px;">
 			<p>分析模块</p>
 		</div>
 
@@ -130,21 +130,32 @@
 						<td width="130" bgcolor="#ccc">最高价</td>
 						<td width="130" bgcolor="#ccc">最低价</td>
 						<td width="130" bgcolor="#ccc">收盘价</td>
-						<td width="130" bgcolor="#ccc">成交量(股)</td>
+						<td width="130" bgcolor="#ccc">成交量(百万股)</td>
 					</tr>
 				</thead>
 
+				<%!StockMarketVO sv;
+	String history_data[][];%>
+				<%
+					sv = (StockMarketVO) session.getAttribute("BenchMarket");
+					history_data = sv.getData();
+				%>
+
 				<tbody id="group_one">
 					<%
-						for (int i = 0; i < 50; i++) {
+						for (int i = 0; i < history_data.length; i++) {
 					%>
-					<tr>
-						<td height="23"><%=i + 1%></td>
-						<td height="23"></td>
-						<td height="23"></td>
-						<td height="23"></td>
-						<td height="23"></td>
-						<td height="23"></td>
+					<tr align="center" valign="middle">
+
+						<%
+							for (int j = 0; j < history_data[0].length; j++) {
+						%>
+
+						<td height="23"><%=history_data[i][j]%></td>
+
+						<%
+							}
+						%>
 					</tr>
 					<%
 						}
@@ -160,7 +171,7 @@
 				页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
 				id="divFood"> </span>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
-				value="1" style="width: 20px" />页<a>&nbsp;&nbsp;</a><a
+				value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
 				onclick="page.aimPage();">跳转</a>
 		</div>
 	</div>
