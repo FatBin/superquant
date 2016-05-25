@@ -72,30 +72,104 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div style="height: 100px;"></div>
-
-	<hr style="margin-top: 120px;" />
-
-	<div class="form-group">
-		<label for="dtp_input2" class="col-md-2 control-label">StartTime</label>
-		<div class="input-group date form_date col-md-5" data-date=""
-			data-date-format="dd MM yyyy" data-link-field="dtp_input2"
-			data-link-format="yyyy-mm-dd">
-
-			<input class="form-control" size="16" type="text" value="" readonly
-				style="width: 100px;"> <span class="input-group-addon"
-				style="float: left; height: 34px; width: 37px;"><span
-				class="glyphicon glyphicon-remove"></span></span> <span
-				class="input-group-addon"
-				style="float: left; height: 34px; width: 37px;"><span
-				class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
-		</div>
-		<input type="hidden" id="dtp_input2" value="" /><br />
+	<div
+		style="font-size: 28px; line-height: 35px; font-family: PingFangSC-Regular; margin-top: 150px; margin-left: 190px;">
+		策略⎡ <span>sss</span> ⎦
 	</div>
 
+	<hr style="margin-top: 10px; width: 900px;" />
+
+	<!-- 所有按钮的大块 -->
 	<div>
-		<h1 style="text-align: center; margin-top: 200px; color: black;">策略</h1>
+
+		<!-- 第一列的块 -->
+		<div id="first_col"
+			style="margin-left: 190px; margin-right: 40px; margin-bottom: -15px; float: left;">
+
+			<!-- 开始日期 -->
+			<div class="form-group">
+				<i
+					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">开始日期</i>
+				<div class="input-group date form_date col-md-5" data-date=""
+					data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+					data-link-format="yyyy-mm-dd">
+
+					<input class="form-control" size="16" type="text" value="" readonly
+						style="width: 100px;"> <span class="input-group-addon"
+						style="height: 34px; width: 37px;"><span
+						class="glyphicon glyphicon-remove"></span></span> <span
+						class="input-group-addon" style="height: 34px; width: 37px;"><span
+						class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
+				</div>
+				<input type="hidden" id="dtp_input2" value="" /><br />
+			</div>
+
+			<!-- 结束日期 -->
+			<div class="form-group" style="margin-top: -25px;">
+				<i
+					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">结束日期</i>
+				<div class="input-group date form_date col-md-5" data-date=""
+					data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+					data-link-format="yyyy-mm-dd">
+
+					<input class="form-control" size="16" type="text" value="" readonly
+						style="width: 100px;"> <span class="input-group-addon"
+						style="height: 34px; width: 37px;"><span
+						class="glyphicon glyphicon-remove"></span></span> <span
+						class="input-group-addon" style="height: 34px; width: 37px;"><span
+						class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
+				</div>
+				<input type="hidden" id="dtp_input2" value="" /><br />
+			</div>
+		</div>
+
+		<!-- 第二列的块 -->
+		<div id="second_col" style="float: left; margin-right: 40px;">
+			<!-- 选择股票 -->
+			<div>
+				<i
+					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">选择股票</i>
+
+				<input class="form-control" size="16" type="text" value=""
+					style="width: 100px;">
+			</div>
+
+			<div style="margin-top: 10px;">
+				<!-- 买卖股数 -->
+				<i
+					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">买卖股数</i>
+
+				<input class="form-control" size="16" type="text" value=""
+					style="width: 100px;">
+			</div>
+		</div>
+
+		<!-- 第三列的块 -->
+		<div id="second_col" style="float: left;">
+			<!-- 买入策略 -->
+			<div>
+				<i
+					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">买入策略</i>
+
+				<input class="form-control" size="16" type="text" value=""
+					style="width: 100px;">
+			</div>
+
+			<div style="margin-top: 10px;">
+				<!-- 卖出策略 -->
+				<i
+					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">卖出策略</i>
+
+				<input class="form-control" size="16" type="text" value=""
+					style="width: 100px;">
+			</div>
+		</div>
+
+		<!-- 修改按钮 -->
+		<div></div>
 	</div>
+
+	<hr style="margin-top: 10px; width: 900px;" />
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
@@ -103,11 +177,9 @@
 
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
+
 	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
 		charset="UTF-8"></script>
-	<script type="text/javascript"
-		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
-
 	<script type="text/javascript">
 		$('.form_date').datetimepicker({
 			weekStart : 1,
