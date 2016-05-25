@@ -61,6 +61,7 @@ public class LoginServlet extends HttpServlet {
 			request.getSession().setAttribute("User", user);
 		}
 		String result="[{'LoginResult':'"+LoginResult+"'}]";
+		System.out.println(result);
 		JSONArray json = new JSONArray(result);
 		PrintWriter out = response.getWriter();
 		out.println(json);
