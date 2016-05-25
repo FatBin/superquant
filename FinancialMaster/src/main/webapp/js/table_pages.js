@@ -118,7 +118,7 @@ Page.prototype.__updateTableRows__ = function() {
 	var cssColor = "";
 	divFood.appendChild(rightBar);
 	// //页脚显示分页结
-	
+
 };
 /**//*
 	 * 克隆原始操作行集合
@@ -137,3 +137,10 @@ window.onload = function() {
 
 // senfe("表格名称","奇数行背景","偶数行背景","鼠标经过背景","点击后背景");
 senfe("senfe", "#fff", "rgb(239,239,239)", "#ccc", "#f00");
+
+function senfe(o, a, b, c, d) {
+	var t = document.getElementById(o).getElementsByTagName("tr");
+	for (var i = 0; i < t.length; i++) {
+		t[i].style.backgroundColor = (t[i].sectionRowIndex % 2 == 0) ? a : b;
+	}
+}

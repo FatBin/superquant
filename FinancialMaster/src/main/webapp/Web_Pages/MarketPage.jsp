@@ -18,31 +18,8 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
-<style>
-.combox {
-	font-size: 28px;
-}
-
-#senfe {
-	border: none;
-}
-
-#senfe td {
-	border-right: none;
-	border-bottom: none;
-}
-</style>
 <script src="../js/echarts.min.js"></script>
 <script src="../js/jquery.min.js"></script>
-<script language="javascript">
-	function senfe(o, a, b, c, d) {
-		var t = document.getElementById(o).getElementsByTagName("tr");
-		for (var i = 0; i < t.length; i++) {
-			t[i].style.backgroundColor = (t[i].sectionRowIndex % 2 == 0) ? a
-					: b;
-		}
-	}
-</script>
 
 </head>
 
@@ -144,9 +121,7 @@
 	<div
 		style="float: left; height: 300px; width: 1000px; margin-left: 185px; margin-top: 20px;">
 
-
 		<div>
-
 			<table id="senfe" style="">
 				<thead>
 					<tr align="center" valign="middle">
