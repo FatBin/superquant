@@ -69,12 +69,4 @@
     <url-pattern>/Reg</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-     <servlet-name>GetKLineDataServlet</servlet-name>
-     <servlet-class>servlet.stockmarket.GetKLineDataServlet</servlet-class>
-  </servlet>
- <servlet-mapping>
-    <servlet-name>GetKLineDataServlet</servlet-name>
-    <url-pattern>/stockmarket/GetKLineDataServlet</url-pattern>
- </servlet-mapping>
 </web-app>

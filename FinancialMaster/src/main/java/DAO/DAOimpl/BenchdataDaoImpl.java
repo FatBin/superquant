@@ -23,23 +23,19 @@ public class BenchdataDaoImpl implements BenchdataDao{
 	@Override
 	public boolean insert(Benchdata benchdata) throws Exception {
 		Session session=DBconnection.getSession();
-		if(findByID(benchdata.getId())==null){
-			session.save(benchdata);
-			Transaction tx=session.beginTransaction();
-			tx.commit();
-			session.close();
-			return true;
-		}else{
-			return false;
-		}
+		session.save(benchdata);
+		Transaction tx=session.beginTransaction();
+		tx.commit();
+		session.close();
+		return true;
 	}
 
 	@Override
 	public Benchdata findByID(BenchdataId benchdataId) throws Exception {
 		Session session=DBconnection.getSession();
 		Criteria criteria=session.createCriteria(Benchdata.class);
-		criteria.add(Restrictions.eq("benchId", benchdataId.getBenchId()));
-		criteria.add(Restrictions.eq("date", benchdataId.getDate()));
+		criteria.add(Restrictions.eq("id.benchId", benchdataId.getBenchId()));
+		criteria.add(Restrictions.eq("id.date", benchdataId.getDate()));
 		List benchdataList=criteria.list();
 		session.close();
 		if(benchdataList.size()==0){

@@ -1,68 +1,50 @@
 package DAO.DAOimpl;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
+import DAO.connection.DBconnection;
+import DAO.dao.UserDao;
+import DAO.pojo.Bench;
 import DAO.pojo.User;
 
-/**
- * Home object for domain model class User.
- * @see .User
- * @author Hibernate Tools
- */
-public class UserDaoImpl {
+public class UserDaoImpl implements UserDao{
 
-	private static final Log log = LogFactory.getLog(UserDaoImpl.class);
+	@Override
+	public boolean insert(User user) throws Exception {
+		Session session=DBconnection.getSession();
+		session.save(user);
+		Transaction tx=session.beginTransaction();
+		tx.commit();
+		session.close();
+		return true;
+	}
 
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public void persist(User transientInstance) {
-		log.debug("persisting User instance");
-		try {
-			entityManager.persist(transientInstance);
-			log.debug("persist successful");
-		} catch (RuntimeException re) {
-			log.error("persist failed", re);
-			throw re;
+	@Override
+	public User findByID(String userId) throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(User.class);
+		criteria.add(Restrictions.eq("username", userId));
+		List UserList=criteria.list();
+		session.close();
+		if(UserList.size()==0){
+			return null;
+		}else{
+			return (User)UserList.get(0);
 		}
 	}
 
-	public void remove(User persistentInstance) {
-		log.debug("removing User instance");
-		try {
-			entityManager.remove(persistentInstance);
-			log.debug("remove successful");
-		} catch (RuntimeException re) {
-			log.error("remove failed", re);
-			throw re;
-		}
-	}
-
-	public User merge(User detachedInstance) {
-		log.debug("merging User instance");
-		try {
-			User result = entityManager.merge(detachedInstance);
-			log.debug("merge successful");
-			return result;
-		} catch (RuntimeException re) {
-			log.error("merge failed", re);
-			throw re;
-		}
-	}
-
-	public User findById(String id) {
-		log.debug("getting User instance with id: " + id);
-		try {
-			User instance = entityManager.find(User.class, id);
-			log.debug("get successful");
-			return instance;
-		} catch (RuntimeException re) {
-			log.error("get failed", re);
-			throw re;
-		}
+	@Override
+	public List findAll() throws Exception {
+		Session session=DBconnection.getSession();
+		Criteria criteria=session.createCriteria(User.class);
+		List UserList=criteria.list();
+		session.close();
+		return UserList;
+		
 	}
 }

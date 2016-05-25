@@ -14,4 +14,7 @@ public interface UserStockDao {
 	
 	//get all UserStock data
 	public List findAll()throws Exception;
+	
+	//delete the UserStock data
+	public boolean delete(UserStockId userStockId)throws Exception;
 }

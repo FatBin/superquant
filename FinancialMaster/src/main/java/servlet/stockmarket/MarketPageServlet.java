@@ -33,14 +33,18 @@ public class MarketPageServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		StockMarketBLService sb=new StockMarketBL();
+		sv=sb.getStockMarket("hs300", date_enum.TenYear);
+	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		InitFactory factory=InitFactory.getFactory();
-//		StockMarketInfo sb=factory.getStockMarketBL();
-		StockMarketBLService sb=new StockMarketBL();
-		sv=sb.getStockMarket("hs300", date_enum.TenYear);
+	
 		request.getSession().setAttribute("BenchMarket", sv);
 		response.sendRedirect(request.getContextPath()+"/Web_Pages/MarketPage.jsp");
 	}
@@ -49,7 +53,7 @@ public class MarketPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(true){
+		if(request.getParameter("id").equals("kline")){
 			String historydata[][]=sv.getData();
 			String data="[";
 			for (int i = historydata.length-1; i >=0 ; i--) {
@@ -66,7 +70,6 @@ public class MarketPageServlet extends HttpServlet {
 			out.flush();
 			out.close();
 		}
-		doGet(request, response);
 	}
 
 }

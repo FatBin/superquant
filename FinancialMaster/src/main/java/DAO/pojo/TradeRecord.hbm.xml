@@ -12,7 +12,7 @@
                 <column name="date" length="20" />
             </key-property>
         </composite-id>
-        <property name="open" type="float">
+        <property name="open" type="double">
             <column name="open" precision="12" scale="0" not-null="true" />
         </property>
         <property name="close" type="double">

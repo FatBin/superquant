@@ -13,6 +13,7 @@ public class DBconnection {
 			configuration=new Configuration().configure(config);
 			sessionFactory=configuration.buildSessionFactory();
 		} catch (Exception e) {
+			sessionFactory=null;
 			e.printStackTrace();
 		}
 

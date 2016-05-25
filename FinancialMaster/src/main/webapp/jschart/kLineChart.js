@@ -5,6 +5,7 @@ var date = [];
 //数据意义：开盘(open)，收盘(close)，最低(lowest)，最高(highest)
 var values = []
 var volume = [];
+
 $.ajax({
 	type : "post",
 	async : false, //同步执行

@@ -1,5 +1,40 @@
 package DAO.DAOfactory;
 
+import DAO.DaoProxy.BenchDaoProxy;
+import DAO.DaoProxy.BenchdataDaoProxy;
+import DAO.DaoProxy.StockDaoProxy;
+import DAO.DaoProxy.TradeRecordDaoProxy;
+import DAO.DaoProxy.UserDaoProxy;
+import DAO.DaoProxy.UserStockDaoProxy;
+import DAO.DaoProxy.UserStrategyDaoProxy;
+import DAO.dao.UserDao;
+
 public class DaoFactory {
-//	public stati
+	public static BenchDaoProxy getBenchDaoProxy(){
+		return new BenchDaoProxy();
+	}
+	
+	public static BenchdataDaoProxy getBenchdataDaoProxy(){
+		return new BenchdataDaoProxy();
+	}
+	
+	public static StockDaoProxy getStockDaoProxy(){
+		return new StockDaoProxy();
+	}
+	
+	public static TradeRecordDaoProxy getTradeRecordDaoProxy(){
+		return new TradeRecordDaoProxy();
+	}
+	
+	public static UserDaoProxy getUserDaoProxy() {
+		return new UserDaoProxy();
+	}
+	
+	public static UserStockDaoProxy getUserStockDaoProxy(){
+		return new UserStockDaoProxy();
+	}
+	
+	public static UserStrategyDaoProxy getUserStrategyDaoProxy(){
+		return new UserStrategyDaoProxy();
+	}
 }

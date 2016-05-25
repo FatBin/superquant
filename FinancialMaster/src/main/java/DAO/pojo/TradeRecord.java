@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class TradeRecord implements java.io.Serializable {
 
 	private TradeRecordId id;
-	private float open;
+	private double open;
 	private double close;
 	private double high;
 	private double low;
@@ -57,11 +57,11 @@ public class TradeRecord implements java.io.Serializable {
 	}
 
 	@Column(name = "open", nullable = false, precision = 12, scale = 0)
-	public float getOpen() {
+	public double getOpen() {
 		return this.open;
 	}
 
-	public void setOpen(float open) {
+	public void setOpen(double open) {
 		this.open = open;
 	}
 
