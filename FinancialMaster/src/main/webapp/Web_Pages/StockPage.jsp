@@ -20,9 +20,10 @@
 
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index" style="height: 2000px;">
 
-	<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #4A433B;">
+	<nav class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -67,16 +68,18 @@
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
-	
-	<div>
-	<p style="margin-top:120px; font-size:22px; margin-left:180px;">股票列表</p>
-	<div style="width:850px; height:489px; margin-left:180px; background-color:rgb(239,239,239);">
-	</div>
-	</div>
 
+	<div>
+		<p style="margin-top: 120px; font-size: 22px; margin-left: 180px;">股票列表</p>
+		<div
+			style="width: 850px; height: 489px; margin-left: 180px; background-color: rgb(239, 239, 239);">
+		</div>
+	</div>
+	
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 </body>
+
 </html>
