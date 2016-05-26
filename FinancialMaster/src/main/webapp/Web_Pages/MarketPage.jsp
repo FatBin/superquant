@@ -72,17 +72,18 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<!-- 
+	
 	<div style="margin-top: 140px; margin-left: 140px;">
 		<form name="stockName">
-			<select class="combox">
+			<select class="form-control" style="width:150px;">
 				<option value="000001">上证指数(000001)</option>
 				<option value="000300">沪深300(000300)</option>
 			</select>
 		</form>
 	</div>
- -->
+ 
 
+<!-- 
 	<div class="dropdown" style="margin-top: 140px; margin-left: 140px;">
 		<button class="btn btn-default dropdown-toggle" type="button"
 			id="dropdownMenu1" data-toggle="dropdown">
@@ -95,6 +96,8 @@
 				href="#" onclick="changeToHS()">沪深300 (000300)</a></li>
 		</ul>
 	</div>
+-->
+
 
 	<div>
 		<!-- left part -->
@@ -198,18 +201,6 @@
     <script> getKLine("market","hs300");</script>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
-
-	<script>
-		function changeToSZ() {
-			//	document.getElementById("dropdownMenu1").innerHTML = "上证指数(000001) ▾";
-			$(".dropdown-toggle").html("上证指数(000001) ▾");
-		}
-
-		function changeToHS() {
-			//  document.getElementById("dropdownMenu1").innerHTML = "沪深300 (000300) ▾";
-			$(".dropdown-toggle").html("沪深300 (000300) ▾");
-		}
-	</script>
 
 </body>
 </html>

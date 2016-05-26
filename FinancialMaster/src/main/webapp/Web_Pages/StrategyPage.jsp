@@ -151,19 +151,16 @@
 				<i
 					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">买入策略</i>
 
-				<div class="dropdown" style="float: left;">
-					<button class="btn btn-default dropdown-toggle" type="button"
-						id="buyin" data-toggle="dropdown"
-						style="width: 100px; height: 34px;">
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu"
-						aria-labelledby="dropdownMenu1">
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#" onclick="changeContent1(this.innerHTML)">策略一</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#" onclick="changeContent1(this.innerHTML)">策略二</a></li>
-					</ul>
+				<div style="float: left;">
+
+					<form name="buyin">
+						<select class="form-control" style="width: 100px;">
+							<option value="000001">策略一</option>
+							<option value="000300">策略二</option>
+							<option value="000300">策略三</option>
+						</select>
+					</form>
+
 				</div>
 
 			</div>
@@ -171,23 +168,19 @@
 			<div style="margin-top: 10px;">
 				<!-- 卖出策略 -->
 				<i
-					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">卖出策略</i>
+					style="font-size: 14px; line-height: 55px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">卖出策略</i>
 
-				<div class="dropdown" style="float: left; margin-top: 10px;">
-					<button class="btn btn-default dropdown-toggle" type="button"
-						id="soldout" data-toggle="dropdown"
-						style="width: 100px; height: 34px;">
-						<span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu"
-						aria-labelledby="dropdownMenu1">
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#" onclick="changeContent2(this.innerHTML)">策略一</a></li>
-						<li role="presentation"><a role="menuitem" tabindex="-1"
-							href="#" onclick="changeContent2(this.innerHTML)">策略二</a></li>
-					</ul>
+				<div style="float: left; margin-top: 10px;">
+
+					<form name="soldout">
+						<select class="form-control" style="width: 100px;">
+							<option value="000001">策略一</option>
+							<option value="000300">策略二</option>
+							<option value="000300">策略三</option>
+						</select>
+					</form>
+
 				</div>
-
 
 			</div>
 		</div>
@@ -219,17 +212,6 @@
 			forceParse : 0,
 			format : 'yyyy-mm-dd'
 		});
-
-		function changeContent1(con) {
-			document.getElementById('buyin').innerHTML = con;
-		}
-
-		function changeContent2(con) {
-			document.getElementById('soldout').innerHTML = con;
-		}
-
-		document.getElementById('buyin').innerHTML = '';
-		document.getElementById('soldout').innerHTML = '';
 	</script>
 
 </body>

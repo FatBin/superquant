@@ -71,35 +71,43 @@
 
 	<div>
 		<p style="margin-top: 120px; font-size: 22px; margin-left: 180px;">股票列表</p>
-		<div
-			style="width: 850px; height: 489px; margin-left: 180px;">
+		<div style="width: 850px; height: 489px; margin-left: 180px;">
 
 			<!-- 股票列表 -->
 			<div>
 				<table id="senfe">
 					<thead>
 						<tr align="center" valign="middle">
-							<td width="200" height="23" bgcolor="#ccc">日期</td>
+							<td width="200" height="23" bgcolor="#ccc">股票代码</td>
+							<td width="130" bgcolor="#ccc">股票名称</td>
 							<td width="130" bgcolor="#ccc">开盘价</td>
 							<td width="130" bgcolor="#ccc">最高价</td>
 							<td width="130" bgcolor="#ccc">最低价</td>
 							<td width="130" bgcolor="#ccc">收盘价</td>
-							<td width="130" bgcolor="#ccc">成交量(股)</td>
+							<td width="130" bgcolor="#ccc">交易量(百万股)</td>
+							<td width="130" bgcolor="#ccc">涨跌幅</td>
 						</tr>
 					</thead>
 
 					<tbody id="group_one">
+						
 						<%
 							for (int i = 0; i < 50; i++) {
 						%>
-						<tr>
+						
+						<tr align="center" valign="middle">
+						
+							<%
+								for (int j = 0; j < 8; j++) {
+							%>
+						
 							<td height="23"><%=i + 1%></td>
-							<td height="23"></td>
-							<td height="23"></td>
-							<td height="23"></td>
-							<td height="23"></td>
-							<td height="23"></td>
+						
+							<%
+								}
+							%>
 						</tr>
+						
 						<%
 							}
 						%>
@@ -114,7 +122,7 @@
 					页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
 					id="divFood"> </span>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
-					value="1" style="width: 20px" />页<a>&nbsp;&nbsp;</a><a
+					value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
 					onclick="page.aimPage();">跳转</a>
 			</div>
 		</div>
