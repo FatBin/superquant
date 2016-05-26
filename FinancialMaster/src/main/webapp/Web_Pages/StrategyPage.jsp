@@ -186,33 +186,66 @@
 		</div>
 
 		<!-- 修改按钮 -->
-		<div></div>
-	</div>
+		<div id="modify-div" style="float: left; margin-left: 80px;">
+			<input type="button" class="btn" name="modifybtn" value="修改"
+				style="width: 50px; height: 29px; background-color: transparent; border: 1px solid rgb(204, 204, 204); margin-top: 20px;"
+				onclick="showConfirmbtn()" />
+		</div>
 
-	<hr style="margin-top: 10px; width: 900px;" />
+		<div id="confirm-div"
+			style="float: left; margin-left: 80px; margin-top: 5px; display: none;">
+			<div>
+				<input type="button" class="btn" name="confirmbtn" value="确认"
+					style="width: 50px; height: 29px; background-color: transparent; border: 1px solid rgb(204, 204, 204);"
+					onclick="showModifybtn()" />
+			</div>
 
-	<!-- Plugin JavaScript -->
-	<script src="../js/classie.js"></script>
-	<script src="../js/cbpAnimatedHeader.js"></script>
+			<div>
+				<input type="reset" class="btn" name="resetbtn" value="取消"
+					style="width: 50px; height: 29px; background-color: transparent; border: 1px solid rgb(204, 204, 204); margin-top: 10px;"
+					onclick="showModifybtn()"/>
+			</div>
+		</div>
 
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
-	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
+		<hr style="margin-top: 10px; width: 900px;" />
+		
+		<div style="width:900px;height:500px;margin-left:180px; background-color:gray;"></div>
+		
 
-	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
-		charset="UTF-8"></script>
-	<script type="text/javascript">
-		$('.form_date').datetimepicker({
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			minView : 2,
-			forceParse : 0,
-			format : 'yyyy-mm-dd'
-		});
-	</script>
+		<!-- Plugin JavaScript -->
+		<script src="../js/classie.js"></script>
+		<script src="../js/cbpAnimatedHeader.js"></script>
 
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/jquery.js"></script>
+
+		<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
+			charset="UTF-8"></script>
+		<script type="text/javascript">
+			$('.form_date').datetimepicker({
+				weekStart : 1,
+				todayBtn : 1,
+				autoclose : 1,
+				todayHighlight : 1,
+				startView : 2,
+				minView : 2,
+				forceParse : 0,
+				format : 'yyyy-mm-dd'
+			});
+
+			function showModifybtn() {
+				document.getElementById("confirm-div").style.display="none";
+				document.getElementById("modify-div").style.display="block"
+					;
+			}
+
+			function
+					showConfirmbtn() {
+				document.getElementById("modify-div").style.display="none";
+				document.getElementById("confirm-div").style.display="block";
+			}
+		
+				</script>
 </body>
 </html>
