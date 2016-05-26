@@ -37,7 +37,7 @@ public class UserData implements UserDataService{
 		try {
 			User temp=userDao.findByID(user.getUsername());
 			if(temp!=null){
-				if(temp.getUsername()==user.getUsername()){
+				if(temp.getUserpassword().equals(user.getUserpassword())){
 					return ManageState.Succeed;
 				}else{
 					return ManageState.Fail;
