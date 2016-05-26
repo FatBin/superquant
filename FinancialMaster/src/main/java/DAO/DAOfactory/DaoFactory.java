@@ -1,4 +1,7 @@
 package DAO.DAOfactory;
+/*
+ *in this project the strategy of factory is limited,so there is just one proxy
+ */
 
 import DAO.DaoProxy.BenchDaoProxy;
 import DAO.DaoProxy.BenchdataDaoProxy;

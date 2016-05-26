@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 public class DBconnection {
 	private static final String config="DAO/pojo/hibernate.cfg.xml";
 	private Configuration configuration;
-	private static SessionFactory sessionFactory;
+	public static SessionFactory sessionFactory;
 	public DBconnection(){
 		try {
 			configuration=new Configuration().configure(config);
