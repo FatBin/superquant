@@ -53,7 +53,8 @@ public class MarketPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("id").equals("kline")){
+		System.out.println(request.getParameter("id"));
+		if(request.getParameter("id").equals("hs300")){
 			String historydata[][]=sv.getData();
 			String data="[";
 			for (int i = historydata.length-1; i >=0 ; i--) {

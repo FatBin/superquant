@@ -195,7 +195,7 @@
 	<script src="../js/table_pages.js"></script>
 
 	<script src="../jschart/kLineChart.js"></script>
-
+    <script> getKLine("market","hs300");</script>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 

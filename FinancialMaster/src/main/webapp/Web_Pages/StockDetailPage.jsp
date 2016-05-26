@@ -123,7 +123,7 @@
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 	<script src="../jschart/kLineChart.js"></script>
-
+    <script type="text/javascript"> getKLine("market","hs300");</script>
 	<script src="../js/bootstrapSwitch.js"></script>
 
 </body>
