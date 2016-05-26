@@ -14,5 +14,5 @@ public interface BenchRecordService {
 	/*
 	 * get the lastest trade record
 	 */
-	public List getLastestRecord(String benchId) throws Exception;
+	public Benchdata getLastestRecord(String benchId) throws Exception;
 }
