@@ -122,6 +122,14 @@
 		style="float: left; height: 300px; width: 1000px; margin-left: 185px; margin-top: 20px;">
 
 		<div>
+
+			<%!StockMarketVO sv;
+			   String history_data[][];%>
+			<%
+				sv = (StockMarketVO) session.getAttribute("BenchMarket");
+				history_data = sv.getData();
+			%>
+
 			<table id="senfe" style="">
 				<thead>
 					<tr align="center" valign="middle">
@@ -133,13 +141,6 @@
 						<td width="130" bgcolor="#ccc">成交量(百万股)</td>
 					</tr>
 				</thead>
-
-				<%!StockMarketVO sv;
-	String history_data[][];%>
-				<%
-					sv = (StockMarketVO) session.getAttribute("BenchMarket");
-					history_data = sv.getData();
-				%>
 
 				<tbody id="group_one">
 					<%
