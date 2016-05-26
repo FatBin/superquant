@@ -144,3 +144,30 @@ function senfe(o, a, b, c, d) {
 		t[i].style.backgroundColor = (t[i].sectionRowIndex % 2 == 0) ? a : b;
 	}
 }
+
+function mouseIn(rowpos) {
+	rowpos = rowpos % 10;
+	if(rowpos == 0)
+		rowpos = 10;
+	
+	var t = document.getElementById("senfe").getElementsByTagName("tr");
+	t[rowpos].style.backgroundColor = "#ccc";
+}
+
+function mouseOut(rowpos) {
+	rowpos = rowpos % 10;
+	if(rowpos == 0)
+		rowpos = 10;
+	
+	var t = document.getElementById("senfe").getElementsByTagName("tr");
+	t[rowpos].style.backgroundColor = (t[rowpos].sectionRowIndex % 2 == 0) ? "#fff"
+			: "rgb(239,239,239)";
+}
+
+// link为跳转到界面的地址
+function mouseClick(rowpos, link){
+	var t = document.getElementById("senfe").getElementsByTagName("tr");
+	
+//	alert(t[rowpos].getElementsByTagName("td")[0].innerHTML);
+	window.location.href = link;
+}

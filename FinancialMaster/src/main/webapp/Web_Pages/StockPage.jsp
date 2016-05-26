@@ -90,24 +90,25 @@
 					</thead>
 
 					<tbody id="group_one">
-						
+
 						<%
 							for (int i = 0; i < 50; i++) {
 						%>
-						
-						<tr align="center" valign="middle">
-						
+
+						<tr align="center" valign="middle" onmouseover="mouseIn(<%=i+1%>);"
+							onmouseout="mouseOut(<%=i+1%>);" onclick="mouseClick(<%=i+1%>,'StockDetailPage.jsp')" >
+
 							<%
 								for (int j = 0; j < 8; j++) {
 							%>
-						
-							<td height="23"><%=i + 1%></td>
-						
+
+							<td height="23">(<%=i + 1%>, <%=j + 1%>)</td>
+
 							<%
 								}
 							%>
 						</tr>
-						
+
 						<%
 							}
 						%>

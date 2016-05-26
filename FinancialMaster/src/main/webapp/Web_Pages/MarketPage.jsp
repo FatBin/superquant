@@ -72,32 +72,15 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	
+
 	<div style="margin-top: 140px; margin-left: 140px;">
 		<form name="stockName">
-			<select class="form-control" style="width:150px;">
+			<select class="form-control" style="width: 150px;">
 				<option value="000001">上证指数(000001)</option>
 				<option value="000300">沪深300(000300)</option>
 			</select>
 		</form>
 	</div>
- 
-
-<!-- 
-	<div class="dropdown" style="margin-top: 140px; margin-left: 140px;">
-		<button class="btn btn-default dropdown-toggle" type="button"
-			id="dropdownMenu1" data-toggle="dropdown">
-			上证指数(000001) <span class="caret"></span>
-		</button>
-		<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-			<li role="presentation"><a role="menuitem" tabindex="-1"
-				href="#" onclick="changeToSZ()">上证指数(000001)</a></li>
-			<li role="presentation"><a role="menuitem" tabindex="-1"
-				href="#" onclick="changeToHS()">沪深300 (000300)</a></li>
-		</ul>
-	</div>
--->
-
 
 	<div>
 		<!-- left part -->
@@ -127,7 +110,7 @@
 		<div>
 
 			<%!StockMarketVO sv;
-			   String history_data[][];%>
+	String history_data[][];%>
 			<%
 				sv = (StockMarketVO) session.getAttribute("BenchMarket");
 				history_data = sv.getData();
@@ -149,21 +132,16 @@
 					<%
 						for (int i = 0; i < history_data.length; i++) {
 					%>
-					<tr align="center" valign="middle">
+					<tr align="center" valign="middle" onmouseover="mouseIn(<%=i + 1%>);"
+						onmouseout="mouseOut(<%=i + 1%>);">
 
-						<%
-							for (int j = 0; j < history_data[0].length; j++) {
-						%>
+						<%for (int j = 0; j < history_data[0].length; j++) {%>
 
 						<td height="23"><%=history_data[i][j]%></td>
 
-						<%
-							}
-						%>
+						<%}%>
 					</tr>
-					<%
-						}
-					%>
+					<%}%>
 
 				</tbody>
 			</table>
