@@ -3,6 +3,7 @@ package DAO.test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -163,17 +164,23 @@ public class test {
 		/*
 		 * test BenchDataDaoService
 		 */
-		try {
-			BenchDataDaoService benchDataDaoService=new BenchdataDaoProxy();
-			List list=benchDataDaoService.getBenchRecord("sh000300", "2014-11-24", "2015-01-02");
-			for(int i=0;i<list.size();i++){
-				Benchdata benchdata=(Benchdata) list.get(i);
-				System.out.println(benchdata.getId().getDate());
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
+//		try {
+//			BenchDataDaoService benchDataDaoService=new BenchdataDaoProxy();
+//			List list=benchDataDaoService.getBenchRecord("sh000300", "2014-11-24", "2015-01-02");
+//			for(int i=0;i<list.size();i++){
+//				Benchdata benchdata=(Benchdata) list.get(i);
+//				System.out.println(benchdata.getId().getDate());
+//			}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		}
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+		
+		Calendar calendar=Calendar.getInstance();
+//		System.out.println(calendar.get());
 	}
 
 }
