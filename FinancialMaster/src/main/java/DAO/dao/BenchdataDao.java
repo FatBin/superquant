@@ -14,4 +14,10 @@ public interface BenchdataDao {
 	
 	//get all benchdata 
 	public List findAll()throws Exception;
+	
+	/*
+	 * get the trade record according to hql
+	 */
+	public List getBenchData(String hql)throws Exception;
+	
 }

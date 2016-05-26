@@ -2,11 +2,5 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-  <table-filter match-catalog="superquant" match-name="bench"/>
-  <table-filter match-catalog="superquant" match-name="benchdata"/>
-  <table-filter match-catalog="superquant" match-name="stock"/>
-  <table-filter match-catalog="superquant" match-name="trade_record"/>
-  <table-filter match-catalog="superquant" match-name="user"/>
-  <table-filter match-catalog="superquant" match-name="user_stock"/>
-  <table-filter match-catalog="superquant" match-name="user_strategy"/>
+  <table-filter match-catalog="superquant" match-name="benchrecord"/>
 </hibernate-reverse-engineering>
