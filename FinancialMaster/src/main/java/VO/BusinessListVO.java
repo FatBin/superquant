@@ -2,21 +2,21 @@ package VO;
 
 import java.util.ArrayList;
 
-import PO.industryPO;
+import PO.industriesPO;
 
 public class BusinessListVO {
 
-	private ArrayList<industryPO> businessList;
+	private ArrayList<industriesPO> businessList;
 
 	public BusinessListVO() {
 		super();
 	}
 
-	public ArrayList<industryPO> getBusinessList() {
+	public ArrayList<industriesPO> getBusinessList() {
 		return businessList;
 	}
 
-	public void setBusinessList(ArrayList<industryPO> businessList) {
+	public void setBusinessList(ArrayList<industriesPO> businessList) {
 		this.businessList = businessList;
 	}			
 	

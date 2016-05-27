@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
-import PO.industryPO;
+import PO.industriesPO;
 import VO.BusinessListVO;
 import web.bl.businessImpl.BusinessImpl;
 import web.blservice.businessInfo.BusinessInfo;
@@ -53,12 +53,12 @@ public class BusinessPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<industryPO> industryPOs=businessListVO.getBusinessList();
+		ArrayList<industriesPO> industryPOs=businessListVO.getBusinessList();
 		int size=industryPOs.size();
 		double[] ups_and_downs=new double[size];
 		String[] name=new String[size];
 		int index=0;
-		for (industryPO po : industryPOs) {
+		for (industriesPO po : industryPOs) {
 			ups_and_downs[index]=po.getRise_fall();
 			name[index]=po.getIndustry();
 			index++;

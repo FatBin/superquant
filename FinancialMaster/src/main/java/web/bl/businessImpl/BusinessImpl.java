@@ -2,7 +2,7 @@ package web.bl.businessImpl;
 
 import java.util.ArrayList;
 
-import PO.industryPO;
+import PO.industriesPO;
 import VO.BusinessListVO;
 import VO.BusinessVO;
 import data.IndustryData.IndustryData;
@@ -14,7 +14,7 @@ public class BusinessImpl implements BusinessInfo {
 	@Override
 	public BusinessListVO getBusinessList() {
 		IndustryDataService industryDataService=new IndustryData();
-		ArrayList<industryPO> industryPOs=industryDataService.getIndustryData();
+		ArrayList<industriesPO> industryPOs=industryDataService.getIndustryData();
 		BusinessListVO businessListVO=new BusinessListVO();
 		businessListVO.setBusinessList(industryPOs);
 		return businessListVO;
