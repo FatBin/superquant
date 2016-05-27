@@ -17,11 +17,13 @@ import dataservice.UserDataService.UserStrategyDataService;
 public class UserStrategyData implements UserStrategyDataService{
 
 	@Override
-	public ManageState addStrategy(String userId, String strategy) {
+	public ManageState addStrategy(String userId,String stockId, String strategy,String starttime,
+			String endtime,int cost,int frequency,double weight,String buystrategy,String sellstrategy,String otherstrategy) {
 		UserStrategyDao userStrategyDao=DaoFactory.getUserStrategyDaoProxy();
 		try {
-			UserStrategyId userStrategyId=new UserStrategyId(userId,strategy);
-			UserStrategy userStrategy=new UserStrategy(userStrategyId);
+			UserStrategyId userStrategyId=new UserStrategyId(userId,stockId,strategy);
+			UserStrategy userStrategy=new UserStrategy(userStrategyId,starttime,
+					endtime,cost,frequency,weight,buystrategy,sellstrategy,otherstrategy);
 			if (userStrategyDao.insert(userStrategy)) {
 				return ManageState.Succeed;
 			}else {
@@ -33,10 +35,10 @@ public class UserStrategyData implements UserStrategyDataService{
 	}
 
 	@Override
-	public ManageState deleteStrategy(String userId, String strategy) {
+	public ManageState deleteStrategy(String userId, String stockId,String strategy) {
 		UserStrategyDao userStrategyDao=DaoFactory.getUserStrategyDaoProxy();
 		try {
-			UserStrategyId userStrategyId=new UserStrategyId(userId, strategy);
+			UserStrategyId userStrategyId=new UserStrategyId(userId, stockId,strategy);
 			if (userStrategyDao.delete(userStrategyId)) {
 				return ManageState.Succeed;
 			}else {
@@ -55,7 +57,7 @@ public class UserStrategyData implements UserStrategyDataService{
 			Iterator iterator=userStrategyDao.findAll().iterator();
 			while (iterator.hasNext()) {
 				UserStrategy userStrategy=(UserStrategy)iterator.next();
-				if (userStrategy.getId().getUserName().equals(userId)) {
+				if (userStrategy.getId().getUserId().equals(userId)) {
 					arrayList.add(userStrategy);
 				}
 			}

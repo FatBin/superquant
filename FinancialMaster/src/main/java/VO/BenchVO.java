@@ -1,19 +1,20 @@
 package VO;
 
 public class BenchVO {
-	     String[][] data;//历史数据
+	    private String[][] data;//历史数据
 	     //历史数据顺序依次是：日期，开盘价，最高价，最低价，收盘价，成交量（百万股），成交额（亿元）
-	     String volume;//成交量
-	     String money;//成交额
-	     double changeRange;//涨跌量
-	     double ups_and_downs;//涨跌幅
-	     double close;//昨收
-	     double open;//今开
-	     double high;//最高价
-	     double low; //最低价
-	     double lastest_price;//最新价
-	     String time;//数据时间
-	     boolean isStop;//是否停盘
+		private double now;//现在的价格
+		private double rise_fall_price;//涨跌价
+		private double rise_fall_percent;//涨跌率
+		private double high;//最高价
+		private double low;//最低价
+		private double open;//开盘价
+		private double yesterday_close;//昨天收盘价
+		private String price;//成交额
+		private String volume;//成交量
+		private String rise_company;//价格增长的公司
+		private String fall_company;//价格降低的公司
+		private String company;//不增不降的公司
 		public BenchVO() {
 			super();
 		}
@@ -23,41 +24,23 @@ public class BenchVO {
 		public void setData(String[][] data) {
 			this.data = data;
 		}
-		public String getVolume() {
-			return volume;
+		public double getNow() {
+			return now;
 		}
-		public void setVolume(String volume) {
-			this.volume = volume;
+		public void setNow(double now) {
+			this.now = now;
 		}
-		public String getMoney() {
-			return money;
+		public double getRise_fall_price() {
+			return rise_fall_price;
 		}
-		public void setMoney(String money) {
-			this.money = money;
+		public void setRise_fall_price(double rise_fall_price) {
+			this.rise_fall_price = rise_fall_price;
 		}
-		public double getChangeRange() {
-			return changeRange;
+		public double getRise_fall_percent() {
+			return rise_fall_percent;
 		}
-		public void setChangeRange(double changeRange) {
-			this.changeRange = changeRange;
-		}
-		public double getUps_and_downs() {
-			return ups_and_downs;
-		}
-		public void setUps_and_downs(double ups_and_downs) {
-			this.ups_and_downs = ups_and_downs;
-		}
-		public double getClose() {
-			return close;
-		}
-		public void setClose(double close) {
-			this.close = close;
-		}
-		public double getOpen() {
-			return open;
-		}
-		public void setOpen(double open) {
-			this.open = open;
+		public void setRise_fall_percent(double rise_fall_percent) {
+			this.rise_fall_percent = rise_fall_percent;
 		}
 		public double getHigh() {
 			return high;
@@ -71,26 +54,47 @@ public class BenchVO {
 		public void setLow(double low) {
 			this.low = low;
 		}
-		public double getLastest_price() {
-			return lastest_price;
+		public double getOpen() {
+			return open;
 		}
-		public void setLastest_price(double lastest_price) {
-			this.lastest_price = lastest_price;
+		public void setOpen(double open) {
+			this.open = open;
 		}
-		public String getTime() {
-			return time;
+		public double getYesterday_close() {
+			return yesterday_close;
 		}
-		public void setTime(String time) {
-			this.time = time;
+		public void setYesterday_close(double yesterday_close) {
+			this.yesterday_close = yesterday_close;
 		}
-		public boolean isStop() {
-			return isStop;
+		public String getPrice() {
+			return price;
 		}
-		public void setStop(boolean isStop) {
-			this.isStop = isStop;
+		public void setPrice(String price) {
+			this.price = price;
 		}
-	     
-	     
-	     
-	     
+		public String getVolume() {
+			return volume;
+		}
+		public void setVolume(String volume) {
+			this.volume = volume;
+		}
+		public String getRise_company() {
+			return rise_company;
+		}
+		public void setRise_company(String rise_company) {
+			this.rise_company = rise_company;
+		}
+		public String getFall_company() {
+			return fall_company;
+		}
+		public void setFall_company(String fall_company) {
+			this.fall_company = fall_company;
+		}
+		public String getCompany() {
+			return company;
+		}
+		public void setCompany(String company) {
+			this.company = company;
+		}
+		
 }

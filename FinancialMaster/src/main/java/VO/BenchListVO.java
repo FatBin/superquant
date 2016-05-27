@@ -4,7 +4,7 @@ public class BenchListVO {
 
 
 
-	String[] benchList;
+	private String[] benchList;
 
 	public BenchListVO() {}
 

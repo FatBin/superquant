@@ -8,6 +8,8 @@ import java.util.List;
 import DAO.pojo.Bench;
 import DAO.pojo.Benchdata;
 import DAO.pojo.BenchdataId;
+import ENUM.ManageState;
+import PO.benchCurrentDataPO;
 import VO.BenchListVO;
 import VO.BenchVO;
 import data.BenchData.BenchData;
@@ -15,8 +17,9 @@ import data.BenchData.BenchRecord;
 import dataservice.BenchDataService.BenchDataService;
 import dataservice.BenchDataService.BenchRecordService;
 import web.blservice.benchInfo.BenchInfo;
+import web.blservice.benchInfo.BenchUpdateInfo;
 
-public class BenchImpl implements BenchInfo{
+public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 
 	ArrayList<Bench> marketList=new ArrayList<Bench>();
 	@Override
@@ -75,7 +78,28 @@ public class BenchImpl implements BenchInfo{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		update(benchVO,benchCode);
 		return benchVO;
+	}
+
+	@Override
+	public ManageState update(BenchVO benchVO,String benchName) {
+		String id="";
+		for (Bench bench : marketList) {
+			if(bench.getBenchName()==benchName){
+				id=bench.getBenchId();
+				break;
+			}
+		}
+		BenchRecordService benchRecordService=new BenchRecord();
+		try {
+			benchCurrentDataPO currentBenchPO=benchRecordService.getLastestRecord(id);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

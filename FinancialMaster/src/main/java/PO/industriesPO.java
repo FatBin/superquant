@@ -1,18 +1,18 @@
 package PO;
 
-public class industryPO {
-	private String industry;
-	private int company;
-	private double average_price;
-	private double rise_fall;
-	private double volume;
-	private double turnover;
-	private double inflows;
-	private String leaderstock;
-	private double price;
-	private double stock_rise_fall;
+public class industriesPO {
+	private String industry;//行业名
+	private int company;//包含公司数
+	private double average_price;//平均价格
+	private double rise_fall;//涨跌率
+	private double volume;//成交量
+	private double turnover;//换手率
+	private double inflows;//流入资金量
+	private String leaderstock;//领涨股
+	private double price;//最新价
+	private double stock_rise_fall;//领涨股涨跌率
 	
-	public industryPO(String industry, int company, double average_price, double rise_fall, double volume,
+	public industriesPO(String industry, int company, double average_price, double rise_fall, double volume,
 			double turnover, double inflows, String leaderstock, double price, double stock_rise_fall) {
 		super();
 		this.industry = industry;

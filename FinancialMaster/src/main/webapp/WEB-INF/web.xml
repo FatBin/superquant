@@ -68,7 +68,7 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/Reg</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>GetMarketkLineServlet</servlet-name>
     <servlet-class>servlet.stockmarket.GetMarketkLineServlet</servlet-class>
   </servlet>

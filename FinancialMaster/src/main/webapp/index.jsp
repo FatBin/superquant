@@ -13,14 +13,9 @@
 <body>
    <h1>中文!</h1>
      <a href="ToStrategyPageServlet">  get请求tohome_page </a>
+     
+     <div id="business_barchart" style="width: 700px; height: 800px;"></div>
 
-     <%!BenchVO sv; %>
-     <%
-       sv=(BenchVO)session.getAttribute("BenchMarket");
-     %>
-      <h1>成交量为：<%=sv.getVolume() %></h1>
-     <div id="klinechart" style="width: 700px; height: 800px;"></div>
-
-	<script src="jschart/kLineChart.js"></script>
+	<script src="jschart/barChart.js"></script>
 </body>
 </html>

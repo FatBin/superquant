@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAO.pojo.Benchdata;
+import PO.benchCurrentDataPO;
 
 public interface BenchRecordService {
 	/*
@@ -14,5 +15,5 @@ public interface BenchRecordService {
 	/*
 	 * get the lastest trade record
 	 */
-	public Benchdata getLastestRecord(String benchId) throws Exception;
+	public benchCurrentDataPO getLastestRecord(String benchId) throws Exception;
 }

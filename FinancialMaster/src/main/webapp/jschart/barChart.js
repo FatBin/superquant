@@ -1,4 +1,28 @@
-var myChart = echarts.init(document.getElementById('barchart'));
+var myChart = echarts.init(document.getElementById('business_barchart'));
+
+var name=[];
+var value=[];
+
+$.ajax({
+	type : "post",
+	async : false, //同步执行
+	url : "../ToBusinessPageServlet",
+	dataType : "json", //返回数据形式为json
+	success : function(result) {
+		if (result) {
+			for (var i = 0; i < result.length; i++) {
+				date.push(result[i].date);
+				values.push(result[i].value);
+				volume.push(result[i].volume);
+			}
+		}
+
+	},
+	error : function(errorMsg) {
+		alert("不好意思，大爷，图表请求数据失败啦!");
+		myChart.hideLoading();
+	}
+})
 
 option = {
 	tooltip : {
