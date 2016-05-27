@@ -4,6 +4,7 @@ import java.util.List;
 
 import DAO.DAOfactory.DaoFactory;
 import DAO.DaoProxyService.BenchDataDaoService;
+import DAO.pojo.Benchdata;
 import dataservice.BenchDataService.BenchRecordService;
 
 public class BenchRecord implements BenchRecordService{
@@ -19,8 +20,7 @@ public class BenchRecord implements BenchRecordService{
 	}
 
 	@Override
-	public List getLastestRecord(String benchId) {
-		// TODO Auto-generated method stub
+	public Benchdata getLastestRecord(String benchId) {
 		return null;
 	}
 

@@ -1,8 +1,10 @@
 package DAO.test;
 
 
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
@@ -13,6 +15,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import DAO.DAOimpl.BenchDaoImpl;
 import DAO.DAOimpl.UserStrategyDaoImpl;
@@ -44,13 +48,16 @@ import DAO.pojo.UserStock;
 import DAO.pojo.UserStockId;
 import DAO.pojo.UserStrategy;
 import DAO.pojo.UserStrategyId;
+import PO.industryPO;
 import data.BenchData.BenchData;
+import data.IO.HttpRequest;
+import data.IndustryData.IndustryData;
 import data.UserData.UserStockData;
 import data.UserData.UserStrategyData;
 import dataservice.BenchDataService.BenchDataService;
 
 public class test {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedEncodingException {
 		/*
 		 * connection test
 		 */
@@ -79,7 +86,7 @@ public class test {
 		/*
 		 * exception test
 		 */
-		DBconnection dBconnection=new DBconnection();
+//		DBconnection dBconnection=new DBconnection();
 //		BenchDao benchDao=new BenchDaoProxy();
 //		BenchdataDao benchdataDao=new BenchdataDaoProxy();
 		try {
@@ -132,7 +139,7 @@ public class test {
 		try {
 //			DateFormat fmt =new SimpleDateFormat("yyyy-MM-dd");
 //			Date date=fmt.parse("2014-13-12");
-			Session session=dBconnection.getSession();
+//			Session session=dBconnection.getSession();
 //			Benchrecord benchrecord=new Benchrecord(date);
 //			session.save(benchrecord);
 //			Transaction transaction=session.beginTransaction();
@@ -175,12 +182,56 @@ public class test {
 //			// TODO: handle exception
 //			e.printStackTrace();
 //		}
-		
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-		System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
-		
-		Calendar calendar=Calendar.getInstance();
+		/*
+		 * test date()
+		 */
+//		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+//		System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+//		
+//		Calendar calendar=Calendar.getInstance();
 //		System.out.println(calendar.get());
+		
+		
+		/*
+		 * change code to gbk
+		 */
+		String t = "\u957f\u6625\u71c3\u6c14";  
+//		String utf8 = new String(t.getBytes( "UTF-8"));  
+//		System.out.println(utf8);  
+//		String unicode = new String(utf8.getBytes(),"UTF-8");   
+//		System.out.println(unicode);  
+//		String gbk = new String(t.getBytes("GBK"));  
+//		System.out.println(gbk);
+		
+		
+//		HttpRequest httpRequest=new HttpRequest();
+//		String resultString=httpRequest.sendGet("http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/2/quote/quote", "");
+//		System.out.println(resultString);
+//		JSONObject jsonObject=new JSONObject(resultString);
+//		JSONArray jsonArray=jsonObject.getJSONArray("data");
+//		String[] strings=JSONObject.getNames(jsonArray.getJSONObject(0));
+//		for(int i=0;i<strings.length;i++)
+//		JSONObject jsonObject2=jsonArray.getJSONObject(0);
+//		System.out.println(jsonObject2.getString("num"));
+		
+
+		/*
+		 * test industrydataservice
+		 */
+//		IndustryData industryData=new IndustryData();
+//		ArrayList<industryPO> arrayList=industryData.getIndustryData();
+//		for(industryPO industryPO: arrayList){
+//			System.out.print(industryPO.getIndustry()+" ");
+//			System.out.print(industryPO.getCompany()+" ");
+//			System.out.print(industryPO.getAverage_price()+" ");
+//			System.out.print(industryPO.getRise_fall()+" ");
+//			System.out.print(industryPO.getVolume()+" ");
+//			System.out.print(industryPO.getTurnover()+" ");
+//			System.out.print(industryPO.getInflows()+" ");
+//			System.out.print(industryPO.getLeaderstock()+" ");
+//			System.out.print(industryPO.getPrice()+" ");
+//			System.out.println(industryPO.getStock_rise_fall()+" ");
+//		}
 	}
 
 }
