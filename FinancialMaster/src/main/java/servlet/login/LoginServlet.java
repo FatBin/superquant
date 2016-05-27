@@ -2,6 +2,7 @@ package servlet.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,9 +60,8 @@ public class LoginServlet extends HttpServlet {
 		ManageState LoginResult = loginbl.login(user);
 		if (LoginResult == ManageState.Succeed) {
 			request.getSession().setAttribute("User", user);
-		}
+		}		
 		String result="[{'LoginResult':'"+LoginResult+"'}]";
-		System.out.println(result);
 		JSONArray json = new JSONArray(result);
 		PrintWriter out = response.getWriter();
 		out.println(json);

@@ -10,33 +10,44 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class UserStrategyId implements java.io.Serializable {
 
-	private String userName;
-	private String strategy;
+	private String userId;
+	private String stockId;
+	private String strategyName;
 
 	public UserStrategyId() {
 	}
 
-	public UserStrategyId(String userName, String strategy) {
-		this.userName = userName;
-		this.strategy = strategy;
+	public UserStrategyId(String userId, String stockId, String strategyName) {
+		this.userId = userId;
+		this.stockId = stockId;
+		this.strategyName = strategyName;
 	}
 
-	@Column(name = "userName", nullable = false, length = 20)
-	public String getUserName() {
-		return this.userName;
+	@Column(name = "userID", nullable = false, length = 20)
+	public String getUserId() {
+		return this.userId;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
-	@Column(name = "strategy", nullable = false, length = 20)
-	public String getStrategy() {
-		return this.strategy;
+	@Column(name = "stockID", nullable = false, length = 20)
+	public String getStockId() {
+		return this.stockId;
 	}
 
-	public void setStrategy(String strategy) {
-		this.strategy = strategy;
+	public void setStockId(String stockId) {
+		this.stockId = stockId;
+	}
+
+	@Column(name = "strategyName", nullable = false, length = 20)
+	public String getStrategyName() {
+		return this.strategyName;
+	}
+
+	public void setStrategyName(String strategyName) {
+		this.strategyName = strategyName;
 	}
 
 	public boolean equals(Object other) {
@@ -48,17 +59,21 @@ public class UserStrategyId implements java.io.Serializable {
 			return false;
 		UserStrategyId castOther = (UserStrategyId) other;
 
-		return ((this.getUserName() == castOther.getUserName()) || (this.getUserName() != null
-				&& castOther.getUserName() != null && this.getUserName().equals(castOther.getUserName())))
-				&& ((this.getStrategy() == castOther.getStrategy()) || (this.getStrategy() != null
-						&& castOther.getStrategy() != null && this.getStrategy().equals(castOther.getStrategy())));
+		return ((this.getUserId() == castOther.getUserId()) || (this.getUserId() != null
+				&& castOther.getUserId() != null && this.getUserId().equals(castOther.getUserId())))
+				&& ((this.getStockId() == castOther.getStockId()) || (this.getStockId() != null
+						&& castOther.getStockId() != null && this.getStockId().equals(castOther.getStockId())))
+				&& ((this.getStrategyName() == castOther.getStrategyName())
+						|| (this.getStrategyName() != null && castOther.getStrategyName() != null
+								&& this.getStrategyName().equals(castOther.getStrategyName())));
 	}
 
 	public int hashCode() {
 		int result = 17;
 
-		result = 37 * result + (getUserName() == null ? 0 : this.getUserName().hashCode());
-		result = 37 * result + (getStrategy() == null ? 0 : this.getStrategy().hashCode());
+		result = 37 * result + (getUserId() == null ? 0 : this.getUserId().hashCode());
+		result = 37 * result + (getStockId() == null ? 0 : this.getStockId().hashCode());
+		result = 37 * result + (getStrategyName() == null ? 0 : this.getStrategyName().hashCode());
 		return result;
 	}
 

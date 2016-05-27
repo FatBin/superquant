@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"
-    import="VO.StockMarketVO"%>
+    import="VO.BenchVO"%>
   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,14 +13,9 @@
 <body>
    <h1>中文!</h1>
      <a href="ToStrategyPageServlet">  get请求tohome_page </a>
+     
+     <div id="business_barchart" style="width: 700px; height: 800px;"></div>
 
-     <%!StockMarketVO sv; %>
-     <%
-       sv=(StockMarketVO)session.getAttribute("BenchMarket");
-     %>
-      <h1>成交量为：<%=sv.getVolume() %></h1>
-     <div id="klinechart" style="width: 700px; height: 800px;"></div>
-
-	<script src="jschart/kLineChart.js"></script>
+	<script src="jschart/barChart.js"></script>
 </body>
 </html>

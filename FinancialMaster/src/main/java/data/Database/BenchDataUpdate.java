@@ -26,8 +26,8 @@ public class BenchDataUpdate {
 				String[] temp = tr.get(i).text().split(" ");
 				BenchdataId benchdataId = new BenchdataId(benchId, temp[0]);
 				Benchdata benchdata = new Benchdata(benchdataId, Double.parseDouble(temp[1]),
-						Double.parseDouble(temp[2]), Double.parseDouble(temp[3]), Double.parseDouble(temp[4]),
-						Double.parseDouble(temp[5]), Long.parseLong(temp[6]));
+						Double.parseDouble(temp[3]), Double.parseDouble(temp[2]), Double.parseDouble(temp[4]),
+						Double.parseDouble(temp[6]), Long.parseLong(temp[5]));
 				try {
 					benchdataDao.insert(benchdata);
 				} catch (Exception e) {

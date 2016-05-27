@@ -1,89 +1,116 @@
 package PO;
 
 public class industryPO {
-	private String industry;
-	private int company;
-	private double average_price;
-	private double rise_fall;
-	private double volume;
-	private double turnover;
-	private double inflows;
-	private String leaderstock;
-	private double price;
-	private double stock_rise_fall;
+	private String stockI;//股票代号
+	private double current_price;//最新价
+	private double rise_fall_price;//涨跌额
+	private double rise_fall_percent;//涨跌幅
+	private double yesterday_close;//昨天收盘
+	private double open;//开盘价
+	private double high;//最高价
+	private double low;//最低价
+	private double inflows;//净流入（万）
+	private double volume;//成交量
+	private double price;//成交额
+	private double turnover;//换手率
 	
-	public industryPO(String industry, int company, double average_price, double rise_fall, double volume,
-			double turnover, double inflows, String leaderstock, double price, double stock_rise_fall) {
+	
+	public industryPO(String stockI, double current_price, double rise_fall_price, double rise_fall_percent,
+			double yesterday_close, double open, double high, double low, double inflows, double volume, double price,
+			double turnover) {
 		super();
-		this.industry = industry;
-		this.company = company;
-		this.average_price = average_price;
-		this.rise_fall = rise_fall;
-		this.volume = volume;
-		this.turnover = turnover;
+		this.stockI = stockI;
+		this.current_price = current_price;
+		this.rise_fall_price = rise_fall_price;
+		this.rise_fall_percent = rise_fall_percent;
+		this.yesterday_close = yesterday_close;
+		this.open = open;
+		this.high = high;
+		this.low = low;
 		this.inflows = inflows;
-		this.leaderstock = leaderstock;
-		this.price = price;
-		this.stock_rise_fall = stock_rise_fall;
-	}
-	
-	public String getIndustry() {
-		return industry;
-	}
-
-
-	public void setIndustry(String industry) {
-		this.industry = industry;
-	}
-
-
-	public int getCompany() {
-		return company;
-	}
-
-
-	public void setCompany(int company) {
-		this.company = company;
-	}
-
-
-	public double getAverage_price() {
-		return average_price;
-	}
-
-
-	public void setAverage_price(double average_price) {
-		this.average_price = average_price;
-	}
-
-
-	public double getRise_fall() {
-		return rise_fall;
-	}
-
-
-	public void setRise_fall(double rise_fall) {
-		this.rise_fall = rise_fall;
-	}
-
-
-	public double getVolume() {
-		return volume;
-	}
-
-
-	public void setVolume(double volume) {
 		this.volume = volume;
-	}
-
-
-	public double getTurnover() {
-		return turnover;
-	}
-
-
-	public void setTurnover(double turnover) {
+		this.price = price;
 		this.turnover = turnover;
+	}
+
+
+	public String getStockI() {
+		return stockI;
+	}
+
+
+	public void setStockI(String stockI) {
+		this.stockI = stockI;
+	}
+
+
+	public double getCurrent_price() {
+		return current_price;
+	}
+
+
+	public void setCurrent_price(double current_price) {
+		this.current_price = current_price;
+	}
+
+
+	public double getRise_fall_price() {
+		return rise_fall_price;
+	}
+
+
+	public void setRise_fall_price(double rise_fall_price) {
+		this.rise_fall_price = rise_fall_price;
+	}
+
+
+	public double getRise_fall_percent() {
+		return rise_fall_percent;
+	}
+
+
+	public void setRise_fall_percent(double rise_fall_percent) {
+		this.rise_fall_percent = rise_fall_percent;
+	}
+
+
+	public double getYesterday_close() {
+		return yesterday_close;
+	}
+
+
+	public void setYesterday_close(double yesterday_close) {
+		this.yesterday_close = yesterday_close;
+	}
+
+
+	public double getOpen() {
+		return open;
+	}
+
+
+	public void setOpen(double open) {
+		this.open = open;
+	}
+
+
+	public double getHigh() {
+		return high;
+	}
+
+
+	public void setHigh(double high) {
+		this.high = high;
+	}
+
+
+	public double getLow() {
+		return low;
+	}
+
+
+	public void setLow(double low) {
+		this.low = low;
 	}
 
 
@@ -97,13 +124,13 @@ public class industryPO {
 	}
 
 
-	public String getLeaderstock() {
-		return leaderstock;
+	public double getVolume() {
+		return volume;
 	}
 
 
-	public void setLeaderstock(String leaderstock) {
-		this.leaderstock = leaderstock;
+	public void setVolume(double volume) {
+		this.volume = volume;
 	}
 
 
@@ -117,13 +144,14 @@ public class industryPO {
 	}
 
 
-	public double getStock_rise_fall() {
-		return stock_rise_fall;
+	public double getTurnover() {
+		return turnover;
 	}
 
 
-	public void setStock_rise_fall(double stock_rise_fall) {
-		this.stock_rise_fall = stock_rise_fall;
+	public void setTurnover(double turnover) {
+		this.turnover = turnover;
 	}
+	
 	
 }

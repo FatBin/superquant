@@ -60,7 +60,6 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/Log</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>servlet.login.RegisterServlet</servlet-class>
@@ -69,5 +68,12 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/Reg</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <servlet-name>GetMarketkLineServlet</servlet-name>
+    <servlet-class>servlet.stockmarket.GetMarketkLineServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetMarketkLineServlet</servlet-name>
+    <url-pattern>/GetMarketkLine</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,6 +1,7 @@
 package web.bl.userImpl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import DAO.pojo.User;
@@ -39,6 +40,10 @@ public class LoginImpl implements LoginInfo {
 	}
 
 	private ManageState addUserMessage(UserVO user){
+//	    String id="sh300000";
+//	    ArrayList<String> idlist=new ArrayList<String>();
+//	    idlist.add(id);
+//	    user.setStockList(idlist);
 		return null;
 	}
 

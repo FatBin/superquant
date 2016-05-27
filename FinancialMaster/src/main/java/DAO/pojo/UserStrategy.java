@@ -1,5 +1,6 @@
 package DAO.pojo;
 
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -15,25 +16,115 @@ import javax.persistence.Table;
 public class UserStrategy implements java.io.Serializable {
 
 	private UserStrategyId id;
+	private String starttime;
+	private String endtime;
+	private int cost;
+	private int frequency;
+	private double weight;
+	private String buystrategy;
+	private String sellstrategy;
+	private String otherstrategy;
 
 	public UserStrategy() {
 	}
 
-	public UserStrategy(UserStrategyId id) {
+	public UserStrategy(UserStrategyId id, String starttime, String endtime, int cost, int frequency, double weight,
+			String buystrategy, String sellstrategy, String otherstrategy) {
 		this.id = id;
+		this.starttime = starttime;
+		this.endtime = endtime;
+		this.cost = cost;
+		this.frequency = frequency;
+		this.weight = weight;
+		this.buystrategy = buystrategy;
+		this.sellstrategy = sellstrategy;
+		this.otherstrategy = otherstrategy;
 	}
 
 	@EmbeddedId
 
 	@AttributeOverrides({
-			@AttributeOverride(name = "userName", column = @Column(name = "userName", nullable = false, length = 20) ),
-			@AttributeOverride(name = "strategy", column = @Column(name = "strategy", nullable = false, length = 20) ) })
+			@AttributeOverride(name = "userId", column = @Column(name = "userID", nullable = false, length = 20) ),
+			@AttributeOverride(name = "stockId", column = @Column(name = "stockID", nullable = false, length = 20) ),
+			@AttributeOverride(name = "strategyName", column = @Column(name = "strategyName", nullable = false, length = 20) ) })
 	public UserStrategyId getId() {
 		return this.id;
 	}
 
 	public void setId(UserStrategyId id) {
 		this.id = id;
+	}
+
+	@Column(name = "starttime", nullable = false, length = 20)
+	public String getStarttime() {
+		return this.starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	@Column(name = "endtime", nullable = false, length = 20)
+	public String getEndtime() {
+		return this.endtime;
+	}
+
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
+
+	@Column(name = "cost", nullable = false)
+	public int getCost() {
+		return this.cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+
+	@Column(name = "frequency", nullable = false)
+	public int getFrequency() {
+		return this.frequency;
+	}
+
+	public void setFrequency(int frequency) {
+		this.frequency = frequency;
+	}
+
+	@Column(name = "weight", nullable = false, precision = 22, scale = 0)
+	public double getWeight() {
+		return this.weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	@Column(name = "buystrategy", nullable = false, length = 20)
+	public String getBuystrategy() {
+		return this.buystrategy;
+	}
+
+	public void setBuystrategy(String buystrategy) {
+		this.buystrategy = buystrategy;
+	}
+
+	@Column(name = "sellstrategy", nullable = false, length = 20)
+	public String getSellstrategy() {
+		return this.sellstrategy;
+	}
+
+	public void setSellstrategy(String sellstrategy) {
+		this.sellstrategy = sellstrategy;
+	}
+
+	@Column(name = "otherstrategy", nullable = false, length = 20)
+	public String getOtherstrategy() {
+		return this.otherstrategy;
+	}
+
+	public void setOtherstrategy(String otherstrategy) {
+		this.otherstrategy = otherstrategy;
 	}
 
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="VO.StockMarketVO"%>
+	pageEncoding="UTF-8" import="VO.BenchVO" import=" VO.BenchListVO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -72,59 +72,73 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
+	<%
+		BenchListVO benchListVO = (BenchListVO) session.getAttribute("BenchList");
+		String[] benlist = benchListVO.getBenchList();
+	%>
 
-	<div style="margin-top: 140px; margin-left: 140px;">
+	<div style="margin-top: 140px; margin-left: 240px;">
 		<form name="stockName">
-			<select class="form-control" style="width: 150px;">
-				<option value="000001">上证指数(000001)</option>
-				<option value="000300">沪深300(000300)</option>
+			<select class="form-control" style="width: 100px;"
+				onchange="changeStock(this.value);">
+
+				<%
+					for (int i = 0; i < benlist.length; i++) {
+				%>
+
+				<option>
+					<%=benlist[i]%>
+				</option>
+
+				<%
+					}
+				%>
 			</select>
 		</form>
 	</div>
 
-	<div>
-		<!-- left part -->
-		<div style="float: left;">
-			<blockquote
-				style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 95px; margin-top: 20px;">
-				<p style="line-height: 50px;">最新数据</p>
-			</blockquote>
+	<div style="margin-left: 140px;">
 
-			<div id="klinechart"
-				style="width: 850px; height: 910px; margin-left: 60px; margin-top: 20px;"></div>
+		<blockquote
+			style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 95px; margin-top: 20px; float: left;">
+			<div style="float: left;">
+				<h5>最新数据</h5>
+			</div>
+		</blockquote>
 
-		</div>
-
-		<!-- right part -->
-		<div
-			style="float: right; background-color: rgb(239, 239, 239); height: 900px; width: 300px; margin-right: 40px; margin-top: 20px;">
-			<p>分析模块</p>
-		</div>
+		<div id="klinechart"
+			style="width: 850px; height: 910px; margin-left: 60px; margin-top: 20px;"></div>
 
 	</div>
 
+	<blockquote
+		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 240px; margin-top: 20px;">
+		<h5>历史数据</h5>
+	</blockquote>
+
 	<!-- history data -->
 	<div
-		style="float: left; height: 300px; width: 1000px; margin-left: 185px; margin-top: 20px;">
+		style="float: left; height: 300px; width: 1000px; margin-left: 240px; margin-top: 20px;">
 
 		<div>
 
-			<%!StockMarketVO sv;
+			<%!BenchVO sv;
 	String history_data[][];%>
 			<%
-				sv = (StockMarketVO) session.getAttribute("BenchMarket");
+				sv = (BenchVO) session.getAttribute("BenchMarket");
 				history_data = sv.getData();
 			%>
 
-			<table id="senfe" style="">
+			<table id="senfe">
 				<thead>
 					<tr align="center" valign="middle">
-						<td width="200" height="23" bgcolor="#ccc">日期</td>
-						<td width="130" bgcolor="#ccc">开盘价</td>
-						<td width="130" bgcolor="#ccc">最高价</td>
-						<td width="130" bgcolor="#ccc">最低价</td>
-						<td width="130" bgcolor="#ccc">收盘价</td>
-						<td width="130" bgcolor="#ccc">成交量(百万股)</td>
+						<td width="120" height="23" bgcolor="#ccc">日期</td>
+						<td width="106" bgcolor="#ccc">开盘价</td>
+						<td width="106" bgcolor="#ccc">最高价</td>
+						<td width="106" bgcolor="#ccc">最低价</td>
+						<td width="106" bgcolor="#ccc">收盘价</td>
+						<td width="107" bgcolor="#ccc">成交量(百万股)</td>
+						<td width="107" bgcolor="#ccc">成交额(亿元)</td>
 					</tr>
 				</thead>
 
@@ -132,22 +146,29 @@
 					<%
 						for (int i = 0; i < history_data.length; i++) {
 					%>
-					<tr align="center" valign="middle" onmouseover="mouseIn(<%=i + 1%>);"
+					<tr align="center" valign="middle"
+						onmouseover="mouseIn(<%=i + 1%>);"
 						onmouseout="mouseOut(<%=i + 1%>);">
 
-						<%for (int j = 0; j < history_data[0].length; j++) {%>
+						<%
+							for (int j = 0; j < history_data[0].length; j++) {
+						%>
 
 						<td height="23"><%=history_data[i][j]%></td>
 
-						<%}%>
+						<%
+							}
+						%>
 					</tr>
-					<%}%>
+					<%
+						}
+					%>
 
 				</tbody>
 			</table>
 
 		</div>
-		<div style="margin-left: 240px;">
+		<div style="margin-left: 200px;">
 			<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
 				onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
 				页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
@@ -176,9 +197,28 @@
 	<script src="../js/table_pages.js"></script>
 
 	<script src="../jschart/kLineChart.js"></script>
-    <script> getKLine("market","hs300");</script>
+	<script> getKLine("market");</script>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+
+	<!-- 定时刷新数据 -->
+	"/Users/pc/Downloads/web/js2.note.rtfd/Pasted Graphic 24.tiff"
+	<script>
+	    // 每10秒更新最新数据
+		setInterval(refreshData, 10000);
+		
+		function refreshData(){
+			
+		}
+		
+		// 切换大盘
+		function changeStock(stockname){
+			
+			$.post("../ToMarketPageServlet", {
+				benchName : stockname
+			})
+		}
+	</script>
 
 </body>
 </html>
