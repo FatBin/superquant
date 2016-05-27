@@ -14,9 +14,15 @@ public class BusinessImpl implements BusinessInfo {
 	@Override
 	public BusinessListVO getBusinessList() {
 		IndustryDataService industryDataService=new IndustryData();
-		ArrayList<industriesPO> industryPOs=industryDataService.getIndustryData();
 		BusinessListVO businessListVO=new BusinessListVO();
-		businessListVO.setBusinessList(industryPOs);
+		ArrayList<industriesPO> industryPOs;
+		try {
+			industryPOs = industryDataService.getIndustryData();
+			businessListVO.setBusinessList(industryPOs);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return businessListVO;
 	}
 
