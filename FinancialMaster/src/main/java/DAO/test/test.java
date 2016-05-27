@@ -1,22 +1,29 @@
 package DAO.test;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import DAO.DaoProxy.IndustriesDaoProxy;
 import DAO.DaoProxyService.IndustriesDaoProxyService;
 import DAO.connection.DBconnection;
 import DAO.pojo.Industries;
 import DAO.pojo.IndustriesId;
+import PO.RiseStockPO;
 import PO.benchCurrentDataPO;
 import PO.industryPO;
 import data.BenchData.BenchRecord;
 import data.IO.HttpRequest;
 import data.IndustryData.IndustryData;
+import data.StockData.StockData;
 import dataservice.BenchDataService.BenchRecordService;
 
 public class test {
@@ -285,8 +292,11 @@ public class test {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		/*
+		 * test industrydata
+		 */
 //		DBconnection dBconnection=new DBconnection();
-//		IndustryData industryData=new IndustryData();
+		IndustryData industryData=new IndustryData();
 //		IndustriesDaoProxyService industriesDaoProxyService=new IndustriesDaoProxy();
 //		try {
 //			IndustriesId id=new IndustriesId("ÕÍ ¿ΩÁ", "2015-22-11");
@@ -297,5 +307,30 @@ public class test {
 //			e.printStackTrace();
 //		}
 		
+		/*
+		 * test stockdataservice
+		 */
+//		try {
+//			StockData stockData=new StockData();
+//			ArrayList<RiseStockPO> stockPOs=stockData.getRiseStock();
+//			int i=1;
+//			for (RiseStockPO riseStockPO : stockPOs) {
+//				System.out.print(i+" ");
+//				System.out.print(riseStockPO.getStockId());
+//				System.out.print(riseStockPO.getStockName());
+//				System.out.print(riseStockPO.getNow());
+//				System.out.print(riseStockPO.getHigh());
+//				System.out.print(riseStockPO.getLow());
+//				System.out.print(riseStockPO.getRise_days());
+//				System.out.print(riseStockPO.getRise_fall());
+//				System.out.print(riseStockPO.getTotal_turnover());
+//				System.out.println(riseStockPO.getIndustry());
+//				i++;
+//			}
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
 	}
 }
