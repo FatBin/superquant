@@ -331,6 +331,21 @@ public class test {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
+		
+
+		Document result;
+		try {
+			result = Jsoup.connect("http://www.shdjt.com/sh.htm").get();
+			Elements elements=result.select("tr[height=25]");
+			for (Element element : elements) {
+				System.out.println(element.text());
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 	}
 }
