@@ -16,5 +16,5 @@ public interface IndustryDataService {
 	/*
 	 * get the specific data of the industry
 	 */
-	public ArrayList<industryPO> getIndustry(String industryName);
+	public ArrayList<industryPO> getIndustry(String industryName) throws Exception;
 }

@@ -1,12 +1,15 @@
 package DAO.test;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import PO.industryPO;
 import data.IO.HttpRequest;
+import data.IndustryData.IndustryData;
 
 public class test {
 	public static void main(String[] args) throws UnsupportedEncodingException {
@@ -251,15 +254,17 @@ public class test {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+
+		/*
+		 * test getIndustry
+		 */
+		IndustryData industryData=new IndustryData();
 		try {
-			String result=HttpRequest.sendGet("http://q.10jqka.com.cn/interface/stock/detail/zdf/desc/1/1/gxgdz","");
-			JSONObject jsonObject=new JSONObject(result);
-			JSONArray jsonArray=jsonObject.getJSONArray("data");
-			JSONObject temp=jsonArray.getJSONObject(0);
-			System.out.println(temp.toString());
+			ArrayList<industryPO> industryPO=industryData.getIndustry("光学光电子");
+			System.out.println(industryPO.size());
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 }
