@@ -67,8 +67,8 @@ public class BenchImpl implements BenchInfo{
 				data[index][2]=benchPO.getHigh()+"";
 				data[index][3]=benchPO.getLow()+"";
 				data[index][4]=benchPO.getClose()+"";
-				data[index][5]=benchPO.getAdjPrice()/1000000+"";
-				data[index][6]=benchPO.getVolume()/100000000+"";
+				data[index][5]=benchPO.getVolume()/1000000+"";
+				data[index][6]=benchPO.getAdjPrice()/100000000+"";
 				index++;
 			}
 			benchVO.setData(data);
