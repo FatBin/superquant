@@ -1,68 +1,12 @@
 package DAO.test;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
-import DAO.DAOfactory.DaoFactory;
-import DAO.DAOimpl.BenchDaoImpl;
-import DAO.DAOimpl.UserStrategyDaoImpl;
-import DAO.DaoProxy.BenchDaoProxy;
-import DAO.DaoProxy.BenchdataDaoProxy;
-import DAO.DaoProxy.StockDaoProxy;
-import DAO.DaoProxy.TradeRecordDaoProxy;
-import DAO.DaoProxy.UserDaoProxy;
-import DAO.DaoProxy.UserStockDaoProxy;
-import DAO.DaoProxy.UserStrategyDaoProxy;
-import DAO.DaoProxyService.BenchDataDaoService;
-import DAO.connection.DBconnection;
-import DAO.dao.BenchDao;
-import DAO.dao.BenchdataDao;
-import DAO.dao.StockDao;
-import DAO.dao.TradeRecordDao;
-import DAO.dao.UserDao;
-import DAO.dao.UserStockDao;
-import DAO.dao.UserStrategyDao;
-import DAO.pojo.Bench;
-import DAO.pojo.Benchdata;
-import DAO.pojo.BenchdataId;
-import DAO.pojo.Stock;
-import DAO.pojo.TradeRecord;
-import DAO.pojo.TradeRecordId;
-import DAO.pojo.User;
-import DAO.pojo.UserStock;
-import DAO.pojo.UserStockId;
-import DAO.pojo.UserStrategy;
-import DAO.pojo.UserStrategyId;
-import PO.benchCurrentDataPO;
-import PO.industryPO;
-import data.BenchData.BenchData;
-import data.BenchData.BenchRecord;
 import data.IO.HttpRequest;
-import data.IndustryData.FirstLetterUtil;
-import data.IndustryData.IndustryData;
-import data.UserData.UserStockData;
-import data.UserData.UserStrategyData;
-import dataservice.BenchDataService.BenchDataService;
-import dataservice.BenchDataService.BenchRecordService;
 
 public class test {
 	public static void main(String[] args) throws UnsupportedEncodingException {
@@ -288,23 +232,32 @@ public class test {
 		/*
 		 * test benchRecentDataPO
 		 */
-		BenchRecordService b=new BenchRecord();
+//		BenchRecordService b=new BenchRecord();
+//		try {
+//			benchCurrentDataPO po=b.getLastestRecord("sh000001");
+//			System.out.println(po.getNow());
+//			System.out.println(po.getRise_fall_price());
+//			System.out.println(po.getRise_fall_percent());
+//			System.out.println(po.getHigh());
+//			System.out.println(po.getLow());
+//			System.out.println(po.getOpen());
+//			System.out.println(po.getYesterday_close());
+//			System.out.println(po.getPrice());
+//			System.out.println(po.getVolume());
+//			System.out.println(po.getRise_company());
+//			System.out.println(po.getFall_company());
+//			System.out.println(po.getCompany());
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		try {
-			benchCurrentDataPO po=b.getLastestRecord("sh000001");
-			System.out.println(po.getNow());
-			System.out.println(po.getRise_fall_price());
-			System.out.println(po.getRise_fall_percent());
-			System.out.println(po.getHigh());
-			System.out.println(po.getLow());
-			System.out.println(po.getOpen());
-			System.out.println(po.getYesterday_close());
-			System.out.println(po.getPrice());
-			System.out.println(po.getVolume());
-			System.out.println(po.getRise_company());
-			System.out.println(po.getFall_company());
-			System.out.println(po.getCompany());
+			String result=HttpRequest.sendGet("http://q.10jqka.com.cn/interface/stock/detail/zdf/desc/1/1/gxgdz","");
+			JSONObject jsonObject=new JSONObject(result);
+			JSONArray jsonArray=jsonObject.getJSONArray("data");
+			JSONObject temp=jsonArray.getJSONObject(0);
+			System.out.println(temp.getString("stockcode"));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

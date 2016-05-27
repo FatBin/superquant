@@ -1,6 +1,6 @@
 package PO;
 
-public class industryPO {
+public class industriesPO {
 	private String industry;//行业名
 	private int company;//包含公司数
 	private double average_price;//平均价格
@@ -12,7 +12,7 @@ public class industryPO {
 	private double price;//最新价
 	private double stock_rise_fall;//领涨股涨跌率
 	
-	public industryPO(String industry, int company, double average_price, double rise_fall, double volume,
+	public industriesPO(String industry, int company, double average_price, double rise_fall, double volume,
 			double turnover, double inflows, String leaderstock, double price, double stock_rise_fall) {
 		super();
 		this.industry = industry;
