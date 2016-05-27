@@ -61,7 +61,14 @@ public class MarketPageServlet extends HttpServlet {
 		}
 		benchName=name;
 		sv=bench.getStockMarket(benchName);
+//		String test[][];
+//		test=sv.getData();
+//		System.out.println(test[0][1]+test[0][2]+test[0][2]+test[0][4]);
 		request.getSession().setAttribute("BenchMarket", sv);
+		
+//		BenchVO bVo=(BenchVO) request.getSession().getAttribute("BenchMarket");
+//		test=bVo.getData();
+//		System.out.println(test[0][1]+test[0][2]+test[0][2]+test[0][4]);
 	}
 
 }

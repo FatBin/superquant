@@ -20,11 +20,9 @@ import web.blservice.benchInfo.BenchInfo;
 import web.blservice.benchInfo.BenchUpdateInfo;
 
 public class BenchImpl implements BenchInfo,BenchUpdateInfo{
-
-	ArrayList<Bench> marketList=new ArrayList<Bench>();
+	BenchDataService bds=new BenchData();
 	@Override
  	public BenchListVO getBenchCode() {
-		BenchDataService bds=new BenchData();
 		BenchListVO vo=new BenchListVO();
 		try {
 			List<Bench>  benchList=bds.getBench();
@@ -32,7 +30,6 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 			String[] nameList=new String[length];
 			int index=0;
 			for (Bench bench : benchList) {
-				marketList.add(bench);
 				nameList[index]=bench.getBenchName();
 				index++;
 			}
@@ -46,11 +43,17 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 	@Override
 	public BenchVO getStockMarket(String benchCode) {
 		String id="";
-		for (Bench bench : marketList) {
-			if(bench.getBenchName()==benchCode){
-				id=bench.getBenchId();
-				break;
+		List<Bench> benchList;
+		try {
+			benchList = bds.getBench();
+			for (Bench bench : benchList) {
+				if(bench.getBenchName().equals(benchCode)){
+					id=bench.getBenchId();
+					break;
+				}
 			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 		BenchRecordService br=new BenchRecord();
 		Calendar calendar=Calendar.getInstance();
@@ -74,22 +77,29 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 				data[index][6]=benchPO.getAdjPrice()/100000000+"";
 				index++;
 			}
+			
 			benchVO.setData(data);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		update(benchVO,benchCode);
+//		update(benchVO,benchCode);
 		return benchVO;
 	}
 
 	@Override
 	public ManageState update(BenchVO benchVO,String benchName) {
 		String id="";
-		for (Bench bench : marketList) {
-			if(bench.getBenchName()==benchName){
-				id=bench.getBenchId();
-				break;
+		List<Bench> benchList;
+		try {
+			benchList = bds.getBench();
+			for (Bench bench : benchList) {
+				if(bench.getBenchName().equals(benchName)){
+					id=bench.getBenchId();
+					break;
+				}
 			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 		BenchRecordService benchRecordService=new BenchRecord();
 		try {
