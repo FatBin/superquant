@@ -22,7 +22,7 @@
 
 </head>
 
-<body id="page-top" class="index" style="background-color: #4A433B;">
+<body id="page-top" class="index">
 
 	<nav class="navbar navbar-default navbar-fixed-top"
 		style="background-color: #4A433B;">
@@ -37,7 +37,9 @@
 					class="icon-bar"></span>
 			</button>
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
-			<img src="../webImage/logo.png" title="返回顶部" id="logo">
+			<a href="HomePage.jsp">
+				<img src="../webImage/logo.png" title="返回顶部" id="logo">
+			</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -54,16 +56,15 @@
 			</ul>
 		</div>
 
-		<div class="style_5">
+		<div class="style_5 hidden-sm hidden-xs">
 			<form method="get" id="searchform" action="">
 				<fieldset>
-					<input name="submit" type="submit" value='' /> <input id="s"
-						name="s" type="text" placeholder="搜索" class="text_input"
-						onblur="this.placeholder='搜索';"
+					<input id="s" name="s" type="text" placeholder="搜索"
+						class="text_input" onblur="this.placeholder='搜索'"
 						onfocus="this.placeholder='输入股票代码搜索';"
 						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" />
-
+						onmouseout="this.placeholder='搜索';" /> <input name="submit"
+						type="submit" value='' />
 				</fieldset>
 			</form>
 		</div>
@@ -74,29 +75,36 @@
 
 	<!-- Header -->
 	<header>
-	<div class="container" style="height: 479px;" id="header">
-		<div>
-			<img src="../webImage/decorate.png"
-				style="width: 570px; height: 187px; float: left; margin-top: 150px;">
-		</div>
-
-		<div class="intro-text"
-			style="margin-left: 566px; margin-top: -145px;">
-			<div class="intro-lead-in">
-				Super<a style="color: orange;">Quant</a>
+	<div class="jumbotron" style="background-color: #4A433B; ">
+	<div class="container" id="header" style="background-color: #4A433B; height: 479px;">
+		<div class="row" style="margin-top:130px; width:100%">
+			<div class="col-md-7">
+				<img class="img-responsive" src="../webImage/decorate.png">
 			</div>
-			<div class="intro-heading">您的第一手证券信息</div>
-			<input type="button" value="立即注册" name="regbtn"
-				class="bottons regbtns" data-toggle="modal" data-target="#modalReg" />
-			<input type="button" value="登录" name="login" class="bottons loginbtn"
-				data-toggle="modal" data-target="#modalLogin" />
+			<div class="col-md-1"></div>
+			<div class="col-md-3" style="margin-top:45px;">
+				<div>
+					<span class="logoName" style="color: #FFFFFF;">Super</span>
+					<span class="logoName" style="color: orange;">Quant</span>
+				</div>
+				<div class="slogan">您的第一手证券信息</div>
+				
+				<input type="button" value="立即注册" name="regbtn"
+					class="bottons regbtns" data-toggle="modal" data-target="#modalReg" />
+				<input type="button" value="登录" name="login"
+					class="bottons loginbtn" data-toggle="modal"
+					data-target="#modalLogin" />
+			</div>
+			<div class="col-md-1"></div>
+			
 		</div>
+	</div>
 	</div>
 	</header>
 
 
 	<!-- Services Section -->
-	<section id="services" style="background-color:#FFFCF6;height:500px;">
+	<section id="services" style="background-color:#FFFCF6;height:500px; margin-top:-10px;">
 	<div class="container">
 		<div class="row" style="margin-top: -120px;">
 			<div class="col-lg-12 text-center">
@@ -258,12 +266,12 @@
 				<!-- modal-body -->
 
 				<div class="modal-footer">
-						<div id='reg-succ-tips'></div>
-						<a role="button" href="javascript:reg();" class="btn btn-reg"
-							data-loading-text="注册中...">注册</a>
-						<div class='modal-footer-tips'>
-							<a href='javascript:switchToModal("login");'>已有账号？直接登陆</a>
-						</div>
+					<div id='reg-succ-tips'></div>
+					<a role="button" href="javascript:reg();" class="btn btn-reg"
+						data-loading-text="注册中...">注册</a>
+					<div class='modal-footer-tips'>
+						<a href='javascript:switchToModal("login");'>已有账号？直接登陆</a>
+					</div>
 				</div>
 
 			</div>
