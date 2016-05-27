@@ -95,22 +95,23 @@ input[type="submit"] {
 	border: 2px solid; 
 	border-radius: 3px;
 	border-color: #F8B31D;
+    margin-left:0px;
 }
 
 .regbtns:hover{
 	background-color: #FFFFFF; 
 	color: #4A433B; 
 	border-color: #FFFFFF;
-	
 }
 
-
 .loginbtn{
+	margin-left:10px;
 	background-color: transparent; 
 	color: #FFFFFF; 
 	border-color: #FFFFFF;
 	border: 2px solid;
 	border-radius: 3px;
+
 }
 
 .loginbtn:hover{
@@ -120,9 +121,23 @@ input[type="submit"] {
 }
 
 .bottons{
-	position: relative;
-	top: -30px;
-	margin: 5px;
+	margin-top: 5px;
+	float:left;
 	height: 28px;
 	font-family: "PingFangSC-Light";
+
+}
+
+.logoName{
+	font-size: 40px;
+	font-family: "Avenir";
+	margin-left:0px;
+	float:left;
+}
+
+.slogan{
+	font-size: 22px;
+	font-family: "PingFangSC-Light";
+	margin-left: 0px;
+	float: left;
 }

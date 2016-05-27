@@ -12,7 +12,9 @@
 </head>
 <body>
    <h1>中文!</h1>
-     <a href="ToStrategyPageServlet">  get请求tohome_page </a>
+     <a href="UpdateBenchVO">  test </a>
+     <%BenchVO bv=(BenchVO)session.getAttribute("BenchMarket");%>
+     <%=bv.getCompany() %>
      
      <div id="business_barchart" style="width: 700px; height: 800px;"></div>
 

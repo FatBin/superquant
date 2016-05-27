@@ -38,6 +38,7 @@ public class GetMarketkLineServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 *获取k线图所需要的数据
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		    BenchVO sv=(BenchVO)request.getSession().getAttribute("BenchMarket");
