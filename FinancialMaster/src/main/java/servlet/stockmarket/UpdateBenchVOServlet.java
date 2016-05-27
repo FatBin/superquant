@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import VO.BenchVO;
+import web.bl.benchImpl.BenchImpl;
+import web.blservice.benchInfo.BenchUpdateInfo;
 
 /**
  * Servlet implementation class UpdateBenchVOServlet
@@ -27,9 +29,13 @@ public class UpdateBenchVOServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 *更新大盘最新信息时调用
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String benchName=(String) request.getSession().getAttribute("BenchMarketName");
 		BenchVO benchVO=(BenchVO)request.getSession().getAttribute("BenchMarket");
+		BenchUpdateInfo benchUpdateInfo=new BenchImpl();
+		benchUpdateInfo.update(benchVO, benchName);
 		
 	}
 

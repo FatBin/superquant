@@ -43,17 +43,22 @@ public class MarketPageServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 *第一次跳转到大盘界面时初始化数据
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		//所有大盘指数的名称，类型BenchListVO
 		request.getSession().setAttribute("BenchList", benchListVO);
+		//当前大盘信息，类型BenchVO
 		request.getSession().setAttribute("BenchMarket", sv);
+		//当前大盘的名字，类型String
 		request.getSession().setAttribute("BenchMarketName", benchName);
 		response.sendRedirect(request.getContextPath()+"/Web_Pages/MarketPage.jsp");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * 当选择不同的指数时用来更新大盘信息
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String name=request.getParameter("benchName");
@@ -61,8 +66,10 @@ public class MarketPageServlet extends HttpServlet {
 			return;
 		}
 		benchName=name;
+		//当前大盘的名字，类型String
 		request.getSession().setAttribute("BenchMarketName", benchName);
 		sv=bench.getStockMarket(benchName);
+		//当前大盘信息，类型BenchVO
 		request.getSession().setAttribute("BenchMarket", sv);
 	}
 
