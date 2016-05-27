@@ -82,7 +82,7 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		update(benchVO,benchCode);
+		update(benchVO,benchCode);
 		return benchVO;
 	}
 
@@ -104,12 +104,23 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		BenchRecordService benchRecordService=new BenchRecord();
 		try {
 			benchCurrentDataPO currentBenchPO=benchRecordService.getLastestRecord(id);
-			
+			benchVO.setCompany(currentBenchPO.getCompany());
+			benchVO.setFall_company(currentBenchPO.getFall_company());
+			benchVO.setHigh(currentBenchPO.getHigh());
+			benchVO.setLow(currentBenchPO.getLow());
+			benchVO.setNow(currentBenchPO.getNow());
+			benchVO.setOpen(currentBenchPO.getOpen());
+			benchVO.setPrice(currentBenchPO.getPrice());
+			benchVO.setRise_company(currentBenchPO.getRise_company());
+			benchVO.setRise_fall_percent(currentBenchPO.getRise_fall_percent());
+			benchVO.setRise_fall_price(currentBenchPO.getRise_fall_price());
+			benchVO.setVolume(currentBenchPO.getVolume());
+			benchVO.setYesterday_close(currentBenchPO.getYesterday_close());
+			return ManageState.Succeed;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return ManageState.Fail;
 	}
 
 }
