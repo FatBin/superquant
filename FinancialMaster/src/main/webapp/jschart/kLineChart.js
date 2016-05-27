@@ -1,8 +1,7 @@
 var myChart = echarts.init(document.getElementById('klinechart'));
 
 //kind表示类型（market表示大盘，stock表示个股）
-//code表示编号，其中大盘有hs300/sh/sz;个股为股票代码，例如 sh600001
-function getKLine(kind,code){
+function getKLine(kind){
 //日期
 var date = [];
 //values数据意义：开盘(open)，收盘(close)，最低(lowest)，最高(highest)
@@ -11,13 +10,13 @@ var volume = [];
 var servlet_url="";
 var num;
 if(kind=="market"){
-    servlet_url = "../ToMarketPageServlet";
+    servlet_url = "../GetMarketkLine";
 }
 $.ajax({
 	type : "post",
 	async : false, //同步执行
 	url : servlet_url,
-	data : {id:code},
+//	data : {id:code},
 	dataType : "json", //返回数据形式为json
 	success : function(result) {
 		if (result) {

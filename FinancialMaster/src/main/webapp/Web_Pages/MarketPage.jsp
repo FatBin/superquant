@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="VO.StockMarketVO"%>
+	pageEncoding="UTF-8" import="VO.BenchVO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -109,10 +109,10 @@
 
 		<div>
 
-			<%!StockMarketVO sv;
+			<%!BenchVO sv;
 	String history_data[][];%>
 			<%
-				sv = (StockMarketVO) session.getAttribute("BenchMarket");
+				sv = (BenchVO) session.getAttribute("BenchMarket");
 				history_data = sv.getData();
 			%>
 
@@ -176,7 +176,7 @@
 	<script src="../js/table_pages.js"></script>
 
 	<script src="../jschart/kLineChart.js"></script>
-    <script> getKLine("market","hs300");</script>
+    <script> getKLine("market");</script>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 
