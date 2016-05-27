@@ -256,7 +256,7 @@ public class test {
 			JSONObject jsonObject=new JSONObject(result);
 			JSONArray jsonArray=jsonObject.getJSONArray("data");
 			JSONObject temp=jsonArray.getJSONObject(0);
-			System.out.println(temp.getString("stockcode"));
+			System.out.println(temp.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

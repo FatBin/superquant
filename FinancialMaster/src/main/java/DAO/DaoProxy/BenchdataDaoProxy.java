@@ -48,7 +48,7 @@ public class BenchdataDaoProxy implements BenchDataDaoService{
 			String hql="from Benchdata b where "
 					+ "b.id.benchId='"+benchId+"' and "
 					+ "b.id.date>='"+starttime+"' and "
-					+ "b.id.date<='"+endtime+"' order by b.id.date asc";
+					+ "b.id.date<='"+endtime+"' order by b.id.date desc";
 			return benchdataDaoImpl.getBenchData(hql);
 		} catch (Exception e) {
 			throw e;
