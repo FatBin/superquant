@@ -1,7 +1,6 @@
 package servlet.stockmarket;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,14 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-
-import ENUM.date_enum;
-import VO.StockMarketVO;
-import businesslogic.factory.InitFactory;
-import businesslogic.stockmarketbl.StockMarketBL;
-import businesslogic.stockmarketbl.StockMarketInfo;
-import businesslogicservice.stockmarketblservice.StockMarketBLService;
+import VO.BenchListVO;
+import VO.BenchVO;
+import web.bl.benchImpl.BenchImpl;
+import web.blservice.benchInfo.BenchInfo;
 
 /**
  * Servlet implementation class MarketServlet
@@ -24,7 +19,10 @@ import businesslogicservice.stockmarketblservice.StockMarketBLService;
 @WebServlet("/MarketServlet")
 public class MarketPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	StockMarketVO sv;   
+	BenchVO sv; 
+	BenchInfo bench;
+	BenchListVO benchListVO;
+	String benchName;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,8 +34,11 @@ public class MarketPageServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		StockMarketBLService sb=new StockMarketBL();
-		sv=sb.getStockMarket("hs300", date_enum.TenYear);
+		bench=new BenchImpl();
+		benchListVO=bench.getBenchCode();
+		String[] benchlist=benchListVO.getBenchList();
+		benchName=benchlist[0];
+		sv=bench.getStockMarket(benchName);
 	}
 
 	/**
@@ -45,6 +46,7 @@ public class MarketPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		request.getSession().setAttribute("BenchList", benchListVO);
 		request.getSession().setAttribute("BenchMarket", sv);
 		response.sendRedirect(request.getContextPath()+"/Web_Pages/MarketPage.jsp");
 	}
@@ -53,24 +55,13 @@ public class MarketPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("id"));
-		if(request.getParameter("id").equals("hs300")){
-			String historydata[][]=sv.getData();
-			String data="[";
-			for (int i = historydata.length-1; i >=0 ; i--) {
-				data=data+"{'date':'"+historydata[i][0]+"','value':["+
-						historydata[i][1]+","+historydata[i][4]+","+
-						historydata[i][3]+","+historydata[i][2]+"],'volume':"+
-						historydata[i][5]+"},";
-			}
-			data+="]";
-
-			JSONArray json = new JSONArray(data);
-			PrintWriter out = response.getWriter();
-			out.println(json);
-			out.flush();
-			out.close();
+		String name=request.getParameter("benchName");
+		if(benchName.equals(name)){
+			return;
 		}
+		benchName=name;
+		sv=bench.getStockMarket(benchName);
+		request.getSession().setAttribute("BenchMarket", sv);
 	}
 
 }

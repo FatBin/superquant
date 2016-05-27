@@ -1,27 +1,29 @@
 package VO;
 
+import java.util.ArrayList;
+
 public class UserVO {
 	
 	private String username;//ÓÃ»§Ãû
 	private String password;//ÃÜÂë
-	private StrategyVO strategy;
-	private String[] stockList;
+	private ArrayList<StrategyVO> strategyList;
+	private ArrayList<String> stockList;
 	
 	public UserVO(){}
 	
-	public StrategyVO getStrategy() {
-		return strategy;
+	public ArrayList<StrategyVO> getStrategy() {
+		return strategyList;
 	}
 
-	public void setStrategy(StrategyVO strategy) {
-		this.strategy = strategy;
+	public void setStrategy(ArrayList<StrategyVO> strategy) {
+		this.strategyList = strategy;
 	}
 
-	public String[] getStockList() {
+	public ArrayList<String> getStockList() {
 		return stockList;
 	}
 
-	public void setStockList(String[] stockList) {
+	public void setStockList(ArrayList<String> stockList) {
 		this.stockList = stockList;
 	}
 
