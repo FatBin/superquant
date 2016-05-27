@@ -5,6 +5,7 @@ package DAO.DAOfactory;
 
 import DAO.DaoProxy.BenchDaoProxy;
 import DAO.DaoProxy.BenchdataDaoProxy;
+import DAO.DaoProxy.IndustriesDaoProxy;
 import DAO.DaoProxy.StockDaoProxy;
 import DAO.DaoProxy.TradeRecordDaoProxy;
 import DAO.DaoProxy.UserDaoProxy;
@@ -39,5 +40,9 @@ public class DaoFactory {
 	
 	public static UserStrategyDaoProxy getUserStrategyDaoProxy(){
 		return new UserStrategyDaoProxy();
+	}
+	
+	public static IndustriesDaoProxy getIndustriesDaoProxy(){
+		return new IndustriesDaoProxy();
 	}
 }

@@ -5,10 +5,11 @@ import java.util.List;
 import org.hibernate.exception.ConstraintViolationException;
 
 import DAO.DAOimpl.BenchDaoImpl;
+import DAO.DaoProxyService.BenchDaoProxyService;
 import DAO.dao.BenchDao;
 import DAO.pojo.Bench;
 
-public class BenchDaoProxy implements BenchDao{
+public class BenchDaoProxy implements BenchDaoProxyService{
 	
 	@Override
 	public boolean insert(Bench bench) throws Exception{

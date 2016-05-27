@@ -4,12 +4,13 @@ import java.util.List;
 
 import DAO.DAOimpl.BenchDaoImpl;
 import DAO.DAOimpl.TradeRecordDaoImpl;
+import DAO.DaoProxyService.TradeRecordDaoProxyService;
 import DAO.dao.BenchDao;
 import DAO.dao.TradeRecordDao;
 import DAO.pojo.TradeRecord;
 import DAO.pojo.TradeRecordId;
 
-public class TradeRecordDaoProxy implements TradeRecordDao{
+public class TradeRecordDaoProxy implements TradeRecordDaoProxyService{
 
 	@Override
 	public boolean insert(TradeRecord tradeRecord) throws Exception {

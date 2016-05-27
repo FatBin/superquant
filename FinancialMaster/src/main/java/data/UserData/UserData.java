@@ -1,6 +1,7 @@
 package data.UserData;
 
 import DAO.DAOfactory.DaoFactory;
+import DAO.DaoProxyService.UserDaoProxyService;
 import DAO.dao.UserDao;
 import DAO.pojo.User;
 import ENUM.ManageState;
@@ -13,7 +14,7 @@ public class UserData implements UserDataService{
 	 */
 	@Override
 	public ManageState insertUser(User user) {
-		UserDao userDao=DaoFactory.getUserDaoProxy();
+		UserDaoProxyService userDao=DaoFactory.getUserDaoProxy();
 		try {
 			if (userDao.insert(user)) {
 				return ManageState.Succeed;
@@ -33,7 +34,7 @@ public class UserData implements UserDataService{
 	 */
 	@Override
 	public ManageState verifyUser(User user) {
-		UserDao userDao=DaoFactory.getUserDaoProxy();
+		UserDaoProxyService userDao=DaoFactory.getUserDaoProxy();
 		try {
 			User temp=userDao.findByID(user.getUsername());
 			if(temp!=null){

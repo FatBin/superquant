@@ -3,6 +3,7 @@ package data.BenchData;
 import java.util.List;
 
 import DAO.DAOfactory.DaoFactory;
+import DAO.DaoProxyService.BenchDaoProxyService;
 import DAO.dao.BenchDao;
 import dataservice.BenchDataService.BenchDataService;
 
@@ -10,7 +11,7 @@ public class BenchData implements BenchDataService{
 
 	@Override
 	public List getBench() throws Exception{
-		BenchDao benchDao=DaoFactory.getBenchDaoProxy();
+		BenchDaoProxyService benchDao=DaoFactory.getBenchDaoProxy();
 		try {
 			List result=benchDao.findAll();
 			return result;

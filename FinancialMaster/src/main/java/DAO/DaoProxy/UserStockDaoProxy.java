@@ -3,11 +3,12 @@ package DAO.DaoProxy;
 import java.util.List;
 
 import DAO.DAOimpl.UserStockDaoImpl;
+import DAO.DaoProxyService.UserStockDaoProxyService;
 import DAO.dao.UserStockDao;
 import DAO.pojo.UserStock;
 import DAO.pojo.UserStockId;
 
-public class UserStockDaoProxy implements UserStockDao{
+public class UserStockDaoProxy implements UserStockDaoProxyService{
 
 	@Override
 	public boolean insert(UserStock userStock) throws Exception {

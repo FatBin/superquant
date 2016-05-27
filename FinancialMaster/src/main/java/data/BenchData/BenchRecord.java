@@ -38,7 +38,6 @@ public class BenchRecord implements BenchRecordService{
 			Elements elements2=temp.get(0).select("dd");
 			String[] first=elements1.text().replace("%", "").split(" ");
 			String[] second=elements2.text().split(" ");
-			System.out.println(elements2.text());
 			benchCurrentDataPO po=new benchCurrentDataPO(
 					Double.parseDouble(first[0]), 
 					Double.parseDouble(first[1]), 

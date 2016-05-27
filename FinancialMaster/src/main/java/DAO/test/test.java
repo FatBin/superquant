@@ -7,9 +7,17 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import DAO.DaoProxy.IndustriesDaoProxy;
+import DAO.DaoProxyService.IndustriesDaoProxyService;
+import DAO.connection.DBconnection;
+import DAO.pojo.Industries;
+import DAO.pojo.IndustriesId;
+import PO.benchCurrentDataPO;
 import PO.industryPO;
+import data.BenchData.BenchRecord;
 import data.IO.HttpRequest;
 import data.IndustryData.IndustryData;
+import dataservice.BenchDataService.BenchRecordService;
 
 public class test {
 	public static void main(String[] args) throws UnsupportedEncodingException {
@@ -258,13 +266,36 @@ public class test {
 		/*
 		 * test getIndustry
 		 */
-		IndustryData industryData=new IndustryData();
-		try {
-			ArrayList<industryPO> industryPO=industryData.getIndustry("光学光电子");
-			System.out.println(industryPO.size());
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		IndustryData industryData=new IndustryData();
+//		try {
+//			ArrayList<industryPO> industryPO=industryData.getIndustry("电器设备");
+//			System.out.println(industryPO.get(12).getStockI());
+//			System.out.println(industryPO.get(12).getCurrent_price());
+//			System.out.println(industryPO.get(12).getRise_fall_price());
+//			System.out.println(industryPO.get(12).getRise_fall_percent());
+//			System.out.println(industryPO.get(12).getYesterday_close());
+//			System.out.println(industryPO.get(12).getOpen());
+//			System.out.println(industryPO.get(12).getHigh());
+//			System.out.println(industryPO.get(12).getLow());
+//			System.out.println(industryPO.get(12).getInflows());
+//			System.out.println(industryPO.get(12).getVolume());
+//			System.out.println(industryPO.get(12).getPrice());
+//			System.out.println(industryPO.get(12).getTurnover());
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		DBconnection dBconnection=new DBconnection();
+//		IndustryData industryData=new IndustryData();
+//		IndustriesDaoProxyService industriesDaoProxyService=new IndustriesDaoProxy();
+//		try {
+//			IndustriesId id=new IndustriesId("完世界", "2015-22-11");
+//			Industries industries=new Industries(id, 0, 0, 0, 0, 0, 0, "", 0, 0);
+//			industriesDaoProxyService.insert(industries);
+//			System.out.println(industriesDaoProxyService.getIndustryRecord("完美世界","2012-22-12","2015-22-11"));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
 	}
 }

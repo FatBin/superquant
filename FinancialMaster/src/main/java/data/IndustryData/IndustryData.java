@@ -1,10 +1,14 @@
 package data.IndustryData;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.eclipse.jdt.internal.compiler.apt.model.Factory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import DAO.DAOfactory.DaoFactory;
+import DAO.DaoProxyService.IndustriesDaoProxyService;
 import PO.industriesPO;
 import PO.industryPO;
 import data.IO.HttpRequest;
@@ -82,6 +86,17 @@ public class IndustryData implements IndustryDataService {
 			throw e;
 		}
 
+	}
+
+	@Override
+	public List getIndustryDuringTime(String industryName, String starttime, String endtime)
+			throws Exception {
+		IndustriesDaoProxyService industriesDaoProxyService=DaoFactory.getIndustriesDaoProxy();
+		try {
+			return industriesDaoProxyService.getIndustryRecord(industryName, starttime, endtime);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 }

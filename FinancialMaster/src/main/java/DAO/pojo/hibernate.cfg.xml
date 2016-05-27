@@ -19,5 +19,6 @@
         <mapping class="DAO.pojo.Stock" />
         <mapping class="DAO.pojo.UserStock" />
         <mapping class="DAO.pojo.Benchrecord" />
+        <mapping class="DAO.pojo.Industries" />
     </session-factory>
 </hibernate-configuration>

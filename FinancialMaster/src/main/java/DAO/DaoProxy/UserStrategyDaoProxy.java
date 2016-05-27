@@ -3,11 +3,12 @@ package DAO.DaoProxy;
 import java.util.List;
 
 import DAO.DAOimpl.UserStrategyDaoImpl;
+import DAO.DaoProxyService.UserStrategyDaoProxyService;
 import DAO.dao.UserStrategyDao;
 import DAO.pojo.UserStrategy;
 import DAO.pojo.UserStrategyId;
 
-public class UserStrategyDaoProxy implements UserStrategyDao{
+public class UserStrategyDaoProxy implements UserStrategyDaoProxyService{
 
 	@Override
 	public boolean insert(UserStrategy userStrategy) throws Exception {

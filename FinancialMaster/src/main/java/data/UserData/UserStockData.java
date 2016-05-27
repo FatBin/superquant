@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import DAO.DAOfactory.DaoFactory;
 import DAO.DaoProxy.StockDaoProxy;
+import DAO.DaoProxyService.UserStockDaoProxyService;
 import DAO.dao.StockDao;
 import DAO.dao.UserStockDao;
 import DAO.pojo.UserStock;
@@ -16,7 +17,7 @@ public class UserStockData implements UserStockDataService{
 
 	@Override
 	public ManageState addObservedStock(String userId, String stockId) {
-		UserStockDao userStockDao=DaoFactory.getUserStockDaoProxy();
+		UserStockDaoProxyService userStockDao=DaoFactory.getUserStockDaoProxy();
 		try {
 			UserStockId userStockId=new UserStockId(userId, stockId);
 			UserStock userStock=new UserStock(userStockId);
@@ -32,7 +33,7 @@ public class UserStockData implements UserStockDataService{
 
 	@Override
 	public ManageState deleteObservedStock(String userId, String stockId) {
-		UserStockDao userStockDao=DaoFactory.getUserStockDaoProxy();
+		UserStockDaoProxyService userStockDao=DaoFactory.getUserStockDaoProxy();
 		try {
 			UserStockId userStockId=new UserStockId(userId, stockId);
 			if (userStockDao.delete(userStockId)) {
@@ -47,7 +48,7 @@ public class UserStockData implements UserStockDataService{
 
 	@Override
 	public ArrayList<UserStock> getUserStocks(String userId) throws Exception{
-		UserStockDao userStockDao=DaoFactory.getUserStockDaoProxy();
+		UserStockDaoProxyService userStockDao=DaoFactory.getUserStockDaoProxy();
 		ArrayList<UserStock> arrayList=new ArrayList<>();
 		try {
 			Iterator iterator=userStockDao.findAll().iterator();
