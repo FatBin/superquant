@@ -217,9 +217,8 @@
 			
 			$.post("../ToMarketPageServlet", {
 				benchName : stockname
-			});
-			
-			getKLine("market");
+			})
+			.success( function(){getKLine("market");});
 			
 			var data = [
 			            [0,0,0,0,0,0,0],

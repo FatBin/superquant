@@ -174,7 +174,9 @@ function mouseClick(rowpos, link){
 
 function refreshTable(data){
 	
-	 var tr = document.getElementById("senfe").getElementsByTagName("tr");
+	 
+	
+	var tr = document.getElementById("senfe").getElementsByTagName("tr");
 	 
 	 for(var i=1; i<tr.length; i++){
 		 var td = tr[i].getElementsByTagName("td");
@@ -183,4 +185,24 @@ function refreshTable(data){
 			 td[j].innerHTML = data[i][j];
 		 }
 	 }
+}
+
+function init_table(thead, data){
+	
+	alert(thead[0]);
+	
+//	var table = document.getElementById("senfe");
+//	tb.innerHTML = '';
+//
+//	var tbody = document.createElement("tbody");
+//	table.appendChild(tbody);
+//	
+//	// head
+//	var tr = tbody.insertRow(0);
+//	for(var i=0; i<thead[0].length; i++){
+//		var th = document.createElement("th");
+//        th.innerHTML = thead[i];
+//        tr.appendChild (th);
+//	}
+//	
 }
