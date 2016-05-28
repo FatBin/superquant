@@ -1,3 +1,7 @@
+window.onload = function() {
+	page = new Page(10, 'senfe', 'group_one');
+};
+
 function Page(iAbsolute, sTableId, sTBodyId, page) {
 	this.absolute = iAbsolute; // 每页最大记录数
 	this.tableId = sTableId;
@@ -131,10 +135,6 @@ Page.prototype.__cloneRows__ = function() {
 	return tempRows;
 };
 
-window.onload = function() {
-	page = new Page(10, 'senfe', 'group_one');
-};
-
 // senfe("表格名称","奇数行背景","偶数行背景","鼠标经过背景","点击后背景");
 senfe("senfe", "#fff", "rgb(239,239,239)", "#ccc", "#f00");
 
@@ -174,8 +174,6 @@ function mouseClick(rowpos, link){
 
 function refreshTable(data){
 	
-	 
-	
 	var tr = document.getElementById("senfe").getElementsByTagName("tr");
 	 
 	 for(var i=1; i<tr.length; i++){
@@ -185,24 +183,4 @@ function refreshTable(data){
 			 td[j].innerHTML = data[i][j];
 		 }
 	 }
-}
-
-function init_table(thead, data){
-	
-	alert(thead[0]);
-	
-//	var table = document.getElementById("senfe");
-//	tb.innerHTML = '';
-//
-//	var tbody = document.createElement("tbody");
-//	table.appendChild(tbody);
-//	
-//	// head
-//	var tr = tbody.insertRow(0);
-//	for(var i=0; i<thead[0].length; i++){
-//		var th = document.createElement("th");
-//        th.innerHTML = thead[i];
-//        tr.appendChild (th);
-//	}
-//	
 }
