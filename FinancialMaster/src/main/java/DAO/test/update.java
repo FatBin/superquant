@@ -87,15 +87,15 @@ public class update {
 //		DBconnection dBconnection=new DBconnection();
 		Document document;
 		
-		try {
-			document=Jsoup.connect("http://www.aigaogao.com/tools/history.html?s=600000").get();
-			Element element=document.select("table[style=width:100%; border-collapse: collapse;]").get(0);
-			Elements elements=element.select("tr");
-			for(Element element2:elements)
-			System.out.println(element2.text());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			document=Jsoup.connect("http://www.aigaogao.com/tools/history.html?s=600000").get();
+//			Element element=document.select("table[style=width:100%; border-collapse: collapse;]").get(0);
+//			Elements elements=element.select("tr");
+//			for(Element element2:elements)
+//			System.out.println(element2.text());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 //		String d1 = "11/12/1212";
 //		SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");

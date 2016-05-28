@@ -9,6 +9,9 @@ public interface TradeRecordDao {
 	//insert a PO
 	public boolean insert(TradeRecord tradeRecord)throws Exception;
 	
+	//insert a large number of PO
+//	public void largeNumInsert();
+	
 	//search a TradeRecord with its id,in this case,it is tradeRecordId
 	public TradeRecord findByID(TradeRecordId tradeRecordId)throws Exception;
 	

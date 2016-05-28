@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -53,4 +54,12 @@ public class StockDaoImpl implements StockDao{
 		return StockList;
 	}
 
+	@Override
+	public List getStockData(String hql) throws Exception {
+		Session session=DBconnection.getSession();
+		Query query=session.createQuery(hql);
+		List list=query.list();
+		session.close();
+		return list;
+	}
 }
