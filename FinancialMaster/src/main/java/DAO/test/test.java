@@ -3,6 +3,9 @@ package DAO.test;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.soap.SOAPException;
 
 import org.hibernate.exception.ConstraintViolationException;
 import org.json.JSONArray;
@@ -12,12 +15,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import DAO.DAOfactory.DaoFactory;
 import DAO.DaoProxy.IndustriesDaoProxy;
 import DAO.DaoProxyService.IndustriesDaoProxyService;
+import DAO.DaoProxyService.StockDaoProxyService;
 import DAO.connection.DBconnection;
 import DAO.pojo.Industries;
 import DAO.pojo.IndustriesId;
 import PO.RiseStockPO;
+import PO.UpToDateStockPO;
 import PO.benchCurrentDataPO;
 import PO.industryPO;
 import data.BenchData.BenchRecord;
@@ -334,18 +340,87 @@ public class test {
 		
 		
 
-		Document result;
-		try {
-			result = Jsoup.connect("http://www.shdjt.com/sh.htm").get();
-			Elements elements=result.select("tr[height=25]");
-			for (Element element : elements) {
-				System.out.println(element.text());
-			}
+//		Document result;
+//		try {
+//			result = Jsoup.connect("http://www.shdjt.com/sh.htm").get();
+//			Elements elements=result.select("tr[height=25]");
+//			for (Element element : elements) {
+//				System.out.println(element.text());
+//			}
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		
+//		StockData stockData=new StockData();
+//		try {
+//			ArrayList<UpToDateStockPO> arrayList=stockData.geToDateStockPOs("sh");
+//			for (UpToDateStockPO upToDateStockPO : arrayList) {
+//				System.out.print(upToDateStockPO.getStockId()+"  ");
+//				System.out.print(upToDateStockPO.getStockName()+"  ");
+//				System.out.print(upToDateStockPO.getIndustry()+"  ");
+//				System.out.print(upToDateStockPO.getNow()+"  ");
+//				System.out.print(upToDateStockPO.getRise_fall()+"  ");
+//				System.out.print(upToDateStockPO.getDdx()+"  ");
+//				System.out.print(upToDateStockPO.getDdy()+"  ");
+//				System.out.print(upToDateStockPO.getDdz()+"  ");
+//				System.out.print(upToDateStockPO.getPositive()+"  ");
+//				System.out.print(upToDateStockPO.getTongchilv()+"  ");
+//				System.out.print(upToDateStockPO.getExtraLargePurchase()+"  ");
+//				System.out.print(upToDateStockPO.getExtraLargeSell()+"  ");
+//				System.out.print(upToDateStockPO.getLargePurchase()+"  ");
+//				System.out.print(upToDateStockPO.getLargeSell()+"  ");
+//				System.out.print(upToDateStockPO.getMediumPurchase()+"  ");
+//				System.out.print(upToDateStockPO.getMediumSell()+"  ");
+//				System.out.print(upToDateStockPO.getSmallPurchase()+"  ");
+//				System.out.print(upToDateStockPO.getSmallSell()+"  ");
+//				System.out.print(upToDateStockPO.getTurnover()+"  ");
+//				System.out.println(upToDateStockPO.getQuantity_relative_ratio());
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+//		DBconnection dBconnection=new DBconnection();
+//		StockData stockData=new StockData();
+//		try {
+//			List list=stockData.getStockRecord("sh200302", "2011-07-01", "2014-11-31");
+//			System.out.println(list.size());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
-		} catch (IOException e) {
-			e.printStackTrace();
+//		DBconnection dBconnection=new DBconnection();
+//		StockDaoProxyService service=DaoFactory.getStockDaoProxy();
+//		try {
+//			List list=service.getIndustries();
+//			for (Object object : list) {
+//				System.out.println((String)object);
+//			}
+//			System.out.println(list.size());
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		String result=HttpRequest.sendGet("http://121.41.106.89:8010/api/stock/" + "sh600000", "start=" + "2014-01-01"
+				+ "&end=" + "2015-05-28" + "&fields=open+high+low+close+adj_price+volume+turnover+pe_ttm+pb");
+		JSONObject jsonObject=new JSONObject(result);
+		JSONObject jsonObject2=jsonObject.getJSONObject("data");
+		JSONArray jsonArray=jsonObject2.getJSONArray("trading_info");
+		for (Object object : jsonArray) {
+			JSONObject jsonObject3=(JSONObject) object;
+			System.out.print(jsonObject3.getString("date")+" ");
+			System.out.print(jsonObject3.getDouble("open")+" ");
+			System.out.print(jsonObject3.getDouble("close")+" ");
+			System.out.print(jsonObject3.getDouble("high")+" ");
+			System.out.print(jsonObject3.getDouble("low")+" ");
+			System.out.print(jsonObject3.getDouble("adj_price")+" ");
+			System.out.print(jsonObject3.getDouble("volume")+" ");
+			System.out.print(jsonObject3.getDouble("turnover")+" ");
+			System.out.print(jsonObject3.getDouble("pe_ttm")+" ");
+			System.out.println(jsonObject3.getDouble("pb"));
 		}
-
-
+		System.out.println(result);
 	}
 }

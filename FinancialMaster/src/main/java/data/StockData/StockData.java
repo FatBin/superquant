@@ -1,11 +1,16 @@
 package data.StockData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import DAO.DAOfactory.DaoFactory;
+import DAO.DaoProxyService.StockDaoProxyService;
+import DAO.DaoProxyService.TradeRecordDaoProxyService;
 import PO.RiseStockPO;
 import PO.UpToDateStockPO;
 import dataservice.StockDataService.StockDataService;
@@ -16,6 +21,8 @@ public class StockData implements StockDataService{
 			"/ajax/1/"
 			};
 	public static final int[] page={1,2,3,4,5,6,7,8,9,10};
+	
+	public static final String[] UpToDateStocks={"http://www.shdjt.com/",".htm"};
 	@Override
 	public ArrayList<RiseStockPO> getRiseStock() throws Exception{
 		try {
@@ -47,8 +54,48 @@ public class StockData implements StockDataService{
 	}
 	@Override
 	public ArrayList<UpToDateStockPO> geToDateStockPOs(String exchange) throws Exception {
-		
-		return null;
+		try {
+			ArrayList<UpToDateStockPO> arrayList=new ArrayList<>();
+			Document document=Jsoup.connect(UpToDateStocks[0]+exchange+UpToDateStocks[1]).get();
+			Elements elements=document.select("tr[height=25]");
+			for (Element element : elements) {
+				String[] temp=element.text().split(" ");
+				UpToDateStockPO po=new UpToDateStockPO(
+						temp[1], 
+						temp[2], 
+						temp[4], 
+						Double.parseDouble(temp[5]), 
+						temp[6], 
+						Double.parseDouble(temp[8]), 
+						Double.parseDouble(temp[9]), 
+						Double.parseDouble(temp[10]), 
+						Double.parseDouble(temp[11]), 
+						Double.parseDouble(temp[12]), 
+						Double.parseDouble(temp[21]), 
+						Double.parseDouble(temp[22]), 
+						Double.parseDouble(temp[23]), 
+						Double.parseDouble(temp[24]), 
+						Double.parseDouble(temp[25]), 
+						Double.parseDouble(temp[26]), 
+						Double.parseDouble(temp[27]), 
+						Double.parseDouble(temp[28]), 
+						Double.parseDouble(temp[29]), 
+						Double.parseDouble(temp[30]));
+				arrayList.add(po);
+			}
+			return arrayList;
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	@Override
+	public List getStockRecord(String stockId, String starttime, String endtime) throws Exception {
+		TradeRecordDaoProxyService tradeRecordDaoProxyService=DaoFactory.getTradeRecordDaoProxy();
+		try {
+			return tradeRecordDaoProxyService.getTradeRecord(stockId, starttime, endtime);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 }

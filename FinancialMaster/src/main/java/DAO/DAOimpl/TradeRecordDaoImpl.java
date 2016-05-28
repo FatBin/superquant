@@ -2,7 +2,9 @@ package DAO.DAOimpl;
 
 import java.util.List;
 
+
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -47,6 +49,15 @@ public class TradeRecordDaoImpl implements TradeRecordDao{
 		List TradeRecordList=criteria.list();
 		session.close();
 		return TradeRecordList;
+	}
+
+	@Override
+	public List getTradeRecord(String hql) throws Exception {
+		Session session=DBconnection.getSession();
+		Query query=session.createQuery(hql);
+		List tradeRecordList=query.list();
+		session.close();
+		return tradeRecordList;
 	}
 
 }

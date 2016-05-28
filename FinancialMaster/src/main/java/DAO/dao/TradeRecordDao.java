@@ -14,4 +14,7 @@ public interface TradeRecordDao {
 	
 	//get all TradeRecord data
 	public List findAll()throws Exception;
+	
+	//get the stock date according to hql
+	public List getTradeRecord(String hql) throws Exception;
 }

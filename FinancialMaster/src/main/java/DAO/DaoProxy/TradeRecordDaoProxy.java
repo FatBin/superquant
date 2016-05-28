@@ -47,4 +47,18 @@ public class TradeRecordDaoProxy implements TradeRecordDaoProxyService{
 		}
 	}
 
+	@Override
+	public List getTradeRecord(String stockId,String starttime,String endtime) throws Exception {
+		TradeRecordDao tradeRecordDaoImpl=new TradeRecordDaoImpl();
+		try {
+			String hql="from TradeRecord t where "
+					+ "t.id.stockId='"+stockId+"' and "
+					+ "t.id.date>='"+starttime+"' and "
+					+ "t.id.date<='"+endtime+"' order by t.id.date desc";
+			return tradeRecordDaoImpl.getTradeRecord(hql);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
 }

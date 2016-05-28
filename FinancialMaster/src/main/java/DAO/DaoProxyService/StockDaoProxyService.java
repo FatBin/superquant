@@ -13,4 +13,8 @@ public interface StockDaoProxyService {
 	
 	//get all stock data
 	public List findAll()throws Exception;
+	
+	//get the industries
+	public List getIndustries() throws Exception;
+	
 }

@@ -44,4 +44,17 @@ public class StockDaoProxy implements StockDaoProxyService{
 		}
 	}
 
+	@Override
+	public List getIndustries() throws Exception{
+		StockDao stockDaoImpl=new StockDaoImpl();
+		try {
+			String hql="select distinct s.industry from Stock s";
+			return stockDaoImpl.getStockData(hql);
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+
+
 }

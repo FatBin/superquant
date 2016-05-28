@@ -14,4 +14,7 @@ public interface TradeRecordDaoProxyService {
 	
 	//get all TradeRecord data
 	public List findAll()throws Exception;
+	
+	//get the TradeRecord from starttime to endtime
+	public List getTradeRecord(String stockId,String starttime,String endtime) throws Exception;
 }

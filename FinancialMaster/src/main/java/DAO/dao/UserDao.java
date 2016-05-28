@@ -13,4 +13,5 @@ public interface UserDao {
 	
 	//get all User data
 	public List findAll()throws Exception;
+	
 }
