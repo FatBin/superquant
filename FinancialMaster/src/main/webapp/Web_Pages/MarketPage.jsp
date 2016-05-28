@@ -78,23 +78,22 @@
 	%>
 
 	<div style="margin-top: 140px; margin-left: 240px;">
-		<form name="stockName">
-			<select class="form-control" style="width: 100px;"
-				onchange="changeStock(this.value);">
+		<select id="stockSelect" class="form-control" style="width: 120px;"
+			onchange="changeStock(this.value);">
 
-				<%
-					for (int i = 0; i < benlist.length; i++) {
-				%>
+			<%
+				for (int i = 0; i < benlist.length; i++) {
+			%>
 
-				<option>
-					<%=benlist[i]%>
-				</option>
+			<option>
+				<%=benlist[i]%>
+			</option>
 
-				<%
-					}
-				%>
-			</select>
-		</form>
+			<%
+				}
+			%>
+		</select>
+
 	</div>
 
 	<div style="margin-left: 140px;">
@@ -112,18 +111,18 @@
 	</div>
 
 	<blockquote
-		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 240px; margin-top: 20px;">
+		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 240px; margin-top: 80px;">
 		<h5>历史数据</h5>
 	</blockquote>
 
 	<!-- history data -->
 	<div
-		style="float: left; height: 300px; width: 1000px; margin-left: 240px; margin-top: 20px;">
+		style="float: left; height: 300px; width: 1000px; margin-left: 240px; margin-top: 10px;">
 
 		<div>
 
 			<%!BenchVO sv;
-	String history_data[][];%>
+			String history_data[][];%>
 			<%
 				sv = (BenchVO) session.getAttribute("BenchMarket");
 				history_data = sv.getData();
@@ -180,7 +179,7 @@
 	</div>
 
 	<!-- bottom section -->
-	<div style="margin-top: 1380px;">
+	<div style="margin-top: 350px;">
 		<div style="background-color: #766F67; height: 200px;"></div>
 
 		<div style="background-color: #645D55; height: 50px;">
@@ -197,13 +196,14 @@
 	<script src="../js/table_pages.js"></script>
 
 	<script src="../jschart/kLineChart.js"></script>
-	<script> getKLine("market");</script>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 
-	<!-- 定时刷新数据 -->
-	"/Users/pc/Downloads/web/js2.note.rtfd/Pasted Graphic 24.tiff"
+	<!-- 刷新数据 -->
 	<script>
+	
+		getKLine("market");
+	
 	    // 每10秒更新最新数据
 		setInterval(refreshData, 10000);
 		
@@ -216,8 +216,11 @@
 			
 			$.post("../ToMarketPageServlet", {
 				benchName : stockname
-			})
+			});
+			
+			getKLine("market");
 		}
+			
 	</script>
 
 </body>
