@@ -21,6 +21,8 @@
 <script src="../js/echarts.min.js"></script>
 <script src="../js/jquery.min.js"></script>
 
+<script>getKLine("market");</script>
+
 </head>
 
 <body id="page-top" class="index">
@@ -122,7 +124,7 @@
 		<div>
 
 			<%!BenchVO sv;
-			String history_data[][];%>
+	String history_data[][];%>
 			<%
 				sv = (BenchVO) session.getAttribute("BenchMarket");
 				history_data = sv.getData();
@@ -194,14 +196,13 @@
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 	<script src="../js/table_pages.js"></script>
-
 	<script src="../jschart/kLineChart.js"></script>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 
 	<!-- 刷新数据 -->
 	<script>
-	
+		
 		getKLine("market");
 	
 	    // 每10秒更新最新数据
@@ -219,6 +220,26 @@
 			});
 			
 			getKLine("market");
+			
+			var data = [
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0],
+			            [0,0,0,0,0,0,0]
+			            ]
+			
+			refreshTable(data);
+			
 		}
 			
 	</script>

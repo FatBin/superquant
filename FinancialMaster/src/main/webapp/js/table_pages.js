@@ -171,3 +171,16 @@ function mouseClick(rowpos, link){
 //	alert(t[rowpos].getElementsByTagName("td")[0].innerHTML);
 	window.location.href = link;
 }
+
+function refreshTable(data){
+	
+	 var tr = document.getElementById("senfe").getElementsByTagName("tr");
+	 
+	 for(var i=1; i<tr.length; i++){
+		 var td = tr[i].getElementsByTagName("td");
+		 
+		 for(var j=0; j<td.length; j++){
+			 td[j].innerHTML = data[i][j];
+		 }
+	 }
+}
