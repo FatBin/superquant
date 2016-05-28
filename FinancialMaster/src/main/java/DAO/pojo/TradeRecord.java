@@ -29,7 +29,7 @@ public class TradeRecord implements java.io.Serializable {
 	public TradeRecord() {
 	}
 
-	public TradeRecord(TradeRecordId id, float open, double close, double high, double low, double adjPrice,
+	public TradeRecord(TradeRecordId id, double open, double close, double high, double low, double adjPrice,
 			long volume, double turnover, double pe, double pb) {
 		this.id = id;
 		this.open = open;
