@@ -140,7 +140,7 @@ senfe("senfe", "#fff", "rgb(239,239,239)", "#ccc", "#f00");
 
 function senfe(o, a, b, c, d) {
 	var t = document.getElementById(o).getElementsByTagName("tr");
-	for (var i = 0; i < t.length; i++) {
+	for (var i = 1; i < t.length; i++) {
 		t[i].style.backgroundColor = (t[i].sectionRowIndex % 2 == 0) ? a : b;
 	}
 }
@@ -174,13 +174,71 @@ function mouseClick(rowpos, link){
 
 function refreshTable(data){
 	
-	var tr = document.getElementById("senfe").getElementsByTagName("tr");
-	 
-	 for(var i=1; i<tr.length; i++){
-		 var td = tr[i].getElementsByTagName("td");
-		 
-		 for(var j=0; j<td.length; j++){
-			 td[j].innerHTML = data[i][j];
-		 }
-	 }
+//	var tr = document.getElementById("senfe").getElementsByTagName("tr");
+//	 
+//	 for(var i=1; i<tr.length; i++){
+//		 var td = tr[i].getElementsByTagName("td");
+//		 
+//		 for(var j=0; j<td.length; j++){
+//			 td[j].innerHTML = data[i][j];
+//		 }
+//	 }
+	
+	var tablehead = ["日期","开盘价","最高价","最低价","收盘价","成交量(百万股)","成交额(亿元)"];
+	var data = [
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0],
+	            [0,0,0,0,0,0,0]
+	            ];
+	init_table(tablehead, data);
+}
+
+function init_table(tablehead, data){
+	
+	var table = document.getElementById("senfe");
+	table.innerHTML = '';
+	
+	var thead = document.createElement("thead");
+	table.appendChild(thead);
+	
+	var tr = document.createElement("tr");
+	thead.appendChild(tr);
+	for(var i=0; i<tablehead.length; i++){
+		var td = document.createElement("td");
+		td.innerHTML = tablehead[i];
+		tr.appendChild(td);
+	}
+	tr.style.backgroundColor = "#ccc";
+	
+	var tbody = document.createElement("tbody");
+	tbody.setAttribute('id', 'group_one');
+	table.appendChild(tbody);
+	
+	for(var i=0; i<data.length; i++){
+		var tr = tbody.insertRow(tbody.rows.length);
+		
+		var row = i + 1;
+		tr.setAttribute('onmouseover', 'mouseIn('+row+')');
+		tr.setAttribute('onmouseout', 'mouseOut('+row+')');
+		
+		for(var j=0; j<data[0].length; j++){
+			var td = document.createElement("td");
+			td.innerHTML = data[i][j];
+			tr.appendChild(td);
+		}
+	}
+	
+	page = new Page(10, 'senfe', 'group_one');
+	senfe("senfe", "#fff", "rgb(239,239,239)", "#ccc", "#f00");
 }
