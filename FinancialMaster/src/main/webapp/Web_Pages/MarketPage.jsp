@@ -23,6 +23,14 @@
 
 <script>getKLine("market");</script>
 
+<style type="text/css">
+td {
+	text-align: center;
+	width: 110px;
+	height:23px;
+}
+</style>
+
 </head>
 
 <body id="page-top" class="index">
