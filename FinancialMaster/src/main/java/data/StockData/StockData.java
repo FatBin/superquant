@@ -97,5 +97,14 @@ public class StockData implements StockDataService{
 			throw e;
 		}
 	}
+	@Override
+	public List getStockInfos() throws Exception {
+		StockDaoProxyService stockDaoProxyService=DaoFactory.getStockDaoProxy();
+		try {
+			return stockDaoProxyService.findAll();
+		} catch (Exception e) {
+			throw e;
+		}
+	}
 
 }

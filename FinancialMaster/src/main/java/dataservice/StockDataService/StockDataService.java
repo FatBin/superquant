@@ -22,4 +22,10 @@ public interface StockDataService {
 	 * get the TradeRecord from the starttime to the endtime
 	 */
 	public List getStockRecord(String stockId,String starttime,String endtime) throws Exception;
+	
+	
+	/*
+	 * return the list contain the Dao.POJO.Stock
+	 */
+	public List getStockInfos() throws Exception;
 }

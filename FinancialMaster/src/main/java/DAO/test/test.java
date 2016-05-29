@@ -453,13 +453,15 @@ public class test {
 		TradeRecordDaoProxyService tradeRecordDaoProxyService = DaoFactory.getTradeRecordDaoProxy();
 		try {
 			ArrayList<industriesPO> arrayList = industryDataService.getIndustryData();
-			System.out.println("第1阶段end");
+			System.out.println("获取所有行业阶段end");
 			int idcount=0;
 			for (industriesPO industriesPO : arrayList) {
+				Session session=dBconnection.getSession();
+				System.out.println("开启事务阶段end");
 				ArrayList<industryPO> arrayList2 = industryData.getIndustry(industriesPO.getIndustry());
-				System.out.println("第2阶段end");
+				System.out.println("获取具体行业所有公司阶段end");
 				for (industryPO industryPO : arrayList2) {
-					Session session=dBconnection.getSession();
+
 					idcount++;
 					try {
 						String exchange="";
@@ -473,7 +475,7 @@ public class test {
 								"http://121.41.106.89:8010/api/stock/" + exchange+industryPO.getStockI(),
 								"start=" + "1990-01-01" + "&end=" + "2016-05-28"
 										+ "&fields=open+high+low+close+adj_price+volume+turnover+pe_ttm+pb");
-						System.out.println("第3阶段end");
+						System.out.println("获取公司历史数据阶段end");
 						JSONObject jsonObject = new JSONObject(result);
 						JSONObject jsonObject2 = jsonObject.getJSONObject("data");
 						JSONArray jsonArray = jsonObject2.getJSONArray("trading_info");
@@ -493,20 +495,25 @@ public class test {
 										jsonObject3.getDouble("turnover"), 
 										jsonObject3.getDouble("pe_ttm"), 
 										jsonObject3.getDouble("pb"));
-										session.save(tradeRecord);
+								session.save(tradeRecord);
 //								tradeRecordDaoProxyService.insert(tradeRecord);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
 						}
-						System.out.println("第4阶段end");
+						session.flush();
+						session.clear();
+						System.out.println("储存公司历史数据阶段end");
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					Transaction tx=session.beginTransaction();
-					tx.commit();
-					session.close();
+					
 				}
+				
+				Transaction tx=session.beginTransaction();
+				tx.commit();
+				session.close();
+				System.out.println("第5阶段end");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
