@@ -57,7 +57,7 @@
 			</ul>
 		</div>
 
-		<div class="style_5">
+		<div class="style_5 hidden-sm hidden-xs">
 			<form method="get" id="searchform" action="">
 				<fieldset>
 					<input id="s" name="s" type="text" placeholder="搜索"
@@ -109,7 +109,6 @@
 
 		<div id="klinechart"
 			style="width: 850px; height: 910px; margin-left: 60px; margin-top: 20px;"></div>
-
 	</div>
 
 	<blockquote
@@ -194,7 +193,6 @@
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
-
 	<script src="../js/table_pages.js"></script>
 	<script src="../jschart/kLineChart.js"></script>
 	<script src="../js/jquery.js"></script>

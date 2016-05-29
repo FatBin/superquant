@@ -17,6 +17,7 @@
 	type="text/css">
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
+<link href="../css/structure.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -51,7 +52,7 @@
 			</ul>
 		</div>
 
-		<div class="style_5">
+		<div class="style_5 hidden-sm hidden-xs">
 			<form method="get" id="searchform" action="">
 				<fieldset>
 					<input id="s" name="s" type="text" placeholder="搜索"
@@ -67,10 +68,17 @@
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
-
-	<div>
-		<h1 style="text-align: center; margin-top: 200px; color: black;">行业</h1>
+	
+	<h3 class="title" style="margin-top:90px;">行业对比</h3>
+	<div class="innerBlock" id="" style="width:850px;height:400px;">
+		
 	</div>
+	
+	
+	<h3 class="title">行业对比</h3>
+	
+
+
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>

@@ -52,7 +52,7 @@
 			</ul>
 		</div>
 
-		<div class="style_5">
+		<div class="style_5 hidden-sm hidden-xs">
 			<form method="get" id="searchform" action="">
 				<fieldset>
 					<input id="s" name="s" type="text" placeholder="搜索"
