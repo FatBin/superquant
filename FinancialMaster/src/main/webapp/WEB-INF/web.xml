@@ -76,12 +76,20 @@
     <servlet-name>GetMarketkLineServlet</servlet-name>
     <url-pattern>/GetMarketkLine</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>UpdateBenchVOServlet</servlet-name>
     <servlet-class>servlet.stockmarket.UpdateBenchVOServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateBenchVOServlet</servlet-name>
     <url-pattern>/UpdateBenchVO</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>GetMarketTableDateServlet</servlet-name>
+    <servlet-class>servlet.stockmarket.GetMarketTableDateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetMarketTableDateServlet</servlet-name>
+    <url-pattern>/GetMarketTableDate</url-pattern>
   </servlet-mapping>
 </web-app>

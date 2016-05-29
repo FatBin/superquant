@@ -29,7 +29,6 @@ public class BusinessPageServlet extends HttpServlet {
      */
     public BusinessPageServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     
@@ -45,6 +44,7 @@ public class BusinessPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//返回所有行业的最新信息列表，类型BusinessListVO
 		request.getSession().setAttribute("BusinessList", businessListVO);
 		response.sendRedirect(request.getContextPath()+"/Web_Pages/BusinessPage.jsp");
 	}
@@ -53,6 +53,7 @@ public class BusinessPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
 		ArrayList<industriesPO> industryPOs=businessListVO.getBusinessList();
 		int size=industryPOs.size();
 		double[] ups_and_downs=new double[size];
@@ -65,15 +66,15 @@ public class BusinessPageServlet extends HttpServlet {
 		}
 		String data="[";
 		for (int i = 0; i <10 ; i++) {
-			data=data+"{'name':'"+name[i]+"','value':["+
+			data=data+"{'name':'"+name[i]+"','value':"+
 					ups_and_downs[i]+"},";
 		}
 		for (int i = size-10; i < size; i++) {
-			data=data+"{'name':'"+name[i]+"','value':["+
+			data=data+"{'name':'"+name[i]+"','value':"+
 					ups_and_downs[i]+"},";
 		}
 		data+="]";
-		
+		System.out.println(data);
 		JSONArray json = new JSONArray(data);
 		PrintWriter out = response.getWriter();
 		out.println(json);

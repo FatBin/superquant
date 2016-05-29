@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import DAO.pojo.User;
+import DAO.pojo.UserStock;
+import DAO.pojo.UserStockId;
 import ENUM.ManageState;
 import VO.UserVO;
 import data.UserData.UserData;
+import data.UserData.UserStockData;
 import dataservice.UserDataService.UserDataService;
+import dataservice.UserDataService.UserStockDataService;
 import web.blservice.userInfo.LoginInfo;
 
 public class LoginImpl implements LoginInfo {
@@ -44,6 +48,22 @@ public class LoginImpl implements LoginInfo {
 //	    ArrayList<String> idlist=new ArrayList<String>();
 //	    idlist.add(id);
 //	    user.setStockList(idlist);
+		UserStockDataService userStockDataService=new UserStockData();
+		 int size;
+		 int index;
+		try {
+			ArrayList<UserStock> userStocks=userStockDataService.getUserStocks(user.getUsername());
+		    size=userStocks.size();
+			String[][] stockIdlist=new String[size][3];
+			index=0;
+			for (UserStock userStock : userStocks) {
+				UserStockId userStockId=userStock.getId();
+				stockIdlist[index][0]=userStockId.getStockId();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
