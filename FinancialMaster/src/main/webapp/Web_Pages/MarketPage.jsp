@@ -118,7 +118,7 @@ td {
 		<div id="klinechart"
 			style="width: 850px; height: 910px; margin-left: 60px; margin-top: 20px;"></div>
 	</div>
-
+	
 	<blockquote
 		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 240px; margin-top: 80px;">
 		<h5>历史数据</h5>
@@ -204,12 +204,11 @@ td {
 	<script src="../js/table_pages.js"></script>
 	<script src="../jschart/kLineChart.js"></script>
 	<script src="../js/jquery.js"></script>
+	<script>getKLine("market");</script>
 	<script src="../js/bootstrap.min.js"></script>
 
 	<!-- 刷新数据 -->
 	<script>
-		
-		getKLine("market");
 	
 	    // 每10秒更新最新数据
 		setInterval(refreshData, 10000);
@@ -224,26 +223,31 @@ td {
 			$.post("../ToMarketPageServlet", {
 				benchName : stockname
 			})
-			.success( function(){getKLine("market");});
+			.success( function(){
+				getKLine("market"); // 刷新kline
+				var tablehead = ["日期","开盘价","最高价","最低价","收盘价","成交量(百万股)","成交额(亿元)"];
+				var data = [];
+
+				$.ajax({
+					type : "get",
+					async : false, //同步执行
+					url :  "../GetMarketTableDate",
+					dataType : "json", 
+					success : function(result) {
+						if (result) {
+							for (var i = 0; i < result.length; i++) {
+								data.push(result[i].value);
+							}
+						}
+					},
+					error : function(errorMsg) {
+						alert("不好意思，请求数据失败啦!");
+					}
+				})
+				refresh_table(tablehead, data);
+			});
 			
-			var data = [
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0],
-			            [0,0,0,0,0,0,0]
-			            ]
 			
-			refreshTable(data);
 			
 		}
 			

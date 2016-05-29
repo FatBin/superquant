@@ -172,39 +172,8 @@ function mouseClick(rowpos, link){
 	window.location.href = link;
 }
 
-function refreshTable(data){
-	
-//	var tr = document.getElementById("senfe").getElementsByTagName("tr");
-//	 
-//	 for(var i=1; i<tr.length; i++){
-//		 var td = tr[i].getElementsByTagName("td");
-//		 
-//		 for(var j=0; j<td.length; j++){
-//			 td[j].innerHTML = data[i][j];
-//		 }
-//	 }
-	
-	var tablehead = ["日期","开盘价","最高价","最低价","收盘价","成交量(百万股)","成交额(亿元)"];
-	var data = [
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0],
-	            [0,0,0,0,0,0,0]
-	            ];
-	init_table(tablehead, data);
-}
-
-function init_table(tablehead, data){
+// 动态刷新表格，传入表头和数据的数组
+function refresh_table(tablehead, data){
 	
 	var table = document.getElementById("senfe");
 	table.innerHTML = '';
