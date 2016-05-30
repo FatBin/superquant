@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="VO.StockListVO" import="PO.RiseStockPO"
+	import="java.util.ArrayList"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,7 +42,7 @@ li {
 					class="icon-bar"></span>
 			</button>
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
-			<img src="../webImage/logo.png" title="返回顶部" id="logo">
+			<img src="../webImage/logo.png" title="返回首页" id="logo">
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -52,7 +53,7 @@ li {
 
 				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
-				<li><a class="page-scroll" href="StockPage.jsp">个股</a></li>
+				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="BusinessPage.jsp">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
@@ -69,7 +70,7 @@ li {
 			</fieldset>
 
 			<div id="searchHint"
-				style="position: absolute; background-color: rgb(235,235,235); width: 150px; margin-left: 945px; margin-top: -20px;">
+				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
 			</div>
 		</div>
 
@@ -83,43 +84,53 @@ li {
 
 			<!-- 股票列表 -->
 			<div>
+
+				<%
+					StockListVO stockListVO = (StockListVO) session.getAttribute("StockList");
+					ArrayList<RiseStockPO> stockpolist = stockListVO.getStockList();
+				%>
+
 				<table id="senfe">
 					<thead>
 						<tr align="center" valign="middle">
 							<td width="200" height="23" bgcolor="#ccc">股票代码</td>
 							<td width="130" bgcolor="#ccc">股票名称</td>
-							<td width="130" bgcolor="#ccc">开盘价</td>
+							<td width="130" bgcolor="#ccc">最新价</td>
 							<td width="130" bgcolor="#ccc">最高价</td>
 							<td width="130" bgcolor="#ccc">最低价</td>
-							<td width="130" bgcolor="#ccc">收盘价</td>
-							<td width="130" bgcolor="#ccc">交易量(百万股)</td>
-							<td width="130" bgcolor="#ccc">涨跌幅</td>
+							<td width="130" bgcolor="#ccc">连涨天数</td>
+							<td width="140" bgcolor="#ccc">连续涨跌幅</td>
+							<td width="140" bgcolor="#ccc">累计换手率</td>
+							<td width="160" bgcolor="#ccc">所属行业</td>
 						</tr>
 					</thead>
 
 					<tbody id="group_one">
 
 						<%
-							for (int i = 0; i < 50; i++) {
+							int i = 0;
+							for (RiseStockPO stockPO : stockpolist) {
 						%>
 
 						<tr align="center" valign="middle"
-							onmouseover="mouseIn(<%=i + 1%>);" onmouseout="mouseOut(<%=i + 1%>);"
+							onmouseover="mouseIn(<%=i + 1%>);"
+							onmouseout="mouseOut(<%=i + 1%>);"
 							onclick="mouseClick(<%=i + 1%>,'StockDetailPage.jsp')">
 
-							<%
-								for (int j = 0; j < 8; j++) {
-							%>
+							<td height="23"><%=stockPO.getStockId()%></td>
+							<td height="23"><%=stockPO.getStockName()%></td>
+							<td height="23"><%=stockPO.getNow()%></td>
+							<td height="23"><%=stockPO.getHigh()%></td>
+							<td height="23"><%=stockPO.getLow()%></td>
+							<td height="23"><%=stockPO.getRise_days()%></td>
+							<td height="23"><%=stockPO.getRise_fall()%></td>
+							<td height="23"><%=stockPO.getTotal_turnover()%></td>
+							<td height="23"><%=stockPO.getIndustry()%></td>
 
-							<td height="23">(<%=i + 1%>, <%=j + 1%>)
-							</td>
-
-							<%
-								}
-							%>
 						</tr>
 
 						<%
+							i++;
 							}
 						%>
 
@@ -144,7 +155,7 @@ li {
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 	<script src="../js/table_pages.js"></script>
-	
+
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 
 </body>

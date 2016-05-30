@@ -44,7 +44,6 @@ function showHint(str) {
 				var li = document.createElement("li");
 				li.innerHTML = data[i];
 				li.setAttribute("onmouseover", "search_mouseIn(" + i + ")");
-				li.setAttribute("onmouseout", "search_mouseOut(" + i + ")");
 				div.appendChild(li);
 			}
 		}
@@ -84,10 +83,4 @@ function search_mouseIn(pos) {
 	}
 	uls[pos].style.backgroundColor = "rgb(127, 127, 127)";
 	rowpos = pos;
-}
-
-function search_mouseOut(pos) {
-	var uls = document.getElementById("searchHint").getElementsByTagName("li");
-	uls[pos].style.backgroundColor = "rgb(235, 235, 235)";
-	rowpos = -1;
 }

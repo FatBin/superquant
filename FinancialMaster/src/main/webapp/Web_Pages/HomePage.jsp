@@ -44,7 +44,7 @@ li {
 			</button>
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
 			<a href="HomePage.jsp"> <img src="../webImage/logo.png"
-				title="返回顶部" id="logo">
+				title="返回首页" id="logo">
 			</a>
 		</div>
 
@@ -56,7 +56,7 @@ li {
 
 				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
-				<li><a class="page-scroll" href="StockPage.jsp">个股</a></li>
+				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="BusinessPage.jsp">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
