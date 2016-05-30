@@ -33,6 +33,11 @@ public class StockData implements StockDataService{
 				Elements result=elements.get(0).select("tbody").get(0).select("tr");
 				for (int j = 0; j < result.size(); j++) {
 					String[] temp=result.get(j).text().split(" ");
+					if(temp[1].charAt(0)=='6'){
+						temp[1]="sh"+temp[1];
+					}else {
+						temp[1]="sz"+temp[1];
+					}
 					RiseStockPO po=new RiseStockPO(
 							temp[1],
 							temp[2], 
@@ -52,14 +57,20 @@ public class StockData implements StockDataService{
 			throw e;
 		}
 	}
-	@Override
-	public ArrayList<UpToDateStockPO> geToDateStockPOs(String exchange) throws Exception {
+	
+	
+	public ArrayList<UpToDateStockPO> getToDateStockPOs(String exchange) throws Exception {
 		try {
 			ArrayList<UpToDateStockPO> arrayList=new ArrayList<>();
 			Document document=Jsoup.connect(UpToDateStocks[0]+exchange+UpToDateStocks[1]).get();
 			Elements elements=document.select("tr[height=25]");
 			for (Element element : elements) {
 				String[] temp=element.text().split(" ");
+				if(temp[1].charAt(0)=='6'){
+					temp[1]="sh"+temp[1];
+				}else {
+					temp[1]="sz"+temp[1];
+				}
 				UpToDateStockPO po=new UpToDateStockPO(
 						temp[1], 
 						temp[2], 
@@ -97,6 +108,9 @@ public class StockData implements StockDataService{
 			throw e;
 		}
 	}
+	
+	
+	
 	@Override
 	public List getStockInfos() throws Exception {
 		StockDaoProxyService stockDaoProxyService=DaoFactory.getStockDaoProxy();
@@ -105,6 +119,18 @@ public class StockData implements StockDataService{
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+
+
+	@Override
+	public UpToDateStockPO getUpToDateStockPO(String stockId) throws Exception {
+		ArrayList<UpToDateStockPO> arrayList=getToDateStockPOs(stockId.substring(0,2));
+		for (UpToDateStockPO upToDateStockPO : arrayList) {
+			if (upToDateStockPO.getStockId().equals(stockId)) {
+				return upToDateStockPO;
+			}
+		}
+		return new UpToDateStockPO();
 	}
 
 }

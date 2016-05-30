@@ -21,6 +21,11 @@ public class UpToDateStockPO {
 	private double smallSell;//小单卖出
 	private double turnover;//换手率
 	private double quantity_relative_ratio;//量比
+	
+	public UpToDateStockPO(){
+		
+	}
+	
 	public UpToDateStockPO(String stockId, String stockName, String industry, double now, String rise_fall, double ddx,
 			double ddy, double ddz, double positive, double tongchilv, double extraLargePurchase, double extraLargeSell,
 			double largePurchase, double largeSell, double mediumPurchase, double mediumSell, double smallPurchase,

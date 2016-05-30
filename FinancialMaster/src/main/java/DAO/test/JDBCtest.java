@@ -14,14 +14,14 @@ public class JDBCtest {
         Connection conn=null;  
         try {        
               Class.forName("com.mysql.jdbc.Driver");        
-              conn =  DriverManager.getConnection(url+"?useUnicode=true&characterEncoding=utf-8&useSSL=false", userName, password);        
+              conn =  DriverManager.getConnection(url+"?useSSL=false&useServerPrepStmts=false&rewriteBatchedStatements=true", userName, password);        
               conn.setAutoCommit(false);        
               String sql = "insert into user_stock(userName,stockID) values(?,?)";        
               PreparedStatement prest = conn.prepareStatement(sql);        
               long a=System.currentTimeMillis();  
-              for(int x = 0; x < 1000; x++){        
+              for(int x = 0; x < 100000; x++){        
                  prest.setString(1, x+"");;        
-                 prest.setString(2, "张三");        
+                 prest.setString(2, "张三");     
 //                 prest.execute();  
                  prest.addBatch();
                  System.out.println(x);

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import DAO.DAOfactory.DaoFactory;
 import DAO.DaoProxyService.IndustriesDaoProxyService;
+import PO.UpToDateStockPO;
 import PO.industriesPO;
 import PO.industryPO;
 import data.IO.HttpRequest;
@@ -63,7 +64,13 @@ public class IndustryData implements IndustryDataService {
 					JSONArray jsonArray = jsonObject.getJSONArray("data");
 					for (int j = 0; j < jsonArray.length(); j++) {
 						JSONObject jObject = jsonArray.getJSONObject(j);
-						industryPO industryPO = new industryPO(jObject.getString("stockcode"),
+						String stockId=jObject.getString("stockcode");
+						if (stockId.charAt(0)=='6') {
+							stockId="sh"+stockId;
+						}else {
+							stockId="sz"+stockId;
+						}
+						industryPO industryPO = new industryPO(stockId,
 								Double.parseDouble(jObject.getString("zxj")),
 								Double.parseDouble(jObject.getString("zde")),
 								Double.parseDouble(jObject.getString("zdf")),
@@ -85,7 +92,6 @@ public class IndustryData implements IndustryDataService {
 		} catch (Exception e) {
 			throw e;
 		}
-
 	}
 
 	@Override
@@ -98,5 +104,5 @@ public class IndustryData implements IndustryDataService {
 			throw e;
 		}
 	}
-
+	
 }

@@ -14,8 +14,7 @@ public interface UserStrategyDataService {
 	 * 		Fail: the strategy has been added
 	 * 		Others
 	 */
-	public ManageState addStrategy(String userId,String stockId, String strategy,String starttime,
-			String endtime,int cost,int frequency,double weight,String buystrategy,String sellstrategy,String otherstrategy);
+	public ManageState addStrategy(UserStrategy userStrategy);
 	
 	
 	

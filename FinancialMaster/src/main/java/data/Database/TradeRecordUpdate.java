@@ -38,30 +38,33 @@ public class TradeRecordUpdate {
 			
 			
 			for (Object object : list) {
-				Stock stock=(Stock)object;
-				String stockId=stock.getStockId();
-				String result=HttpRequest.sendGet(tradeRecord[0]+stockId,
-						tradeRecord[1]+lastMonth+tradeRecord[2]+now+tradeRecord[3]);
-				JSONObject jsonObject=new JSONObject(result);
-				JSONObject jsonObject2=jsonObject.getJSONObject("data");
-				JSONArray jsonArray=jsonObject2.getJSONArray("trading_info");
-				for (Object object2 : jsonArray) {
-					JSONObject jsonObject3=(JSONObject) object2;
-					TradeRecordId id=new TradeRecordId(stockId, jsonObject3.getString("date"));
-					TradeRecord tradeRecord=new TradeRecord(
-							id, 
-							jsonObject3.getDouble("open"), 
-							jsonObject3.getDouble("close"), 
-							jsonObject3.getDouble("high"), 
-							jsonObject3.getDouble("low"), 
-							jsonObject3.getDouble("adj_price"), 
-							jsonObject3.getLong("volume"), 
-							jsonObject3.getDouble("turnover"), 
-							jsonObject3.getDouble("pe_ttm"), 
-							jsonObject3.getDouble("pb"));
-					arrayList.add(tradeRecord);
+				try {
+					Stock stock=(Stock)object;
+					String stockId=stock.getStockId();
+					String result=HttpRequest.sendGet(tradeRecord[0]+stockId,
+							tradeRecord[1]+lastMonth+tradeRecord[2]+now+tradeRecord[3]);
+					JSONObject jsonObject=new JSONObject(result);
+					JSONObject jsonObject2=jsonObject.getJSONObject("data");
+					JSONArray jsonArray=jsonObject2.getJSONArray("trading_info");
+					for (Object object2 : jsonArray) {
+						JSONObject jsonObject3=(JSONObject) object2;
+						TradeRecordId id=new TradeRecordId(stockId, jsonObject3.getString("date"));
+						TradeRecord tradeRecord=new TradeRecord(
+								id, 
+								jsonObject3.getDouble("open"), 
+								jsonObject3.getDouble("close"), 
+								jsonObject3.getDouble("high"), 
+								jsonObject3.getDouble("low"), 
+								jsonObject3.getDouble("adj_price"), 
+								jsonObject3.getLong("volume"), 
+								jsonObject3.getDouble("turnover"), 
+								jsonObject3.getDouble("pe_ttm"), 
+								jsonObject3.getDouble("pb"));
+						arrayList.add(tradeRecord);
+					}
+				} catch (Exception e) {
+					System.out.println("无此股票数据");
 				}
-
 			}
 
 		} catch (Exception e) {

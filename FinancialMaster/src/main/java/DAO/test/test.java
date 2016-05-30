@@ -2,6 +2,9 @@ package DAO.test;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +41,7 @@ import DAO.pojo.UserStrategyId;
 import PO.RiseStockPO;
 import PO.UpToDateStockPO;
 import PO.benchCurrentDataPO;
+import PO.codeNamePO;
 import PO.industriesPO;
 import PO.industryPO;
 import data.BenchData.BenchRecord;
@@ -448,86 +452,125 @@ public class test {
 		// System.out.println(jsonObject3.getDouble("pb"));
 		// }
 		// System.out.println(result);
-		DBconnection dBconnection=new DBconnection();
-		IndustryDataService industryDataService = new IndustryData();
-		TradeRecordDaoProxyService tradeRecordDaoProxyService = DaoFactory.getTradeRecordDaoProxy();
+		
+		
+		
+		/*
+		 * 
+		 */
+//        String url="jdbc:mysql://115.159.122.196:3306/superquant";  
+//        String userName="root";  
+//        String password="141250089";  
+//        
+//		IndustryDataService industryDataService = new IndustryData();
+//        long a=System.currentTimeMillis();  
+//		try {
+//			ArrayList<industriesPO> arrayList = industryDataService.getIndustryData();
+//			System.out.println("获取所有行业阶段end");
+//			int idcount=0;
+//			for (industriesPO industriesPO : arrayList) {
+//				System.out.println("开启事务阶段end");
+//      
+//				ArrayList<industryPO> arrayList2 = industryData.getIndustry(industriesPO.getIndustry());
+//				System.out.println("获取具体行业所有公司阶段end");
+//				for (industryPO industryPO : arrayList2) {
+//					idcount++;
+//					try {
+//			            Class.forName("com.mysql.jdbc.Driver");        
+//			            Connection conn =  DriverManager.getConnection(url+"?useSSL=false&useServerPrepStmts=false&rewriteBatchedStatements=true", userName, password);        
+//			            conn.setAutoCommit(false);
+//			            String sql = "insert into trade_record"
+//			            		+ "(stockID,date,open,close,high,low,adj_price,volume,turnover,pe,pb) "
+//			            		+ "values(?,?,?,?,?,?,?,?,?,?,?)";        
+//			            PreparedStatement prest = conn.prepareStatement(sql);  
+//						
+//						String id=industryPO.getStockI();
+//
+//						try {
+//							String exchange="";
+//							if (industryPO.getStockI().charAt(0)=='6') {
+//								exchange="sh";
+//								id="sh"+id;
+//							}else {
+//								exchange="sz";
+//								id="sz"+id;
+//							}
+//							
+//							String result = HttpRequest.sendGet(
+//									"http://121.41.106.89:8010/api/stock/" + exchange+industryPO.getStockI(),
+//									"start=" + "1990-01-01" + "&end=" + "2016-05-28"
+//											+ "&fields=open+high+low+close+adj_price+volume+turnover+pe_ttm+pb");
+//							System.out.println("获取公司历史数据阶段end");
+//							JSONObject jsonObject = new JSONObject(result);
+//							JSONObject jsonObject2 = jsonObject.getJSONObject("data");
+//							JSONArray jsonArray = jsonObject2.getJSONArray("trading_info");
+//							System.out.println(jsonArray.length()+ " "+ idcount+ " "+industryPO.getStockI());
+//							for (Object object2 : jsonArray) {
+//
+//								try {
+//									JSONObject jsonObject3=(JSONObject) object2;
+//									prest.setString(1, id);
+//									prest.setString(2, jsonObject3.getString("date"));
+//									prest.setDouble(3, jsonObject3.getDouble("open"));
+//									prest.setDouble(4, jsonObject3.getDouble("close"));
+//									prest.setDouble(5, jsonObject3.getDouble("high"));
+//									prest.setDouble(6, jsonObject3.getDouble("low"));
+//									prest.setDouble(7, jsonObject3.getDouble("adj_price"));
+//									prest.setLong(8, jsonObject3.getLong("volume"));
+//									prest.setDouble(9, jsonObject3.getDouble("turnover"));
+//									prest.setDouble(10, jsonObject3.getDouble("pb"));
+//									prest.setDouble(11, jsonObject3.getDouble("pb"));
+//									
+//									prest.addBatch();
+//								} catch (Exception e) {
+//									e.printStackTrace();
+//								}
+//							}
+//
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//						}
+//			              prest.executeBatch();
+//			              prest.clearBatch();
+//			              conn.commit();
+//							System.out.println("储存公司历史数据阶段end");
+//					} catch (Exception e) {
+//						System.out.println("已存储");
+//					}
+//
+//				}
+//
+//				System.out.println("第5阶段end");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//        long b=System.currentTimeMillis();  
+//        System.out.println("MySql非批量插入10万条记录用时"+ (b-a)+" ms");
+		
+		
+		/*
+		 * test the head of the stock 0/3/6
+		 */
+//		StockData stockData=new StockData();
+//		codeNamePO codeNamePO=stockData.getCodeName(2015, "sz");
+//		ArrayList<String> arrayList=codeNamePO.getResult();
+//		for (String string : arrayList) {
+//			System.out.println(string);
+//		}
+		
+		
+		/*
+		 * test getUpToDateStockPO()
+		 */
+		StockData stockData=new StockData();
 		try {
-			ArrayList<industriesPO> arrayList = industryDataService.getIndustryData();
-			System.out.println("获取所有行业阶段end");
-			int idcount=0;
-			for (industriesPO industriesPO : arrayList) {
-				Session session=dBconnection.getSession();
-				System.out.println("开启事务阶段end");
-				ArrayList<industryPO> arrayList2 = industryData.getIndustry(industriesPO.getIndustry());
-				System.out.println("获取具体行业所有公司阶段end");
-				for (industryPO industryPO : arrayList2) {
-
-					idcount++;
-					try {
-						String exchange="";
-						if (industryPO.getStockI().charAt(0)=='6') {
-							exchange="sh";
-						}else {
-							exchange="sz";
-						}
-						
-						String result = HttpRequest.sendGet(
-								"http://121.41.106.89:8010/api/stock/" + exchange+industryPO.getStockI(),
-								"start=" + "1990-01-01" + "&end=" + "2016-05-28"
-										+ "&fields=open+high+low+close+adj_price+volume+turnover+pe_ttm+pb");
-						System.out.println("获取公司历史数据阶段end");
-						JSONObject jsonObject = new JSONObject(result);
-						JSONObject jsonObject2 = jsonObject.getJSONObject("data");
-						JSONArray jsonArray = jsonObject2.getJSONArray("trading_info");
-						System.out.println(jsonArray.length()+ " "+ idcount+ " "+industryPO.getStockI());
-						for (Object object2 : jsonArray) {
-							try {
-								JSONObject jsonObject3=(JSONObject) object2;
-								TradeRecordId id=new TradeRecordId(industryPO.getStockI(), jsonObject3.getString("date"));
-								TradeRecord tradeRecord=new TradeRecord(
-										id, 
-										jsonObject3.getDouble("open"), 
-										jsonObject3.getDouble("close"), 
-										jsonObject3.getDouble("high"), 
-										jsonObject3.getDouble("low"), 
-										jsonObject3.getDouble("adj_price"), 
-										jsonObject3.getLong("volume"), 
-										jsonObject3.getDouble("turnover"), 
-										jsonObject3.getDouble("pe_ttm"), 
-										jsonObject3.getDouble("pb"));
-								session.save(tradeRecord);
-//								tradeRecordDaoProxyService.insert(tradeRecord);
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-						session.flush();
-						session.clear();
-						System.out.println("储存公司历史数据阶段end");
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-				}
-				
-				Transaction tx=session.beginTransaction();
-				tx.commit();
-				session.close();
-				System.out.println("第5阶段end");
+			ArrayList<RiseStockPO > arrayList=stockData.getRiseStock();
+			for (RiseStockPO riseStockPO : arrayList) {
+				System.out.println(riseStockPO.getStockId()+" "+riseStockPO.getStockName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		try {
-//			UserStockId userStockId=new UserStockId("vax","fas");
-//			UserStock userStock=new UserStock(userStockId);
-//			String hql="insert into UserStock(id.userName,id.stockId) values "
-//					+ "("+userStock.getId().getUserName()+","+userStock.getId().getStockId()+")";
-//			Session session=dBconnection.getSession();
-//			session.createCriteria("insert into UserStock(id)");
-//			dBconnection.getSession().createSQLQuery(hql).executeUpdate();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 	}
 }

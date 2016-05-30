@@ -18,13 +18,9 @@ import dataservice.UserDataService.UserStrategyDataService;
 public class UserStrategyData implements UserStrategyDataService{
 
 	@Override
-	public ManageState addStrategy(String userId,String stockId, String strategy,String starttime,
-			String endtime,int cost,int frequency,double weight,String buystrategy,String sellstrategy,String otherstrategy) {
+	public ManageState addStrategy(UserStrategy userStrategy) {
 		UserStrategyDaoProxyService userStrategyDao=DaoFactory.getUserStrategyDaoProxy();
 		try {
-			UserStrategyId userStrategyId=new UserStrategyId(userId,stockId,strategy);
-			UserStrategy userStrategy=new UserStrategy(userStrategyId,starttime,
-					endtime,cost,frequency,weight,buystrategy,sellstrategy,otherstrategy);
 			if (userStrategyDao.insert(userStrategy)) {
 				return ManageState.Succeed;
 			}else {

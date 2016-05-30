@@ -14,9 +14,9 @@ public interface StockDataService {
 	
 	
 	/*
-	 * get the up-to-date data of all the stocks,according to the sh or sz
+	 * get the up-to-date data of the stock,according stockId
 	 */
-	public ArrayList<UpToDateStockPO> geToDateStockPOs(String exchange) throws Exception;
+	public UpToDateStockPO getUpToDateStockPO(String stockId) throws Exception;
 	
 	/*
 	 * get the TradeRecord from the starttime to the endtime
