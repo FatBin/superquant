@@ -3,6 +3,8 @@
   <welcome-file-list>
     <welcome-file>ToHomePageServlet</welcome-file>
   </welcome-file-list>
+  
+  <!-- 完成必要内容的初始化工作 -->
   <servlet>
     <servlet-name>factory</servlet-name>
     <servlet-class>servlet.factory.InitFactoryServlet</servlet-class>
@@ -12,6 +14,8 @@
     <servlet-name>factory</servlet-name>
     <url-pattern>/servlet/factory/InitFactoryServlet</url-pattern>
   </servlet-mapping>
+
+  <!-- get：跳转到主页，post： -->  
   <servlet>
     <servlet-name>ToHomePageServlet</servlet-name>
     <servlet-class>servlet.main.HomePageServlet</servlet-class>
@@ -20,6 +24,8 @@
     <servlet-name>ToHomePageServlet</servlet-name>
     <url-pattern>/ToHomePageServlet</url-pattern>
   </servlet-mapping>
+ 
+   <!-- get：跳转到大盘，post：更换不同指数的大盘信息 -->   
   <servlet>
     <servlet-name>ToMarketPageServlet</servlet-name>
     <servlet-class>servlet.stockmarket.MarketPageServlet</servlet-class>
@@ -28,6 +34,8 @@
     <servlet-name>ToMarketPageServlet</servlet-name>
     <url-pattern>/ToMarketPageServlet</url-pattern>
   </servlet-mapping>
+  
+  <!-- get：跳转到个股列表，post： -->  
   <servlet>
     <servlet-name>ToStockPageServlet</servlet-name>
     <servlet-class>servlet.stockcheck.StockPageServlet</servlet-class>
@@ -36,6 +44,8 @@
     <servlet-name>ToStockPageServlet</servlet-name>
     <url-pattern>/ToStockPageServlet</url-pattern>
   </servlet-mapping>
+
+  <!-- get：跳转到行业列表，post：为涨跌榜前十后十柱状图提供数据 -->    
   <servlet>
     <servlet-name>ToBusinessPageServlet</servlet-name>
     <servlet-class>servlet.business.BusinessPageServlet</servlet-class>
@@ -44,6 +54,8 @@
     <servlet-name>ToBusinessPageServlet</servlet-name>
     <url-pattern>/ToBusinessPageServlet</url-pattern>
   </servlet-mapping>
+  
+  <!-- get：跳转到策略页面，post： -->  
   <servlet>
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <servlet-class>servlet.strategy.StrategyPageServlet</servlet-class>
@@ -52,6 +64,8 @@
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <url-pattern>/ToStrategyPageServlet</url-pattern>
   </servlet-mapping>
+
+  <!-- get：，post：登录 -->    
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>servlet.login.LoginServlet</servlet-class>
@@ -60,6 +74,8 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/Log</url-pattern>
   </servlet-mapping>
+
+  <!-- get：，post：注册-->    
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
     <servlet-class>servlet.login.RegisterServlet</servlet-class>
@@ -68,6 +84,8 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/Reg</url-pattern>
   </servlet-mapping>
+
+  <!-- get：，post：为大盘k线图提供数据 -->    
   <servlet>
     <servlet-name>GetMarketkLineServlet</servlet-name>
     <servlet-class>servlet.stockmarket.GetMarketkLineServlet</servlet-class>
@@ -76,6 +94,8 @@
     <servlet-name>GetMarketkLineServlet</servlet-name>
     <url-pattern>/GetMarketkLine</url-pattern>
   </servlet-mapping>
+
+  <!-- get：实时更新大盘最新数据，post： -->    
   <servlet>
     <servlet-name>UpdateBenchVOServlet</servlet-name>
     <servlet-class>servlet.stockmarket.UpdateBenchVOServlet</servlet-class>
@@ -84,12 +104,24 @@
     <servlet-name>UpdateBenchVOServlet</servlet-name>
     <url-pattern>/UpdateBenchVO</url-pattern>
   </servlet-mapping>
-    <servlet>
+ 
+   <!-- get：为大盘历史数据表格提供数据，post： -->   
+  <servlet>
     <servlet-name>GetMarketTableDateServlet</servlet-name>
     <servlet-class>servlet.stockmarket.GetMarketTableDateServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>GetMarketTableDateServlet</servlet-name>
     <url-pattern>/GetMarketTableDate</url-pattern>
+  </servlet-mapping>
+
+  <!-- get：，post：根据输入关键字（key），为搜索框提供数据 -->    
+  <servlet>
+    <servlet-name>StockSearchServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.StockSearchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StockSearchServlet</servlet-name>
+    <url-pattern>/StockSearch</url-pattern>
   </servlet-mapping>
 </web-app>
