@@ -8,7 +8,7 @@ var value = [];
 $.ajax({
 	type : "post",
 	async : false, //同步执行
-	url : 'ToBusinessPageServlet',
+	url : '../ToBusinessPageServlet',
 	dataType : "json", //返回数据形式为json
 	success : function(result) {
 		if (result) {
@@ -23,7 +23,6 @@ $.ajax({
 		myChart.hideLoading();
 	}
 })
-
 option = {
 	title : {
 		text : '行业涨榜前十与跌榜前十',

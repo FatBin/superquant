@@ -18,7 +18,8 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 <link href="../css/structure.css" rel="stylesheet" type="text/css">
-
+		<script src="../js/jquery.min.js"></script>
+	<script src="../js/echarts.min.js"></script>
 </head>
 
 <body id="page-top" class="index">
@@ -70,7 +71,7 @@
 	<!-- /.container-fluid --> </nav>
 	
 	<h3 class="title" style="margin-top:90px;">行业对比</h3>
-	<div class="innerBlock" id="" style="width:850px;height:400px;">
+	<div class="innerBlock" id="business_barchart" style="width:850px;height:400px;">
 		
 	</div>
 	
@@ -81,8 +82,13 @@
 
 
 	<!-- Plugin JavaScript -->
+
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
+	<script src="../jschart/businessBarChart.js"></script>
+	<script src="../js/jquery.js"></script>
+
+	<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>
