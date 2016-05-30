@@ -3,8 +3,8 @@
  */
 var myChart = echarts.init(document.getElementById('business_barchart'));
 
-var name = [];
-var value = [];
+var name1 = [];
+var value1 = [];
 $.ajax({
 	type : "post",
 	async : false, //同步执行
@@ -13,8 +13,8 @@ $.ajax({
 	success : function(result) {
 		if (result) {
 			for (var i = 0; i < result.length; i++) {
-				name.push(result[i].name);
-				value.push(result[i].value);
+				name1.push(result[i].name);
+				value1.push(result[i].value);
 			}
 		}
 	},
@@ -31,7 +31,7 @@ option = {
 	},
 	xAxis : {
 		type : 'category',
-		data : name,
+		data : name1,
 		axisLine : {
 			show : false
 		},
@@ -55,7 +55,7 @@ option = {
 	series : {
 		name : '涨跌率',
 		type : 'bar',
-		data : value,
+		data : value1,
 		label : {
 			normal : {
 				show : true,
