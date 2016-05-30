@@ -3,18 +3,18 @@
  */
 var myChart = echarts.init(document.getElementById('business_barchart'));
 
-var name = [];
-var value = [];
+var name1 = [];
+var value1 = [];
 $.ajax({
 	type : "post",
 	async : false, //同步执行
-	url : 'ToBusinessPageServlet',
+	url : '../ToBusinessPageServlet',
 	dataType : "json", //返回数据形式为json
 	success : function(result) {
 		if (result) {
 			for (var i = 0; i < result.length; i++) {
-				name.push(result[i].name);
-				value.push(result[i].value);
+				name1.push(result[i].name);
+				value1.push(result[i].value);
 			}
 		}
 	},
@@ -23,7 +23,6 @@ $.ajax({
 		myChart.hideLoading();
 	}
 })
-
 option = {
 	title : {
 		text : '行业涨榜前十与跌榜前十',
@@ -32,7 +31,7 @@ option = {
 	},
 	xAxis : {
 		type : 'category',
-		data : name,
+		data : name1,
 		axisLine : {
 			show : false
 		},
@@ -56,7 +55,7 @@ option = {
 	series : {
 		name : '涨跌率',
 		type : 'bar',
-		data : value,
+		data : value1,
 		label : {
 			normal : {
 				show : true,

@@ -45,6 +45,16 @@
     <url-pattern>/ToStockPageServlet</url-pattern>
   </servlet-mapping>
 
+  <!-- get：跳转到个股详细界面，post： -->  
+  <servlet>
+    <servlet-name>ToStockDetailPageServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.StockDetailPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ToStockDetailPageServlet</servlet-name>
+    <url-pattern>/ToStockDetailPageServlet</url-pattern>
+  </servlet-mapping>
+  
   <!-- get：跳转到行业列表，post：为涨跌榜前十后十柱状图提供数据 -->    
   <servlet>
     <servlet-name>ToBusinessPageServlet</servlet-name>

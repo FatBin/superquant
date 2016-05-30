@@ -1,22 +1,25 @@
 package VO;
 
-public class StockListVO {
+import java.util.ArrayList;
 
-//	double ups_and_downs[];
-//	String data[][];	
-//	
-//	public StockListVO(double[] ups_and_downs, String[][] data) {
-//		super();
-//		this.ups_and_downs = ups_and_downs;
-//		this.data = data;
-//	}
-//	
-//	public double[] getUps_and_downs() {
-//		return ups_and_downs;
-//	}
-//	public String[][] getData() {
-//		return data;
-//	}
+import PO.RiseStockPO;
+
+public class StockListVO {
+	ArrayList<RiseStockPO> stockList;
+
+	public StockListVO() {
+		super();
+	}
+
+	public ArrayList<RiseStockPO> getStockList() {
+		return stockList;
+	}
+
+	public void setStockList(ArrayList<RiseStockPO> stockList) {
+		this.stockList = stockList;
+	}
+	
+    
 	
 	
 }

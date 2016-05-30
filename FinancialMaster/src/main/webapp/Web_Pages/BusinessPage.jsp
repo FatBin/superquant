@@ -18,12 +18,21 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 <link href="../css/structure.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.min.js"></script>
+<script src="../js/echarts.min.js"></script>
+
+<style>
+li {
+	list-style-type: none;
+}
+</style>
 
 </head>
 
 <body id="page-top" class="index">
 
-	<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #4A433B;">
+	<nav class="navbar navbar-default navbar-fixed-top"
+		style="background-color: #4A433B;">
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -53,36 +62,42 @@
 		</div>
 
 		<div class="style_5 hidden-sm hidden-xs">
-			<form method="get" id="searchform" action="">
-				<fieldset>
-					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索';"
-						onfocus="this.placeholder='输入股票代码搜索';"
-						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> <input name="submit"
-						type="submit" value='' />
-				</fieldset>
-			</form>
+			<fieldset id="searchform">
+				<input id="searchfield" type="text" placeholder="搜索"
+					class="text_input" onblur="this.placeholder='搜索';"
+					onfocus="this.placeholder='输入股票代码搜索';"
+					onmouseover="this.placeholder='输入股票代码搜索';"
+					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
+				<input name="submit" type="submit" value='' />
+			</fieldset>
+
+			<div id="searchHint"
+				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
+			</div>
 		</div>
 
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
-	
-	<h3 class="title" style="margin-top:90px;">行业对比</h3>
-	<div class="innerBlock" id="" style="width:850px;height:400px;">
-		
-	</div>
-	
-	
+
+	<h3 class="title" style="margin-top: 90px;">行业对比</h3>
+	<div class="innerBlock" id="business_barchart"
+		style="width: 850px; height: 400px;"></div>
+
+
 	<h3 class="title">行业对比</h3>
-	
+
 
 
 
 	<!-- Plugin JavaScript -->
+
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
+	<script src="../jschart/businessBarChart.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/searchHint.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 
 </body>
 </html>

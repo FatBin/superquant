@@ -21,6 +21,12 @@
 <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 
+<style>
+li {
+	list-style-type: none;
+}
+</style>
+
 </head>
 
 <body id="page-top" class="index">
@@ -38,7 +44,7 @@
 					class="icon-bar"></span>
 			</button>
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
-			<img src="../webImage/logo.png" title="返回顶部" id="logo">
+			<img src="../webImage/logo.png" title="返回首页" id="logo">
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -49,23 +55,25 @@
 
 				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
-				<li><a class="page-scroll" href="StockPage.jsp">个股</a></li>
+				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="BusinessPage.jsp">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
 
 		<div class="style_5 hidden-sm hidden-xs">
-			<form method="get" id="searchform" action="">
-				<fieldset>
-					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索';"
-						onfocus="this.placeholder='输入股票代码搜索';"
-						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> <input name="submit"
-						type="submit" value='' />
-				</fieldset>
-			</form>
+			<fieldset id="searchform">
+				<input type="text" placeholder="搜索"
+					class="text_input" onblur="this.placeholder='搜索';"
+					onfocus="this.placeholder='输入股票代码搜索';"
+					onmouseover="this.placeholder='输入股票代码搜索';"
+					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
+				<input name="submit" type="submit" value='' />
+			</fieldset>
+
+			<div id="searchHint"
+				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
+			</div>
 		</div>
 
 		<!-- /.navbar-collapse -->
@@ -100,6 +108,8 @@
 		charset="UTF-8"></script>
 	<script type="text/javascript"
 		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+
+	<script type="text/javascript" src="../js/searchHint.js"></script>
 
 	<script type="text/javascript">
 		$('.form_date').datetimepicker({
