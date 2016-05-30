@@ -581,12 +581,7 @@ public class test {
 		DBconnection dBconnection=new DBconnection();
 		UserStrategyDaoProxyService service=new UserStrategyDaoProxy();
 		try {
-			List list=service.getStrategyName("shachao");
-			System.out.println(list.size());
-			for (Object object : list) {
-				String temp=(String) object;
-				System.out.println(temp);
-			}
+			service.deleteStrategy("fatchao", "bianshou");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

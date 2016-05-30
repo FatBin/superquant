@@ -77,4 +77,14 @@ public class UserStrategyDaoProxy implements UserStrategyDaoProxyService{
 		return dao.getData(hql);
 	}
 
+	@Override
+	public void deleteStrategy(String userName, String strategyName) throws Exception {
+		UserStrategyDao dao=new UserStrategyDaoImpl();
+			List list=getStrategy(userName, strategyName);
+			for (Object object : list) {
+				UserStrategy userStrategy=(UserStrategy) object;
+				delete(userStrategy.getId());
+			}
+	}
+
 }
