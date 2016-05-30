@@ -4,6 +4,7 @@ import VO.StockListVO;
 
 public interface StockListInfo {
 
-	//返回股票列表
+	//返回热门股票列表
 	public StockListVO getStockList();
+	
 }

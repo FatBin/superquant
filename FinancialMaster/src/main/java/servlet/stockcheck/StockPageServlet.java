@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.pojo.Stock;
+import VO.StockListVO;
+import VO.UserVO;
 import servlet.factory.InitFactoryServlet;
+import web.bl.stockImpl.StockListImpl;
+import web.blservice.stockInfo.StockListInfo;
 
 /**
  * Servlet implementation class StockPageServlet
@@ -31,6 +35,11 @@ public class StockPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		StockListVO stockListVO = new StockListVO();
+		StockListInfo stockListInfo=new StockListImpl();	
+		stockListVO=stockListInfo.getStockList();
+		request.getSession().setAttribute("StockList", stockListVO);		
 		response.sendRedirect(request.getContextPath()+"/Web_Pages/StockPage.jsp");
 	}
 

@@ -16,5 +16,5 @@ public interface UserManageInfo {
 	public ManageState addStrategy(UserVO user,StrategyVO sv);
 	
 	//É¾³ıÒ»¸ö²ßÂÔ
-	public ManageState deleteStrategy(UserVO user,StrategyVO sv);
+	public ManageState deleteStrategy(UserVO user,String strategyName);
 }

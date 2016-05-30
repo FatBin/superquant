@@ -2,28 +2,30 @@ package VO;
 
 import java.util.ArrayList;
 
+import DAO.pojo.Stock;
+
 public class UserVO {
 	
 	private String username;//ÓÃ»§Ãû
 	private String password;//ÃÜÂë
-	private ArrayList<StrategyVO> strategyList;
-	private ArrayList<String> stockList;
+	private ArrayList<String> strategyList;
+	private ArrayList<Stock> stockList;
 	
 	public UserVO(){}
 	
-	public ArrayList<StrategyVO> getStrategy() {
+	public ArrayList<String> getStrategy() {
 		return strategyList;
 	}
 
-	public void setStrategy(ArrayList<StrategyVO> strategy) {
+	public void setStrategy(ArrayList<String> strategy) {
 		this.strategyList = strategy;
 	}
 
-	public ArrayList<String> getStockList() {
+	public ArrayList<Stock> getStockList() {
 		return stockList;
 	}
 
-	public void setStockList(ArrayList<String> stockList) {
+	public void setStockList(ArrayList<Stock> stockList) {
 		this.stockList = stockList;
 	}
 
