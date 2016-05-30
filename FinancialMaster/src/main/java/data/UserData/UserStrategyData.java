@@ -2,6 +2,7 @@ package data.UserData;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.hibernate.tool.hbm2ddl.Target;
 
@@ -47,22 +48,24 @@ public class UserStrategyData implements UserStrategyDataService{
 	}
 
 	@Override
-	public ArrayList<UserStrategy> getUserStrategys(String userId) throws Exception{
+	public List getUserStrategys(String userId,String strategy) throws Exception{
 		UserStrategyDaoProxyService userStrategyDao=DaoFactory.getUserStrategyDaoProxy();
-		ArrayList<UserStrategy> arrayList=new ArrayList<>();
 		try {
-			Iterator iterator=userStrategyDao.findAll().iterator();
-			while (iterator.hasNext()) {
-				UserStrategy userStrategy=(UserStrategy)iterator.next();
-				if (userStrategy.getId().getUserId().equals(userId)) {
-					arrayList.add(userStrategy);
-				}
-			}
-			return arrayList;
+			return userStrategyDao.getStrategy(userId, strategy);
 		} catch (Exception e) {
 			throw e;
 		}
 
+	}
+
+	@Override
+	public List getUserStrategyNames(String userName) throws Exception{
+		UserStrategyDaoProxyService userStrategyDao=DaoFactory.getUserStrategyDaoProxy();
+		try {
+			return userStrategyDao.getStrategyName(userName);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 }

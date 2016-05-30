@@ -17,4 +17,10 @@ public interface UserStrategyDaoProxyService {
 	
 	//delete the UserStrategy data
 	public boolean delete(UserStrategyId userStrategyId)throws Exception;
+	
+	//get the strategy according to the userName and strategyName
+	public List getStrategy(String userName,String strategyName)throws Exception;
+	
+	//get the strategyName according to userName
+	public List getStrategyName(String userName)throws Exception;
 }

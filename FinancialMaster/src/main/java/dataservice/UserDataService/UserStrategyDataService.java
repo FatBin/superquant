@@ -1,6 +1,7 @@
 package dataservice.UserDataService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import DAO.pojo.UserStock;
 import DAO.pojo.UserStrategy;
@@ -30,8 +31,16 @@ public interface UserStrategyDataService {
 	
 	
 	/*
-	 * get all the strategy the user use
+	 * get all the strategy the user use,according to the strategyName and userName
+	 * it will return a list of UserStrategy
 	 * !!!exception like NullPointException is potential,it must be caught
 	 */
-	public ArrayList<UserStrategy> getUserStrategys(String userId) throws Exception;
+	public List getUserStrategys(String userId,String strategy) throws Exception;
+	
+	
+	/*
+	 * get all the strategyNames of the user,according to the userName
+	 * it will return a list of String 
+	 */
+	public List getUserStrategyNames(String userName) throws Exception;
 }

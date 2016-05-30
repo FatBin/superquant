@@ -24,6 +24,7 @@ import org.jsoup.select.Elements;
 import DAO.DAOfactory.DaoFactory;
 import DAO.DAOimpl.UserStrategyDaoImpl;
 import DAO.DaoProxy.IndustriesDaoProxy;
+import DAO.DaoProxy.UserStrategyDaoProxy;
 import DAO.DaoProxyService.IndustriesDaoProxyService;
 import DAO.DaoProxyService.StockDaoProxyService;
 import DAO.DaoProxyService.TradeRecordDaoProxyService;
@@ -563,11 +564,28 @@ public class test {
 		/*
 		 * test getUpToDateStockPO()
 		 */
-		StockData stockData=new StockData();
+//		StockData stockData=new StockData();
+//		try {
+//			ArrayList<RiseStockPO > arrayList=stockData.getRiseStock();
+//			for (RiseStockPO riseStockPO : arrayList) {
+//				System.out.println(riseStockPO.getStockId()+" "+riseStockPO.getStockName());
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		/*
+		 * test UserStrategyData
+		 */
+		DBconnection dBconnection=new DBconnection();
+		UserStrategyDaoProxyService service=new UserStrategyDaoProxy();
 		try {
-			ArrayList<RiseStockPO > arrayList=stockData.getRiseStock();
-			for (RiseStockPO riseStockPO : arrayList) {
-				System.out.println(riseStockPO.getStockId()+" "+riseStockPO.getStockName());
+			List list=service.getStrategyName("shachao");
+			System.out.println(list.size());
+			for (Object object : list) {
+				String temp=(String) object;
+				System.out.println(temp);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

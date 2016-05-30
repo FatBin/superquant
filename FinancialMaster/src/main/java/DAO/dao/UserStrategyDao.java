@@ -17,4 +17,7 @@ public interface UserStrategyDao {
 	
 	//delete the UserStrategy data
 	public boolean delete(UserStrategyId userStrategyId)throws Exception;
+	
+	//get all data according to hql
+	public List getData(String hql) throws Exception;
 }

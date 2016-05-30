@@ -60,4 +60,21 @@ public class UserStrategyDaoProxy implements UserStrategyDaoProxyService{
 		}
 	}
 
+	@Override
+	public List getStrategy(String userName, String strategyName) throws Exception {
+		UserStrategyDao dao=new UserStrategyDaoImpl();
+		String hql="from UserStrategy u where "
+				+ "u.id.userId='"+userName+"' and "
+				+ "u.id.strategyName='"+strategyName+"'";
+		return dao.getData(hql);
+	}
+
+	@Override
+	public List getStrategyName(String userName) throws Exception {
+		UserStrategyDao dao=new UserStrategyDaoImpl();
+		String hql="select distinct u.id.strategyName from UserStrategy u where "
+				+ "u.id.userId='"+userName+"'";
+		return dao.getData(hql);
+	}
+
 }
