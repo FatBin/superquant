@@ -23,11 +23,15 @@
 li {
 	list-style-type: none;
 }
+
+td {
+	height: 25px;
+}
 </style>
 
 </head>
 
-<body id="page-top" class="index" style="height: 2000px;">
+<body id="page-top" class="index">
 
 	<nav class="navbar navbar-default navbar-fixed-top"
 		style="background-color: #4A433B;">
@@ -79,7 +83,7 @@ li {
 	<!-- /.container-fluid --> </nav>
 
 	<div>
-		<p style="margin-top: 120px; font-size: 22px; margin-left: 180px;">股票列表</p>
+		<p style="margin-top: 120px; font-size: 22px; margin-left: 180px;">热门股票推荐</p>
 		<div style="width: 850px; height: 489px; margin-left: 180px;">
 
 			<!-- 股票列表 -->
@@ -115,7 +119,7 @@ li {
 						<tr align="center" valign="middle"
 							onmouseover="mouseIn(<%=i + 1%>);"
 							onmouseout="mouseOut(<%=i + 1%>);"
-							onclick="mouseClick(<%=i + 1%>,'StockDetailPage.jsp')">
+							onclick="mouseClick(<%=i + 1%>,'../ToStockDetailPageServlet')">
 
 							<td height="23"><%=stockPO.getStockId()%></td>
 							<td height="23"><%=stockPO.getStockName()%></td>
@@ -150,6 +154,14 @@ li {
 		</div>
 	</div>
 
+	<!-- bottom section -->
+	<div style="background-color: #766F67; height: 200px; margin-top:30px;"></div>
+
+	<div style="background-color: #645D55; height: 50px;">
+		<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+			SuperQuant</p>
+	</div>
+
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
@@ -158,6 +170,7 @@ li {
 
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 
+	<script type="text/javascript">setPerPage(15);</script>
 </body>
 
 </html>
