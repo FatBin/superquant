@@ -65,6 +65,7 @@ public class UserManageImpl implements UserManageInfo {
 	public ManageState deleteStrategy(UserVO user, String strategyName) {
 		UserStrategyDataService userStrategyDataService=new UserStrategyData();
 		ManageState result=ManageState.Succeed;
+//		result=userStrategyDataService.
 
 		if(result==ManageState.Succeed){
 			ArrayList<String> strategyList=user.getStrategy();
