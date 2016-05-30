@@ -18,6 +18,12 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<style>
+li {
+	list-style-type: none;
+}
+</style>
+
 </head>
 
 <body id="page-top" class="index" style="height: 2000px;">
@@ -53,16 +59,18 @@
 		</div>
 
 		<div class="style_5 hidden-sm hidden-xs">
-			<form method="get" id="searchform" action="">
-				<fieldset>
-					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索';"
-						onfocus="this.placeholder='输入股票代码搜索';"
-						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> <input name="submit"
-						type="submit" value='' />
-				</fieldset>
-			</form>
+			<fieldset id="searchform">
+				<input type="text" placeholder="搜索" class="text_input"
+					onblur="this.placeholder='搜索';"
+					onfocus="this.placeholder='输入股票代码搜索';"
+					onmouseover="this.placeholder='输入股票代码搜索';"
+					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
+				<input name="submit" type="submit" value='' />
+			</fieldset>
+
+			<div id="searchHint"
+				style="position: absolute; background-color: rgb(235,235,235); width: 150px; margin-left: 945px; margin-top: -20px;">
+			</div>
 		</div>
 
 		<!-- /.navbar-collapse -->
@@ -95,14 +103,16 @@
 							for (int i = 0; i < 50; i++) {
 						%>
 
-						<tr align="center" valign="middle" onmouseover="mouseIn(<%=i+1%>);"
-							onmouseout="mouseOut(<%=i+1%>);" onclick="mouseClick(<%=i+1%>,'StockDetailPage.jsp')" >
+						<tr align="center" valign="middle"
+							onmouseover="mouseIn(<%=i + 1%>);" onmouseout="mouseOut(<%=i + 1%>);"
+							onclick="mouseClick(<%=i + 1%>,'StockDetailPage.jsp')">
 
 							<%
 								for (int j = 0; j < 8; j++) {
 							%>
 
-							<td height="23">(<%=i + 1%>, <%=j + 1%>)</td>
+							<td height="23">(<%=i + 1%>, <%=j + 1%>)
+							</td>
 
 							<%
 								}
@@ -134,6 +144,8 @@
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 	<script src="../js/table_pages.js"></script>
+	
+	<script type="text/javascript" src="../js/searchHint.js"></script>
 
 </body>
 

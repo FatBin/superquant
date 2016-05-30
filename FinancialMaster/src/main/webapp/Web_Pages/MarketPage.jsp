@@ -27,7 +27,11 @@
 td {
 	text-align: center;
 	width: 110px;
-	height:23px;
+	height: 23px;
+}
+
+li {
+	list-style-type: none;
 }
 </style>
 
@@ -66,16 +70,18 @@ td {
 		</div>
 
 		<div class="style_5 hidden-sm hidden-xs">
-			<form method="get" id="searchform" action="">
-				<fieldset>
-					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索'"
-						onfocus="this.placeholder='输入股票代码搜索';"
-						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> <input name="submit"
-						type="submit" value='' />
-				</fieldset>
-			</form>
+			<fieldset id="searchform">
+				<input type="text" placeholder="搜索"
+					class="text_input" onblur="this.placeholder='搜索';"
+					onfocus="this.placeholder='输入股票代码搜索';"
+					onmouseover="this.placeholder='输入股票代码搜索';"
+					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
+				<input name="submit" type="submit" value='' />
+			</fieldset>
+
+			<div id="searchHint"
+				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
+			</div>
 		</div>
 
 		<!-- /.navbar-collapse -->
@@ -118,7 +124,7 @@ td {
 		<div id="klinechart"
 			style="width: 850px; height: 910px; margin-left: 60px; margin-top: 20px;"></div>
 	</div>
-	
+
 	<blockquote
 		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 240px; margin-top: 80px;">
 		<h5>历史数据</h5>
@@ -206,6 +212,7 @@ td {
 	<script src="../js/jquery.js"></script>
 	<script>getKLine("market");</script>
 	<script src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/searchHint.js"></script>
 
 	<!-- 刷新数据 -->
 	<script>

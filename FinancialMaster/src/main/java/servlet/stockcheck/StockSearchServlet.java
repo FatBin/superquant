@@ -42,12 +42,13 @@ public class StockSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=utf-8");
 		String key=request.getParameter("key");
 		ArrayList<Stock> stocks=InitFactoryServlet.getSerchList(key);
 		String data="[";
 		for (Stock stock : stocks) {
-			data=data+"{'stockId':'"+stock.getStockId()+"','stockName':"+
-					stock.getStockName()+"},";
+			data=data+"{'stockMessage':'"+ "  "+stock.getStockId()+ "     " +
+					stock.getStockName()+"'},";
 		}
 		data+="]";
 

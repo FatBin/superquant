@@ -21,6 +21,12 @@
 <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 
+<style>
+li {
+	list-style-type: none;
+}
+</style>
+
 </head>
 
 <body id="page-top" class="index">
@@ -56,16 +62,18 @@
 		</div>
 
 		<div class="style_5 hidden-sm hidden-xs">
-			<form method="get" id="searchform" action="">
-				<fieldset>
-					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索';"
-						onfocus="this.placeholder='输入股票代码搜索';"
-						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> <input name="submit"
-						type="submit" value='' />
-				</fieldset>
-			</form>
+			<fieldset id="searchform">
+				<input type="text" placeholder="搜索" class="text_input"
+					onblur="this.placeholder='搜索';"
+					onfocus="this.placeholder='输入股票代码搜索';"
+					onmouseover="this.placeholder='输入股票代码搜索';"
+					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
+				<input name="submit" type="submit" value='' />
+			</fieldset>
+
+			<div id="searchHint"
+				style="position: absolute; background-color: rgb(235,235,235); width: 150px; margin-left: 945px; margin-top: -20px;">
+			</div>
 		</div>
 
 		<!-- /.navbar-collapse -->
@@ -203,14 +211,15 @@
 			<div>
 				<input type="reset" class="btn" name="resetbtn" value="取消"
 					style="width: 50px; height: 29px; background-color: transparent; border: 1px solid rgb(204, 204, 204); margin-top: 10px;"
-					onclick="showModifybtn()"/>
+					onclick="showModifybtn()" />
 			</div>
 		</div>
 
 		<hr style="margin-top: 10px; width: 900px;" />
-		
-		<div style="width:900px;height:500px;margin-left:180px; background-color:gray;"></div>
-		
+
+		<div
+			style="width: 900px; height: 500px; margin-left: 180px; background-color: gray;"></div>
+
 
 		<!-- Plugin JavaScript -->
 		<script src="../js/classie.js"></script>
@@ -219,6 +228,8 @@
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../js/jquery.js"></script>
+
+		<script type="text/javascript" src="../js/searchHint.js"></script>
 
 		<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
 			charset="UTF-8"></script>
@@ -235,17 +246,14 @@
 			});
 
 			function showModifybtn() {
-				document.getElementById("confirm-div").style.display="none";
-				document.getElementById("modify-div").style.display="block"
-					;
+				document.getElementById("confirm-div").style.display = "none";
+				document.getElementById("modify-div").style.display = "block";
 			}
 
-			function
-					showConfirmbtn() {
-				document.getElementById("modify-div").style.display="none";
-				document.getElementById("confirm-div").style.display="block";
+			function showConfirmbtn() {
+				document.getElementById("modify-div").style.display = "none";
+				document.getElementById("confirm-div").style.display = "block";
 			}
-		
-				</script>
+		</script>
 </body>
 </html>

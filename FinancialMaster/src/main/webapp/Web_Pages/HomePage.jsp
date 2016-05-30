@@ -20,6 +20,12 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<style>
+li {
+	list-style-type: none;
+}
+</style>
+
 </head>
 
 <body id="page-top" class="index">
@@ -37,8 +43,8 @@
 					class="icon-bar"></span>
 			</button>
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
-			<a href="HomePage.jsp">
-				<img src="../webImage/logo.png" title="返回顶部" id="logo">
+			<a href="HomePage.jsp"> <img src="../webImage/logo.png"
+				title="返回顶部" id="logo">
 			</a>
 		</div>
 
@@ -57,16 +63,18 @@
 		</div>
 
 		<div class="style_5 hidden-sm hidden-xs">
-			<form method="get" id="searchform" action="">
-				<fieldset>
-					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索'"
-						onfocus="this.placeholder='输入股票代码搜索';"
-						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> <input name="submit"
-						type="submit" value='' />
-				</fieldset>
-			</form>
+			<fieldset id="searchform">
+				<input type="text" placeholder="搜索"
+					class="text_input" onblur="this.placeholder='搜索';"
+					onfocus="this.placeholder='输入股票代码搜索';"
+					onmouseover="this.placeholder='输入股票代码搜索';"
+					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
+				<input name="submit" type="submit" value='' />
+			</fieldset>
+
+			<div id="searchHint"
+				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
+			</div>
 		</div>
 
 		<!-- /.navbar-collapse -->
@@ -75,36 +83,38 @@
 
 	<!-- Header -->
 	<header>
-	<div class="jumbotron" style="background-color: #4A433B; ">
-	<div class="container" id="header" style="background-color: #4A433B; height: 479px;">
-		<div class="row" style="margin-top:130px; width:100%">
-			<div class="col-md-7">
-				<img class="img-responsive" src="../webImage/decorate.png">
-			</div>
-			<div class="col-md-1"></div>
-			<div class="col-md-3" style="margin-top:45px;">
-				<div>
-					<span class="logoName" style="color: #FFFFFF;">Super</span>
-					<span class="logoName" style="color: orange;">Quant</span>
+	<div class="jumbotron" style="background-color: #4A433B;">
+		<div class="container" id="header"
+			style="background-color: #4A433B; height: 479px;">
+			<div class="row" style="margin-top: 130px; width: 100%">
+				<div class="col-md-7">
+					<img class="img-responsive" src="../webImage/decorate.png">
 				</div>
-				<div class="slogan">您的第一手证券信息</div>
-				
-				<input type="button" value="立即注册" name="regbtn"
-					class="bottons regbtns" data-toggle="modal" data-target="#modalReg" />
-				<input type="button" value="登录" name="login"
-					class="bottons loginbtn" data-toggle="modal"
-					data-target="#modalLogin" />
+				<div class="col-md-1"></div>
+				<div class="col-md-3" style="margin-top: 45px;">
+					<div>
+						<span class="logoName" style="color: #FFFFFF;">Super</span> <span
+							class="logoName" style="color: orange;">Quant</span>
+					</div>
+					<div class="slogan">您的第一手证券信息</div>
+
+					<input type="button" value="立即注册" name="regbtn"
+						class="bottons regbtns" data-toggle="modal"
+						data-target="#modalReg" /> <input type="button" value="登录"
+						name="login" class="bottons loginbtn" data-toggle="modal"
+						data-target="#modalLogin" />
+				</div>
+				<div class="col-md-1"></div>
+
 			</div>
-			<div class="col-md-1"></div>
-			
 		</div>
-	</div>
 	</div>
 	</header>
 
 
 	<!-- Services Section -->
-	<section id="services" style="background-color:#FFFCF6;height:500px; margin-top:-10px;">
+	<section id="services"
+		style="background-color:#FFFCF6;height:500px; margin-top:-10px;">
 	<div class="container">
 		<div class="row" style="margin-top: -120px;">
 			<div class="col-lg-12 text-center">
@@ -299,22 +309,22 @@
 
 	<script src='http://s1.yuehetong.com/sitemedia/js/jquery-2.2.1.min.js'></script>
 	<script src="../js/bootstrap.min.js"></script>
-
+	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/common.min.js"></script>
+
+	<script>
+		(function() {
+			var bp = document.createElement('script');
+			var curProtocol = window.location.protocol.split(':')[0];
+			if (curProtocol === 'https') {
+				bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+			} else {
+				bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+			}
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(bp, s);
+		})();
+	</script>
 
 </body>
 </html>
-
-<script>
-	(function() {
-		var bp = document.createElement('script');
-		var curProtocol = window.location.protocol.split(':')[0];
-		if (curProtocol === 'https') {
-			bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-		} else {
-			bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-		}
-		var s = document.getElementsByTagName("script")[0];
-		s.parentNode.insertBefore(bp, s);
-	})();
-</script>

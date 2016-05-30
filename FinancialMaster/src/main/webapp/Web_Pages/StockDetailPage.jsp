@@ -23,6 +23,11 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/echarts.min.js"></script>
 
+<style>
+li {
+	list-style-type: none;
+}
+</style>
 </head>
 
 <body id="page-top" class="index">
@@ -58,16 +63,18 @@
 		</div>
 
 		<div class="style_5 hidden-sm hidden-xs">
-			<form method="get" id="searchform" action="">
-				<fieldset>
-					<input id="s" name="s" type="text" placeholder="搜索"
-						class="text_input" onblur="this.placeholder='搜索';"
-						onfocus="this.placeholder='输入股票代码搜索';"
-						onmouseover="this.placeholder='输入股票代码搜索';"
-						onmouseout="this.placeholder='搜索';" /> <input name="submit"
-						type="submit" value='' />
-				</fieldset>
-			</form>
+			<fieldset id="searchform">
+				<input type="text" placeholder="搜索"
+					class="text_input" onblur="this.placeholder='搜索';"
+					onfocus="this.placeholder='输入股票代码搜索';"
+					onmouseover="this.placeholder='输入股票代码搜索';"
+					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
+				<input name="submit" type="submit" value='' />
+			</fieldset>
+
+			<div id="searchHint"
+				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
+			</div>
 		</div>
 
 		<!-- /.navbar-collapse -->
@@ -123,8 +130,12 @@
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 	<script src="../jschart/kLineChart.js"></script>
-    <script type="text/javascript"> getKLine("market","hs300");</script>
+	<script type="text/javascript">
+		getKLine("market", "hs300");
+	</script>
 	<script src="../js/bootstrapSwitch.js"></script>
+
+	<script type="text/javascript" src="../js/searchHint.js"></script>
 
 </body>
 </html>
