@@ -186,17 +186,6 @@ function mouseClick(rowpos, link) {
     })
     window.location.href = link;
 	
-//	 window.location.href = link;
-
-//	$.ajax({
-//		type : "get",
-//		async : false, // 同步执行
-//		url : link,
-//		dataType : "json",
-//		success:function(){
-//			window.location.href = link
-//		}
-//	})
 }
 
 // 动态刷新表格，传入表头和数据的数组
