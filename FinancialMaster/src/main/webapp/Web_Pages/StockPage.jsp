@@ -19,6 +19,8 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<script src="../js/jquery.min.js"></script>
+
 <style>
 li {
 	list-style-type: none;
