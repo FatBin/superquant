@@ -2,6 +2,8 @@ package web.bl.userImpl;
 
 import java.util.ArrayList;
 
+import DAO.DaoProxy.UserStrategyDaoProxy;
+import DAO.DaoProxyService.UserStrategyDaoProxyService;
 import DAO.pojo.Stock;
 import DAO.pojo.UserStrategy;
 import ENUM.ManageState;
@@ -63,9 +65,13 @@ public class UserManageImpl implements UserManageInfo {
 
 	@Override
 	public ManageState deleteStrategy(UserVO user, String strategyName) {
-		UserStrategyDataService userStrategyDataService=new UserStrategyData();
+		UserStrategyDaoProxyService userStrategyDaoProxyService=new UserStrategyDaoProxy();
 		ManageState result=ManageState.Succeed;
-//		result=userStrategyDataService.
+		try {
+			userStrategyDaoProxyService.deleteStrategy(user.getUsername(), strategyName);
+		} catch (Exception e) {
+			result=ManageState.Fail;
+		}
 
 		if(result==ManageState.Succeed){
 			ArrayList<String> strategyList=user.getStrategy();

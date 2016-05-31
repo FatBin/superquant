@@ -143,7 +143,7 @@ public class StockData implements StockDataService {
 
 	// 初始化时调用这个方法
 	public ArrayList<stockStatisticPO> getStatisitcOfStock(String codeName){
-		File target=new File("Data/LocalDataBuffer/"+codeName+".txt");
+		File target=new File(InitFactoryServlet.getPath()+"Data/LocalDataBuffer/"+codeName+".txt");
 		//如果該緩存不存在,新建一個
 		if (!target.exists() || target.isDirectory()) {
 			try {
