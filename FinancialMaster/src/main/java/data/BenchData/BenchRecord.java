@@ -33,25 +33,23 @@ public class BenchRecord implements BenchRecordService{
 		try {
 			Document document=Jsoup.connect(benchRecentDataURL[0]+benchId+benchRecentDataURL[1]).get();
 			Elements elements=document.select("div[class=stock-bets]");
-			Elements elements1=elements.get(0).select("div[class=price s-down ]");
-			Elements temp=elements.get(0).select("div[class=bets-col-9]");
-			Elements elements2=temp.get(0).select("dd");
-			String[] first=elements1.text().replace("%", "").split(" ");
-			String[] second=elements2.text().split(" ");
-			System.out.println(elements1.text());
+			String temp1=elements.text().replace("%", "");
+			String[] temp2=temp1.split(" ");
 			benchCurrentDataPO po=new benchCurrentDataPO(
-					Double.parseDouble(first[0]), 
-					Double.parseDouble(first[1]), 
-					Double.parseDouble(first[2]), 
-					Double.parseDouble(second[0]), 
-					Double.parseDouble(second[1]), 
-					Double.parseDouble(second[2]), 
-					Double.parseDouble(second[3]), 
-					second[4], 
-					second[5], 
-					second[6], 
-					second[7], 
-					second[8]
+					temp2[2],
+					temp2[3]+" "+temp2[4].substring(1),
+					Double.parseDouble(temp2[5]), 
+					Double.parseDouble(temp2[6]), 
+					Double.parseDouble(temp2[7]), 
+					Double.parseDouble(temp2[9]), 
+					Double.parseDouble(temp2[11]), 
+					Double.parseDouble(temp2[13]), 
+					Double.parseDouble(temp2[15]), 
+					temp2[17], 
+					temp2[19], 
+					temp2[21], 
+					temp2[23], 
+					temp2[25]
 					);
 			return po;
 		} catch (IOException e) {

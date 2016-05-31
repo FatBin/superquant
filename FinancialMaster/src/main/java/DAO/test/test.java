@@ -590,6 +590,8 @@ public class test {
 //		BenchRecord benchRecord=new BenchRecord();
 //		try {
 //			benchCurrentDataPO po=benchRecord.getLastestRecord("sz399001");
+//			System.out.println(po.getStatus());
+//			System.out.println(po.getTime());
 //			System.out.println(po.getNow());
 //			System.out.println(po.getRise_fall_price());
 //			System.out.println(po.getRise_fall_percent());
@@ -606,13 +608,14 @@ public class test {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-		data.stockcheckdata.StockData stockData=new data.stockcheckdata.StockData();
+//		data.stockcheckdata.StockData stockData=new data.stockcheckdata.StockData();
 //		
-		ArrayList<stockStatisticPO> arrayList=stockData.getStatisitcOfStock("sh600000","2015-01-01","2015-02-01");
-		for (stockStatisticPO stockStatisticPO : arrayList) {
-			System.out.println(stockStatisticPO.getName());
-		}
+//		ArrayList<stockStatisticPO> arrayList=stockData.getStatisitcOfStock("sh600000","2015-01-01","2015-02-01");
+//		for (stockStatisticPO stockStatisticPO : arrayList) {
+//			System.out.println(stockStatisticPO.getName());
+//		}
 //		String string=new String(data.stockcheckdata.StockData.sendGet("http://hq.sinajs.cn/list="+"sh600000"+",", ""));
 //		System.out.println(string.split("\"")[1].split(",")[0]);
+		
 	}
 }

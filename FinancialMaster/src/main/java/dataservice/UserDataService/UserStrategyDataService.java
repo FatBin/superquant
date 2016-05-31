@@ -43,4 +43,9 @@ public interface UserStrategyDataService {
 	 * it will return a list of String 
 	 */
 	public List getUserStrategyNames(String userName) throws Exception;
+	
+	/*
+	 * delete the strategy according to the strategyName
+	 */
+	public void deleteTheWholeStrategy(String userName, String strategyName) throws Exception;
 }
