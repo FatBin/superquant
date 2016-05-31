@@ -25,6 +25,21 @@
 li {
 	list-style-type: none;
 }
+
+.detailname {
+	font-size: 14px;
+	line-height: 35px;
+	font-family: PingFangSC-Regular;
+	float: left;
+	margin-right: 20px;
+}
+
+.add_cancel_btn {
+	width: 50px;
+	height: 29px;
+	background-color: transparent;
+	border: 1px solid rgb(204, 204, 204);
+}
 </style>
 
 </head>
@@ -72,7 +87,7 @@ li {
 			</fieldset>
 
 			<div id="searchHint"
-				style="position: absolute; background-color: rgb(235,235,235); width: 150px; margin-left: 945px; margin-top: -20px;">
+				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
 			</div>
 		</div>
 
@@ -81,179 +96,189 @@ li {
 	<!-- /.container-fluid --> </nav>
 
 	<div
-		style="font-size: 28px; line-height: 35px; font-family: PingFangSC-Regular; margin-top: 150px; margin-left: 190px;">
-		策略⎡ <span>sss</span> ⎦
+		style="font-size: 28px; line-height: 35px; font-family: PingFangSC-Regular; margin-top: 150px; margin-left: 135px;">
+		策略</div>
+
+	<hr style="margin-top: 10px; width: 990px;" />
+
+	<!-- 策略名称及总成本 -->
+	<div style="margin-left: 135px; float: left;">
+		<p class="detailname" style="font-size: 18px; line-height: 33px">策略名</p>
+
+		<input class="form-control" size="16" type="text" value=""
+			style="width: 100px;">
 	</div>
 
-	<hr style="margin-top: 10px; width: 900px;" />
+	<div>
+		<p
+			style="font-size: 18px; line-height: 33px; font-family: PingFangSC-Regular; float: left; margin-left: 40px; margin-right: 20px;">设定本金</p>
+
+		<input class="form-control" size="16" type="text" value=""
+			style="width: 100px;">
+	</div>
+
+	<hr style="margin-top: 10px; width: 990px;" />
 
 	<!-- 所有按钮的大块 -->
-	<div>
 
-		<!-- 第一列的块 -->
-		<div id="first_col"
-			style="margin-left: 190px; margin-right: 40px; margin-bottom: -15px; float: left;">
+	<!-- 第一列的块 -->
+	<div id="second_col"
+		style="float: left; margin-right: 40px; margin-left: 135px;">
+		<!-- 选择股票 -->
+		<div>
+			<i class="detailname">选择股票</i> <input class="form-control" size="16"
+				type="text" value="" style="width: 100px;">
+		</div>
 
-			<!-- 开始日期 -->
-			<div class="form-group">
-				<i
-					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">开始日期</i>
-				<div class="input-group date form_date col-md-5" data-date=""
-					data-date-format="dd MM yyyy" data-link-field="dtp_input2"
-					data-link-format="yyyy-mm-dd">
+		<div style="margin-top: 10px;">
+			<!-- 买卖股数 -->
+			<i class="detailname">投资成本</i> <input class="form-control" size="16"
+				type="text" value="" style="width: 100px;">
+		</div>
+	</div>
 
-					<input class="form-control" size="16" type="text" value="" readonly
-						style="width: 100px;"> <span class="input-group-addon"
-						style="height: 34px; width: 37px;"><span
-						class="glyphicon glyphicon-remove"></span></span> <span
-						class="input-group-addon" style="height: 34px; width: 37px;"><span
-						class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
-				</div>
-				<input type="hidden" id="dtp_input2" value="" /><br />
+	<!-- 第二列的块 -->
+	<div id="first_col"
+		style="margin-right: 40px; margin-bottom: -15px; float: left;">
+
+		<!-- 开始日期 -->
+		<div class="form-group">
+			<i class="detailname">开始日期</i>
+			<div class="input-group date form_date col-md-5" data-date=""
+				data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+				data-link-format="yyyy-mm-dd">
+
+				<input class="form-control" size="16" type="text" value="" readonly
+					style="width: 100px;"> <span class="input-group-addon"
+					style="height: 34px; width: 37px;"><span
+					class="glyphicon glyphicon-remove"></span></span> <span
+					class="input-group-addon" style="height: 34px; width: 37px;"><span
+					class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
+			</div>
+			<input type="hidden" id="dtp_input2" value="" /><br />
+		</div>
+
+		<!-- 结束日期 -->
+		<div class="form-group" style="margin-top: -25px;">
+			<i class="detailname">结束日期</i>
+			<div class="input-group date form_date col-md-5" data-date=""
+				data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+				data-link-format="yyyy-mm-dd">
+
+				<input class="form-control" size="16" type="text" value="" readonly
+					style="width: 100px;"> <span class="input-group-addon"
+					style="height: 34px; width: 37px;"><span
+					class="glyphicon glyphicon-remove"></span></span> <span
+					class="input-group-addon" style="height: 34px; width: 37px;"><span
+					class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
+			</div>
+			<input type="hidden" id="dtp_input2" value="" /><br />
+		</div>
+	</div>
+
+
+	<!-- 第三列的块 -->
+	<div id="second_col" style="float: left;">
+		<!-- 买入策略 -->
+		<div>
+			<i class="detailname">买入策略</i>
+
+			<div style="float: left; margin-right: 20px;">
+
+				<form name="buyin">
+					<select class="form-control" style="width: 100px;">
+						<option value="000001">策略一</option>
+						<option value="000300">策略二</option>
+						<option value="000300">策略三</option>
+					</select>
+				</form>
+
 			</div>
 
-			<!-- 结束日期 -->
-			<div class="form-group" style="margin-top: -25px;">
-				<i
-					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">结束日期</i>
-				<div class="input-group date form_date col-md-5" data-date=""
-					data-date-format="dd MM yyyy" data-link-field="dtp_input2"
-					data-link-format="yyyy-mm-dd">
+		</div>
 
-					<input class="form-control" size="16" type="text" value="" readonly
-						style="width: 100px;"> <span class="input-group-addon"
-						style="height: 34px; width: 37px;"><span
-						class="glyphicon glyphicon-remove"></span></span> <span
-						class="input-group-addon" style="height: 34px; width: 37px;"><span
-						class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
-				</div>
-				<input type="hidden" id="dtp_input2" value="" /><br />
+		<div style="margin-top: 10px; float: left">
+			<!-- 卖出策略 -->
+			<i class="detailname">卖出策略</i>
+
+			<div style="float: left; margin-right: 20px;">
+
+				<form name="soldout">
+					<select class="form-control" style="width: 100px;">
+						<option value="000001">策略一</option>
+						<option value="000300">策略二</option>
+						<option value="000300">策略三</option>
+					</select>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- 第四列的块 -->
+	<div id="second_col" style="float: left; margin-right: 20px;">
+		<div>
+			<!-- 其他策略 -->
+			<i class="detailname">其他策略</i>
+
+			<div style="float: left; margin-right: 20px;">
+
+				<form name="soldout">
+					<select class="form-control" style="width: 100px;">
+						<option value="000001">策略一</option>
+						<option value="000300">策略二</option>
+						<option value="000300">策略三</option>
+					</select>
+				</form>
 			</div>
 		</div>
 
-		<!-- 第二列的块 -->
-		<div id="second_col" style="float: left; margin-right: 40px;">
-			<!-- 选择股票 -->
-			<div>
-				<i
-					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">选择股票</i>
+		<!-- 买卖频率 -->
+		<div style="margin-top: 45px;">
+			<i class="detailname">买卖频率</i> <input class="form-control" size="16"
+				type="text" value="" style="width: 100px;">
+		</div>
+	</div>
 
-				<input class="form-control" size="16" type="text" value=""
-					style="width: 100px;">
-			</div>
 
-			<div style="margin-top: 10px;">
-				<!-- 买卖股数 -->
-				<i
-					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">买卖股数</i>
-
-				<input class="form-control" size="16" type="text" value=""
-					style="width: 100px;">
-			</div>
+	<div style="float: left; margin-top: 5px;">
+		<div>
+			<input type="button" class="btn add_cancel_btn" name="confirmbtn"
+				value="添加" onclick="addStrategy()" />
 		</div>
 
-		<!-- 第三列的块 -->
-		<div id="second_col" style="float: left;">
-			<!-- 买入策略 -->
-			<div>
-				<i
-					style="font-size: 14px; line-height: 34px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">买入策略</i>
-
-				<div style="float: left;">
-
-					<form name="buyin">
-						<select class="form-control" style="width: 100px;">
-							<option value="000001">策略一</option>
-							<option value="000300">策略二</option>
-							<option value="000300">策略三</option>
-						</select>
-					</form>
-
-				</div>
-
-			</div>
-
-			<div style="margin-top: 10px;">
-				<!-- 卖出策略 -->
-				<i
-					style="font-size: 14px; line-height: 55px; font-family: PingFangSC-Regular; float: left; margin-right: 20px;">卖出策略</i>
-
-				<div style="float: left; margin-top: 10px;">
-
-					<form name="soldout">
-						<select class="form-control" style="width: 100px;">
-							<option value="000001">策略一</option>
-							<option value="000300">策略二</option>
-							<option value="000300">策略三</option>
-						</select>
-					</form>
-
-				</div>
-
-			</div>
+		<div>
+			<input type="reset" class="btn add_cancel_btn" name="resetbtn"
+				value="取消" style="margin-top: 10px;" />
 		</div>
+	</div>
 
-		<!-- 修改按钮 -->
-		<div id="modify-div" style="float: left; margin-left: 80px;">
-			<input type="button" class="btn" name="modifybtn" value="修改"
-				style="width: 50px; height: 29px; background-color: transparent; border: 1px solid rgb(204, 204, 204); margin-top: 20px;"
-				onclick="showConfirmbtn()" />
-		</div>
+	<hr style="margin-top: 10px; width: 990px;" />
 
-		<div id="confirm-div"
-			style="float: left; margin-left: 80px; margin-top: 5px; display: none;">
-			<div>
-				<input type="button" class="btn" name="confirmbtn" value="确认"
-					style="width: 50px; height: 29px; background-color: transparent; border: 1px solid rgb(204, 204, 204);"
-					onclick="showModifybtn()" />
-			</div>
-
-			<div>
-				<input type="reset" class="btn" name="resetbtn" value="取消"
-					style="width: 50px; height: 29px; background-color: transparent; border: 1px solid rgb(204, 204, 204); margin-top: 10px;"
-					onclick="showModifybtn()" />
-			</div>
-		</div>
-
-		<hr style="margin-top: 10px; width: 900px;" />
-
-		<div
-			style="width: 900px; height: 500px; margin-left: 180px; background-color: gray;"></div>
+	<div id="strategyDetail"
+		style="margin-left: 135px; width: 1000px; height: 300px; background-color: gray;"></div>
 
 
-		<!-- Plugin JavaScript -->
-		<script src="../js/classie.js"></script>
-		<script src="../js/cbpAnimatedHeader.js"></script>
-
-		<script type="text/javascript" src="../js/jquery.min.js"></script>
-		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="../js/jquery.js"></script>
-
-		<script type="text/javascript" src="../js/searchHint.js"></script>
-
-		<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
-			charset="UTF-8"></script>
-		<script type="text/javascript">
-			$('.form_date').datetimepicker({
-				weekStart : 1,
-				todayBtn : 1,
-				autoclose : 1,
-				todayHighlight : 1,
-				startView : 2,
-				minView : 2,
-				forceParse : 0,
-				format : 'yyyy-mm-dd'
-			});
-
-			function showModifybtn() {
-				document.getElementById("confirm-div").style.display = "none";
-				document.getElementById("modify-div").style.display = "block";
-			}
-
-			function showConfirmbtn() {
-				document.getElementById("modify-div").style.display = "none";
-				document.getElementById("confirm-div").style.display = "block";
-			}
-		</script>
+	<!-- Plugin JavaScript -->
+	<script src="../js/classie.js"></script>
+	<script src="../js/cbpAnimatedHeader.js"></script>
+	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/searchHint.js"></script>
+	<script type="text/javascript" src="../js/strategy_deal.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
+		charset="UTF-8"></script>
+	<script type="text/javascript">
+		$('.form_date').datetimepicker({
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0,
+			format : 'yyyy-mm-dd'
+		});
+	</script>
 </body>
 </html>
