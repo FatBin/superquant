@@ -176,14 +176,27 @@ function mouseClick(rowpos, link) {
 	var t = document.getElementById("senfe").getElementsByTagName("tr");
 
 	// alert(t[rowpos].getElementsByTagName("td")[0].innerHTML);
-	// window.location.href = link;
-
+	
 	$.ajax({
-		type : "get",
-		async : false, // 同步执行
-		url : link,
-		dataType : "json"
-	})
+	type : "post",
+	async : false, // 同步执行
+	url : link,
+	data:{"Stockid":t[rowpos].getElementsByTagName("td")[0].innerHTML},
+	dataType : "json"
+    })
+    window.location.href = link;
+	
+//	 window.location.href = link;
+
+//	$.ajax({
+//		type : "get",
+//		async : false, // 同步执行
+//		url : link,
+//		dataType : "json",
+//		success:function(){
+//			window.location.href = link
+//		}
+//	})
 }
 
 // 动态刷新表格，传入表头和数据的数组
