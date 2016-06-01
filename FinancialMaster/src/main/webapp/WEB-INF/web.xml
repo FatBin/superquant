@@ -65,6 +65,16 @@
     <url-pattern>/ToBusinessPageServlet</url-pattern>
   </servlet-mapping>
   
+    <!-- get：跳转到行业详情界面，post：为历史数据波动图提供数据 -->    
+  <servlet>
+    <servlet-name>ToBusinessDetailPageServlet</servlet-name>
+    <servlet-class>servlet.business.BusinessDetailPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ToBusinessDetailPageServlet</servlet-name>
+    <url-pattern>/ToBusinessDetailPageServlet</url-pattern>
+  </servlet-mapping>
+  
   <!-- get：跳转到策略页面，post： -->  
   <servlet>
     <servlet-name>ToStrategyPageServlet</servlet-name>

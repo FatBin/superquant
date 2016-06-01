@@ -104,6 +104,8 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		BenchRecordService benchRecordService=new BenchRecord();
 		try {
 			benchCurrentDataPO currentBenchPO=benchRecordService.getLastestRecord(id);
+			benchVO.setStatus(currentBenchPO.getStatus());
+			benchVO.setTime(currentBenchPO.getTime());
 			benchVO.setCompany(currentBenchPO.getCompany());
 			benchVO.setFall_company(currentBenchPO.getFall_company());
 			benchVO.setHigh(currentBenchPO.getHigh());

@@ -74,7 +74,6 @@ public class BusinessPageServlet extends HttpServlet {
 					ups_and_downs[i]+"},";
 		}
 		data+="]";
-		System.out.println(data);
 		JSONArray json = new JSONArray(data);
 		PrintWriter out = response.getWriter();
 		out.println(json);

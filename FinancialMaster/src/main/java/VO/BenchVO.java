@@ -3,6 +3,8 @@ package VO;
 public class BenchVO {
 	    private String[][] data;//历史数据
 	     //历史数据顺序依次是：日期，开盘价，最高价，最低价，收盘价，成交量（百万股），成交额（亿元）
+		private String status;//是否收盘
+		private String time;//当前数据的时间
 		private double now;//现在的价格
 		private double rise_fall_price;//涨跌价
 		private double rise_fall_percent;//涨跌率
@@ -95,6 +97,18 @@ public class BenchVO {
 		}
 		public void setCompany(String company) {
 			this.company = company;
+		}
+		public String getStatus() {
+			return status;
+		}
+		public void setStatus(String status) {
+			this.status = status;
+		}
+		public String getTime() {
+			return time;
+		}
+		public void setTime(String time) {
+			this.time = time;
 		}
 		
 }

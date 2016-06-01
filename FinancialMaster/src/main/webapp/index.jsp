@@ -14,8 +14,8 @@
    <h1>中文!</h1>
      <a href="UpdateBenchVO">  test </a>
      
-     <div id="business_barchart" style="width: 1400px; height: 500px;"></div>
+     <div id="business_history_chart" style="width: 900px; height: 600px;"></div>
 
-	<script src="jschart/businessBarChart.js" ></script>
+	<script src="jschart/businessHistoryChart.js" ></script>
 </body>
 </html>

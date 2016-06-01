@@ -65,10 +65,10 @@ public class UserManageImpl implements UserManageInfo {
 
 	@Override
 	public ManageState deleteStrategy(UserVO user, String strategyName) {
-		UserStrategyDaoProxyService userStrategyDaoProxyService=new UserStrategyDaoProxy();
+		UserStrategyDataService userStrategyDataService=new UserStrategyData();
 		ManageState result=ManageState.Succeed;
 		try {
-			userStrategyDaoProxyService.deleteStrategy(user.getUsername(), strategyName);
+			userStrategyDataService.deleteTheWholeStrategy(user.getUsername(), strategyName);
 		} catch (Exception e) {
 			result=ManageState.Fail;
 		}
