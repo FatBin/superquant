@@ -40,6 +40,11 @@ li {
 	background-color: transparent;
 	border: 1px solid rgb(204, 204, 204);
 }
+
+.hrstyle {
+	margin-top: 10px;
+	width: 990px;
+}
 </style>
 
 </head>
@@ -99,7 +104,7 @@ li {
 		style="font-size: 28px; line-height: 35px; font-family: PingFangSC-Regular; margin-top: 150px; margin-left: 135px;">
 		策略</div>
 
-	<hr style="margin-top: 10px; width: 990px;" />
+	<hr class="hrstyle" />
 
 	<!-- 策略名称及总成本 -->
 	<div style="margin-left: 135px; float: left;">
@@ -117,7 +122,7 @@ li {
 			value="" style="width: 100px;">
 	</div>
 
-	<hr style="margin-top: 10px; width: 990px;" />
+	<hr class="hrstyle" />
 
 	<!-- 所有按钮的大块 -->
 
@@ -227,7 +232,7 @@ li {
 		<div style="margin-top: 45px;">
 			<i class="detailname">买卖频率</i> <input id="frequency"
 				class="form-control" size="16" type="text" value=""
-				style="width: 100px;">
+				style="width: 100px;" placeholder="请输入天数">
 		</div>
 	</div>
 
@@ -244,10 +249,21 @@ li {
 		</div>
 	</div>
 
-	<hr style="margin-top: 10px; width: 990px;" />
+	<hr class="hrstyle" />
 
-	<div id="strategyDetail" style="margin-left: 135px; width: 1000px;"></div>
+	<!-- 我的策略  -->
+	<div
+		style="font-size: 20px; line-height: 35px; margin-top: 40px; margin-left: 135px;">
+		我的策略</div>
 
+	<hr
+		style="width: 80px; border: solid 1px rgb(235, 235, 235); margin-left: 135px; margin-top: 0px;" />
+
+	<div id="strategyDetail"
+		style="margin-left: 135px; width: 1000px; border: dashed 1px rgb(200, 200, 200);">
+		<div style="height: 15px;"></div>
+
+	</div>
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>

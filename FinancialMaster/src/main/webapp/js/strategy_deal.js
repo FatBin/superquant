@@ -3,11 +3,15 @@ function addStrategy() {
 	var getID = [ "stockchoose", "startdate", "buyinst", "otherst", "cost",
 			"enddate", "soldoutst", "frequency" ];
 	var getInfo = [];
-	for (var i = 0; i < getID.length; i++) {
-		getInfo[i] = document.getElementById(getID[i]).innerHTML;
-	}
 	
-//	alert(getInfo[1]);
+	for (var i = 0; i < getID.length; i++) {
+		getInfo[i] = document.getElementById(getID[i]).value;
+
+		// if (getInfo[i] == '') {
+		// alert("请制订完整策略");
+		// return;
+		// }
+	}
 
 	var div = document.getElementById("strategyDetail");
 	div.style.float = "left";
@@ -19,11 +23,12 @@ function addStrategy() {
 
 		var indiv = document.createElement("div");
 		indiv.style.float = "left";
-		indiv.style.marginBottom = "10px";
+		indiv.style.marginBottom = "20px";
+		indiv.style.marginRight = "40px";
+		indiv.style.marginLeft = "5px";
 
 		// 列的上半块
 		var indiv1 = document.createElement("div");
-		indiv1.style.float = "left";
 
 		var above = document.createElement("i");
 		above.innerHTML = names[i];
@@ -36,11 +41,13 @@ function addStrategy() {
 		field1.setAttribute("size", "16");
 		field1.setAttribute("readonly", "true");
 		field1.style.width = "100px";
+		field1.value = getInfo[i];
 		indiv1.appendChild(field1);
 
 		// 列的下半块
 		var indiv2 = document.createElement("div");
 		indiv2.style.float = "left";
+		indiv2.style.marginTop = "10px";
 
 		var below = document.createElement("i");
 		below.innerHTML = names[i + 4];
@@ -53,6 +60,7 @@ function addStrategy() {
 		field2.setAttribute("size", "16");
 		field2.setAttribute("readonly", "true");
 		field2.style.width = "100px";
+		field2.value = getInfo[i + 4];
 		indiv2.appendChild(field2);
 
 		indiv.appendChild(indiv1);
@@ -60,22 +68,50 @@ function addStrategy() {
 		div.appendChild(indiv);
 	}
 
-	// 修改
+	// 修改、删除
 	var btndiv = document.createElement("div");
+	btndiv.style.float = "left";
+	btndiv.style.marginLeft = "20px";
+
+	var modiv = document.createElement("div");
+	modiv.style.marginTop = "5px";
+	modiv.style.marginBottom = "10px";
 	var mobtn = document.createElement("input");
+	mobtn.value = "修改";
 	mobtn.setAttribute("type", "button");
 	mobtn.setAttribute("class", "btn add_cancel_btn");
-	mobtn.setAttribute("onclick", "modify()");
-	btndiv.appendChild(mobtn);
+	mobtn.setAttribute("onclick", "modify(" + getInfo + ")");
+	modiv.appendChild(mobtn);
+	btndiv.appendChild(modiv);
+
+	var dediv = document.createElement("div");
+	var debtn = document.createElement("input");
+	debtn.value = "删除";
+	debtn.setAttribute("type", "button");
+	debtn.setAttribute("class", "btn add_cancel_btn");
+	dediv.appendChild(debtn);
+	btndiv.appendChild(debtn);
+
 	div.appendChild(btndiv);
 
 	var hr = document.createElement("hr");
 	hr.style.width = "990px";
 	div.appendChild(hr);
-
 }
 
 // 修改
-function modify() {
+function modify(getInfo) {
+	alert(0);
+	
+	var getID = [ "stockchoose", "startdate", "buyinst", "otherst", "cost",
+			"enddate", "soldoutst", "frequency" ];
+
+	for (var i = 0; i < getID.length; i++) {
+		document.getElementById(getID[i]).innerHTML = getInfo[i];
+	}
+}
+
+// 删除
+function deleteDiv() {
 
 }
