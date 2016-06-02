@@ -1,14 +1,45 @@
 .title{
-	width:850px;
+	width:100%;
 	margin-left:auto;
 	margin-right:auto;
 	text-align:left;
 	margin-top:30px;
+	border-left: 4px solid rgb(235,138,49);
+	padding-left: 8px;
+	
 }
 
-.innerBlock{
-	width:850px;
+#business_barchart{
+	width:1000px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:20px;
+}
+
+.business-item{
+	cursor:pointer;
+	width:100%;
+	height:100px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:16px;
+	background-color:#599aed
+}
+
+.business-extend{
+	width:90%;
+	height:250px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:12px;
+	background-color:#599aed
+}
+
+.business-list .compare{
+	width:70%;
+	height:1000px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	background-color:#F0F0F0
 }

@@ -29,6 +29,12 @@ option = {
 		left : 'center'
 	//	        subtext: 'From ExcelHome'
 	},
+	grid : {
+		left : '3%',
+		right : '4%',
+		bottom : '12%',
+		containLabel : true
+	},
 	xAxis : {
 		type : 'category',
 		data : name1,
@@ -53,13 +59,14 @@ option = {
 		},
 	},
 	series : {
-		name : '涨跌率',
+		name : '涨跌率(%)',
 		type : 'bar',
 		data : value1,
 		label : {
 			normal : {
 				show : true,
-				formatter : '{c}%'
+				formatter : '{c}',
+				position : 'top'
 			}
 		},
 		itemStyle : {

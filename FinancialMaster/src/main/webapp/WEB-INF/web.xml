@@ -114,6 +114,16 @@
     <servlet-name>GetMarketkLineServlet</servlet-name>
     <url-pattern>/GetMarketkLine</url-pattern>
   </servlet-mapping>
+  
+    <!-- get：，post：为个股k线图提供数据 -->    
+  <servlet>
+    <servlet-name>GetStockKLineServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.GetStockKLineServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetStockKLineServlet</servlet-name>
+    <url-pattern>/GetStockKLine</url-pattern>
+  </servlet-mapping>
 
   <!-- get：实时更新大盘最新数据，post： -->    
   <servlet>

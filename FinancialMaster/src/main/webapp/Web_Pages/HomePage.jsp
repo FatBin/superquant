@@ -54,7 +54,7 @@ li {
 			<ul class="nav navbar-nav navbar-left">
 				<li class="hidden"><a href="#page-top"></a></li>
 
-				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
+				<li><a class="page-scroll active" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="BusinessPage.jsp">行业</a></li>
