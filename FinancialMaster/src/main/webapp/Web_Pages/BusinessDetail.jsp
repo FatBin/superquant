@@ -80,43 +80,9 @@ li {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div class="container">
-		<div class="compare">
-			<h3 class="title" style="margin-top: 120px;">行业对比</h3>
-			<div id="business_barchart"
-				style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
-		</div>
-
-
-
-		<div class="business-rank">
-			<h3 class="title">行业对比</h3>
-			<div class="business-list">
-				<div class="business-item" id="1"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
-			<div class="business-list">
-				<div class="business-item" id="2"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
-			<div class="business-list">
-				<div class="business-item"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
-			<div class="business-list">
-				<div class="business-item"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
-			<div class="business-list">
-				<div class="business-item"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
-		</div>
-	</div>
-	</div>
-
-
-
+	<h3 class="title" style="margin-top: 120px;">行业名称</h3>
+	<div id="business_barchart"
+		style="width: 1000px; height: 400px;"></div>
 
 
 
@@ -130,13 +96,4 @@ li {
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>
-
-
-<script type="text/javascript">
-	$(".business-rank").on("click", ".business-list", function() {
-		$(this).children(".business-extend").slideToggle();
-
-	});
-</script>
-
 </html>

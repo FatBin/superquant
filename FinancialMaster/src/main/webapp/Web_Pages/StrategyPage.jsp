@@ -57,7 +57,7 @@ li {
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="BusinessPage.jsp">行业</a></li>
-				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
+				<li><a class="page-scroll a-active" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
 
