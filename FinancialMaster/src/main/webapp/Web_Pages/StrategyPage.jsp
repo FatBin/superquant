@@ -105,16 +105,16 @@ li {
 	<div style="margin-left: 135px; float: left;">
 		<p class="detailname" style="font-size: 18px; line-height: 33px">策略名</p>
 
-		<input class="form-control" size="16" type="text" value=""
-			style="width: 100px;">
+		<input id="strategyname" class="form-control" size="16" type="text"
+			value="" style="width: 100px;">
 	</div>
 
 	<div>
 		<p
 			style="font-size: 18px; line-height: 33px; font-family: PingFangSC-Regular; float: left; margin-left: 40px; margin-right: 20px;">设定本金</p>
 
-		<input class="form-control" size="16" type="text" value=""
-			style="width: 100px;">
+		<input id="totalcost" class="form-control" size="16" type="text"
+			value="" style="width: 100px;">
 	</div>
 
 	<hr style="margin-top: 10px; width: 990px;" />
@@ -126,14 +126,15 @@ li {
 		style="float: left; margin-right: 40px; margin-left: 135px;">
 		<!-- 选择股票 -->
 		<div>
-			<i class="detailname">选择股票</i> <input class="form-control" size="16"
-				type="text" value="" style="width: 100px;">
+			<i class="detailname">选择股票</i> <input id="stockchoose"
+				class="form-control" size="16" type="text" value=""
+				style="width: 100px;">
 		</div>
 
 		<div style="margin-top: 10px;">
 			<!-- 买卖股数 -->
-			<i class="detailname">投资成本</i> <input class="form-control" size="16"
-				type="text" value="" style="width: 100px;">
+			<i class="detailname">投资成本</i> <input id="cost" class="form-control"
+				size="16" type="text" value="" style="width: 100px;">
 		</div>
 	</div>
 
@@ -148,9 +149,9 @@ li {
 				data-date-format="dd MM yyyy" data-link-field="dtp_input2"
 				data-link-format="yyyy-mm-dd">
 
-				<input class="form-control" size="16" type="text" value="" readonly
-					style="width: 100px;"> <span class="input-group-addon"
-					style="height: 34px; width: 37px;"><span
+				<input id="startdate" class="form-control" size="16" type="text"
+					value="" readonly style="width: 100px;"> <span
+					class="input-group-addon" style="height: 34px; width: 37px;"><span
 					class="glyphicon glyphicon-remove"></span></span> <span
 					class="input-group-addon" style="height: 34px; width: 37px;"><span
 					class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
@@ -165,9 +166,9 @@ li {
 				data-date-format="dd MM yyyy" data-link-field="dtp_input2"
 				data-link-format="yyyy-mm-dd">
 
-				<input class="form-control" size="16" type="text" value="" readonly
-					style="width: 100px;"> <span class="input-group-addon"
-					style="height: 34px; width: 37px;"><span
+				<input id="enddate" class="form-control" size="16" type="text"
+					value="" readonly style="width: 100px;"> <span
+					class="input-group-addon" style="height: 34px; width: 37px;"><span
 					class="glyphicon glyphicon-remove"></span></span> <span
 					class="input-group-addon" style="height: 34px; width: 37px;"><span
 					class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
@@ -184,15 +185,11 @@ li {
 			<i class="detailname">买入策略</i>
 
 			<div style="float: left; margin-right: 20px;">
-
-				<form name="buyin">
-					<select class="form-control" style="width: 100px;">
-						<option value="000001">策略一</option>
-						<option value="000300">策略二</option>
-						<option value="000300">策略三</option>
-					</select>
-				</form>
-
+				<select id="buyinst" class="form-control" style="width: 100px;">
+					<option>策略一</option>
+					<option>策略二</option>
+					<option>策略三</option>
+				</select>
 			</div>
 
 		</div>
@@ -202,14 +199,11 @@ li {
 			<i class="detailname">卖出策略</i>
 
 			<div style="float: left; margin-right: 20px;">
-
-				<form name="soldout">
-					<select class="form-control" style="width: 100px;">
-						<option value="000001">策略一</option>
-						<option value="000300">策略二</option>
-						<option value="000300">策略三</option>
-					</select>
-				</form>
+				<select id="soldoutst" class="form-control" style="width: 100px;">
+					<option>策略一</option>
+					<option>策略二</option>
+					<option>策略三</option>
+				</select>
 			</div>
 		</div>
 	</div>
@@ -221,21 +215,19 @@ li {
 			<i class="detailname">其他策略</i>
 
 			<div style="float: left; margin-right: 20px;">
-
-				<form name="soldout">
-					<select class="form-control" style="width: 100px;">
-						<option value="000001">策略一</option>
-						<option value="000300">策略二</option>
-						<option value="000300">策略三</option>
-					</select>
-				</form>
+				<select id="otherst" class="form-control" style="width: 100px;">
+					<option>策略一</option>
+					<option>策略二</option>
+					<option>策略三</option>
+				</select>
 			</div>
 		</div>
 
 		<!-- 买卖频率 -->
 		<div style="margin-top: 45px;">
-			<i class="detailname">买卖频率</i> <input class="form-control" size="16"
-				type="text" value="" style="width: 100px;">
+			<i class="detailname">买卖频率</i> <input id="frequency"
+				class="form-control" size="16" type="text" value=""
+				style="width: 100px;">
 		</div>
 	</div>
 
@@ -254,8 +246,7 @@ li {
 
 	<hr style="margin-top: 10px; width: 990px;" />
 
-	<div id="strategyDetail"
-		style="margin-left: 135px; width: 1000px; height: 300px; background-color: gray;"></div>
+	<div id="strategyDetail" style="margin-left: 135px; width: 1000px;"></div>
 
 
 	<!-- Plugin JavaScript -->
