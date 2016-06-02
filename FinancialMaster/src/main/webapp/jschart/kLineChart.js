@@ -11,6 +11,10 @@ var servlet_url="";
 var num;
 if(kind=="market"){
     servlet_url = "../GetMarketkLine";
+}else if(kind=="stock"){
+	servlet_url = "../GetStockKLine";
+}else{
+	alert("对不起皇上，类型未匹配到！！！");
 }
 $.ajax({
 	type : "post",

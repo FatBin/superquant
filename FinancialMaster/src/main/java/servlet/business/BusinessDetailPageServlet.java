@@ -82,11 +82,6 @@ public class BusinessDetailPageServlet extends HttpServlet {
 					",'turnover':"+Math.random()+
 					",'inflows':"+(Math.random()-0.5)+"},";
 		}
-//		double average_price;//平均价格
-//		private double rise_fall;//涨跌率
-//		private double volume;//成交量
-//		private double turnover;//换手率
-//		private double inflows;//流入资金量
 		
 		data+="]";
 		JSONArray json = new JSONArray(data);

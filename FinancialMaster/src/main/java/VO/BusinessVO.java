@@ -14,7 +14,7 @@ public class BusinessVO {
 	private ArrayList<Industries> historyData;
 	
 	//该行业包含的公司的最新的数据
-	private ArrayList<industryPO> industryPOs;
+	private ArrayList<BusinessItemVO> businessItemVOs;
 
 	public BusinessVO() {
 		super();
@@ -36,13 +36,15 @@ public class BusinessVO {
 		this.historyData = historyData;
 	}
 
-	public ArrayList<industryPO> getIndustryPOs() {
-		return industryPOs;
+	public ArrayList<BusinessItemVO> getBusinessItemVOs() {
+		return businessItemVOs;
 	}
 
-	public void setIndustryPOs(ArrayList<industryPO> industryPOs) {
-		this.industryPOs = industryPOs;
+	public void setBusinessItemVOs(ArrayList<BusinessItemVO> businessItemVOs) {
+		this.businessItemVOs = businessItemVOs;
 	}
+
+
 	
 	
 	
