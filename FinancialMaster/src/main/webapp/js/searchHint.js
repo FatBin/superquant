@@ -4,6 +4,15 @@ function showHint(str) {
 
 	// alert(event.keyCode); // 38上 40下 13回车
 
+	document.body.onclick = function() {
+		var hint = document.getElementById("searchHint");
+		if (hint.style.display == "block") {
+			hint.style.display = "none";
+			rowpos = -1;
+			return;
+		}
+	}
+
 	if (str.length == 0) {
 		document.getElementById("searchHint").innerHTML = '';
 		rowpos = -1;
@@ -11,6 +20,7 @@ function showHint(str) {
 	} else {
 
 		var div = document.getElementById("searchHint");
+		div.style.display = "block";
 
 		if (event.keyCode != 38 && event.keyCode != 40 && event.keyCode != 13) {
 			div.innerHTML = '';
@@ -44,6 +54,7 @@ function showHint(str) {
 				var li = document.createElement("li");
 				li.innerHTML = data[i];
 				li.setAttribute("onmouseover", "search_mouseIn(" + i + ")");
+				li.setAttribute("onclick", "search_mouseClick(" + i + ")");
 				div.appendChild(li);
 			}
 		}
@@ -69,7 +80,7 @@ function showHint(str) {
 			}
 			uls[rowpos].style.backgroundColor = "rgb(127, 127, 127)";
 		} else if (event.keyCode == 13) {
-
+			search_mouseClick(rowpos);
 		} else {
 			rowpos = -1;
 		}
@@ -83,4 +94,21 @@ function search_mouseIn(pos) {
 	}
 	uls[pos].style.backgroundColor = "rgb(127, 127, 127)";
 	rowpos = pos;
+}
+
+function search_mouseClick(pos) {
+	var uls = document.getElementById("searchHint").getElementsByTagName("li");
+	var stockMes = uls[pos].innerHTML.split(' ');
+
+	$.ajax({
+		type : "post",
+		async : false, // 同步执行
+		url : '../ToStockDetailPageServlet',
+		data : {
+			"Stockid" : stockMes[0]
+		},
+		dataType : "json"
+	})
+	window.location.href = '../ToStockDetailPageServlet';
+
 }

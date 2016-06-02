@@ -1,5 +1,12 @@
+var perPage = 10;
+
+// 设置每页显示条数
+function setPerPage(perpages) {
+	this.perPage = perpages;
+}
+
 window.onload = function() {
-	page = new Page(10, 'senfe', 'group_one');
+	page = new Page(perPage, 'senfe', 'group_one');
 };
 
 function Page(iAbsolute, sTableId, sTBodyId, page) {
@@ -146,68 +153,77 @@ function senfe(o, a, b, c, d) {
 }
 
 function mouseIn(rowpos) {
-	rowpos = rowpos % 10;
-	if(rowpos == 0)
-		rowpos = 10;
-	
+	rowpos = rowpos % perPage;
+	if (rowpos == 0)
+		rowpos = perPage;
+
 	var t = document.getElementById("senfe").getElementsByTagName("tr");
 	t[rowpos].style.backgroundColor = "#ccc";
 }
 
 function mouseOut(rowpos) {
-	rowpos = rowpos % 10;
-	if(rowpos == 0)
-		rowpos = 10;
-	
+	rowpos = rowpos % perPage;
+	if (rowpos == 0)
+		rowpos = perPage;
+
 	var t = document.getElementById("senfe").getElementsByTagName("tr");
 	t[rowpos].style.backgroundColor = (t[rowpos].sectionRowIndex % 2 == 0) ? "#fff"
 			: "rgb(239,239,239)";
 }
 
 // link为跳转到界面的地址
-function mouseClick(rowpos, link){
+function mouseClick(rowpos, link) {
 	var t = document.getElementById("senfe").getElementsByTagName("tr");
+
+	// alert(t[rowpos].getElementsByTagName("td")[0].innerHTML);
 	
-//	alert(t[rowpos].getElementsByTagName("td")[0].innerHTML);
-	window.location.href = link;
+	$.ajax({
+	type : "post",
+	async : false, // 同步执行
+	url : link,
+	data:{"Stockid":t[rowpos].getElementsByTagName("td")[0].innerHTML},
+	dataType : "json"
+    })
+    window.location.href = link;
+	
 }
 
 // 动态刷新表格，传入表头和数据的数组
-function refresh_table(tablehead, data){
-	
+function refresh_table(tablehead, data) {
+
 	var table = document.getElementById("senfe");
 	table.innerHTML = '';
-	
+
 	var thead = document.createElement("thead");
 	table.appendChild(thead);
-	
+
 	var tr = document.createElement("tr");
 	thead.appendChild(tr);
-	for(var i=0; i<tablehead.length; i++){
+	for (var i = 0; i < tablehead.length; i++) {
 		var td = document.createElement("td");
 		td.innerHTML = tablehead[i];
 		tr.appendChild(td);
 	}
 	tr.style.backgroundColor = "#ccc";
-	
+
 	var tbody = document.createElement("tbody");
 	tbody.setAttribute('id', 'group_one');
 	table.appendChild(tbody);
-	
-	for(var i=0; i<data.length; i++){
+
+	for (var i = 0; i < data.length; i++) {
 		var tr = tbody.insertRow(tbody.rows.length);
-		
+
 		var row = i + 1;
-		tr.setAttribute('onmouseover', 'mouseIn('+row+')');
-		tr.setAttribute('onmouseout', 'mouseOut('+row+')');
-		
-		for(var j=0; j<data[0].length; j++){
+		tr.setAttribute('onmouseover', 'mouseIn(' + row + ')');
+		tr.setAttribute('onmouseout', 'mouseOut(' + row + ')');
+
+		for (var j = 0; j < data[0].length; j++) {
 			var td = document.createElement("td");
 			td.innerHTML = data[i][j];
 			tr.appendChild(td);
 		}
 	}
-	
-	page = new Page(10, 'senfe', 'group_one');
+
+	page = new Page(perPage, 'senfe', 'group_one');
 	senfe("senfe", "#fff", "rgb(239,239,239)", "#ccc", "#f00");
 }

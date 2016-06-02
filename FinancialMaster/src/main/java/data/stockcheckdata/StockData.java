@@ -1,12 +1,18 @@
 package data.stockcheckdata;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -111,13 +117,16 @@ public class StockData implements StockDataService {
 				// 获取股票名
 				String name = "";
 				try {
-					String s = HttpRequest.sendGet("http://web.juhe.cn:8080/finance/stock/hs",
-							"gid=" + codeName + "&key=9867ab78e2748061825600a8f7c7258b");
-					JSONObject juheshuju = new JSONObject(s);
-					JSONArray newjsonArray = juheshuju.getJSONArray("result");
-					JSONObject newjsonObject = newjsonArray.getJSONObject(0);
-					name = newjsonObject.getJSONObject("dapandata").getString("name");
+//					String s = HttpRequest.sendGet("http://web.juhe.cn:8080/finance/stock/hs",
+//							"gid=" + codeName + "&key=9867ab78e2748061825600a8f7c7258b");
+//					JSONObject juheshuju = new JSONObject(s);
+//					JSONArray newjsonArray = juheshuju.getJSONArray("result");
+//					JSONObject newjsonObject = newjsonArray.getJSONObject(0);
+//					name = newjsonObject.getJSONObject("dapandata").getString("name");
+					String string=new String(data.stockcheckdata.StockData.sendGet("http://hq.sinajs.cn/list="+codeName+",", ""));
+					name=string.split("\"")[1].split(",")[0];
 				} catch (Exception e) {
+					e.printStackTrace();
 				}
 				////// 分割线//////
 				stockStatisticPO stockStatisticPO = new stockStatisticPO(name, jsonObject3.getString("date"),
@@ -134,7 +143,7 @@ public class StockData implements StockDataService {
 
 	// 初始化时调用这个方法
 	public ArrayList<stockStatisticPO> getStatisitcOfStock(String codeName){
-		File target=new File("Data/LocalDataBuffer/"+codeName+".txt");
+		File target=new File(InitFactoryServlet.getPath()+"Data/LocalDataBuffer/"+codeName+".txt");
 		//如果該緩存不存在,新建一個
 		if (!target.exists() || target.isDirectory()) {
 			try {
@@ -223,5 +232,40 @@ public class StockData implements StockDataService {
 			return arrayList;
 		}
 
+	}
+	
+	
+	public static String sendGet(String url, String param) {
+		String result = "";
+		BufferedReader in = null;
+		try {
+			String urlNameString = url + "?" + param;
+			URL realUrl = new URL(urlNameString);
+			// 打开和URL之间的连接
+			URLConnection connection = realUrl.openConnection();
+			// 设置通用的请求属性
+			// 建立实际的连接
+			connection.connect();
+			// 获取所有响应头字段
+			Map<String, List<String>> map = connection.getHeaderFields();
+			// 遍历所有的响应头字段
+			in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "gbk"));
+			String line;
+			while ((line = in.readLine()) != null) {
+				result = result + line;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (in != null) {
+					in.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
 	}
 }

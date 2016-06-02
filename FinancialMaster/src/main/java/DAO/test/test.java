@@ -45,6 +45,8 @@ import PO.benchCurrentDataPO;
 import PO.codeNamePO;
 import PO.industriesPO;
 import PO.industryPO;
+import PO.stockStatisticPO;
+import data.BenchData.BenchData;
 import data.BenchData.BenchRecord;
 import data.IO.HttpRequest;
 import data.IndustryData.IndustryData;
@@ -578,12 +580,42 @@ public class test {
 		/*
 		 * test UserStrategyData
 		 */
-		DBconnection dBconnection=new DBconnection();
-		UserStrategyDaoProxyService service=new UserStrategyDaoProxy();
-		try {
-			service.deleteStrategy("fatchao", "bianshou");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		DBconnection dBconnection=new DBconnection();
+//		UserStrategyDaoProxyService service=new UserStrategyDaoProxy();
+//		try {
+//			service.deleteStrategy("fatchao", "bianshou");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		BenchRecord benchRecord=new BenchRecord();
+//		try {
+//			benchCurrentDataPO po=benchRecord.getLastestRecord("sz399001");
+//			System.out.println(po.getStatus());
+//			System.out.println(po.getTime());
+//			System.out.println(po.getNow());
+//			System.out.println(po.getRise_fall_price());
+//			System.out.println(po.getRise_fall_percent());
+//			System.out.println(po.getHigh());
+//			System.out.println(po.getLow());
+//			System.out.println(po.getOpen());
+//			System.out.println(po.getYesterday_close());
+//			System.out.println(po.getPrice());
+//			System.out.println(po.getVolume());
+//			System.out.println(po.getRise_company());
+//			System.out.println(po.getFall_company());
+//			System.out.println(po.getCompany());
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		data.stockcheckdata.StockData stockData=new data.stockcheckdata.StockData();
+//		
+//		ArrayList<stockStatisticPO> arrayList=stockData.getStatisitcOfStock("sh600000","2015-01-01","2015-02-01");
+//		for (stockStatisticPO stockStatisticPO : arrayList) {
+//			System.out.println(stockStatisticPO.getName());
+//		}
+//		String string=new String(data.stockcheckdata.StockData.sendGet("http://hq.sinajs.cn/list="+"sh600000"+",", ""));
+//		System.out.println(string.split("\"")[1].split(",")[0]);
+		
 	}
 }

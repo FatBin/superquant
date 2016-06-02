@@ -21,36 +21,39 @@ import servlet.factory.InitFactoryServlet;
 @WebServlet("/StockSearchServlet")
 public class StockSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public StockSearchServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public StockSearchServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		String key=request.getParameter("key");
-		ArrayList<Stock> stocks=InitFactoryServlet.getSerchList(key);
-		String data="[";
+		String key = request.getParameter("key");
+		ArrayList<Stock> stocks = InitFactoryServlet.getSerchList(key);
+		String data = "[";
 		for (Stock stock : stocks) {
-			data=data+"{'stockMessage':'"+ "  "+stock.getStockId()+ "     " +
-					stock.getStockName()+"'},";
+			data = data + "{'stockMessage':'" + stock.getStockId() + " " + stock.getStockName() + "'},";
 		}
-		data+="]";
+		data += "]";
 
 		JSONArray json = new JSONArray(data);
 		PrintWriter out = response.getWriter();
