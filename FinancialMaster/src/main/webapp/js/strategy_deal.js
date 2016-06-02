@@ -3,7 +3,7 @@ function addStrategy() {
 	var getID = [ "stockchoose", "startdate", "buyinst", "otherst", "cost",
 			"enddate", "soldoutst", "frequency" ];
 	var getInfo = [];
-	
+
 	for (var i = 0; i < getID.length; i++) {
 		getInfo[i] = document.getElementById(getID[i]).value;
 
@@ -80,7 +80,7 @@ function addStrategy() {
 	mobtn.value = "修改";
 	mobtn.setAttribute("type", "button");
 	mobtn.setAttribute("class", "btn add_cancel_btn");
-	mobtn.setAttribute("onclick", "modify(" + getInfo + ")");
+	mobtn.setAttribute("onclick", "javascript:modifyST(" + getInfo + ")");
 	modiv.appendChild(mobtn);
 	btndiv.appendChild(modiv);
 
@@ -100,18 +100,18 @@ function addStrategy() {
 }
 
 // 修改
-function modify(getInfo) {
-	alert(0);
+function modifyST(info) {
+	alert(info);
 	
 	var getID = [ "stockchoose", "startdate", "buyinst", "otherst", "cost",
 			"enddate", "soldoutst", "frequency" ];
 
 	for (var i = 0; i < getID.length; i++) {
-		document.getElementById(getID[i]).innerHTML = getInfo[i];
+		document.getElementById(getID[i]).value = info[i];
 	}
 }
 
 // 删除
-function deleteDiv() {
+function deleteST() {
 
 }
