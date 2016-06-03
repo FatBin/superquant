@@ -54,6 +54,10 @@ public class BenchRecord implements BenchRecordService{
 			return po;
 		} catch (IOException e) {
 			throw e;
+		} catch( Exception e){
+			benchCurrentDataPO Currenpo=new benchCurrentDataPO("今天不开盘", "", 0, 0, 0, 
+					0, 0, 0, 0, "", "", "", "", "");
+			return Currenpo;
 		}
 	}
 

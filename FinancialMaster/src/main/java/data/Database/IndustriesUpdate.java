@@ -3,6 +3,8 @@ package data.Database;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.apache.catalina.util.StringParser;
+
 import DAO.DAOfactory.DaoFactory;
 import DAO.DaoProxy.IndustriesDaoProxy;
 import DAO.pojo.Industries;
@@ -40,4 +42,7 @@ public class IndustriesUpdate {
 			e.printStackTrace();
 		}
 	}
+	
+	
+
 }

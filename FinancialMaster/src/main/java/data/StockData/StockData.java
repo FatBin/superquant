@@ -65,7 +65,7 @@ public class StockData implements StockDataService{
 			Document document=Jsoup.connect(UpToDateStocks[0]+exchange+UpToDateStocks[1]).get();
 			Elements elements=document.select("tr[height=25]");
 			for (Element element : elements) {
-				String[] temp=element.text().split(" ");
+				String[] temp=element.text().replace(",", "").split(" ");
 				if(temp[1].charAt(0)=='6'){
 					temp[1]="sh"+temp[1];
 				}else {
