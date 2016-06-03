@@ -396,6 +396,10 @@ public class test {
 		 System.out.print(upToDateStockPO.getDdx()+" ");
 		 System.out.print(upToDateStockPO.getDdy()+" ");
 		 System.out.print(upToDateStockPO.getDdz()+" ");
+		 System.out.print(upToDateStockPO.getExtraGap()+" ");
+		 System.out.print(upToDateStockPO.getLargeGap()+" ");
+		 System.out.print(upToDateStockPO.getMediumGap()+" ");
+		 System.out.print(upToDateStockPO.getSmallGap()+" ");
 		 System.out.print(upToDateStockPO.getPositive()+" ");
 		 System.out.print(upToDateStockPO.getTongchilv()+" ");
 		 System.out.print(upToDateStockPO.getExtraLargePurchase()+" ");
