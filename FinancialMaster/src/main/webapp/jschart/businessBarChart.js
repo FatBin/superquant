@@ -25,7 +25,7 @@ $.ajax({
 })
 option = {
 	title : {
-		text : '行业涨榜前十与跌榜前十',
+		text : '',
 		left : 'center'
 	//	        subtext: 'From ExcelHome'
 	},
@@ -73,9 +73,9 @@ option = {
 			normal : {
 				color : function(params) {
 					if (params.dataIndex < 10) {
-						return 'red';
+						return 'rgb(191,23,34)';
 					} else {
-						return 'green';
+						return 'rgb(11,137,62)';
 					}
 
 				}

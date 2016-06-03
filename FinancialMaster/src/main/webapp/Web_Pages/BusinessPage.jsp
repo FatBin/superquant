@@ -1,5 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="java.util.*"%>
+<%@page import="VO.BusinessListVO"%>
+<%@page import="PO.industriesPO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -56,7 +60,7 @@ li {
 				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="StockPage.jsp">个股</a></li>
-				<li><a class="page-scroll a-active" href="BusinessPage.jsp">行业</a></li>
+				<li><a class="page-scroll a-active" href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
@@ -81,38 +85,29 @@ li {
 	<!-- /.container-fluid --> </nav>
 
 	<div class="container">
-		<div class="compare">
-			<h3 class="title" style="margin-top: 120px;">行业对比</h3>
+		<div class="compare" style="height: 450px;">
+			<h3 class="title" style="margin-top: 140px; height: 45px;">行业涨跌榜</h3>
 			<div id="business_barchart"
 				style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
 		</div>
 
+		<%
+			BusinessListVO businessListVO = (BusinessListVO) session.getAttribute("BusinessList");
+			ArrayList<industriesPO> businessList = businessListVO.getBusinessList(); 
+		%>
 
-
-		<div class="business-rank">
+		<div class="business-rank" style="height: 1000px;">
 			<h3 class="title">行业对比</h3>
-			<div class="business-list">
-				<div class="business-item" id="1"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
-			<div class="business-list">
-				<div class="business-item" id="2"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
+			<%
+				for(int i=0;i<11;i++){
+			%>
 			<div class="business-list">
 				<div class="business-item"></div>
 				<div class="business-extend" style="display: none;"></div>
 			</div>
-			<div class="business-list">
-				<div class="business-item"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
-			<div class="business-list">
-				<div class="business-item"></div>
-				<div class="business-extend" style="display: none;"></div>
-			</div>
+			<%	} 
+			%>
 		</div>
-	</div>
 	</div>
 
 

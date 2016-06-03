@@ -6,15 +6,10 @@
 	margin-top:30px;
 	border-left: 4px solid rgb(235,138,49);
 	padding-left: 8px;
+	background-color:#FBF7F2
 	
 }
 
-#business_barchart{
-	width:1000px;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:20px;
-}
 
 .business-item{
 	cursor:pointer;
@@ -23,23 +18,22 @@
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:16px;
-	background-color:#599aed
+	border-top: 1px solid #F0F0F0;
 }
 
 .business-extend{
-	width:90%;
+	width:95%;
 	height:250px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:12px;
-	background-color:#599aed
+	background-color:#F9F9F9;
 }
 
-.business-list .compare{
-	width:70%;
-	height:1000px;
+.business-rank,.compare{
+	width:80%;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:20px;
-	background-color:#F0F0F0
 }
+
