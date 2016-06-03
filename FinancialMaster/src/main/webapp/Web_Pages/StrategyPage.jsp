@@ -45,6 +45,10 @@ li {
 	margin-top: 10px;
 	width: 990px;
 }
+
+table td {
+	border: 1px dashed rgb(235,235,235)
+}
 </style>
 
 </head>
@@ -245,7 +249,7 @@ li {
 
 		<div>
 			<input type="reset" class="btn add_cancel_btn" name="resetbtn"
-				value="取消" style="margin-top: 10px;" />
+				value="清空" style="margin-top: 10px;" />
 		</div>
 	</div>
 
@@ -259,10 +263,40 @@ li {
 	<hr
 		style="width: 80px; border: solid 1px rgb(235, 235, 235); margin-left: 135px; margin-top: 0px;" />
 
-	<div id="strategyDetail"
+	<div
 		style="margin-left: 135px; width: 1000px; border: dashed 1px rgb(200, 200, 200);">
-		<div style="height: 15px;"></div>
 
+		<table id="strategyTable" rules="rows">
+			<thead>
+				<tr align="center" valign="middle"
+					style="background-color: rgb(230, 230, 230); font-size: 16px;">
+					<td width="30">
+						<div>
+							<input type="checkbox" />
+						</div>
+					</td>
+
+					<td width="123" height="40">股票名称</td>
+					<td width="123">投资成本</td>
+					<td width="123">开始日期</td>
+					<td width="123">结束日期</td>
+					<td width="123">买入策略</td>
+					<td width="123">卖出策略</td>
+					<td width="123">其他策略</td>
+					<td width="123">买卖频率</td>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+	<!-- bottom section -->
+	<div style="margin-top: 50px;">
+		<div style="background-color: #766F67; height: 200px;"></div>
+
+		<div style="background-color: #645D55; height: 50px;">
+			<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+				SuperQuant</p>
+		</div>
 	</div>
 
 	<!-- Plugin JavaScript -->

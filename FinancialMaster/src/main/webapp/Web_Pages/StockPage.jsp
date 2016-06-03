@@ -27,7 +27,7 @@ li {
 }
 
 td {
-	height: 25px;
+	height: 35px;
 }
 </style>
 
@@ -99,7 +99,7 @@ td {
 				<table id="senfe">
 					<thead>
 						<tr align="center" valign="middle">
-							<td width="200" height="23" bgcolor="#ccc">股票代码</td>
+							<td width="200" bgcolor="#ccc">股票代码</td>
 							<td width="130" bgcolor="#ccc">股票名称</td>
 							<td width="130" bgcolor="#ccc">最新价</td>
 							<td width="130" bgcolor="#ccc">最高价</td>
@@ -123,15 +123,15 @@ td {
 							onmouseout="mouseOut(<%=i + 1%>);"
 							onclick="mouseClick(<%=i + 1%>,'../ToStockDetailPageServlet')">
 
-							<td height="23"><%=stockPO.getStockId()%></td>
-							<td height="23"><%=stockPO.getStockName()%></td>
-							<td height="23"><%=stockPO.getNow()%></td>
-							<td height="23"><%=stockPO.getHigh()%></td>
-							<td height="23"><%=stockPO.getLow()%></td>
-							<td height="23"><%=stockPO.getRise_days()%></td>
-							<td height="23"><%=stockPO.getRise_fall()%></td>
-							<td height="23"><%=stockPO.getTotal_turnover()%></td>
-							<td height="23"><%=stockPO.getIndustry()%></td>
+							<td><%=stockPO.getStockId()%></td>
+							<td><%=stockPO.getStockName()%></td>
+							<td><%=stockPO.getNow()%></td>
+							<td><%=stockPO.getHigh()%></td>
+							<td><%=stockPO.getLow()%></td>
+							<td><%=stockPO.getRise_days()%></td>
+							<td><%=stockPO.getRise_fall()%></td>
+							<td><%=stockPO.getTotal_turnover()%></td>
+							<td><%=stockPO.getIndustry()%></td>
 
 						</tr>
 
@@ -157,7 +157,8 @@ td {
 	</div>
 
 	<!-- bottom section -->
-	<div style="background-color: #766F67; height: 200px; margin-top:30px;"></div>
+	<div
+		style="background-color: #766F67; height: 200px; margin-top: 180px;"></div>
 
 	<div style="background-color: #645D55; height: 50px;">
 		<p style="color: white; text-align: center; line-height: 50px;">@Copyright
