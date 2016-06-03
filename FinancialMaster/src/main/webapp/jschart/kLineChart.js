@@ -9,10 +9,13 @@ var values = []
 var volume = [];
 var servlet_url="";
 var num;
+var start;
 if(kind=="market"){
     servlet_url = "../GetMarketkLine";
+    start=96;
 }else if(kind=="stock"){
 	servlet_url = "../GetStockKLine";
+	start=85;
 }else{
 	alert("对不起皇上，类型未匹配到！！！");
 }
@@ -170,14 +173,14 @@ option = {
 	} ],
 	dataZoom : [ {
 		type : 'inside',
-		start : 96,
+		start : start,
 		end : 100,
 		xAxisIndex : [ 0, 1, 2 ]
 	}, {
 		show : true,
 		type : 'slider',
 		y : '92%',
-		start : 96,
+		start : start,
 		end : 100,
 		xAxisIndex : [ 0, 1, 2 ]
 	} ],

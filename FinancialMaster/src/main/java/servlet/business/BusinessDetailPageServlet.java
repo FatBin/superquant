@@ -31,7 +31,6 @@ public class BusinessDetailPageServlet extends HttpServlet {
      */
     public BusinessDetailPageServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

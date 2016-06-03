@@ -131,7 +131,7 @@ li {
 
 	<script src="../jschart/kLineChart.js"></script>
 	<script type="text/javascript">
-		getKLine("market", "hs300");
+		getKLine("stock");
 	</script>
 	<script src="../js/bootstrapSwitch.js"></script>
 

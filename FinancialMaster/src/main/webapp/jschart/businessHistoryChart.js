@@ -15,7 +15,7 @@ var inflowses=[];//流入资金量
 $.ajax({
 	type : "post",
 	async : false, //同步执行
-	url : 'ToBusinessDetailPageServlet',
+	url : '../ToBusinessDetailPageServlet',
 	dataType : "json", //返回数据形式为json
 	success : function(result) {
 		if (result) {
