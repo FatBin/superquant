@@ -32,34 +32,78 @@ function addStrategy() {
 		var td = document.createElement("td");
 		td.innerHTML = getInfo[i];
 		td.style.cursor = "pointer";
+		td.setAttribute("onclick", "modifyST(this)");
 		tr.appendChild(td);
 	}
 
 	var boxs = table.getElementsByTagName("input");
 	boxs[0].checked = false;
-	
+
 	zebra();
 }
 
-function resetAll(){
+function resetAll() {
 	var getID = [ "stockchoose", "cost", "startdate", "enddate", "buyinst",
-	  			"soldoutst", "otherst", "frequency" ];
-	
+			"soldoutst", "otherst", "frequency" ];
+
 	for (var i = 0; i < getID.length; i++) {
 		document.getElementById(getID[i]).value = "";
 	}
 }
 
 // 修改
-function modifyST(info) {
-	alert(info);
+function modifyST(td) {
+	modifyCancel();
 
-	var getID = [ "stockchoose", "startdate", "buyinst", "otherst", "cost",
-			"enddate", "soldoutst", "frequency" ];
+	var dialogtype = [ "textfieldMod", "textfieldMod", "timepickMod",
+			"timepickMod", "comboxMod", "comboxMod", "comboxMod",
+			"textfieldMod" ];
+	var inputtype = [ "modtext", "modtext", "moddate", "moddate", "modselect",
+			"modselect", "modselect", "modtext" ];
+	var buttontype = [ "modCon_1", "modCon_1", "modCon_2", "modCon_2", "modCon_3",
+			"modCon_3", "modCon_3", "modCon_1" ];
 
-	for (var i = 0; i < getID.length; i++) {
-		document.getElementById(getID[i]).value = info[i];
+	// td的列数
+	var col = ($(td).parents("tr").find("td").index($(td))) - 1;
+
+	var modiv = document.getElementById(dialogtype[col]);
+	if (modiv.style.display == "none") {
+		modiv.style.display = "block";
 	}
+
+	var table_h = (document.getElementById("strategyTable").rows.length - 1) * 35;
+
+	modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300) + "px";
+	modiv.style.marginLeft = td.getBoundingClientRect().left + "px";
+
+	var confirmMod = document.getElementById(buttontype[col]);
+	confirmMod.onclick = function() {
+		if (document.getElementById(inputtype[col]).value != "") {
+			td.innerHTML = document.getElementById(inputtype[col]).value;
+		}
+		modifyCancel();
+	}
+}
+
+// 确认修改
+function modifyConfirm() {
+
+}
+
+// 取消修改
+function modifyCancel() {
+	var dialogtype = [ "textfieldMod", "timepickMod", "comboxMod" ];
+	var modiv;
+	for (var i = 0; i < 3; i++) {
+		modiv = document.getElementById(dialogtype[i]);
+		if (modiv.style.display == "block") {
+			modiv.style.display = "none";
+		}
+	}
+
+	document.getElementById("modtext").value = "";
+	document.getElementById("modselect").value = "";
+	document.getElementById("moddate").value = "";
 }
 
 // 删除
@@ -73,13 +117,13 @@ function deleteST() {
 			table.deleteRow(i);
 		}
 	}
-	
+
 	zebra();
 }
 
 // save
-function saveST(){
-	
+function saveST() {
+
 }
 
 function selectAll() {
@@ -106,7 +150,7 @@ function zebra() {
 	for (var i = 1; i < tr.length; i++) {
 		if (i % 2 == 0) {
 			tr[i].style.backgroundColor = "rgb(250,250,250)";
-		} else{
+		} else {
 			tr[i].style.backgroundColor = "";
 		}
 	}

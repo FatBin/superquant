@@ -18,6 +18,8 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<link href="../css/dialog.css" rel="stylesheet" type="text/css">
+
 <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 
@@ -310,6 +312,75 @@ table td {
 		<div style="background-color: #645D55; height: 50px;">
 			<p style="color: white; text-align: center; line-height: 50px;">@Copyright
 				SuperQuant</p>
+		</div>
+	</div>
+
+	<!-- textfield -->
+	<div id="textfieldMod" class="content" style="display: none;">
+		<span_d class="out"></span_d>
+		<span_d class="iner"></span_d>
+
+		<div>
+			<div>
+				<input id="modtext" class="form-control" size="16" type="text"
+					value="" style="width: 100px;" /> <input type="button"
+					id="modCon_1" class="btn add_cancel_btn" value="修改"
+					style="margin-left: 110px; margin-top: -52px;" /> <input
+					type="button" class="btn add_cancel_btn" value="取消"
+					onclick="modifyCancel()"
+					style="margin-left: 170px; margin-top: -49px;" />
+			</div>
+		</div>
+	</div>
+
+	<!-- combox -->
+	<div id="comboxMod" class="content" style="display: none;">
+		<span_d class="out"></span_d>
+		<span_d class="iner"></span_d>
+
+		<div>
+			<div>
+				<select id="modselect" class="form-control" style="width: 100px;">
+					<option>策略一</option>
+					<option>策略二</option>
+					<option>策略三</option>
+				</select> <input type="button" class="btn add_cancel_btn" value="修改"
+					id="modCon_3" style="margin-left: 110px; margin-top: -52px;" /> <input
+					type="button" class="btn add_cancel_btn" value="取消"
+					onclick="modifyCancel()"
+					style="margin-left: 170px; margin-top: -49px;" />
+			</div>
+		</div>
+	</div>
+
+	<!-- timepick -->
+	<div id="timepickMod" class="content" style="display: none;">
+		<span_d class="out"></span_d>
+		<span_d class="iner"></span_d>
+
+		<div>
+
+			<div class="form-group">
+				<div class="input-group date form_date col-md-5" data-date=""
+					data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+					data-link-format="yyyy-mm-dd">
+
+					<input id="moddate" class="form-control" size="16" type="text"
+						value="" readonly style="width: 100px;"> <span
+						class="input-group-addon" style="height: 34px; width: 34px;">
+						<span class="glyphicon glyphicon-remove"></span>
+					</span>
+
+				</div>
+				<input type="hidden" id="dtp_input2" value="" /><br />
+			</div>
+
+			<input type="button" class="btn add_cancel_btn" value="修改"
+				id="modCon_2" style="margin-left: 110px; margin-top: -32px;" /> <input
+				type="button" class="btn add_cancel_btn" value="取消"
+				onclick="modifyCancel()"
+				style="margin-left: 170px; margin-top: -32px;" />
+
 		</div>
 	</div>
 

@@ -1,0 +1,43 @@
+.content {
+	text-indent: 2em;
+	box-shadow: 0px 0px 10px #999;
+	padding: 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 5px;
+	height: 60px;
+	width: 250px;
+	position: relative;
+	margin: 20px auto;
+	border: 1px solid #CCC;
+	background-color:white;
+}
+
+span_d {
+	position: absolute;
+	left: 25px;
+	height: 0px;
+	width: 0px;
+}
+
+/*上部小三角实现样式开始*/
+span_d.out {
+	line-height: 0;
+	border-width: 10px;
+	border-color: transparent transparent #CCC transparent;
+	border-style: dashed dashed solid dashed;
+	top: -20px;
+}
+
+span_d.iner {
+	border-width: 10px;
+	border-color: #fff transparent #FFF transparent;
+	border-style: dashed dashed solid dashed;
+	top: -19px;
+	line-height: 0;
+}
+
+/* html代码：
+<div id="content"> <span class="out"></span><span class="iner"></span> <span class="right"></span>
+  <p>不管写什么内容，总之就是要实现无图小三角，要是有背景颜色那倒是极好的，没有的话也可以，就是稍微麻烦一点</p>
+</div> */
