@@ -92,7 +92,7 @@ public class update {
 		// String[] text=element.text().split(" ");
 		// Stock stock=new Stock("sh"+text[1],text[2],text[4]);
 		// try {
-		// stockDao.insert(stock);g
+		// stockDao.insert(stock);
 		// } catch (Exception e) {
 		// e.printStackTrace( );
 		// }
@@ -135,76 +135,71 @@ public class update {
 		 * update the old stock information
 		 */
 		DBconnection dBconnection=new DBconnection();
-//		StockData stockData = new StockData();
-//		IndustryData industryData = new IndustryData();
+		StockData stockData = new StockData();
+		IndustryData industryData = new IndustryData();
+		try {
+
+			ArrayList<industriesPO> arrayList = industryData.getIndustryData();
+			int count=0;
+			for (int i = 0; i < arrayList.size(); i++) {
+				ArrayList<industryPO> arrayList2 = industryData.getIndustry(arrayList.get(i).getIndustry());
+				for (int j = 0; j < arrayList2.size(); j++) {
+					count++;
+					Stock stock = new Stock(arrayList2.get(j).getStockI(), "", arrayList.get(i).getIndustry());
+					try {
+						String stockId = stock.getStockId();
+						String name = "";
+						String string=new String(sendGet("http://hq.sinajs.cn/list="+stockId+",", "").getBytes("gbk"));
+						name=string.split("\"")[1].split(",")[0];
+						stock.setStockName(name);
+						stock.setStockId(stockId);
+						if (!name.equals("")) {
+							try {
+								StockDaoProxyService service = DaoFactory.getStockDaoProxy();
+								service.insert(stock);
+								System.out.println(stockId+" "+name+" 成功"+" "+count);
+							} catch (Exception e) {
+								System.out.println("已存在");
+								e.printStackTrace();
+							}
+						}else{
+							System.out.println("无此股票名:"+stockId);
+						}
+
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 //		try {
-//
-//			ArrayList<industriesPO> arrayList = industryData.getIndustryData();
-//			int count=0;
-//			for (int i = 0; i < arrayList.size(); i++) {
-//				ArrayList<industryPO> arrayList2 = industryData.getIndustry(arrayList.get(i).getIndustry());
-//				for (int j = 0; j < arrayList2.size(); j++) {
-//					count++;
-//					Stock stock = new Stock(arrayList2.get(j).getStockI(), "", arrayList.get(i).getIndustry());
-//					try {
-//						String stockId = stock.getStockId();
-//						if (stockId.charAt(0) == '6') {
-//							stockId = "sh" + stockId;
-//						} else {
-//							stockId = "sz" + stockId;
-//						}
-//						String name = "";
-//						String string=new String(sendGet("http://hq.sinajs.cn/list="+stockId+",", "").getBytes("gbk"));
-//						name=string.split("\"")[1].split(",")[0];
-//						stock.setStockName(name);
-//						stock.setStockId(stockId);
-//						if (!name.equals("")) {
-//							try {
-//								StockDaoProxyService service = DaoFactory.getStockDaoProxy();
-//								service.insert(stock);
-//								System.out.println(stockId+" "+name+" 成功"+" "+count);
-//							} catch (Exception e) {
-//								System.out.println("已存在");
-//								e.printStackTrace();
-//							}
-//						}else{
-//							System.out.println("无此股票名:"+stockId);
-//						}
-//
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			}
-//
+//			Session session=dBconnection.getSession();
+//			Transaction tx=session.beginTransaction();
+//			String hqlString="update TradeRecord u set u.id.stockId='sh'||u.id.stockId "
+//					+ "where u.id.stockId>='6'";
+//			Query query=session.createQuery(hqlString);
+//			query.executeUpdate();
+//			session.close();
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-		try {
-			Session session=dBconnection.getSession();
-			Transaction tx=session.beginTransaction();
-			String hqlString="update TradeRecord u set u.id.stockId='sh'||u.id.stockId "
-					+ "where u.id.stockId>='6'";
-			Query query=session.createQuery(hqlString);
-			query.executeUpdate();
-			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("yes");
-		
-		try {
-			Session session=dBconnection.getSession();
-			Transaction tx=session.beginTransaction();
-			String hqlString="update TradeRecord u set u.id.stockId='sz'||u.id.stockId "
-					+ "where u.id.stockId<'6'";
-			Query query=session.createQuery(hqlString);
-			query.executeUpdate();
-			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println("no");
+//		System.out.println("yes");
+//		
+//		try {
+//			Session session=dBconnection.getSession();
+//			Transaction tx=session.beginTransaction();
+//			String hqlString="update TradeRecord u set u.id.stockId='sz'||u.id.stockId "
+//					+ "where u.id.stockId<'6'";
+//			Query query=session.createQuery(hqlString);
+//			query.executeUpdate();
+//			session.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("no");
 	}
 
 	public static String sendGet(String url, String param) {

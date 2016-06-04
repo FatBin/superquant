@@ -1,5 +1,6 @@
 package data.StockData;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,7 +101,7 @@ public class StockData implements StockDataService{
 			}
 			return arrayList;
 		} catch (Exception e) {
-			throw e;
+			return new ArrayList<>();
 		}
 	}
 	@Override

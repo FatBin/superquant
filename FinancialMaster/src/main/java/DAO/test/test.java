@@ -334,7 +334,7 @@ public class test {
 		 * test industrydata
 		 */
 		// DBconnection dBconnection=new DBconnection();
-		IndustryData industryData = new IndustryData();
+//		IndustryData industryData = new IndustryData();
 		// IndustriesDaoProxyService industriesDaoProxyService=new
 		// IndustriesDaoProxy();
 		// try {
@@ -383,39 +383,39 @@ public class test {
 		// e.printStackTrace();
 		// }
 
-		 StockData stockData=new StockData();
-		 try {
-		 ArrayList<UpToDateStockPO>
-		 arrayList=stockData.getToDateStockPOs("sh");
-		 for (UpToDateStockPO upToDateStockPO : arrayList) {
-		 System.out.print(upToDateStockPO.getStockId()+" ");
-		 System.out.print(upToDateStockPO.getStockName()+" ");
-		 System.out.print(upToDateStockPO.getIndustry()+" ");
-		 System.out.print(upToDateStockPO.getNow()+" ");
-		 System.out.print(upToDateStockPO.getRise_fall()+" ");
-		 System.out.print(upToDateStockPO.getDdx()+" ");
-		 System.out.print(upToDateStockPO.getDdy()+" ");
-		 System.out.print(upToDateStockPO.getDdz()+" ");
-		 System.out.print(upToDateStockPO.getExtraGap()+" ");
-		 System.out.print(upToDateStockPO.getLargeGap()+" ");
-		 System.out.print(upToDateStockPO.getMediumGap()+" ");
-		 System.out.print(upToDateStockPO.getSmallGap()+" ");
-		 System.out.print(upToDateStockPO.getPositive()+" ");
-		 System.out.print(upToDateStockPO.getTongchilv()+" ");
-		 System.out.print(upToDateStockPO.getExtraLargePurchase()+" ");
-		 System.out.print(upToDateStockPO.getExtraLargeSell()+" ");
-		 System.out.print(upToDateStockPO.getLargePurchase()+" ");
-		 System.out.print(upToDateStockPO.getLargeSell()+" ");
-		 System.out.print(upToDateStockPO.getMediumPurchase()+" ");
-		 System.out.print(upToDateStockPO.getMediumSell()+" ");
-		 System.out.print(upToDateStockPO.getSmallPurchase()+" ");
-		 System.out.print(upToDateStockPO.getSmallSell()+" ");
-		 System.out.print(upToDateStockPO.getTurnover()+" ");
-		 System.out.println(upToDateStockPO.getQuantity_relative_ratio());
-		 }
-		 } catch (Exception e) {
-		 e.printStackTrace();
-		 }
+//		 StockData stockData=new StockData();
+//		 try {
+//		 ArrayList<UpToDateStockPO>
+//		 arrayList=stockData.getToDateStockPOs("sh");
+//		 for (UpToDateStockPO upToDateStockPO : arrayList) {
+//		 System.out.print(upToDateStockPO.getStockId()+" ");
+//		 System.out.print(upToDateStockPO.getStockName()+" ");
+//		 System.out.print(upToDateStockPO.getIndustry()+" ");
+//		 System.out.print(upToDateStockPO.getNow()+" ");
+//		 System.out.print(upToDateStockPO.getRise_fall()+" ");
+//		 System.out.print(upToDateStockPO.getDdx()+" ");
+//		 System.out.print(upToDateStockPO.getDdy()+" ");
+//		 System.out.print(upToDateStockPO.getDdz()+" ");
+//		 System.out.print(upToDateStockPO.getExtraGap()+" ");
+//		 System.out.print(upToDateStockPO.getLargeGap()+" ");
+//		 System.out.print(upToDateStockPO.getMediumGap()+" ");
+//		 System.out.print(upToDateStockPO.getSmallGap()+" ");
+//		 System.out.print(upToDateStockPO.getPositive()+" ");
+//		 System.out.print(upToDateStockPO.getTongchilv()+" ");
+//		 System.out.print(upToDateStockPO.getExtraLargePurchase()+" ");
+//		 System.out.print(upToDateStockPO.getExtraLargeSell()+" ");
+//		 System.out.print(upToDateStockPO.getLargePurchase()+" ");
+//		 System.out.print(upToDateStockPO.getLargeSell()+" ");
+//		 System.out.print(upToDateStockPO.getMediumPurchase()+" ");
+//		 System.out.print(upToDateStockPO.getMediumSell()+" ");
+//		 System.out.print(upToDateStockPO.getSmallPurchase()+" ");
+//		 System.out.print(upToDateStockPO.getSmallSell()+" ");
+//		 System.out.print(upToDateStockPO.getTurnover()+" ");
+//		 System.out.println(upToDateStockPO.getQuantity_relative_ratio());
+//		 }
+//		 } catch (Exception e) {
+//		 e.printStackTrace();
+//		 }
 
 		// DBconnection dBconnection=new DBconnection();
 		// StockData stockData=new StockData();
@@ -723,7 +723,54 @@ public class test {
 //			e.printStackTrace();
 //		}
 		
+//		DBconnection dBconnection=new DBconnection();
+//		try {
+//			Session session=dBconnection.getSession();
+//			String hql="select s.stockId from Stock s where s.stockId not in "
+//				+ "(select distinct t.id.stockId from TradeRecord t)";
+//			List list=session.createQuery(hql).list();
+//			for (Object object : list) {
+//				TradeRecord tradeRecord=(TradeRecord)object;
+//				System.out.print(tradeRecord.getId().getStockId()+" ");
+//				System.out.print(tradeRecord.getId().getDate()+" ");
+//				System.out.print(tradeRecord.getOpen()+" ");
+//				System.out.print(tradeRecord.getClose()+" ");
+//				System.out.print(tradeRecord.getHigh()+" ");
+//				System.out.print(tradeRecord.getLow()+" ");
+//				System.out.println(tradeRecord.getVolume());
+//				System.out.println((String)object);
+//			}
+//			System.out.println("end"+list.size());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
-
+		
+		/*
+		 * insert stock
+		 */
+//		IndustryData industryData=new IndustryData();
+//		int count=0;
+//		try {
+//			ArrayList<industriesPO> arrayList=industryData.getIndustryData();
+//			for (industriesPO industriesPO : arrayList) {
+//				ArrayList<industryPO> arrayList2=industryData.getIndustry(industriesPO.getIndustry());
+//				for (industryPO industryPO : arrayList2) {
+//					
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		try {
+			StockData stockData = new StockData();
+			ArrayList<RiseStockPO> arrayList = stockData.getRiseStock();
+			for (RiseStockPO riseStockPO : arrayList) {
+				System.out.println(riseStockPO.getHigh());
+			} 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
