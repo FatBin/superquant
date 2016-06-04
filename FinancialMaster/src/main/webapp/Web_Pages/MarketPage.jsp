@@ -33,6 +33,10 @@ td {
 li {
 	list-style-type: none;
 }
+
+a {
+	cursor: pointer;
+}
 </style>
 
 </head>
@@ -62,7 +66,8 @@ li {
 				<li class="hidden"><a href="#page-top"></a></li>
 
 				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
-				<li><a class="page-scroll a-active" href="../ToMarketPageServlet">大盘</a></li>
+				<li><a class="page-scroll a-active"
+					href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
@@ -71,8 +76,8 @@ li {
 
 		<div class="style_5 hidden-sm hidden-xs">
 			<fieldset id="searchform">
-				<input type="text" placeholder="搜索"
-					class="text_input" onblur="this.placeholder='搜索';"
+				<input type="text" placeholder="搜索" class="text_input"
+					onblur="this.placeholder='搜索';"
 					onfocus="this.placeholder='输入股票代码搜索';"
 					onmouseover="this.placeholder='输入股票代码搜索';"
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />

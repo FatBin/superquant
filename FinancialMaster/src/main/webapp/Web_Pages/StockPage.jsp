@@ -28,6 +28,18 @@ li {
 
 td {
 	height: 35px;
+	cursor: pointer;
+}
+
+a {
+	cursor: pointer;
+}
+
+th {
+	text-align: center;
+	valign: middle;
+	height: 40px;
+	font-weight: normal;
 }
 </style>
 
@@ -99,15 +111,24 @@ td {
 				<table id="senfe">
 					<thead>
 						<tr align="center" valign="middle">
-							<td width="200" bgcolor="#ccc">股票代码</td>
-							<td width="130" bgcolor="#ccc">股票名称</td>
-							<td width="130" bgcolor="#ccc">最新价</td>
-							<td width="130" bgcolor="#ccc">最高价</td>
-							<td width="130" bgcolor="#ccc">最低价</td>
-							<td width="130" bgcolor="#ccc">连涨天数</td>
-							<td width="140" bgcolor="#ccc">连续涨跌幅</td>
-							<td width="140" bgcolor="#ccc">累计换手率</td>
-							<td width="160" bgcolor="#ccc">所属行业</td>
+							<th width="200" bgcolor="#ccc">股票代码
+							</td>
+							<th width="130" bgcolor="#ccc">股票名称
+							</td>
+							<th width="130" bgcolor="#ccc">最新价
+							</td>
+							<th width="130" bgcolor="#ccc">最高价
+							</td>
+							<th width="130" bgcolor="#ccc">最低价
+							</td>
+							<th width="130" bgcolor="#ccc">连涨天数
+							</td>
+							<th width="140" bgcolor="#ccc">连续涨跌幅
+							</td>
+							<th width="140" bgcolor="#ccc">累计换手率
+							</td>
+							<th width="160" bgcolor="#ccc">所属行业
+							</td>
 						</tr>
 					</thead>
 

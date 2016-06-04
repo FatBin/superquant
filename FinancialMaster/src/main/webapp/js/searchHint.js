@@ -53,6 +53,7 @@ function showHint(str) {
 			for (var i = 0; i < datalen; i++) {
 				var li = document.createElement("li");
 				li.innerHTML = data[i];
+				li.style.cursor = "pointer";
 				li.setAttribute("onmouseover", "search_mouseIn(" + i + ")");
 				li.setAttribute("onclick", "search_mouseClick(" + i + ")");
 				div.appendChild(li);

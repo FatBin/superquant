@@ -39,6 +39,7 @@ li {
 	height: 29px;
 	background-color: transparent;
 	border: 1px solid rgb(204, 204, 204);
+	background-color: transparent;
 }
 
 .hrstyle {
@@ -47,7 +48,7 @@ li {
 }
 
 table td {
-	border: 1px dashed rgb(235,235,235)
+	border: 1px dashed rgb(235, 235, 235);
 }
 </style>
 
@@ -249,7 +250,7 @@ table td {
 
 		<div>
 			<input type="reset" class="btn add_cancel_btn" name="resetbtn"
-				value="清空" style="margin-top: 10px;" />
+				value="清空" style="margin-top: 10px;" onclick="resetAll()" />
 		</div>
 	</div>
 
@@ -263,6 +264,19 @@ table td {
 	<hr
 		style="width: 80px; border: solid 1px rgb(235, 235, 235); margin-left: 135px; margin-top: 0px;" />
 
+	<!-- 删除、保存 -->
+	<div>
+		<div>
+			<input type="button" class="btn add_cancel_btn" name="deletebtn"
+				value="删除选中策略"
+				style="margin-top: -10px; margin-bottom: 10px; margin-left: 135px; width: 100px;"
+				onclick="deleteST();" /> <input type="button"
+				class="btn add_cancel_btn" name="savebtn" value="保存策略"
+				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 100px;"
+				onclick="saveST();" />
+		</div>
+	</div>
+
 	<div
 		style="margin-left: 135px; width: 1000px; border: dashed 1px rgb(200, 200, 200);">
 
@@ -272,7 +286,7 @@ table td {
 					style="background-color: rgb(230, 230, 230); font-size: 16px;">
 					<td width="30">
 						<div>
-							<input type="checkbox" />
+							<input type="checkbox" onchange="selectAll();" />
 						</div>
 					</td>
 
