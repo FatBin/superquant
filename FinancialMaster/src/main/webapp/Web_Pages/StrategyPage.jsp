@@ -134,7 +134,7 @@ table td {
 	<!-- 所有按钮的大块 -->
 
 	<!-- 第一列的块 -->
-	<div id="second_col"
+	<div id="first_col"
 		style="float: left; margin-right: 40px; margin-left: 135px;">
 		<!-- 选择股票 -->
 		<div>
@@ -151,7 +151,7 @@ table td {
 	</div>
 
 	<!-- 第二列的块 -->
-	<div id="first_col"
+	<div id="second_col"
 		style="margin-right: 40px; margin-bottom: -15px; float: left;">
 
 		<!-- 开始日期 -->
@@ -164,9 +164,7 @@ table td {
 				<input id="startdate" class="form-control" size="16" type="text"
 					value="" readonly style="width: 100px;"> <span
 					class="input-group-addon" style="height: 34px; width: 37px;"><span
-					class="glyphicon glyphicon-remove"></span></span> <span
-					class="input-group-addon" style="height: 34px; width: 37px;"><span
-					class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
+					class="glyphicon glyphicon-time"></span></span>
 			</div>
 			<input type="hidden" id="dtp_input2" value="" /><br />
 		</div>
@@ -181,9 +179,7 @@ table td {
 				<input id="enddate" class="form-control" size="16" type="text"
 					value="" readonly style="width: 100px;"> <span
 					class="input-group-addon" style="height: 34px; width: 37px;"><span
-					class="glyphicon glyphicon-remove"></span></span> <span
-					class="input-group-addon" style="height: 34px; width: 37px;"><span
-					class="glyphicon glyphicon-time" style="margin: auto;"></span></span>
+					class="glyphicon glyphicon-time"></span></span>
 			</div>
 			<input type="hidden" id="dtp_input2" value="" /><br />
 		</div>
@@ -354,34 +350,32 @@ table td {
 	</div>
 
 	<!-- timepick -->
-	<div id="timepickMod" class="content" style="display: none;">
+	<div id="timepickMod" class="content"
+		style="display: none; width: 290px;">
 		<span_d class="out"></span_d>
 		<span_d class="iner"></span_d>
 
-		<div>
+		<div class="form-group">
+			<div class="input-group date form_date col-md-5" data-date=""
+				data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+				data-link-format="yyyy-mm-dd">
 
-			<div class="form-group">
-				<div class="input-group date form_date col-md-5" data-date=""
-					data-date-format="dd MM yyyy" data-link-field="dtp_input2"
-					data-link-format="yyyy-mm-dd">
-
-					<input id="moddate" class="form-control" size="16" type="text"
-						value="" readonly style="width: 100px;"> <span
-						class="input-group-addon" style="height: 34px; width: 34px;">
-						<span class="glyphicon glyphicon-remove"></span>
-					</span>
-
-				</div>
-				<input type="hidden" id="dtp_input2" value="" /><br />
+				<input id="moddate" class="form-control" size="16" type="text"
+					value="" readonly style="width: 100px;"> <span
+					class="input-group-addon" style="height: 34px; width: 34px;"><span
+					class="glyphicon glyphicon-time"></span></span>
 			</div>
+			<input type="hidden" id="dtp_input2" value="" /><br />
+		</div>
 
+		<div>
 			<input type="button" class="btn add_cancel_btn" value="修改"
-				id="modCon_2" style="margin-left: 110px; margin-top: -32px;" /> <input
+				id="modCon_2" style="margin-left: 150px; margin-top: -118px;" /> <input
 				type="button" class="btn add_cancel_btn" value="取消"
 				onclick="modifyCancel()"
-				style="margin-left: 170px; margin-top: -32px;" />
-
+				style="margin-left: 210px; margin-top: -82px;" />
 		</div>
+
 	</div>
 
 	<!-- Plugin JavaScript -->
