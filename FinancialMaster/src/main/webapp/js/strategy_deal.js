@@ -7,10 +7,20 @@ function addStrategy() {
 	for (var i = 0; i < getID.length; i++) {
 		getInfo[i] = document.getElementById(getID[i]).value;
 
-		// if (getInfo[i] == '') {
-		// alert("请制订完整策略");
-		// return;
-		// }
+		if (getInfo[i] == '') {
+			alert("请制订完整策略");
+			return;
+		}
+	}
+
+	if (getInfo[2] > getInfo[3]) {
+		alert("开始日期和结束日期是不是反啦");
+		return;
+	}
+
+	if (document.getElementById("stname").innerHTML == "我的策略") {
+		alert("请设定策略名和本金");
+		return;
 	}
 
 	var table = document.getElementById("strategyTable");
@@ -60,8 +70,8 @@ function modifyST(td) {
 			"textfieldMod" ];
 	var inputtype = [ "modtext", "modtext", "moddate", "moddate", "modselect",
 			"modselect", "modselect", "modtext" ];
-	var buttontype = [ "modCon_1", "modCon_1", "modCon_2", "modCon_2", "modCon_3",
-			"modCon_3", "modCon_3", "modCon_1" ];
+	var buttontype = [ "modCon_1", "modCon_1", "modCon_2", "modCon_2",
+			"modCon_3", "modCon_3", "modCon_3", "modCon_1" ];
 
 	// td的列数
 	var col = ($(td).parents("tr").find("td").index($(td))) - 1;
@@ -83,11 +93,6 @@ function modifyST(td) {
 		}
 		modifyCancel();
 	}
-}
-
-// 确认修改
-function modifyConfirm() {
-
 }
 
 // 取消修改
@@ -153,5 +158,20 @@ function zebra() {
 		} else {
 			tr[i].style.backgroundColor = "";
 		}
+	}
+}
+
+// 设定本金、策略名称
+function setName() {
+	var stname = document.getElementById("strategyname");
+	var stcost = document.getElementById("totalcost");
+
+	if (stname.value != "" && stcost.value != "") {
+		document.getElementById("stname").innerHTML = stname.value;
+		document.getElementById("stcost").innerHTML = ("  本金:" + stcost.value);
+
+		document.getElementById("changehr").style.width = "130px";
+	} else {
+		alert('请输入完整信息');
 	}
 }

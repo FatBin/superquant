@@ -114,19 +114,29 @@ table td {
 	<hr class="hrstyle" />
 
 	<!-- 策略名称及总成本 -->
-	<div style="margin-left: 135px; float: left;">
-		<p class="detailname" style="font-size: 18px; line-height: 33px">策略名</p>
-
-		<input id="strategyname" class="form-control" size="16" type="text"
-			value="" style="width: 100px;">
-	</div>
-
 	<div>
-		<p
-			style="font-size: 18px; line-height: 33px; font-family: PingFangSC-Regular; float: left; margin-left: 40px; margin-right: 20px;">设定本金</p>
+		<div style="margin-left: 135px; float: left;">
+			<p class="detailname" style="font-size: 18px; line-height: 33px">策略名</p>
 
-		<input id="totalcost" class="form-control" size="16" type="text"
-			value="" style="width: 100px;">
+			<input id="strategyname" class="form-control" size="16" type="text"
+				value="" style="width: 100px;">
+		</div>
+
+		<div>
+			<p
+				style="font-size: 18px; line-height: 33px; font-family: PingFangSC-Regular; float: left; margin-left: 40px; margin-right: 20px;">设定本金</p>
+
+			<input id="totalcost" class="form-control" size="16" type="text"
+				value="" style="width: 100px;">
+		</div>
+
+		<div style="float:left">
+			<input type="button" class="btn add_cancel_btn" value="设定"
+				style="margin-top: -32px; margin-left: 135px;" onclick="setName()" />
+		</div>
+
+		
+
 	</div>
 
 	<hr class="hrstyle" />
@@ -257,9 +267,11 @@ table td {
 	<!-- 我的策略  -->
 	<div
 		style="font-size: 20px; line-height: 35px; margin-top: 40px; margin-left: 135px;">
-		我的策略</div>
+		<span id="stname">我的策略</span><span id="stcost"
+			style="font-size: 13px;"></span>
+	</div>
 
-	<hr
+	<hr id="changehr"
 		style="width: 80px; border: solid 1px rgb(235, 235, 235); margin-left: 135px; margin-top: 0px;" />
 
 	<!-- 删除、保存 -->
