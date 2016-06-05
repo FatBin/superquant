@@ -22,7 +22,7 @@ public class IndustryData implements IndustryDataService {
 	
 	@Override
 	public ArrayList<industriesPO> getIndustryData() throws Exception {
-		return IndustryDataUpdate.getIndustries();
+		return IndustriesUpdate.getIndustries();
 	}
 
 	@Override

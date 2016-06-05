@@ -68,13 +68,15 @@ public class BenchRecordUpdate implements Runnable{
 	
 	@Override
 	public void run() {
-		try {
-			Thread.sleep(10000);
-			for(int i=0;i<BenchId.length;i++){
-				benchCurrentDataPO[i]=getLastestRecord(BenchId[i]);
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		while (true) {
+			try {
+				Thread.sleep(10000);
+				for (int i = 0; i < BenchId.length; i++) {
+					benchCurrentDataPO[i] = getLastestRecord(BenchId[i]);
+				}
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} 
 		}
 	}
 	

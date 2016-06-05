@@ -54,10 +54,11 @@ public class TradeRecordUpdate {
 					JSONObject jsonObject = new JSONObject(result);
 					JSONObject jsonObject2 = jsonObject.getJSONObject("data");
 					JSONArray jsonArray = jsonObject2.getJSONArray("trading_info");
+					System.out.println(result);
 					if (jsonArray.length() == 0) {
 						// 当助教api中无该股票数据
 						Document document = Jsoup
-								.connect("http://www.aigaogao.com/tools/history.html?s=" + stockId.substring(2)).get();
+								.connect(MinorityStock + stockId.substring(2)).get();
 						Elements elements = document.select("table[class=data]").get(0).select("tr");
 						for (int i = 1; i < elements.size() - 1 && i <= 7; i++) {
 							Element element = elements.get(i);

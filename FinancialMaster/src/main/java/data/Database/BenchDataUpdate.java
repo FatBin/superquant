@@ -59,7 +59,9 @@ public class BenchDataUpdate {
 				BenchDataDaoService dao=new BenchdataDaoProxy();
 				for (Benchdata benchdata : arrayList) {
 					try {
-						dao.insert(benchdata);
+//						dao.insert(benchdata);
+						System.out.print(benchdata.getId().getBenchId());
+						System.out.println(benchdata.getId().getDate());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

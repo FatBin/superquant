@@ -8,13 +8,13 @@ import org.json.JSONObject;
 import PO.industriesPO;
 import data.IO.HttpRequest;
 
-public class IndustryDataUpdate implements Runnable {
+public class IndustriesUpdate implements Runnable {
 	public static final String[] industries = { "http://q.10jqka.com.cn/interface/stock/thshy/zdf/desc/",
 			"/quote/quote" };
 	public static final int[] numbers = { 1, 2 };
 	
 	public static ArrayList<industriesPO> arrayList;
-	public IndustryDataUpdate(){
+	public IndustriesUpdate(){
 		arrayList=new ArrayList<>(); 
 		Thread thread=new Thread(this);
 		thread.start();
@@ -57,11 +57,13 @@ public class IndustryDataUpdate implements Runnable {
 
 	@Override
 	public void run() {
-		try {
-			Thread.sleep(10000);
-			arrayList=getIndustryData();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		while (true) {
+			try {
+				Thread.sleep(10000);
+				arrayList = getIndustryData();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} 
 		}
 	}
 
