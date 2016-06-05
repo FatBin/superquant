@@ -6,7 +6,7 @@
 	margin-top:30px;
 	border-left: 4px solid rgb(235,138,49);
 	padding-left: 8px;
-	background-color:#FBF7F2
+	background-color:#FBF7F2;
 	
 }
 
@@ -37,3 +37,45 @@
 	margin-top:20px;
 }
 
+.item-left{
+	display:inline-block;
+	float:left;
+	margin-left:10px;
+	height:80px;
+	width:370px;
+	/* background-color:#ed8059; */
+}
+.item-right{
+	float:right;
+	margin-right:10px;
+	height:85px;
+	width:180px;
+	background-color:#FBF7F2;
+	border-radius:4px;
+}
+
+.item-price{
+	float:left;
+	height:85px;
+	width:100px;
+	background-color:#F1F1F1
+}
+
+#item-name{
+	margin-top:15px;
+	display:inline-block;
+	font-size:36px;
+	color:#44382A;
+}
+
+#item-num{
+	margin-top:15px;
+	margin-left:10px;
+	display:inline-block;
+	font-size:16px;
+	color:#8d7862;
+}
+
+.item-top{
+	margin-top:15px;
+}

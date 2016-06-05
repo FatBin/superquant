@@ -1,7 +1,8 @@
 
+<%@page import="PO.industryPO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@page import="java.util.*"%>
+<%@page import="java.util.*"%>
 <%@page import="VO.BusinessListVO"%>
 <%@page import="PO.industriesPO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -60,7 +61,8 @@ li {
 				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="StockPage.jsp">个股</a></li>
-				<li><a class="page-scroll a-active" href="../ToBusinessPageServlet">行业</a></li>
+				<li><a class="page-scroll a-active"
+					href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
@@ -93,19 +95,44 @@ li {
 
 		<%
 			BusinessListVO businessListVO = (BusinessListVO) session.getAttribute("BusinessList");
-			ArrayList<industriesPO> businessList = businessListVO.getBusinessList(); 
+			ArrayList<industriesPO> businessList = businessListVO.getBusinessList();
 		%>
 
 		<div class="business-rank" style="height: 1000px;">
 			<h3 class="title">行业对比</h3>
 			<%
-				for(int i=0;i<11;i++){
+				for (int i = 0; i < 11; i++) {
 			%>
 			<div class="business-list">
-				<div class="business-item"></div>
+				<div class="business-item">
+					<div class="item-left item-top">
+						<%
+							industriesPO list = businessList.get(i);
+						%>
+						<div id="item-name">
+							<%=list.getIndustry()%>
+						</div>
+						<div id="item-num">
+							<%=list.getCompany() + ""%>
+							家企业
+						</div>
+
+					 </div>
+					<div class="item-price item-top">
+						<div class="item-rate">
+							<%=list.getRise_fall()%>		
+						</div>
+						<div class="item-avg">
+							<%=list.getAverage_price()%>
+						</div>
+					
+					</div>
+					<div class="item-right item-top"></div>
+				</div>
 				<div class="business-extend" style="display: none;"></div>
 			</div>
-			<%	} 
+			<%
+				}
 			%>
 		</div>
 	</div>
