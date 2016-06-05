@@ -1,8 +1,8 @@
 package DAO.dao;
 
-import DAO.pojo.Bench;
-import DAO.pojo.User;
 import java.util.List;
+
+import DAO.pojo.User;
 
 public interface UserDao {
 	//insert a PO

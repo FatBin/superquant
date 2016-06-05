@@ -2,7 +2,6 @@ package DAO.DAOimpl;
 
 import java.util.List;
 
-
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -11,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 
 import DAO.connection.DBconnection;
 import DAO.dao.TradeRecordDao;
-import DAO.pojo.Bench;
 import DAO.pojo.TradeRecord;
 import DAO.pojo.TradeRecordId;
 

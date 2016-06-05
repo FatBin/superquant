@@ -1,12 +1,10 @@
 package data.Database;
 
-import java.io.IOException;
 import java.util.Calendar;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
-import PO.industriesPO;
+import data.Database.BenchDataUpdate;
+import data.Database.IndustriesUpdate;
+import data.Database.TradeRecordUpdate;
 
 public class Update implements Runnable{
 	
@@ -36,7 +34,7 @@ public class Update implements Runnable{
 				industriesUpdate.IndustriesUpdate();
 				//update the tradeRecord
 				TradeRecordUpdate tradeRecordUpdate=new TradeRecordUpdate();
-				tradeRecordUpdate.TradeRecordUpdate(tradeRecordUpdate.getTradeRecord());
+				tradeRecordUpdate.TradeRecordUpdate();
 			}
 			
 		}

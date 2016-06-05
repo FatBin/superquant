@@ -1,19 +1,19 @@
 package data.Database;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import org.apache.catalina.util.StringParser;
+import java.util.Date;
 
 import DAO.DAOfactory.DaoFactory;
 import DAO.DaoProxy.IndustriesDaoProxy;
 import DAO.pojo.Industries;
 import DAO.pojo.IndustriesId;
+import DAO.test.test;
 import PO.industriesPO;
 import data.IndustryData.IndustryData;
 
 public class IndustriesUpdate {
-	
 	
 	public void IndustriesUpdate() {
 		try {
@@ -21,11 +21,11 @@ public class IndustriesUpdate {
 			IndustryData industryData=new IndustryData();
 			ArrayList<industriesPO> po=industryData.getIndustryData();
 			Calendar calendar=Calendar.getInstance();
-			int year=calendar.get(Calendar.YEAR);
-			int month=calendar.get(Calendar.MONTH);
-			int day=calendar.get(Calendar.DAY_OF_MONTH);
+			Date date=calendar.getTime();
+			SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+			String time=format.format(date);
 			for (industriesPO industriesPO : po) {
-				IndustriesId id=new IndustriesId(industriesPO.getIndustry(),year+"-"+month+"-"+day);
+				IndustriesId id=new IndustriesId(industriesPO.getIndustry(),time);
 				Industries industries=new Industries(id,
 						industriesPO.getCompany(),
 						industriesPO.getAverage_price(),
@@ -36,12 +36,18 @@ public class IndustriesUpdate {
 						industriesPO.getLeaderstock(),
 						industriesPO.getPrice(),
 						industriesPO.getStock_rise_fall());
-				industriesDaoProxy.insert(industries);
+				try {
+					industriesDaoProxy.insert(industries);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+		
+		
+}
 	
 	
 

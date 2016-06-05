@@ -2,8 +2,6 @@ package DAO.DaoProxy;
 
 import java.util.List;
 
-import org.hibernate.exception.ConstraintViolationException;
-
 import DAO.DAOimpl.BenchDaoImpl;
 import DAO.DaoProxyService.BenchDaoProxyService;
 import DAO.dao.BenchDao;

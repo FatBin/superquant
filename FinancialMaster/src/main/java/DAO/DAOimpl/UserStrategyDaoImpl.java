@@ -10,8 +10,6 @@ import org.hibernate.criterion.Restrictions;
 
 import DAO.connection.DBconnection;
 import DAO.dao.UserStrategyDao;
-import DAO.pojo.Bench;
-import DAO.pojo.UserStock;
 import DAO.pojo.UserStrategy;
 import DAO.pojo.UserStrategyId;
 

@@ -2,11 +2,6 @@ package DAO.DAOimpl;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -14,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 
 import DAO.connection.DBconnection;
 import DAO.dao.UserStockDao;
-import DAO.pojo.Bench;
 import DAO.pojo.UserStock;
 import DAO.pojo.UserStockId;
 

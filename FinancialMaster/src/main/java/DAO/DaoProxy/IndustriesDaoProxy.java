@@ -2,12 +2,8 @@ package DAO.DaoProxy;
 
 import java.util.List;
 
-import DAO.DAOimpl.BenchDaoImpl;
-import DAO.DAOimpl.BenchdataDaoImpl;
 import DAO.DAOimpl.IndustriesDaoImpl;
 import DAO.DaoProxyService.IndustriesDaoProxyService;
-import DAO.dao.BenchDao;
-import DAO.dao.BenchdataDao;
 import DAO.dao.IndustriesDao;
 import DAO.pojo.Industries;
 import DAO.pojo.IndustriesId;

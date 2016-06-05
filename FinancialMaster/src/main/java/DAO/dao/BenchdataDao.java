@@ -1,9 +1,9 @@
 package DAO.dao;
 
-import DAO.pojo.Bench;
+import java.util.List;
+
 import DAO.pojo.Benchdata;
 import DAO.pojo.BenchdataId;
-import java.util.List;
 
 public interface BenchdataDao {
 	//insert a PO

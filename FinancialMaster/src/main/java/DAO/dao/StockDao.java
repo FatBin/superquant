@@ -1,8 +1,8 @@
 package DAO.dao;
 
-import DAO.pojo.Bench;
-import DAO.pojo.Stock;
 import java.util.List;
+
+import DAO.pojo.Stock;
 
 public interface StockDao {
 	//insert a PO

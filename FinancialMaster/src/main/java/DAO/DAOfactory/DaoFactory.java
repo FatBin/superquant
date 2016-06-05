@@ -11,7 +11,6 @@ import DAO.DaoProxy.TradeRecordDaoProxy;
 import DAO.DaoProxy.UserDaoProxy;
 import DAO.DaoProxy.UserStockDaoProxy;
 import DAO.DaoProxy.UserStrategyDaoProxy;
-import DAO.dao.UserDao;
 
 public class DaoFactory {
 	public static BenchDaoProxy getBenchDaoProxy(){

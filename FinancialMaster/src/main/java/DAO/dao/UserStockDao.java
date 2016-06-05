@@ -1,9 +1,9 @@
 package DAO.dao;
 
-import DAO.pojo.Bench;
+import java.util.List;
+
 import DAO.pojo.UserStock;
 import DAO.pojo.UserStockId;
-import java.util.List;
 
 public interface UserStockDao {
 	//insert a PO
