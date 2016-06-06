@@ -1,0 +1,161 @@
+li {
+	list-style-type: none;
+}
+
+.titlelbl {
+	font-size: 24px;
+	font-family: PingFangSC-Regular;
+}
+
+.headdiv {
+	background-color: #7B736B;
+	border-radius: 2px;
+	width: 847px;
+	height: 43px;
+	margin-left: 190px;
+	margin-top: 20px;
+}
+
+.headtext {
+	color: #FBF7F2;
+	font-size: 20px;
+	line-height: 43px;
+	font-family: PingFangSC-Regular;
+	margin-left: 10px;
+}
+
+.bodydiv {
+	height: 309px;
+	width: 847px;
+	background-color: #F8F7F6;
+	border-radius: 2px;
+	margin-left: 190px;
+	position: relative;
+}
+
+.bodydiv .chart_compre {
+	width: 232px;
+	height: 232px;
+	background-color: gray;
+	position: absolute;
+	left: 60px;
+	bottom: 40px;
+}
+
+.bodydiv .text_compre {
+	width: 410px;
+	height: 232px;
+	background-color: gray;
+	position: absolute;
+	left: 378px;
+	bottom: 40px;
+}
+
+.bodydiv .chart_tech {
+	width: 730px;
+	height: 177px;
+	background-color: gray;
+	position: absolute;
+	left: 58px;
+	bottom: 24px;
+}
+
+.bodydiv .text_tech {
+	width: 730px;
+	height: 65px;
+	background-color: gray;
+	position: absolute;
+	left: 58px;
+	top: 24px;
+}
+
+.bodydiv .chart_market {
+	width: 437px;
+	height: 247px;
+	background-color: gray;
+	position: absolute;
+	left: 32px;
+	top: 31px;
+}
+
+.bodydiv .text_market {
+	width: 310px;
+	height: 247px;
+	background-color: gray;
+	position: absolute;
+	left: 500px;
+	top: 31px;
+}
+
+.bodydiv .chart_business {
+	width: 359px;
+	height: 247px;
+	background-color: gray;
+	position: absolute;
+	left: 32px;
+	bottom: 31px;
+}
+
+.bodydiv .table_business {
+	width: 359px;
+	height: 107px;
+	background-color: gray;
+	position: absolute;
+	left: 424px;
+	top: 31px;
+}
+
+.bodydiv .text_business {
+	width: 359px;
+	height: 107px;
+	background-color: gray;
+	position: absolute;
+	left: 424px;
+	top: 160px;
+}
+
+.bodydiv .chart_flow {
+	width: 261px;
+	height: 261px;
+	background-color: gray;
+	position: absolute;
+	left: 58px;
+	top: 24px;
+}
+
+.bodydiv .chart_2_flow {
+	width: 214px;
+	height: 122px;
+	background-color: gray;
+	position: absolute;
+	left: 355px;
+	top: 36px;
+}
+
+.bodydiv .table_flow {
+	width: 214px;
+	height: 122px;
+	background-color: gray;
+	position: absolute;
+	left: 595px;
+	top: 36px;
+}
+
+.bodydiv .text_flow {
+	width: 450px;
+	height: 100px;
+	background-color: gray;
+	position: absolute;
+	left: 355px;
+	top: 183px;
+}
+
+.right_nav {
+	width: 60px;
+	height: 300px;
+	position: fixed;
+	right: 20px;
+	top: 190px;
+	border:solid 1px rgb(235,235,235);
+	border-radius: 4px;
+}
