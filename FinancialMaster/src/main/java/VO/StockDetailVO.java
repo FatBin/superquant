@@ -6,7 +6,7 @@ public class StockDetailVO {
     //  最新信息，具体内容见PO
 	private UpToDateStockPO upToDateMessage;
 	
-	//基本项分析内容
+	//基本分析内容
 	private  Analyze_BasicItemsVO analyze_BasicItemsVO;
 
    //	日期、开盘价、收盘价、最高价、最低价、后复权价、成交量、换手率、市盈率、市净率

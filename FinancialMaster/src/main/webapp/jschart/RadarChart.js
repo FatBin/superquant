@@ -1,5 +1,5 @@
 /**
- * 
+ *  基本分析中各种基本项的雷达图
  */
 
 var RadarChart = echarts.init(document.getElementById('radarChart'));

@@ -1,5 +1,5 @@
 /**
- * 
+ *   股票综合分析评分所用的仪表盘
  */
 
 var Dashboard = echarts.init(document.getElementById('dashboard'));

@@ -1,5 +1,5 @@
 /**
- * 
+ *  某行业历史数据展示的图表
  */
 
 var myChart = echarts.init(document.getElementById('business_history_chart'));

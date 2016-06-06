@@ -1,5 +1,5 @@
 /**
- * 
+ * 行业涨跌榜前十和后十柱状图
  */
 var myChart = echarts.init(document.getElementById('business_barchart'));
 

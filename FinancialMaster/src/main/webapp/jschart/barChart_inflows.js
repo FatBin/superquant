@@ -1,5 +1,5 @@
 /**
- * 
+ *   个股分析中资金流向差柱状图
  */
 
 var barChart_inflows = echarts

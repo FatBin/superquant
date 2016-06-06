@@ -2,12 +2,12 @@ package VO;
 
 public class Analyze_BasicItemsVO {
 
-	private double quantity_relative_ratio;
-	private double priceStability;
-	private double turnOver;			
-	private double ups_and_downs;
-	private double pe;
-	private double pb;
+	private double quantity_relative_ratio;  //量比
+	private double priceStability;   //股价稳定性
+	private double turnOver;   //换手率
+	private double ups_and_downs;  //涨跌幅
+	private double pe;  //市盈率
+	private double pb;  //市净率
 	
 	public Analyze_BasicItemsVO() {
 		super();

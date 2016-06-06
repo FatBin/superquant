@@ -1,5 +1,5 @@
 /**
- * 
+ *  个股分析中资金流向饼状图
  */
 
 var PieChart_inflows = echarts.init(document.getElementById('pieChart_inflows'));
