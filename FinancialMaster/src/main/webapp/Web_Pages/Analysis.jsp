@@ -87,7 +87,7 @@
 
 	<div class="bodydiv">
 		<div class="chart_compre"></div>
-		
+
 		<div class="text_compre"></div>
 	</div>
 
@@ -98,7 +98,7 @@
 
 	<div class="bodydiv">
 		<div class="text_tech"></div>
-	
+
 		<div class="chart_tech"></div>
 	</div>
 
@@ -109,7 +109,7 @@
 
 	<div class="bodydiv">
 		<div class="chart_market"></div>
-		
+
 		<div class="text_market"></div>
 	</div>
 
@@ -120,9 +120,9 @@
 
 	<div class="bodydiv">
 		<div class="chart_business"></div>
-		
+
 		<div class="table_business"></div>
-		
+
 		<div class="text_business"></div>
 	</div>
 
@@ -133,7 +133,7 @@
 
 	<div class="bodydiv">
 		<div id="radarChart" class="chart_market"></div>
-		
+
 		<div class="text_market"></div>
 	</div>
 
@@ -144,11 +144,11 @@
 
 	<div class="bodydiv">
 		<div id="pieChart_inflows" class="chart_flow"></div>
-		
+
 		<div id="barChart_inflows" class="chart_2_flow"></div>
-		
+
 		<div class="table_flow"></div>
-		
+
 		<div class="text_flow"></div>
 	</div>
 
@@ -161,12 +161,16 @@
 				SuperQuant</p>
 		</div>
 	</div>
-	
+
 	<!-- 导航条 -->
 	<div id="rightnav" class="right_nav"></div>
 
 	<!-- Plugin JavaScript -->
-	<script src="../js/agency.js"></script>
+	<script src="../js/rightnav.js"></script>
+	<script>
+		navskip();
+	</script>
+
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
