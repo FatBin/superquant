@@ -59,4 +59,13 @@ public class InitFactoryServlet extends HttpServlet {
 		}
 		return result;
 	}
+	
+	public static boolean isExist(String id){
+		for (Stock stock : allIdList) {
+			if(stock.getStockId().equals(id)){
+				return true;
+			}
+		}
+		return false;
+	}
 }

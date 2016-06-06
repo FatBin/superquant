@@ -2,7 +2,7 @@
  * 
  */
 
-var myChart = echarts.init(document.getElementById('pieChart_inflows'));
+var PieChart_inflows = echarts.init(document.getElementById('pieChart_inflows'));
 var inflows=[];
 
 $.ajax({
@@ -83,4 +83,4 @@ option = {
     ]
 };
 
-myChart.setOption(option);
+PieChart_inflows.setOption(option);

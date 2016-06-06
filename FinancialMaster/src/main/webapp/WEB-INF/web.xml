@@ -163,7 +163,7 @@
     <servlet-name>GetStockDashboardServlet</servlet-name>
     <url-pattern>/GetStockDashboard</url-pattern>
   </servlet-mapping>
-   <!-- get：，post：为资金流入流出的饼状图提供数据 -->    
+   <!-- get：为资金流入流出的柱状图提供数据，post：为资金流入流出的饼状图提供数据 -->    
   <servlet>
     <servlet-name>GetStockInflowPieChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.GetStockInflowPieChartServlet</servlet-class>

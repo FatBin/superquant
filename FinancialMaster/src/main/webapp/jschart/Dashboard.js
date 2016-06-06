@@ -2,6 +2,7 @@
  * 
  */
 
+var Dashboard = echarts.init(document.getElementById('dashboard'));
 
 option = {
     //  backgroundColor: '#161627',
@@ -44,3 +45,5 @@ option = {
         }
     ]
 };
+
+Dashboard.setOption(option);
