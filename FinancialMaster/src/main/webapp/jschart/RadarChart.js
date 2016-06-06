@@ -27,13 +27,13 @@ $.ajax({
 
 option = {
     title: {
-        text: '基本项统计雷达图'
+        text: '基本项统计'
     },
     tooltip: {},
-    legend: {
-        data: ['基本项'],
-        left:'right'
-    },
+//    legend: {
+//        data: ['基本项'],
+//        left:'right'
+//    },
     radar: {
         // shape: 'circle',
         indicator: [

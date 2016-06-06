@@ -86,7 +86,7 @@
 	</div>
 
 	<div class="bodydiv">
-		<div class="chart_compre"></div>
+		<div id="dashboard" class="chart_compre"></div>
 
 		<div class="text_compre"></div>
 	</div>
@@ -186,5 +186,6 @@
 	<script src="../jschart/RadarChart.js"></script>
 	<script src="../jschart/PieChart_inflows.js"></script>
 	<script src="../jschart/barChart_inflows.js"></script>
+	<script src="../jschart/Dashboard.js"></script>
 </body>
 </html>

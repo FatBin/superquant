@@ -35,9 +35,9 @@ option = {
 //	},
     grid: {
     	top: '2%',
-        left: '3%',
-        right: '4%',
-        bottom: '10%',
+        left: '0%',
+        right: '0%',
+        bottom: '5%',
         containLabel: true
     },
 	//	legend : {
@@ -52,7 +52,10 @@ option = {
 		splitLine : {
 			show : false
 		},
-
+		axisLabel : {
+			interval : 0,
+//			rotate : 45,
+		}
 	},
 	yAxis : {
 		type : 'value',
