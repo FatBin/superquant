@@ -12,12 +12,12 @@ import PO.UpToDateStockPO;
 public class UpToDateStocksUpdate implements Runnable{
 	public static final String[] UpToDateStocks={"http://www.shdjt.com/",".htm"};
 	
-	public static final String[] exchanges={"sh","sz"};
+	public static final String[] exchanges={"sh","sz","cy"};
 	
 	public static ArrayList<UpToDateStockPO>[] arrayLists;
 	
 	public UpToDateStocksUpdate(){
-		arrayLists=new ArrayList[2];
+		arrayLists=new ArrayList[exchanges.length];
 		for (int i = 0; i < exchanges.length; i++) {
 			arrayLists[i]=new ArrayList<UpToDateStockPO>();
 		}
@@ -71,7 +71,7 @@ public class UpToDateStocksUpdate implements Runnable{
 	}
 
 	public static ArrayList<UpToDateStockPO> getArrayLists(String exchange) {
-		for (int i = 0; i < exchange.length(); i++) {
+		for (int i = 0; i < exchanges.length; i++) {
 			if (exchanges[i].equals(exchange)) {
 				return arrayLists[i];
 			}

@@ -18,14 +18,10 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
-<link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
-	media="screen">
+<link href="../css/analysistyle.css" rel="stylesheet" type="text/css">
 
-<style>
-li {
-	list-style-type: none;
-}
-</style>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 
 </head>
 
@@ -63,8 +59,8 @@ li {
 
 		<div class="style_5 hidden-sm hidden-xs">
 			<fieldset id="searchform">
-				<input type="text" placeholder="搜索"
-					class="text_input" onblur="this.placeholder='搜索';"
+				<input type="text" placeholder="搜索" class="text_input"
+					onblur="this.placeholder='搜索';"
 					onfocus="this.placeholder='输入股票代码搜索';"
 					onmouseover="this.placeholder='输入股票代码搜索';"
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
@@ -80,25 +76,101 @@ li {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div style="margin-top: 140px; margin-left: 220px;">
-		<p
-			style="height: 33px; font-size: 21px; line-height: 33px; font-family: PingFangSC-Regular;">我的策略</p>
-
-		<input type="button"
-			style="width: 50px; height: 29px; border-radius: 6px; background-color: rgb(250, 250, 250); float: right; margin-right: 210px; margin-top: -45px;"
-			value="新建" />
+	<div style="margin-top: 130px; margin-left: 190px;">
+		<span class="titlelbl">个股分析</span>
 	</div>
 
-	<div
-		style="height: 300px; width: 850px; margin: 10px auto; background-color: gray;"></div>
-
-
-
-	<div>
-		<h1 style="text-align: center; margin-top: 200px; color: black;">我的策略</h1>
+	<!-- 综合分析 -->
+	<div id="comprehensive" class="headdiv">
+		<span class="headtext">综合分析</span>
 	</div>
+
+	<div class="bodydiv">
+		<div class="chart_compre"></div>
+
+		<div class="text_compre"></div>
+	</div>
+
+	<!-- 技术分析 -->
+	<div id="technical" class="headdiv">
+		<span class="headtext">技术分析</span>
+	</div>
+
+	<div class="bodydiv">
+		<div class="text_tech"></div>
+
+		<div class="chart_tech"></div>
+	</div>
+
+	<!-- 大盘分析 -->
+	<div id="market" class="headdiv">
+		<span class="headtext">大盘分析</span>
+	</div>
+
+	<div class="bodydiv">
+		<div class="chart_market"></div>
+
+		<div class="text_market"></div>
+	</div>
+
+	<!-- 行业分析 -->
+	<div id="business" class="headdiv">
+		<span class="headtext">行业分析</span>
+	</div>
+
+	<div class="bodydiv">
+		<div class="chart_business"></div>
+
+		<div class="table_business"></div>
+
+		<div class="text_business"></div>
+	</div>
+
+	<!-- 基本项 -->
+	<div id="basic" class="headdiv">
+		<span class="headtext">基本项</span>
+	</div>
+
+	<div class="bodydiv">
+		<div id="radarChart" class="chart_market"></div>
+
+		<div class="text_market"></div>
+	</div>
+
+	<!-- 资金流向 -->
+	<div id="moneyflow" class="headdiv">
+		<span class="headtext">资金流向</span>
+	</div>
+
+	<div class="bodydiv">
+		<div id="pieChart_inflows" class="chart_flow"></div>
+
+		<div id="barChart_inflows" class="chart_2_flow"></div>
+
+		<div class="table_flow"></div>
+
+		<div class="text_flow"></div>
+	</div>
+
+	<!-- bottom section -->
+	<div style="margin-top: 50px;">
+		<div style="background-color: #766F67; height: 200px;"></div>
+
+		<div style="background-color: #645D55; height: 50px;">
+			<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+				SuperQuant</p>
+		</div>
+	</div>
+
+	<!-- 导航条 -->
+	<div id="rightnav" class="right_nav"></div>
 
 	<!-- Plugin JavaScript -->
+	<script src="../js/rightnav.js"></script>
+	<script>
+		navskip();
+	</script>
+
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
@@ -110,6 +182,9 @@ li {
 		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
 	<script type="text/javascript" src="../js/searchHint.js"></script>
-
+	<script type="text/javascript" src="../js/rightnav.js"></script>
+	<script src="../jschart/RadarChart.js"></script>
+	<script src="../jschart/PieChart_inflows.js"></script>
+	<script src="../jschart/barChart_inflows.js"></script>
 </body>
 </html>

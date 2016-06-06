@@ -26,7 +26,9 @@ import data.Database.BenchDataUpdate;
 import data.Database.IndustriesUpdate;
 import data.Database.TradeRecordUpdate;
 import data.IndustryData.IndustryData;
+import data.Initialize.Init;
 import data.StockData.RiseStockUpdate;
+import data.StockData.StockData;
 import data.StockData.UpToDateStocksUpdate;
 
 public class finaltest {
@@ -86,5 +88,25 @@ public class finaltest {
 //		} catch (ParseException e) {
 //			e.printStackTrace();
 //		}
+		
+		Init init=new Init();
+		try {
+			Thread.sleep(20000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		StockData stockData=new StockData();
+		try {
+			UpToDateStockPO po=stockData.getUpToDateStockPO("sz300183");
+			System.out.print(po.getStockName()+" ");
+			System.out.print(po.getStockId()+" ");
+			System.out.print(po.getDdx()+" ");
+			System.out.print(po.getDdy()+" ");
+			System.out.print(po.getDdz()+" ");
+			System.out.print(po.getIndustry()+" ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

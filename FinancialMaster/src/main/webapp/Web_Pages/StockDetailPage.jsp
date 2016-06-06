@@ -100,7 +100,7 @@ li {
 
 	<blockquote
 		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
-		<p style="line-height: 50px;">大盘分析</p>
+		<p style="line-height: 50px;">近期走势图</p>
 	</blockquote>
 
 	<div
@@ -109,7 +109,9 @@ li {
 
 	<blockquote
 		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
-		<p style="line-height: 50px;">行业对比</p>
+		<p style="line-height: 50px;">综合分析</p>
+		
+		<a href="Analysis.jsp">更专业的分析</a>
 	</blockquote>
 
 	<div
