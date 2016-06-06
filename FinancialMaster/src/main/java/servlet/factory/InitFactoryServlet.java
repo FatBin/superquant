@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 
 import DAO.connection.DBconnection;
 import DAO.pojo.Stock;
+import data.Initialize.Init;
 import web.bl.serchInfo.IdListImpl;
 import web.blservice.searchInfo.IdListInfo;
 
@@ -28,8 +29,8 @@ public class InitFactoryServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 //		path=this.getServletContext().getRealPath("/")+"WEB-INF/classes/";
-        //连接数据库
-		DBconnection connection =new DBconnection();
+        //初始化数据
+		Init initData=new Init();
 		//初始化所有股票id列表
 		IdListInfo idListInfo=new IdListImpl();
 		allIdList=idListInfo.getIdList();
