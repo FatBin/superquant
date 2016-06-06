@@ -20,6 +20,9 @@
 
 <link href="../css/analysistyle.css" rel="stylesheet" type="text/css">
 
+<script src="../js/echarts.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+
 </head>
 
 <body id="page-top" class="index">
@@ -129,7 +132,7 @@
 	</div>
 
 	<div class="bodydiv">
-		<div class="chart_market"></div>
+		<div id="radarChart" class="chart_market"></div>
 		
 		<div class="text_market"></div>
 	</div>
@@ -175,5 +178,6 @@
 
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script type="text/javascript" src="../js/rightnav.js"></script>
+	<script src="../jschart/RadarChart.js"></script>
 </body>
 </html>

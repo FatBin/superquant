@@ -2,6 +2,8 @@
  *  基本分析中各种基本项的雷达图
  */
 
+
+
 var RadarChart = echarts.init(document.getElementById('radarChart'));
 var values=[];
 
@@ -23,24 +25,24 @@ $.ajax({
 	}
 })
 
-
 option = {
     title: {
         text: '基本项统计雷达图'
     },
     tooltip: {},
     legend: {
-        data: ['基本项']
+        data: ['基本项'],
+        left:'right'
     },
     radar: {
         // shape: 'circle',
         indicator: [
-           { name: '量比', max: 3},
-           { name: '风险性', max: 1},
-           { name: '换手率', max: 10},
-           { name: '涨跌幅', max: 5},
-           { name: '修正市盈率', max: 10},
-           { name: '市净率', max: 10}
+           { name: '量比', max: 2},
+           { name: '稳定性', max: 1},
+           { name: '换手率', max: 7},
+           { name: '涨跌幅', max: 1},
+           { name: '市盈率', max: 17},
+           { name: '市净率', max: 5}
         ],
           name: {
             textStyle: {
@@ -77,3 +79,4 @@ option = {
         ]
     }]
 };
+RadarChart.setOption(option);
