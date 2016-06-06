@@ -163,9 +163,10 @@
 	</div>
 	
 	<!-- 导航条 -->
-	<div class="right_nav"></div>
+	<div class="rightnav"></div>
 
 	<!-- Plugin JavaScript -->
+	<script src="../js/agency.js"></script>
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
 

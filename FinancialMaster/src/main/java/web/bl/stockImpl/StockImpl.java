@@ -67,6 +67,7 @@ public class StockImpl implements StockInfo {
 			}
 
 			double priceStability=1-getAmendatoryStandardDevition(turnovers,m);
+			System.out.println(upToDateMessage.getRise_fall());
 			double turnOver=getAvg(turnovers,n);
 			double ups_and_downs=0;
 			double quantity_relative_ratio=0;
