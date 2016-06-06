@@ -34,7 +34,7 @@ option = {
 //		trigger : 'axis'
 //	},
     grid: {
-    	top: '2%',
+    	top: '5%',
         left: '0%',
         right: '0%',
         bottom: '5%',
@@ -68,7 +68,8 @@ option = {
 		label : {
 			normal : {
 				show : true,
-				formatter : '{c}%'
+				formatter : '{c}%',
+				position:'top'
 			}
 		},
 		itemStyle : {

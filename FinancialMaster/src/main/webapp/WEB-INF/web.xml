@@ -181,4 +181,31 @@
     <servlet-name>GetStockRadarChartServlet</servlet-name>
     <url-pattern>/GetStockRadarChart</url-pattern>
   </servlet-mapping>
+    <!-- get：，post：为ddx,ddy,ddz提供数据 -->    
+  <servlet>
+    <servlet-name>GetStcokDD_barChartServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.GetStcokDD_barChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetStcokDD_barChartServlet</servlet-name>
+    <url-pattern>/GetStcokDD_barChart</url-pattern>
+  </servlet-mapping>
+    <!-- get：，post：为大盘涨跌幅对比图提供数据 -->    
+  <servlet>
+    <servlet-name>GetBenchContrastServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.GetBenchContrastServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetBenchContrastServlet</servlet-name>
+    <url-pattern>/GetBenchContrast</url-pattern>
+  </servlet-mapping>
+    <!-- get：为同行业涨跌排行榜柱状图提供数据，post：为行业涨跌幅对比图提供数据 -->    
+  <servlet>
+    <servlet-name>GetBusinessContrastServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.GetBusinessContrastServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetBusinessContrastServlet</servlet-name>
+    <url-pattern>/GetBusinessContrast</url-pattern>
+  </servlet-mapping>
 </web-app>

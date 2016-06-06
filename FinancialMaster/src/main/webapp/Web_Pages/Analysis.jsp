@@ -108,7 +108,7 @@
 	</div>
 
 	<div class="bodydiv">
-		<div class="chart_market"></div>
+		<div id="benchContrastChart" class="chart_market"></div>
 
 		<div class="text_market"></div>
 	</div>
@@ -119,9 +119,9 @@
 	</div>
 
 	<div class="bodydiv">
-		<div class="chart_business"></div>
+		<div id="businessContrastChart" class="chart_business"></div>
 
-		<div class="table_business"></div>
+		<div id="stockContrastChart" class="table_business"></div>
 
 		<div class="text_business"></div>
 	</div>
@@ -147,7 +147,7 @@
 
 		<div id="barChart_inflows" class="chart_2_flow"></div>
 
-		<div class="table_flow"></div>
+		<div id="barChart_dd" class="table_flow"></div>
 
 		<div class="text_flow"></div>
 	</div>
@@ -187,5 +187,10 @@
 	<script src="../jschart/PieChart_inflows.js"></script>
 	<script src="../jschart/barChart_inflows.js"></script>
 	<script src="../jschart/Dashboard.js"></script>
+	<script src="../jschart/DD_barChart.js"></script>
+	<script src="../jschart/BenchContrastChart.js"></script>
+	<script src="../jschart/BusinessContrastChart.js"></script>
+	<script src="../jschart/StockContrastChart.js"></script>
+	
 </body>
 </html>

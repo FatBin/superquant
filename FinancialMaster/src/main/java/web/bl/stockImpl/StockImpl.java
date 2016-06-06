@@ -53,7 +53,7 @@ public class StockImpl implements StockInfo {
 				turnovers[index]=tradeRecord.getTurnover();
 				historyData[index][8]=tradeRecord.getPe()+"";
 				historyData[index][9]=tradeRecord.getPb()+"";
-				System.out.println("date:"+historyData[index][0]+"pe"+historyData[index][8]+"pb"+historyData[index][9]);
+//				System.out.println("date:"+historyData[index][0]+"pe"+historyData[index][8]+"pb"+historyData[index][9]);
                 index++;
 			}
 			
