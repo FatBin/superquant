@@ -46,7 +46,15 @@ public class StockData implements StockDataService{
 
 	@Override
 	public UpToDateStockPO getUpToDateStockPO(String stockId) throws Exception {
-		ArrayList<UpToDateStockPO> arrayList=getToDateStockPOs(stockId.substring(0,2));
+		String bench="";
+		if (stockId.charAt(2)=='6') {
+			bench="sh";
+		}else if (stockId.charAt(2)=='0') {
+			bench="sz";
+		}else {
+			bench="cy";
+		}
+		ArrayList<UpToDateStockPO> arrayList=getToDateStockPOs(bench);
 		for (UpToDateStockPO upToDateStockPO : arrayList) {
 			if (upToDateStockPO.getStockId().equals(stockId)) {
 				return upToDateStockPO;
