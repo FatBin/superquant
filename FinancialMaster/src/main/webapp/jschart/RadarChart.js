@@ -40,9 +40,9 @@ option = {
            { name: '量比', max: 2},
            { name: '稳定性', max: 1},
            { name: '换手率', max: 7},
-           { name: '涨跌幅', max: 1},
-           { name: '市盈率', max: 17},
-           { name: '市净率', max: 5}
+           { name: '涨跌幅', max: 5},
+           { name: '市盈率', max: 40},
+           { name: '市净率', max: 10}
         ],
           name: {
             textStyle: {

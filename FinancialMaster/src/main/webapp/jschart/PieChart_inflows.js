@@ -29,17 +29,17 @@ option = {
         trigger: 'item',
         formatter: "{a} <br/>{b}: {c} ({d}%)"
     },
-    legend: [{
-        orient: 'vertical',
-        x: 'left',
-        y:'10%',
-        data:['特大单买入','大单买入','中单买入','小单买入']
-    },{
-        orient: 'vertical',
-        x: 'right',
-        y:  '80%',
-        data:['特大单卖出','大单卖出','中单卖出','小单卖出']
-    }],
+//    legend: [{
+//        orient: 'vertical',
+//        x: 'left',
+//        y:'10%',
+//        data:['特大单买入','大单买入','中单买入','小单买入']
+//    },{
+//        orient: 'vertical',
+//        x: 'right',
+//        y:  '80%',
+//        data:['特大单卖出','大单卖出','中单卖出','小单卖出']
+//    }],
     series: [
         {
             name:'买入',

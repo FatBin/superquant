@@ -51,7 +51,6 @@ public class GetStockRadarChartServlet extends HttpServlet {
 					"},{'value':"+analyze_BasicItemsVO.getUps_and_downs()+
 					"},{'value':"+analyze_BasicItemsVO.getPe()+
 					"},{'value':"+analyze_BasicItemsVO.getPb()+"}]";
-		System.out.println(data);
 		JSONArray json = new JSONArray(data);
 		PrintWriter out = response.getWriter();
 		out.println(json);

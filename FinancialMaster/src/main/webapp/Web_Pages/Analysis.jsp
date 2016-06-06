@@ -143,9 +143,9 @@
 	</div>
 
 	<div class="bodydiv">
-		<div class="chart_flow"></div>
+		<div id="pieChart_inflows" class="chart_flow"></div>
 		
-		<div class="chart_2_flow"></div>
+		<div id="barChart_inflows" class="chart_2_flow"></div>
 		
 		<div class="table_flow"></div>
 		
@@ -163,7 +163,7 @@
 	</div>
 	
 	<!-- 导航条 -->
-	<div class="rightnav"></div>
+	<div id="rightnav" class="right_nav"></div>
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/agency.js"></script>
@@ -180,5 +180,7 @@
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script type="text/javascript" src="../js/rightnav.js"></script>
 	<script src="../jschart/RadarChart.js"></script>
+	<script src="../jschart/PieChart_inflows.js"></script>
+	<script src="../jschart/BarChart_inflows.js"></script>
 </body>
 </html>
