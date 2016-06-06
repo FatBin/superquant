@@ -34,12 +34,11 @@ li {
 }
 
 .bodydiv .chart_compre {
-	width: 232px;
-	height: 232px;
-	background-color: gray;
+	width: 300px;
+	height: 300px;
 	position: absolute;
-	left: 60px;
-	bottom: 40px;
+	left: 40px;
+	top: 10px;
 }
 
 .bodydiv .text_compre {

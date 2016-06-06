@@ -128,7 +128,7 @@
 
 	<!-- 基本项 -->
 	<div id="basic" class="headdiv">
-		<span class="headtext">基本项</span>
+		<span class="headtext">基本分析</span>
 	</div>
 
 	<div class="bodydiv">
