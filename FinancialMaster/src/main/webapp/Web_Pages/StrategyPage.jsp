@@ -130,13 +130,10 @@ table td {
 				value="" style="width: 100px;">
 		</div>
 
-		<div style="float:left">
+		<div style="float: left">
 			<input type="button" class="btn add_cancel_btn" value="设定"
 				style="margin-top: -32px; margin-left: 135px;" onclick="setName()" />
 		</div>
-
-		
-
 	</div>
 
 	<hr class="hrstyle" />
@@ -271,8 +268,8 @@ table td {
 			style="font-size: 13px;"></span>
 	</div>
 
-	<hr id="changehr"
-		style="width: 80px; border: solid 1px rgb(235, 235, 235); margin-left: 135px; margin-top: 0px;" />
+	<hr
+		style="width: 210px; border: solid 1px rgb(235, 235, 235); margin-left: 135px; margin-top: 0px;" />
 
 	<!-- 删除、保存 -->
 	<div>
@@ -282,7 +279,7 @@ table td {
 				style="margin-top: -10px; margin-bottom: 10px; margin-left: 135px; width: 100px;"
 				onclick="deleteST();" /> <input type="button"
 				class="btn add_cancel_btn" name="savebtn" value="保存策略"
-				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 100px;"
+				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
 				onclick="saveST();" />
 		</div>
 	</div>

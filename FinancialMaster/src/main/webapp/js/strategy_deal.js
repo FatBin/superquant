@@ -37,6 +37,23 @@ function addStrategy() {
 	var checkbox = document.createElement("input");
 	checkbox.type = "checkbox";
 	boxdiv.appendChild(checkbox);
+	checkbox.onclick = function() {
+		var boxs = table.getElementsByTagName("input");
+		if (this.checked == false && boxs[0].checked == true) {
+			boxs[0].checked = false;
+		} else if (this.checked == true && boxs[0].checked == false) {
+			var selectall = 1;
+			for (var i = 1; i < boxs.length; i++) {
+				if (boxs[i].checked == false) {
+					selectall = 0;
+					break;
+				}
+			}
+			if (selectall == 1) {
+				boxs[0].checked = true;
+			}
+		}
+	}
 
 	for (var i = 0; i < getInfo.length; i++) {
 		var td = document.createElement("td");
@@ -169,8 +186,6 @@ function setName() {
 	if (stname.value != "" && stcost.value != "") {
 		document.getElementById("stname").innerHTML = stname.value;
 		document.getElementById("stcost").innerHTML = ("  本金:" + stcost.value);
-
-		document.getElementById("changehr").style.width = "130px";
 	} else {
 		alert('请输入完整信息');
 	}
