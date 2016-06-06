@@ -175,14 +175,16 @@ function mouseOut(rowpos) {
 function mouseClick(rowpos, link) {
 	var t = document.getElementById("senfe").getElementsByTagName("tr");
 
-//	alert(t[rowpos % perPage].getElementsByTagName("td")[0].innerHTML);
+	rowpos = rowpos % perPage;
+	if (rowpos == 0)
+		rowpos = perPage;
 
 	$.ajax({
 		type : "post",
 		async : false, // 同步执行
 		url : link,
 		data : {
-			"Stockid" : t[rowpos % perPage].getElementsByTagName("td")[0].innerHTML
+			"Stockid" : t[rowpos].getElementsByTagName("td")[0].innerHTML
 		},
 		dataType : "json"
 	})
