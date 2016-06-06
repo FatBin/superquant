@@ -145,7 +145,7 @@ public class update {
 				ArrayList<industryPO> arrayList2 = industryData.getIndustry(arrayList.get(i).getIndustry());
 				for (int j = 0; j < arrayList2.size(); j++) {
 					count++;
-					Stock stock = new Stock(arrayList2.get(j).getStockI(), "", arrayList.get(i).getIndustry());
+					Stock stock = new Stock(arrayList2.get(j).getStockId(), "", arrayList.get(i).getIndustry());
 					try {
 						String stockId = stock.getStockId();
 						String name = "";

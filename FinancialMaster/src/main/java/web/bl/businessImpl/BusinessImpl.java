@@ -53,7 +53,7 @@ public class BusinessImpl implements BusinessInfo {
 			businessVO.setHistoryData(historyData);
 			
 			for (industryPO company : industryPOs) {
-				Stock stock=InitFactoryServlet.getStock(company.getStockI());
+				Stock stock=InitFactoryServlet.getStock(company.getStockId());
 				BusinessItemVO businessItemVO=new BusinessItemVO(
 						stock.getStockId(), stock.getStockName(),
 						stock.getIndustry(), company.getCurrent_price(), 

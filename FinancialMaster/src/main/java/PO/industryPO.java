@@ -1,7 +1,7 @@
 package PO;
 
 public class industryPO {
-	private String stockI;//股票代号
+	private String stockId;//股票代号
 	private double current_price;//最新价
 	private double rise_fall_price;//涨跌额
 	private double rise_fall_percent;//涨跌幅
@@ -19,7 +19,7 @@ public class industryPO {
 			double yesterday_close, double open, double high, double low, double inflows, double volume, double price,
 			double turnover) {
 		super();
-		this.stockI = stockI;
+		this.stockId = stockI;
 		this.current_price = current_price;
 		this.rise_fall_price = rise_fall_price;
 		this.rise_fall_percent = rise_fall_percent;
@@ -34,13 +34,13 @@ public class industryPO {
 	}
 
 
-	public String getStockI() {
-		return stockI;
+	public String getStockId() {
+		return stockId;
 	}
 
 
-	public void setStockI(String stockI) {
-		this.stockI = stockI;
+	public void setStockId(String stockI) {
+		this.stockId = stockI;
 	}
 
 
