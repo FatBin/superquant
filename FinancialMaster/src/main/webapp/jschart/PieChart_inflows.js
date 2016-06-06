@@ -45,7 +45,7 @@ option = {
             name:'买入',
             type:'pie',
             selectedMode: 'single',
-            radius: [0, '45%'],
+            radius: [0, '50%'],
 
             label: {
                 normal: {
@@ -67,7 +67,7 @@ option = {
         {
             name:'卖出',
             type:'pie',
-            radius: ['65%', '90%'],
+            radius: ['65%', '92%'],
             label: {
                 normal: {
                     position: 'inner'

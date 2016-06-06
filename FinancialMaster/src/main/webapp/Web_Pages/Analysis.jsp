@@ -181,6 +181,6 @@
 	<script type="text/javascript" src="../js/rightnav.js"></script>
 	<script src="../jschart/RadarChart.js"></script>
 	<script src="../jschart/PieChart_inflows.js"></script>
-	<script src="../jschart/BarChart_inflows.js"></script>
+	<script src="../jschart/barChart_inflows.js"></script>
 </body>
 </html>

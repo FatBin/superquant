@@ -27,13 +27,19 @@ $.ajax({
 })
 
 option = {
-	title : {
-		text : '资金流入流出差额'
-	},
-	tooltip : {
-		trigger : 'axis'
-	},
-
+//	title : {
+//		text : '资金流入流出差额'
+//	},
+//	tooltip : {
+//		trigger : 'axis'
+//	},
+    grid: {
+    	top: '2%',
+        left: '3%',
+        right: '4%',
+        bottom: '10%',
+        containLabel: true
+    },
 	//	legend : {
 	//		data : [ '差额' ]
 	//	},
@@ -46,9 +52,7 @@ option = {
 		splitLine : {
 			show : false
 		},
-		lable : {
 
-		}
 	},
 	yAxis : {
 		type : 'value',
@@ -68,9 +72,9 @@ option = {
 			normal : {
 				color : function(params) {
 					if (gaps[params.dataIndex] > 0) {
-						return 'red';
+						return 'rgb(191,23,34)';
 					} else {
-						return 'green';
+						return 'rgb(11,137,62)';
 					}
 
 				}

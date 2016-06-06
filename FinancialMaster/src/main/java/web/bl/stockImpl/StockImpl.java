@@ -41,7 +41,7 @@ public class StockImpl implements StockInfo {
 //			日期、开盘价、收盘价、最高价、最低价、后复权价、成交量、换手率、市盈率、市净率
 			int index=0;
 			for (TradeRecord tradeRecord : records) {
-				historyData[index][0]=tradeRecord.getId().getDate();
+				historyData[index][0]=tradeRecord.getId().getDate();				
 				historyData[index][1]=tradeRecord.getOpen()+"";
 				historyData[index][2]=tradeRecord.getClose()+"";
 				closes[index]=tradeRecord.getClose();
@@ -53,6 +53,7 @@ public class StockImpl implements StockInfo {
 				turnovers[index]=tradeRecord.getTurnover();
 				historyData[index][8]=tradeRecord.getPe()+"";
 				historyData[index][9]=tradeRecord.getPb()+"";
+				System.out.println("date:"+historyData[index][0]+"pe"+historyData[index][8]+"pb"+historyData[index][9]);
                 index++;
 			}
 			
