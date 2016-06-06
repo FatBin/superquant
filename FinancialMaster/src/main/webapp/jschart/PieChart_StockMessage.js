@@ -1,43 +1,58 @@
 /**
  * 
  */
-var myChart = echarts.init(document.getElementById('pieChart_StockMessage'));
-var turnOver = [ 22, 78 ];
 
-option = {
-	tooltip : {
-		trigger : 'item',
-		formatter : "{d}%"
-	},
-	series : [ {
-		name : '换手率',
-		type : 'pie',
-		radius : [ '50%', '70%' ],
-		avoidLabelOverlap : false,
-		label : {
-			normal : {
-				show : true,
-				position : 'center',
-				formatter : '{b}',
-				textStyle : {
-					fontSize : '50',
-					fontWeight : 'bold'
+function pieChart(name, value1, value2, flag, fontSize,id) {
+	var myChart = echarts.init(document.getElementById(id));
+	var values = [];
+	values.push(value1);
+	values.push(value2);
+
+	function text(f) {
+		if (f == 1) {
+			return '%'
+		} else {
+			return ''
+		}
+	}
+	
+	option = {
+		tooltip : {
+			trigger : 'item',
+			formatter : "{d}%"
+		},
+		series : [ {
+			name : name,
+			type : 'pie',
+			radius : [ '50%', '70%' ],
+			avoidLabelOverlap : false,
+			label : {
+				normal : {
+					show : true,
+					position : 'center',
+					formatter : '{b}',
+					textStyle : {
+						fontSize : fontSize,
+						fontWeight : 'bold'
+					}
+
 				}
+			},
+			labelLine : {
+				normal : {
+					show : false
+				}
+			},
+			data : [ {
+				value : values[0],
+				name : name + '\n' + values[0] + text(flag)
+				
 
-			}
-		},
-		labelLine : {
-			normal : {
-				show : false
-			}
-		},
-		data :  [ {
-			value : turnOver[0],
-			name : '换手率\n' + turnOver[0] + '%'
-		}, {
-			value : turnOver[1]
-		} ] 
-	} ]
-};
+			}, {
+				value : values[1]
+			} ]
+		} ]
+	};
 
-myChart.setOption(option);
+	myChart.setOption(option);
+}

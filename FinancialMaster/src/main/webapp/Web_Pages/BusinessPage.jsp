@@ -111,25 +111,41 @@ li {
 						%>
 						<div id="item-name">
 							<%=list.getIndustry()%>
+
 						</div>
 						<div id="item-num">
 							<%=list.getCompany() + ""%>
 							家企业
 						</div>
 
-					 </div>
+					</div>
 					<div class="item-price item-top">
 						<div class="item-rate">
-							<%=list.getRise_fall()%>		
+							<%=list.getRise_fall()%>
+							%
+
 						</div>
 						<div class="item-avg">
 							<%=list.getAverage_price()%>
+
 						</div>
-					
+
 					</div>
-					<div class="item-right item-top"></div>
+					<div class="item-right item-top">
+						<div class="riser text-right">
+							<a style="color: #eb8a31;">领涨股：<%=list.getLeaderstock()%></a>
+						</div>
+						<div class="riser-price text-right"><%=list.getPrice()%></div>
+						<div class="riser-rate text-right"><%=list.getStock_rise_fall()%>%
+						</div>
+					</div>
+
 				</div>
-				<div class="business-extend" style="display: none;"></div>
+				<div class="business-extend" style="display: none;">
+					<div id="first" class="pie"></div>
+					<div id="second" class="pie"></div>
+					<div id="third" class="pie"></div>
+				</div>
 			</div>
 			<%
 				}
@@ -151,6 +167,13 @@ li {
 	<script src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+	<script src="../jschart/PieChart_StockMessage.js"></script>
+	<script>
+		pieChart('shaque', 100, 90, 1, 24, 'first')
+	</script>
+	<script>
+		pieChart('shaque', 100, 90, 1, 24, 'second')
+	</script>
 </body>
 
 
