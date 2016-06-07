@@ -24,6 +24,8 @@ public class IndustryData implements IndustryDataService {
 	public ArrayList<industriesPO> getIndustryData() throws Exception {
 		return IndustriesUpdate.getIndustries();
 	}
+	
+	
 
 	@Override
 	public ArrayList<industryPO> getIndustry(String industryName) throws Exception {
@@ -77,6 +79,19 @@ public class IndustryData implements IndustryDataService {
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+
+
+
+	@Override
+	public industriesPO getIndustriesPO(String IndustryName) throws Exception{
+		ArrayList<industriesPO> arrayList=getIndustryData();
+		for (industriesPO industriesPO : arrayList) {
+			if (industriesPO.getIndustry().equals(IndustryName)) {
+				return industriesPO;
+			}
+		}
+		return new industriesPO("", 0, 0, 0, 0, 0, 0, "", 0, 0);
 	}
 	
 }

@@ -13,7 +13,10 @@ public interface IndustryDataService {
 	 */
 	public ArrayList<industriesPO> getIndustryData() throws Exception;
 	
-	
+	/*
+	 * get the up-to-date data one of the industries,according to the Industry
+	 */
+	public industriesPO getIndustriesPO(String IndustryName) throws Exception;
 	
 	/*
 	 * get the specific data of the industry
