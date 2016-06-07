@@ -86,13 +86,14 @@ li {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
+
+
 	<div class="container">
 		<div class="compare" style="height: 450px;">
 			<h3 class="title" style="margin-top: 140px; height: 45px;">行业涨跌榜</h3>
 			<div id="business_barchart"
 				style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
 		</div>
-
 		<%
 			BusinessListVO businessListVO = (BusinessListVO) session.getAttribute("BusinessList");
 			ArrayList<industriesPO> businessList = businessListVO.getBusinessList();
@@ -117,27 +118,49 @@ li {
 							<%=list.getCompany() + ""%>
 							家企业
 						</div>
-
 					</div>
+
 					<div class="item-price item-top">
-						<div class="item-rate">
+						<%
+							if (list.getRise_fall() > 0) {
+						%>
+						<div class="item-rate red">
 							<%=list.getRise_fall()%>
 							%
-
 						</div>
+						<div class="glyphicon glyphicon-arrow-up red"></div>
+						<%
+							} else {
+						%>
+						<div class="item-rate green">
+							<%=list.getRise_fall()%>
+							%
+						</div>
+						<div class="glyphicon glyphicon-arrow-down red"></div>
+						<%
+							}
+						%>
+
+
 						<div class="item-avg">
 							<%=list.getAverage_price()%>
 
 						</div>
 
 					</div>
+
 					<div class="item-right item-top">
 						<div class="riser text-right">
 							<a style="color: #eb8a31;">领涨股：<%=list.getLeaderstock()%></a>
 						</div>
-						<div class="riser-price text-right"><%=list.getPrice()%></div>
-						<div class="riser-rate text-right"><%=list.getStock_rise_fall()%>%
+						<div class="riser-price text-right"><%=list.getPrice()%>
+							元
 						</div>
+						<div class="glyphicon glyphicon-arrow-up red"
+							style="float: right; margin-top: 3px;"></div>
+						<div class="riser-rate text-right red"><%=list.getStock_rise_fall()%>%
+						</div>
+
 					</div>
 
 				</div>
@@ -150,13 +173,33 @@ li {
 			<%
 				}
 			%>
+
+			<nav>
+			<ul class="pagination">
+				<li><a href="#" aria-label="Previous"> <span
+						aria-hidden="true">&laquo;</span>
+				</a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">6</a></li>
+				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				</a></li>
+			</ul>
+			</nav>
+
 		</div>
 	</div>
 
+	<!-- bottom section -->
+	<div style="background-color: #766F67; height: 200px;"></div>
 
-
-
-
+	<div style="background-color: #645D55; height: 50px;">
+		<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+			SuperQuant</p>
+	</div>
 
 
 	<!-- Plugin JavaScript -->
@@ -169,10 +212,9 @@ li {
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../jschart/PieChart_StockMessage.js"></script>
 	<script>
-		pieChart('shaque', 100, 90, 1, 24, 'first')
-	</script>
-	<script>
-		pieChart('shaque', 100, 90, 1, 24, 'second')
+		pieChart('成交量', 0, 24, 0, 18, 'first')
+		pieChart('换手率', 100, 90, 1, 18, 'second')
+		pieChart('流入资金量', 100, 90, 0, 18, 'third')
 	</script>
 </body>
 

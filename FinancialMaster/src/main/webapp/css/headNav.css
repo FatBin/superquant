@@ -145,3 +145,11 @@ input[type="submit"] {
 .a-active{
 	color:#F8B31D;
 }
+
+.red{
+	color:rgb(191,23,34);
+}
+
+.green{
+	color:rgb(11,137,62);
+}

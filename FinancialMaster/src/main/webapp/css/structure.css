@@ -82,6 +82,7 @@
 }
 
 .item-rate{
+	display:inline-block;
 	margin-top:14px;
 	font-size:20px;
 }
@@ -100,8 +101,14 @@
 
 .pie{
 	display:inline-block;
-	margin-left:45px;
+	margin-left:30px;
 	marign-top:15px;
 	height:240px;
 	width:240px;
 }
+
+.riser-rate{
+	float:right;
+	display:inline-block;
+}
+
