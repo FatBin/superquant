@@ -98,9 +98,7 @@
 	</blockquote>
 
 	<!-- 近期走势图 -->
-	<div
-		style="height: 143px; width: 910px; background-color: gray; margin: 20px auto;">
-	</div>
+	<div class="tendcy_div"></div>
 
 	<blockquote class="quotelbl">
 		<p style="line-height: 50px;">综合分析</p>
@@ -109,16 +107,16 @@
 	</blockquote>
 
 	<!-- 综合分析 -->
-	<div
-		style="height: 400px; width: 910px; background-color: gray; margin: 20px auto;">
+	<div class="comprehensive_div">
+		<div class="chart_compre"></div>
 	</div>
 
-	<blockquote class="comprehensive_div">
+	<blockquote class="quotelbl">
 		<p style="line-height: 50px;">详细数据</p>
 	</blockquote>
 
 	<!-- 详细数据 -->
-	<div class="detaildata_div"></div>
+	<div class="comprehensive_div"></div>
 
 	<!-- bottom section -->
 	<div style="margin-top: 50px;">
