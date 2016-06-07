@@ -98,7 +98,7 @@
 	</blockquote>
 
 	<!-- 近期走势图 -->
-	<div class="tendcy_div"></div>
+	<div id="stock_history_chart" class="tendcy_div"></div>
 
 	<blockquote class="quotelbl">
 		<p style="line-height: 50px;">综合分析</p>
@@ -108,7 +108,7 @@
 
 	<!-- 综合分析 -->
 	<div class="comprehensive_div">
-		<div class="chart_compre"></div>
+		<div id="dashboard" class="chart_compre"></div>
 	</div>
 
 	<blockquote class="quotelbl">
@@ -136,6 +136,8 @@
 	<script type="text/javascript">
 		getKLine("stock");
 	</script>
+	<script src="../jschart/StockHistoryChart.js"></script>
+	<script src="../jschart/Dashboard.js"></script>
 	<script src="../js/bootstrapSwitch.js"></script>
 
 	<script type="text/javascript" src="../js/searchHint.js"></script>
