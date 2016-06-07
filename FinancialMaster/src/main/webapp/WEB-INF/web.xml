@@ -115,7 +115,7 @@
     <url-pattern>/GetMarketkLine</url-pattern>
   </servlet-mapping>
   
-    <!-- get：，post：为个股k线图提供数据 -->    
+    <!-- get：为个股历史数据折线图提供数据，post：为个股k线图提供数据 -->    
   <servlet>
     <servlet-name>GetStockKLineServlet</servlet-name>
     <servlet-class>servlet.stockcheck.GetStockKLineServlet</servlet-class>

@@ -3,6 +3,7 @@ package web.bl.businessImpl;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import DAO.pojo.Industries;
 import DAO.pojo.Stock;
@@ -48,10 +49,21 @@ public class BusinessImpl implements BusinessInfo {
 		ArrayList<industryPO> industryPOs=new ArrayList<industryPO>();
 		ArrayList<BusinessItemVO> businessItemVOs=new ArrayList<BusinessItemVO>();
 		try {
-			industryDataService.getIndustryDuringTime(businessname, starttime, endtime);
-			industryPOs=industryDataService.getIndustry(businessname);
+			//添加该行业最新数据的PO
+			industriesPO uptodate_message=industryDataService.getIndustriesPO(businessname);
+			businessVO.setUptodate_message(uptodate_message);
+			
+			
+			
+			//添加行业历史数据
+			List<Industries> historyList=industryDataService.getIndustryDuringTime(businessname, starttime, endtime);
+			for (Industries industries : historyList) {
+				historyData.add(industries);
+			}
 			businessVO.setHistoryData(historyData);
 			
+			//添加行业所包含所有公司的最新数据
+			industryPOs=industryDataService.getIndustry(businessname);						
 			for (industryPO company : industryPOs) {
 				Stock stock=InitFactoryServlet.getStock(company.getStockId());
 				BusinessItemVO businessItemVO=new BusinessItemVO(
@@ -63,8 +75,7 @@ public class BusinessImpl implements BusinessInfo {
 						company.getInflows(), company.getVolume(), 
 						company.getPrice(), company.getTurnover());
 				businessItemVOs.add(businessItemVO);
-			}
-			
+			}			
 			businessVO.setBusinessItemVOs(businessItemVOs);
 		} catch (Exception e) {
 			e.printStackTrace();

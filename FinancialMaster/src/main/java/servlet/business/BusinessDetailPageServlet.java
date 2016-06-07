@@ -41,15 +41,6 @@ public class BusinessDetailPageServlet extends HttpServlet {
 		String businessname=request.getParameter("BusinessName");
 		BusinessInfo businessInfo=new BusinessImpl();
 		businessVO=businessInfo.getBusiness(businessname);
-		
-		BusinessListVO businessListVO=(BusinessListVO) request.getSession().getAttribute("BusinessList") ;
-		ArrayList<industriesPO> industriesPOs=businessListVO.getBusinessList();
-		for (industriesPO i : industriesPOs) {
-			if(i.getIndustry().equals(businessname)){
-				businessVO.setUptodate_message(i);
-				break;
-			}
-		}
 		request.getSession().setAttribute("BusinessDetail",businessVO);
 		
 		response.sendRedirect(request.getContextPath()+"/Web_Pages/BusinessPage.jsp");

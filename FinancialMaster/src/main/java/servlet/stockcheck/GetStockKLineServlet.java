@@ -35,8 +35,26 @@ public class GetStockKLineServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	 	StockDetailVO sv=(StockDetailVO)request.getSession().getAttribute("StockDetail");
+	     //		日期、开盘价、收盘价、最高价、最低价、后复权价、成交量、换手率、市盈率、市净率
+			String[][] historyData=sv.getHistoryData();
+			double[] rise_falls=sv.getRise_fallList();
+			int size=historyData.length;
+			String data="[";
+			for(int i=size-2;i>=0;i--){
+				data=data+"{'date':'"+historyData[i][0]+
+						"','rise_fall':"+rise_falls[i]+
+						",'turnover':"+historyData[i][7]+
+						",'pe':"+historyData[i][8]+
+						",'pb':"+historyData[i][9]+"},";
+			}
+			data+="]";
+
+			JSONArray json = new JSONArray(data);
+			PrintWriter out = response.getWriter();
+			out.println(json);
+			out.flush();
+			out.close();	
 	}
 
 	/**

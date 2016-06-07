@@ -8,9 +8,17 @@ import DAO.pojo.TradeRecord;
 import ENUM.ManageState;
 import PO.UpToDateStockPO;
 import VO.Analyze_BasicItemsVO;
+import VO.Analyze_ResultVO;
+import VO.BenchVO;
+import VO.BusinessItemVO;
+import VO.BusinessVO;
 import VO.StockDetailVO;
 import data.StockData.StockData;
 import dataservice.StockDataService.StockDataService;
+import web.bl.benchImpl.BenchImpl;
+import web.bl.businessImpl.BusinessImpl;
+import web.blservice.benchInfo.BenchInfo;
+import web.blservice.businessInfo.BusinessInfo;
 import web.blservice.stockInfo.StockInfo;
 
 public class StockImpl implements StockInfo {
@@ -27,18 +35,18 @@ public class StockImpl implements StockInfo {
 		StockDetailVO stockDetailVO=new StockDetailVO();
 		
 		try {
+			//最新数据获取
 			UpToDateStockPO upToDateMessage=stockDataService.getUpToDateStockPO(code);
 			List<TradeRecord> records=stockDataService.getStockRecord(code, starttime, endtime);			
 			int size=records.size();
 			
 			String[][] historyData=new String[size][10];
 			double[] closes=new double[size];
+			double[] rise_fallList=new double[size-1];
 			double[] turnovers=new double[size];
-
 			
-			
-			
-//			日期、开盘价、收盘价、最高价、最低价、后复权价、成交量、换手率、市盈率、市净率
+			//历史数据模块
+                  //日期、开盘价、收盘价、最高价、最低价、后复权价、成交量、换手率、市盈率、市净率
 			int index=0;
 			for (TradeRecord tradeRecord : records) {
 				historyData[index][0]=tradeRecord.getId().getDate();				
@@ -53,10 +61,12 @@ public class StockImpl implements StockInfo {
 				turnovers[index]=tradeRecord.getTurnover();
 				historyData[index][8]=tradeRecord.getPe()+"";
 				historyData[index][9]=tradeRecord.getPb()+"";
-//				System.out.println("date:"+historyData[index][0]+"pe"+historyData[index][8]+"pb"+historyData[index][9]);
                 index++;
 			}
 			
+			for(int i=0;i<size-1;i++){
+				rise_fallList[i]=(closes[i]-closes[i+1])/closes[i+1];
+			}
 			
 			//计算基本项
 			int m=size,n=size;
@@ -67,8 +77,8 @@ public class StockImpl implements StockInfo {
 				m=30;
 			}
 
+			//基本分析数据获取与计算
 			double priceStability=1-getAmendatoryStandardDevition(turnovers,m);
-			System.out.println(upToDateMessage.getRise_fall());
 			double turnOver=getAvg(turnovers,n);
 			double ups_and_downs=0;
 			double quantity_relative_ratio=0;
@@ -93,12 +103,34 @@ public class StockImpl implements StockInfo {
 			analyze_BasicItemsVO.setTurnOver(turnOver);
 			analyze_BasicItemsVO.setPe(pe);
 			analyze_BasicItemsVO.setPb(pb);
-
 			
+			//得到沪深300大盘历史数据
+			BenchInfo benchInfo=new BenchImpl();
+			BenchVO benchVO=benchInfo.getStockMarket("沪深300");
+			
+			//得到所属行业的vo
+			BusinessInfo businessInfo=new BusinessImpl();
+			BusinessVO businessVO=businessInfo.getBusiness(upToDateMessage.getIndustry());
+			
+			//声明空的分析结果的VO
+			Analyze_ResultVO analyze_ResultVO=new Analyze_ResultVO();
+
+			//设置股票最新信息
 			stockDetailVO.setUpToDateMessage(upToDateMessage);
+			//设置历史数据
 			stockDetailVO.setHistoryData(historyData);			
+			//设置基本分析初步
 			stockDetailVO.setAnalyze_BasicItemsVO(analyze_BasicItemsVO);
-		
+			//设置历史涨跌率列表
+			stockDetailVO.setRise_fallList(rise_fallList);			
+			//设置沪深300大盘历史数据
+			stockDetailVO.setBenchVO(benchVO);
+			//设置所属行业VO
+			stockDetailVO.setBusinessVO(businessVO);
+			//设置空的综合分析结果
+			stockDetailVO.setAnalyze_ResultVO(analyze_ResultVO);
+			
+			//分析该支股票
 			analyze(stockDetailVO);
 			
 		} catch (Exception e) {
@@ -147,6 +179,8 @@ public class StockImpl implements StockInfo {
 	}
 	
 	private void analyze(StockDetailVO stockDetailVO) {
+		
+		
 		
 	}
 
