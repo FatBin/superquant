@@ -40,3 +40,19 @@ span_d.iner {
 <div id="content"> <span class="out"></span><span class="iner"></span> <span class="right"></span>
   <p>不管写什么内容，总之就是要实现无图小三角，要是有背景颜色那倒是极好的，没有的话也可以，就是稍微麻烦一点</p>
 </div> */
+
+.content .text_low{
+	position: absolute;
+	width:70px;
+	height:25px;
+	left:95px;
+	top: 17px;
+}
+
+.content .text_high{
+	position: absolute;
+	width:70px;
+	height:25px;
+	left:185px;
+	top: 17px;
+}

@@ -387,6 +387,56 @@ table td {
 
 	</div>
 
+	<!-- 策略制定 -->
+	<div id="timepickMod" class="content"
+		style="display: block; width: 290px; height: 200px;">
+		<span_d class="out"></span_d>
+		<span_d class="iner"></span_d>
+
+		<!-- 价格 -->
+		<div style="margin-top: 10px;">
+			<input id="price_box" type="checkbox" /> <span>价格区间</span> <input
+				id="getprice_low" class="form-control text_low" type="text"
+				readonly="true"> <input id="getprice_high"
+				class="form-control text_high" type="text" readonly="true">
+		</div>
+
+		<!-- 成交量 -->
+		<div style="margin-top: 15px;">
+			<input id="volume_box" type="checkbox" /> <span>成交量区间</span> <input
+				id="getvolume_low" class="form-control text_low" type="text"
+				readonly="true" style="top: 50px;"> <input
+				id="getvolume_high" class="form-control text_high" type="text"
+				readonly="true" style="top: 50px;">
+		</div>
+
+		<!-- 换手率 -->
+		<div style="margin-top: 15px;">
+			<input id="turnover_box" type="checkbox" /> <span>换手率区间</span> <input
+				id="getturnover_low" class="form-control text_low" type="text"
+				readonly="true" style="top: 85px;"> <input
+				id="getturnover_high" class="form-control text_high" type="text"
+				readonly="true" style="top: 85px;">
+		</div>
+
+		<!-- pe -->
+		<div style="margin-top: 15px;">
+			<input id="pe_box" type="checkbox" /> <span>pe区间</span> <input
+				id="getpe_low" class="form-control text_low" type="text"
+				readonly="true" style="top: 120px;"> <input id="getpe_high"
+				class="form-control text_high" type="text" readonly="true"
+				style="top: 120px;">
+		</div>
+
+		<div>
+			<input type="button" class="btn add_cancel_btn" value="修改"
+				id="stbtn_1" style="margin-left: 105px; margin-top: 20px;" /> <input
+				type="button" class="btn add_cancel_btn" value="取消"
+				onclick="modifyCancel()"
+				style="margin-left: 16px; margin-top: 20px;" />
+		</div>
+	</div>
+
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>

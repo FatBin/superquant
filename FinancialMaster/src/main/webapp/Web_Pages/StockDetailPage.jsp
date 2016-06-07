@@ -20,14 +20,12 @@
 
 <link href="../css/bootstrapSwitch.css" rel="stylesheet" type="text/css">
 
+<link href="../css/stockdetailstyle.css" rel="stylesheet"
+	type="text/css">
+
 <script src="../js/jquery.min.js"></script>
 <script src="../js/echarts.min.js"></script>
 
-<style>
-li {
-	list-style-type: none;
-}
-</style>
 </head>
 
 <body id="page-top" class="index">
@@ -81,50 +79,55 @@ li {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div
-		style="height: 40px; font-size: 28px; line-height: 40px; font-family: PingFangSC-Regular; margin-top: 140px; margin-left: 250px;">股票名称(编号)</div>
+	<div class="headlbl">股票名称(编号)</div>
 
-	<blockquote
-		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
+	<blockquote class="quotelbl">
 		<p style="line-height: 50px;">最新数据</p>
 	</blockquote>
 
-	<div class="switch switch-small"
-		style="float: right; margin-right: 300px; margin-bottom: -30px;"
-		data-on-label=" " data-off-label="对比">
+	<div class="switch switch-small switchstyle" data-on-label=" "
+		data-off-label="对比">
 		<input type="checkbox" unchecked />
 	</div>
 
-	<div id="klinechart"
-		style="width: 850px; height: 910px; margin: 20px auto;"></div>
+	<!-- k线图 -->
+	<div id="klinechart" class="kline_div"></div>
 
-	<blockquote
-		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
+	<blockquote class="quotelbl">
 		<p style="line-height: 50px;">近期走势图</p>
 	</blockquote>
 
+	<!-- 近期走势图 -->
 	<div
 		style="height: 143px; width: 910px; background-color: gray; margin: 20px auto;">
 	</div>
 
-	<blockquote
-		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
+	<blockquote class="quotelbl">
 		<p style="line-height: 50px;">综合分析</p>
-		
-		<a href="Analysis.jsp">更专业的分析</a>
+
+		<a class="toAnalysis" href="Analysis.jsp">更专业的分析</a>
 	</blockquote>
 
+	<!-- 综合分析 -->
 	<div
 		style="height: 400px; width: 910px; background-color: gray; margin: 20px auto;">
 	</div>
 
-	<blockquote
-		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin: 20px auto; margin-top: 20px;">
+	<blockquote class="comprehensive_div">
 		<p style="line-height: 50px;">详细数据</p>
 	</blockquote>
 
-	<div
-		style="height: 400px; width: 910px; background-color: gray; margin: 20px auto;">表格
+	<!-- 详细数据 -->
+	<div class="detaildata_div"></div>
+
+	<!-- bottom section -->
+	<div style="margin-top: 50px;">
+		<div style="background-color: #766F67; height: 200px;"></div>
+
+		<div style="background-color: #645D55; height: 50px;">
+			<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+				SuperQuant</p>
+		</div>
 	</div>
 
 	<!-- Plugin JavaScript -->

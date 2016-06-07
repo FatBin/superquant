@@ -1,0 +1,54 @@
+li {
+	list-style-type: none;
+}
+
+.headlbl {
+	height: 40px;
+	font-size: 28px;
+	line-height: 40px;
+	font-family: PingFangSC-Regular;
+	margin-top: 140px;
+	margin-left: 250px;
+}
+
+.quotelbl {
+	height: 50px;
+	width: 760px;
+	background-color: rgb(249, 248, 243);
+	margin: 20px auto;
+	margin-top: 20px;
+	position: relative;
+}
+
+.switchstyle {
+	float: right;
+	margin-right: 300px;
+	margin-bottom: -30px;
+}
+
+.kline_div {
+	width: 850px;
+	height: 910px;
+	margin: 20px auto;
+}
+
+.comprehensive_div {
+	height: 50px;
+	width: 760px;
+	background-color: rgb(249, 248, 243);
+	margin: 20px auto;
+	margin-top: 20px;
+}
+
+.detaildata_div {
+	height: 400px;
+	width: 910px;
+	background-color: gray;
+	margin: 20px auto;
+}
+
+.quotelbl .toAnalysis {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
