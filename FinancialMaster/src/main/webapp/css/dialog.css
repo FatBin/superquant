@@ -9,7 +9,7 @@
 	position: relative;
 	margin: 20px auto;
 	border: 1px solid #CCC;
-	background-color:white;
+	background-color: white;
 }
 
 span_d {
@@ -40,19 +40,39 @@ span_d.iner {
 <div id="content"> <span class="out"></span><span class="iner"></span> <span class="right"></span>
   <p>不管写什么内容，总之就是要实现无图小三角，要是有背景颜色那倒是极好的，没有的话也可以，就是稍微麻烦一点</p>
 </div> */
-
-.content .text_low{
+.content .text_low {
 	position: absolute;
-	width:70px;
-	height:25px;
-	left:95px;
-	top: 17px;
+	width: 70px;
+	height: 25px;
+	left: 115px;
+	top: 21px;
 }
 
-.content .text_high{
+.content .text_high {
 	position: absolute;
-	width:70px;
-	height:25px;
-	left:185px;
-	top: 17px;
+	width: 70px;
+	height: 25px;
+	left: 195px;
+	top: 21px;
+}
+
+.combox {
+	margin-top: 15px;
+	margin-left: 20px;
+}
+
+.content .make_btn {
+	margin-left: 18px;
+	margin-top: 15px;
+	width: 110px;
+	background-color: #766F67;
+	color: white;
+}
+
+.content .cancel_btn {
+	margin-left: 16px;
+	margin-top: 15px;
+	width: 110px;
+	background-color: rgb(230, 230, 230);
+	color: #766F67;
 }

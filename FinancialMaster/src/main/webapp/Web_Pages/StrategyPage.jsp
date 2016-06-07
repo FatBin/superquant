@@ -200,11 +200,9 @@ table td {
 			<i class="detailname">买入策略</i>
 
 			<div style="float: left; margin-right: 20px;">
-				<select id="buyinst" class="form-control" style="width: 100px;">
-					<option>策略一</option>
-					<option>策略二</option>
-					<option>策略三</option>
-				</select>
+				<input id="buyinst" class="form-control" size="16" type="text"
+					value="" style="width: 100px; cursor: pointer" placeholder="查看详情"
+					readonly onclick="showSTmake(this)">
 			</div>
 
 		</div>
@@ -214,11 +212,9 @@ table td {
 			<i class="detailname">卖出策略</i>
 
 			<div style="float: left; margin-right: 20px;">
-				<select id="soldoutst" class="form-control" style="width: 100px;">
-					<option>策略一</option>
-					<option>策略二</option>
-					<option>策略三</option>
-				</select>
+				<input id="soldoutst" class="form-control" size="16" type="text"
+					value="" style="width: 100px; cursor: pointer" placeholder="查看详情"
+					readonly onclick="showSTmake(this)">
 			</div>
 		</div>
 	</div>
@@ -230,11 +226,8 @@ table td {
 			<i class="detailname">其他策略</i>
 
 			<div style="float: left; margin-right: 20px;">
-				<select id="otherst" class="form-control" style="width: 100px;">
-					<option>策略一</option>
-					<option>策略二</option>
-					<option>策略三</option>
-				</select>
+				<input id="otherst" class="form-control" size="16" type="text"
+					value="" style="width: 100px;" placeholder="敬请期待" readonly>
 			</div>
 		</div>
 
@@ -338,26 +331,6 @@ table td {
 		</div>
 	</div>
 
-	<!-- combox -->
-	<div id="comboxMod" class="content" style="display: none;">
-		<span_d class="out"></span_d>
-		<span_d class="iner"></span_d>
-
-		<div>
-			<div>
-				<select id="modselect" class="form-control" style="width: 100px;">
-					<option>策略一</option>
-					<option>策略二</option>
-					<option>策略三</option>
-				</select> <input type="button" class="btn add_cancel_btn" value="修改"
-					id="modCon_3" style="margin-left: 110px; margin-top: -52px;" /> <input
-					type="button" class="btn add_cancel_btn" value="取消"
-					onclick="modifyCancel()"
-					style="margin-left: 170px; margin-top: -49px;" />
-			</div>
-		</div>
-	</div>
-
 	<!-- timepick -->
 	<div id="timepickMod" class="content"
 		style="display: none; width: 290px;">
@@ -387,53 +360,119 @@ table td {
 
 	</div>
 
-	<!-- 策略制定 -->
-	<div id="timepickMod" class="content"
-		style="display: block; width: 290px; height: 200px;">
+	<!-- 策略制定 添加策略时显示 -->
+	<div id="stMake" class="content"
+		style="display: none; width: 290px; height: 240px;">
 		<span_d class="out"></span_d>
 		<span_d class="iner"></span_d>
 
 		<!-- 价格 -->
-		<div style="margin-top: 10px;">
+		<div class="combox">
 			<input id="price_box" type="checkbox" /> <span>价格区间</span> <input
-				id="getprice_low" class="form-control text_low" type="text"
-				readonly="true"> <input id="getprice_high"
-				class="form-control text_high" type="text" readonly="true">
+				id="getprice_low" class="form-control text_low" type="text" readonly>
+			<input id="getprice_high" class="form-control text_high" type="text"
+				readonly>
 		</div>
 
 		<!-- 成交量 -->
-		<div style="margin-top: 15px;">
+		<div class="combox">
 			<input id="volume_box" type="checkbox" /> <span>成交量区间</span> <input
 				id="getvolume_low" class="form-control text_low" type="text"
-				readonly="true" style="top: 50px;"> <input
-				id="getvolume_high" class="form-control text_high" type="text"
-				readonly="true" style="top: 50px;">
+				readonly style="top: 55px;"> <input id="getvolume_high"
+				class="form-control text_high" type="text" readonly
+				style="top: 55px;">
 		</div>
 
 		<!-- 换手率 -->
-		<div style="margin-top: 15px;">
+		<div class="combox">
 			<input id="turnover_box" type="checkbox" /> <span>换手率区间</span> <input
 				id="getturnover_low" class="form-control text_low" type="text"
-				readonly="true" style="top: 85px;"> <input
-				id="getturnover_high" class="form-control text_high" type="text"
-				readonly="true" style="top: 85px;">
+				readonly style="top: 90px;"> <input id="getturnover_high"
+				class="form-control text_high" type="text" readonly
+				style="top: 90px;">
 		</div>
 
 		<!-- pe -->
-		<div style="margin-top: 15px;">
+		<div class="combox">
 			<input id="pe_box" type="checkbox" /> <span>pe区间</span> <input
-				id="getpe_low" class="form-control text_low" type="text"
-				readonly="true" style="top: 120px;"> <input id="getpe_high"
-				class="form-control text_high" type="text" readonly="true"
-				style="top: 120px;">
+				id="getpe_low" class="form-control text_low" type="text" readonly
+				style="top: 125px;"> <input id="getpe_high"
+				class="form-control text_high" type="text" readonly
+				style="top: 125px;">
+		</div>
+
+		<!-- pb -->
+		<div class="combox">
+			<input id="pb_box" type="checkbox" /> <span>pb区间</span> <input
+				id="getpb_low" class="form-control text_low" type="text" readonly
+				style="top: 160px;"> <input id="getpb_high"
+				class="form-control text_high" type="text" readonly
+				style="top: 160px;">
 		</div>
 
 		<div>
-			<input type="button" class="btn add_cancel_btn" value="修改"
-				id="stbtn_1" style="margin-left: 105px; margin-top: 20px;" /> <input
-				type="button" class="btn add_cancel_btn" value="取消"
-				onclick="modifyCancel()"
-				style="margin-left: 16px; margin-top: 20px;" />
+			<input type="button" class="btn add_cancel_btn make_btn" value="制订"
+				id="stmake_btn" /> <input type="button"
+				class="btn add_cancel_btn cancel_btn" value="取消"
+				onclick="modifyCancel()" />
+		</div>
+	</div>
+
+	<!-- 策略制定 修改时显示 -->
+	<div id="stMod" class="content"
+		style="display: none; width: 290px; height: 240px;">
+		<span_d class="out"></span_d>
+		<span_d class="iner"></span_d>
+
+		<!-- 价格 -->
+		<div class="combox">
+			<input id="price_box_2" type="checkbox" /> <span>价格区间</span> <input
+				id="getprice_low_2" class="form-control text_low" type="text"
+				readonly> <input id="getprice_high_2"
+				class="form-control text_high" type="text" readonly>
+		</div>
+
+		<!-- 成交量 -->
+		<div class="combox">
+			<input id="volume_box_2" type="checkbox" /> <span>成交量区间</span> <input
+				id="getvolume_low_2" class="form-control text_low" type="text"
+				readonly style="top: 55px;"> <input id="getvolume_high_2"
+				class="form-control text_high" type="text" readonly
+				style="top: 55px;">
+		</div>
+
+		<!-- 换手率 -->
+		<div class="combox">
+			<input id="turnover_box_2" type="checkbox" /> <span>换手率区间</span> <input
+				id="getturnover_low_2" class="form-control text_low" type="text"
+				readonly style="top: 90px;"> <input id="getturnover_high_2"
+				class="form-control text_high" type="text" readonly
+				style="top: 90px;">
+		</div>
+
+		<!-- pe -->
+		<div class="combox">
+			<input id="pe_box_2" type="checkbox" /> <span>pe区间</span> <input
+				id="getpe_low_2" class="form-control text_low" type="text" readonly
+				style="top: 125px;"> <input id="getpe_high"
+				class="form-control text_high" type="text" readonly
+				style="top: 125px;">
+		</div>
+
+		<!-- pb -->
+		<div class="combox">
+			<input id="pb_box_2" type="checkbox" /> <span>pb区间</span> <input
+				id="getpb_low_2" class="form-control text_low" type="text" readonly
+				style="top: 160px;"> <input id="getpb_high_2"
+				class="form-control text_high" type="text" readonly
+				style="top: 160px;">
+		</div>
+
+		<div>
+			<input type="button" class="btn add_cancel_btn make_btn" value="修改"
+				id="stbtn" /> <input type="button"
+				class="btn add_cancel_btn cancel_btn" value="取消"
+				onclick="modifyCancel()" />
 		</div>
 	</div>
 
