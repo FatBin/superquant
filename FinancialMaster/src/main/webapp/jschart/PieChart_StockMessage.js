@@ -19,7 +19,7 @@ function pieChart(name, value1, value2, flag, fontSize,id) {
 	option = {
 		tooltip : {
 			trigger : 'item',
-			formatter : "{d}%"
+			formatter : '{b}'
 		},
 		series : [ {
 			name : name,

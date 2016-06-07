@@ -12,11 +12,14 @@ public class StockDetailVO {
    //	日期、开盘价、收盘价、最高价、最低价、后复权价、成交量、换手率、市盈率、市净率
 	private String[][] historyData;
 	
-	//涨跌幅历史数据
+	//个股涨跌幅历史数据
 	private double[] rise_fallList;
 	
 	//所属大盘信息VO
 	private BenchVO benchVO;
+    //大盘涨跌幅历史数据
+    private double[] bench_rise_fallList;
+	
 	
 	//所属行业信息VO
 	private BusinessVO businessVO;
