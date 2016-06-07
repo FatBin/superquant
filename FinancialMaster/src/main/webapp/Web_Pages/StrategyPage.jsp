@@ -454,7 +454,7 @@ table td {
 		<div class="combox">
 			<input id="pe_box_2" type="checkbox" /> <span>pe区间</span> <input
 				id="getpe_low_2" class="form-control text_low" type="text" readonly
-				style="top: 125px;"> <input id="getpe_high"
+				style="top: 125px;"> <input id="getpe_high_2"
 				class="form-control text_high" type="text" readonly
 				style="top: 125px;">
 		</div>

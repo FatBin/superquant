@@ -33,13 +33,12 @@ function addStrategy() {
 
 	buylist[buycount] = new Array();
 	soldlist[soldcount] = new Array();
-	for (var i = 0; i < buytemp.length; i++) {
+	for (var i = 0; i < 10; i++) {
 		buylist[buycount][i] = buytemp[i];
 		soldlist[soldcount][i] = soldtemp[i];
 	}
 	buycount++;
 	soldcount++;
-alert(buylist[0][0])
 	//
 	// if (getInfo[2] > getInfo[3]) {
 	// alert("开始日期和结束日期是不是反啦");
@@ -138,12 +137,14 @@ function modifyST(td) {
 		// 策略内容
 		if (col == 4) {
 			for (var i = 0; i < texts_2.length; i++) {
-				document.getElementById(texts_2[i]).value = buylist[rowcount - 1 - row][i];
+				document.getElementById(texts_2[i]).value = buylist[rowcount
+						- 1 - row][i];
 			}
 
 		} else if (col == 5) {
 			for (var i = 0; i < texts_2.length; i++) {
-				document.getElementById(texts_2[i]).value = soldlist[rowcount - 1 - row][i];
+				document.getElementById(texts_2[i]).value = soldlist[rowcount
+						- 1 - row][i];
 			}
 		}
 
