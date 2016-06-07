@@ -121,12 +121,14 @@ function modifyST(td) {
 	var texts_2 = [ "getprice_low_2", "getprice_high_2", "getvolume_low_2",
 			"getvolume_high_2", "getturnover_low_2", "getturnover_high_2",
 			"getpe_low_2", "getpe_high_2", "getpb_low_2", "getpb_high_2" ];
+	var comboxs_2 = [ "price_box_2", "volume_box_2", "turnover_box_2", "pe_box_2", "pb_box_2" ];
 
 	// td的列数
 	var col = ($(td).parents("tr").find("td").index($(td))) - 1;
 	var row = $(td).parents("tr").parents("table").find("tr").index(
 			$(td).parents("tr")) - 1;
 	var rowcount = document.getElementById("strategyTable").rows.length - 1;
+	var pos = rowcount - 1 - row;
 
 	if (col != 6) {
 		var modiv = document.getElementById(dialogtype[col]);
@@ -137,14 +139,36 @@ function modifyST(td) {
 		// 策略内容
 		if (col == 4) {
 			for (var i = 0; i < texts_2.length; i++) {
-				document.getElementById(texts_2[i]).value = buylist[rowcount
-						- 1 - row][i];
+				document.getElementById(texts_2[i]).value = buylist[pos][i];
+			}
+			
+			for (var i = 0; i < comboxs_2.length; i++) {
+				if (buylist[pos][2 * i] == "" && buylist[pos][2 * i + 1] == "") {
+					document.getElementById(texts_2[2 * i]).readOnly = true;
+					document.getElementById(texts_2[2 * i + 1]).readOnly = true;
+					document.getElementById(comboxs_2[i]).checked = false;
+				} else {
+					document.getElementById(texts_2[2 * i]).readOnly = false;
+					document.getElementById(texts_2[2 * i + 1]).readOnly = false;
+					document.getElementById(comboxs_2[i]).checked = true;
+				}
 			}
 
 		} else if (col == 5) {
 			for (var i = 0; i < texts_2.length; i++) {
-				document.getElementById(texts_2[i]).value = soldlist[rowcount
-						- 1 - row][i];
+				document.getElementById(texts_2[i]).value = soldlist[pos][i];
+			}
+			
+			for (var i = 0; i < comboxs_2.length; i++) {
+				if (soldlist[pos][2 * i] == "" && soldlist[pos][2 * i + 1] == "") {
+					document.getElementById(texts_2[2 * i]).readOnly = true;
+					document.getElementById(texts_2[2 * i + 1]).readOnly = true;
+					document.getElementById(comboxs_2[i]).checked = false;
+				} else {
+					document.getElementById(texts_2[2 * i]).readOnly = false;
+					document.getElementById(texts_2[2 * i + 1]).readOnly = false;
+					document.getElementById(comboxs_2[i]).checked = true;
+				}
 			}
 		}
 
