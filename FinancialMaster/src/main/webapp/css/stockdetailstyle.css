@@ -20,12 +20,6 @@ li {
 	position: relative;
 }
 
-.switchstyle {
-	float: right;
-	margin-right: 300px;
-	margin-bottom: -30px;
-}
-
 .kline_div {
 	width: 850px;
 	height: 910px;
@@ -33,7 +27,7 @@ li {
 }
 
 .tendcy_div {
-	height: 143px;
+	height: 300px;
 	width: 910px;
 	background-color: #F8F7F6;
 	margin: 20px auto;

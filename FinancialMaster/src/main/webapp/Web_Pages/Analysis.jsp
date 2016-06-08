@@ -76,7 +76,7 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div style="margin-top: 130px; margin-left: 190px;">
+	<div class="titlediv">
 		<span class="titlelbl">个股分析</span>
 	</div>
 

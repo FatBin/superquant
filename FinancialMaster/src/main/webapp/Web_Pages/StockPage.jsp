@@ -97,9 +97,8 @@ th {
 	<!-- /.container-fluid --> </nav>
 
 	<div>
-		<p style="margin-top: 120px; font-size: 22px; margin-left: 180px;">热门股票推荐</p>
-		<div style="width: 850px; height: 489px; margin-left: 180px;">
-
+		<p style="margin-top: 120px; font-size: 22px; margin-left: 18%;">热门股票推荐</p>
+		<div style="width: 850px; margin: 20px auto;">
 			<!-- 股票列表 -->
 			<div>
 
@@ -165,7 +164,8 @@ th {
 				</table>
 
 			</div>
-			<div style="margin-left: 240px;">
+
+			<div style="margin-top: 20px; margin-left: 30%">
 				<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
 					onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
 					页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
@@ -179,7 +179,7 @@ th {
 
 	<!-- bottom section -->
 	<div
-		style="background-color: #766F67; height: 200px; margin-top: 180px;"></div>
+		style="background-color: #766F67; height: 200px; margin-top: 50px;"></div>
 
 	<div style="background-color: #645D55; height: 50px;">
 		<p style="color: white; text-align: center; line-height: 50px;">@Copyright

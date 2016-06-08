@@ -85,11 +85,6 @@
 		<p style="line-height: 50px;">最新数据</p>
 	</blockquote>
 
-	<div class="switch switch-small switchstyle" data-on-label=" "
-		data-off-label="对比">
-		<input type="checkbox" unchecked />
-	</div>
-
 	<!-- k线图 -->
 	<div id="klinechart" class="kline_div"></div>
 

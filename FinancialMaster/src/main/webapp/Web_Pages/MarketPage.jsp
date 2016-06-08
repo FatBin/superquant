@@ -18,26 +18,12 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
+<link href="../css/marketstyle.css" rel="stylesheet" type="text/css">
+
 <script src="../js/echarts.min.js"></script>
 <script src="../js/jquery.min.js"></script>
 
 <script>getKLine("market");</script>
-
-<style type="text/css">
-td {
-	text-align: center;
-	width: 110px;
-	height: 23px;
-}
-
-li {
-	list-style-type: none;
-}
-
-a {
-	cursor: pointer;
-}
-</style>
 
 </head>
 
@@ -98,7 +84,7 @@ a {
 		String[] benlist = benchListVO.getBenchList();
 	%>
 
-	<div style="margin-top: 140px; margin-left: 240px;">
+	<div class="combox">
 		<select id="stockSelect" class="form-control" style="width: 120px;"
 			onchange="changeStock(this.value);">
 
@@ -117,89 +103,77 @@ a {
 
 	</div>
 
-	<div style="margin-left: 140px;">
+	<blockquote class="quotediv">
+		<div>
+			<h5>最新数据</h5>
+		</div>
+	</blockquote>
 
-		<blockquote
-			style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 95px; margin-top: 20px; float: left;">
-			<div style="float: left;">
-				<h5>最新数据</h5>
-			</div>
-		</blockquote>
+	<div id="klinechart" class="kline_div"></div>
 
-		<div id="klinechart"
-			style="width: 850px; height: 910px; margin-left: 60px; margin-top: 20px;"></div>
-	</div>
-
-	<blockquote
-		style="height: 50px; width: 760px; background-color: rgb(249, 248, 243); margin-left: 240px; margin-top: 80px;">
+	<blockquote class="quotediv">
 		<h5>历史数据</h5>
 	</blockquote>
 
 	<!-- history data -->
-	<div
-		style="float: left; height: 300px; width: 1000px; margin-left: 240px; margin-top: 10px;">
 
-		<div>
 
-			<%!BenchVO sv;
+	<%!BenchVO sv;
 	String history_data[][];%>
+	<%
+		sv = (BenchVO) session.getAttribute("BenchMarket");
+		history_data = sv.getData();
+	%>
+
+	<table id="senfe" class="table_div">
+		<thead>
+			<tr align="center" valign="middle">
+				<td width="120" height="23" bgcolor="#ccc">日期</td>
+				<td width="106" bgcolor="#ccc">开盘价</td>
+				<td width="106" bgcolor="#ccc">最高价</td>
+				<td width="106" bgcolor="#ccc">最低价</td>
+				<td width="106" bgcolor="#ccc">收盘价</td>
+				<td width="107" bgcolor="#ccc">成交量(百万股)</td>
+				<td width="107" bgcolor="#ccc">成交额(亿元)</td>
+			</tr>
+		</thead>
+
+		<tbody id="group_one">
 			<%
-				sv = (BenchVO) session.getAttribute("BenchMarket");
-				history_data = sv.getData();
+				for (int i = 0; i < history_data.length; i++) {
+			%>
+			<tr align="center" valign="middle" onmouseover="mouseIn(<%=i + 1%>);"
+				onmouseout="mouseOut(<%=i + 1%>);">
+
+				<%
+					for (int j = 0; j < history_data[0].length; j++) {
+				%>
+
+				<td height="23"><%=history_data[i][j]%></td>
+
+				<%
+					}
+				%>
+			</tr>
+			<%
+				}
 			%>
 
-			<table id="senfe">
-				<thead>
-					<tr align="center" valign="middle">
-						<td width="120" height="23" bgcolor="#ccc">日期</td>
-						<td width="106" bgcolor="#ccc">开盘价</td>
-						<td width="106" bgcolor="#ccc">最高价</td>
-						<td width="106" bgcolor="#ccc">最低价</td>
-						<td width="106" bgcolor="#ccc">收盘价</td>
-						<td width="107" bgcolor="#ccc">成交量(百万股)</td>
-						<td width="107" bgcolor="#ccc">成交额(亿元)</td>
-					</tr>
-				</thead>
+		</tbody>
+	</table>
 
-				<tbody id="group_one">
-					<%
-						for (int i = 0; i < history_data.length; i++) {
-					%>
-					<tr align="center" valign="middle"
-						onmouseover="mouseIn(<%=i + 1%>);"
-						onmouseout="mouseOut(<%=i + 1%>);">
-
-						<%
-							for (int j = 0; j < history_data[0].length; j++) {
-						%>
-
-						<td height="23"><%=history_data[i][j]%></td>
-
-						<%
-							}
-						%>
-					</tr>
-					<%
-						}
-					%>
-
-				</tbody>
-			</table>
-
-		</div>
-		<div style="margin-left: 200px;">
-			<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
-				onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
-				页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
-				id="divFood"> </span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
-				value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
-				onclick="page.aimPage();">跳转</a>
-		</div>
+	<div class="pagelbl">
+		<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
+			onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
+			页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
+			id="divFood"> </span>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
+			value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
+			onclick="page.aimPage();">跳转</a>
 	</div>
 
 	<!-- bottom section -->
-	<div style="margin-top: 350px;">
+	<div style="margin-top: 50px;">
 		<div style="background-color: #766F67; height: 200px;"></div>
 
 		<div style="background-color: #645D55; height: 50px;">

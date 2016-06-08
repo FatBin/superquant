@@ -2,6 +2,11 @@ li {
 	list-style-type: none;
 }
 
+.titlediv{
+	margin-top: 130px;
+	margin-left: 17%;
+}
+
 .titlelbl {
 	font-size: 24px;
 	font-family: PingFangSC-Regular;
@@ -12,7 +17,7 @@ li {
 	border-radius: 2px;
 	width: 847px;
 	height: 43px;
-	margin-left: 190px;
+	margin: auto;
 	margin-top: 20px;
 }
 
@@ -29,7 +34,7 @@ li {
 	width: 847px;
 	background-color: #F8F7F6;
 	border-radius: 2px;
-	margin-left: 190px;
+	margin: auto;
 	position: relative;
 }
 

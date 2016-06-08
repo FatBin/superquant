@@ -12,6 +12,12 @@ var texts = [ "getprice_low", "getprice_high", "getvolume_low",
 		"getpe_high", "getpb_low", "getpb_high" ];
 var comboxs = [ "price_box", "volume_box", "turnover_box", "pe_box", "pb_box" ];
 
+var texts_2 = [ "getprice_low_2", "getprice_high_2", "getvolume_low_2",
+		"getvolume_high_2", "getturnover_low_2", "getturnover_high_2",
+		"getpe_low_2", "getpe_high_2", "getpb_low_2", "getpb_high_2" ];
+var comboxs_2 = [ "price_box_2", "volume_box_2", "turnover_box_2", "pe_box_2",
+		"pb_box_2" ];
+
 function addStrategy() {
 
 	var getInfo = [];
@@ -118,11 +124,6 @@ function modifyST(td) {
 	var buttontype = [ "modCon_1", "modCon_1", "modCon_2", "modCon_2", "stbtn",
 			"stbtn", "stbtn", "modCon_1" ];
 
-	var texts_2 = [ "getprice_low_2", "getprice_high_2", "getvolume_low_2",
-			"getvolume_high_2", "getturnover_low_2", "getturnover_high_2",
-			"getpe_low_2", "getpe_high_2", "getpb_low_2", "getpb_high_2" ];
-	var comboxs_2 = [ "price_box_2", "volume_box_2", "turnover_box_2", "pe_box_2", "pb_box_2" ];
-
 	// td的列数
 	var col = ($(td).parents("tr").find("td").index($(td))) - 1;
 	var row = $(td).parents("tr").parents("table").find("tr").index(
@@ -136,12 +137,18 @@ function modifyST(td) {
 			modiv.style.display = "block";
 		}
 
+		if (col == 4 || col == 5) {
+			for (var i = 0; i < comboxs_2.length; i++) {
+				var combox = document.getElementById(comboxs_2[i]);
+				combox.setAttribute("onclick", "setLimit_2(" + i + ")")
+			}
+		}
 		// 策略内容
 		if (col == 4) {
 			for (var i = 0; i < texts_2.length; i++) {
 				document.getElementById(texts_2[i]).value = buylist[pos][i];
 			}
-			
+
 			for (var i = 0; i < comboxs_2.length; i++) {
 				if (buylist[pos][2 * i] == "" && buylist[pos][2 * i + 1] == "") {
 					document.getElementById(texts_2[2 * i]).readOnly = true;
@@ -158,9 +165,10 @@ function modifyST(td) {
 			for (var i = 0; i < texts_2.length; i++) {
 				document.getElementById(texts_2[i]).value = soldlist[pos][i];
 			}
-			
+
 			for (var i = 0; i < comboxs_2.length; i++) {
-				if (soldlist[pos][2 * i] == "" && soldlist[pos][2 * i + 1] == "") {
+				if (soldlist[pos][2 * i] == ""
+						&& soldlist[pos][2 * i + 1] == "") {
 					document.getElementById(texts_2[2 * i]).readOnly = true;
 					document.getElementById(texts_2[2 * i + 1]).readOnly = true;
 					document.getElementById(comboxs_2[i]).checked = false;
@@ -178,8 +186,18 @@ function modifyST(td) {
 
 		var confirmMod = document.getElementById(buttontype[col]);
 		confirmMod.onclick = function() {
-			if (document.getElementById(inputtype[col]).value != "") {
-				td.innerHTML = document.getElementById(inputtype[col]).value;
+			if (col == 4) {
+				for (var i = 0; i < texts_2.length; i++) {
+					buylist[pos][i] = document.getElementById(texts_2[i]).value;
+				}
+			} else if (col == 5) {
+				for (var i = 0; i < texts_2.length; i++) {
+					soldlist[pos][i] = document.getElementById(texts_2[i]).value;
+				}
+			} else if (col != 6) {
+				if (document.getElementById(inputtype[col]).value != "") {
+					td.innerHTML = document.getElementById(inputtype[col]).value;
+				}
 			}
 			modifyCancel();
 		}
@@ -210,6 +228,10 @@ function deleteST() {
 	for (var i = boxlen - 1; i > 0; i--) {
 		if (boxs[i].checked == true) {
 			table.deleteRow(i);
+			buylist.splice(boxlen - 1 - i, 1);
+			soldlist.splice(boxlen - 1 - i, 1);
+			buycount--;
+			soldcount--;
 		}
 	}
 
@@ -332,6 +354,7 @@ function showSTmake(field) {
 	}
 }
 
+// 制定策略块
 function setLimit(pos) {
 
 	var combox = document.getElementById(comboxs[pos]);
@@ -346,5 +369,23 @@ function setLimit(pos) {
 		document.getElementById(texts[pos + 1]).value = "";
 		document.getElementById(texts[pos]).readOnly = true;
 		document.getElementById(texts[pos + 1]).readOnly = true;
+	}
+}
+
+// 修改策略块
+function setLimit_2(pos) {
+
+	var combox = document.getElementById(comboxs_2[pos]);
+
+	pos = pos * 2;
+
+	if (combox.checked == true) {
+		document.getElementById(texts_2[pos]).readOnly = false;
+		document.getElementById(texts_2[pos + 1]).readOnly = false;
+	} else {
+		document.getElementById(texts_2[pos]).value = "";
+		document.getElementById(texts_2[pos + 1]).value = "";
+		document.getElementById(texts_2[pos]).readOnly = true;
+		document.getElementById(texts_2[pos + 1]).readOnly = true;
 	}
 }
