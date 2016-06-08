@@ -2,6 +2,17 @@ li {
 	list-style-type: none;
 }
 
+a {
+	cursor: pointer;
+}
+
+th {
+	text-align: center;
+	valign: middle;
+	height: 40px;
+	font-weight: normal;
+}
+
 .headlbl {
 	height: 40px;
 	font-size: 28px;
@@ -13,11 +24,27 @@ li {
 
 .quotelbl {
 	height: 50px;
-	width: 760px;
+	width: 800px;
 	background-color: rgb(249, 248, 243);
+	border-radius: 2px;
 	margin: 20px auto;
 	margin-top: 20px;
 	position: relative;
+	margin: 20px auto;
+}
+
+.quotelbl #now {
+	position: absolute;
+	font-size: 26px;
+	left: 100px;
+	top: 10px;
+}
+
+.quotelbl #rise_fall {
+	position: absolute;
+	font-size: 12px;
+	left: 175px;
+	top: 25px;
 }
 
 .kline_div {
@@ -36,18 +63,23 @@ li {
 .comprehensive_div {
 	height: 400px;
 	width: 910px;
-	background-color: #F8F7F6;
 	margin: 20px auto;
 	position: relative;
 }
 
-.comprehensive_div .chart_compre{
+.comprehensive_div .chart_compre {
 	position: absolute;
 	background-color: gray;
-	height:300px;
-	width:300px;
-	left:50px;
-	top:50px;
+	height: 300px;
+	width: 300px;
+	left: 50px;
+	top: 50px;
+}
+
+.table_div {
+	height: 400px;
+	width: 800px;
+	margin: 20px auto;
 }
 
 .quotelbl .toAnalysis {

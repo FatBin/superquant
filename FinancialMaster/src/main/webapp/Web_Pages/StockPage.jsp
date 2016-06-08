@@ -110,24 +110,15 @@ th {
 				<table id="senfe">
 					<thead>
 						<tr align="center" valign="middle">
-							<th width="200" bgcolor="#ccc">股票代码
-							</td>
-							<th width="130" bgcolor="#ccc">股票名称
-							</td>
-							<th width="130" bgcolor="#ccc">最新价
-							</td>
-							<th width="130" bgcolor="#ccc">最高价
-							</td>
-							<th width="130" bgcolor="#ccc">最低价
-							</td>
-							<th width="130" bgcolor="#ccc">连涨天数
-							</td>
-							<th width="140" bgcolor="#ccc">连续涨跌幅
-							</td>
-							<th width="140" bgcolor="#ccc">累计换手率
-							</td>
-							<th width="160" bgcolor="#ccc">所属行业
-							</td>
+							<th width="200" bgcolor="#ccc">股票代码</th>
+							<th width="130" bgcolor="#ccc">股票名称</th>
+							<th width="130" bgcolor="#ccc">最新价</th>
+							<th width="130" bgcolor="#ccc">最高价</th>
+							<th width="130" bgcolor="#ccc">最低价</th>
+							<th width="130" bgcolor="#ccc">连涨天数</th>
+							<th width="140" bgcolor="#ccc">连续涨跌幅</th>
+							<th width="140" bgcolor="#ccc">累计换手率</th>
+							<th width="160" bgcolor="#ccc">所属行业</th>
 						</tr>
 					</thead>
 

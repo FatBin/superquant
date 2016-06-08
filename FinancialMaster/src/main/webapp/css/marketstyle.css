@@ -21,6 +21,7 @@ a {
 	height: 50px;
 	width: 760px;
 	background-color: rgb(249, 248, 243);
+	border-radius: 2px;
 	margin: auto;
 	margin-top: 20px;
 }

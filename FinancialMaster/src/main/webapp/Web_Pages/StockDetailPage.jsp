@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="VO.StockDetailVO"
+	import="PO.UpToDateStockPO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -79,24 +80,32 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div class="headlbl">股票名称(编号)</div>
+	<%
+		StockDetailVO stockDetailVO = (StockDetailVO) session.getAttribute("StockDetail");
+		String[][] data = stockDetailVO.getHistoryData();
+		UpToDateStockPO uptodateStock = stockDetailVO.getUpToDateMessage();
+	%>
+
+	<div class="headlbl"><%=uptodateStock.getStockName() %>(<%=uptodateStock.getStockId() %>)</div>
 
 	<blockquote class="quotelbl">
-		<p style="line-height: 50px;">最新数据</p>
+		<h5>最新数据</h5>
+		<span id="now"><%=uptodateStock.getNow() %></span>
+		<span id="rise_fall"><%=uptodateStock.getRise_fall() %></span>
 	</blockquote>
 
 	<!-- k线图 -->
 	<div id="klinechart" class="kline_div"></div>
 
 	<blockquote class="quotelbl">
-		<p style="line-height: 50px;">近期走势图</p>
+		<h5>近期走势图</h5>
 	</blockquote>
 
 	<!-- 近期走势图 -->
 	<div id="stock_history_chart" class="tendcy_div"></div>
 
 	<blockquote class="quotelbl">
-		<p style="line-height: 50px;">综合分析</p>
+		<h5>综合分析</h5>
 
 		<a class="toAnalysis" href="Analysis.jsp">更专业的分析</a>
 	</blockquote>
@@ -107,14 +116,66 @@
 	</div>
 
 	<blockquote class="quotelbl">
-		<p style="line-height: 50px;">详细数据</p>
+		<h5>详细数据</h5>
 	</blockquote>
 
 	<!-- 详细数据 -->
-	<div class="comprehensive_div"></div>
+	<div class="table_div">
+
+		<table id="senfe">
+			<thead>
+				<tr align="center" valign="middle">
+					<th width="200" bgcolor="#ccc">日期</th>
+					<th width="130" bgcolor="#ccc">开盘价</th>
+					<th width="130" bgcolor="#ccc">收盘价</th>
+					<th width="130" bgcolor="#ccc">最高价</th>
+					<th width="130" bgcolor="#ccc">最低价</th>
+					<th width="130" bgcolor="#ccc">后复权价</th>
+					<th width="130" bgcolor="#ccc">成交量</th>
+					<th width="130" bgcolor="#ccc">换手率</th>
+					<th width="130" bgcolor="#ccc">市盈率</th>
+					<th width="130" bgcolor="#ccc">市净率</th>
+				</tr>
+			</thead>
+
+			<tbody id="group_one">
+
+				<%
+					for (int i = 0; i < data.length; i++) {
+				%>
+
+				<tr align="center" valign="middle"
+					onmouseover="mouseIn(<%=i + 1%>);"
+					onmouseout="mouseOut(<%=i + 1%>);">
+					<%
+						for (int j = 0; j < data[0].length; j++) {
+					%>
+					<td height=35px;><%=data[i][j]%></td>
+					<%
+						}
+					%>
+				</tr>
+
+				<%
+					}
+				%>
+			</tbody>
+		</table>
+
+		<div style="margin-top: 20px; margin-left: 26%">
+			<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
+				onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
+				页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
+				id="divFood"> </span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
+				value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
+				onclick="page.aimPage();">跳转</a>
+		</div>
+
+	</div>
 
 	<!-- bottom section -->
-	<div style="margin-top: 50px;">
+	<div style="margin-top: 90px;">
 		<div style="background-color: #766F67; height: 200px;"></div>
 
 		<div style="background-color: #645D55; height: 50px;">
@@ -134,8 +195,19 @@
 	<script src="../jschart/StockHistoryChart.js"></script>
 	<script src="../jschart/Dashboard.js"></script>
 	<script src="../js/bootstrapSwitch.js"></script>
-
+	<script src="../js/table_pages.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 
+	<script>
+		var nowspan = document.getElementById("now");
+		var rfspan = document.getElementById("rise_fall");
+		if(rfspan.innerHTML[0] == "-"){
+			nowspan.style.color = "green";
+			rfspan.style.color = "green";
+		}else{
+			nowspan.style.color = "red";
+			rfspan.style.color = "red";
+		}
+	</script>
 </body>
 </html>
