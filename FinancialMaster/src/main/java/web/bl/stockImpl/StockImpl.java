@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import DAO.pojo.Stock;
 import DAO.pojo.TradeRecord;
 import ENUM.ManageState;
 import PO.UpToDateStockPO;
@@ -15,6 +16,7 @@ import VO.BusinessVO;
 import VO.StockDetailVO;
 import data.StockData.StockData;
 import dataservice.StockDataService.StockDataService;
+import servlet.factory.InitFactoryServlet;
 import web.bl.benchImpl.BenchImpl;
 import web.bl.businessImpl.BusinessImpl;
 import web.blservice.benchInfo.BenchInfo;
@@ -37,6 +39,9 @@ public class StockImpl implements StockInfo {
 		try {
 			//最新数据获取
 			UpToDateStockPO upToDateMessage=stockDataService.getUpToDateStockPO(code);
+			Stock stock=InitFactoryServlet.getStock(code);
+			upToDateMessage.setIndustry(stock.getIndustry());
+			
 			List<TradeRecord> records=stockDataService.getStockRecord(code, starttime, endtime);			
 			int size=records.size();
 			
@@ -55,12 +60,29 @@ public class StockImpl implements StockInfo {
 				closes[index]=tradeRecord.getClose();
 				historyData[index][3]=tradeRecord.getHigh()+"";
 				historyData[index][4]=tradeRecord.getLow()+"";
+				if(tradeRecord.getAdjPrice()==0){
+					historyData[index][5]="-";
+				}else{
 				historyData[index][5]=tradeRecord.getAdjPrice()+"";
+				}
 				historyData[index][6]=tradeRecord.getVolume()+"";
-				historyData[index][7]=tradeRecord.getTurnover()+"";
+				if(tradeRecord.getAdjPrice()==0){
+					historyData[index][7]="-";
+				}else{
+					historyData[index][7]=tradeRecord.getTurnover()+"";
+				}
 				turnovers[index]=tradeRecord.getTurnover();
-				historyData[index][8]=tradeRecord.getPe()+"";
-				historyData[index][9]=tradeRecord.getPb()+"";
+				if(tradeRecord.getAdjPrice()==0){
+					historyData[index][8]="-";
+				}else{
+					historyData[index][8]=tradeRecord.getPe()+"";
+				}
+				if(tradeRecord.getAdjPrice()==0){
+					historyData[index][9]="-";;
+				}else{
+					historyData[index][9]=tradeRecord.getPb()+"";
+				}
+				
                 index++;
 			}
 			
@@ -104,13 +126,7 @@ public class StockImpl implements StockInfo {
 			analyze_BasicItemsVO.setPe(pe);
 			analyze_BasicItemsVO.setPb(pb);
 			
-			//得到沪深300大盘历史数据
-			BenchInfo benchInfo=new BenchImpl();
-			BenchVO benchVO=benchInfo.getStockMarket("沪深300");
 			
-			//得到所属行业的vo
-			BusinessInfo businessInfo=new BusinessImpl();
-			BusinessVO businessVO=businessInfo.getBusiness(upToDateMessage.getIndustry());
 			
 			//声明空的分析结果的VO
 			Analyze_ResultVO analyze_ResultVO=new Analyze_ResultVO();
@@ -122,11 +138,7 @@ public class StockImpl implements StockInfo {
 			//设置基本分析初步
 			stockDetailVO.setAnalyze_BasicItemsVO(analyze_BasicItemsVO);
 			//设置历史涨跌率列表
-			stockDetailVO.setRise_fallList(rise_fallList);			
-			//设置沪深300大盘历史数据
-			stockDetailVO.setBenchVO(benchVO);
-			//设置所属行业VO
-			stockDetailVO.setBusinessVO(businessVO);
+			stockDetailVO.setRise_fallList(rise_fallList);					
 			//设置空的综合分析结果
 			stockDetailVO.setAnalyze_ResultVO(analyze_ResultVO);
 			
@@ -179,9 +191,8 @@ public class StockImpl implements StockInfo {
 	}
 	
 	private void analyze(StockDetailVO stockDetailVO) {
-		
-		
-		
+		StockAnalyze stockAnalyze=new StockAnalyze();
+		stockAnalyze.comprehensiveAnalyze(stockDetailVO);
 	}
 
 }

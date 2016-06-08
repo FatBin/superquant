@@ -88,10 +88,10 @@ option = {
 		      			normal : {
 		      				color : function(params) {
 		      					if (rise_falls[params.dataIndex] >0) {
-		      						return 'red';
-		      					} else {
-		      						return 'green';
-		      					}
+		      						return 'rgb(191,23,34)';
+		    					} else {
+		    						return 'rgb(25,36,83)';
+		    					}
 
 		      				}
 		      			}

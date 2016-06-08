@@ -15,12 +15,9 @@ public class StockDetailVO {
 	//个股涨跌幅历史数据
 	private double[] rise_fallList;
 	
-	//所属大盘信息VO
-	private BenchVO benchVO;
     //大盘涨跌幅历史数据
     private double[] bench_rise_fallList;
-	
-	
+		
 	//所属行业信息VO
 	private BusinessVO businessVO;
 	
@@ -54,12 +51,6 @@ public class StockDetailVO {
 	public void setRise_fallList(double[] rise_fallList) {
 		this.rise_fallList = rise_fallList;
 	}
-	public BenchVO getBenchVO() {
-		return benchVO;
-	}
-	public void setBenchVO(BenchVO benchVO) {
-		this.benchVO = benchVO;
-	}
 	public BusinessVO getBusinessVO() {
 		return businessVO;
 	}
@@ -72,5 +63,12 @@ public class StockDetailVO {
 	public void setAnalyze_ResultVO(Analyze_ResultVO analyze_ResultVO) {
 		this.analyze_ResultVO = analyze_ResultVO;
 	}
+	public double[] getBench_rise_fallList() {
+		return bench_rise_fallList;
+	}
+	public void setBench_rise_fallList(double[] bench_rise_fallList) {
+		this.bench_rise_fallList = bench_rise_fallList;
+	}
+	
 	
 }
