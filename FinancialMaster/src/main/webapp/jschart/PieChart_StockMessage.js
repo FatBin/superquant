@@ -10,9 +10,9 @@ function pieChart(name, value1, value2, flag, fontSize,id) {
 
 	function text(f) {
 		if (f == 1) {
-			return '%'
+			return '亿元'
 		} else {
-			return ''
+			return '万手'
 		}
 	}
 	

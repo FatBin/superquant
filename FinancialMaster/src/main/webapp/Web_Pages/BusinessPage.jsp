@@ -86,7 +86,10 @@ li {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-
+	<%
+		BusinessListVO businessListVO = (BusinessListVO) session.getAttribute("BusinessList");
+		ArrayList<industriesPO> businessList = businessListVO.getBusinessList();
+	%>
 
 	<div class="container">
 		<div class="compare" style="height: 450px;">
@@ -94,15 +97,16 @@ li {
 			<div id="business_barchart"
 				style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
 		</div>
-		<%
-			BusinessListVO businessListVO = (BusinessListVO) session.getAttribute("BusinessList");
-			ArrayList<industriesPO> businessList = businessListVO.getBusinessList();
-		%>
+
+
 
 		<div class="business-rank" style="height: 1000px;">
 			<h3 class="title">行业对比</h3>
+
+
+
 			<%
-				for (int i = 0; i < 11; i++) {
+				for (int i = 0; i < businessList.size(); i++) {
 			%>
 			<div class="business-list">
 				<div class="business-item">
@@ -136,12 +140,10 @@ li {
 							<%=list.getRise_fall()%>
 							%
 						</div>
-						<div class="glyphicon glyphicon-arrow-down red"></div>
+						<div class="glyphicon glyphicon-arrow-down green"></div>
 						<%
 							}
 						%>
-
-
 						<div class="item-avg">
 							<%=list.getAverage_price()%>
 
@@ -164,17 +166,23 @@ li {
 					</div>
 
 				</div>
+				<%
+					String a = "a" + (3 * i + "");
+						String b = "a" + (3 * i + 1 + "");
+						String c = "a" + (3 * i + 2 + "");
+				%>
 				<div class="business-extend" style="display: none;">
-					<div id="first" class="pie"></div>
-					<div id="second" class="pie"></div>
-					<div id="third" class="pie"></div>
+					<div id=<%=a%> class="pie"></div>
+					<div id=<%=b%> class="pie"></div>
+					<div id=<%=c%> class="pie"></div>
+					<div class="ToDetail"
+						onclick="mouseClick(<%=i%>,'../ToBusinessDetailPageServlet')">查看详情</div>
 				</div>
 			</div>
 			<%
 				}
 			%>
-
-			<nav>
+			<!-- <nav>
 			<ul class="pagination">
 				<li><a href="#" aria-label="Previous"> <span
 						aria-hidden="true">&laquo;</span>
@@ -188,13 +196,13 @@ li {
 				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul>
-			</nav>
-
+			</nav> -->
 		</div>
 	</div>
 
 	<!-- bottom section -->
-	<div style="background-color: #766F67; height: 200px;"></div>
+	<div
+		style="background-color: #766F67; height: 200px; margin-top: 10px; display: block;"></div>
 
 	<div style="background-color: #645D55; height: 50px;">
 		<p style="color: white; text-align: center; line-height: 50px;">@Copyright
@@ -211,10 +219,13 @@ li {
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../jschart/PieChart_StockMessage.js"></script>
-	<script>
-		pieChart('成交量', 0, 24, 0, 18, 'first')
-		pieChart('换手率', 100, 90, 1, 18, 'second')
-		pieChart('流入资金量', 100, 90, 0, 18, 'third')
+	<script type="text/javascript">
+	 <%for (int i = 0; i < 66; i++) {
+				industriesPO list = businessList.get(i);%>
+		pieChart('成交量', <%=list.getVolume()%>, 0, 0, 18, 'a'+(3*<%=i%>+''))
+		pieChart('总成交额', <%=list.getTurnover()%>, 0, 1, 18, 'a'+(3*<%=i%>+1+''))
+		pieChart('流入资金量', <%=list.getInflows()%>, 0, 1, 18, 'a'+(3*<%=i%>+2+''))
+	 <%}%>
 	</script>
 </body>
 

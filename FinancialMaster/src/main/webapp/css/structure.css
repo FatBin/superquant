@@ -1,114 +1,125 @@
-.title{
-	width:100%;
-	margin-left:auto;
-	margin-right:auto;
-	text-align:left;
-	margin-top:30px;
-	border-left: 4px solid #eb8a31;
-	padding-left: 8px;
-	background-color:#FBF7F2;
-	
+.body {
+	font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
+		"Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC",
+		"Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC",
+		"Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei",
+		"ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
 }
 
+.title {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	margin-top: 30px;
+	border-left: 4px solid #eb8a31;
+	padding-left: 8px;
+	background-color: #FBF7F2;
+}
 
-.business-item{
-	cursor:pointer;
-	width:100%;
-	height:100px;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:16px;
+.business-item {
+	cursor: pointer;
+	width: 100%;
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 16px;
 	border-top: 1px solid #F0F0F0;
 }
 
-.business-extend{
-	width:95%;
-	height:250px;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:12px;
-	background-color:#F9F9F9;
+.business-extend {
+	width: 95%;
+	height: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 12px;
+	background-color: #F9F9F9;
 }
 
-.business-rank,.compare{
-	width:80%;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:20px;
+.business-rank, .compare {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
 }
 
-.item-left{
-	display:inline-block;
-	float:left;
-	margin-left:10px;
-	height:80px;
-	width:370px;
+.item-left {
+	display: inline-block;
+	float: left;
+	margin-left: 10px;
+	height: 80px;
+	width: 370px;
 	/* background-color:#ed8059; */
 }
-.item-right{
+
+.item-right {
+	float: right;
+	margin-right: 10px;
+	height: 85px;
+	width: 180px;
+	background-color: #FBF7F2;
+	border-radius: 8px;
+	padding-right: 10px;
+	padding-top: 8px;
+}
+
+.item-price {
+	float: left;
+	height: 85px;
+	width: 100px;
+}
+
+#item-name {
+	margin-top: 15px;
+	display: inline-block;
+	font-size: 36px;
+	color: #44382A;
+}
+
+#item-num {
+	margin-top: 15px;
+	margin-left: 10px;
+	display: inline-block;
+	font-size: 16px;
+	color: #8d7862;
+}
+
+.item-top {
+	margin-top: 15px;
+}
+
+.item-rate {
+	display: inline-block;
+	margin-top: 14px;
+	font-size: 20px;
+}
+
+.item-avg {
+	margin-top: 2px;
+	font-size: 20px;
+	color: #8d7862;
+}
+
+.text-right {
+	text-align: right;
+	font-size: 18px;
+}
+
+.pie {
+	display: inline-block;
+	margin-left: 30px;
+	marign-top: 15px;
+	height: 240px;
+	width: 240px;
+}
+
+.riser-rate {
+	float: right;
+	display: inline-block;
+}
+
+.ToDetail{
 	float:right;
-	margin-right:10px;
-	height:85px;
-	width:180px;
-	background-color:#FBF7F2;
-	border-radius:8px;
-	padding-right:10px;
-	padding-top:8px;
-}
-
-.item-price{
-	float:left;
-	height:85px;
-	width:100px;
-}
-
-#item-name{
-	margin-top:15px;
 	display:inline-block;
-	font-size:36px;
-	color:#44382A;
+	cursor:pointer;
 }
-
-#item-num{
-	margin-top:15px;
-	margin-left:10px;
-	display:inline-block;
-	font-size:16px;
-	color:#8d7862;
-}
-
-.item-top{
-	margin-top:15px;
-}
-
-.item-rate{
-	display:inline-block;
-	margin-top:14px;
-	font-size:20px;
-}
-
-.item-avg{
-	margin-top:2px;
-	font-size:20px;
-	color:#8d7862;
-}
-
-.text-right{
-	text-align:right;
-	font-size:18px;
-	
-}
-
-.pie{
-	display:inline-block;
-	margin-left:30px;
-	marign-top:15px;
-	height:240px;
-	width:240px;
-}
-
-.riser-rate{
-	float:right;
-	display:inline-block;
-}
-
