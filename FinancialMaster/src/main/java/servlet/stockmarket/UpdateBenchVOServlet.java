@@ -48,9 +48,9 @@ public class UpdateBenchVOServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 BenchVO sv=(BenchVO)request.getSession().getAttribute("BenchMarket");
 		 
-			String data="[{'status':"+sv.getStatus()+
-					",'time':"+sv.getTime()+
-					",'now':"+sv.getNow()+
+			String data="[{'status':'"+sv.getStatus()+
+					"','time':'"+sv.getTime()+
+					"','now':"+sv.getNow()+
 					",'rise_fall_price':"+sv.getRise_fall_price()+
 					",'rise_fall_percent':"+sv.getRise_fall_percent()+
 					",'high':"+sv.getHigh()+
@@ -58,10 +58,10 @@ public class UpdateBenchVOServlet extends HttpServlet {
 					",'open':"+sv.getOpen()+
 					",'yesterday_close':"+sv.getYesterday_close()+
 					",'price':"+sv.getPrice()+
-					",'volume':"+sv.getVolume()+
-					",'rise_company':"+sv.getRise_company()+
-					",'fall_company':"+sv.getFall_company()+
-					",'company':"+sv.getCompany()+ "}]";
+					",'volume':'"+sv.getVolume()+
+					"','rise_company':'"+sv.getRise_company()+
+					"','fall_company':'"+sv.getFall_company()+
+					"','company':'"+sv.getCompany()+ "'}]";
 
 			JSONArray json = new JSONArray(data);
 			PrintWriter out = response.getWriter();
