@@ -448,7 +448,9 @@ public class StockAnalyze {
 		Analyze_ResultVO analyze_ResultVO=stockDetailVO.getAnalyze_ResultVO();
 		analyze_ResultVO.setResult_of_basic_analyze(result);
 		double sumScore=quantity_relative_ratio-4-index+pb+ups_and_downs+turnOver+priceStability*3;
-		if(sumScore>20){
+		if(sumScore<0){
+			sumScore=0;
+		}else if(sumScore>20){
 			sumScore=20;
 		}
 		analyze_ResultVO.setScore_of_basic_analyze(sumScore);
@@ -491,11 +493,15 @@ public class StockAnalyze {
 			result+="大单买入量较大，建议买入；";
 		}else if(ddx<-0.22){
 			result+="大单卖出量较大，不建议买入；";
+		}else{
+			result+="大单买卖量适中，可看分析图详细参考；";
 		}
 		if(ddz>10){
 			result+="大资金买入强度高，预计短线将快速上涨。";
 		}else if(ddz<-0.22){
 			result+="大资金买入强度低，预计短线将开始下降。";
+		}else{
+			result+="大资金买入强度适中，可看分析图详细参考；";
 		}
 		
 		double score=ddx+ddy+ddz/5+gaps[0]+gaps[1]-gaps[2]-gaps[3];
