@@ -436,12 +436,6 @@ function setLimit_2(pos) {
 }
 
 function runST() {
-	var div = document.getElementById("strategyLineChart");
-	if (div.style.display == "none") {
-		div.style.display = "block";
-		div.slideToggle();
-	}
-
 	$.ajax({
 		type : "post",
 		async : false, // 同步执行
@@ -453,6 +447,16 @@ function runST() {
 			"BuyList" : buylist.join("|"),
 			"SoldList" : solilist.join("|")
 		},
-		dataType : "json"
+		dataType : "json",
+		success : function() {
+			var div = document.getElementById("strategyLineChart");
+			if (div.style.display == "none") {
+				div.style.display = "block";
+			}
+			getLinechart();
+		},
+		error : function() {
+			alert("策略模拟失败");
+		}
 	})
 }
