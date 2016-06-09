@@ -125,7 +125,7 @@
     <url-pattern>/GetStockKLine</url-pattern>
   </servlet-mapping>
 
-  <!-- get：实时更新大盘最新数据，post： -->    
+  <!-- get：实时更新大盘最新数据，post：得到更新后的大盘最新数据（json返回） -->    
   <servlet>
     <servlet-name>UpdateBenchVOServlet</servlet-name>
     <servlet-class>servlet.stockmarket.UpdateBenchVOServlet</servlet-class>
