@@ -75,11 +75,14 @@ option = {
 	} ],
 	yAxis : [ {
 		name : '价格',
+		scale : true,
 	}, {
 		name : '成交量',
+		scale : true,
 		gridIndex : 1,
 	}, {
 		name : 'RSI',
+		scale : true,
 		gridIndex : 2,
 	} ],
 

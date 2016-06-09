@@ -160,6 +160,9 @@ public class StockAnalyze {
 		RSIs[1]=getRSI(12, closes);
 		RSIs[2]=getRSI(24, closes);
 		int index=(int) (RSIs[0]/25);
+		if(index>3){
+			index=3;
+		}
 		result+="¶ÌÆÚRSI"+rsi_message[index];
 		score+=index-1;
 		
@@ -432,6 +435,9 @@ public class StockAnalyze {
 		index++;
 		if(index>4){
 			index=4;
+		}
+		if(index<0){
+			index=0;
 		}
 		result+=pe_message[index];
 
