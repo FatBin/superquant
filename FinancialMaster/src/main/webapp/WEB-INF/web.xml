@@ -217,4 +217,14 @@
     <servlet-name>GetTechnicalAnalyzeChartServlet</servlet-name>
     <url-pattern>/GetTechnicalAnalyzeChart</url-pattern>
   </servlet-mapping>
+  
+   <!-- get：增加关注的股票，post：删除我关注的股票 -->    
+  <servlet>
+    <servlet-name>ManageMyStockServlet</servlet-name>
+    <servlet-class>servlet.managestock.ManageMyStockServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageMyStockServlet</servlet-name>
+    <url-pattern>/ManageMyStock</url-pattern>
+  </servlet-mapping>
 </web-app>

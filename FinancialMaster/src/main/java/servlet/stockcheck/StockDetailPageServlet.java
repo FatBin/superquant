@@ -1,13 +1,17 @@
 package servlet.stockcheck;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.pojo.Stock;
 import VO.StockDetailVO;
+import VO.UserVO;
 import web.bl.stockImpl.StockImpl;
 import web.blservice.stockInfo.StockInfo;
 
@@ -47,6 +51,18 @@ public class StockDetailPageServlet extends HttpServlet {
 		String id=request.getParameter("Stockid");
 		StockInfo stockInfo=new StockImpl();
 		StockDetailVO detailVO=stockInfo.getStock(id);
+		boolean isConcerned=false;
+		if(request.getSession().getAttribute("User")!=null){
+			 UserVO userVO=(UserVO)request.getSession().getAttribute("User");
+			 ArrayList<Stock> stockList=userVO.getStockList();
+			 for (Stock stock : stockList) {
+				if(stock.getStockId().equals(id)){
+					isConcerned=true;
+					break;
+				}
+			}
+		}
+		detailVO.setConcerned(isConcerned);
 		request.getSession().setAttribute("StockDetail", detailVO);
 	}
 

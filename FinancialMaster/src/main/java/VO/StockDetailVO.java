@@ -3,6 +3,9 @@ package VO;
 import PO.UpToDateStockPO;
 
 public class StockDetailVO {
+	
+	//是否被关注（未登录也返回false）
+	private boolean isConcerned;
     //  最新信息，具体内容见PO
 	private UpToDateStockPO upToDateMessage;
 	
@@ -77,6 +80,12 @@ public class StockDetailVO {
 	}
 	public void setAnalyze_TechnicalVO(Analyze_TechnicalVO analyze_TechnicalVO) {
 		this.analyze_TechnicalVO = analyze_TechnicalVO;
+	}
+	public boolean isConcerned() {
+		return isConcerned;
+	}
+	public void setConcerned(boolean isConcerned) {
+		this.isConcerned = isConcerned;
 	}
 	
 	

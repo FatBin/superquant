@@ -43,7 +43,7 @@ public class BusinessDetailPageServlet extends HttpServlet {
 		businessVO=businessInfo.getBusiness(businessname);
 		request.getSession().setAttribute("BusinessDetail",businessVO);
 		
-		response.sendRedirect(request.getContextPath()+"/Web_Pages/BusinessPage.jsp");
+//		response.sendRedirect(request.getContextPath()+"/Web_Pages/BusinessPage.jsp");
 	}
 
 	/**

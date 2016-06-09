@@ -1,5 +1,5 @@
 package ENUM;
 
 public enum ManageState {
-	Succeed,Fail,Others;
+	Succeed,Fail,Others,Unlogin;
 }
