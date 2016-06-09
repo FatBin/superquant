@@ -1,38 +1,18 @@
 package DAO.test;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import DAO.connection.DBconnection;
-import DAO.pojo.Benchdata;
 import DAO.pojo.Industries;
-import DAO.pojo.TradeRecord;
-import DAO.pojo.TradeRecordId;
-import PO.RiseStockPO;
-import PO.UpToDateStockPO;
-import PO.benchCurrentDataPO;
-import PO.industriesPO;
-import data.BenchData.BenchRecord;
-import data.BenchData.BenchRecordUpdate;
-import data.Database.BenchDataUpdate;
+import PO.industryPO;
 import data.Database.IndustriesUpdate;
-import data.Database.TradeRecordUpdate;
 import data.IndustryData.IndustryData;
 import data.Initialize.Init;
-import data.StockData.RiseStockUpdate;
-import data.StockData.StockData;
-import data.StockData.UpToDateStocksUpdate;
 
 public class finaltest {
+
 	public static void main(String[] args) {
+		
 //		BenchRecordUpdate staticBenchRecord = new BenchRecordUpdate();
 //		BenchRecord benchRecord = new BenchRecord();
 //		while (true) {
@@ -108,14 +88,46 @@ public class finaltest {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
+		
+		/*
+		 * update the industries in the database
+		 */
 		Init init=new Init();
 		try {
 			Thread.sleep(15000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("t");
-		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
-		industriesUpdate.IndustriesUpdate();
+//		System.out.println("t");
+//		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
+//		industriesUpdate.IndustriesUpdate();
+		IndustryData industryData=new IndustryData();
+//		try {
+//			ArrayList<industryPO> arrayList=industryData.getIndustry("专用设备");
+//			for (industryPO industryPO : arrayList) {
+//				System.out.println(industryPO.getStockId());
+//			}
+//			System.out.println(arrayList.size());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+		
+		try {
+			List list=industryData.getIndustryDuringTime("通信设备", "2016-06-05", "2016-06-08");
+			for (Object object : list) {
+				Industries industries=(Industries)object;
+				System.out.print(industries.getId().getIndustry()+" ");
+				System.out.print(industries.getId().getDate()+" ");
+				System.out.print(industries.getAveragePrice()+" ");
+				System.out.println(industries.getLeaderstock()+" ");
+			}
+			System.out.println(list.size());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
+	
 }
