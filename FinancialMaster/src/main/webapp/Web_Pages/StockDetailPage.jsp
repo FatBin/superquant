@@ -120,7 +120,7 @@
 
 	<blockquote class="quotelbl">
 		<span class="headtext">综合分析</span> <a class="toAnalysis"
-			href="Analysis.jsp">更专业的分析</a>
+			href="AnalysisPage.jsp">更专业的分析</a>
 	</blockquote>
 
 	<!-- 综合分析 -->
