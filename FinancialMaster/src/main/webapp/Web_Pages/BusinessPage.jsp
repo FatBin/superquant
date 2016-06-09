@@ -105,6 +105,8 @@ li {
 
 
 
+
+
 			<%
 				for (int i = 0; i < businessList.size(); i++) {
 			%>
@@ -113,12 +115,10 @@ li {
 					<div class="item-left item-top">
 						<%
 							industriesPO list = businessList.get(i);
+								String name = "b" + (i + "");
 						%>
-						<div id="item-name">
-							<%=list.getIndustry()%>
-
-						</div>
-						<div id="item-num">
+						<div class="item-name" id=<%=name%>><%=list.getIndustry()%></div>
+						<div class="item-num">
 							<%=list.getCompany() + ""%>
 							家企业
 						</div>
@@ -175,8 +175,8 @@ li {
 					<div id=<%=a%> class="pie"></div>
 					<div id=<%=b%> class="pie"></div>
 					<div id=<%=c%> class="pie"></div>
-					<div class="ToDetail"
-						onclick="mouseClick(<%=i%>,'../ToBusinessDetailPageServlet')">查看详情</div>
+
+					<div class="ToDetail" onclick="jump(<%=i%>)">查看详情</div>
 				</div>
 			</div>
 			<%
@@ -222,19 +222,39 @@ li {
 	<script type="text/javascript">
 	 <%for (int i = 0; i < 66; i++) {
 				industriesPO list = businessList.get(i);%>
-		pieChart('成交量', <%=list.getVolume()%>, 0, 0, 18, 'a'+(3*<%=i%>+''))
-		pieChart('总成交额', <%=list.getTurnover()%>, 0, 1, 18, 'a'+(3*<%=i%>+1+''))
-		pieChart('流入资金量', <%=list.getInflows()%>, 0, 1, 18, 'a'+(3*<%=i%>+2+''))
+		pieChart('成交量', <%=list.getVolume()%>, 0, 0, 18, 'a'+(3*<%=i%>+''), '#D34E4E')
+		pieChart('总成交额', <%=list.getTurnover()%>, 0, 1, 18, 'a'+(3*<%=i%>+1+''), '#4A433B')
+		pieChart('流入资金量', <%=list.getInflows()%>, 0, 1, 18, 'a'+(3*<%=i%>+2+''), '#4E58B5')
 	 <%}%>
 	</script>
+
+	<script type="text/javascript">
+	$(".business-rank").on("click", ".business-list", function() {
+		$(this).children(".business-extend").slideToggle();
+	});
+	
+	function jump(i){
+		var name = "b"+(i+"");	
+		$.ajax({
+			type : "get",
+			async : false, // 同步执行
+			url : "../ToBusinessDetailPageServlet",
+			data : {
+				"BusinessName" : document.getElementById(name).innerHTML
+			},
+			dataType : "json",
+			success : function() {
+				window.location.href = "../Web_Pages/BusinessDetailPage.jsp";
+			},
+			error : function(errorMsg) {
+				alert("不好意思，请求数据失败啦!");
+			}
+		})
+	}
+</script>
 </body>
 
 
-<script type="text/javascript">
-	$(".business-rank").on("click", ".business-list", function() {
-		$(this).children(".business-extend").slideToggle();
 
-	});
-</script>
 
 </html>

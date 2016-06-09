@@ -37,12 +37,19 @@ public class BusinessDetailPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String businessname=request.getParameter("BusinessName");
+		String businessname=new String( request.getParameter("BusinessName").getBytes("iso8859-1"), "utf-8");
+		System.out.println(businessname);
 		BusinessInfo businessInfo=new BusinessImpl();
 		businessVO=businessInfo.getBusiness(businessname);
 		request.getSession().setAttribute("BusinessDetail",businessVO);
 		
+		String data="[]";
+
+		JSONArray json = new JSONArray(data);
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();
 //		response.sendRedirect(request.getContextPath()+"/Web_Pages/BusinessPage.jsp");
 	}
 

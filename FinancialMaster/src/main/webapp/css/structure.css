@@ -69,14 +69,14 @@
 	width: 100px;
 }
 
-#item-name {
+.item-name {
 	margin-top: 15px;
 	display: inline-block;
 	font-size: 36px;
 	color: #44382A;
 }
 
-#item-num {
+.item-num {
 	margin-top: 15px;
 	margin-left: 10px;
 	display: inline-block;

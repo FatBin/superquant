@@ -2,7 +2,7 @@
  * 
  */
 
-function pieChart(name, value1, value2, flag, fontSize,id) {
+function pieChart(name, value1, value2, flag, fontSize,id,myColor) {
 	var myChart = echarts.init(document.getElementById(id));
 	var values = [];
 	values.push(value1);
@@ -36,6 +36,11 @@ function pieChart(name, value1, value2, flag, fontSize,id) {
 						fontWeight : 'bold'
 					}
 
+				}
+			},
+			itemStyle:{
+				normal:{
+					color: myColor
 				}
 			},
 			labelLine : {

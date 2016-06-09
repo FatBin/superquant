@@ -56,7 +56,8 @@ li {
 				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="StockPage.jsp">个股</a></li>
-				<li><a class="page-scroll a-active" href="BusinessPage.jsp">行业</a></li>
+				<li><a class="page-scroll a-active"
+					href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
@@ -80,9 +81,11 @@ li {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<h3 class="title" style="margin-top: 120px;">行业名称</h3>
-	<div id="business_barchart"
-		style="width: 1000px; height: 400px;"></div>
+	<div class="compare" style="height: 450px;">
+		<h3 class="title" style="margin-top: 140px; height: 45px;">行业名称</h3>
+		<div id="business_history_chart"
+			style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
+	</div>
 
 
 
@@ -95,5 +98,6 @@ li {
 	<script src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+	<script src="../jschart/businessHistoryChart.js"></script>
 </body>
 </html>
