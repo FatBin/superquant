@@ -75,7 +75,7 @@
     <url-pattern>/ToBusinessDetailPageServlet</url-pattern>
   </servlet-mapping>
   
-  <!-- get：跳转到策略页面，post：运行策略，并为运行结果折线图返回数据 -->  
+  <!-- get：跳转到策略页面，post： -->  
   <servlet>
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <servlet-class>servlet.strategy.StrategyPageServlet</servlet-class>
@@ -83,6 +83,16 @@
   <servlet-mapping>
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <url-pattern>/ToStrategyPageServlet</url-pattern>
+  </servlet-mapping>
+  
+   <!-- get：运行策略，post：为运行结果折线图返回数据 -->  
+  <servlet>
+    <servlet-name>RunStrategyServlet</servlet-name>
+    <servlet-class>servlet.strategy.RunStrategyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RunStrategyServlet</servlet-name>
+    <url-pattern>/RunStrategy</url-pattern>
   </servlet-mapping>
   
     <!-- get：保存策略，post：删除策略 -->  
