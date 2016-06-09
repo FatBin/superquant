@@ -1,11 +1,15 @@
 package servlet.managestock;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
 
 import ENUM.ManageState;
 import PO.UpToDateStockPO;
@@ -41,7 +45,12 @@ public class ManageMyStockServlet extends HttpServlet {
 			 UserManageInfo userManageInfo=new UserManageImpl();
 			 result=userManageInfo.addStock(userVO, upToDateStockPO.getStockId());			 
 		 }
-		 request.getSession().setAttribute("AddResult",result);		 
+		    String data="[{'AddResult':"+result+"}]";
+			JSONArray json = new JSONArray(data);
+			PrintWriter out = response.getWriter();
+			out.println(json);
+			out.flush();
+			out.close();		 
 	}
 
 	/**
@@ -56,7 +65,12 @@ public class ManageMyStockServlet extends HttpServlet {
 			 UserManageInfo userManageInfo=new UserManageImpl();
 			 result=userManageInfo.deleteStock(userVO, upToDateStockPO.getStockId());			 
 		 }
-		 request.getSession().setAttribute("AddResult",result);	
+		 String data="[{'DeleteResult':"+result+"}]";
+			JSONArray json = new JSONArray(data);
+			PrintWriter out = response.getWriter();
+			out.println(json);
+			out.flush();
+			out.close();	
 	}
 
 }
