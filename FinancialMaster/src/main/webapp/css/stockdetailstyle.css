@@ -23,6 +23,14 @@ th {
 	position: relative;
 }
 
+.headtext {
+	color: #4A433B;
+	font-size: 20px;
+	line-height: 32px;
+	font-family: PingFangSC-Regular;
+	margin-left: 5px;
+}
+
 .headdiv {
 	height: 150px;
 	width: 800px;

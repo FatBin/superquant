@@ -82,6 +82,8 @@
 	<%
 		BenchListVO benchListVO = (BenchListVO) session.getAttribute("BenchList");
 		String[] benlist = benchListVO.getBenchList();
+
+		BenchVO benchVO = (BenchVO) session.getAttribute("BenchMarket");
 	%>
 
 	<div class="combox">
@@ -103,16 +105,29 @@
 
 	</div>
 
-	<blockquote class="quotediv">
-		<div>
-			<h5>最新数据</h5>
-		</div>
-	</blockquote>
+	<div class="headdiv">
+		<span id="now"><%=benchVO.getNow()%></span> <span id="rise_fall"><%=benchVO.getRise_fall_price()%></span>
+		<span id="rise_fall_percent"><%=benchVO.getRise_fall_percent()%>%</span>
+		<hr class="hrstyle" />
+
+		<span class="fontlbl">最高价</span> 
+		<span class="fontcontent" style="color:red"><%=benchVO.getHigh()%></span>
+		<span class="fontlbl" style="left: 110px">最低价</span> 
+		<span class="fontcontent" style="left: 110px; color:green;"><%=benchVO.getLow()%></span>
+		<span class="fontlbl" style="left: 200px">今开</span> 
+		<span class="fontcontent" style="left: 200px"><%=benchVO.getOpen()%></span>
+		<span class="fontlbl" style="left: 290px">昨收</span> 
+		<span class="fontcontent" style="left: 290px"><%=benchVO.getYesterday_close()%></span>
+		<span class="fontlbl" style="left: 380px;">成交额</span> 
+		<span class="fontcontent" style="left: 380px;top:104px;font-size:13px;"><%=benchVO.getPrice()%></span>
+		<span class="fontlbl" style="left: 470px">成交量</span> 
+		<span class="fontcontent" style="left: 470px;top:104px;font-size:13px;"><%=benchVO.getVolume() %></span>
+	</div>
 
 	<div id="klinechart" class="kline_div"></div>
 
 	<blockquote class="quotediv">
-		<h5>历史数据</h5>
+		<span class="headtext">历史数据</span>
 	</blockquote>
 
 	<!-- history data -->
@@ -196,6 +211,7 @@
 	<!-- 刷新数据 -->
 	<script>
 	
+		RorG();
 	    // 每10秒更新最新数据
 		setInterval(refreshData, 10000);
 		
@@ -203,6 +219,20 @@
 			
 		}
 		
+		function RorG(){
+			var nowspan = document.getElementById("now");
+			var rfspan = document.getElementById("rise_fall");
+			var rfpspan = document.getElementById("rise_fall_percent");
+			if(rfspan.innerHTML[0] == "-"){
+				nowspan.style.color = "green";
+				rfspan.style.color = "green";
+				rfpspan.style.color = "green";
+			}else{
+				nowspan.style.color = "red";
+				rfspan.style.color = "red";
+				rfpspan.style.color = "red";
+			}
+		}
 		// 切换大盘
 		function changeStock(stockname){
 			

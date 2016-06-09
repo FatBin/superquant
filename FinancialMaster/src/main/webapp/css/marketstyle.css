@@ -26,6 +26,76 @@ a {
 	margin-top: 20px;
 }
 
+.headdiv {
+	height: 150px;
+	width: 800px;
+	background-color: rgb(249, 248, 243);
+	border-radius: 2px;
+	margin: 20px auto;
+	margin-top: 20px;
+	position: relative;
+}
+
+.headdiv #heartdiv {
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: 50px;
+	top: 30px;
+}
+
+.headdiv #now {
+	position: absolute;
+	font-size: 33px;
+	left: 15px;
+	top: 10px;
+}
+
+.headdiv #rise_fall {
+	position: absolute;
+	font-size: 17px;
+	left: 165px;
+	top: 25px;
+}
+
+.headdiv #rise_fall_percent {
+	position: absolute;
+	font-size: 17px;
+	left: 230px;
+	top: 25px;
+}
+
+.headdiv .hrstyle {
+	width: 800px;
+	color: gray;
+	position: absolute;
+	top: 40px;
+}
+
+.headdiv .fontlbl {
+	position: absolute;
+	font-size: 12px;
+	color: gray;
+	left: 15px;
+	top: 80px;
+}
+
+.headdiv .fontcontent {
+	position: absolute;
+	font-size: 18px;
+	left: 15px;
+	top: 100px;
+}
+
+.headtext {
+	color: #4A433B;
+	font-size: 20px;
+	line-height: 32px;
+	font-family: PingFangSC-Regular;
+	margin-left: 5px;
+}
+
 .kline_div {
 	width: 850px;
 	height: 910px;
@@ -38,7 +108,7 @@ a {
 	margin-top: 20px;
 }
 
-.pagelbl{
-	margin-left:35%;
+.pagelbl {
+	margin-left: 35%;
 	margin-top: 15px;
 }

@@ -49,7 +49,6 @@ li {
 .bodydiv .text_compre {
 	width: 410px;
 	height: 232px;
-	background-color: gray;
 	position: absolute;
 	left: 378px;
 	bottom: 40px;
@@ -58,7 +57,6 @@ li {
 .bodydiv .chart_tech {
 	width: 730px;
 	height: 177px;
-	background-color: gray;
 	position: absolute;
 	left: 58px;
 	bottom: 24px;
@@ -85,7 +83,7 @@ li {
 	height: 190px;
 	position: absolute;
 	left: 540px;
-	top: 110px;
+	top: 60px;
 }
 
 .bodydiv .chart_business {

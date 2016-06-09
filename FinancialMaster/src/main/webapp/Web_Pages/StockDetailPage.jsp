@@ -113,14 +113,14 @@
 	<div id="klinechart" class="kline_div"></div>
 
 	<blockquote class="quotelbl">
-		<h5>近期走势图</h5>
+		<span class="headtext">近期走势图</span>
 	</blockquote>
 
 	<!-- 近期走势图 -->
 	<div id="stock_history_chart" class="tendcy_div"></div>
 
 	<blockquote class="quotelbl">
-		<h5>综合分析</h5>
+		<span class="headtext">综合分析</span>
 
 		<a class="toAnalysis" href="Analysis.jsp">更专业的分析</a>
 	</blockquote>
@@ -131,7 +131,7 @@
 	</div>
 
 	<blockquote class="quotelbl">
-		<h5>详细数据</h5>
+		<span class="headtext">详细数据</span>
 	</blockquote>
 
 	<!-- 详细数据 -->
