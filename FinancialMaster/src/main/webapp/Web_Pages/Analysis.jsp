@@ -88,7 +88,7 @@
 	<div class="bodydiv">
 		<div id="dashboard" class="chart_compre"></div>
 
-		<div class="text_compre"></div>
+		<div id="barChart_score" class="text_compre"></div>
 	</div>
 
 	<!-- 技术分析 -->
@@ -99,7 +99,7 @@
 	<div class="bodydiv">
 		<div class="text_tech"></div>
 
-		<div class="chart_tech"></div>
+		<div id="TechnicalAnalyzeChart" class="chart_tech"></div>
 	</div>
 
 	<!-- 大盘分析 -->
@@ -191,6 +191,8 @@
 	<script src="../jschart/BenchContrastChart.js"></script>
 	<script src="../jschart/BusinessContrastChart.js"></script>
 	<script src="../jschart/StockContrastChart.js"></script>
+	<script src="../jschart/TechnicalAnalyzeChart.js"></script>
+	<script src="../jschart/ScoreBarChart.js"></script>
 	
 </body>
 </html>

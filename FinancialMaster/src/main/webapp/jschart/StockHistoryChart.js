@@ -76,7 +76,7 @@ option = {
 	series : [
 	          {
 	              name:'涨跌率',
-	              type:'bar',
+	              type:'line',
 //	              label: {
 //		                normal: {
 //		                    show: true,

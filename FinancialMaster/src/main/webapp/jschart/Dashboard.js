@@ -4,6 +4,26 @@
 
 var Dashboard = echarts.init(document.getElementById('dashboard'));
 
+var score;
+
+$.ajax({
+	type : "post",
+	async : false, //同步执行
+	url : '../GetStockDashboard',
+	dataType : "json", //返回数据形式为json
+	success : function(result) {
+		if (result) {
+			for (var i = 0; i < result.length; i++) {
+				score=result[i].score;
+			}
+		}
+	},
+	error : function(errorMsg) {
+		alert("不好意思，大爷，图表请求数据失败啦!");
+		myChart.hideLoading();
+	}
+})
+
 option = {
     //  backgroundColor: '#161627',
     title: {
@@ -40,7 +60,7 @@ option = {
               }
           
             },
-            data: [{value: 85, 
+            data: [{value: score, 
             //   itemStyle: {
             //     normal: {
             //         //指针颜色

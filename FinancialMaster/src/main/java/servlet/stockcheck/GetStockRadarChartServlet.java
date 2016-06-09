@@ -44,13 +44,27 @@ public class GetStockRadarChartServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		StockDetailVO sv=(StockDetailVO)request.getSession().getAttribute("StockDetail");
 		Analyze_BasicItemsVO analyze_BasicItemsVO=sv.getAnalyze_BasicItemsVO();
+		double[] maxs={2,1,7,5,40,10};
+		double[] values=new double[6];
+		values[0]=analyze_BasicItemsVO.getQuantity_relative_ratio();
+		values[1]=analyze_BasicItemsVO.getPriceStability();
+		values[2]=analyze_BasicItemsVO.getTurnOver();
+		values[3]=analyze_BasicItemsVO.getUps_and_downs();
+		values[4]=analyze_BasicItemsVO.getPe();
+		values[5]=analyze_BasicItemsVO.getPb();
 		
-		String data="[{'value':"+analyze_BasicItemsVO.getQuantity_relative_ratio()+
-					"},{'value':"+analyze_BasicItemsVO.getPriceStability()+
-					"},{'value':"+analyze_BasicItemsVO.getTurnOver()+
-					"},{'value':"+analyze_BasicItemsVO.getUps_and_downs()+
-					"},{'value':"+analyze_BasicItemsVO.getPe()+
-					"},{'value':"+analyze_BasicItemsVO.getPb()+"}]";
+		for (int i = 0; i < 6; i++) {
+			if(values[i]>maxs[i]){
+				maxs[i]=values[i];
+			}
+		}
+		
+		String data="[{'max':"+maxs[0]+",'value':"+values[0]+
+					"},{'max':"+maxs[1]+",'value':"+values[1]+
+					"},{'max':"+maxs[2]+",'value':"+values[2]+
+					"},{'max':"+maxs[3]+",'value':"+values[3]+
+					"},{'max':"+maxs[4]+",'value':"+values[4]+
+					"},{'max':"+maxs[5]+",'value':"+values[5]+"}]";
 		JSONArray json = new JSONArray(data);
 		PrintWriter out = response.getWriter();
 		out.println(json);

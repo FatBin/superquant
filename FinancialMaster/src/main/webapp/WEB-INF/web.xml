@@ -154,7 +154,7 @@
     <servlet-name>StockSearchServlet</servlet-name>
     <url-pattern>/StockSearch</url-pattern>
   </servlet-mapping>
-   <!-- get：，post：为评分的仪表盘提供数据 -->    
+   <!-- get：为综合分析柱状图提供数据，post：为评分的仪表盘提供数据 -->    
   <servlet>
     <servlet-name>GetStockDashboardServlet</servlet-name>
     <servlet-class>servlet.stockcheck.GetStockDashboardServlet</servlet-class>
@@ -207,5 +207,14 @@
   <servlet-mapping>
     <servlet-name>GetBusinessContrastServlet</servlet-name>
     <url-pattern>/GetBusinessContrast</url-pattern>
+  </servlet-mapping>
+     <!-- get：，post：为技术分析提供数据 -->    
+  <servlet>
+    <servlet-name>GetTechnicalAnalyzeChartServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.GetTechnicalAnalyzeChartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTechnicalAnalyzeChartServlet</servlet-name>
+    <url-pattern>/GetTechnicalAnalyzeChart</url-pattern>
   </servlet-mapping>
 </web-app>

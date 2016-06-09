@@ -6,7 +6,7 @@
 
 var RadarChart = echarts.init(document.getElementById('radarChart'));
 var values=[];
-
+var maxs=[];
 $.ajax({
 	type : "post",
 	async : false, //同步执行
@@ -15,6 +15,7 @@ $.ajax({
 	success : function(result) {
 		if (result) {
 			for (var i = 0; i < result.length; i++) {
+				maxs.push(result[i].max);
 				values.push(result[i].value);
 			}
 		}
@@ -37,12 +38,12 @@ option = {
     radar: {
         // shape: 'circle',
         indicator: [
-           { name: '量比', max: 2},
-           { name: '稳定性', max: 1},
-           { name: '换手率', max: 7},
-           { name: '涨跌幅', max: 5},
-           { name: '市盈率', max: 40},
-           { name: '市净率', max: 10}
+           { name: '量比', max: maxs[0]},
+           { name: '稳定性', max: maxs[1]},
+           { name: '换手率', max: maxs[2]},
+           { name: '涨跌幅', max: maxs[3]},
+           { name: '市盈率', max: maxs[4]},
+           { name: '市净率', max: maxs[5]}
         ],
           name: {
             textStyle: {

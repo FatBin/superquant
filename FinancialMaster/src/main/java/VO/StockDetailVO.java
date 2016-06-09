@@ -8,6 +8,9 @@ public class StockDetailVO {
 	
 	//基本分析数据
 	private  Analyze_BasicItemsVO analyze_BasicItemsVO;
+	
+	//技术分析数据
+	private Analyze_TechnicalVO analyze_TechnicalVO;
 
    //	日期、开盘价、收盘价、最高价、最低价、后复权价、成交量、换手率、市盈率、市净率
 	private String[][] historyData;
@@ -68,6 +71,12 @@ public class StockDetailVO {
 	}
 	public void setBench_rise_fallList(double[] bench_rise_fallList) {
 		this.bench_rise_fallList = bench_rise_fallList;
+	}
+	public Analyze_TechnicalVO getAnalyze_TechnicalVO() {
+		return analyze_TechnicalVO;
+	}
+	public void setAnalyze_TechnicalVO(Analyze_TechnicalVO analyze_TechnicalVO) {
+		this.analyze_TechnicalVO = analyze_TechnicalVO;
 	}
 	
 	

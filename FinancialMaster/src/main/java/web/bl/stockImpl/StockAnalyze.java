@@ -2,14 +2,18 @@ package web.bl.stockImpl;
 
 import java.util.ArrayList;
 
+import org.hibernate.id.SelectGenerator.SelectGeneratorDelegate;
+
 import PO.UpToDateStockPO;
 import PO.industriesPO;
 import VO.Analyze_BasicItemsVO;
 import VO.Analyze_ResultVO;
+import VO.Analyze_TechnicalVO;
 import VO.BenchVO;
 import VO.BusinessItemVO;
 import VO.BusinessVO;
 import VO.StockDetailVO;
+import presentation.stockcheckui.selectPanel;
 import web.bl.benchImpl.BenchImpl;
 import web.bl.businessImpl.BusinessImpl;
 import web.blservice.benchInfo.BenchInfo;
@@ -23,11 +27,17 @@ public class StockAnalyze {
 	 * 
 	 */
 	public void comprehensiveAnalyze(StockDetailVO stockDetailVO) {
-		technicalAnalyze(stockDetailVO);
-		benchAnalyze(stockDetailVO);
-		businessAnalyze(stockDetailVO);
-		basicAnalyze(stockDetailVO);
-		inflowsAnalyze(stockDetailVO);
+		double total_points=0;
+		
+		total_points+=technicalAnalyze(stockDetailVO);
+		total_points+=benchAnalyze(stockDetailVO);
+		total_points+=businessAnalyze(stockDetailVO);
+		total_points+=basicAnalyze(stockDetailVO);
+		total_points+=inflowsAnalyze(stockDetailVO);
+		
+		Analyze_ResultVO analyze_ResultVO=stockDetailVO.getAnalyze_ResultVO();
+		analyze_ResultVO .setScore_of_comprehensive_analyze(total_points);
+		
 	}
 
 	/**
@@ -37,7 +47,7 @@ public class StockAnalyze {
 	 * 均线图：（移动平均线，主要用MA10和MA30）
 	 * 当证券价格上涨，高于其移动平均线，则产生购买信号。(格兰维尔法则) 当证券价格下跌，低于其移动平均线，则产生出售信号。
 	 * -短期移动平均线从下向上突破中长期移动平均线，形成黄金交叉，预示股价将上涨；
-	 * -短期移动平均线从上向下跌破中长期移动平均线，形成做死亡交叉预示股价将下跌；
+	 * -短期移动平均线从上向下跌破中长期移动平均线，形成死亡交叉，预示股价将下跌；
 	 * -在上升行情进入稳定期，5日、10日、30日移动平均线从上而下依次顺序排列，向右上方移动，称为多头排列。预示股价将大幅上涨。
 	 * -在下跌行情中，5日、10日、30日移动平均线自下而上依次顺序排列，向右下方移动，称为空头排列，预示股价将大幅下跌。
 	 * -移动平均线由上升转为下降出现最高点，和由下降转为上升出现最低点时，是移动平均线的转折点。预示股价走势将发生反转。
@@ -46,22 +56,151 @@ public class StockAnalyze {
 	 * 最新成交量与MA5和MA10比较，判断近期市场萎缩还是活跃。
 	 *  RSI：（相对强弱指数，目前用RSI6、RSI12和RSI24）
 	 * 根据一定时期内上涨点数和涨跌点数之和的比率制作出的一种技术曲线。能够反映出市场在一定时期内的景气程度，适合做短线差价操作。
-	 * 简化计算公式：100×n天内收市价上涨数之和÷(n天内收市价上涨数之和+n天内收市价下跌数之和）。 - 顶点及底点 70 及30
-	 * 通常为超买及超卖讯号。 RSI值市场特征投资操作 80—100极强卖出 50—80强买入 20—50弱观望 0—20极弱买入
+	 * 简化计算公式：100×n天内收市价上涨数之和÷(n天内收市价上涨数之和+n天内收市价下跌数之和）。
+	 *  - 顶点及底点 70 及30通常为超买及超卖讯号。
+	 *   RSI值市场特征投资操作 80—100极强卖出 50—80强买入 20—50弱观望 0—20极弱买入
 	 * 短期RSI在20以下水平，由下往上交叉长期RSI，为买进信号。 短期RSI在80以上水平，由上往下交叉长期RSI，为卖出信号。
-	 * 价格一波比一波低，相反的，RSI却一波比一波高时，价格很容易反转上涨。 价格一波比一波高，相反的，RSI却一波比一波低时，价格很容易反转下跌。
+	 * 价格一波比一波低，相反的，RSI却一波比一波高时，价格很容易反转上涨。 
+	 * 价格一波比一波高，相反的，RSI却一波比一波低时，价格很容易反转下跌。
 	 * RSI在50以下为弱势区，50以上为强势区。 由下向上突破50线为由弱转强，由上向下突破50线为由强转弱。 一般认为RSI在50以上准确性较高。
 	 * 
 	 */
-	public void technicalAnalyze(StockDetailVO stockDetailVO) {
+	public double technicalAnalyze(StockDetailVO stockDetailVO) {
+		double score=10;
+		UpToDateStockPO upToDateStockPO=stockDetailVO.getUpToDateMessage();
+		Analyze_TechnicalVO analyze_TechnicalVO=stockDetailVO.getAnalyze_TechnicalVO();
+		Analyze_BasicItemsVO basicItemsVO=stockDetailVO.getAnalyze_BasicItemsVO();
+		double rise_fall=basicItemsVO.getUps_and_downs();//涨跌幅
+		double quantity_relative_ratio=upToDateStockPO.getQuantity_relative_ratio();//量比
+		double[] closes=analyze_TechnicalVO.getClose();
+		double[] volumes=analyze_TechnicalVO.getVolume();
+		int length=closes.length;//数据长度
+		double[] price_MA=new double[3];
+		double[] volume_MA=new double[3];
+		double[] RSIs=new double[3];
+		price_MA[0]=upToDateStockPO.getNow();//最新价
+		volume_MA[0]=volumes[0];//最新成交量
+		double resistance=Double.MIN_VALUE;//阻力线
+		double support=Double.MAX_VALUE;//支撑线
+		
+		String result="";
+		for (int i = 0; i < length/6; i++) {
+			if(closes[i]>resistance){
+				resistance=closes[i];
+			}
+			if(closes[i]<support){
+				support=closes[i];
+			}
+		}
+		if(price_MA[0]>resistance){
+			result+="最新成交价突破短期阻力线";
+			score+=2;
+		}else if(price_MA[0]<support){
+			result+="最新成交价跌破短期支撑线";
+			score-=2;
+		}else{
+			result+="最新成交价处于短期支撑线和阻力线之间";
+		}
+		
+		for (int i = length/6; i < length; i++) {
+			if(closes[i]>resistance){
+				resistance=closes[i];
+			}
+			if(closes[i]<support){
+				support=closes[i];
+			}
+		}
+		if(price_MA[0]>resistance){
+			result+="，突破长期阻力线";
+			score+=2;
+		}else if(price_MA[0]<support){
+			result+="，跌破长期支撑线";
+			score-=2;
+		}else{
+			result+="，处于长期支撑线和阻力线之间";
+		}
+		result+="。\n";
+		price_MA[1]=0;
+		volume_MA[1]=0;
+		for (int i = 0; i < 10; i++) {
+			price_MA[1]+=closes[i];
+			volume_MA[1]+=volumes[i];
+		}
+		price_MA[2]=price_MA[1];
+		volume_MA[2]=volume_MA[1];
+		price_MA[1]/=10;
+		volume_MA[1]/=10;		
+		for (int i = 10; i < 30; i++) {
+			price_MA[2]+=closes[i];
+			volume_MA[2]+=volumes[i];
+		}
+		price_MA[2]/=30;
+		volume_MA[2]/=30;
+		
+		if(rise_fall>0&&price_MA[0]>price_MA[1]){
+			result+="股票价格上涨，突破短期移动平均线，产生购买信号，建议买入。\n";
+			score+=2;
+		}
+		if(rise_fall<0&&price_MA[0]<price_MA[1]){
+			result+="股票价格下跌，跌破短期移动平均线，产生出售信号，建议卖出。\n";
+			score-=2;
+		}
+		if(quantity_relative_ratio>1&&volume_MA[0]>volume_MA[1]){
+			result+="成交量上升，突破短期移动平均线，交易市场将日渐活跃。\n";
+			score+=2;
+		}
+		if(quantity_relative_ratio<1&&volume_MA[0]<volume_MA[1]){
+			result+="成交量下跌跌，跌破短期移动平均线，交易市场将日渐萎靡。\n";
+			score-=2;
+		}
+		
+		String rsi_message[]={"低于25，产生极弱买入信号"," 位于25—50之间，产生弱观望信号",
+				"位于50—75之间，产生强买入信号","高于75，产生极强卖出信号" 
+				};
+		
+		RSIs[0]=getRSI(6, closes);
+		RSIs[1]=getRSI(12, closes);
+		RSIs[2]=getRSI(24, closes);
+		int index=(int) (RSIs[0]/25);
+		result+="短期RSI"+rsi_message[index];
+		score+=index-1;
+		
+		analyze_TechnicalVO.setPrice_MA(price_MA);
+		analyze_TechnicalVO.setVolume_MA(volume_MA);
+		analyze_TechnicalVO.setRSI(RSIs);
+		
+
+		Analyze_ResultVO analyze_ResultVO=stockDetailVO.getAnalyze_ResultVO();
+		analyze_ResultVO.setResult_of_technical_analyze(result);
+		analyze_ResultVO.setScore_of_technical_analyze(score);
+		
+		return score;
+		
 	}
 
+	private double getRSI(int count,double[] closes){
+		double risesum = 0;
+		double declinesum = 0;
+		for (int i = 0; i < count; i++) {
+		
+			double difference = closes[i] - closes[i+1];
+				if (difference > 0) {
+					risesum += difference;
+				} else {
+					declinesum -= difference;
+				}
+			
+		}
+        return (100 * risesum / (risesum + declinesum));
+	}
+	
+	
 	/**
 	 * 大盘对比分析模块 一：涨跌率历史趋势走势图比较 二：与大盘总体水平比较：涨跌率、换手率、量比
 	 * 
 	 */
 
-	public double[] benchAnalyze(StockDetailVO stockDetailVO) {
+	public double benchAnalyze(StockDetailVO stockDetailVO) {
 		//    短期期7分/中期7分/长期6分
 		double score[] = {4,3,3};
 		// 得到沪深300大盘历史数据
@@ -161,7 +300,7 @@ public class StockAnalyze {
 		double sumScore=score[0]+score[1]+score[2];
 		analyze_ResultVO.setScore_of_bench_analyze(sumScore);
 		
-		return score;
+		return sumScore;
 	}
 
 	/**
@@ -171,7 +310,7 @@ public class StockAnalyze {
 	 *  三、与行业涨跌率历史趋势走势图比较
 	 * 
 	 */
-	public double[] businessAnalyze(StockDetailVO stockDetailVO) {
+	public double businessAnalyze(StockDetailVO stockDetailVO) {
           //	    短期期12分/中期4分/长期4分
 		double score[] = {6,2,2};
 		
@@ -224,7 +363,7 @@ public class StockAnalyze {
 		double sumScore=score[0]+score[1]+score[2];
 		analyze_ResultVO.setScore_of_business_analyze(sumScore);
 		
-		return score;
+		return sumScore;
 	}
 
 	/**
@@ -307,12 +446,12 @@ public class StockAnalyze {
 			result+="该股安全系数较高，有较高提升空间。";
 		}
 		Analyze_ResultVO analyze_ResultVO=stockDetailVO.getAnalyze_ResultVO();
-		analyze_ResultVO.setResult_of_business_analyze(result);
+		analyze_ResultVO.setResult_of_basic_analyze(result);
 		double sumScore=quantity_relative_ratio-4-index+pb+ups_and_downs+turnOver+priceStability*3;
 		if(sumScore>20){
 			sumScore=20;
 		}
-		analyze_ResultVO.setScore_of_business_analyze(sumScore);
+		analyze_ResultVO.setScore_of_basic_analyze(sumScore);
 		return sumScore;
 	}
 
@@ -366,8 +505,8 @@ public class StockAnalyze {
 			score=20;
 		}
 		Analyze_ResultVO analyze_ResultVO=stockDetailVO.getAnalyze_ResultVO();
-		analyze_ResultVO.setResult_of_business_analyze(result);
-		analyze_ResultVO.setScore_of_business_analyze(score);
+		analyze_ResultVO.setResult_of_inflows_analyze(result);
+		analyze_ResultVO.setScore_of_inflows_analyze(score);
 		return score;
 	}
 }

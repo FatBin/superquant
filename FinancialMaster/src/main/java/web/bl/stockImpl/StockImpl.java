@@ -10,6 +10,7 @@ import ENUM.ManageState;
 import PO.UpToDateStockPO;
 import VO.Analyze_BasicItemsVO;
 import VO.Analyze_ResultVO;
+import VO.Analyze_TechnicalVO;
 import VO.BenchVO;
 import VO.BusinessItemVO;
 import VO.BusinessVO;
@@ -47,6 +48,7 @@ public class StockImpl implements StockInfo {
 			
 			String[][] historyData=new String[size][10];
 			double[] closes=new double[size];
+			double[] volume=new double[size];
 			double[] rise_fallList=new double[size-1];
 			double[] turnovers=new double[size];
 			
@@ -66,6 +68,7 @@ public class StockImpl implements StockInfo {
 				historyData[index][5]=tradeRecord.getAdjPrice()+"";
 				}
 				historyData[index][6]=tradeRecord.getVolume()+"";
+				volume[index]=tradeRecord.getVolume();
 				if(tradeRecord.getAdjPrice()==0){
 					historyData[index][7]="-";
 				}else{
@@ -126,7 +129,9 @@ public class StockImpl implements StockInfo {
 			analyze_BasicItemsVO.setPe(pe);
 			analyze_BasicItemsVO.setPb(pb);
 			
-			
+			Analyze_TechnicalVO analyze_TechnicalVO=new Analyze_TechnicalVO();
+			analyze_TechnicalVO.setClose(closes);
+			analyze_TechnicalVO.setVolume(volume);;
 			
 			//声明空的分析结果的VO
 			Analyze_ResultVO analyze_ResultVO=new Analyze_ResultVO();
@@ -141,6 +146,8 @@ public class StockImpl implements StockInfo {
 			stockDetailVO.setRise_fallList(rise_fallList);					
 			//设置空的综合分析结果
 			stockDetailVO.setAnalyze_ResultVO(analyze_ResultVO);
+			//设置技术分析数据
+		   stockDetailVO.setAnalyze_TechnicalVO(analyze_TechnicalVO);
 			
 			//分析该支股票
 			analyze(stockDetailVO);
