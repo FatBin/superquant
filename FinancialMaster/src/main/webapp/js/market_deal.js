@@ -1,9 +1,21 @@
 setColor();
 // 每10秒更新最新数据
-setInterval(refreshData, 10000);
+setInterval(refreshData, 60000);
 
 function refreshData() {
-
+	// 刷新最新数据
+	$.ajax({
+		type : "get",
+		async : false, // 同步执行
+		url : "../UpdateBenchVO",
+		dataType : "json",
+		success : function(result) {
+			setNewest(result);
+		},
+		error : function(errorMsg) {
+			alert("不好意思，最新数据刷新失败啦!");
+		}
+	})
 }
 
 function setColor() {
@@ -50,7 +62,7 @@ function changeStock(stockname) {
 					}
 				})
 				refresh_table(tablehead, data);
-				
+
 				// 刷新最新数据
 				$.ajax({
 					type : "post",
@@ -58,23 +70,29 @@ function changeStock(stockname) {
 					url : "../UpdateBenchVO",
 					dataType : "json",
 					success : function(result) {
-//						setNewest(result);
-						document.getElementById("now").innerHTML = result[0].now;
+						setNewest(result);
 					},
 					error : function(errorMsg) {
 						alert("不好意思，最新数据请求失败啦!");
 					}
 				})
-				
+
 			});
 }
 
-//function setNewest(result){
-//	document.getElementById("now").innerHTML = result[0].now;
-//	document.getElementById("now").innerHTML = result[0].now;
-//	document.getElementById("now").innerHTML = result[0].now;
-//	document.getElementById("now").innerHTML = result[0].now;
-//	document.getElementById("now").innerHTML = result[0].now;
-//	document.getElementById("now").innerHTML = result[0].now;
-//	document.getElementById("now").innerHTML = result[0].now;
-//}
+function setNewest(result) {
+	document.getElementById("now").innerHTML = result[0].now;
+	document.getElementById("rise_fall").innerHTML = result[0].rise_fall_price;
+	document.getElementById("rise_fall_percent").innerHTML = result[0].rise_fall_percent + "%";
+	document.getElementById("status").innerHTML = result[0].status;
+	document.getElementById("time").innerHTML = result[0].time;
+	document.getElementById("highprice").innerHTML = result[0].high;
+	document.getElementById("lowprice").innerHTML = result[0].low;
+	document.getElementById("open").innerHTML = result[0].open;
+	document.getElementById("close").innerHTML = result[0].yesterday_close;
+	document.getElementById("price").innerHTML = result[0].price;
+	document.getElementById("volume").innerHTML = result[0].volume;
+	document.getElementById("risecom").innerHTML = result[0].rise_company;
+	document.getElementById("fallcom").innerHTML = result[0].fall_company;
+	document.getElementById("com").innerHTML = result[0].company;
+}
