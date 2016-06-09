@@ -1,17 +1,14 @@
-package businesslogic.StrategyHandle;
+package web.bl.StrategyHandle;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import DAO.pojo.TradeRecord;
 import PO.StrategyPO;
 import PO.profitPO;
-import businesslogicservice.StrategyHandleService.StrategyHandleService;
 import data.StockData.StockData;
 import dataservice.StockDataService.StockDataService;
+import web.blservice.StrategyHandleService.StrategyHandleService;
 
 
 public class StrategyHandle implements StrategyHandleService{
@@ -66,29 +63,30 @@ public class StrategyHandle implements StrategyHandleService{
 			List list=service.getStockRecord(po1.getStockId(), po1.getStarttime(), po1.getEndtime());
 			ArrayList<TradeRecord> temp=new ArrayList<>();
 			ArrayList<TradeRecord> result=new ArrayList<>();
-			int count=0;//记录最早能符合买条件的记录的下标
 			for (Object object : list) {
 				temp.add((TradeRecord)object);
 			}
 			for(int i=temp.size()-1;i>=0;i--){
 				if (check(po1, temp.get(i))) {
-					count=i;
-					break;
+					result.add(temp.get(i));
 				}
-			}
-			for (int i = count; i >=0 ; i--) {
-				result.add(temp.get(i));
 			}
 			
 			//买入量
-			double volume=po1.getCost()/temp.get(0).getClose();
+			double volume=0.0001;
+			try {
+				volume=po1.getCost()/temp.get(0).getClose();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			//原本金
 			double cost=po1.getCost();
+			
+			
 			for (TradeRecord tradeRecord : result) {
 				profitPO profitPO=new profitPO(tradeRecord.getId().getDate(), volume*tradeRecord.getClose()-cost);
 				arrayList.add(profitPO);
-				if (check(po2, tradeRecord)&&
-						timeCompare(tradeRecord.getId().getDate(), po2.getStarttime(),po2.getEndtime())) {
+				if (check(po2, tradeRecord)) {
 					break;
 				}
 			}
@@ -107,24 +105,9 @@ public class StrategyHandle implements StrategyHandleService{
 		for (Strategy strategy : strategies) {
 			if (strategy.buyStrategy(strategyPO, tradeRecord)==false) {
 				result=false;
-				break;
 			}
 		}
 		return result;
-	}
-
-	//时间比较
-	public boolean timeCompare(String tradeRecord,String starttime,String endtime){
-		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			Date former=format.parse(tradeRecord);
-			Date latter1=format.parse(starttime);
-			Date latter2=format.parse(endtime);
-			return former.after(latter1)||former.before(latter2);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return false;
 	}
 	
 }

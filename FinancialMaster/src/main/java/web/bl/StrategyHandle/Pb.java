@@ -1,4 +1,4 @@
-package businesslogic.StrategyHandle;
+package web.bl.StrategyHandle;
 
 import DAO.pojo.TradeRecord;
 import PO.StrategyPO;
@@ -9,8 +9,8 @@ public class Pb extends Strategy{
 		if (strategyPO.getPbLow()==0&&strategyPO.getPbHigh()==0) {
 			return true;
 		}else{
-			if (tradeRecord.getPb()>=strategyPO.getPeLow()
-					&&tradeRecord.getPb()<=strategyPO.getPeHigh()) {
+			if (tradeRecord.getPb()>=strategyPO.getPbLow()
+					&&tradeRecord.getPb()<=strategyPO.getPbHigh()) {
 				return true;
 			}else {
 				return false;

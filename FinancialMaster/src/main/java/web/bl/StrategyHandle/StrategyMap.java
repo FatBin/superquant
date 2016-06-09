@@ -1,4 +1,4 @@
-package businesslogic.StrategyHandle;
+package web.bl.StrategyHandle;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +13,7 @@ public class StrategyMap {
 		map.put("turnover", Turnover.class);
 		map.put("pe", Pe.class);
 		map.put("pb", Pb.class);
+		map.put("date", Time.class);
 	}
 	
 	public static ArrayList<Strategy> getStrategy(){

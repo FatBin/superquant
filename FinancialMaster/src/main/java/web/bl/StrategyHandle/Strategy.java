@@ -1,4 +1,4 @@
-package businesslogic.StrategyHandle;
+package web.bl.StrategyHandle;
 
 import DAO.pojo.TradeRecord;
 import PO.StrategyPO;

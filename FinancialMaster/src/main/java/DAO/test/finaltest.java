@@ -98,34 +98,10 @@ public class finaltest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-//		System.out.println("t");
-//		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
-//		industriesUpdate.IndustriesUpdate();
-		IndustryData industryData=new IndustryData();
-//		try {
-//			ArrayList<industryPO> arrayList=industryData.getIndustry("专用设备");
-//			for (industryPO industryPO : arrayList) {
-//				System.out.println(industryPO.getStockId());
-//			}
-//			System.out.println(arrayList.size());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
+		System.out.println("t");
+		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
+		industriesUpdate.IndustriesUpdate();
 		
-		try {
-			List list=industryData.getIndustryDuringTime("通信设备", "2016-06-05", "2016-06-08");
-			for (Object object : list) {
-				Industries industries=(Industries)object;
-				System.out.print(industries.getId().getIndustry()+" ");
-				System.out.print(industries.getId().getDate()+" ");
-				System.out.print(industries.getAveragePrice()+" ");
-				System.out.println(industries.getLeaderstock()+" ");
-			}
-			System.out.println(list.size());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		
 	}
