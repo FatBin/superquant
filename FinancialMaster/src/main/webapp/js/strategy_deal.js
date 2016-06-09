@@ -62,8 +62,8 @@ function addStrategy() {
 	soldlist[count] = new Array();
 	perST[count] = new Array();
 	for (var i = 0; i < 10; i++) {
-		buylist[count][i] = buytemp[i];
-		soldlist[count][i] = soldtemp[i];
+		buylist[count][i] = (buytemp[i] == "") ? 0 : buytemp[i];
+		soldlist[count][i] = (soldtemp[i] == "") ? 0 : soldtemp[i];
 	}
 
 	var table = document.getElementById("strategyTable");
