@@ -66,6 +66,14 @@ a {
 	top: 25px;
 }
 
+.headdiv .statelbl {
+	position: absolute;
+	font-size: 12px;
+	color: gray;
+	left: 300px;
+	top: 31px;
+}
+
 .headdiv .hrstyle {
 	width: 800px;
 	color: gray;

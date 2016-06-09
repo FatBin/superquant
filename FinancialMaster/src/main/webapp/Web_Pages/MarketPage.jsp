@@ -108,6 +108,10 @@
 	<div class="headdiv">
 		<span id="now"><%=benchVO.getNow()%></span> <span id="rise_fall"><%=benchVO.getRise_fall_price()%></span>
 		<span id="rise_fall_percent"><%=benchVO.getRise_fall_percent()%>%</span>
+		
+		<span class="statelbl"><%=benchVO.getStatus()%></span>
+		<span class="statelbl" style="left:350px;"><%=benchVO.getTime()%></span>
+		
 		<hr class="hrstyle" />
 
 		<span class="fontlbl">最高价</span> 
@@ -118,10 +122,16 @@
 		<span class="fontcontent" style="left: 200px"><%=benchVO.getOpen()%></span>
 		<span class="fontlbl" style="left: 290px">昨收</span> 
 		<span class="fontcontent" style="left: 290px"><%=benchVO.getYesterday_close()%></span>
-		<span class="fontlbl" style="left: 380px;">成交额</span> 
-		<span class="fontcontent" style="left: 380px;top:104px;font-size:13px;"><%=benchVO.getPrice()%></span>
-		<span class="fontlbl" style="left: 470px">成交量</span> 
-		<span class="fontcontent" style="left: 470px;top:104px;font-size:13px;"><%=benchVO.getVolume() %></span>
+		<span class="fontlbl" style="left: 385px;">成交额</span> 
+		<span class="fontcontent" style="left: 385px;top:102px;font-size:15px;"><%=benchVO.getPrice()%></span>
+		<span class="fontlbl" style="left: 475px">成交量</span> 
+		<span class="fontcontent" style="left: 475px;top:102px;font-size:15px;"><%=benchVO.getVolume() %></span>
+		<span class="fontlbl" style="left: 570px">涨家数</span> 
+		<span class="fontcontent" style="left: 570px"><%=benchVO.getRise_company() %></span>
+		<span class="fontlbl" style="left: 640px">跌家数</span> 
+		<span class="fontcontent" style="left: 640px"><%=benchVO.getFall_company() %></span>
+		<span class="fontlbl" style="left: 710px">平家数</span> 
+		<span class="fontcontent" style="left: 710px"><%=benchVO.getCompany() %></span>
 	</div>
 
 	<div id="klinechart" class="kline_div"></div>
