@@ -108,30 +108,30 @@
 	<div class="headdiv">
 		<span id="now"><%=benchVO.getNow()%></span> <span id="rise_fall"><%=benchVO.getRise_fall_price()%></span>
 		<span id="rise_fall_percent"><%=benchVO.getRise_fall_percent()%>%</span>
-		
-		<span class="statelbl"><%=benchVO.getStatus()%></span>
-		<span class="statelbl" style="left:350px;"><%=benchVO.getTime()%></span>
-		
+
+		<span id="status" class="statelbl"><%=benchVO.getStatus()%></span> <span
+			id="time" class="statelbl" style="left: 350px;"><%=benchVO.getTime()%></span>
+
 		<hr class="hrstyle" />
 
-		<span class="fontlbl">最高价</span> 
-		<span class="fontcontent" style="color:red"><%=benchVO.getHigh()%></span>
-		<span class="fontlbl" style="left: 110px">最低价</span> 
-		<span class="fontcontent" style="left: 110px; color:green;"><%=benchVO.getLow()%></span>
-		<span class="fontlbl" style="left: 200px">今开</span> 
-		<span class="fontcontent" style="left: 200px"><%=benchVO.getOpen()%></span>
-		<span class="fontlbl" style="left: 290px">昨收</span> 
-		<span class="fontcontent" style="left: 290px"><%=benchVO.getYesterday_close()%></span>
-		<span class="fontlbl" style="left: 385px;">成交额</span> 
-		<span class="fontcontent" style="left: 385px;top:102px;font-size:15px;"><%=benchVO.getPrice()%></span>
-		<span class="fontlbl" style="left: 475px">成交量</span> 
-		<span class="fontcontent" style="left: 475px;top:102px;font-size:15px;"><%=benchVO.getVolume() %></span>
-		<span class="fontlbl" style="left: 570px">涨家数</span> 
-		<span class="fontcontent" style="left: 570px"><%=benchVO.getRise_company() %></span>
-		<span class="fontlbl" style="left: 640px">跌家数</span> 
-		<span class="fontcontent" style="left: 640px"><%=benchVO.getFall_company() %></span>
-		<span class="fontlbl" style="left: 710px">平家数</span> 
-		<span class="fontcontent" style="left: 710px"><%=benchVO.getCompany() %></span>
+		<span class="fontlbl">最高价</span> <span id="highprice"
+			class="fontcontent" style="color: red"><%=benchVO.getHigh()%></span>
+		<span class="fontlbl" style="left: 110px">最低价</span> <span
+			id="lowprice" class="fontcontent" style="left: 110px; color: green;"><%=benchVO.getLow()%></span>
+		<span class="fontlbl" style="left: 200px">今开</span> <span id="open"
+			class="fontcontent" style="left: 200px"><%=benchVO.getOpen()%></span>
+		<span class="fontlbl" style="left: 290px">昨收</span> <span id="close"
+			class="fontcontent" style="left: 290px"><%=benchVO.getYesterday_close()%></span>
+		<span class="fontlbl" style="left: 385px;">成交额</span> <span id="price"
+			class="fontcontent" style="left: 385px; top: 102px; font-size: 15px;"><%=benchVO.getPrice()%></span>
+		<span class="fontlbl" style="left: 475px">成交量</span> <span id="volume"
+			class="fontcontent" style="left: 475px; top: 102px; font-size: 15px;"><%=benchVO.getVolume()%></span>
+		<span class="fontlbl" style="left: 570px">涨家数</span> <span
+			id="risecom" class="fontcontent" style="left: 570px"><%=benchVO.getRise_company()%></span>
+		<span class="fontlbl" style="left: 640px">跌家数</span> <span
+			id="fallcom" class="fontcontent" style="left: 640px"><%=benchVO.getFall_company()%></span>
+		<span class="fontlbl" style="left: 710px">平家数</span> <span id="com"
+			class="fontcontent" style="left: 710px"><%=benchVO.getCompany()%></span>
 	</div>
 
 	<div id="klinechart" class="kline_div"></div>
@@ -217,67 +217,6 @@
 	<script>getKLine("market");</script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
-
-	<!-- 刷新数据 -->
-	<script>
-	
-		RorG();
-	    // 每10秒更新最新数据
-		setInterval(refreshData, 10000);
-		
-		function refreshData(){
-			
-		}
-		
-		function RorG(){
-			var nowspan = document.getElementById("now");
-			var rfspan = document.getElementById("rise_fall");
-			var rfpspan = document.getElementById("rise_fall_percent");
-			if(rfspan.innerHTML[0] == "-"){
-				nowspan.style.color = "green";
-				rfspan.style.color = "green";
-				rfpspan.style.color = "green";
-			}else{
-				nowspan.style.color = "red";
-				rfspan.style.color = "red";
-				rfpspan.style.color = "red";
-			}
-		}
-		// 切换大盘
-		function changeStock(stockname){
-			
-			$.post("../ToMarketPageServlet", {
-				benchName : stockname
-			})
-			.success( function(){
-				getKLine("market"); // 刷新kline
-				var tablehead = ["日期","开盘价","最高价","最低价","收盘价","成交量(百万股)","成交额(亿元)"];
-				var data = [];
-
-				$.ajax({
-					type : "get",
-					async : false, //同步执行
-					url :  "../GetMarketTableDate",
-					dataType : "json", 
-					success : function(result) {
-						if (result) {
-							for (var i = 0; i < result.length; i++) {
-								data.push(result[i].value);
-							}
-						}
-					},
-					error : function(errorMsg) {
-						alert("不好意思，请求数据失败啦!");
-					}
-				})
-				refresh_table(tablehead, data);
-			});
-			
-			
-			
-		}
-			
-	</script>
-
+	<script type="text/javascript" src="../js/market_deal.js"></script>
 </body>
 </html>

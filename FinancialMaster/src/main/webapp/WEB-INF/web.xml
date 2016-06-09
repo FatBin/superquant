@@ -84,6 +84,26 @@
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <url-pattern>/ToStrategyPageServlet</url-pattern>
   </servlet-mapping>
+  
+   <!-- get：运行策略，post：为运行结果折线图返回数据 -->  
+  <servlet>
+    <servlet-name>RunStrategyServlet</servlet-name>
+    <servlet-class>servlet.strategy.RunStrategyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RunStrategyServlet</servlet-name>
+    <url-pattern>/RunStrategy</url-pattern>
+  </servlet-mapping>
+  
+    <!-- get：保存策略，post：删除策略 -->  
+  <servlet>
+    <servlet-name>ManageMyStrategyServlet</servlet-name>
+    <servlet-class>servlet.strategy.ManageMyStrategyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManageMyStrategyServlet</servlet-name>
+    <url-pattern>/ManageMyStrategy</url-pattern>
+  </servlet-mapping>
 
   <!-- get：，post：登录 -->    
   <servlet>
@@ -125,7 +145,7 @@
     <url-pattern>/GetStockKLine</url-pattern>
   </servlet-mapping>
 
-  <!-- get：实时更新大盘最新数据，post： -->    
+  <!-- get：实时更新大盘最新数据，post：得到更新后的大盘最新数据（json返回） -->    
   <servlet>
     <servlet-name>UpdateBenchVOServlet</servlet-name>
     <servlet-class>servlet.stockmarket.UpdateBenchVOServlet</servlet-class>

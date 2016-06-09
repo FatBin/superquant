@@ -1,4 +1,9 @@
-var myChart = echarts.init(document.getElementById('linechart'));
+/**
+ * 
+ */
+
+var StrategyLineChart = echarts
+		.init(document.getElementById('strategyLineChart'));
 
 var base = +new Date(1968, 9, 3);
 var oneDay = 24 * 3600 * 1000;
@@ -21,7 +26,7 @@ option = {
     },
     title: {
         left: 'center',
-        text: '大数据量折线图',
+        text: '盈亏情况',
     },
     legend: {
         top: 'bottom',
@@ -30,10 +35,8 @@ option = {
     toolbox: {
         show: true,
         feature: {
-            dataView: {show: true, readOnly: false},
-            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-            restore: {show: true},
-            saveAsImage: {show: true}
+            magicType: {show: true, type: ['line', 'bar']},
+           
         }
     },
     xAxis: {
@@ -43,7 +46,7 @@ option = {
     },
     yAxis: {
         type: 'value',
-        boundaryGap: [0, '100%']
+         boundaryGap: [0, '100%']
     },
     dataZoom: [{
         type: 'inside',
@@ -69,10 +72,10 @@ option = {
                 normal: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                         offset: 0,
-                        color: 'rgb(255, 158, 68)'
+                        color: 'rgb(255, 0, 0)'
                     }, {
                         offset: 1,
-                        color: 'rgb(255, 70, 131)'
+                        color: 'rgb(0, 255, 0)'
                     }])
                 }
             },
@@ -80,6 +83,4 @@ option = {
         }
     ]
 };
-
-
-myChart.setOption(option);
+StrategyLineChart.setOption(option);

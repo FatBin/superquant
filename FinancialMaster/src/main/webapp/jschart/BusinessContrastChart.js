@@ -54,7 +54,8 @@ option = {
         data: dates
     },
     yAxis: {
-        type: 'value'
+        type: 'value',
+        scale : true,
     },
         dataZoom: [
         {

@@ -60,6 +60,7 @@ option = {
 	} ,
 	yAxis :  {
 		type : 'value',
+		 scale : true,
 //		name : '涨跌率',
 
 	},
