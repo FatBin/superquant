@@ -1,9 +1,12 @@
 var buytemp = [ "", "", "", "", "", "", "", "", "", "" ]; // 制定策略时的买入策略 []
 var soldtemp = [ "", "", "", "", "", "", "", "", "", "" ]; // 制定策略时的卖出策略 []
 var buylist = new Array(); // 表格中的所有买入策略 [][]
-var buycount = 0;
 var soldlist = new Array(); // 表格中的所有卖出策略 [][]
-var soldcount = 0;
+var perST = new Array();
+var count = 0;
+var stName;
+var totalcost = 0;
+var tempcost = 0;
 
 var getID = [ "stockchoose", "cost", "startdate", "enddate", "buyinst",
 		"soldoutst", "otherst", "frequency" ];
@@ -31,30 +34,37 @@ function addStrategy() {
 			getInfo[i] = document.getElementById(getID[i]).value;
 		}
 
-		// if (getInfo[i] == '') {
-		// alert("请制订完整策略");
-		// return;
-		// }
+		if (getInfo[i] == '') {
+			alert("请制订完整策略");
+			return;
+		}
 	}
 
-	buylist[buycount] = new Array();
-	soldlist[soldcount] = new Array();
-	for (var i = 0; i < 10; i++) {
-		buylist[buycount][i] = buytemp[i];
-		soldlist[soldcount][i] = soldtemp[i];
+	if (getInfo[2] > getInfo[3]) {
+		alert("开始日期和结束日期是不是反啦");
+		return;
 	}
-	buycount++;
-	soldcount++;
-	//
-	// if (getInfo[2] > getInfo[3]) {
-	// alert("开始日期和结束日期是不是反啦");
-	// return;
-	// }
-	//
-	// if (document.getElementById("stname").innerHTML == "我的策略") {
-	// alert("请设定策略名和本金");
-	// return;
-	// }
+
+	if (document.getElementById("stname").innerHTML == "我的策略") {
+		alert("请设定策略名和本金");
+		return;
+	}
+
+	if (tempcost - getInfo[1] < 0) {
+		alert("资金不够啦");
+		return;
+	} else {
+		tempcost -= getInfo[1];
+		document.getElementById("cost").placeholder = tempcost + "  可用";
+	}
+
+	buylist[count] = new Array();
+	soldlist[count] = new Array();
+	perST[count] = new Array();
+	for (var i = 0; i < 10; i++) {
+		buylist[count][i] = buytemp[i];
+		soldlist[count][i] = soldtemp[i];
+	}
 
 	var table = document.getElementById("strategyTable");
 
@@ -88,9 +98,14 @@ function addStrategy() {
 		}
 	}
 
+	var tempcount = 0;
 	for (var i = 0; i < getInfo.length; i++) {
 		var td = document.createElement("td");
 		td.innerHTML = getInfo[i];
+		if (i != 4 && i != 5 && i != 6) {
+			perST[count][tempcount] = getInfo[i];
+			tempcount++;
+		}
 		if (i != 6) {
 			td.style.cursor = "pointer";
 		}
@@ -102,6 +117,8 @@ function addStrategy() {
 	boxs[0].checked = false;
 
 	zebra();
+	count++;
+	resetAll();
 }
 
 function resetAll() {
@@ -181,7 +198,12 @@ function modifyST(td) {
 		}
 
 		var table_h = rowcount * 35;
-		modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300) + "px";
+		if (document.getElementById("strategyLineChart").style.display == "none") {
+			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300) + "px";
+		} else {
+			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 430)
+					+ "px";
+		}
 		modiv.style.marginLeft = td.getBoundingClientRect().left + "px";
 
 		var confirmMod = document.getElementById(buttontype[col]);
@@ -195,8 +217,23 @@ function modifyST(td) {
 					soldlist[pos][i] = document.getElementById(texts_2[i]).value;
 				}
 			} else if (col != 6) {
+				if (col == 1) {
+					var minus = parseInt(document
+							.getElementById(inputtype[col]).value)
+							- parseInt(td.innerHTML);
+					if (tempcost - minus >= 0) {
+						tempcost -= minus;
+						document.getElementById("cost").placeholder = tempcost
+								+ "  可用";
+					} else {
+						alert("资金不够啦");
+						return;
+					}
+				}
+
 				if (document.getElementById(inputtype[col]).value != "") {
 					td.innerHTML = document.getElementById(inputtype[col]).value;
+					perST[pos][i] = document.getElementById(inputtype[col]).value;
 				}
 			}
 			modifyCancel();
@@ -224,14 +261,18 @@ function deleteST() {
 	var table = document.getElementById("strategyTable");
 	var boxs = table.getElementsByTagName("input");
 	var boxlen = boxs.length;
+	var trs = table.getElementsByTagName("tr");
 
 	for (var i = boxlen - 1; i > 0; i--) {
 		if (boxs[i].checked == true) {
+			var tds = trs[i].getElementsByTagName("td");
+			tempcost += parseInt(tds[2].innerHTML);
+			document.getElementById("cost").placeholder = tempcost + "  可用";
 			table.deleteRow(i);
 			buylist.splice(boxlen - 1 - i, 1);
 			soldlist.splice(boxlen - 1 - i, 1);
-			buycount--;
-			soldcount--;
+			perST.splice(boxlen - 1 - i, 1)
+			count--;
 		}
 	}
 
@@ -281,6 +322,10 @@ function setName() {
 	if (stname.value != "" && stcost.value != "") {
 		document.getElementById("stname").innerHTML = stname.value;
 		document.getElementById("stcost").innerHTML = ("  本金:" + stcost.value);
+		stName = stname.value;
+		totalcost = stcost.value;
+		tempcost = totalcost;
+		document.getElementById("cost").placeholder = tempcost + "  可用";
 	} else {
 		alert('请输入完整信息');
 	}
@@ -388,4 +433,26 @@ function setLimit_2(pos) {
 		document.getElementById(texts_2[pos]).readOnly = true;
 		document.getElementById(texts_2[pos + 1]).readOnly = true;
 	}
+}
+
+function runST() {
+	var div = document.getElementById("strategyLineChart");
+	if (div.style.display == "none") {
+		div.style.display = "block";
+		div.slideToggle();
+	}
+
+	$.ajax({
+		type : "post",
+		async : false, // 同步执行
+		url : "../RunStrategy",
+		data : {
+			"stName" : stName,
+			"totalcost" : totalcost,
+			"perST" : perST.join("|"),
+			"BuyList" : buylist.join("|"),
+			"SoldList" : solilist.join("|")
+		},
+		dataType : "json"
+	})
 }

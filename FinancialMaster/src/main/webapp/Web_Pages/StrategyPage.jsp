@@ -18,41 +18,10 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
-<link href="../css/dialog.css" rel="stylesheet" type="text/css">
+<link href="../css/strategystyle.css" rel="stylesheet" type="text/css">
 
 <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
-
-<style>
-li {
-	list-style-type: none;
-}
-
-.detailname {
-	font-size: 14px;
-	line-height: 35px;
-	font-family: PingFangSC-Regular;
-	float: left;
-	margin-right: 20px;
-}
-
-.add_cancel_btn {
-	width: 50px;
-	height: 29px;
-	background-color: transparent;
-	border: 1px solid rgb(204, 204, 204);
-	background-color: transparent;
-}
-
-.hrstyle {
-	margin-top: 10px;
-	width: 990px;
-}
-
-table td {
-	border: 1px dashed rgb(235, 235, 235);
-}
-</style>
 
 </head>
 
@@ -273,7 +242,10 @@ table td {
 				onclick="deleteST();" /> <input type="button"
 				class="btn add_cancel_btn" name="savebtn" value="保存策略"
 				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
-				onclick="saveST();" />
+				onclick="saveST();" /> <input type="button"
+				class="btn add_cancel_btn" name="runbtn" value="策略模拟"
+				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
+				onclick="runST();" />
 		</div>
 	</div>
 
@@ -302,6 +274,9 @@ table td {
 			</thead>
 		</table>
 	</div>
+
+	<div id="strategyLineChart"
+		style="margin: auto; margin-top: 30px; width: 1000px; height: 400px; display: none; background-color: gray;"></div>
 
 	<!-- bottom section -->
 	<div style="margin-top: 50px;">

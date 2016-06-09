@@ -76,3 +76,32 @@ span_d.iner {
 	background-color: rgb(230, 230, 230);
 	color: #766F67;
 }
+
+li {
+	list-style-type: none;
+}
+
+.detailname {
+	font-size: 14px;
+	line-height: 35px;
+	font-family: PingFangSC-Regular;
+	float: left;
+	margin-right: 20px;
+}
+
+.add_cancel_btn {
+	width: 50px;
+	height: 29px;
+	background-color: transparent;
+	border: 1px solid rgb(204, 204, 204);
+	background-color: transparent;
+}
+
+.hrstyle {
+	margin-top: 10px;
+	width: 990px;
+}
+
+table td {
+	border: 1px dashed rgb(235, 235, 235);
+}

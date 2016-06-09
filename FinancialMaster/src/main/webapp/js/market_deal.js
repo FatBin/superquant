@@ -13,7 +13,7 @@ function refreshData() {
 			setNewest(result);
 		},
 		error : function(errorMsg) {
-			alert("不好意思，最新数据刷新失败啦!");
+//			alert("不好意思，最新数据刷新失败啦!");
 		}
 	})
 }
