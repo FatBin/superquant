@@ -84,6 +84,7 @@
 		StockDetailVO stockDetailVO = (StockDetailVO) session.getAttribute("StockDetail");
 		String[][] data = stockDetailVO.getHistoryData();
 		UpToDateStockPO uptodateStock = stockDetailVO.getUpToDateMessage();
+		boolean isConcerned = stockDetailVO.isConcerned();
 	%>
 
 	<div class="headdiv">
@@ -213,26 +214,8 @@
 	<script src="../js/table_pages.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../jschart/ScoreBarChart.js"></script>
-
-	<script>
-		var nowspan = document.getElementById("now");
-		var rfspan = document.getElementById("rise_fall");
-		if(rfspan.innerHTML[0] == "-"){
-			nowspan.style.color = "green";
-			rfspan.style.color = "green";
-		}else{
-			nowspan.style.color = "red";
-			rfspan.style.color = "red";
-		}
-		
-		function changePic(){
-			var src = document.getElementById("heartdiv").getAttribute("src");
-			if(src == "../webImage/heart.png"){
-				 document.getElementById("heartdiv").setAttribute("src", "../webImage/heart-selected.png");
-			}else{
-				document.getElementById("heartdiv").setAttribute("src", "../webImage/heart.png")
-			}
-		}
-	</script>
+	<script src="../js/stockdetail_deal.js"></script>
+	
+	<script type="text/javascript">init_Pic(<%=isConcerned%>);</script>
 </body>
 </html>
