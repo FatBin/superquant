@@ -119,8 +119,8 @@ li {
 		<div class="row" style="margin-top: -120px;">
 			<div class="col-lg-12 text-center">
 				<h2 class="section-heading">我们的服务</h2>
-				<h3 class="section-subheading text-muted">孵化、加速、上市 -
-					企业生命周期的咨询及金融服务！</h3>
+				<h3 class="section-subheading text-muted">全面、丰富、多样 -
+					为您提供更简单、更高效的理财服务！</h3>
 			</div>
 		</div>
 
@@ -131,14 +131,13 @@ li {
 					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
-					<strong>让创业更简单</strong> - 我们提供全方位的孵化与辅导服务，帮助创业企业从一个
-					idea，到建立团队、注册公司、项目开发并完善，从0-1。
+					<strong>更全面的数据</strong> - 我们提供大盘、个股、行业更新更全面的信息。
 				</p>
 				<p class="text-muted" align="left">
 					<strong>主要内容</strong>
 				<ul align="left">
-					<li align="left" class="text-muted">人力：公司注册、社保、招聘等。</li>
-					<li align="left" class="text-muted">财务：会计、帐务、报税、发票等。</li>
+					<li align="left" class="text-muted">数据：大盘、个股、行业的最新数据及历史数据！</li>
+					<li align="left" class="text-muted">分析：技术、大盘、行业、资金等多方面分析！</li>
 				</ul>
 
 				</p>
@@ -150,14 +149,15 @@ li {
 					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
-					<strong>让成长更快速</strong> -
-					针对成熟的项目及团队，我们提供全方位的加速与辅导服务，同时，提供中期的资金与资源的支持，从1-100。
+					<strong>更丰富的图表</strong> -
+					将枯燥的数据可视化，给您更直观的对比和分析展示。
 				</p>
 				<p class="text-muted" align="left">
 					<strong>主要内容</strong>
 				<ul align="left">
-					<li align="left" class="text-muted">提供免费或低价的办公场所。</li>
-					<li align="left" class="text-muted">对项目进行辅导，让项目更加成熟。</li>
+					<li align="left" class="text-muted">使用k线图、柱状图、折线图、饼状图等多种图表！</li>
+					<li align="left" class="text-muted">根据不同内容使用不同颜色展示，更直观！</li>
+					<li align="left" class="text-muted">不同图表添加到同一种表，对比更简单！</li>
 				</ul>
 			</div>
 
@@ -167,13 +167,14 @@ li {
 					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
-					<strong>让企业更加成功</strong> - 对于拟上市企业或上市公司，我们将提供更加丰富的资金与资源支持。
+					<strong>更多样的功能</strong> - 针对不同用户提供更加多样的功能，让您的理财过程更简洁高效。
 				</p>
 				<p class="text-muted" align="left">
 					<strong>主要内容</strong>
 				<ul align="left">
-					<li align="left" class="text-muted">为项目提供高层次的资本与资源支持！</li>
-					<li align="left" class="text-muted">协助项目完成并购、重组，提升竞争力！</li>
+					<li align="left" class="text-muted">提供登录功能，让收藏关注更简单！</li>
+					<li align="left" class="text-muted">提供策略模拟，给您展示能力的舞台！</li>
+					<li align="left" class="text-muted">支持名称和编码搜索，让查找更高效！</li>
 				</ul>
 
 			</div>

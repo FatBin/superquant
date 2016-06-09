@@ -53,10 +53,12 @@ option = {
 	},
 	xAxis : {
 	    type : 'category',
-		data :dates
+		data :dates,
 	} ,
 	yAxis :  {
 		type : 'value',
+
+        scale : true,
 
 	},
     dataZoom: [
