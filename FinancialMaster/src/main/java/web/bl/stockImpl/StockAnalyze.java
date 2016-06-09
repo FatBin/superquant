@@ -249,7 +249,7 @@ public class StockAnalyze {
 		stock_avg /= length;
 		bench_avg /= length;
 		
-		result = "中期表现来看，";
+		result += "中期表现来看，";
 		if(higher>=length/2){
 			result += "涨幅多数高于大盘，";
 			score[1]+=2;
@@ -279,7 +279,7 @@ public class StockAnalyze {
 		stock_avg /= size;
 		bench_avg /= size;
 		
-		result = "长期表现来看，";
+		result += "长期表现来看，";
 		if(higher>=size/2){
 			result += "涨幅多数高于大盘，";
 			score[2]+=2;
@@ -411,7 +411,7 @@ public class StockAnalyze {
 			result+="换手频率正常。";
 		}
 		
-		result="\n就最新信息显示：今日该股";
+		result+="\n就最新信息显示：今日该股";
 		
 		if(ups_and_downs>3){
 			result+="股价上涨明显；";			
@@ -428,7 +428,7 @@ public class StockAnalyze {
 			result+="交易市场正常，成交量轻微波动；";	
 		}
 		
-		result="\n就股票价值来看：";
+		result+="\n就股票价值来看：";
 		String[] pe_message={"公司盈利为负","股票价值被低估 ","股票价值处于正常水平","股票价值被高估","股市出现投机性泡沫"};
 		int index=(int) (pe/12);
 		index++;
@@ -437,7 +437,7 @@ public class StockAnalyze {
 		}
 		result+=pe_message[index];
 
-		 result=";\n就投资价值来看：";
+		 result+="\n就投资价值来看：";
 		if(pb>5){
 			result+="该股安全系数低，投资价值与风险性并举。";
 		}else if(pb<1){
