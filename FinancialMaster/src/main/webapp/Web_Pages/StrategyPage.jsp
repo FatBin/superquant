@@ -23,6 +23,10 @@
 <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 
+
+<script src="../js/echarts.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+
 </head>
 
 <body id="page-top" class="index">
@@ -454,6 +458,7 @@
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
+	<script src="../jschart/StrategyLineChart.js"></script>
 	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
