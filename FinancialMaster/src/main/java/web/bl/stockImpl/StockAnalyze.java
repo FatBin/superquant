@@ -116,8 +116,6 @@ public class StockAnalyze {
 		}else if(price_MA[0]<support){
 			result+="，跌破长期支撑线";
 			score-=2;
-		}else{
-			result+="，处于长期支撑线和阻力线之间";
 		}
 		result+="。\n";
 		price_MA[1]=0;
@@ -150,7 +148,7 @@ public class StockAnalyze {
 			score+=2;
 		}
 		if(quantity_relative_ratio<1&&volume_MA[0]<volume_MA[1]){
-			result+="成交量下跌跌，跌破短期移动平均线，交易市场将日渐萎靡。\n";
+			result+="成交量下跌，跌破短期移动平均线，交易市场将日渐萎靡。\n";
 			score-=2;
 		}
 		

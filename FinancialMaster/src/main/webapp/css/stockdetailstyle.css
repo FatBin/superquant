@@ -49,7 +49,7 @@ th {
 	top: 10px;
 }
 
-.headdiv #heartdiv{
+.headdiv #heartdiv {
 	cursor: pointer;
 	width: 30px;
 	height: 30px;
@@ -82,15 +82,15 @@ th {
 .headdiv .fontlbl {
 	position: absolute;
 	font-size: 12px;
-	color: gray; 
-	left : 10px;
+	color: gray;
+	left: 10px;
 	top: 100px;
 }
 
 .headdiv .fontcontent {
 	position: absolute;
 	font-size: 18px;
-	left : 10px;
+	left: 10px;
 	top: 120px;
 }
 
@@ -121,6 +121,15 @@ th {
 	width: 300px;
 	left: 50px;
 	top: 50px;
+}
+
+.comprehensive_div .text_compre {
+	width: 430px;
+	height: 250px;
+	position : absolute;
+	left: 410px;
+	top: 70px;
+	position: absolute;
 }
 
 .table_div {
