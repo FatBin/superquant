@@ -85,7 +85,7 @@
     <url-pattern>/ToStrategyPageServlet</url-pattern>
   </servlet-mapping>
   
-   <!-- get：运行策略，post：为运行结果折线图返回数据 -->  
+   <!-- get：为运行结果折线图返回数据  post:运行策略-->  
   <servlet>
     <servlet-name>RunStrategyServlet</servlet-name>
     <servlet-class>servlet.strategy.RunStrategyServlet</servlet-class>

@@ -5,17 +5,28 @@
 var StrategyLineChart = echarts
 		.init(document.getElementById('strategyLineChart'));
 
-var base = +new Date(1968, 9, 3);
-var oneDay = 24 * 3600 * 1000;
-var date = [];
+var dates = [];
 
-var data = [Math.random() * 300];
+var profits = [];
 
-for (var i = 1; i < 20000; i++) {
-    var now = new Date(base += oneDay);
-    date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'));
-    data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
-}
+$.ajax({
+	type : "get",
+	async : false, //同步执行
+	url : '../RunStrategy',
+	dataType : "json", //返回数据形式为json
+	success : function(result) {
+		if (result) {
+			for (var i = 0; i < result.length; i++) {
+				dates.push(result[i].date);
+				profits.push(result[i].profit);
+			}
+		}
+	},
+	error : function(errorMsg) {
+		alert("不好意思，大爷，图表请求数据失败啦!");
+		myChart.hideLoading();
+	}
+})
 
 option = {
     tooltip: {
@@ -42,7 +53,7 @@ option = {
     xAxis: {
         type: 'category',
         boundaryGap: false,
-        data: date
+        data: dates
     },
     yAxis: {
         type: 'value',
@@ -79,7 +90,7 @@ option = {
                     }])
                 }
             },
-            data: data
+            data: profits
         }
     ]
 };
