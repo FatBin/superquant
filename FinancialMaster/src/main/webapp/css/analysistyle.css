@@ -67,7 +67,6 @@ li {
 .bodydiv .text_tech {
 	width: 730px;
 	height: 65px;
-	background-color: gray;
 	position: absolute;
 	left: 58px;
 	top: 24px;
@@ -82,12 +81,11 @@ li {
 }
 
 .bodydiv .text_market {
-	width: 310px;
-	height: 247px;
-	background-color: gray;
+	width: 200px;
+	height: 190px;
 	position: absolute;
-	left: 500px;
-	top: 31px;
+	left: 540px;
+	top: 110px;
 }
 
 .bodydiv .chart_business {
@@ -107,12 +105,11 @@ li {
 }
 
 .bodydiv .text_business {
-	width: 359px;
+	width: 340px;
 	height: 85px;
-	background-color: gray;
 	position: absolute;
-	left: 424px;
-	top: 195px;
+	left: 440px;
+	top: 215px;
 }
 
 .bodydiv .chart_flow {
@@ -140,12 +137,11 @@ li {
 }
 
 .bodydiv .text_flow {
-	width: 450px;
+	width: 420px;
 	height: 90px;
-	background-color: gray;
 	position: absolute;
-	left: 355px;
-	top: 190px;
+	left: 370px;
+	top: 210px;
 }
 
 .right_nav {

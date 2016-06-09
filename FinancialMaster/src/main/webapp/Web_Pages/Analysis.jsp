@@ -1,5 +1,7 @@
+<%@page import="PO.UpToDateStockPO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="VO.StockDetailVO"
+	import="VO.Analyze_ResultVO" import="PO.UpToDateStockPO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,8 +78,15 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
+	<%
+		StockDetailVO stockDetailVO = (StockDetailVO) session.getAttribute("StockDetail");
+		Analyze_ResultVO analyzeVO = stockDetailVO.getAnalyze_ResultVO();
+		UpToDateStockPO uptodatePO = stockDetailVO.getUpToDateMessage();
+	%>
+
 	<div class="titlediv">
-		<span class="titlelbl">个股分析</span>
+		<span class="titlelbl">个股分析：<%=uptodatePO.getStockName()%>〔<%=uptodatePO.getStockId()%>〕
+		</span>
 	</div>
 
 	<!-- 综合分析 -->
@@ -97,7 +106,9 @@
 	</div>
 
 	<div class="bodydiv">
-		<div class="text_tech"></div>
+		<div class="text_tech">
+			<p><%=analyzeVO.getResult_of_technical_analyze()%></p>
+		</div>
 
 		<div id="TechnicalAnalyzeChart" class="chart_tech"></div>
 	</div>
@@ -110,7 +121,9 @@
 	<div class="bodydiv">
 		<div id="benchContrastChart" class="chart_market"></div>
 
-		<div class="text_market"></div>
+		<div class="text_market">
+			<p><%=analyzeVO.getResult_of_bench_analyze()%></p>
+		</div>
 	</div>
 
 	<!-- 行业分析 -->
@@ -123,7 +136,9 @@
 
 		<div id="stockContrastChart" class="table_business"></div>
 
-		<div class="text_business"></div>
+		<div class="text_business">
+			<p><%=analyzeVO.getResult_of_business_analyze()%></p>
+		</div>
 	</div>
 
 	<!-- 基本项 -->
@@ -132,9 +147,11 @@
 	</div>
 
 	<div class="bodydiv">
-		<div id="radarChart" class="chart_market"></div>
+		<div id="radarChart" class="chart_market" style="width: 500px;"></div>
 
-		<div class="text_market"></div>
+		<div class="text_market">
+			<p><%=analyzeVO.getResult_of_basic_analyze()%></p>
+		</div>
 	</div>
 
 	<!-- 资金流向 -->
@@ -149,7 +166,9 @@
 
 		<div id="barChart_dd" class="table_flow"></div>
 
-		<div class="text_flow"></div>
+		<div class="text_flow">
+			<p><%=analyzeVO.getResult_of_inflows_analyze()%></p>
+		</div>
 	</div>
 
 	<!-- bottom section -->
@@ -193,6 +212,6 @@
 	<script src="../jschart/StockContrastChart.js"></script>
 	<script src="../jschart/TechnicalAnalyzeChart.js"></script>
 	<script src="../jschart/ScoreBarChart.js"></script>
-	
+
 </body>
 </html>

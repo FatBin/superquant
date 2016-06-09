@@ -13,15 +13,6 @@ th {
 	font-weight: normal;
 }
 
-.headlbl {
-	height: 40px;
-	font-size: 28px;
-	line-height: 40px;
-	font-family: PingFangSC-Regular;
-	margin-top: 140px;
-	margin-left: 250px;
-}
-
 .quotelbl {
 	height: 50px;
 	width: 800px;
@@ -30,21 +21,69 @@ th {
 	margin: 20px auto;
 	margin-top: 20px;
 	position: relative;
-	margin: 20px auto;
 }
 
-.quotelbl #now {
+.headdiv {
+	height: 150px;
+	width: 800px;
+	background-color: rgb(249, 248, 243);
+	border-radius: 2px;
+	margin: 20px auto;
+	margin-top: 140px;
+	position: relative;
+}
+
+.headdiv .headlbl {
+	font-size: 24px;
+	font-family: PingFangSC-Regular;
 	position: absolute;
-	font-size: 26px;
-	left: 100px;
+	left: 10px;
 	top: 10px;
 }
 
-.quotelbl #rise_fall {
+.headdiv #heartdiv{
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: 50px;
+	top: 30px;
+}
+
+.headdiv #now {
+	position: absolute;
+	font-size: 33px;
+	left: 10px;
+	top: 40px;
+}
+
+.headdiv #rise_fall {
+	position: absolute;
+	font-size: 17px;
+	left: 120px;
+	top: 55px;
+}
+
+.headdiv .hrstyle {
+	width: 800px;
+	color: gray;
+	position: absolute;
+	top: 70px;
+}
+
+.headdiv .fontlbl {
 	position: absolute;
 	font-size: 12px;
-	left: 175px;
-	top: 25px;
+	color: gray; 
+	left : 10px;
+	top: 100px;
+}
+
+.headdiv .fontcontent {
+	position: absolute;
+	font-size: 18px;
+	left : 10px;
+	top: 120px;
 }
 
 .kline_div {

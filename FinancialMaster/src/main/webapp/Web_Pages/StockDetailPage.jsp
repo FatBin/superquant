@@ -86,13 +86,28 @@
 		UpToDateStockPO uptodateStock = stockDetailVO.getUpToDateMessage();
 	%>
 
-	<div class="headlbl"><%=uptodateStock.getStockName() %>(<%=uptodateStock.getStockId() %>)</div>
+	<div class="headdiv">
+		<span class="headlbl"><%=uptodateStock.getStockName()%>〔<%=uptodateStock.getStockId()%>〕</span>
 
-	<blockquote class="quotelbl">
-		<h5>最新数据</h5>
-		<span id="now"><%=uptodateStock.getNow() %></span>
-		<span id="rise_fall"><%=uptodateStock.getRise_fall() %></span>
-	</blockquote>
+		<span id="now"><%=uptodateStock.getNow()%></span> 
+		<span id="rise_fall"><%=uptodateStock.getRise_fall()%></span>
+
+		<img title="关注该股" id="heartdiv" onclick="changePic()" src="../webImage/heart.png">
+
+		<hr class="hrstyle" />
+
+		<span class="fontlbl">换手率</span> 
+		<span class="fontcontent"><%=uptodateStock.getTurnover() %></span>
+		<span class="fontlbl" style="left:110px">量比</span> 
+		<span class="fontcontent" style="left:110px"><%=uptodateStock.getQuantity_relative_ratio() %></span>
+		<span class="fontlbl" style="left:200px">主动率</span> 
+		<span class="fontcontent" style="left:200px"><%=uptodateStock.getPositive() %></span>
+		<span class="fontlbl" style="left:305px">通吃率</span> 
+		<span class="fontcontent" style="left:305px"><%=uptodateStock.getTongchilv() %></span>
+		<span class="fontlbl" style="left:405px">行业</span> 
+		<span class="fontcontent" style="left:405px; font-size:15px;"><%=uptodateStock.getIndustry() %></span>
+		
+	</div>
 
 	<!-- k线图 -->
 	<div id="klinechart" class="kline_div"></div>
@@ -207,6 +222,15 @@
 		}else{
 			nowspan.style.color = "red";
 			rfspan.style.color = "red";
+		}
+		
+		function changePic(){
+			var src = document.getElementById("heartdiv").getAttribute("src");
+			if(src == "../webImage/heart.png"){
+				 document.getElementById("heartdiv").setAttribute("src", "../webImage/heart-selected.png");
+			}else{
+				document.getElementById("heartdiv").setAttribute("src", "../webImage/heart.png")
+			}
 		}
 	</script>
 </body>
