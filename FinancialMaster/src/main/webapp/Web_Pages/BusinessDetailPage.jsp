@@ -110,11 +110,11 @@ li {
 			<span class="fontlbl" style="left: 210px">流入资金量</span> <span
 				class="fontcontent" style="left: 210px"><%=update_message.getInflows()%></span>
 			<span class="fontlbl" style="left: 315px">领涨股</span> <span
-				class="fontcontent" style="left: 315px"><%=update_message.getLeaderstock()%></span>
-			<span class="fontlbl" style="left: 430px">最新价</span> <span
-				class="fontcontent" style="left: 430px; font-size: 15px;"><%=update_message.getPrice()%></span>
-			<span class="fontlbl" style="left: 530px">涨跌率</span> <span
-				class="fontcontent" style="left: 530px; font-size: 15px;"><%=update_message.getStock_rise_fall()%></span>
+				class="fontcontent" style="left: 315px;font-size:17px;"><%=update_message.getLeaderstock()%></span>
+			<span class="fontlbl" style="left: 430px" id="priceTitle">最新价</span>
+			<span class="fontcontent" style="left: 430px;" id="price"><%=update_message.getPrice()%></span>
+			<span class="fontlbl" style="left: 530px" id="stockRiseTitle">涨跌率</span>
+			<span class="fontcontent" style="left: 530px;" id="stockRise"><%=update_message.getStock_rise_fall()%></span>
 
 
 
@@ -191,7 +191,7 @@ li {
 
 		<h3 class="title" style="margin-top: 30px;">行业历史数据</h3>
 
-		<table id="senfe">
+		<table id="senfe_2">
 			<thead>
 				<tr align="center" valign="middle" height="50">
 					<th width="160" bgcolor="#ccc">行业名</th>
@@ -207,18 +207,14 @@ li {
 				</tr>
 			</thead>
 
-			<tbody id="group_one">
+			<tbody id="group_two">
 
 				<%
 					int j = 0;
 					for (Industries history : historyData) {
 				%>
 
-				<tr align="center" valign="middle" height="40"
-					onmouseover="mouseIn(<%=i + 1%>);"
-					onmouseout="mouseOut(<%=i + 1%>);"
-					onclick="mouseClick(<%=i + 1%>,'../ToStockDetailPageServlet')">
-
+				<tr align="center" valign="middle" height="40">
 					<td><%=history.getId().getIndustry()%></td>
 					<td><%=history.getCompany()%></td>
 					<td><%=history.getAveragePrice()%></td>
@@ -238,13 +234,13 @@ li {
 		</table>
 
 		<div style="margin-top: 20px; margin-left: 30%">
-			<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
-				onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
-				页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
+			<a onclick="page_2.firstPage();">首 页</a>/<a
+				onclick="page_2.nextPage();">下一页</a>/<a onclick="page_2.prePage();">上一页</a>/<a
+				onclick="page_2.lastPage();">末 页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
 				id="divFood"> </span>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
-				value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
-				onclick="page.aimPage();">跳转</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input
+				id="pageno_2" value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
+				onclick="page_2.aimPage();">跳转</a>
 		</div>
 
 
@@ -260,6 +256,33 @@ li {
 	<script src="../js/table_pages.js"></script>
 	<script src="../jschart/businessBarChart.js"></script>
 	<script src="../js/jquery.js"></script>
+	<script type="text/javascript">
+	page_2 = new Page(perPage, 'senfe_2', 'group_two');
+	senfe("senfe_2", "#fff", "rgb(239,239,239)", "#ccc", "#f00");
+	
+	changeColor();
+	
+	function changeColor(){
+		var price = document.getElementById("rise_fall");
+		if(price.innerHTML[0]!='-'){
+			document.getElementById("now").style.color = "red";
+			document.getElementById("rise_fall").style.color = "red";
+		}else{
+			document.getElementById("now").style.color = "green";
+			document.getElementById("rise_fall").style.color = "green";
+		}
+		
+		var rise_fall = document.getElementById("stockRise");
+		if(rise_fall.innerHTML[0]!='-'){
+			document.getElementById("price").style.color = "red";
+			document.getElementById("stockRise").style.color = "red";
+		}else{
+			document.getElementById("price").style.color = "green";
+			document.getElementById("stockRise").style.color = "green";
+		}
+	}
+	
+	</script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../jschart/businessHistoryChart.js"></script>
