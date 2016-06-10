@@ -24,6 +24,8 @@
 <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 
+<link href="../css/personal.css" rel="stylesheet" type="text/css">
+
 <style>
 li {
 	list-style-type: none;
@@ -86,16 +88,83 @@ li {
 	<%
 		UserVO userVO = (UserVO) session.getAttribute("User");
 		ArrayList<String> strategyList = userVO.getStrategy();
-		System.out.println(userVO.getUsername());
 		ArrayList<Stock> stockList = userVO.getStockList();
 	%>
-	
-	
-	<div class="portrait">
-		<img src="../webImage/portrait.png" class="profile">
+
+
+	<div class="portrait middle">
+		<div class="profile middle">
+			<img src="../webImage/portrait.svg" class="img-responsive">
+		</div>
 		<div class="username"><%=userVO.getUsername()%></div>
 	</div>
+
+	<div class="middle liketitle">我的关注</div>
+	<hr
+		style="height: 2px; width: 600px; margin-left: auto; margin-right: auto;" />
+
+
+
+	<%
+		for (int i = 0; i < stockList.size(); i++) {
+			Stock stock = stockList.get(i);
+			String name = "b" + (i + "");
+	%>
+	<div class="business-list" onclick="jump(<%=i%>)"> 
+		<div class="business-item">
+			<div class="item-left item-top">
+				<div class="item-name" ><%=stock.getStockName()%></div>
+			</div>
+			<div class="item-price item-top">
+				<div class="item-avg" id=<%=name%>><%=stock.getStockId()%></div>
+			</div>
+			<div class="item-right item-top">
+				<div class="riser-price text-right">
+					所属行业：<%=stock.getIndustry()%>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%
+		}
+	%>
+
+
+	<div class="middle liketitle" style="margin-top: 80px;">我的策略</div>
+	<hr
+		style="height: 2px; width: 600px; margin-left: auto; margin-right: auto;" />
+
+
+
+	<%-- <div class="like">
 	
+	
+		<%
+			for(int i=0;i<stockList.size()/3;i++){
+		%>
+		<div class="like-row middle">
+			<div class="like-item">
+				<div class="like-left"><%=stockList.get(3*i).getStockName()%></div>
+				<div class="like-middle"><%=stockList.get(3*i).getStockId()%></div>
+				<div class="like-right"><%=stockList.get(3*i).getIndustry()%></div>
+			</div>
+			<div class="like-item">
+				<div class="like-left"><%=stockList.get(3*i+1).getStockName()%></div>
+				<div class="like-middle"><%=stockList.get(3*i+1).getStockId()%></div>
+				<div class="like-right"></div>
+			</div>
+			<div class="like-item">
+				<div class="like-left"><%=stockList.get(3*i+2).getStockName()%></div>
+				<div class="like-middle"><%=stockList.get(3*i+2).getStockId()%></div>
+				<div class="like-right"><%=stockList.get(3*i+2).getIndustry()%></div>
+			</div>
+		</div>
+	
+		<%}%>
+	</div> --%>
+
+
+
 
 
 
@@ -113,6 +182,27 @@ li {
 		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
 	<script type="text/javascript" src="../js/searchHint.js"></script>
-
+	<script type="text/javascript">
+		/* $(".business-list").on("click", ".business-item", function(i) {
+			var name = $(this).children('item-price').children('item-avg').attr('id');
+			jump(name);
+			alert(name);
+		}); */
+		
+		
+		function jump(i){
+			var name = "b"+(i+"");
+			$.ajax({
+				type : "post",
+				async : false, // 同步执行
+				url : "../ToStockDetailPageServlet",
+				data : {
+					"Stockid" : document.getElementById(name).innerHTML
+				},
+				dataType : "json"
+			})
+			window.location.href = "../ToStockDetailPageServlet";
+		}
+	</script>
 </body>
 </html>

@@ -1,0 +1,164 @@
+.profile{
+	width:100px;
+	height:100px;
+}
+
+.portrait{
+	height:140px;
+	width:100px;
+	margin-top:180px;
+}
+
+.username{
+	font-family:Arial;
+	color:#534437;
+	font-size:22px;
+	width:100px;
+	text-align:center;
+	margin-top:8px;
+}
+
+.middle{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.liketitle{
+	font-family:PingFangSC-Light;
+	margin-top:30px;
+	text-align:center;
+	width:130px;
+	height:30px;
+	font-size:24px;
+	background-color:#FBF7F2;
+}
+
+.like{
+	margin-top:20px;
+	width:900px;
+}
+
+.like-item{
+	margin-top:10px;
+	width:900px;
+}
+
+
+
+
+.body {
+	font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
+		"Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC",
+		"Hiragino Sans GB", "Source Han Sans CN", "Source Han Sans SC",
+		"Microsoft YaHei", "Wenquanyi Micro Hei", "WenQuanYi Zen Hei",
+		"ST Heiti", SimHei, "WenQuanYi Zen Hei Sharp", sans-serif;
+}
+
+.title {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+	margin-top: 10px;
+	border-left: 4px solid #eb8a31;
+	padding-left: 8px;
+	background-color: #FBF7F2;
+}
+
+.business-item {
+	cursor: pointer;
+	width: 600px;
+	height: 80px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 16px;
+	border-bottom: 1px solid #F0F0F0;
+}
+
+.business-rank, .compare {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+}
+
+.item-left {
+	display: inline-block;
+	float: left;
+	margin-left: 10px;
+	height: 80px;
+	width: 160px;
+	/* background-color:#ed8059; */
+}
+
+.item-right {
+	float: right;
+	margin-right: 5px;
+	height: 85px;
+	width: 300px;
+	padding-right: 10px;
+	padding-top: 8px;
+}
+
+.item-price {
+	float: left;
+	height: 85px;
+	width: 100px;
+}
+
+.item-name {
+	display: inline-block;
+	font-size: 28px;
+	color: #44382A;
+}
+
+.item-num {
+	margin-top: 15px;
+	margin-left: 10px;
+	display: inline-block;
+	font-size: 16px;
+	color: #8d7862;
+}
+
+.item-top {
+	margin-top: 15px;
+}
+
+.item-rate {
+	display: inline-block;
+	margin-top: 14px;
+	font-size: 20px;
+}
+
+.item-avg {
+	margin-top:5px;
+	font-size: 22px;
+	color: #8d7862;
+}
+
+.text-right {
+	text-align: right;
+	font-size: 20px;
+	color:#44382A;
+}
+
+.pie {
+	display: inline-block;
+	margin-left: 30px;
+	marign-top: 15px;
+	height: 240px;
+	width: 240px;
+}
+
+.riser-rate {
+	float: right;
+	display: inline-block;
+}
+
+.ToDetail{
+	float:right;
+	display:inline-block;
+	cursor:pointer;
+}
+
+

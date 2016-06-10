@@ -98,15 +98,8 @@ li {
 				style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
 		</div>
 
-
-
 		<div class="business-rank" style="height: 1000px;">
 			<h3 class="title">行业对比</h3>
-
-
-
-
-
 			<%
 				for (int i = 0; i < businessList.size(); i++) {
 			%>
