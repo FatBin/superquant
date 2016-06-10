@@ -62,8 +62,8 @@ function addStrategy() {
 	soldlist[count] = new Array();
 	perST[count] = new Array();
 	for (var i = 0; i < 10; i++) {
-		buylist[count][i] = (buytemp[i] == "") ? 0 : buytemp[i];
-		soldlist[count][i] = (soldtemp[i] == "") ? 0 : soldtemp[i];
+		buylist[count][i] = buytemp[i];
+		soldlist[count][i] = soldtemp[i];
 	}
 
 	var table = document.getElementById("strategyTable");
@@ -282,6 +282,51 @@ function deleteST() {
 // save
 function saveST() {
 
+	var buydata = new Array();
+	var solddata = new Array();
+	for (var i = 0; i < count; i++) {
+		buydata[i] = new Array();
+		solddata[i] = new Array();
+		for (var j = 0; j < buylist[0].length; j++) {
+			buydata[i][j] = (buylist[i][j] == "") ? 0 : buylist[i][j];
+			solddata[i][j] = (soldlist[i][j] == "") ? 0 : soldlist[i][j];
+		}
+	}
+
+	var per = perST.join(";")
+	var buy = buydata.join(";")
+	var sold = solddata.join(";")
+	$.ajax({
+		type : "get",
+		async : false, // 同步执行
+		url : "../ManageMyStrategy",
+		data : {
+			"stName" : stName,
+			"totalcost" : totalcost,
+			"perST" : per,
+			"BuyList" : buy,
+			"SoldList" : sold
+		},
+		dataType : "json",
+		success : function(result) {
+			if (result[0].AddResult == "Succeed") {
+				document.getElementById("savesuccess").style.display = "block";
+				setTimeout(hide, "3000");
+			}else if(result[0].AddResult == "Unlogin"){
+				alert("您还没登录呢")
+			}else {
+				alert("sorry，保存失败啦");
+			}
+
+			function hide() {
+				document.getElementById("savesuccess").style.display = "none";
+			}
+		},
+		error : function() {
+			alert("策略保存失败");
+		}
+	})
+
 }
 
 function selectAll() {
@@ -436,10 +481,21 @@ function setLimit_2(pos) {
 }
 
 function runST() {
-	
-	var per=perST.join(";")
-	var buy=buylist.join(";")
-	var sold=soldlist.join(";")
+
+	var buydata = new Array();
+	var solddata = new Array();
+	for (var i = 0; i < count; i++) {
+		buydata[i] = new Array();
+		solddata[i] = new Array();
+		for (var j = 0; j < buylist[0].length; j++) {
+			buydata[i][j] = (buylist[i][j] == "") ? 0 : buylist[i][j];
+			solddata[i][j] = (soldlist[i][j] == "") ? 0 : soldlist[i][j];
+		}
+	}
+
+	var per = perST.join(";")
+	var buy = buydata.join(";")
+	var sold = solddata.join(";")
 	$.ajax({
 		type : "post",
 		async : false, // 同步执行
@@ -447,7 +503,7 @@ function runST() {
 		data : {
 			"stName" : stName,
 			"totalcost" : totalcost,
-			"perST" :per ,
+			"perST" : per,
 			"BuyList" : buy,
 			"SoldList" : sold
 		},

@@ -244,12 +244,14 @@
 				value="删除选中策略"
 				style="margin-top: -10px; margin-bottom: 10px; margin-left: 135px; width: 100px;"
 				onclick="deleteST();" /> <input type="button"
-				class="btn add_cancel_btn" name="savebtn" value="保存策略"
-				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
-				onclick="saveST();" /> <input type="button"
 				class="btn add_cancel_btn" name="runbtn" value="策略模拟"
 				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
-				onclick="runST();" />
+				onclick="runST();" /><input type="button"
+				class="btn add_cancel_btn" name="savebtn" value="保存策略"
+				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
+				onclick="saveST();" /> <span id="savesuccess"
+				style="position: relative; top: -35px;height:0px; margin-left: 500px; display: none;"><span
+				class="glyphicon glyphicon-ok"></span> 保存成功</span>
 		</div>
 	</div>
 
