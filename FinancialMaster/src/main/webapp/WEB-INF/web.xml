@@ -95,6 +95,16 @@
     <url-pattern>/RunStrategy</url-pattern>
   </servlet-mapping>
   
+     <!-- get：为运行结果折线图返回数据  post:在个人中心中执行运行策略-->  
+  <servlet>
+    <servlet-name>RunMyStrategyServlet</servlet-name>
+    <servlet-class>servlet.strategy.RunMyStrategyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RunMyStrategyServlet</servlet-name>
+    <url-pattern>/RunMyStrategy</url-pattern>
+  </servlet-mapping>
+  
     <!-- get：保存策略，post：删除策略 -->  
   <servlet>
     <servlet-name>ManageMyStrategyServlet</servlet-name>
