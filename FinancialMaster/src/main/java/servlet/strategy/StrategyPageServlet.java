@@ -1,6 +1,7 @@
 package servlet.strategy;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
+
+import DAO.pojo.Industries;
 import DAO.pojo.UserStrategy;
 import DAO.pojo.UserStrategyId;
 import VO.MyStrategyVO;
@@ -47,7 +51,6 @@ public class StrategyPageServlet extends HttpServlet {
 		UserVO userVO=(UserVO)request.getSession().getAttribute("User");
 		GetStrategyInfo getStrategyInfo=new GetStrategyImpl();
 		List<UserStrategy> strategies=getStrategyInfo.getStrategy(userVO.getUsername(), strategyName);
-		MyStrategyVO myStrategyVO=new MyStrategyVO();
 		UserStrategy userStrategy=strategies.get(0);
 		UserStrategyId userStrategyId=userStrategy.getId();
 		String name=userStrategyId.getStrategyName();//²ßÂÔÃû
@@ -64,13 +67,19 @@ public class StrategyPageServlet extends HttpServlet {
 			BuyList+=userStrategy2.getBuystrategy()+";";
 			SoldList+=userStrategy2.getSellstrategy()+";";
 		}
+	
+	       String data="[{'stName':'"+name+
+					"','totalcost':'"+totalcost+
+					"'','perST':'"+perST+
+					"','BuyList':'"+BuyList+
+					"','SoldList':'"+SoldList+"'}]";
 		
-		myStrategyVO.setName(name);
-		myStrategyVO.setTotalcost(totalcost);
-		myStrategyVO.setPerST(perST);
-		myStrategyVO.setBuyList(BuyList);
-		myStrategyVO.setSoldList(SoldList);
-		request.getSession().setAttribute("MyStrategy", myStrategyVO);
+	       JSONArray json = new JSONArray(data);
+			PrintWriter out = response.getWriter();
+			out.println(json);
+			out.flush();
+			out.close();
+	
 	}
 
 }

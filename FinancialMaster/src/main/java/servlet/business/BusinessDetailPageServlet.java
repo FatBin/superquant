@@ -57,28 +57,28 @@ public class BusinessDetailPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		ArrayList<Industries> historyData=businessVO.getHistoryData();
+		ArrayList<Industries> historyData=businessVO.getHistoryData();
 		
 		String data="[";
 		
-//		for (Industries industry : historyData) {
-//			
-//			data=data+"{'average_price':'"+industry.getAveragePrice()+
-//					"','date':"+industry.getId().getDate()+
-//					"','rise_fall':"+industry.getRiseFall()+
-//					"','volume':"+industry.getVolume()+
-//					"','turnover':"+industry.getTurnover()+
-//					"','inflows':"+industry.getInflows()+"},";
-//		}
-		
-		for (int i = 0; i < 10; i++) {
-			data=data+"{'average_price':"+Math.random()+
-					",'date':"+i+
-					",'rise_fall':"+Math.random()+
-					",'volume':"+Math.random()+
-					",'turnover':"+Math.random()+
-					",'inflows':"+(Math.random()-0.5)+"},";
+		for (Industries industry : historyData) {
+			
+			data=data+"{'average_price':"+industry.getAveragePrice()+
+					",'date':"+industry.getId().getDate()+
+					"','rise_fall':"+industry.getRiseFall()+
+					",'volume':"+industry.getVolume()+
+					",'turnover':"+industry.getTurnover()+
+					",'inflows':"+industry.getInflows()+"},";
 		}
+		
+//		for (int i = 0; i < 10; i++) {
+//			data=data+"{'average_price':"+Math.random()+
+//					",'date':"+i+
+//					",'rise_fall':"+Math.random()+
+//					",'volume':"+Math.random()+
+//					",'turnover':"+Math.random()+
+//					",'inflows':"+(Math.random()-0.5)+"},";
+//		}
 		
 		data+="]";
 		JSONArray json = new JSONArray(data);
