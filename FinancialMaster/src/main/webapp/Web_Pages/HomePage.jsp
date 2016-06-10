@@ -164,7 +164,9 @@ li {
 			<div class="col-md-4" style="margin-top: -140px;">
 
 				<div
-					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
+					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
+					<img src="../webImage/dataImage.svg">
+					</div>
 
 				<p class="text-muted" align="left">
 					<strong>更全面的数据</strong> - 我们提供大盘、个股、行业更新更全面的信息。
@@ -182,7 +184,8 @@ li {
 			<div class="col-md-4" style="margin-top: -140px;">
 
 				<div
-					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
+					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
+					<img src="../webImage/graphImage.svg"></div>
 
 				<p class="text-muted" align="left">
 					<strong>更丰富的图表</strong> - 将枯燥的数据可视化，给您更直观的对比和分析展示。
@@ -199,7 +202,8 @@ li {
 			<div class="col-md-4" style="margin-top: -140px;">
 
 				<div
-					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
+					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
+					<img src="../webImage/functionImage.svg"></div>
 
 				<p class="text-muted" align="left">
 					<strong>更多样的功能</strong> - 针对不同用户提供更加多样的功能，让您的理财过程更简洁高效。
