@@ -2,85 +2,100 @@
  * 
  */
 
-var StrategyLineChart = echarts
-		.init(document.getElementById('strategyLineChart'));
+var StrategyLineChart = echarts.init(document
+		.getElementById('strategyLineChart'));
 
-var base = +new Date(1968, 9, 3);
-var oneDay = 24 * 3600 * 1000;
-var date = [];
+function getLinechart() {
 
-var data = [Math.random() * 300];
+	var dates = [];
 
-for (var i = 1; i < 20000; i++) {
-    var now = new Date(base += oneDay);
-    date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'));
-    data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
+	var profits = [];
+
+	$.ajax({
+		type : "get",
+		async : false, // 同步执行
+		url : '../RunStrategy',
+		dataType : "json", // 返回数据形式为json
+		success : function(result) {
+			if (result) {
+				for (var i = 0; i < result.length; i++) {
+					dates.push(result[i].date);
+					profits.push(result[i].profit);
+				}
+			}
+		},
+		error : function(errorMsg) {
+			alert("不好意思，大爷，图表请求数据失败啦!");
+			myChart.hideLoading();
+		}
+	})
+
+	option = {
+		tooltip : {
+			trigger : 'axis',
+			position : function(pt) {
+				return [ pt[0], '10%' ];
+			}
+		},
+		title : {
+			left : 'center',
+			text : '盈亏情况',
+		},
+		legend : {
+			top : 'bottom',
+			data : [ '意向' ]
+		},
+		toolbox : {
+			show : true,
+			feature : {
+				magicType : {
+					show : true,
+					type : [ 'line', 'bar' ]
+				},
+
+			}
+		},
+		xAxis : {
+			type : 'category',
+			boundaryGap : false,
+			data : dates
+		},
+		yAxis : {
+			type : 'value',
+			boundaryGap : [ 0, '100%' ]
+		},
+		dataZoom : [ {
+			type : 'inside',
+			start : 0,
+			end : 10
+		}, {
+			start : 0,
+			end : 10
+		} ],
+		series : [ {
+			name : '模拟数据',
+			type : 'line',
+			smooth : true,
+			symbol : 'none',
+			sampling : 'average',
+			itemStyle : {
+				normal : {
+					color : 'rgb(255, 70, 131)'
+				}
+			},
+			areaStyle : {
+				normal : {
+					color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [ {
+						offset : 0,
+						color : 'rgb(255, 0, 0)'
+					}, {
+						offset : 1,
+						color : 'rgb(0, 255, 0)'
+					} ])
+				}
+			},
+			data : profits
+		} ]
+	};
+	StrategyLineChart.setOption(option);
 }
-
-option = {
-    tooltip: {
-        trigger: 'axis',
-        position: function (pt) {
-            return [pt[0], '10%'];
-        }
-    },
-    title: {
-        left: 'center',
-        text: '盈亏情况',
-    },
-    legend: {
-        top: 'bottom',
-        data:['意向']
-    },
-    toolbox: {
-        show: true,
-        feature: {
-            magicType: {show: true, type: ['line', 'bar']},
-           
-        }
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: date
-    },
-    yAxis: {
-        type: 'value',
-         boundaryGap: [0, '100%']
-    },
-    dataZoom: [{
-        type: 'inside',
-        start: 0,
-        end: 10
-    }, {
-        start: 0,
-        end: 10
-    }],
-    series: [
-        {
-            name:'模拟数据',
-            type:'line',
-            smooth:true,
-            symbol: 'none',
-            sampling: 'average',
-            itemStyle: {
-                normal: {
-                    color: 'rgb(255, 70, 131)'
-                }
-            },
-            areaStyle: {
-                normal: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                        offset: 0,
-                        color: 'rgb(255, 0, 0)'
-                    }, {
-                        offset: 1,
-                        color: 'rgb(0, 255, 0)'
-                    }])
-                }
-            },
-            data: data
-        }
-    ]
-};
-StrategyLineChart.setOption(option);
