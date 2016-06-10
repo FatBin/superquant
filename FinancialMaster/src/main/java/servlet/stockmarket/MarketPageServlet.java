@@ -33,12 +33,7 @@ public class MarketPageServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		super.init();
-		bench=new BenchImpl();
-		benchListVO=bench.getBenchCode();
-		String[] benchlist=benchListVO.getBenchList();
-		benchName=benchlist[0];
-		sv=bench.getStockMarket(benchName);
+		super.init();		
 	}
 
 	/**
@@ -46,7 +41,11 @@ public class MarketPageServlet extends HttpServlet {
 	 *第一次跳转到大盘界面时初始化数据
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		bench=new BenchImpl();
+		benchListVO=bench.getBenchCode();
+		String[] benchlist=benchListVO.getBenchList();
+		benchName=benchlist[0];
+		sv=bench.getStockMarket(benchName);
 		//所有大盘指数的名称，类型BenchListVO
 		request.getSession().setAttribute("BenchList", benchListVO);
 		//当前大盘信息，类型BenchVO
