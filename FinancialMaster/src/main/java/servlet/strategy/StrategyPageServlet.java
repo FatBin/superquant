@@ -70,7 +70,7 @@ public class StrategyPageServlet extends HttpServlet {
 	
 	       String data="[{'stName':'"+name+
 					"','totalcost':'"+totalcost+
-					"'','perST':'"+perST+
+					"','perST':'"+perST+
 					"','BuyList':'"+BuyList+
 					"','SoldList':'"+SoldList+"'}]";
 		

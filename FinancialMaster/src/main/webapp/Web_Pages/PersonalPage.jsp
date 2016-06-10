@@ -159,14 +159,15 @@ li {
 		<div class="business-item">
 			<div class="item-left item-top">
 				<div class="item-name">
-					<a id=<%=nameId%> class="riser-price strategy-name"><%=strategy%></a>
+					<a id=<%=nameId%> class="riser-price strategy-name"
+						onclick="checkST(<%=i%>)"><%=strategy%></a>
 				</div>
 			</div>
 			<div class="item-right item-top"
 				style="margin-left: 120px; width: 200px;">
 				<a class="riser-price text-right" style="margin-right: 20px;"
 					onclick="deleteST(<%=i%>)">删除策略</a> <a
-					class="riser-price text-right" onclick="runST((<%=i%>))">策略模拟</a>
+					class="riser-price text-right" onclick="runST(<%=i%>)">策略模拟</a>
 			</div>
 		</div>
 	</div>
@@ -186,14 +187,14 @@ li {
 
 	<!-- 策略详情 -->
 	<div id="stDetail" class="content"
-		style="display: block; width: 1000px; height: 240px;">
+		style="display: none; width: 880px; height: 240px;">
 		<span_d class="out"></span_d>
 		<span_d class="iner"></span_d>
 
 		<table id="strategyTable" rules="rows">
 			<thead>
 				<tr align="center" valign="middle"
-					style="background-color: rgb(230, 230, 230); font-size: 16px; display: none;">
+					style="background-color: rgb(230, 230, 230); font-size: 16px;">
 					<td width="100" height="40">股票名称</td>
 					<td width="100">投资成本</td>
 					<td width="100">开始日期</td>
@@ -212,6 +213,7 @@ li {
 		style="display: block; width: 1000px; height: 400px; display: none;">
 		<span_d class="out"></span_d>
 		<span_d class="iner"></span_d>
+		<div id="strategyLineChart" style="width: 950px; height: 350px;"></div>
 	</div>
 
 	<!-- Plugin JavaScript -->
@@ -224,12 +226,11 @@ li {
 		charset="UTF-8"></script>
 	<script type="text/javascript"
 		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
-
 	<script type="text/javascript" src="../js/searchHint.js"></script>
-
 	<script src="../js/personal_deal.js"></script>
+	<script src="../jschart/StrategyLineChart.js"></script>
+	
 	<script type="text/javascript">
-
 	function jump(i){
 			var name = "b"+(i+"");
 			$.ajax({

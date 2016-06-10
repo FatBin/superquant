@@ -5,7 +5,7 @@
 var StrategyLineChart = echarts.init(document
 		.getElementById('strategyLineChart'));
 
-function getLinechart() {
+function getLinechart(url) {
 
 	var dates = [];
 
@@ -14,7 +14,7 @@ function getLinechart() {
 	$.ajax({
 		type : "get",
 		async : false, // 同步执行
-		url : '../RunStrategy',
+		url : url,
 		dataType : "json", // 返回数据形式为json
 		success : function(result) {
 			if (result) {

@@ -513,7 +513,7 @@ function runST() {
 			if (div.style.display == "none") {
 				div.style.display = "block";
 			}
-			getLinechart();
+			getLinechart("../RunStrategy");
 		},
 		error : function() {
 			alert("策略模拟失败");
