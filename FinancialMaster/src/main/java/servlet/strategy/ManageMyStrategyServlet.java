@@ -86,7 +86,7 @@ public class ManageMyStrategyServlet extends HttpServlet {
 	       UserManageInfo userManageInfo=new UserManageImpl();
 	       result=userManageInfo.addStrategy(userVO, strategyVO);
 		 }
-	    String data="[{'AddResult':"+result+"}]";
+	    String data="[{'SaveResult':"+result+"}]";
 		JSONArray json = new JSONArray(data);
 		PrintWriter out = response.getWriter();
 		out.println(json);

@@ -94,7 +94,7 @@ li {
 
 	<div class="portrait middle">
 		<div class="profile middle">
-			<img src="../webImage/portrait.svg" class="img-responsive">
+			<img src="../webImage/Portrait.png" class="img-responsive">
 		</div>
 		<div class="username"><%=userVO.getUsername()%></div>
 	</div>

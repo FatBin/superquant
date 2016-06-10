@@ -309,10 +309,11 @@ function saveST() {
 		},
 		dataType : "json",
 		success : function(result) {
-			if (result[0].AddResult == "Succeed") {
+			alert(result[0].SaveResult);
+			if (result[0].SaveResult == "Succeed") {
 				document.getElementById("savesuccess").style.display = "block";
 				setTimeout(hide, "3000");
-			}else if(result[0].AddResult == "Unlogin"){
+			}else if(result[0].SaveResult == "Unlogin"){
 				alert("您还没登录呢")
 			}else {
 				alert("sorry，保存失败啦");
