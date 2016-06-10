@@ -75,7 +75,7 @@
     <url-pattern>/ToBusinessDetailPageServlet</url-pattern>
   </servlet-mapping>
   
-  <!-- get：跳转到策略页面，post： -->  
+  <!-- get：清空session，并跳转到策略页面，post：需要提交策略名，跳转到策略 -->  
   <servlet>
     <servlet-name>ToStrategyPageServlet</servlet-name>
     <servlet-class>servlet.strategy.StrategyPageServlet</servlet-class>

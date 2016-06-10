@@ -180,7 +180,11 @@ public class StockImpl implements StockInfo {
 		}
 		result /= n - 1;
 		result = Math.sqrt(result);
-		result /= avg;
+		if(avg==0){
+			result=1;
+		}else{
+		   result /= avg;
+		}
 		return result;
 	}
 

@@ -53,9 +53,9 @@ public class ManageMyStrategyServlet extends HttpServlet {
 		  String BuyList=request.getParameter("BuyList");
 		  String SoldList=request.getParameter("SoldList");
 		  
-	      String[] perSTs=perST.split("|");
-	      String[] BuyLists=BuyList.split("|");
-	      String[] SoldLists=SoldList.split("|");
+	      String[] perSTs=perST.split(";");
+	      String[] BuyLists=BuyList.split(";");
+	      String[] SoldLists=SoldList.split(";");
 	      
 	      int size=perSTs.length;
 		

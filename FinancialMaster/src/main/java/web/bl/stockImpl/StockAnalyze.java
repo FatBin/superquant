@@ -452,6 +452,8 @@ public class StockAnalyze {
 		Analyze_ResultVO analyze_ResultVO=stockDetailVO.getAnalyze_ResultVO();
 		analyze_ResultVO.setResult_of_basic_analyze(result);
 		double sumScore=quantity_relative_ratio-4-index+pb+ups_and_downs+turnOver+priceStability*3;
+		
+		
 		if(sumScore<0){
 			sumScore=0;
 		}else if(sumScore>20){
