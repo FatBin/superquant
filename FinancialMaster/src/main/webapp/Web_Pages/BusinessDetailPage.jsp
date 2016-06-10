@@ -21,6 +21,8 @@
 <link href="../css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 
+<link href="../css/BusinessDetail.css" rel="stylesheet" type="text/css">
+
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 <link href="../css/structure.css" rel="stylesheet" type="text/css">
 <script src="../js/jquery.min.js"></script>
@@ -93,32 +95,35 @@ li {
 			ArrayList<Industries> historyData = businessVO.getHistoryData();
 			ArrayList<BusinessItemVO> businessItemVOs = businessVO.getBusinessItemVOs();
 		%>
-		<h3 class="title" style="margin-top: 140px;"><%=update_message.getIndustry()%></h3>
-		<%-- <div class="headdiv">
-		<span class="headlbl"><%=update_message.getStockName()%>〔<%=update_message.getStockId()%>〕</span>
 
-		<span id="now"><%=update_message.getNow()%></span> <span id="rise_fall"><%=update_message.getRise_fall()%></span>
 
-		<img title="关注该股" id="heartdiv" onclick="changePic()"
-			src="../webImage/heart.png">
+		<div class="headdiv">
+			<span class="headlbl"><%=update_message.getIndustry()%></span> <span
+				id="now"><%=update_message.getAverage_price()%></span> <span
+				id="rise_fall"><%=update_message.getRise_fall()%></span>
 
-		<hr class="hrstyle" />
+			<hr class="hrstyle" />
 
-		<span class="fontlbl">换手率</span> <span class="fontcontent"><%=uptodateStock.getTurnover()%></span>
-		<span class="fontlbl" style="left: 110px">量比</span> <span
-			class="fontcontent" style="left: 110px"><%=update_message.getQuantity_relative_ratio()%></span>
-		<span class="fontlbl" style="left: 200px">主动率</span> <span
-			class="fontcontent" style="left: 200px"><%=update_message.getPositive()%></span>
-		<span class="fontlbl" style="left: 305px">通吃率</span> <span
-			class="fontcontent" style="left: 305px"><%=update_message.getTongchilv()%></span>
-		<span class="fontlbl" style="left: 405px">行业</span> <span
-			class="fontcontent" style="left: 405px; font-size: 15px;"><%=update_message.getIndustry()%></span>
+			<span class="fontlbl">换手率</span> <span class="fontcontent"><%=update_message.getTurnover()%></span>
+			<span class="fontlbl" style="left: 110px">成交量</span> <span
+				class="fontcontent" style="left: 110px"><%=update_message.getVolume()%></span>
+			<span class="fontlbl" style="left: 210px">流入资金量</span> <span
+				class="fontcontent" style="left: 210px"><%=update_message.getInflows()%></span>
+			<span class="fontlbl" style="left: 315px">领涨股</span> <span
+				class="fontcontent" style="left: 315px"><%=update_message.getLeaderstock()%></span>
+			<span class="fontlbl" style="left: 430px">最新价</span> <span
+				class="fontcontent" style="left: 430px; font-size: 15px;"><%=update_message.getPrice()%></span>
+			<span class="fontlbl" style="left: 530px">涨跌率</span> <span
+				class="fontcontent" style="left: 530px; font-size: 15px;"><%=update_message.getStock_rise_fall()%></span>
 
-	</div> --%>
+
+
+		</div>
+
 		<div id="business_history_chart"
 			style="width: 100%; height: 400px; margin-left: auto; margin-right: auto; pading-bottom: 0;"></div>
 
-		<h3 class="title" style="margin-top: 140px;">业内公司情况</h3>
+		<h3 class="title" style="margin-top: 30px;">业内公司情况</h3>
 		<table id="senfe">
 			<thead>
 				<tr align="center" valign="middle" height="50">
@@ -136,6 +141,7 @@ li {
 					<th width="140" bgcolor="#ccc">成交量</th>
 					<th width="140" bgcolor="#ccc">成交额</th>
 					<th width="140" bgcolor="#ccc">换手率</th>
+
 				</tr>
 			</thead>
 
@@ -172,7 +178,76 @@ li {
 				%>
 			</tbody>
 		</table>
-		<h3 class="title" style="margin-top: 140px;">行业历史数据</h3>
+
+		<div style="margin-top: 20px; margin-left: 30%">
+			<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
+				onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
+				页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
+				id="divFood"> </span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
+				value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
+				onclick="page.aimPage();">跳转</a>
+		</div>
+
+		<h3 class="title" style="margin-top: 30px;">行业历史数据</h3>
+
+		<table id="senfe">
+			<thead>
+				<tr align="center" valign="middle" height="50">
+					<th width="160" bgcolor="#ccc">行业名</th>
+					<th width="180" bgcolor="#ccc">包含公司数</th>
+					<th width="280" bgcolor="#ccc">平均价格</th>
+					<th width="140" bgcolor="#ccc">涨跌率</th>
+					<th width="140" bgcolor="#ccc">成交量</th>
+					<th width="140" bgcolor="#ccc">换手率</th>
+					<th width="160" bgcolor="#ccc">流入资金量</th>
+					<th width="140" bgcolor="#ccc">领涨股</th>
+					<th width="140" bgcolor="#ccc">最新价</th>
+					<th width="140" bgcolor="#ccc">领涨股涨跌率</th>
+				</tr>
+			</thead>
+
+			<tbody id="group_one">
+
+				<%
+					int j = 0;
+					for (Industries history : historyData) {
+				%>
+
+				<tr align="center" valign="middle" height="40"
+					onmouseover="mouseIn(<%=i + 1%>);"
+					onmouseout="mouseOut(<%=i + 1%>);"
+					onclick="mouseClick(<%=i + 1%>,'../ToStockDetailPageServlet')">
+
+					<td><%=history.getId().getIndustry()%></td>
+					<td><%=history.getCompany()%></td>
+					<td><%=history.getAveragePrice()%></td>
+					<td><%=history.getRiseFall()%></td>
+					<td><%=history.getVolume()%></td>
+					<td><%=history.getTurnover()%></td>
+					<td><%=history.getInflows()%></td>
+					<td><%=history.getLeaderstock()%></td>
+					<td><%=history.getPrice()%></td>
+					<td><%=history.getStockRiseFall()%></td>
+				</tr>
+				<%
+					j++;
+					}
+				%>
+			</tbody>
+		</table>
+
+		<div style="margin-top: 20px; margin-left: 30%">
+			<a onclick="page.firstPage();">首 页</a>/<a onclick="page.nextPage();">下一页</a>/<a
+				onclick="page.prePage();">上一页</a>/<a onclick="page.lastPage();">末
+				页</a><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i><span
+				id="divFood"> </span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第 <input id="pageno"
+				value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
+				onclick="page.aimPage();">跳转</a>
+		</div>
+
+
 	</div>
 
 

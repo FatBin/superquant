@@ -1,0 +1,146 @@
+li {
+	list-style-type: none;
+}
+
+a {
+	cursor: pointer;
+}
+
+th {
+	text-align: center;
+	valign: middle;
+	height: 40px;
+	font-weight: normal;
+}
+
+.quotelbl {
+	height: 50px;
+	width: 800px;
+	background-color: rgb(249, 248, 243);
+	border-radius: 2px;
+	margin: 20px auto;
+	margin-top: 20px;
+	position: relative;
+}
+
+.headtext {
+	color: #4A433B;
+	font-size: 20px;
+	line-height: 32px;
+	font-family: PingFangSC-Regular;
+	margin-left: 5px;
+}
+
+.headdiv {
+	height: 150px;
+	width: 100%;
+	background-color: #FBF7F2;
+	border-radius: 2px;
+	margin: 20px auto;
+	margin-top: 140px;
+	position: relative;
+}
+
+.headdiv .headlbl {
+	font-size: 24px;
+	font-family: PingFangSC-Regular;
+	position: absolute;
+	left: 20px;
+	top: 10px;
+}
+
+.headdiv #heartdiv {
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: 50px;
+	top: 30px;
+}
+
+.headdiv #now {
+	position: absolute;
+	font-size: 33px;
+	left: 20px;
+	top: 40px;
+}
+
+.headdiv #rise_fall {
+	position: absolute;
+	font-size: 17px;
+	left: 120px;
+	top: 55px;
+}
+
+.headdiv .hrstyle {
+	width: 800px;
+	color: gray;
+	position: absolute;
+	top: 70px;
+}
+
+.headdiv .fontlbl {
+	position: absolute;
+	font-size: 12px;
+	color: gray;
+	left: 20px;
+	top: 100px;
+}
+
+.headdiv .fontcontent {
+	position: absolute;
+	font-size: 18px;
+	left: 20px;
+	top: 120px;
+}
+
+.kline_div {
+	width: 850px;
+	height: 910px;
+	margin: 20px auto;
+}
+
+.tendcy_div {
+	height: 300px;
+	width: 910px;
+	background-color: #F8F7F6;
+	margin: 20px auto;
+}
+
+.comprehensive_div {
+	height: 400px;
+	width: 910px;
+	margin: 20px auto;
+	position: relative;
+}
+
+.comprehensive_div .chart_compre {
+	position: absolute;
+	background-color: gray;
+	height: 300px;
+	width: 300px;
+	left: 50px;
+	top: 50px;
+}
+
+.comprehensive_div .text_compre {
+	width: 430px;
+	height: 250px;
+	position : absolute;
+	left: 410px;
+	top: 70px;
+	position: absolute;
+}
+
+.table_div {
+	height: 400px;
+	width: 800px;
+	margin: 20px auto;
+}
+
+.quotelbl .toAnalysis {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
