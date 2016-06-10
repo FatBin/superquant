@@ -49,17 +49,17 @@ function changePic() {
 	} else {
 
 		$.ajax({
-			type : "get",
+			type : "post",
 			async : false, // 同步执行
 			url : "../ManageMyStock",
 			dataType : "json",
 			success : function(result) {
-				if (result[0].AddResult == 'Succeed') {
+				if (result[0].DeleteResult == 'Succeed') {
 					document.getElementById("heartdiv").setAttribute("src",
 							"../webImage/heart.png")
-				} else if (result[0].AddResult == 'Unlogin') {
+				} else if (result[0].DeleteResult == 'Unlogin') {
 					alert("请先登录再管理个人关注");
-				} else if (result[0].AddResult == 'Fail') {
+				} else if (result[0].DeleteResult == 'Fail') {
 					alert("您还没关注这支股哦");
 				} else {
 					alert("sorry，服务器请求失败啦");
