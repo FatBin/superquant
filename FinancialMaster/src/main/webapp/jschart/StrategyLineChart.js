@@ -87,10 +87,10 @@ function getLinechart() {
 				normal : {
 					color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [ {
 						offset : 0,
-						color : 'rgb(191,46,68)'
+						color : 'rgb(200,0,0)'
 					}, {
 						offset : 1,
-						color : 'rgb(11,187,62)'
+						color : 'rgb(0,200,0)'
 					} ])
 				}
 			},
