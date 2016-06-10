@@ -31,13 +31,13 @@
             <column name="weight" precision="22" scale="0" not-null="true" />
         </property>
         <property name="buystrategy" type="string">
-            <column name="buystrategy" length="20" not-null="true" />
+            <column name="buystrategy" length="255" not-null="true" />
         </property>
         <property name="sellstrategy" type="string">
-            <column name="sellstrategy" length="20" not-null="true" />
+            <column name="sellstrategy" length="255" not-null="true" />
         </property>
         <property name="otherstrategy" type="string">
-            <column name="otherstrategy" length="20" not-null="true" />
+            <column name="otherstrategy" length="255" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

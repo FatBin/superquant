@@ -3,11 +3,15 @@ package DAO.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import DAO.DaoProxy.UserStrategyDaoProxy;
 import DAO.pojo.Industries;
+import DAO.pojo.UserStrategy;
+import DAO.pojo.UserStrategyId;
 import PO.industryPO;
 import data.Database.IndustriesUpdate;
 import data.IndustryData.IndustryData;
 import data.Initialize.Init;
+import data.UserData.UserStrategyData;
 
 public class finaltest {
 
@@ -93,17 +97,19 @@ public class finaltest {
 		 * update the industries in the database
 		 */
 		Init init=new Init();
-		try {
-			Thread.sleep(15000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("t");
-		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
-		industriesUpdate.IndustriesUpdate();
+//		try {
+//			Thread.sleep(15000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("t");
+//		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
+//		industriesUpdate.IndustriesUpdate();
 		
-		
-		
+		UserStrategyData data=new UserStrategyData();
+		UserStrategyId id=new UserStrategyId("pangchao", "sh600000", "jianfeishibai");
+		UserStrategy strategy=new UserStrategy(id, "2014-02-12", "2014-09-11", 0, 0, 0, "1234567899123123123123123123123", "123123123", "");
+		System.out.print(data.addStrategy(strategy));;
 	}
 	
 }
