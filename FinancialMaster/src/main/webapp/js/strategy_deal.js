@@ -436,6 +436,10 @@ function setLimit_2(pos) {
 }
 
 function runST() {
+	
+	var per=perST.join(";")
+	var buy=buylist.join(";")
+	var sold=soldlist.join(";")
 	$.ajax({
 		type : "post",
 		async : false, // 同步执行
@@ -443,9 +447,9 @@ function runST() {
 		data : {
 			"stName" : stName,
 			"totalcost" : totalcost,
-			"perST" : perST.join("|"),
-			"BuyList" : buylist.join("|"),
-			"SoldList" : solilist.join("|")
+			"perST" :per ,
+			"BuyList" : buy,
+			"SoldList" : sold
 		},
 		dataType : "json",
 		success : function() {

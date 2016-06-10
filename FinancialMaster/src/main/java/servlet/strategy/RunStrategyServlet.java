@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.dbcp.dbcp.PoolablePreparedStatement;
 import org.json.JSONArray;
 
 import PO.StrategyPO;
@@ -63,11 +64,11 @@ public class RunStrategyServlet extends HttpServlet {
 		// String totalcost=request.getParameter("totalcost");//×Ü³É±¾
 		String perST = request.getParameter("perST");
 		String BuyList = request.getParameter("BuyList");
-		String SoldList = request.getParameter("SoldList");
-
-		String[] perSTs = perST.split("|");
-		String[] BuyLists = BuyList.split("|");
-		String[] SoldLists = SoldList.split("|");
+		String SoldList = request.getParameter("SoldList");		
+		
+		String[] perSTs = perST.split(";");
+		String[] BuyLists = BuyList.split(";");
+		String[] SoldLists = SoldList.split(";");
 
 		int size = perSTs.length;
 
