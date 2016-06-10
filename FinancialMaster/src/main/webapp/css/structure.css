@@ -1,3 +1,11 @@
+#searchHint {
+	position: absolute;
+	background-color: rgb(235, 235, 235);
+	width: 150px;
+	margin-left: 935px;
+	margin-top: -10px;
+}
+
 .body {
 	font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
 		"Nimbus Sans L", Arial, "Liberation Sans", "PingFang SC",

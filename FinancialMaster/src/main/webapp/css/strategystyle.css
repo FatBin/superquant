@@ -105,3 +105,20 @@ li {
 table td {
 	border: 1px dashed rgb(235, 235, 235);
 }
+
+#stHint {
+	position: absolute;
+	background-color: rgb(235, 235, 235);
+	width: 130px;
+	margin-left: 195px;
+	margin-top: 35px;
+}
+
+.lbl {
+	font-size: 28px;
+	line-height: 35px;
+	font-family: PingFangSC-Regular;
+	margin-top: 150px;
+	margin-left: 135px;
+}
+

@@ -309,7 +309,6 @@ function saveST() {
 		},
 		dataType : "json",
 		success : function(result) {
-			alert(result[0].SaveResult);
 			if (result[0].SaveResult == "Succeed") {
 				document.getElementById("savesuccess").style.display = "block";
 				setTimeout(hide, "3000");

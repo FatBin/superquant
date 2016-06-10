@@ -51,7 +51,6 @@ li {
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
 		</div>
 
-
 		<a href="HomePage.jsp" class="floatLeft"> <img
 			src="../webImage/logo.png" title="返回首页" id="logo">
 		</a>
@@ -67,11 +66,11 @@ li {
 		%>
 		<input type="button" value="登录" name="login"
 			class="bottons loginbtn floatRight" data-toggle="modal"
-			data-target="#modalLogin" style="margin-top: 8px; margin-right: -20px;" />
+			data-target="#modalLogin"
+			style="margin-top: 8px; margin-right: -20px;" />
 		<%
 			}
 		%>
-
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse "
@@ -87,11 +86,6 @@ li {
 			</ul>
 		</div>
 
-
-
-
-
-
 		<div class="style_5 hidden-sm hidden-xs floatRight">
 			<fieldset id="searchform">
 				<input type="text" placeholder="搜索" class="text_input"
@@ -101,15 +95,8 @@ li {
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
 				<input name="submit" type="submit" value='' />
 			</fieldset>
-
-			<div id="searchHint"
-				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
 		</div>
-
-
-
-
-
+		<div id="searchHint"></div>
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
@@ -121,13 +108,13 @@ li {
 
 	<div class="container">
 		<div class="compare" style="height: 450px;">
-			<h3 class="title" style="margin-top: 140px; height: 45px;">行业涨跌榜</h3>
+			<h2 class="title" style="margin-top: 140px;">行业涨跌榜</h2>
 			<div id="business_barchart"
 				style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
 		</div>
 
 		<div class="business-rank" style="height: 1000px;">
-			<h3 class="title">行业对比</h3>
+			<h2 class="title">行业对比</h2>
 			<%
 				for (int i = 0; i < businessList.size(); i++) {
 			%>

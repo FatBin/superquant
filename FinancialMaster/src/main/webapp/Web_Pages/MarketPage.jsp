@@ -60,7 +60,8 @@
 		%>
 		<input type="button" value="登录" name="login"
 			class="bottons loginbtn floatRight" data-toggle="modal"
-			data-target="#modalLogin" style="margin-top: 8px; margin-right: -20px;" />
+			data-target="#modalLogin"
+			style="margin-top: 8px; margin-right: -20px;" />
 		<%
 			}
 		%>
@@ -94,16 +95,9 @@
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
 				<input name="submit" type="submit" value='' />
 			</fieldset>
-
-			<div id="searchHint"
-				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
 		</div>
-
-
-
-
-
 		<!-- /.navbar-collapse -->
+		<div id="searchHint"></div>
 	</div>
 	<!-- /.container-fluid --> </nav>
 

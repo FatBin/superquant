@@ -62,7 +62,8 @@
 		%>
 		<input type="button" value="登录" name="login"
 			class="bottons loginbtn floatRight" data-toggle="modal"
-			data-target="#modalLogin" style="margin-top: 8px; margin-right: -20px;" />
+			data-target="#modalLogin"
+			style="margin-top: 8px; margin-right: -20px;" />
 		<%
 			}
 		%>
@@ -82,11 +83,6 @@
 			</ul>
 		</div>
 
-
-
-
-
-
 		<div class="style_5 hidden-sm hidden-xs floatRight">
 			<fieldset id="searchform">
 				<input type="text" placeholder="搜索" class="text_input"
@@ -96,22 +92,15 @@
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
 				<input name="submit" type="submit" value='' />
 			</fieldset>
-
-			<div id="searchHint"
-				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
 		</div>
-
-
-
-
+		<div id="searchHint"
+			style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 935px; margin-top: -10px;"></div>
 
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div
-		style="font-size: 28px; line-height: 35px; font-family: PingFangSC-Regular; margin-top: 150px; margin-left: 135px;">
-		策略</div>
+	<div class="lbl">策略</div>
 
 	<hr class="hrstyle" />
 
@@ -140,8 +129,9 @@
 
 	<hr class="hrstyle" />
 
-	<!-- 所有按钮的大块 -->
+	<div id="stHint"></div>
 
+	<!-- 所有按钮的大块 -->
 	<!-- 第一列的块 -->
 	<div id="first_col"
 		style="float: left; margin-right: 40px; margin-left: 135px;">
@@ -149,7 +139,7 @@
 		<div>
 			<i class="detailname">选择股票</i> <input id="stockchoose"
 				class="form-control" size="16" type="text" value=""
-				style="width: 100px;">
+				style="width: 100px;" onkeyup="showHint_st(this.value)">
 		</div>
 
 		<div style="margin-top: 10px;">
@@ -494,6 +484,7 @@
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
+	<script type="text/javascript" src="../js/strategyhint.js"></script>
 	<script type="text/javascript" src="../js/strategy_deal.js"></script>
 	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
 		charset="UTF-8"></script>

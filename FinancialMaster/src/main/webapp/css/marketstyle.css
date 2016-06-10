@@ -1,3 +1,11 @@
+#searchHint {
+	position: absolute;
+	background-color: rgb(235, 235, 235);
+	width: 150px;
+	margin-left: 935px;
+	margin-top: -10px;
+}
+
 td {
 	text-align: center;
 	width: 110px;

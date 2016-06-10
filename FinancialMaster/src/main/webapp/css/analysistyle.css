@@ -1,8 +1,16 @@
+#searchHint {
+	position: absolute;
+	background-color: rgb(235, 235, 235);
+	width: 150px;
+	margin-left: 935px;
+	margin-top: -10px;
+}
+
 li {
 	list-style-type: none;
 }
 
-.titlediv{
+.titlediv {
 	margin-top: 130px;
 	margin-left: 17%;
 }
@@ -148,6 +156,6 @@ li {
 	position: fixed;
 	right: 20px;
 	top: 190px;
-	border:solid 1px rgb(235,235,235);
+	border: solid 1px rgb(235, 235, 235);
 	border-radius: 4px;
 }
