@@ -12,6 +12,7 @@
 
 <!-- Custom CSS -->
 <link href="../css/agency.css" rel="stylesheet" type="text/css">
+<link href="../css/LoginAndReg.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="../css/font-awesome.min.css" rel="stylesheet"

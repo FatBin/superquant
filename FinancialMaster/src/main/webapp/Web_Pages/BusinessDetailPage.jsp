@@ -16,6 +16,7 @@
 
 <!-- Custom CSS -->
 <link href="../css/agency.css" rel="stylesheet" type="text/css">
+<link href="../css/LoginAndReg.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="../css/font-awesome.min.css" rel="stylesheet"
@@ -117,17 +118,17 @@ li {
 
 			<hr class="hrstyle" />
 
-			<span class="fontlbl">换手率</span> <span class="fontcontent"><%=update_message.getTurnover()%></span>
-			<span class="fontlbl" style="left: 110px">成交量</span> <span
-				class="fontcontent" style="left: 110px"><%=update_message.getVolume()%></span>
-			<span class="fontlbl" style="left: 210px">流入资金量</span> <span
-				class="fontcontent" style="left: 210px"><%=update_message.getInflows()%></span>
-			<span class="fontlbl" style="left: 315px">领涨股</span> <span
-				class="fontcontent" style="left: 315px; font-size: 17px;"><%=update_message.getLeaderstock()%></span>
-			<span class="fontlbl" style="left: 430px" id="priceTitle">最新价</span>
-			<span class="fontcontent" style="left: 430px;" id="price"><%=update_message.getPrice()%></span>
-			<span class="fontlbl" style="left: 530px" id="stockRiseTitle">涨跌率</span>
-			<span class="fontcontent" style="left: 530px;" id="stockRise"><%=update_message.getStock_rise_fall()%></span>
+			<span class="fontlbl">换手率</span> <span class="fontcontent"><%=update_message.getTurnover()%>%</span>
+			<span class="fontlbl" style="left: 120px">成交量</span> <span
+				class="fontcontent" style="left: 120px"><%=update_message.getVolume()%>万手</span>
+			<span class="fontlbl" style="left: 240px">流入资金量</span> <span
+				class="fontcontent" style="left: 240px"><%=update_message.getInflows()%>亿元</span>
+			<span class="fontlbl" style="left: 355px">领涨股</span> <span
+				class="fontcontent" style="left: 355px; font-size: 17px;"><%=update_message.getLeaderstock()%></span>
+			<span class="fontlbl" style="left: 480px" id="priceTitle">最新价</span>
+			<span class="fontcontent" style="left: 480px;" id="price"><%=update_message.getPrice()%>元</span>
+			<span class="fontlbl" style="left: 590px" id="stockRiseTitle">涨跌率</span>
+			<span class="fontcontent" style="left: 590px;" id="stockRise"><%=update_message.getStock_rise_fall()%>%</span>
 
 		</div>
 
