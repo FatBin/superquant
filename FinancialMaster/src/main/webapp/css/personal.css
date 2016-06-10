@@ -1,50 +1,55 @@
-.profile{
-	width:100px;
-	height:100px;
+#searchHint {
+	position: absolute;
+	background-color: rgb(235, 235, 235);
+	width: 150px;
+	margin-left: 1005px;
+	margin-top: -10px;
 }
 
-.portrait{
-	height:140px;
-	width:100px;
-	margin-top:180px;
+.profile {
+	width: 100px;
+	height: 100px;
 }
 
-.username{
-	font-family:Arial;
-	color:#534437;
-	font-size:22px;
-	width:100px;
-	text-align:center;
-	margin-top:8px;
+.portrait {
+	height: 140px;
+	width: 100px;
+	margin-top: 180px;
 }
 
-.middle{
-	margin-left:auto;
-	margin-right:auto;
+.username {
+	font-family: Arial;
+	color: #534437;
+	font-size: 22px;
+	width: 100px;
+	text-align: center;
+	margin-top: 8px;
 }
 
-.liketitle{
-	font-family:PingFangSC-Light;
-	margin-top:30px;
-	text-align:center;
-	width:130px;
-	height:30px;
-	font-size:24px;
-	background-color:#FBF7F2;
+.middle {
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.like{
-	margin-top:20px;
-	width:900px;
+.liketitle {
+	font-family: PingFangSC-Light;
+	margin-top: 30px;
+	text-align: center;
+	width: 130px;
+	height: 30px;
+	font-size: 24px;
+	background-color: #FBF7F2;
 }
 
-.like-item{
-	margin-top:10px;
-	width:900px;
+.like {
+	margin-top: 20px;
+	width: 900px;
 }
 
-
-
+.like-item {
+	margin-top: 10px;
+	width: 900px;
+}
 
 .body {
 	font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica,
@@ -131,7 +136,7 @@
 }
 
 .item-avg {
-	margin-top:5px;
+	margin-top: 5px;
 	font-size: 22px;
 	color: #8d7862;
 }
@@ -139,7 +144,7 @@
 .text-right {
 	text-align: right;
 	font-size: 20px;
-	color:#44382A;
+	color: #44382A;
 }
 
 .pie {
@@ -155,10 +160,8 @@
 	display: inline-block;
 }
 
-.ToDetail{
-	float:right;
-	display:inline-block;
-	cursor:pointer;
+.ToDetail {
+	float: right;
+	display: inline-block;
+	cursor: pointer;
 }
-
-

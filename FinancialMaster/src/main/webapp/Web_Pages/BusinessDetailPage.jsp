@@ -53,7 +53,6 @@ li {
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
 		</div>
 
-
 		<a href="HomePage.jsp" class="floatLeft"> <img
 			src="../webImage/logo.png" title="返回首页" id="logo">
 		</a>
@@ -74,7 +73,6 @@ li {
 			}
 		%>
 
-
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse "
 			id="bs-example-navbar-collapse-1" style="height: 216px;">
@@ -89,11 +87,6 @@ li {
 			</ul>
 		</div>
 
-
-
-
-
-
 		<div class="style_5 hidden-sm hidden-xs floatRight">
 			<fieldset id="searchform">
 				<input type="text" placeholder="搜索" class="text_input"
@@ -103,15 +96,8 @@ li {
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
 				<input name="submit" type="submit" value='' />
 			</fieldset>
-
-			<div id="searchHint"
-				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
 		</div>
-
-
-
-
-
+		<div id="searchHint"></div>
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>

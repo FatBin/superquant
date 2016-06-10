@@ -44,7 +44,6 @@
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
 		</div>
 
-
 		<a href="HomePage.jsp" class="floatLeft"> <img
 			src="../webImage/logo.png" title="返回首页" id="logo">
 		</a>
@@ -60,11 +59,11 @@
 		%>
 		<input type="button" value="登录" name="login"
 			class="bottons loginbtn floatRight" data-toggle="modal"
-			data-target="#modalLogin" style="margin-top: 8px; margin-right: -20px;" />
+			data-target="#modalLogin"
+			style="margin-top: 8px; margin-right: -20px;" />
 		<%
 			}
 		%>
-
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse "
@@ -80,11 +79,6 @@
 			</ul>
 		</div>
 
-
-
-
-
-
 		<div class="style_5 hidden-sm hidden-xs floatRight">
 			<fieldset id="searchform">
 				<input type="text" placeholder="搜索" class="text_input"
@@ -94,16 +88,9 @@
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
 				<input name="submit" type="submit" value='' />
 			</fieldset>
-
-			<div id="searchHint"
-				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
+			<!-- /.navbar-collapse -->
 		</div>
-
-
-
-
-
-		<!-- /.navbar-collapse -->
+		<div id="searchHint"></div>
 	</div>
 	<!-- /.container-fluid --> </nav>
 

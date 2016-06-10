@@ -55,19 +55,18 @@ li {
 			if (session.getAttribute("User") != null) {
 		%>
 		<a class="profile floatRight" href="../Web_Pages/PersonalPage.jsp">
-			<img alt="" src="../webImage/man.svg" class="headImage"
-			>
+			<img alt="" src="../webImage/man.svg" class="headImage">
 		</a>
 		<%
 			} else {
 		%>
 		<input type="button" value="登录" name="login"
 			class="bottons loginbtn floatRight" data-toggle="modal"
-			data-target="#modalLogin" style="margin-top: 8px; margin-right: -20px;" />
+			data-target="#modalLogin"
+			style="margin-top: 8px; margin-right: -20px;" />
 		<%
 			}
 		%>
-
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse "
@@ -83,11 +82,6 @@ li {
 			</ul>
 		</div>
 
-
-
-
-
-
 		<div class="style_5 hidden-sm hidden-xs floatRight">
 			<fieldset id="searchform">
 				<input type="text" placeholder="搜索" class="text_input"
@@ -97,18 +91,12 @@ li {
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
 				<input name="submit" type="submit" value='' />
 			</fieldset>
-
-			<div id="searchHint"
-				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
+			<!-- /.navbar-collapse -->
 		</div>
-
-
-
-
-
-		<!-- /.navbar-collapse -->
-	</div>
-	<!-- /.container-fluid --> </nav>
+		<div id="searchHint"
+			style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 935px; margin-top: -10px;"></div>
+		<!-- /.container-fluid -->
+	</nav>
 
 	<!-- Header -->
 	<header>
@@ -166,7 +154,7 @@ li {
 				<div
 					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
 					<img src="../webImage/dataImage.svg">
-					</div>
+				</div>
 
 				<p class="text-muted" align="left">
 					<strong>更全面的数据</strong> - 我们提供大盘、个股、行业更新更全面的信息。
@@ -185,7 +173,8 @@ li {
 
 				<div
 					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
-					<img src="../webImage/graphImage.svg"></div>
+					<img src="../webImage/graphImage.svg">
+				</div>
 
 				<p class="text-muted" align="left">
 					<strong>更丰富的图表</strong> - 将枯燥的数据可视化，给您更直观的对比和分析展示。
@@ -203,7 +192,8 @@ li {
 
 				<div
 					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
-					<img src="../webImage/functionImage.svg"></div>
+					<img src="../webImage/functionImage.svg">
+				</div>
 
 				<p class="text-muted" align="left">
 					<strong>更多样的功能</strong> - 针对不同用户提供更加多样的功能，让您的理财过程更简洁高效。

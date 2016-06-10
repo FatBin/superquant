@@ -70,7 +70,6 @@ li {
 			}
 		%>
 
-
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse "
 			id="bs-example-navbar-collapse-1" style="height: 216px;">
@@ -85,11 +84,6 @@ li {
 			</ul>
 		</div>
 
-
-
-
-
-
 		<div class="style_5 hidden-sm hidden-xs floatRight"
 			style="margin-right: -40px;">
 			<fieldset id="searchform">
@@ -100,15 +94,8 @@ li {
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
 				<input name="submit" type="submit" value='' />
 			</fieldset>
-
-			<div id="searchHint"
-				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
 		</div>
-
-
-
-
-
+		<div id="searchHint"></div>
 		<!-- /.navbar-collapse -->
 	</div>
 	<!-- /.container-fluid --> </nav>
@@ -165,15 +152,17 @@ li {
 	%>
 	<div class="business-list">
 		<div class="business-item">
-			<div class="item-price item-top" style="width:30px; margin-left:5px;">
-				<div class="item-avg" id=<%=strategyId%>><%=i+1%></div>
+			<div class="item-price item-top"
+				style="width: 30px; margin-left: 5px;">
+				<div class="item-avg" id=<%=strategyId%>><%=i + 1%></div>
 			</div>
 			<div class="item-left item-top">
 				<div class="item-name"><%=strategy%></div>
 			</div>
-			<div class="item-right item-top" style="float:right;margin-right:-135px;">
-				<a class="riser-price text-right">删除策略</a>
-				<a class="riser-price text-right">查看详情</a>
+			<div class="item-right item-top"
+				style="float: right; margin-right: -135px;">
+				<a class="riser-price text-right">删除策略</a> <a
+					class="riser-price text-right">查看详情</a>
 			</div>
 		</div>
 	</div>
