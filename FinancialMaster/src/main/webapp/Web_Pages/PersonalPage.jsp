@@ -187,33 +187,38 @@ li {
 
 	<!-- 策略详情 -->
 	<div id="stDetail" class="content"
-		style="display: none; width: 880px; height: 240px;">
+		style="display: none; width: 1000px; height: 110px;">
 		<span_d class="out"></span_d>
 		<span_d class="iner"></span_d>
-
-		<table id="strategyTable" rules="rows">
+	
+		<input id="backbtn" type="button" class="btn" value='返回' />
+		
+		<span id="costspan"></span>
+		
+		<table id="strategyTable" rules="rows" style="margin-top:45px;">
 			<thead>
 				<tr align="center" valign="middle"
 					style="background-color: rgb(230, 230, 230); font-size: 16px;">
 					<td width="100" height="40">股票名称</td>
 					<td width="100">投资成本</td>
-					<td width="100">开始日期</td>
-					<td width="100">结束日期</td>
-					<td width="100">买卖频率</td>
-					<td width="180">买入策略</td>
-					<td width="180">卖出策略</td>
+					<td width="105">开始日期</td>
+					<td width="105">结束日期</td>
+					<td width="90">买卖频率</td>
+					<td width="250">买入策略</td>
+					<td width="250">卖出策略</td>
 				</tr>
 			</thead>
 		</table>
-
 	</div>
 
 	<!-- 策略模拟 -->
 	<div id="stRun" class="content"
 		style="display: block; width: 1000px; height: 400px; display: none;">
-		<span_d class="out"></span_d>
-		<span_d class="iner"></span_d>
+		<span_d_2 class="out"></span_d_2>
+		<span_d_2 class="iner"></span_d_2>
 		<div id="strategyLineChart" style="width: 950px; height: 350px;"></div>
+		
+		<input id="backbtn_2" type="button" class="btn" value='返回' />
 	</div>
 
 	<!-- Plugin JavaScript -->
@@ -229,7 +234,7 @@ li {
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/personal_deal.js"></script>
 	<script src="../jschart/StrategyLineChart.js"></script>
-	
+
 	<script type="text/javascript">
 	function jump(i){
 			var name = "b"+(i+"");

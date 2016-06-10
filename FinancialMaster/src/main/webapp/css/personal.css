@@ -187,7 +187,7 @@
 
 span_d {
 	position: absolute;
-	left: 25px;
+	left: 215px;
 	height: 0px;
 	width: 0px;
 }
@@ -209,12 +209,60 @@ span_d.iner {
 	line-height: 0;
 }
 
+/* 三角形偏移 */
+span_d_2 {
+	position: absolute;
+	left: 650px;
+	height: 0px;
+	width: 0px;
+}
+
+/*上部小三角实现样式开始*/
+span_d_2.out {
+	line-height: 0;
+	border-width: 10px;
+	border-color: transparent transparent #CCC transparent;
+	border-style: dashed dashed solid dashed;
+	top: -20px;
+}
+
+span_d_2.iner {
+	border-width: 10px;
+	border-color: #fff transparent #FFF transparent;
+	border-style: dashed dashed solid dashed;
+	top: -19px;
+	line-height: 0;
+}
+
 .content .namelbl{
 	position: absolute;
 	left: 10px;
 	top: 10px;
 	color: gray;
 	font-size:15px;
+}
+
+.content #backbtn{
+	background-color: transparent;
+	border: 1px solid rgb(204, 204, 204);
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+.content #costspan{
+	font-size : 18px;
+	position: absolute;
+	left: 90px;
+	top: 13px;
+}
+
+.content #backbtn_2{
+	background-color: transparent;
+	border: 1px solid rgb(204, 204, 204);
+	position: absolute;
+	left: 50px;
+	top: 10px;
 }
 
 table td {

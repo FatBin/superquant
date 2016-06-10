@@ -51,20 +51,41 @@ function checkST(pos) {
 	})
 
 	var stDetail = document.getElementById("stDetail");
-	if(stDetail.style.display == "none"){
+	if (stDetail.style.display == "none") {
 		stDetail.style.display = "block";
-		stDetail.style.position = "absolute";
-		stDetail.style.marginTop = document.getElementById(nameId).offsetTop - 340;
+		document.getElementById("stRun").style.display = "none";
 	}
-	
+	stDetail.style.position = "absolute";
+	stDetail.style.top = (document.getElementById(nameId).offsetTop + 30)
+			+ "px";
+	stDetail.style.left = (document.getElementById(nameId).offsetLeft - 190)
+			+ "px";
+
+	document.getElementById("backbtn").onclick = function() {
+		stDetail.style.display = "none";
+	}
+
+	var table = document.getElementById("strategyTable");
+	while (table.rows.length > 1) {
+		table.deleteRow(1);
+	}
+	document.getElementById("stDetail").style.height = "110px";
+
+	document.getElementById("costspan").innerHTML = "总成本：" + totalcost;
+
 	var buyList = buylist.toString().split(";");
 	var stList = stlist.toString().split(";");
 	var soldList = soldlist.toString().split(";");
 
-	var table = document.getElementById("strategyTable");
-
 	for (var i = 0; i < stList.length - 1; i++) {
+
+		document.getElementById("stDetail").style.height = (document
+				.getElementById("stDetail").offsetHeight + 35)
+				+ "px";
+
 		var stl = stList.toString().split(",");
+		var buy = buyList.toString().split(",");
+		var sold = soldList.toString().split(",");
 
 		var tr = table.insertRow(1);
 		tr.style.height = "35px";
@@ -77,18 +98,23 @@ function checkST(pos) {
 			tr.appendChild(td);
 		}
 
-		for (var j = 4; j < 6; j++) {
-			var td = document.createElement("td");
-			td.innerHTML = "查看详情";
-			tr.appendChild(td);
-		}
+		// 买入策略
+		var td = document.createElement("td");
+		td.style.fontSize = "13px";
+		td.innerHTML = stDeal(buy, 0);
+		tr.appendChild(td);
+
+		// 卖出策略
+		var td = document.createElement("td");
+		td.style.fontSize = "13px";
+		td.innerHTML = stDeal(sold, 1);
+		tr.appendChild(td);
 	}
 }
 
-function runST(pos){
+function runST(pos) {
 	var nameId = "name" + (pos + "");
 	var stName = document.getElementById(nameId).innerHTML;
-	
 
 	$.ajax({
 		type : "post",
@@ -102,11 +128,48 @@ function runST(pos){
 			var div = document.getElementById("stRun");
 			if (div.style.display == "none") {
 				div.style.display = "block";
+				document.getElementById("stDetail").display = "none"
 			}
+			div.style.position = "absolute";
+			div.style.top = (document.getElementById(nameId).offsetTop + 30)
+					+ "px";
+			div.style.left = (document.getElementById(nameId).offsetLeft - 150)
+					+ "px";
+
+			document.getElementById("backbtn_2").onclick = function() {
+				div.style.display = "none";
+			}
+
 			getLinechart("../RunMyStrategy");
 		},
 		error : function(errorMsg) {
 			alert("不好意思，请求数据失败啦!");
 		}
 	})
+}
+
+// 0买入，1卖出
+function stDeal(st, sybol) {
+	var str = [ "股价", "成交量", "换手率", "pe", "pb" ];
+	var BorS = [ "时买入", "时卖出" ]
+	var via = "落在";
+	var result = "当";
+	var other = [ "您未限定买入条件", "始终持有该股" ];
+
+	var douhao = 0;
+	for (var i = 0; i < 5; i++) {
+		if (st[i * 2] != 0 || st[i * 2 + 1] != 0) {
+			if (douhao == 1) {
+				result += "、";
+			}
+			result = result + str[i] + via + st[i * 2] + "~" + st[i * 2 + 1];
+			douhao = 1;
+		}
+	}
+
+	if (douhao == 1) {
+		return (result + BorS[sybol]);
+	} else {
+		return other[sybol];
+	}
 }
