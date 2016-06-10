@@ -254,6 +254,51 @@ li {
 				onclick="page_2.aimPage();">跳转</a>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"
+		aria-labelledby="modalLogin" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">登录SuperQuant</h4>
+					<p>再添人生一桶金</p>
+				</div>
+
+				<div class="modal-body">
+					<div class="alert alert-danger alert-dismissible fade in"
+						role="alert" id='modalLoginErr'>
+						<span id='modalLoginErrCont'></span>
+					</div>
+					<div class='form-group'>
+						<input type="text" class="form-control" id="modal-login-name"
+							placeholder='昵称'>
+					</div>
+					<div class='form-group'>
+						<input type="password" class="form-control" id="modal-login-pwd"
+							placeholder='密码'>
+					</div>
+				</div>
+				<!-- modal-body -->
+
+				<div class="modal-footer">
+					<a role="button" href="javascript:login();" class="btn btn-login"
+						data-loading-text="验证中...">登录</a>
+					<div class='modal-footer-tips'>
+						<label style='float: left;'><input type="checkbox"
+							id="chk-rmb" value="rmb" checked='checked'> 下次自动登陆</label> <a
+							href='javascript:switchToModal("reg");'>没有账号？</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End Modal -->
 
 	<!-- bottom section -->
 	<div style="margin-top: 50px;">
