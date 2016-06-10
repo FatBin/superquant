@@ -67,10 +67,10 @@ function getLinechart() {
 		dataZoom : [ {
 			type : 'inside',
 			start : 0,
-			end : 10
+			end : 100
 		}, {
 			start : 0,
-			end : 10
+			end : 100
 		} ],
 		series : [ {
 			name : '模拟数据',
@@ -87,10 +87,10 @@ function getLinechart() {
 				normal : {
 					color : new echarts.graphic.LinearGradient(0, 0, 0, 1, [ {
 						offset : 0,
-						color : 'rgb(255, 0, 0)'
+						color : 'rgb(191,46,68)'
 					}, {
 						offset : 1,
-						color : 'rgb(0, 255, 0)'
+						color : 'rgb(11,187,62)'
 					} ])
 				}
 			},
