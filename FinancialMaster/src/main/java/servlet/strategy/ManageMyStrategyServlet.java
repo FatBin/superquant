@@ -82,7 +82,7 @@ public class ManageMyStrategyServlet extends HttpServlet {
 				userStrategies.add(userStrategy);
 					
 			}
-	      
+	      strategyVO.setUserStrategies(userStrategies);
 	       UserManageInfo userManageInfo=new UserManageImpl();
 	       result=userManageInfo.addStrategy(userVO, strategyVO);
 		 }
