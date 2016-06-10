@@ -53,7 +53,8 @@ function checkST(pos) {
 	var stDetail = document.getElementById("stDetail");
 	if (stDetail.style.display == "none") {
 		stDetail.style.display = "block";
-		document.getElementById("stRun").style.display = "none";
+		if (document.getElementById("stRun").style.display == "block")
+			document.getElementById("stRun").style.display = "none";
 	}
 	stDetail.style.position = "absolute";
 	stDetail.style.top = (document.getElementById(nameId).offsetTop + 30)
@@ -83,16 +84,16 @@ function checkST(pos) {
 				.getElementById("stDetail").offsetHeight + 35)
 				+ "px";
 
-		var stl = stList.toString().split(",");
-		var buy = buyList.toString().split(",");
-		var sold = soldList.toString().split(",");
+		var stl = stList[i].toString().split(",");
+		var buy = buyList[i].toString().split(",");
+		var sold = soldList[i].toString().split(",");
 
 		var tr = table.insertRow(1);
 		tr.style.height = "35px";
 		tr.align = "center";
 		tr.valign = "middle";
 		tr.style.fontSize = "16px";
-		for (var j = 0; j < stl.length - 1; j++) {
+		for (var j = 0; j < stl.length; j++) {
 			var td = document.createElement("td");
 			td.innerHTML = stl[j];
 			tr.appendChild(td);
@@ -116,36 +117,38 @@ function runST(pos) {
 	var nameId = "name" + (pos + "");
 	var stName = document.getElementById(nameId).innerHTML;
 
-	$.ajax({
-		type : "post",
-		async : false, // 同步执行
-		url : "../RunMyStrategy",
-		data : {
-			'StrategyName' : stName
-		},
-		dataType : "json",
-		success : function(result) {
-			var div = document.getElementById("stRun");
-			if (div.style.display == "none") {
-				div.style.display = "block";
-				document.getElementById("stDetail").display = "none"
-			}
-			div.style.position = "absolute";
-			div.style.top = (document.getElementById(nameId).offsetTop + 30)
-					+ "px";
-			div.style.left = (document.getElementById(nameId).offsetLeft - 150)
-					+ "px";
+	$
+			.ajax({
+				type : "post",
+				async : false, // 同步执行
+				url : "../RunMyStrategy",
+				data : {
+					'StrategyName' : stName
+				},
+				dataType : "json",
+				success : function(result) {
+					var div = document.getElementById("stRun");
+					if (div.style.display == "none") {
+						div.style.display = "block";
+						if (document.getElementById("stDetail").style.display == "block")
+							document.getElementById("stDetail").style.display = "none";
+					}
+					div.style.position = "absolute";
+					div.style.top = (document.getElementById(nameId).offsetTop + 30)
+							+ "px";
+					div.style.left = (document.getElementById(nameId).offsetLeft - 150)
+							+ "px";
 
-			document.getElementById("backbtn_2").onclick = function() {
-				div.style.display = "none";
-			}
+					document.getElementById("backbtn_2").onclick = function() {
+						div.style.display = "none";
+					}
 
-			getLinechart("../RunMyStrategy");
-		},
-		error : function(errorMsg) {
-			alert("不好意思，请求数据失败啦!");
-		}
-	})
+					getLinechart("../RunMyStrategy");
+				},
+				error : function(errorMsg) {
+					alert("不好意思，请求数据失败啦!");
+				}
+			})
 }
 
 // 0买入，1卖出
