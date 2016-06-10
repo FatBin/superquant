@@ -49,7 +49,7 @@ function changePic() {
 	} else {
 
 		$.ajax({
-			type : "get",
+			type : "post",
 			async : false, // 同步执行
 			url : "../ManageMyStock",
 			dataType : "json",
