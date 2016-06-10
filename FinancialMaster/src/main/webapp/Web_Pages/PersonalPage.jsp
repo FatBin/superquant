@@ -26,6 +26,9 @@
 
 <link href="../css/personal.css" rel="stylesheet" type="text/css">
 
+<script src="../js/echarts.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+
 <style>
 li {
 	list-style-type: none;
@@ -149,27 +152,27 @@ li {
 		for (int i = 0; i < strategyList.size(); i++) {
 			String strategy = strategyList.get(i);
 			String strategyId = "c" + (i + "");
+			String nameId = "name" + (i + "");
+			String divId = "div" + (i + "");
 	%>
-	<div class="business-list">
+	<div id=<%=divId%> class="business-list">
 		<div class="business-item">
-			<div class="item-price item-top"
-				style="width: 30px; margin-left: 5px;">
-				<div class="item-avg" id=<%=strategyId%>><%=i + 1%></div>
-			</div>
 			<div class="item-left item-top">
-				<div class="item-name"><%=strategy%></div>
+				<div class="item-name">
+					<a id=<%=nameId%> class="riser-price strategy-name"><%=strategy%></a>
+				</div>
 			</div>
 			<div class="item-right item-top"
-				style="float: right; margin-right: -135px;">
-				<a class="riser-price text-right">删除策略</a> <a
-					class="riser-price text-right">查看详情</a>
+				style="margin-left: 120px; width: 200px;">
+				<a class="riser-price text-right" style="margin-right: 20px;"
+					onclick="deleteST(<%=i%>)">删除策略</a> <a
+					class="riser-price text-right" onclick="runST((<%=i%>))">策略模拟</a>
 			</div>
 		</div>
 	</div>
 	<%
 		}
 	%>
-
 
 	<!-- bottom section -->
 	<div style="margin-top: 90px;">
@@ -179,6 +182,36 @@ li {
 			<p style="color: white; text-align: center; line-height: 50px;">@Copyright
 				SuperQuant</p>
 		</div>
+	</div>
+
+	<!-- 策略详情 -->
+	<div id="stDetail" class="content"
+		style="display: block; width: 1000px; height: 240px;">
+		<span_d class="out"></span_d>
+		<span_d class="iner"></span_d>
+
+		<table id="strategyTable" rules="rows">
+			<thead>
+				<tr align="center" valign="middle"
+					style="background-color: rgb(230, 230, 230); font-size: 16px; display: none;">
+					<td width="100" height="40">股票名称</td>
+					<td width="100">投资成本</td>
+					<td width="100">开始日期</td>
+					<td width="100">结束日期</td>
+					<td width="100">买卖频率</td>
+					<td width="180">买入策略</td>
+					<td width="180">卖出策略</td>
+				</tr>
+			</thead>
+		</table>
+
+	</div>
+
+	<!-- 策略模拟 -->
+	<div id="stRun" class="content"
+		style="display: block; width: 1000px; height: 400px; display: none;">
+		<span_d class="out"></span_d>
+		<span_d class="iner"></span_d>
 	</div>
 
 	<!-- Plugin JavaScript -->
@@ -193,15 +226,11 @@ li {
 		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 
 	<script type="text/javascript" src="../js/searchHint.js"></script>
+
+	<script src="../js/personal_deal.js"></script>
 	<script type="text/javascript">
-		/* $(".business-list").on("click", ".business-item", function(i) {
-			var name = $(this).children('item-price').children('item-avg').attr('id');
-			jump(name);
-			alert(name);
-		}); */
-		
-		
-		function jump(i){
+
+	function jump(i){
 			var name = "b"+(i+"");
 			$.ajax({
 				type : "post",

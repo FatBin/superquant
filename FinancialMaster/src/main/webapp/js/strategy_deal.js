@@ -315,7 +315,7 @@ function saveST() {
 			}else if(result[0].SaveResult == "Unlogin"){
 				alert("您还没登录呢")
 			}else {
-				alert("sorry，保存失败啦");
+				alert("策略重名啦");
 			}
 
 			function hide() {

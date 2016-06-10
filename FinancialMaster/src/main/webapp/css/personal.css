@@ -165,3 +165,58 @@
 	display: inline-block;
 	cursor: pointer;
 }
+
+.strategy-name {
+	color: #44382A;;
+}
+
+/* 弹出块 */
+.content {
+	box-shadow: 0px 0px 10px #999;
+	padding: 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 5px;
+	height: 60px;
+	width: 250px;
+	position: relative;
+	margin: 20px auto;
+	border: 1px solid #CCC;
+	background-color: white;
+}
+
+span_d {
+	position: absolute;
+	left: 25px;
+	height: 0px;
+	width: 0px;
+}
+
+/*上部小三角实现样式开始*/
+span_d.out {
+	line-height: 0;
+	border-width: 10px;
+	border-color: transparent transparent #CCC transparent;
+	border-style: dashed dashed solid dashed;
+	top: -20px;
+}
+
+span_d.iner {
+	border-width: 10px;
+	border-color: #fff transparent #FFF transparent;
+	border-style: dashed dashed solid dashed;
+	top: -19px;
+	line-height: 0;
+}
+
+.content .namelbl{
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	color: gray;
+	font-size:15px;
+}
+
+table td {
+	border: 1px dashed rgb(235, 235, 235);
+}
