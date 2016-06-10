@@ -88,14 +88,13 @@ li {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div class="compare" style="height: 450px;">
+	<div class="compare">
 		<%
 			BusinessVO businessVO = (BusinessVO) session.getAttribute("BusinessDetail");
 			industriesPO update_message = businessVO.getUptodate_message();
 			ArrayList<Industries> historyData = businessVO.getHistoryData();
 			ArrayList<BusinessItemVO> businessItemVOs = businessVO.getBusinessItemVOs();
 		%>
-
 
 		<div class="headdiv">
 			<span class="headlbl"><%=update_message.getIndustry()%></span> <span
@@ -110,13 +109,11 @@ li {
 			<span class="fontlbl" style="left: 210px">流入资金量</span> <span
 				class="fontcontent" style="left: 210px"><%=update_message.getInflows()%></span>
 			<span class="fontlbl" style="left: 315px">领涨股</span> <span
-				class="fontcontent" style="left: 315px;font-size:17px;"><%=update_message.getLeaderstock()%></span>
+				class="fontcontent" style="left: 315px; font-size: 17px;"><%=update_message.getLeaderstock()%></span>
 			<span class="fontlbl" style="left: 430px" id="priceTitle">最新价</span>
 			<span class="fontcontent" style="left: 430px;" id="price"><%=update_message.getPrice()%></span>
 			<span class="fontlbl" style="left: 530px" id="stockRiseTitle">涨跌率</span>
 			<span class="fontcontent" style="left: 530px;" id="stockRise"><%=update_message.getStock_rise_fall()%></span>
-
-
 
 		</div>
 
@@ -242,12 +239,17 @@ li {
 				id="pageno_2" value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
 				onclick="page_2.aimPage();">跳转</a>
 		</div>
-
-
 	</div>
 
+	<!-- bottom section -->
+	<div style="margin-top: 50px;">
+		<div style="background-color: #766F67; height: 200px;"></div>
 
-
+		<div style="background-color: #645D55; height: 50px;">
+			<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+				SuperQuant</p>
+		</div>
+	</div>
 
 	<!-- Plugin JavaScript -->
 

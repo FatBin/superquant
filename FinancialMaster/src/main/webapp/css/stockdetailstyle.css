@@ -94,6 +94,13 @@ th {
 	top: 120px;
 }
 
+.headdiv #concernsuccess {
+	position: absolute;
+	top: 40px;
+	right: 100px;
+	display: none;
+}
+
 .kline_div {
 	width: 850px;
 	height: 910px;
@@ -126,7 +133,7 @@ th {
 .comprehensive_div .text_compre {
 	width: 430px;
 	height: 250px;
-	position : absolute;
+	position: absolute;
 	left: 410px;
 	top: 70px;
 	position: absolute;

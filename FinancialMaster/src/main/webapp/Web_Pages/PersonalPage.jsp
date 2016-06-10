@@ -91,7 +91,6 @@ li {
 		ArrayList<Stock> stockList = userVO.getStockList();
 	%>
 
-
 	<div class="portrait middle">
 		<div class="profile middle">
 			<img src="../webImage/Portrait.png" class="img-responsive">
@@ -103,17 +102,15 @@ li {
 	<hr
 		style="height: 2px; width: 600px; margin-left: auto; margin-right: auto;" />
 
-
-
 	<%
 		for (int i = 0; i < stockList.size(); i++) {
 			Stock stock = stockList.get(i);
 			String name = "b" + (i + "");
 	%>
-	<div class="business-list" onclick="jump(<%=i%>)"> 
+	<div class="business-list" onclick="jump(<%=i%>)">
 		<div class="business-item">
 			<div class="item-left item-top">
-				<div class="item-name" ><%=stock.getStockName()%></div>
+				<div class="item-name"><%=stock.getStockName()%></div>
 			</div>
 			<div class="item-price item-top">
 				<div class="item-avg" id=<%=name%>><%=stock.getStockId()%></div>
@@ -129,46 +126,19 @@ li {
 		}
 	%>
 
-
 	<div class="middle liketitle" style="margin-top: 80px;">我的策略</div>
 	<hr
 		style="height: 2px; width: 600px; margin-left: auto; margin-right: auto;" />
 
+	<!-- bottom section -->
+	<div style="margin-top: 90px;">
+		<div style="background-color: #766F67; height: 200px;"></div>
 
-
-	<%-- <div class="like">
-	
-	
-		<%
-			for(int i=0;i<stockList.size()/3;i++){
-		%>
-		<div class="like-row middle">
-			<div class="like-item">
-				<div class="like-left"><%=stockList.get(3*i).getStockName()%></div>
-				<div class="like-middle"><%=stockList.get(3*i).getStockId()%></div>
-				<div class="like-right"><%=stockList.get(3*i).getIndustry()%></div>
-			</div>
-			<div class="like-item">
-				<div class="like-left"><%=stockList.get(3*i+1).getStockName()%></div>
-				<div class="like-middle"><%=stockList.get(3*i+1).getStockId()%></div>
-				<div class="like-right"></div>
-			</div>
-			<div class="like-item">
-				<div class="like-left"><%=stockList.get(3*i+2).getStockName()%></div>
-				<div class="like-middle"><%=stockList.get(3*i+2).getStockId()%></div>
-				<div class="like-right"><%=stockList.get(3*i+2).getIndustry()%></div>
-			</div>
+		<div style="background-color: #645D55; height: 50px;">
+			<p style="color: white; text-align: center; line-height: 50px;">@Copyright
+				SuperQuant</p>
 		</div>
-	
-		<%}%>
-	</div> --%>
-
-
-
-
-
-
-
+	</div>
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>

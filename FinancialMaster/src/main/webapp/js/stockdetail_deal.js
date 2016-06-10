@@ -33,12 +33,19 @@ function changePic() {
 				if (result[0].AddResult == 'Succeed') {
 					document.getElementById("heartdiv").setAttribute("src",
 							"../webImage/heart-selected.png");
+					
+					document.getElementById("concernsuccess").style.display = "block";
+					setTimeout(hide, "3000");
 				} else if (result[0].AddResult == 'Unlogin') {
 					alert("请先登录再添加关注");
 				} else if (result[0].AddResult == 'Fail') {
 					alert("您已关注啦");
 				} else {
 					alert("sorry，服务器请求失败啦");
+				}
+				
+				function hide() {
+					document.getElementById("concernsuccess").style.display = "none";
 				}
 			},
 			error : function(errorMsg) {
