@@ -43,7 +43,7 @@ li {
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header page-scroll">
+		<div class="navbar-header page-scroll floatRight">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#bs-example-navbar-collapse-1">
 				<span class="sr-only">Toggle navigation</span> <span
@@ -51,28 +51,53 @@ li {
 					class="icon-bar"></span>
 			</button>
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
-			<img src="../webImage/logo.png" title="返回顶部" id="logo">
 		</div>
 
+
+		<a href="HomePage.jsp" class="floatLeft"> <img
+			src="../webImage/logo.png" title="返回首页" id="logo">
+		</a>
+
+		<%
+			if (session.getAttribute("User") != null) {
+		%>
+		<a class="profile floatRight" href="../Web_Pages/PersonalPage.jsp">
+			<img alt="" src="../webImage/man.svg" class="headImage">
+		</a>
+		<%
+			} else {
+		%>
+		<input type="button" value="登录" name="login"
+			class="bottons loginbtn floatRight" data-toggle="modal"
+			data-target="#modalLogin" style="margin-top: 8px; margin-right: -20px;" />
+		<%
+			}
+		%>
+
+
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
+		<div class="collapse navbar-collapse "
 			id="bs-example-navbar-collapse-1" style="height: 216px;">
-			<ul class="nav navbar-nav navbar-left">
+			<ul class="nav navbar-nav navbar-left ">
 				<li class="hidden"><a href="#page-top"></a></li>
 
-				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
+				<li><a class="page-scroll active" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
-				<li><a class="page-scroll a-active"
-					href="../ToBusinessPageServlet">行业</a></li>
+				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
 
-		<div class="style_5 hidden-sm hidden-xs">
+
+
+
+
+
+		<div class="style_5 hidden-sm hidden-xs floatRight">
 			<fieldset id="searchform">
-				<input id="searchfield" type="text" placeholder="搜索"
-					class="text_input" onblur="this.placeholder='搜索';"
+				<input type="text" placeholder="搜索" class="text_input"
+					onblur="this.placeholder='搜索';"
 					onfocus="this.placeholder='输入股票代码搜索';"
 					onmouseover="this.placeholder='输入股票代码搜索';"
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
@@ -80,9 +105,12 @@ li {
 			</fieldset>
 
 			<div id="searchHint"
-				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
-			</div>
+				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
 		</div>
+
+
+
+
 
 		<!-- /.navbar-collapse -->
 	</div>

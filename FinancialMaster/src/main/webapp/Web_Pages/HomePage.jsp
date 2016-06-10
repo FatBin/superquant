@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="VO.UserVO"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,7 +36,7 @@ li {
 
 	<div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header page-scroll">
+		<div class="navbar-header page-scroll floatRight">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target="#bs-example-navbar-collapse-1">
 				<span class="sr-only">Toggle navigation</span> <span
@@ -43,15 +44,35 @@ li {
 					class="icon-bar"></span>
 			</button>
 			<!--  <a class="navbar-brand page-scroll" href="#page-top">Super Quant</a>  -->
-			<a href="HomePage.jsp"> <img src="../webImage/logo.png"
-				title="返回首页" id="logo">
-			</a>
 		</div>
 
+
+		<a href="HomePage.jsp" class="floatLeft"> <img
+			src="../webImage/logo.png" title="返回首页" id="logo">
+		</a>
+
+		<%
+			if (session.getAttribute("User") != null) {
+		%>
+		<a class="profile floatRight" href="../Web_Pages/PersonalPage.jsp">
+			<img alt="" src="../webImage/man.svg" class="headImage"
+			>
+		</a>
+		<%
+			} else {
+		%>
+		<input type="button" value="登录" name="login"
+			class="bottons loginbtn floatRight" data-toggle="modal"
+			data-target="#modalLogin" style="margin-top: 8px; margin-right: -20px;" />
+		<%
+			}
+		%>
+
+
 		<!-- Collect the nav links, forms, and other content for toggling -->
-		<div class="collapse navbar-collapse"
+		<div class="collapse navbar-collapse "
 			id="bs-example-navbar-collapse-1" style="height: 216px;">
-			<ul class="nav navbar-nav navbar-left">
+			<ul class="nav navbar-nav navbar-left ">
 				<li class="hidden"><a href="#page-top"></a></li>
 
 				<li><a class="page-scroll active" href="HomePage.jsp">首页</a></li>
@@ -62,10 +83,15 @@ li {
 			</ul>
 		</div>
 
-		<div class="style_5 hidden-sm hidden-xs">
+
+
+
+
+
+		<div class="style_5 hidden-sm hidden-xs floatRight">
 			<fieldset id="searchform">
-				<input type="text" placeholder="搜索"
-					class="text_input" onblur="this.placeholder='搜索';"
+				<input type="text" placeholder="搜索" class="text_input"
+					onblur="this.placeholder='搜索';"
 					onfocus="this.placeholder='输入股票代码搜索';"
 					onmouseover="this.placeholder='输入股票代码搜索';"
 					onmouseout="this.placeholder='搜索';" onkeyup="showHint(this.value)" />
@@ -73,9 +99,12 @@ li {
 			</fieldset>
 
 			<div id="searchHint"
-				style="position: absolute; background-color: rgb(235, 235, 235); width: 150px; margin-left: 945px; margin-top: -20px;">
-			</div>
+				style="background-color: rgb(235, 235, 235); width: 150px;"></div>
 		</div>
+
+
+
+
 
 		<!-- /.navbar-collapse -->
 	</div>
@@ -98,11 +127,18 @@ li {
 					</div>
 					<div class="slogan">您的第一手证券信息</div>
 
+					<%
+						if (session.getAttribute("User") == null) {
+					%>
+
 					<input type="button" value="立即注册" name="regbtn"
 						class="bottons regbtns" data-toggle="modal"
 						data-target="#modalReg" /> <input type="button" value="登录"
 						name="login" class="bottons loginbtn" data-toggle="modal"
 						data-target="#modalLogin" />
+					<%
+						}
+					%>
 				</div>
 				<div class="col-md-1"></div>
 
@@ -149,8 +185,7 @@ li {
 					style="width: 124px; height: 124px; border-radius: 90px; background-color: gray; position: relative; left: 100px; margin-top: 120px; margin-bottom: 20px;"></div>
 
 				<p class="text-muted" align="left">
-					<strong>更丰富的图表</strong> -
-					将枯燥的数据可视化，给您更直观的对比和分析展示。
+					<strong>更丰富的图表</strong> - 将枯燥的数据可视化，给您更直观的对比和分析展示。
 				</p>
 				<p class="text-muted" align="left">
 					<strong>主要内容</strong>

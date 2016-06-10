@@ -11,13 +11,10 @@
 	margin-left: 35px;
 }
 
-
-
-
 #searchform input[type="submit"] {
 	background: url('../webImage/search.svg') center no-repeat;
 	cursor: pointer;
-	margin-top:-50px;
+	margin-top: -50px;
 	padding: 0px;
 	width: 25px;
 	height: 25px;
@@ -46,17 +43,17 @@ input[type="submit"] {
 }
 
 #searchform input[type="text"] {
-	background: transparent; 
+	background: transparent;
 	border-color: #FDA428;
-	border-top-width: 0px; 
-	border-right-width: 0px; 
-	border-bottom-width: 1.5px; 
-	border-left-width: 0px; 
-	border-radius: 1px; 
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 1.5px;
+	border-left-width: 0px;
+	border-radius: 1px;
 	float: right;
 	padding: 10px 4px;
-	margin-top:-50px;
-	margin-right:25px;
+	margin-top: -50px;
+	margin-right: 25px;
 	width: 40px;
 	height: 25px;
 	line-height: 20px;
@@ -73,83 +70,100 @@ input[type="submit"] {
 	width: 150px;
 }
 
-
 .style_5 #searchform input[type='submit'] {
 	/* background-color: #ff8a00; */
+	
 }
 
- input[type='submit']:hover {
-	 /* background-color: #ff8a00;  */
+input[type='submit']:hover {
+	/* background-color: #ff8a00;  */
+	
 }
 
 .style_5 {
-	margin: 10px;
-	display: block;
+	float: right;
+	margin-top: 10px; margin-right : 30px;
+	display: inline-block;
 	clear: both;
 }
 
-.regbtns{
-	width: 75px; 
-	background-color: #F8B31D; 
-	color: #4A433B; 
-	border: 2px solid; 
+.regbtns {
+	width: 75px;
+	background-color: #F8B31D;
+	color: #4A433B;
+	border: 2px solid;
 	border-radius: 3px;
 	border-color: #F8B31D;
-    margin-left:0px;
+	margin-left: 0px;
 }
 
-.regbtns:hover{
-	background-color: #FFFFFF; 
-	color: #4A433B; 
+.regbtns:hover {
+	background-color: #FFFFFF;
+	color: #4A433B;
 	border-color: #FFFFFF;
 }
 
-.loginbtn{
-	margin-left:10px;
-	background-color: transparent; 
-	color: #FFFFFF; 
+.loginbtn {
+	margin-left: 10px;
+	background-color: transparent;
+	color: #FFFFFF;
 	border-color: #FFFFFF;
 	border: 2px solid;
 	border-radius: 3px;
-
 }
 
-.loginbtn:hover{
-	background-color: #FFFFFF; 
-	color: #4A433B; 
+.loginbtn:hover {
+	background-color: #FFFFFF;
+	color: #4A433B;
 	border: 2px solid;
 }
 
-.bottons{
+.bottons {
 	margin-top: 5px;
-	float:left;
+	float: left;
 	height: 28px;
 	font-family: "PingFangSC-Light";
-
 }
 
-.logoName{
+.logoName {
 	font-size: 40px;
 	font-family: "Avenir";
-	margin-left:0px;
-	float:left;
+	margin-left: 0px;
+	float: left;
 }
 
-.slogan{
+.slogan {
 	font-size: 22px;
 	font-family: "PingFangSC-Light";
 	margin-left: 0px;
 	float: left;
 }
 
-.a-active{
-	color:#F8B31D;
+.a-active {
+	color: #F8B31D;
 }
 
-.red{
-	color:rgb(191,23,34);
+.red {
+	color: rgb(191, 23, 34);
 }
 
-.green{
-	color:rgb(11,137,62);
+.green {
+	color: rgb(11, 137, 62);
+}
+
+.floatLeft {
+	display: inline-block;
+	float: left;
+}
+
+.floatRight {
+	display: inline-block;
+	float: right;
+}
+
+.headImage {
+	margin-right: -20px;
+	height: 34px;
+	width: 34px;
+	margin-top: 6px
 }
