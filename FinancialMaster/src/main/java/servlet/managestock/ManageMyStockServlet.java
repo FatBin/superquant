@@ -43,7 +43,10 @@ public class ManageMyStockServlet extends HttpServlet {
 			 UserVO userVO=(UserVO)request.getSession().getAttribute("User");
 			 UpToDateStockPO upToDateStockPO=sv.getUpToDateMessage();
 			 UserManageInfo userManageInfo=new UserManageImpl();
-			 result=userManageInfo.addStock(userVO, upToDateStockPO.getStockId());			 
+			 result=userManageInfo.addStock(userVO, upToDateStockPO.getStockId());
+			 if(result==ManageState.Succeed){
+				 sv.setConcerned(true);
+			 }
 		 }
 		    String data="[{'AddResult':"+result+"}]";
 			JSONArray json = new JSONArray(data);
@@ -63,7 +66,10 @@ public class ManageMyStockServlet extends HttpServlet {
 			 UserVO userVO=(UserVO)request.getSession().getAttribute("User");
 			 UpToDateStockPO upToDateStockPO=sv.getUpToDateMessage();
 			 UserManageInfo userManageInfo=new UserManageImpl();
-			 result=userManageInfo.deleteStock(userVO, upToDateStockPO.getStockId());			 
+			 result=userManageInfo.deleteStock(userVO, upToDateStockPO.getStockId());	
+			 if(result==ManageState.Succeed){
+				 sv.setConcerned(false);
+			 }
 		 }
 		 String data="[{'DeleteResult':"+result+"}]";
 			JSONArray json = new JSONArray(data);
