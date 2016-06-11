@@ -38,8 +38,14 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	request.getSession().setAttribute("User", null);
+			
+	String result="[{'UnLoginResult':'"+ManageState.Succeed+"'}]";
+	JSONArray json = new JSONArray(result);
+	PrintWriter out = response.getWriter();
+	out.println(json);
+	out.flush();
+	out.close();
 	}
 
 	/**

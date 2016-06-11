@@ -67,7 +67,7 @@ public class ManageMyStrategyServlet extends HttpServlet {
 				String[] per=perSTs[i].split(",");//股票名称、投资成本、开始日期、结束日期、买卖频率
 				UserStrategy userStrategy=new UserStrategy();
 				UserStrategyId userStrategyId=new UserStrategyId();
-				userStrategyId.setStockId(per[i]);
+				userStrategyId.setStockId(per[0]);
 				userStrategyId.setUserId(userVO.getUsername());
 				userStrategyId.setStrategyName(name);
 				userStrategy.setId(userStrategyId);

@@ -115,7 +115,7 @@
     <url-pattern>/ManageMyStrategy</url-pattern>
   </servlet-mapping>
 
-  <!-- get：，post：登录 -->    
+  <!-- get：退出登录，post：登录 -->    
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>servlet.login.LoginServlet</servlet-class>
