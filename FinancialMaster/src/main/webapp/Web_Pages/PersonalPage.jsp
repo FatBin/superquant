@@ -87,8 +87,12 @@ li {
 			</ul>
 		</div>
 
+		<div class="logout">
+			<img title="退出登录" src="../webImage/signOut.svg" onclick="Logout()">
+		</div>
+
 		<div class="style_5 hidden-sm hidden-xs floatRight"
-			style="margin-right: -40px;">
+			style="margin-right: 0px;">
 			<fieldset id="searchform">
 				<input type="text" placeholder="搜索" class="text_input"
 					onblur="this.placeholder='搜索';"
@@ -98,6 +102,7 @@ li {
 				<input name="submit" type="submit" value='' />
 			</fieldset>
 		</div>
+
 		<div id="searchHint"></div>
 		<!-- /.navbar-collapse -->
 	</div>
@@ -190,12 +195,11 @@ li {
 		style="display: none; width: 1000px; height: 110px;">
 		<span_d class="out"></span_d>
 		<span_d class="iner"></span_d>
-	
-		<input id="backbtn" type="button" class="btn" value='返回' />
-		
-		<span id="costspan"></span>
-		
-		<table id="strategyTable" rules="rows" style="margin-top:45px;">
+
+		<input id="backbtn" type="button" class="btn" value='返回' /> <span
+			id="costspan"></span>
+
+		<table id="strategyTable" rules="rows" style="margin-top: 45px;">
 			<thead>
 				<tr align="center" valign="middle"
 					style="background-color: rgb(230, 230, 230); font-size: 16px;">
@@ -217,7 +221,7 @@ li {
 		<span_d_2 class="out"></span_d_2>
 		<span_d_2 class="iner"></span_d_2>
 		<div id="strategyLineChart" style="width: 950px; height: 350px;"></div>
-		
+
 		<input id="backbtn_2" type="button" class="btn" value='返回' />
 	</div>
 

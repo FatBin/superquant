@@ -176,3 +176,17 @@ function stDeal(st, sybol) {
 		return other[sybol];
 	}
 }
+
+function Logout(){
+	$.ajax({
+		type : "get",
+		async : false, // 同步执行
+		url : "../Log",
+		dataType : "json",
+		success : function(result) {
+			if(result[0].UnLoginResult == "Succeed"){
+				window.location.href = "../Web_Pages/HomePage.jsp";
+			}
+		}
+	})
+}
