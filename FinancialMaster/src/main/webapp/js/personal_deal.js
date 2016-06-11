@@ -95,7 +95,11 @@ function checkST(pos) {
 		tr.style.fontSize = "16px";
 		for (var j = 0; j < stl.length; j++) {
 			var td = document.createElement("td");
-			td.innerHTML = stl[j];
+			if (j == stl.length - 1) {
+				td.innerHTML = "每" + stl[j] + "天";
+			} else {
+				td.innerHTML = stl[j];
+			}
 			tr.appendChild(td);
 		}
 
@@ -177,14 +181,14 @@ function stDeal(st, sybol) {
 	}
 }
 
-function Logout(){
+function Logout() {
 	$.ajax({
 		type : "get",
 		async : false, // 同步执行
 		url : "../Log",
 		dataType : "json",
 		success : function(result) {
-			if(result[0].UnLoginResult == "Succeed"){
+			if (result[0].UnLoginResult == "Succeed") {
 				window.location.href = "../Web_Pages/HomePage.jsp";
 			}
 		}
