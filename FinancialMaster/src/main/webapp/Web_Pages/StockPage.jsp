@@ -252,6 +252,7 @@ th {
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 	<script src="../js/table_pages.js"></script>
+	<script src="../js/common.min.js"></script>
 
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 

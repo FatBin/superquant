@@ -62,8 +62,8 @@ th {
 	width: 30px;
 	height: 30px;
 	position: absolute;
-	right: 50px;
-	top: 30px;
+	right: 20px;
+	top: 25px;
 }
 
 .headdiv #now {
@@ -104,8 +104,10 @@ th {
 
 .headdiv #concernsuccess {
 	position: absolute;
-	top: 40px;
-	right: 100px;
+	top: 28px;
+	right: 60px;
+	font-size:18px;
+	color:#44382A;
 	display: none;
 }
 

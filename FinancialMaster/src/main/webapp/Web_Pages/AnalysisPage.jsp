@@ -267,6 +267,7 @@
 	<script src="../jschart/RadarChart.js"></script>
 	<script src="../jschart/PieChart_inflows.js"></script>
 	<script src="../jschart/barChart_inflows.js"></script>
+	<script src="../js/common.min.js"></script>
 	<script src="../jschart/Dashboard.js"></script>
 	<script src="../jschart/DD_barChart.js"></script>
 	<script src="../jschart/BenchContrastChart.js"></script>

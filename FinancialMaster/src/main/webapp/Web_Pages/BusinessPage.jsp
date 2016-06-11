@@ -273,6 +273,7 @@ li {
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../jschart/PieChart_StockMessage.js"></script>
+	<script src="../js/common.min.js"></script>
 	<script type="text/javascript">
 	 <%for (int i = 0; i < 66; i++) {
 				industriesPO list = businessList.get(i);%>

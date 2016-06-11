@@ -285,6 +285,7 @@
 	<script src="../js/jquery.js"></script>
 	<script>getKLine("market");</script>
 	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script type="text/javascript" src="../js/market_deal.js"></script>
 </body>

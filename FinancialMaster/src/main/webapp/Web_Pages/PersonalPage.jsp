@@ -72,6 +72,10 @@ li {
 		<%
 			}
 		%>
+		
+		<div class="logout floatRight profile">
+			<img title="退出登录" src="../webImage/signOut.svg" onclick="Logout()">
+		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse "
@@ -87,12 +91,10 @@ li {
 			</ul>
 		</div>
 
-		<div class="logout">
-			<img title="退出登录" src="../webImage/signOut.svg" onclick="Logout()">
-		</div>
+		
 
 		<div class="style_5 hidden-sm hidden-xs floatRight"
-			style="margin-right: 0px;">
+			>
 			<fieldset id="searchform">
 				<input type="text" placeholder="搜索" class="text_input"
 					onblur="this.placeholder='搜索';"
@@ -237,6 +239,7 @@ li {
 		src="../js/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/personal_deal.js"></script>
+	<script src="../js/common.min.js"></script>
 	<script src="../jschart/StrategyLineChart.js"></script>
 
 	<script type="text/javascript">

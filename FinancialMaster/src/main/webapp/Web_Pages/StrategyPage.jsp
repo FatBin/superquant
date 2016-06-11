@@ -533,6 +533,7 @@
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script type="text/javascript" src="../js/strategyhint.js"></script>
 	<script type="text/javascript" src="../js/strategy_deal.js"></script>
+	<script src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
 		charset="UTF-8"></script>
 	<script type="text/javascript">

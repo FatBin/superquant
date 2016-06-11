@@ -2,7 +2,7 @@
 	position: absolute;
 	background-color: rgb(235, 235, 235);
 	width: 150px;
-	margin-left: 965px;
+	margin-left: 935px;
 	margin-top: -10px;
 }
 
@@ -270,10 +270,9 @@ table td {
 }
 
 .logout {
-	width: 37px;
-	height: 37px;
-	position: absolute;
-	top: 125px;
-	right: 10px;
-	cursor: pointer;
+	cursor:pointer;
+	margin-right:-20px;
+	margin-top: 10px;
+	width: 30px;
+	height: 30px;
 }

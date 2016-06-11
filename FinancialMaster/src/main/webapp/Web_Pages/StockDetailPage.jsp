@@ -111,7 +111,8 @@
 		<span id="now"><%=uptodateStock.getNow()%></span> <span id="rise_fall"><%=uptodateStock.getRise_fall()%></span>
 
 		<img title="关注该股" id="heartdiv" onclick="changePic()"
-			src="../webImage/heart.png"> <span id="concernsuccess"><span
+			src="../webImage/heart.png"> <span id="concernsuccess">
+			<span
 			class="glyphicon glyphicon-ok"></span> 关注成功</span>
 
 		<hr class="hrstyle" />
@@ -276,6 +277,7 @@
 	<script src="../jschart/Dashboard.js"></script>
 	<script src="../js/bootstrapSwitch.js"></script>
 	<script src="../js/table_pages.js"></script>
+	<script src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../jschart/ScoreBarChart.js"></script>
 	<script src="../js/stockdetail_deal.js"></script>

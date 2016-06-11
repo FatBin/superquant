@@ -347,6 +347,7 @@ li {
 	</script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/common.min.js"></script>
 	<script src="../jschart/businessHistoryChart.js"></script>
 </body>
 </html>
