@@ -42,11 +42,6 @@ public class StrategyHandle implements StrategyHandleService {
 		}
 
 		rank(totalResult);
-		
-		for(int i=0;i<totalResult.size()-1;i++){
-			totalResult.get(i+1).setProfit(totalResult.get(i+1).getProfit()+totalResult.get(i).getProfit());
-		}
-
 		return totalResult;
 	}
 
