@@ -59,12 +59,14 @@ public class BusinessDetailPageServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Industries> historyData=businessVO.getHistoryData();
 		
+		
+		int size=historyData.size();
 		String data="[";
 		
-		for (Industries industry : historyData) {
-			
+		for (int index=size-1;index>=0;index--) {
+			Industries industry=historyData.get(index);
 			data=data+"{'average_price':"+industry.getAveragePrice()+
-					",'date':"+industry.getId().getDate()+
+					",'date':'"+industry.getId().getDate()+
 					"','rise_fall':"+industry.getRiseFall()+
 					",'volume':"+industry.getVolume()+
 					",'turnover':"+industry.getTurnover()+

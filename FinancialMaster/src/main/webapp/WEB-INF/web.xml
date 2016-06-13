@@ -17,11 +17,11 @@
 
   <!-- get：跳转到主页，post： -->  
   <servlet>
-    <servlet-name>ToHomePageServlet</servlet-name>
+    <servlet-name>HomePageServlet</servlet-name>
     <servlet-class>servlet.main.HomePageServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ToHomePageServlet</servlet-name>
+    <servlet-name>HomePageServlet</servlet-name>
     <url-pattern>/ToHomePageServlet</url-pattern>
   </servlet-mapping>
  
