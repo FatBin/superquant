@@ -80,7 +80,8 @@
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
-				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
+				<li><a class="page-scroll" href="StrategyPage.jsp"
+					style="color: rgb(253,208,72);">策略</a></li>
 			</ul>
 		</div>
 
@@ -303,8 +304,8 @@
 
 	<div id="strategyLineChart"
 		style="margin: auto; margin-top: 30px; width: 1000px; height: 400px; display: none; background-color: gray;"></div>
-		
-		
+
+
 	<!-- Modal -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"
 		aria-labelledby="modalLogin" aria-hidden="true">
@@ -332,7 +333,7 @@
 						<input type="password" class="form-control" id="modal-login-pwd"
 							placeholder='密码'>
 					</div>
-				</div> 
+				</div>
 				<!-- modal-body -->
 
 				<div class="modal-footer">

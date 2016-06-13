@@ -16,7 +16,7 @@
 <!-- Custom Fonts -->
 <link href="../css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
-	
+
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
@@ -76,17 +76,13 @@
 				<li class="hidden"><a href="#page-top"></a></li>
 
 				<li><a class="page-scroll active" href="HomePage.jsp">首页</a></li>
-				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
+				<li><a class="page-scroll" href="../ToMarketPageServlet"
+					style="color: rgb(253,208,72);">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
-
-
-
-
-
 
 		<div class="style_5 hidden-sm hidden-xs floatRight">
 			<fieldset id="searchform">
@@ -220,7 +216,7 @@
 			value="1" style="width: 30px" />页<a>&nbsp;&nbsp;</a><a
 			onclick="page.aimPage();">跳转</a>
 	</div>
-	
+
 	<!-- Modal -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"
 		aria-labelledby="modalLogin" aria-hidden="true">
