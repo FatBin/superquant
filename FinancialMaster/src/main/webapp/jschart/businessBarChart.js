@@ -72,7 +72,7 @@ option = {
 		itemStyle : {
 			normal : {
 				color : function(params) {
-					if (params.dataIndex < 10) {
+					if (value1[params.dataIndex] >0) {
 						return 'rgb(191,23,34)';
 					} else {
 						return 'rgb(11,137,62)';

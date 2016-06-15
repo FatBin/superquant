@@ -62,7 +62,7 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		String endDay = format.format(calendar.getTime());
 		BenchVO benchVO=new BenchVO();
 		try {
-			List<Benchdata> historyData=br.getBenchData(id, "2006-01-01", endDay);
+			List<Benchdata> historyData=br.getBenchData(id, "2013-01-01", endDay);
 			int size=historyData.size();
 			String data[][]=new String[size][7];
 			int index=0;

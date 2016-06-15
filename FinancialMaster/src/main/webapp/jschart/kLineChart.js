@@ -17,7 +17,7 @@ function getKLine(kind) {
 	var start;
 	if (kind == "market") {
 		servlet_url = "../GetMarketkLine";
-		start = 96;
+		start = 90;
 	} else if (kind == "stock") {
 		servlet_url = "../GetStockKLine";
 		start = 85;

@@ -65,6 +65,9 @@ public class BusinessImpl implements BusinessInfo {
 			//添加行业所包含所有公司的最新数据
 			industryPOs=industryDataService.getIndustry(businessname);						
 			for (industryPO company : industryPOs) {
+				if(!InitFactoryServlet.isExist(company.getStockId())){
+					continue;
+				}
 				Stock stock=InitFactoryServlet.getStock(company.getStockId());
 				BusinessItemVO businessItemVO=new BusinessItemVO(
 						stock.getStockId(), stock.getStockName(),
