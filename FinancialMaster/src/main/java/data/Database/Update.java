@@ -17,15 +17,14 @@ public class Update implements Runnable{
 	public void run() {
 		while (true) {
 			try {
-				Thread.sleep(60000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			Calendar calendar=Calendar.getInstance();
 			int hour=calendar.get(Calendar.HOUR);
 			int minute=calendar.get(Calendar.MINUTE);
-			
-			if(hour==15&&minute==0){
+			if(hour==1&&minute==0){
 				//update the benchdata
 				BenchDataUpdate benchDataUpdate=new BenchDataUpdate();
 				benchDataUpdate.benchUpdate();

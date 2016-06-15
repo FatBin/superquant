@@ -5,10 +5,13 @@ import java.util.List;
 
 import DAO.DaoProxy.UserStrategyDaoProxy;
 import DAO.pojo.Industries;
+import DAO.pojo.TradeRecord;
 import DAO.pojo.UserStrategy;
 import DAO.pojo.UserStrategyId;
 import PO.industryPO;
+import data.Database.BenchDataUpdate;
 import data.Database.IndustriesUpdate;
+import data.Database.TradeRecordUpdate;
 import data.IndustryData.IndustryData;
 import data.Initialize.Init;
 import data.UserData.UserStrategyData;
@@ -103,8 +106,10 @@ public class finaltest {
 			e.printStackTrace();
 		}
 		System.out.println("t");
-		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
-		industriesUpdate.IndustriesUpdate();
+//		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
+//		industriesUpdate.IndustriesUpdate();
+		TradeRecordUpdate tradeRecordUpdate=new TradeRecordUpdate();
+		tradeRecordUpdate.TradeRecordUpdate();
 		
 //		UserStrategyData data=new UserStrategyData();
 //		UserStrategyId id=new UserStrategyId("pangchao", "sh600000", "jianfeishibai");

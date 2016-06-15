@@ -1,9 +1,5 @@
 package data.Database;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -18,11 +14,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import DAO.DAOfactory.DaoFactory;
-import DAO.DAOimpl.StockDaoImpl;
-import DAO.DAOimpl.TradeRecordDaoImpl;
 import DAO.DaoProxyService.StockDaoProxyService;
 import DAO.DaoProxyService.TradeRecordDaoProxyService;
-import DAO.connection.DBconnection;
 import DAO.pojo.Stock;
 import DAO.pojo.TradeRecord;
 import DAO.pojo.TradeRecordId;
@@ -42,25 +35,27 @@ public class TradeRecordUpdate {
 			Calendar calendar = Calendar.getInstance();
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String now = simpleDateFormat.format(calendar.getTime());// today
-			calendar.add(Calendar.WEEK_OF_YEAR, -1);
-			String lastweek = simpleDateFormat.format(calendar.getTime());// lastweek
-
+			calendar.add(Calendar.MONTH, -1);
+			String lastmonth = simpleDateFormat.format(calendar.getTime());// lastweek
+//			int count=0;
+//			System.out.println("changdu "+list.size());
 			for (Object object : list) {
+//				count++;
 				try {
 					Stock stock = (Stock) object;
 					String stockId = stock.getStockId();
 					String result = HttpRequest.sendGet(tradeRecord[0] + stockId,
-							tradeRecord[1] + lastweek + tradeRecord[2] + now + tradeRecord[3]);
+							tradeRecord[1] + lastmonth + tradeRecord[2] + now + tradeRecord[3]);
 					JSONObject jsonObject = new JSONObject(result);
 					JSONObject jsonObject2 = jsonObject.getJSONObject("data");
 					JSONArray jsonArray = jsonObject2.getJSONArray("trading_info");
-					System.out.println(result);
+//					System.out.print(stockId+" ");
 					if (jsonArray.length() == 0) {
 						// 当助教api中无该股票数据
 						Document document = Jsoup
 								.connect(MinorityStock + stockId.substring(2)).get();
 						Elements elements = document.select("table[class=data]").get(0).select("tr");
-						for (int i = 1; i < elements.size() - 1 && i <= 7; i++) {
+						for (int i = 1; i < elements.size() - 1; i++) {
 							Element element = elements.get(i);
 							String[] temp = element.text().split(" ");
 
@@ -79,6 +74,7 @@ public class TradeRecordUpdate {
 									Double.parseDouble(temp[3]), 0, Long.parseLong(volume), 0, 0, 0);
 							arrayList.add(tradeRecord);
 						}
+//						System.out.print("A类股 "+elements.size()+" ");
 					} else {
 						for (Object object2 : jsonArray) {
 							JSONObject jsonObject3 = (JSONObject) object2;
@@ -90,7 +86,9 @@ public class TradeRecordUpdate {
 									jsonObject3.getDouble("pe_ttm"), jsonObject3.getDouble("pb"));
 							arrayList.add(tradeRecord);
 						}
+//						System.out.print("B类股 "+jsonArray.length()+" ");
 					}
+//					System.out.println(count);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
