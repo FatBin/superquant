@@ -90,7 +90,11 @@ public class StockImpl implements StockInfo {
 			}
 			
 			for(int i=0;i<size-1;i++){
-				rise_fallList[i]=(closes[i]-closes[i+1])/closes[i+1];
+				if(closes[i+1]==0){
+					rise_fallList[i]=0;
+				}else{
+				    rise_fallList[i]=(closes[i]-closes[i+1])/closes[i+1];
+				}
 			}
 			
 			//计算基本项
