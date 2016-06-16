@@ -83,7 +83,7 @@ li {
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet"
-					style="color: rgb(253,208,72);">行业</a></li>
+					style="color: rgb(253, 208, 72);">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
 			</ul>
 		</div>
@@ -168,10 +168,26 @@ li {
 						<div class="riser-price text-right"><%=list.getPrice()%>
 							元
 						</div>
+
+						<%
+							if (list.getStock_rise_fall() > 0) {
+						%>
+
 						<div class="glyphicon glyphicon-arrow-up red"
 							style="float: right; margin-top: 3px;"></div>
 						<div class="riser-rate text-right red"><%=list.getStock_rise_fall()%>%
 						</div>
+
+						<%
+							} else {
+						%>
+						<div class="glyphicon glyphicon-arrow-down green"
+							style="float: right; margin-top: 3px;"></div>
+						<div class="riser-rate text-right green"><%=list.getStock_rise_fall()%>%
+						</div>
+						<%
+							}
+						%>
 
 					</div>
 
