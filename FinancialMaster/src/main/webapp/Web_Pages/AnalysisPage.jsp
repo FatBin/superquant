@@ -122,12 +122,14 @@
 		<span class="headtext">技术分析</span>
 	</div>
 
-	<div class="bodydiv">
+	<div class="bodydiv" style="height:550px;">
 		<div class="text_tech">
 			<p><%=analyzeVO.getResult_of_technical_analyze()%></p>
 		</div>
 
 		<div id="TechnicalAnalyzeChart" class="chart_tech"></div>
+		<div id="chart" class="chart"></div>
+		<div id="technicalAnalysis"></div>
 	</div>
 
 	<!-- 大盘分析 -->

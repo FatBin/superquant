@@ -67,7 +67,7 @@ li {
 	height: 177px;
 	position: absolute;
 	left: 58px;
-	bottom: 24px;
+	top: 100px;
 }
 
 .bodydiv .text_tech {
@@ -76,6 +76,22 @@ li {
 	position: absolute;
 	left: 58px;
 	top: 24px;
+}
+
+.bodydiv #technicalAnalysis{
+	width: 260px;
+	height: 230px;
+	position: absolute;
+	right: 58px;
+	bottom: 20px;
+}
+
+.bodydiv .chart{
+	width: 450px;
+	height: 230px;
+	position: absolute;
+	left: 58px;
+	bottom: 20px;
 }
 
 .bodydiv .chart_market {
