@@ -278,6 +278,7 @@
 	<script src="../js/bootstrapSwitch.js"></script>
 	<script src="../js/table_pages.js"></script>
 	<script src="../js/common.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../jschart/ScoreBarChart.js"></script>
 	<script src="../js/stockdetail_deal.js"></script>

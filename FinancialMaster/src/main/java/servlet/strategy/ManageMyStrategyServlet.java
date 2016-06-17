@@ -47,7 +47,7 @@ public class ManageMyStrategyServlet extends HttpServlet {
 	  if(request.getSession().getAttribute("User")!=null){
 		  UserVO userVO=(UserVO)request.getSession().getAttribute("User"); 
 		  
-		  String name=request.getParameter("stName");//策略名
+		  String name= new String(request.getParameter("stName").getBytes("iso8859-1"), "utf-8");//策略名
           String totalcost=request.getParameter("totalcost");//总成本
 		  String perST=request.getParameter("perST");
 		  String BuyList=request.getParameter("BuyList");

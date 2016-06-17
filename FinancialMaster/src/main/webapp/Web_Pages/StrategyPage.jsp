@@ -528,9 +528,7 @@
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
 	<script src="../jschart/StrategyLineChart.js"></script>
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script type="text/javascript" src="../js/strategyhint.js"></script>
 	<script type="text/javascript" src="../js/strategy_deal.js"></script>

@@ -20,8 +20,6 @@
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
-<script src="../js/jquery.min.js"></script>
-
 <style>
 li {
 	list-style-type: none;
@@ -254,7 +252,8 @@ th {
 
 	<script src="../js/table_pages.js"></script>
 	<script src="../js/common.min.js"></script>
-
+	<script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 
 	<script type="text/javascript">setPerPage(15);</script>
