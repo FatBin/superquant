@@ -7,7 +7,7 @@ import DAO.DaoProxy.UserStrategyDaoProxy;
 import DAO.pojo.Industries;
 import DAO.pojo.TradeRecord;
 import DAO.pojo.UserStrategy;
-import DAO.pojo.UserStrategyId;
+import DAO.pojo.UserStrategyId;import PO.industriesPO;
 import PO.industryPO;
 import data.Database.BenchDataUpdate;
 import data.Database.IndustriesUpdate;
@@ -108,8 +108,16 @@ public class finaltest {
 		System.out.println("t");
 //		IndustriesUpdate industriesUpdate=new IndustriesUpdate();
 //		industriesUpdate.IndustriesUpdate();
-		TradeRecordUpdate tradeRecordUpdate=new TradeRecordUpdate();
-		tradeRecordUpdate.TradeRecordUpdate();
+//		TradeRecordUpdate tradeRecordUpdate=new TradeRecordUpdate();
+//		tradeRecordUpdate.TradeRecordUpdate();
+		IndustryData industryData=new IndustryData();
+		try {
+			List arrayList=industryData.getIndustryDuringTime("房地产开发", "2016-05-15", "2016-06-15");
+			System.out.print(arrayList.size());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		UserStrategyData data=new UserStrategyData();
 //		UserStrategyId id=new UserStrategyId("pangchao", "sh600000", "jianfeishibai");
