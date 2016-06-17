@@ -45,11 +45,16 @@ public class StockImpl implements StockInfo {
 			
 			List<TradeRecord> records=stockDataService.getStockRecord(code, starttime, endtime);			
 			int size=records.size();
-			
 			String[][] historyData=new String[size][10];
 			double[] closes=new double[size];
 			double[] volume=new double[size];
-			double[] rise_fallList=new double[size-1];
+			double[] rise_fallList;
+			if(size<=0){
+				rise_fallList=new double[0];
+			}else{
+				rise_fallList=new double[size-1];
+			}
+		
 			double[] turnovers=new double[size];
 			
 			//历史数据模块

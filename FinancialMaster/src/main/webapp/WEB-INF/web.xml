@@ -238,13 +238,13 @@
     <servlet-name>GetBusinessContrastServlet</servlet-name>
     <url-pattern>/GetBusinessContrast</url-pattern>
   </servlet-mapping>
-     <!-- get：，post：为技术分析提供数据 -->    
+     <!-- get：为macd图提供数据，post：为技术分析提供数据 -->    
   <servlet>
-    <servlet-name>GetTechnicalAnalyzeChartServlet</servlet-name>
+    <servlet-name>TechnicalAnalyzeChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.GetTechnicalAnalyzeChartServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>GetTechnicalAnalyzeChartServlet</servlet-name>
+    <servlet-name>TechnicalAnalyzeChartServlet</servlet-name>
     <url-pattern>/GetTechnicalAnalyzeChart</url-pattern>
   </servlet-mapping>
   

@@ -128,7 +128,7 @@
 		</div>
 
 		<div id="TechnicalAnalyzeChart" class="chart_tech"></div>
-		<div id="chart" class="chart"></div>
+		<div id="MACDchart" class="chart"></div>
 		<div id="technicalAnalysis"></div>
 	</div>
 
@@ -277,6 +277,7 @@
 	<script src="../jschart/StockContrastChart.js"></script>
 	<script src="../jschart/TechnicalAnalyzeChart.js"></script>
 	<script src="../jschart/ScoreBarChart.js"></script>
+	<script src="../jschart/MACDchart.js"></script>
 
 </body>
 </html>
