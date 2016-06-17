@@ -51,13 +51,13 @@ public class GetTechnicalAnalyzeChartServlet extends HttpServlet {
 		 double DIFs[]=new double[length];
 		 for (int i = 0; i < length; i++) {
 			DIFs[i]=EMA12[i]-EMA26[i];
-			 System.out.println(EMA12[i]+"  " +EMA26[i]+"  "+DIFs[i]);
 		 }
 		 double DEAs[]=getEMA(DIFs, 9);
 		 length=DEAs.length;
 		 double DIFFs[]=new double[length];
 		 for (int i = 0; i < length; i++) {
 			DIFFs[i]=DIFs[i]-DEAs[i];
+			System.out.println(DEAs);
 		}
 		String data="[";
 		for (int i = length-1; i >=0; i--) {
@@ -67,7 +67,6 @@ public class GetTechnicalAnalyzeChartServlet extends HttpServlet {
 					",'DIFF':"+DIFFs[i]+"},";
 		}
 		data+="]";
-		System.out.println(data);
 		JSONArray json = new JSONArray(data);
 		PrintWriter out = response.getWriter();
 		out.println(json);
@@ -106,13 +105,12 @@ public class GetTechnicalAnalyzeChartServlet extends HttpServlet {
 	private double[] getEMA(double[] close,int dayCount){
 		int size=close.length-dayCount+1;
 		double result[]=new double[size];
-		double number=dayCount;
 		for (int i = 0; i < size; i++) {
-			int sum=0;
+			double sum=0;
 			for (int j = 0; j < dayCount; j++) {
 				sum+=close[i+j];
 			}
-			result[i]=sum/number;
+			result[i]=sum/dayCount;
 		}
 		return result;
 	}

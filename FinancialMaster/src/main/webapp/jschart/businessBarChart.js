@@ -19,7 +19,7 @@ $.ajax({
 		}
 	},
 	error : function(errorMsg) {
-		alert("不好意思，大爷，图表请求数据失败啦!");
+		alert("不好意思，行业涨跌榜柱状图请求数据失败啦!");
 		myChart.hideLoading();
 	}
 })

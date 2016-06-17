@@ -19,7 +19,7 @@ $.ajax({
 		}
 	},
 	error : function(errorMsg) {
-		alert("不好意思，大爷，图表请求数据失败啦!");
+		alert("不好意思，股票综合分析评分所用的仪表盘请求数据失败啦!");
 		myChart.hideLoading();
 	}
 })

@@ -13,16 +13,19 @@ function getKLine(kind) {
 	var values = []
 	var volume = [];
 	var servlet_url = "";
+	var yMessage="";
 	var num;
 	var start;
 	if (kind == "market") {
 		servlet_url = "../GetMarketkLine";
+		yMessage="单位：百万手";
 		start = 90;
 	} else if (kind == "stock") {
 		servlet_url = "../GetStockKLine";
+		yMessage="单位：手";
 		start = 85;
 	} else {
-		alert("对不起皇上，类型未匹配到！！！");
+		alert("不好意思，K线图类型未匹配到！！！");
 	}
 	$.ajax({
 		type : "post",
@@ -41,7 +44,7 @@ function getKLine(kind) {
 
 		},
 		error : function(errorMsg) {
-			alert("不好意思，大爷，图表请求数据失败啦!");
+			alert("不好意思，k线图数据数据失败啦!");
 			myChart.hideLoading();
 		}
 	})
@@ -171,7 +174,7 @@ function getKLine(kind) {
 				show : true
 			}
 		}, {
-			name : '单位：百万',
+			name : yMessage,
 			gridIndex : 1,
 		}, {
 			gridIndex : 2,
