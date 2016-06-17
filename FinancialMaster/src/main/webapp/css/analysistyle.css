@@ -67,7 +67,7 @@ li {
 	height: 177px;
 	position: absolute;
 	left: 58px;
-	top: 100px;
+	top: 24px;
 }
 
 .bodydiv .text_tech {
@@ -79,7 +79,7 @@ li {
 }
 
 .bodydiv #technicalAnalysis{
-	width: 260px;
+	width: 220px;
 	height: 230px;
 	position: absolute;
 	right: 58px;
