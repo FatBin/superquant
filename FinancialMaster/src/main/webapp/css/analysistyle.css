@@ -64,7 +64,7 @@ li {
 
 .bodydiv .chart_tech {
 	width: 730px;
-	height: 177px;
+	height: 230px;
 	position: absolute;
 	left: 58px;
 	top: 24px;
@@ -80,7 +80,7 @@ li {
 
 .bodydiv #technicalAnalysis{
 	width: 220px;
-	height: 230px;
+	height: 180px;
 	position: absolute;
 	right: 58px;
 	bottom: 20px;
@@ -88,7 +88,7 @@ li {
 
 .bodydiv .chart{
 	width: 450px;
-	height: 230px;
+	height: 180px;
 	position: absolute;
 	left: 58px;
 	bottom: 20px;
@@ -170,8 +170,8 @@ li {
 	width: 65px;
 	height: 227px;
 	position: fixed;
-	right: 20px;
-	top: 190px;
+	right: 100px;
+	top: 184px;
 	border: solid 1px rgb(235, 235, 235);
 	border-radius: 4px;
 }

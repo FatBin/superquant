@@ -9,7 +9,7 @@ function navskip() {
 		var div = document.createElement("div");
 		div.style.width = "63px";
 		div.style.height = "30px";
-		div.style.backgroundColor = "#4A433B";
+		div.style.backgroundColor = "#F0F0F0";
 		div.style.marginTop = "2px";
 		div.style.borderRadius = "2px";
 		div.style.cursor = "pointer";
@@ -19,7 +19,8 @@ function navskip() {
 		var span = document.createElement("span");
 		span.innerHTML = hrefname[i];
 		span.style.lineHeight = "30px";
-		span.style.color = "white";
+		span.style.color = "#4A433B";
+		span.style.marginLeft = "4px";
 		div.appendChild(span);
 		nav.appendChild(div);
 	}
@@ -51,6 +52,6 @@ function mouseOut(pos){
 	var rightnav = document.getElementById("rightnav");
 	var divs = rightnav.getElementsByTagName("div");
 	for (var i = 0; i < 7; i++) {
-		divs[i].style.backgroundColor = "#4A433B";
+		divs[i].style.backgroundColor = "#F0F0F0";
 	}
 }

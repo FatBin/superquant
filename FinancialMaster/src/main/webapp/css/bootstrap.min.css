@@ -2920,6 +2920,48 @@ output {
 	cursor: not-allowed
 }
 
+
+.form-market {
+	display: block;
+	width: 100%;
+	height: 34px;
+	padding: 6px 14px;
+	font-size: 16px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.form-market:focus {
+	border-color: #66afe9;
+	outline: 0;
+}
+
+.form-market::-moz-placeholder {
+	color: #999;
+	opacity: 1
+}
+
+.form-market:-ms-input-placeholder {
+	color: #999
+}
+
+.form-market::-webkit-input-placeholder {
+	color: #999
+}
+
+.form-market[disabled], .form-market[readonly], fieldset[disabled] .form-market
+	{
+	background-color: #eee;
+	opacity: 1
+}
+
+.form-market[disabled], fieldset[disabled] .form-market {
+	cursor: not-allowed
+}
+
+
 textarea.form-control {
 	height: auto
 }
