@@ -58,7 +58,9 @@ public class GetStockRadarChartServlet extends HttpServlet {
 				maxs[i]=values[i];
 			}
 		}
-		
+		if(values[3]<0){
+			maxs[3]=100;
+		}
 		String data="[{'max':"+maxs[0]+",'value':"+values[0]+
 					"},{'max':"+maxs[1]+",'value':"+values[1]+
 					"},{'max':"+maxs[2]+",'value':"+values[2]+

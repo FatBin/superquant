@@ -131,8 +131,12 @@ public class StockImpl implements StockInfo {
 			}
 			
 			Analyze_BasicItemsVO analyze_BasicItemsVO=new Analyze_BasicItemsVO();
-			analyze_BasicItemsVO.setQuantity_relative_ratio(quantity_relative_ratio);			
-			analyze_BasicItemsVO.setPriceStability(priceStability);
+			analyze_BasicItemsVO.setQuantity_relative_ratio(quantity_relative_ratio);
+			if(priceStability>0){
+			analyze_BasicItemsVO.setPriceStability(priceStability);}
+			else{
+				analyze_BasicItemsVO.setPriceStability(0);
+			}
 			analyze_BasicItemsVO.setUps_and_downs(ups_and_downs);
 			analyze_BasicItemsVO.setTurnOver(turnOver);
 			analyze_BasicItemsVO.setPe(pe);
