@@ -199,9 +199,9 @@ function modifyST(td) {
 
 		var table_h = rowcount * 35;
 		if (document.getElementById("strategyLineChart").style.display == "none") {
-			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300) + "px";
+			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115) + "px";
 		} else {
-			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 430)
+			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115 - 430)
 					+ "px";
 		}
 		modiv.style.marginLeft = td.getBoundingClientRect().left + "px";

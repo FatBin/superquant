@@ -352,7 +352,7 @@
 	<!-- End Modal -->
 
 	<!-- bottom section -->
-	<div style="margin-top: 50px;">
+	<div style="margin-top: 165px;">
 		<div style="background-color: #766F67; height: 200px;"></div>
 
 		<div style="background-color: #645D55; height: 50px;">
