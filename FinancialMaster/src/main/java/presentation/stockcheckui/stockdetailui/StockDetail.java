@@ -15,6 +15,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
@@ -295,7 +296,8 @@ public class StockDetail extends JPanel {
 		// 大盘现价
 		JLabel nowMarket = new JLabel();
 		double now = stockMarketVO.getClose();
-		nowMarket.setText((now + "").substring(0, 7));
+		DecimalFormat   df=new   DecimalFormat("#.##"); 
+		nowMarket.setText(df.format(now));
 		nowMarket.setFont(new Font("微软雅黑", Font.PLAIN, 14));
 		nowMarket.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {

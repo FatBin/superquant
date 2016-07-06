@@ -17,6 +17,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
@@ -487,8 +488,9 @@ public class Marketui extends JPanel {
 
 		// ´óÅÌÏÖ¼Û
 		JLabel nowMarket = new JLabel();
+		DecimalFormat   df=new   DecimalFormat("#.##"); 
 		double now = stockMarketVO.getClose();
-		nowMarket.setText((now + "").substring(0, 7));
+		nowMarket.setText(df.format(now));
 		nowMarket.setFont(new Font("Î¢ÈíÑÅºÚ", Font.PLAIN, 14));
 		nowMarket.setForeground(new Color(62, 56, 49, 240));
 		if (changeRange > 0) {
