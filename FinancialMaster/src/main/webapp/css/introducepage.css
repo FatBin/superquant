@@ -24,11 +24,14 @@ li {
 
 .cut_img {
 	width: 646px;
-	height: 331px;
-	background-color: gray;
 	margin: -310px auto;
 	border-radius: 3px;
 	box-shadow: #666 0px 0px 10px;
+	transition: 0.3s;
+}
+
+.cut_img:hover {
+	width: 946px;
 }
 
 .lastpart {
@@ -39,16 +42,36 @@ li {
 }
 
 .each_sec {
-	width: 640px;
+	width: 55%;
 	margin: 47px auto;
 }
 
 .insert_img {
-	width: 370px;
+	width: 55%;
 	float: right;
 	margin-bottom: 43px;
 	border-radius:3px;
 	box-shadow: #666 0px 0px 10px;
+	transition: 0.3s;
+}
+
+.insert_img:hover {
+	width: 100%;
+	margin-left: -50%;
+}
+
+.insert_img_left {
+	width: 55%;
+	float: left;
+	margin-bottom: 43px;
+	border-radius:3px;
+	box-shadow: #666 0px 0px 10px;
+	transition: 0.3s;
+}
+
+.insert_img_left:hover {
+	width: 100%;
+	margin-right: -50%;
 }
 
 .sum_title {

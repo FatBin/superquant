@@ -176,7 +176,7 @@
 					src="../webImage/market.png">
 			</div>
 
-			<hr style="width: 640px; border: 1px solid #786b5d;">
+			<hr style="width: 100%; border: 1px solid #786b5d;">
 		</div>
 
 		<div class="each_sec">
@@ -188,12 +188,12 @@
 				</p>
 			</div>
 
-			<div class="insert_img" style="float: left">
+			<div class="insert_img_left">
 				<img style="width: 100%; border-radius: 3px"
 					src="../webImage/analysis.png">
 			</div>
 
-			<hr style="width: 640px; border: 1px solid #786b5d;">
+			<hr style="width: 100%; border: 1px solid #786b5d;">
 		</div>
 
 		<div class="each_sec">
@@ -210,7 +210,7 @@
 					src="../webImage/strategy.png">
 			</div>
 
-			<hr style="width: 640px; border: 1px solid #786b5d;">
+			<hr style="width: 100%; border: 1px solid #786b5d;">
 		</div>
 
 		<div style="text-align: center; width: 640px; margin: 0 auto;">
