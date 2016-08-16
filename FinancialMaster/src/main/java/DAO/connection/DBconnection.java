@@ -1,6 +1,6 @@
 package DAO.connection;
 /*
- * 
+ * hello
  */
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
