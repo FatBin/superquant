@@ -3,45 +3,47 @@
  */
 
 /**
- * 个股技术分析————MACD
+ * 个股技术分析————DMI
  */
 
 
-var MACDchart = echarts.init(document.getElementById('MACDchart'));
+var DMIchart = echarts.init(document.getElementById('DMIchart'));
 
 
 	// 日期
 	var dates = [];
-	var DIFs = [];
-	var DEAs = [];
-	var DIFFs=[]
+	var PDIs = [];
+	var MDIs = [];
+	var ADXs=[]
+	var ADXRs=[]
 	
 	$.ajax({
 		type : "get",
 		async : false, // 同步执行
-		url : "../GetMACDChart",
+		url : "../GetDMIChart",
 		// data : {id:code},
 		dataType : "json", // 返回数据形式为json
 		success : function(result) {
 			if (result) {
 				for (var i = 0; i < result.length; i++) {
 					dates.push(result[i].date);
-					DIFs.push(result[i].DIF);
-					DEAs.push(result[i].DEA);
-					DIFFs.push(result[i].DIFF);
+					PDIs.push(result[i].PDI);
+					MDIs.push(result[i].MDI);
+					ADXs.push(result[i].ADX);
+					ADXRs.push(result[i].ADXR);
 				}
 			}
 
 		},
 		error : function(errorMsg) {
-			alert("不好意思，MACD图表请求数据失败啦!");
+			alert("不好意思，DMI图表请求数据失败啦!");
 			myChart.hideLoading();
 		}
 	})
 
 	option = {
 		title : {
-			text : 'MACD分析图表',
+			text : 'DMI分析图表',
 			left : 40
 		},
 		tooltip : {
@@ -51,7 +53,7 @@ var MACDchart = echarts.init(document.getElementById('MACDchart'));
 			}
 		},
 		legend :  {
-			data : [ 'DIF', 'DEA','DIFF'],
+			data : [ 'PDI', 'MDI','ADX','ADXR'],
 			left:'right'
 		},
 		grid :  {
@@ -84,36 +86,22 @@ var MACDchart = echarts.init(document.getElementById('MACDchart'));
 			end : 100,
 		} ],
 		series :[{
-					name : 'DIF',
+					name : 'PDI',
 					type : 'line',
-					data : DIFs,
-				}, {
-					name : 'DEA',
-					type : 'line',
-					data : DEAs,
-					smooth : true,
-					lineStyle : {
-						normal : {
-						// opacity : 0.5
-						}
-					}
+					data : PDIs,
 				},{
-					name : 'DIFF',
-					type : 'bar',
-					data : DIFFs,
-					itemStyle : {
-						normal : {
-							color : function(params) {
-								if (DIFFs[params.dataIndex] >0) {
-									return 'rgb(191,23,34)';
-								} else {
-									return 'rgb(11,137,62)';
-								}
-
-							}
-						}
-					}
+					name : 'MDI',
+					type : 'line',
+					data : MDIs,
+				},{
+					name : 'ADX',
+					type : 'line',
+					data : ADXs,
+				},{
+					name : 'ADXR',
+					type : 'line',
+					data : ADXRs,
 				} ]
 	};
 
-MACDchart.setOption(option);
+	DMIchart.setOption(option);

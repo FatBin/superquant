@@ -35,43 +35,7 @@ public class GetTechnicalAnalyzeChartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
 	
-		StockDetailVO sv=(StockDetailVO)request.getSession().getAttribute("StockDetail");
-		 String[][] historyData=sv.getHistoryData();
-		 int length=historyData.length;
-		 double close[]=new double[length];
-		 for(int i=0;i<length;i++){
-			
-			 close[i]=Double.parseDouble(historyData[i][2]);
-			 System.out.println(close[i]);
-		 }
-		 double EMA12[]=getEMA(close,12);
-		 double EMA26[]=getEMA(close,26);
-		 
-		 length=EMA26.length;
-		 double DIFs[]=new double[length];
-		 for (int i = 0; i < length; i++) {
-			DIFs[i]=EMA12[i]-EMA26[i];
-		 }
-		 double DEAs[]=getEMA(DIFs, 9);
-		 length=DEAs.length;
-		 double DIFFs[]=new double[length];
-		 for (int i = 0; i < length; i++) {
-			DIFFs[i]=DIFs[i]-DEAs[i];
-			System.out.println(DEAs);
-		}
-		String data="[";
-		for (int i = length-1; i >=0; i--) {
-			data=data+"{'date':"+historyData[i][0]+
-					",'DIF':"+DIFs[i]+
-					",'DEA':"+DEAs[i]+
-					",'DIFF':"+DIFFs[i]+"},";
-		}
-		data+="]";
-		JSONArray json = new JSONArray(data);
-		PrintWriter out = response.getWriter();
-		out.println(json);
-		out.flush();
-		out.close();	
+		
 		 
 		 
 	}
@@ -102,16 +66,5 @@ public class GetTechnicalAnalyzeChartServlet extends HttpServlet {
 			out.close();	
 	}
 
-	private double[] getEMA(double[] close,int dayCount){
-		int size=close.length-dayCount+1;
-		double result[]=new double[size];
-		for (int i = 0; i < size; i++) {
-			double sum=0;
-			for (int j = 0; j < dayCount; j++) {
-				sum+=close[i+j];
-			}
-			result[i]=sum/dayCount;
-		}
-		return result;
-	}
+	
 }

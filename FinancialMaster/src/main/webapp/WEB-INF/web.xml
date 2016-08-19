@@ -238,7 +238,7 @@
     <servlet-name>GetBusinessContrastServlet</servlet-name>
     <url-pattern>/GetBusinessContrast</url-pattern>
   </servlet-mapping>
-     <!-- get：为macd图提供数据，post：为技术分析提供数据 -->    
+     <!-- get：，post：为技术分析提供数据 -->    
   <servlet>
     <servlet-name>TechnicalAnalyzeChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.GetTechnicalAnalyzeChartServlet</servlet-class>
@@ -246,6 +246,86 @@
   <servlet-mapping>
     <servlet-name>TechnicalAnalyzeChartServlet</servlet-name>
     <url-pattern>/GetTechnicalAnalyzeChart</url-pattern>
+  </servlet-mapping>
+  
+      <!-- get：为BIAS图提供数据，post： -->    
+  <servlet>
+    <servlet-name>BIASServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.TechnicalChart.BIASservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BIASChartServlet</servlet-name>
+    <url-pattern>/GetBIASChart</url-pattern>
+  </servlet-mapping>
+  
+      <!-- get：为CCI图提供数据，post： -->    
+  <servlet>
+    <servlet-name>CCIServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.TechnicalChart.CCIservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CCIChartServlet</servlet-name>
+    <url-pattern>/GetCCIChart</url-pattern>
+  </servlet-mapping>
+  
+      <!-- get：为DMI图提供数据，post： -->    
+  <servlet>
+    <servlet-name>DMIServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.TechnicalChart.DMIservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DMIChartServlet</servlet-name>
+    <url-pattern>/GetDMIChart</url-pattern>
+  </servlet-mapping>
+  
+      <!-- get：为KDJ图提供数据，post： -->    
+  <servlet>
+    <servlet-name>KDJServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.TechnicalChart.KDJservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>KDJChartServlet</servlet-name>
+    <url-pattern>/GetKDJChart</url-pattern>
+  </servlet-mapping>
+  
+      <!-- get：为MACD图提供数据，post： -->    
+  <servlet>
+    <servlet-name>MACDServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.TechnicalChart.MACDservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MACDChartServlet</servlet-name>
+    <url-pattern>/GetMACDChart</url-pattern>
+  </servlet-mapping>
+  
+      <!-- get：为OBV图提供数据，post： -->    
+  <servlet>
+    <servlet-name>OBVServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.TechnicalChart.OBVservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OBVChartServlet</servlet-name>
+    <url-pattern>/GetOBVChart</url-pattern>
+  </servlet-mapping>
+  
+      <!-- get：为ROC图提供数据，post： -->    
+  <servlet>
+    <servlet-name>ROCServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.TechnicalChart.ROCservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ROCChartServlet</servlet-name>
+    <url-pattern>/GetROCChart</url-pattern>
+  </servlet-mapping>
+  
+      <!-- get：为WR图提供数据，post： -->    
+  <servlet>
+    <servlet-name>WRServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.TechnicalChart.WRservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WRChartServlet</servlet-name>
+    <url-pattern>/GetWRChart</url-pattern>
   </servlet-mapping>
   
    <!-- get：增加关注的股票，post：删除我关注的股票 -->    
