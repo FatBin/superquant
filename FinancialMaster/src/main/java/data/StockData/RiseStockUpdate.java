@@ -9,6 +9,9 @@ import org.jsoup.select.Elements;
 import PO.RiseStockPO;
 
 public class RiseStockUpdate implements Runnable{
+//	public static void main(String[] args) {
+//		new RiseStockUpdate();
+//	}
 	public static final String[] riseStock={
 			"http://data.10jqka.com.cn/rank/lxsz/field/lxts/order/desc/page/",
 			"/ajax/1/"
@@ -37,17 +40,36 @@ public class RiseStockUpdate implements Runnable{
 					}else {
 						temp[1]="sz"+temp[1];
 					}
-					RiseStockPO po=new RiseStockPO(
-							temp[1],
-							temp[2], 
-							Double.parseDouble(temp[3]), 
-							Double.parseDouble(temp[4]), 
-							Double.parseDouble(temp[5]), 
-							Integer.parseInt(temp[6]), 
-							temp[7], 
-							temp[8],
-							temp[9]
-							);
+					RiseStockPO po=null;
+					System.out.println(result.get(j).text());
+					
+					//there is some data lost caused by the website,can not be controlled
+					if(temp.length==9){
+						po=new RiseStockPO(
+								temp[1],
+								temp[2], 
+								Double.parseDouble(temp[3]), 
+								Double.parseDouble(temp[4]), 
+								Double.parseDouble(temp[5]), 
+								Integer.parseInt(temp[6]), 
+								temp[7], 
+								temp[8],
+								""
+								);
+					}else {
+						po=new RiseStockPO(
+								temp[1],
+								temp[2], 
+								Double.parseDouble(temp[3]), 
+								Double.parseDouble(temp[4]), 
+								Double.parseDouble(temp[5]), 
+								Integer.parseInt(temp[6]), 
+								temp[7], 
+								temp[8],
+								temp[9]
+								);
+					}
+
 					arrayList.add(po);
 				}
 			}
