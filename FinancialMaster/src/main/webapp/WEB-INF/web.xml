@@ -250,7 +250,7 @@
   
       <!-- get：为BIAS图提供数据，post： -->    
   <servlet>
-    <servlet-name>BIASServlet</servlet-name>
+    <servlet-name>BIASChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.TechnicalChart.BIASservlet</servlet-class>
   </servlet>
   <servlet-mapping>
@@ -260,7 +260,7 @@
   
       <!-- get：为CCI图提供数据，post： -->    
   <servlet>
-    <servlet-name>CCIServlet</servlet-name>
+    <servlet-name>CCIChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.TechnicalChart.CCIservlet</servlet-class>
   </servlet>
   <servlet-mapping>
@@ -270,7 +270,7 @@
   
       <!-- get：为DMI图提供数据，post： -->    
   <servlet>
-    <servlet-name>DMIServlet</servlet-name>
+    <servlet-name>DMIChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.TechnicalChart.DMIservlet</servlet-class>
   </servlet>
   <servlet-mapping>
@@ -280,7 +280,7 @@
   
       <!-- get：为KDJ图提供数据，post： -->    
   <servlet>
-    <servlet-name>KDJServlet</servlet-name>
+    <servlet-name>KDJChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.TechnicalChart.KDJservlet</servlet-class>
   </servlet>
   <servlet-mapping>
@@ -290,7 +290,7 @@
   
       <!-- get：为MACD图提供数据，post： -->    
   <servlet>
-    <servlet-name>MACDServlet</servlet-name>
+    <servlet-name>MACDChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.TechnicalChart.MACDservlet</servlet-class>
   </servlet>
   <servlet-mapping>
@@ -300,7 +300,7 @@
   
       <!-- get：为OBV图提供数据，post： -->    
   <servlet>
-    <servlet-name>OBVServlet</servlet-name>
+    <servlet-name>OBVChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.TechnicalChart.OBVservlet</servlet-class>
   </servlet>
   <servlet-mapping>
@@ -310,7 +310,7 @@
   
       <!-- get：为ROC图提供数据，post： -->    
   <servlet>
-    <servlet-name>ROCServlet</servlet-name>
+    <servlet-name>ROCChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.TechnicalChart.ROCservlet</servlet-class>
   </servlet>
   <servlet-mapping>
@@ -320,7 +320,7 @@
   
       <!-- get：为WR图提供数据，post： -->    
   <servlet>
-    <servlet-name>WRServlet</servlet-name>
+    <servlet-name>WRChartServlet</servlet-name>
     <servlet-class>servlet.stockcheck.TechnicalChart.WRservlet</servlet-class>
   </servlet>
   <servlet-mapping>
