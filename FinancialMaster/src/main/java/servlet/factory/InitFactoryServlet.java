@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 
 import DAO.connection.DBconnection;
 import DAO.pojo.Stock;
+import PO.StockPO;
 import data.Initialize.Init;
+import web.bl.helperImpl.GetFirstCharImpl;
 import web.bl.serchInfo.IdListImpl;
+import web.blservice.helperInfo.GetFirstCharInfo;
 import web.blservice.searchInfo.IdListInfo;
 
 
@@ -20,7 +23,8 @@ import web.blservice.searchInfo.IdListInfo;
 public class InitFactoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String path="src/main/resources/";
-    private static ArrayList<Stock> allIdList;   
+	private static ArrayList<Stock> allIdList=new ArrayList<Stock>();; 
+    private static ArrayList<StockPO> wholeIdList=new ArrayList<StockPO>();;   
 	
     public InitFactoryServlet() {
         super();
@@ -34,6 +38,15 @@ public class InitFactoryServlet extends HttpServlet {
 		//初始化所有股票id列表
 		IdListInfo idListInfo=new IdListImpl();
 		allIdList=idListInfo.getIdList();
+		GetFirstCharInfo getFirstCharInfo=new GetFirstCharImpl();
+		for (Stock s:allIdList) {
+			StockPO stockPO=new StockPO();
+			stockPO.setStockId(s.getStockId());
+			stockPO.setStockName(s.getStockName());
+			stockPO.setIndustry(s.getIndustry());
+			stockPO.setStockShortName(getFirstCharInfo.getFirstLetter(s.getStockName()));
+			wholeIdList.add(stockPO);
+		}
 	}
 	
 	public static String getPath(){
@@ -43,9 +56,13 @@ public class InitFactoryServlet extends HttpServlet {
 	public static ArrayList<Stock> getSerchList(String key) {
 		ArrayList<Stock> filterList = new ArrayList<Stock>();
 		
-		for (Stock stock : allIdList) {
-			if(stock.getStockId().contains(key)||stock.getStockName().contains(key)){
-				filterList.add(stock);
+		for (StockPO stock : wholeIdList) {
+			if(stock.getStockId().contains(key)||stock.getStockName().contains(key)||stock.getStockShortName().contains(key.toLowerCase())){
+				Stock s=new Stock();
+				s.setStockId(stock.getStockId());
+				s.setStockName(stock.getStockName());
+				s.setIndustry(stock.getIndustry());
+				filterList.add(s);
 			}
 		}
 		return filterList;		
