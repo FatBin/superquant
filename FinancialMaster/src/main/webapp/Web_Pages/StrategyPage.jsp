@@ -24,6 +24,8 @@
 <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
 	media="screen">
 
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <script src="../js/echarts.min.js"></script>
 <script src="../js/jquery.min.js"></script>
@@ -103,7 +105,7 @@
 	<!-- /.container-fluid --> </nav>
 
 	<div class="makest_div">
-		
+
 		<!-- left part -->
 		<div style="display: inline-block;">
 			<div class="div_title">制定策略</div>
@@ -177,21 +179,40 @@
 
 			<div class="reset_st_btn" onclick="resetAll()">重置</div>
 		</div>
-		
-		<div class="st_run_div">
-		
-			<div class="used_money">已用本金：<span id="usedmoney">5000</span></div>
-			
-			<div class="add_st_btn save_btn">保存策略</div>
-			
-			<div class="stocks_buyed">
-				
-				<div class="stock_each"></div>
-				
+
+		<div id="add_before" class="st_run_div">
+			<img style="width: 100%;" src="../webImage/strategy_tip.png">
+		</div>
+
+		<div id="add_after" class="st_run_div" style="display:none">
+
+			<div class="used_money">
+				已用本金：<span id="usedmoney">5000</span>
 			</div>
-			
-			
-		
+
+			<div class="add_st_btn save_btn" onclick="saveST();">保存策略</div>
+
+			<div id="stocks_buyed">
+				<div id="stock_each_copy" style="display: none;">
+					<span>浦发银行</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>5000</span>&nbsp;&nbsp;
+					<i class="fa fa-pencil mod_del_btn"></i> <i
+						class="fa fa-times mod_del_btn"></i>
+				</div>
+			</div>
+
+			<div class="run_pic">
+
+				<div id="strategyLineChart"
+					style="width: 580px; height: 204px; display: none;"></div>
+			</div>
+
+			<div class="benifit_compare">
+				策略收益：<span id="real_benefit">500元</span>&nbsp;/ <span
+					id="max_benefit">10万</span>（完美利益）
+			</div>
+
+			<div class="note_div">完美利益为最高点卖最低点买所获收益</div>
+
 		</div>
 
 	</div>
@@ -249,10 +270,6 @@
 			</thead>
 		</table>
 	</div>
-
-	<div id="strategyLineChart"
-		style="margin: auto; margin-top: 30px; width: 1000px; height: 400px; display: none; background-color: gray;"></div>
-
 
 	<!-- Modal -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"

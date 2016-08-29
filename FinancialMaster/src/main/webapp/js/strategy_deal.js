@@ -115,10 +115,26 @@ function addStrategy() {
 
 	var boxs = table.getElementsByTagName("input");
 	boxs[0].checked = false;
+	
+	var rundiv = document.getElementById("add_before");
+	if(rundiv.style.display != "none") {
+		rundiv.style.display = "none";
+		document.getElementById("add_after").style.display = "";
+	}
 
+	document.getElementById("usedmoney").innerHTML = totalcost - tempcost;
+	
+	var div_each = document.createElement("div");
+	div_each.innerHTML = document.getElementById("stock_each_copy").innerHTML;
+	div_each.getElementsByTagName("span")[0].innerHTML = getInfo[0];
+	div_each.getElementsByTagName("span")[1].innerHTML = getInfo[1];
+	document.getElementById("stocks_buyed").insertBefore(div_each, document.getElementById("stocks_buyed").childNodes[0]);
+	
 	zebra();
 	count++;
 	resetAll();
+	
+	runST();
 }
 
 function resetAll() {

@@ -40,11 +40,18 @@ function getLinechart(url) {
 		title : {
 			left : 'center',
 			text : '盈亏情况',
+			textStyle : {
+				fontSize : 16, 
+				fontWeight : 400
+			},
 		},
 		legend : {
 			top : 'bottom',
 			data : [ '意向' ]
 		},
+		grid : [ {
+			top: "25"
+		}],
 		toolbox : {
 			show : true,
 			feature : {
