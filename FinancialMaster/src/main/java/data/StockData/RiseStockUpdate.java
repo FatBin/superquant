@@ -41,7 +41,7 @@ public class RiseStockUpdate implements Runnable{
 						temp[1]="sz"+temp[1];
 					}
 					RiseStockPO po=null;
-					System.out.println(result.get(j).text());
+//					System.out.println(result.get(j).text());
 					
 					//there is some data lost caused by the website,can not be controlled
 					if(temp.length==9){
