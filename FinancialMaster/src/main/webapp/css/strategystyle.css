@@ -89,18 +89,6 @@ li {
 	margin-right: 20px;
 }
 
-.add_cancel_btn {
-	width: 50px;
-	height: 29px;
-	background-color: transparent;
-	border: 1px solid rgb(204, 204, 204);
-}
-
-.hrstyle {
-	margin-top: 10px;
-	width: 990px;
-}
-
 table td {
 	border: 1px dashed rgb(235, 235, 235);
 }
@@ -108,9 +96,11 @@ table td {
 #stHint {
 	position: absolute;
 	background-color: rgb(235, 235, 235);
-	width: 130px;
-	margin-left: 195px;
-	margin-top: 35px;
+	width: 140px;
+	text-align: center;
+	margin-left: 45px;
+	margin-top: 4px;
+	z-index: 10;
 }
 
 .lbl {
@@ -120,4 +110,140 @@ table td {
 	margin-top: 150px;
 	margin-left: 135px;
 }
+
+.makest_div {
+	width: 85%;
+	height: 443px;
+	margin: 30px auto;
+	margin-top: 160px;
+	padding-top: 25px;
+	background-color: #f9f6f4;
+	border-radius: 4px;
+	border: none;
+	box-shadow: #4a433b 0 0 7px;
+}
+
+.div_title {
+	color: #4a433b;
+	font-size: 24px;
+	margin-left: 45px;
+}
+
+.st_textfileds {
+	width: 140px;
+	height: 36px;
+	border: none;
+	padding-left: 13px;
+}
+
+.st_textfileds::-webkit-input-placeholder {
+	color: #90949b;
+	font-size: 16px;
+}
+
+.st_textfileds:hover, .st_textfileds:focus {
+	box-shadow: 0 0px 11px #7498ec;
+}
+
+.hr_style {
+	width: 293px;
+	margin-left: 45px;
+	margin-top: 12px;
+	border: 1px solid #e2e2e2
+}
+
+.date_divs {
+	margin-left: 45px;
+	margin-top: 10px;
+	display: inline-block;
+	position: relative;
+}
+
+.money_left {
+	margin-left: 45px;
+	margin-top: 15px;
+	color: #e9bd8c;
+	font-size: 16px;
+}
+
+.add_st_btn {
+	width: 140px;
+	height: 36px;
+	border-radius: 4px;
+	background-color: #e27e60;
+	color: #fff;
+	font-size: 16px;
+	line-height: 36px;
+	text-align: center;
+	margin-left: 45px;
+	margin-top: 15px;
+	cursor: pointer;
+	-webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.add_st_btn:hover {
+	background-color: #E5A38F;
+}
+
+.reset_st_btn {
+	width: 140px;
+	height: 36px;
+	border-radius: 4px;
+	border: 1px solid #e27e60;
+	background-color: transparent;
+	color: #e27e60;
+	font-size: 16px;
+	line-height: 36px;
+	text-align: center;
+	margin-left: 10px;
+	margin-top: 15px;
+	cursor: pointer;
+	-webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -ms-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    display: inline-block;
+}
+
+.reset_st_btn:hover {
+	background-color: #FCDACF;
+}
+
+.st_run_div {
+	width: 60%;
+	height: 380px;
+	float: right;
+	margin-right: 40px;
+	background-color: #fff;
+	padding-left: 32px;
+	padding-top: 18px
+}
+
+.used_money {
+	font-size: 20px;
+	color: #e9bd8c;
+	display: inline-block; 
+}
+
+.save_btn {
+	width: 80px;
+	height: 26px;
+	line-height: 26px;
+	border-radius: 2px;
+	dispaly: inline-block;
+	margin-left: 80px;
+}
+
+.stocks_buyed {
+	
+}
+
+
+
 

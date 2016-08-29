@@ -81,7 +81,7 @@
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp"
-					style="color: rgb(253,208,72);">策略</a></li>
+					style="color: rgb(253, 208, 72);">策略</a></li>
 			</ul>
 		</div>
 
@@ -102,151 +102,99 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div class="lbl">策略</div>
+	<div class="makest_div">
+		
+		<!-- left part -->
+		<div style="display: inline-block;">
+			<div class="div_title">制定策略</div>
 
-	<hr class="hrstyle" />
-
-	<!-- 策略名称及总成本 -->
-	<div>
-		<div style="margin-left: 135px; float: left;">
-			<p class="detailname" style="font-size: 18px; line-height: 33px">策略名</p>
-
-			<input id="strategyname" class="form-control" size="16" type="text"
-				value="" style="width: 100px;">
-		</div>
-
-		<div>
-			<p
-				style="font-size: 18px; line-height: 33px; font-family: PingFangSC-Regular; float: left; margin-left: 40px; margin-right: 20px;">设定本金</p>
-
-			<input id="totalcost" class="form-control" size="16" type="text"
-				value="" style="width: 100px;">
-		</div>
-
-		<div style="float: left">
-			<input type="button" class="btn add_cancel_btn" value="设定"
-				style="margin-top: -32px; margin-left: 135px;" onclick="setName()" />
-		</div>
-	</div>
-
-	<hr class="hrstyle" />
-
-	<div id="stHint"></div>
-
-	<!-- 所有按钮的大块 -->
-	<!-- 第一列的块 -->
-	<div id="first_col"
-		style="float: left; margin-right: 40px; margin-left: 135px;">
-		<!-- 选择股票 -->
-		<div>
-			<i class="detailname">选择股票</i> <input id="stockchoose"
-				class="form-control" size="16" type="text" value=""
-				style="width: 100px;" onkeyup="showHint_st(this.value)">
-		</div>
-
-		<div style="margin-top: 10px;">
-			<!-- 买卖股数 -->
-			<i class="detailname">投资成本</i> <input id="cost" class="form-control"
-				size="16" type="text" value="" style="width: 100px;">
-		</div>
-	</div>
-
-	<!-- 第二列的块 -->
-	<div id="second_col"
-		style="margin-right: 40px; margin-bottom: -15px; float: left;">
-
-		<!-- 开始日期 -->
-		<div class="form-group">
-			<i class="detailname">开始日期</i>
-			<div class="input-group date form_date col-md-5" data-date=""
-				data-date-format="dd MM yyyy" data-link-field="dtp_input2"
-				data-link-format="yyyy-mm-dd">
-
-				<input id="startdate" class="form-control" size="16" type="text"
-					value="" readonly style="width: 100px;"> <span
-					class="input-group-addon" style="height: 34px; width: 37px;"><span
-					class="glyphicon glyphicon-time"></span></span>
-			</div>
-			<input type="hidden" id="dtp_input2" value="" /><br />
-		</div>
-
-		<!-- 结束日期 -->
-		<div class="form-group" style="margin-top: -25px;">
-			<i class="detailname">结束日期</i>
-			<div class="input-group date form_date col-md-5" data-date=""
-				data-date-format="dd MM yyyy" data-link-field="dtp_input2"
-				data-link-format="yyyy-mm-dd">
-
-				<input id="enddate" class="form-control" size="16" type="text"
-					value="" readonly style="width: 100px;"> <span
-					class="input-group-addon" style="height: 34px; width: 37px;"><span
-					class="glyphicon glyphicon-time"></span></span>
-			</div>
-			<input type="hidden" id="dtp_input2" value="" /><br />
-		</div>
-	</div>
-
-
-	<!-- 第三列的块 -->
-	<div id="second_col" style="float: left;">
-		<!-- 买入策略 -->
-		<div>
-			<i class="detailname">买入策略</i>
-
-			<div style="float: left; margin-right: 20px;">
-				<input id="buyinst" class="form-control" size="16" type="text"
-					value="" style="width: 100px; cursor: pointer" placeholder="查看详情"
-					readonly onclick="showSTmake(this)">
+			<div
+				style="margin-left: 45px; margin-top: 15px; display: inline-block;">
+				<input class="st_textfileds" id="strategyname" placeholder="策略名称">
 			</div>
 
-		</div>
-
-		<div style="margin-top: 10px; float: left">
-			<!-- 卖出策略 -->
-			<i class="detailname">卖出策略</i>
-
-			<div style="float: left; margin-right: 20px;">
-				<input id="soldoutst" class="form-control" size="16" type="text"
-					value="" style="width: 100px; cursor: pointer" placeholder="查看详情"
-					readonly onclick="showSTmake(this)">
+			<div
+				style="margin-left: 10px; margin-top: 15px; display: inline-block;">
+				<input class="st_textfileds" id="totalcost" placeholder="本金（元）"
+					onBlur="setName()">
 			</div>
-		</div>
-	</div>
 
-	<!-- 第四列的块 -->
-	<div id="second_col" style="float: left; margin-right: 20px;">
-		<div>
-			<!-- 其他策略 -->
-			<i class="detailname">其他策略</i>
+			<hr class="hr_style">
 
-			<div style="float: left; margin-right: 20px;">
-				<input id="otherst" class="form-control" size="16" type="text"
-					value="" style="width: 100px;" placeholder="敬请期待" readonly>
+			<div>
+				<div style="margin-left: 45px; display: inline-block;">
+					<input class="st_textfileds" id="stockchoose" placeholder="输入股票"
+						onkeyup="showHint_st(this.value)">
+				</div>
+
+				<div id="stHint"></div>
+
+				<div style="margin-left: 10px; display: inline-block;">
+					<input class="st_textfileds" id="cost" placeholder="投入资金数">
+				</div>
 			</div>
+
+			<div>
+				<div class="selectStyle date_divs">
+					<input class="st_textfileds" id="startdate" placeholder="开始时间"
+						readonly>
+				</div>
+
+				<div class="selectStyle date_divs" style="margin-left: 10px;">
+					<input class="st_textfileds" id="enddate" placeholder="结束时间"
+						readonly>
+				</div>
+			</div>
+
+			<div>
+				<div class="selectStyle date_divs">
+					<input id="buyinst" class="st_textfileds" placeholder="买入策略"
+						readonly onclick="showSTmake(this)">
+				</div>
+
+				<div class="selectStyle date_divs" style="margin-left: 10px;">
+					<input id="soldoutst" class="st_textfileds" placeholder="卖出策略"
+						readonly onclick="showSTmake(this)">
+				</div>
+			</div>
+
+			<div>
+				<div class="selectStyle date_divs">
+					<input id="otherst" class="st_textfileds" placeholder="其他策略"
+						readonly>
+				</div>
+
+				<div class="date_divs" style="margin-left: 10px;">
+					<input id="frequency" class="st_textfileds" placeholder="买卖频率（天）">
+				</div>
+			</div>
+
+			<div class="money_left">
+				剩余本金:&nbsp;&nbsp;<span id="moneyleft">100000</span>
+			</div>
+
+			<div class="add_st_btn" onclick="addStrategy()">添加股票项</div>
+
+			<div class="reset_st_btn" onclick="resetAll()">重置</div>
+		</div>
+		
+		<div class="st_run_div">
+		
+			<div class="used_money">已用本金：<span id="usedmoney">5000</span></div>
+			
+			<div class="add_st_btn save_btn">保存策略</div>
+			
+			<div class="stocks_buyed">
+				
+				<div class="stock_each"></div>
+				
+			</div>
+			
+			
+		
 		</div>
 
-		<!-- 买卖频率 -->
-		<div style="margin-top: 45px;">
-			<i class="detailname">买卖频率</i> <input id="frequency"
-				class="form-control" size="16" type="text" value=""
-				style="width: 100px;" placeholder="请输入天数">
-		</div>
 	</div>
-
-
-	<div style="float: left; margin-top: 5px;">
-		<div>
-			<input type="button" class="btn add_cancel_btn" name="confirmbtn"
-				value="添加" onclick="addStrategy()" />
-		</div>
-
-		<div>
-			<input type="reset" class="btn add_cancel_btn" name="resetbtn"
-				value="清空" style="margin-top: 10px;" onclick="resetAll()" />
-		</div>
-	</div>
-
-	<hr class="hrstyle" />
 
 	<!-- 我的策略  -->
 	<div
@@ -536,15 +484,16 @@
 	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
 		charset="UTF-8"></script>
 	<script type="text/javascript">
-		$('.form_date').datetimepicker({
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			minView : 2,
-			forceParse : 0,
-			format : 'yyyy-mm-dd'
+		$('#startdate').datetimepicker({
+			lang : 'ch',
+			timepicker : false,
+			format : 'Y-m-d'
+		});
+
+		$('#enddate').datetimepicker({
+			lang : 'ch',
+			timepicker : false,
+			format : 'Y-m-d'
 		});
 	</script>
 </body>

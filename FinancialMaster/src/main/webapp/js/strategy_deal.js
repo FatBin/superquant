@@ -55,7 +55,7 @@ function addStrategy() {
 		return;
 	} else {
 		tempcost -= getInfo[1];
-		document.getElementById("cost").placeholder = tempcost + "  可用";
+		document.getElementById("moneyleft").innerHTML = tempcost;
 	}
 
 	buylist[count] = new Array();
@@ -223,8 +223,7 @@ function modifyST(td) {
 							- parseInt(td.innerHTML);
 					if (tempcost - minus >= 0) {
 						tempcost -= minus;
-						document.getElementById("cost").placeholder = tempcost
-								+ "  可用";
+						document.getElementById("moneyleft").innerHTML = tempcost;
 					} else {
 						alert("资金不够啦");
 						return;
@@ -267,7 +266,7 @@ function deleteST() {
 		if (boxs[i].checked == true) {
 			var tds = trs[i].getElementsByTagName("td");
 			tempcost += parseInt(tds[2].innerHTML);
-			document.getElementById("cost").placeholder = tempcost + "  可用";
+			document.getElementById("moneyleft").innerHTML = tempcost;
 			table.deleteRow(i);
 			buylist.splice(boxlen - 1 - i, 1);
 			soldlist.splice(boxlen - 1 - i, 1);
@@ -370,7 +369,7 @@ function setName() {
 		stName = stname.value;
 		totalcost = stcost.value;
 		tempcost = totalcost;
-		document.getElementById("cost").placeholder = tempcost + "  可用";
+		document.getElementById("moneyleft").innerHTML = stcost.value;
 	} else {
 		alert('请输入完整信息');
 	}
@@ -383,7 +382,7 @@ function showSTmake(field) {
 		stdiv.style.display = "block";
 	}
 	stdiv.style.position = "absolute";
-	stdiv.style.top = (field.offsetTop + 30) + "px";
+	stdiv.style.top = (field.offsetTop + 421) + "px";
 	stdiv.style.marginLeft = field.getBoundingClientRect().left + "px";
 
 	for (var i = 0; i < comboxs.length; i++) {

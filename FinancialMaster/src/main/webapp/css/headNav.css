@@ -167,3 +167,32 @@ input[type='submit']:hover {
 	width: 34px;
 	margin-top: 6px
 }
+
+/* 下拉框的三角号 */
+.selectStyle:before {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top: -2.5px;
+	display: block;
+	width: 0;
+	height: 0;
+	border: solid;
+	border-width: 5px 5px 0 5px;
+	border-color: #fff transparent transparent transparent;
+	content: "";
+}
+
+.selectStyle:after {
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	margin-top: -3.5px;
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 5px 5px 0 5px;
+	border-color: #4a433b transparent transparent transparent;
+	content: "";
+}
