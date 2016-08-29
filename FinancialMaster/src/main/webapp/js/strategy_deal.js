@@ -115,25 +115,26 @@ function addStrategy() {
 
 	var boxs = table.getElementsByTagName("input");
 	boxs[0].checked = false;
-	
+
 	var rundiv = document.getElementById("add_before");
-	if(rundiv.style.display != "none") {
+	if (rundiv.style.display != "none") {
 		rundiv.style.display = "none";
 		document.getElementById("add_after").style.display = "";
 	}
 
 	document.getElementById("usedmoney").innerHTML = totalcost - tempcost;
-	
+
 	var div_each = document.createElement("div");
 	div_each.innerHTML = document.getElementById("stock_each_copy").innerHTML;
 	div_each.getElementsByTagName("span")[0].innerHTML = getInfo[0];
 	div_each.getElementsByTagName("span")[1].innerHTML = getInfo[1];
-	document.getElementById("stocks_buyed").insertBefore(div_each, document.getElementById("stocks_buyed").childNodes[0]);
-	
+	document.getElementById("stocks_buyed").insertBefore(div_each,
+			document.getElementById("stocks_buyed").childNodes[0]);
+
 	zebra();
 	count++;
 	resetAll();
-	
+
 	runST();
 }
 
@@ -215,7 +216,8 @@ function modifyST(td) {
 
 		var table_h = rowcount * 35;
 		if (document.getElementById("strategyLineChart").style.display == "none") {
-			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115) + "px";
+			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115)
+					+ "px";
 		} else {
 			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115 - 430)
 					+ "px";
@@ -271,6 +273,20 @@ function modifyCancel() {
 	document.getElementById("moddate").value = "";
 }
 
+function delSingle(elem_i) {
+
+	var index = $(elem_i).parents("div").parents("#stocks_buyed").find("div")
+			.index($(elem_i).parents("div"));
+
+	// var buyed_div = document.getElementById("stocks_buyed");
+	// buyed_div.removeChild(buyed_div.getElementsByTagName("div")[index]);
+
+	var table = document.getElementById("strategyTable");
+	var boxs = table.getElementsByTagName("input");
+	boxs[index + 1].checked = true;
+	deleteST();
+}
+
 // 删除
 function deleteST() {
 	var table = document.getElementById("strategyTable");
@@ -288,10 +304,22 @@ function deleteST() {
 			soldlist.splice(boxlen - 1 - i, 1);
 			perST.splice(boxlen - 1 - i, 1)
 			count--;
+
+			var buyed_div = document.getElementById("stocks_buyed");
+			buyed_div.removeChild(buyed_div.getElementsByTagName("div")[i - 1]);
 		}
 	}
 
 	zebra();
+
+	var isLast = document.getElementById("stocks_buyed").getElementsByTagName(
+			"div").length;
+	if (isLast <= 1) {
+		document.getElementById("add_before").style.display = "";
+		document.getElementById("add_after").style.display = "none";
+	} else {
+		runST();
+	}
 }
 
 // save
@@ -327,9 +355,9 @@ function saveST() {
 			if (result[0].SaveResult == "Succeed") {
 				document.getElementById("savesuccess").style.display = "block";
 				setTimeout(hide, "3000");
-			}else if(result[0].SaveResult == "Unlogin"){
+			} else if (result[0].SaveResult == "Unlogin") {
 				alert("您还没登录呢")
-			}else {
+			} else {
 				alert("策略重名啦");
 			}
 

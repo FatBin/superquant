@@ -172,7 +172,7 @@
 			</div>
 
 			<div class="money_left">
-				剩余本金:&nbsp;&nbsp;<span id="moneyleft">100000</span>
+				剩余本金:&nbsp;&nbsp;<span id="moneyleft"></span>
 			</div>
 
 			<div class="add_st_btn" onclick="addStrategy()">添加股票项</div>
@@ -184,19 +184,23 @@
 			<img style="width: 100%;" src="../webImage/strategy_tip.png">
 		</div>
 
-		<div id="add_after" class="st_run_div" style="display:none">
+		<div id="add_after" class="st_run_div" style="display: none">
 
 			<div class="used_money">
-				已用本金：<span id="usedmoney">5000</span>
+				已用本金：<span id="usedmoney"></span>
 			</div>
 
 			<div class="add_st_btn save_btn" onclick="saveST();">保存策略</div>
+
+			<span id="savesuccess"
+				style="margin-left:380px; margin-top: -20px; display: none;"><span
+				class="glyphicon glyphicon-ok"></span> 保存成功</span>
 
 			<div id="stocks_buyed">
 				<div id="stock_each_copy" style="display: none;">
 					<span>浦发银行</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>5000</span>&nbsp;&nbsp;
 					<i class="fa fa-pencil mod_del_btn"></i> <i
-						class="fa fa-times mod_del_btn"></i>
+						class="fa fa-times mod_del_btn" onclick="delSingle(this)"></i>
 				</div>
 			</div>
 
@@ -236,12 +240,7 @@
 				onclick="deleteST();" /> <input type="button"
 				class="btn add_cancel_btn" name="runbtn" value="策略模拟"
 				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
-				onclick="runST();" /><input type="button"
-				class="btn add_cancel_btn" name="savebtn" value="保存策略"
-				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
-				onclick="saveST();" /> <span id="savesuccess"
-				style="position: relative; top: -35px; height: 0px; margin-left: 500px; display: none;"><span
-				class="glyphicon glyphicon-ok"></span> 保存成功</span>
+				onclick="runST();" />
 		</div>
 	</div>
 
