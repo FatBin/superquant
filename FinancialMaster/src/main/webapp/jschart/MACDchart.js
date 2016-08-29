@@ -7,8 +7,8 @@
  */
 
 
-var MACDchart = echarts.init(document.getElementById('MACDchart'));
-
+function initMACD(){
+	var MACDchart = echarts.init(document.getElementById('MACDchart'));
 
 	// 日期
 	var dates = [];
@@ -117,3 +117,6 @@ var MACDchart = echarts.init(document.getElementById('MACDchart'));
 	};
 
 MACDchart.setOption(option);
+
+}
+

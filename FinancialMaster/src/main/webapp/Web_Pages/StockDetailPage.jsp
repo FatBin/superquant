@@ -95,7 +95,7 @@
 		<div id="searchHint"></div>
 		<!-- /.navbar-collapse -->
 	</div>
-	
+
 	<!-- /.container-fluid --> </nav>
 
 	<%
@@ -107,14 +107,18 @@
 
 	<div class="headdiv">
 		<span class="headlbl"><%=uptodateStock.getStockName()%>〔<%=uptodateStock.getStockId()%>〕</span>
+		
+		<a class="toAnalysis" href="AnalysisPage.jsp" style="">更专业的分析 ›</a>
 
 		<span id="now"><%=uptodateStock.getNow()%></span> <span id="rise_fall"><%=uptodateStock.getRise_fall()%></span>
-
+		
 		<img title="关注该股" id="heartdiv" onclick="changePic()"
 			src="../webImage/heart.png"> <span id="concernsuccess">
-			<span
-			class="glyphicon glyphicon-ok"></span> 关注成功</span>
-
+			<span class="glyphicon glyphicon-ok"></span> 关注成功
+		</span> 
+		
+		
+		
 		<hr class="hrstyle" />
 
 		<span class="fontlbl">换手率</span> <span class="fontcontent"><%=uptodateStock.getTurnover()%></span>
@@ -140,8 +144,7 @@
 	<div id="stock_history_chart" class="tendcy_div"></div>
 
 	<blockquote class="quotelbl">
-		<span class="headtext">综合分析</span> <a class="toAnalysis"
-			href="AnalysisPage.jsp">更专业的分析</a>
+		<span class="headtext">综合分析</span>
 	</blockquote>
 
 	<!-- 综合分析 -->
@@ -209,7 +212,7 @@
 		</div>
 
 	</div>
-	
+
 	<!-- Modal -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"
 		aria-labelledby="modalLogin" aria-hidden="true">

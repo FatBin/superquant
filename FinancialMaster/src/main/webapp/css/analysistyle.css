@@ -64,7 +64,7 @@ li {
 
 .bodydiv .chart_tech {
 	width: 730px;
-	height: 230px;
+	height: 180px;
 	position: absolute;
 	left: 58px;
 	top: 24px;
@@ -78,17 +78,17 @@ li {
 	top: 24px;
 }
 
-.bodydiv #technicalAnalysis{
+.bodydiv #technicalAnalysis {
 	width: 220px;
-	height: 180px;
+	height: 220px;
 	position: absolute;
 	right: 58px;
 	bottom: 20px;
 }
 
-.bodydiv .chart{
+.bodydiv .chart {
 	width: 450px;
-	height: 180px;
+	height: 170px;
 	position: absolute;
 	left: 58px;
 	bottom: 20px;
@@ -166,6 +166,15 @@ li {
 	top: 210px;
 }
 
+.bodydiv .choosebutton {
+	text-align: center; width : 450px;
+	height: 35px;
+	position: absolute;
+	left: 58px;
+	bottom: 200px;
+	width: 450px;
+}
+
 .right_nav {
 	width: 65px;
 	height: 227px;
@@ -174,4 +183,23 @@ li {
 	top: 184px;
 	border: solid 1px rgb(235, 235, 235);
 	border-radius: 4px;
+}
+
+.switch {
+	cursor:pointer;
+	display: inline-block;
+	background-color: #a79a8e;
+	border-radius: 3px;
+	color: white;
+	width: 50px;
+	height: 20px;
+	margin-right: 1px;
+	margin-left: 1px;
+	transtion: 0.3s;
+	-webkit-transition:0.3s;
+}
+
+.switch:hover{
+	background-color:#7b736b;
+	
 }

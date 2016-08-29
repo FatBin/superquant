@@ -5,7 +5,7 @@
 /**
  * 个股技术分析————ROC
  */
-
+function initROC(){
 
 var ROCchart = echarts.init(document.getElementById('ROCchart'));
 
@@ -99,3 +99,4 @@ var ROCchart = echarts.init(document.getElementById('ROCchart'));
 	};
 
 	ROCchart.setOption(option);
+}

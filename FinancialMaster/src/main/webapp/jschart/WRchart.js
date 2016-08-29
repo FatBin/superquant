@@ -5,7 +5,7 @@
 /**
  * 个股技术分析————WR
  */
-
+function initWR(){
 
 var WRchart = echarts.init(document.getElementById('WRchart'));
 
@@ -129,3 +129,4 @@ var WRchart = echarts.init(document.getElementById('WRchart'));
 	};
 
 	WRchart.setOption(option);
+}

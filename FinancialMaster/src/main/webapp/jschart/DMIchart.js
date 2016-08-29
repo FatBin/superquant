@@ -5,7 +5,7 @@
 /**
  * 个股技术分析————DMI
  */
-
+function initDMI(){
 
 var DMIchart = echarts.init(document.getElementById('DMIchart'));
 
@@ -105,3 +105,4 @@ var DMIchart = echarts.init(document.getElementById('DMIchart'));
 	};
 
 	DMIchart.setOption(option);
+}

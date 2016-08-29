@@ -122,10 +122,23 @@
 		<span class="headtext">技术分析</span>
 	</div>
 
-	<div class="bodydiv" style="height:500px;">
+	<div class="bodydiv" style="height: 500px;">
 		<div id="TechnicalAnalyzeChart" class="chart_tech"></div>
-		<div id="MACDchart" class="chart"></div>
-		<div id="technicalAnalysis"><p><%=analyzeVO.getResult_of_technical_analyze()%></p></div>
+		<div class="choosebutton">
+			<div class="switch" style="background-color: #7b736b;"
+				onclick="changeChart(this)">MACD</div>
+			<div class="switch" onclick="changeChart(this)">KDJ</div>
+			<div class="switch" onclick="changeChart(this)">W%R</div>
+			<div class="switch" onclick="changeChart(this)">DMI</div>
+			<div class="switch" onclick="changeChart(this)">BIAS</div>
+			<div class="switch" onclick="changeChart(this)">OBV</div>
+			<div class="switch" onclick="changeChart(this)">CCI</div>
+			<div class="switch" onclick="changeChart(this)">ROC</div>
+		</div>
+		<div id="MACDchart" class="chart switchChart"></div>
+		<div id="technicalAnalysis">
+			<p><%=analyzeVO.getResult_of_technical_analyze()%></p>
+		</div>
 	</div>
 
 	<!-- 大盘分析 -->
@@ -185,7 +198,7 @@
 			<p><%=analyzeVO.getResult_of_inflows_analyze()%></p>
 		</div>
 	</div>
-	
+
 	<!-- Modal -->
 	<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog"
 		aria-labelledby="modalLogin" aria-hidden="true">
@@ -262,6 +275,55 @@
 
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script type="text/javascript" src="../js/rightnav.js"></script>
+
+
+	<!-- switchbutton -->
+	<script type="text/javascript">
+		initMACD();
+
+		function changeChart(a) {
+			var chart = document.getElementsByClassName("switchChart")[0];
+			switch (a.innerHTML) {
+			case "MACD":
+				chart.id = "MACDchart";
+				initMACD();
+				break;
+			case "KDJ":
+				chart.id = "KDJchart";
+				initKDJ();
+				break;
+			case "W%R":
+				chart.id = "WRchart";
+				initWR();
+				break;
+			case "DMI":
+				chart.id = "DMIchart";
+				initDMI();
+				break;
+			case "BIAS":
+				chart.id = "BIASchart";
+				initBIAS();
+				break;
+			case "OBV":
+				chart.id = "OBVchart";
+				initOBV();
+				break;
+			case "CCI":
+				chart.id = "CCIchart";
+				initCCI();
+				break;
+			case "ROC":
+				chart.id = "ROCchart";
+				initROC();
+				break;
+			}
+			for (var i = 0; i < 8; i++) {
+				document.getElementsByClassName("switch")[i].style.backgroundColor = "#a79a8e";
+			}
+			a.style.backgroundColor = "#7b736b";
+		}
+	</script>
+
 	<script src="../jschart/RadarChart.js"></script>
 	<script src="../jschart/PieChart_inflows.js"></script>
 	<script src="../jschart/barChart_inflows.js"></script>
@@ -273,7 +335,15 @@
 	<script src="../jschart/StockContrastChart.js"></script>
 	<script src="../jschart/TechnicalAnalyzeChart.js"></script>
 	<script src="../jschart/ScoreBarChart.js"></script>
+	<script src="../jschart/WRchart.js"></script>
+	<script src="../jschart/DMIchart.js"></script>
+	<script src="../jschart/BIASchart.js"></script>
+	<script src="../jschart/OBVchart.js"></script>
+	<script src="../jschart/CCIchart.js"></script>
+	<script src="../jschart/KDJchart.js"></script>
 	<script src="../jschart/MACDchart.js"></script>
+	<script>initMACD();</script>
+	<script src="../jschart/ROCchart.js"></script>
 
 </body>
 </html>

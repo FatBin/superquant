@@ -5,7 +5,7 @@
 /**
  * 个股技术分析————CCI
  */
-
+function initCCI(){
 
 var CCIchart = echarts.init(document.getElementById('CCIchart'));
 
@@ -87,3 +87,4 @@ var CCIchart = echarts.init(document.getElementById('CCIchart'));
 	};
 
 	CCIchart.setOption(option);
+}

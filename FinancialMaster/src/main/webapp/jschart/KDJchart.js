@@ -5,7 +5,7 @@
 /**
  * 个股技术分析————KDJ
  */
-
+function initKDJ(){
 
 var KDJchart = echarts.init(document.getElementById('KDJchart'));
 
@@ -86,16 +86,17 @@ var KDJchart = echarts.init(document.getElementById('KDJchart'));
 		series :[{
 					name : 'K',
 					type : 'line',
-					data : PDIs,
+					data : Ks,
 				},{
 					name : 'D',
 					type : 'line',
-					data : MDIs,
+					data : Ds,
 				},{
 					name : 'J',
 					type : 'line',
-					data : ADXs,
+					data : Js,
 				}]
 	};
 
 	KDJchart.setOption(option);
+}

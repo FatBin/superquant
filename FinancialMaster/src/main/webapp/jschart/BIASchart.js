@@ -5,7 +5,7 @@
 /**
  * 个股技术分析————BIAS
  */
-
+function initBIAS(){
 
 var BIASchart = echarts.init(document.getElementById('BIASchart'));
 
@@ -99,3 +99,4 @@ var BIASchart = echarts.init(document.getElementById('BIASchart'));
 	};
 
 	BIASchart.setOption(option);
+}
