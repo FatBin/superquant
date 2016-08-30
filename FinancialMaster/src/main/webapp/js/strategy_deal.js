@@ -7,6 +7,9 @@ var count = 0;
 var stName;
 var totalcost = 0;
 var tempcost = 0;
+var after_mod = 0;  // 未修改为0， 经过修改为1
+var buytemp_mod = [ "", "", "", "", "", "", "", "", "", "" ];  // 修改的缓存
+var soldtemp_mod = [ "", "", "", "", "", "", "", "", "", "" ];
 
 var getID = [ "stockchoose", "cost", "startdate", "enddate", "buyinst",
 		"soldoutst", "otherst", "frequency" ];
@@ -147,115 +150,22 @@ function resetAll() {
 	soldtemp = [ "", "", "", "", "", "", "", "", "", "" ];
 }
 
-// 修改
-function modifyST(td) {
-	modifyCancel();
+function modifyST(elem_i) {
+	var index = $(elem_i).parents("div").parents("#stocks_buyed").find("div")
+			.index($(elem_i).parents("div"));
+	
+	var pos = document.getElementById("stocks_buyed").getElementsByTagName("div").length - 2 - index;
 
-	var dialogtype = [ "textfieldMod", "textfieldMod", "timepickMod",
-			"timepickMod", "stMod", "stMod", "stMod", "textfieldMod" ];
-	var inputtype = [ "modtext", "modtext", "moddate", "moddate", "modselect",
-			"modselect", "modselect", "modtext" ];
-	var buttontype = [ "modCon_1", "modCon_1", "modCon_2", "modCon_2", "stbtn",
-			"stbtn", "stbtn", "modCon_1" ];
-
-	// td的列数
-	var col = ($(td).parents("tr").find("td").index($(td))) - 1;
-	var row = $(td).parents("tr").parents("table").find("tr").index(
-			$(td).parents("tr")) - 1;
-	var rowcount = document.getElementById("strategyTable").rows.length - 1;
-	var pos = rowcount - 1 - row;
-
-	if (col != 6) {
-		var modiv = document.getElementById(dialogtype[col]);
-		if (modiv.style.display == "none") {
-			modiv.style.display = "block";
-		}
-
-		if (col == 4 || col == 5) {
-			for (var i = 0; i < comboxs_2.length; i++) {
-				var combox = document.getElementById(comboxs_2[i]);
-				combox.setAttribute("onclick", "setLimit_2(" + i + ")")
-			}
-		}
-		// 策略内容
-		if (col == 4) {
-			for (var i = 0; i < texts_2.length; i++) {
-				document.getElementById(texts_2[i]).value = buylist[pos][i];
-			}
-
-			for (var i = 0; i < comboxs_2.length; i++) {
-				if (buylist[pos][2 * i] == "" && buylist[pos][2 * i + 1] == "") {
-					document.getElementById(texts_2[2 * i]).readOnly = true;
-					document.getElementById(texts_2[2 * i + 1]).readOnly = true;
-					document.getElementById(comboxs_2[i]).checked = false;
-				} else {
-					document.getElementById(texts_2[2 * i]).readOnly = false;
-					document.getElementById(texts_2[2 * i + 1]).readOnly = false;
-					document.getElementById(comboxs_2[i]).checked = true;
-				}
-			}
-
-		} else if (col == 5) {
-			for (var i = 0; i < texts_2.length; i++) {
-				document.getElementById(texts_2[i]).value = soldlist[pos][i];
-			}
-
-			for (var i = 0; i < comboxs_2.length; i++) {
-				if (soldlist[pos][2 * i] == ""
-						&& soldlist[pos][2 * i + 1] == "") {
-					document.getElementById(texts_2[2 * i]).readOnly = true;
-					document.getElementById(texts_2[2 * i + 1]).readOnly = true;
-					document.getElementById(comboxs_2[i]).checked = false;
-				} else {
-					document.getElementById(texts_2[2 * i]).readOnly = false;
-					document.getElementById(texts_2[2 * i + 1]).readOnly = false;
-					document.getElementById(comboxs_2[i]).checked = true;
-				}
-			}
-		}
-
-		var table_h = rowcount * 35;
-		if (document.getElementById("strategyLineChart").style.display == "none") {
-			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115)
-					+ "px";
-		} else {
-			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115 - 430)
-					+ "px";
-		}
-		modiv.style.marginLeft = td.getBoundingClientRect().left + "px";
-
-		var confirmMod = document.getElementById(buttontype[col]);
-		confirmMod.onclick = function() {
-			if (col == 4) {
-				for (var i = 0; i < texts_2.length; i++) {
-					buylist[pos][i] = document.getElementById(texts_2[i]).value;
-				}
-			} else if (col == 5) {
-				for (var i = 0; i < texts_2.length; i++) {
-					soldlist[pos][i] = document.getElementById(texts_2[i]).value;
-				}
-			} else if (col != 6) {
-				if (col == 1) {
-					var minus = parseInt(document
-							.getElementById(inputtype[col]).value)
-							- parseInt(td.innerHTML);
-					if (tempcost - minus >= 0) {
-						tempcost -= minus;
-						document.getElementById("moneyleft").innerHTML = tempcost;
-					} else {
-						alert("资金不够啦");
-						return;
-					}
-				}
-
-				if (document.getElementById(inputtype[col]).value != "") {
-					td.innerHTML = document.getElementById(inputtype[col]).value;
-					perST[pos][i] = document.getElementById(inputtype[col]).value;
-				}
-			}
-			modifyCancel();
-		}
+	for(var i=0; i<4; i++) {
+		document.getElementById(getID[i]).value = perST[pos][i];
 	}
+	document.getElementById(getID[7]).value = perST[pos][4];
+	
+	after_mod = 1;
+	buytemp_mod = buylist[pos];
+	soldtemp_mod = soldlist[pos];
+	
+	delSingle(elem_i);
 }
 
 // 取消修改
@@ -277,9 +187,6 @@ function delSingle(elem_i) {
 
 	var index = $(elem_i).parents("div").parents("#stocks_buyed").find("div")
 			.index($(elem_i).parents("div"));
-
-	// var buyed_div = document.getElementById("stocks_buyed");
-	// buyed_div.removeChild(buyed_div.getElementsByTagName("div")[index]);
 
 	var table = document.getElementById("strategyTable");
 	var boxs = table.getElementsByTagName("input");
@@ -434,7 +341,7 @@ function showSTmake(field) {
 		combox.setAttribute("onclick", "setLimit(" + i + ")")
 	}
 
-	// 向temp中存数据
+	// 点击制订后，向temp中存数据
 	document.getElementById("stmake_btn").onclick = function() {
 		if (field.id == "buyinst") {
 			for (var i = 0; i < texts.length; i++) {
@@ -449,8 +356,14 @@ function showSTmake(field) {
 		modifyCancel();
 	}
 
+	if(after_mod == 1) {
+		buytemp = buytemp_mod;
+		soldtemp = soldtemp_mod;
+		
+		after_mod = 0;
+	}
+	
 	// 制定策略的点开界面
-
 	if (field.id == "buyinst") {
 		for (var i = 0; i < texts.length; i++) {
 			document.getElementById(texts[i]).value = buytemp[i];
