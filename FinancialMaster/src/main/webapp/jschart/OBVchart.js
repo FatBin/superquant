@@ -3,45 +3,41 @@
  */
 
 /**
- * 个股技术分析————BIAS
+ * 个股技术分析————OBV
  */
-function initBIAS(){
+function initOBV(){
 
-var BIASchart = echarts.init(document.getElementById('BIASchart'));
+var OBVchart = echarts.init(document.getElementById('OBVchart'));
 
 
 	// 日期
 	var dates = [];
-	var BIAS6s = [];
-	var BIAS12s = [];
-	var BIAS24s=[];
+	var OBVs = [];
 	
 	$.ajax({
 		type : "get",
 		async : false, // 同步执行
-		url : "../GetBIASChart",
+		url : "../GetOBVChart",
 		// data : {id:code},
 		dataType : "json", // 返回数据形式为json
 		success : function(result) {
 			if (result) {
 				for (var i = 0; i < result.length; i++) {
 					dates.push(result[i].date);
-					BIAS6s.push(result[i].BIAS6);
-					BIAS12s.push(result[i].BIAS12);
-					BIAS24s.push(result[i].BIAS24);;
+					OBVs.push(result[i].OBV);
 				}
 			}
 
 		},
 		error : function(errorMsg) {
-			alert("不好意思，BIAS图表请求数据失败啦!");
+			alert("不好意思，OBV图表请求数据失败啦!");
 			myChart.hideLoading();
 		}
 	})
 
 	option = {
 //		title : {
-//			text : 'BIAS分析图表',
+//			text : 'OBV分析图表',
 //			left : 40
 //		},
 		tooltip : {
@@ -51,7 +47,7 @@ var BIASchart = echarts.init(document.getElementById('BIASchart'));
 			}
 		},
 		legend :  {
-			data : [ 'BIAS6', 'BIAS12','BIAS24'],
+			data : [ 'OBV'],
 			left:'right'
 		},
 		grid :  {
@@ -84,19 +80,11 @@ var BIASchart = echarts.init(document.getElementById('BIASchart'));
 			end : 100,
 		} ],
 		series :[{
-					name : 'BIAS6',
+					name : 'OBV',
 					type : 'line',
-					data : BIAS6s,
-				},{
-					name : 'BIAS12',
-					type : 'line',
-					data : BIAS12s,
-				},{
-					name : 'BIAS24',
-					type : 'line',
-					data : BIAS24s,
+					data : OBVs,
 				}]
 	};
 
-	BIASchart.setOption(option);
+	OBVchart.setOption(option);
 }

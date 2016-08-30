@@ -13,6 +13,7 @@ var CCIchart = echarts.init(document.getElementById('CCIchart'));
 	// 日期
 	var dates = [];
 	var CCIs = [];
+	var CCIMAs = [];
 	
 	$.ajax({
 		type : "get",
@@ -25,6 +26,7 @@ var CCIchart = echarts.init(document.getElementById('CCIchart'));
 				for (var i = 0; i < result.length; i++) {
 					dates.push(result[i].date);
 					CCIs.push(result[i].CCI);
+					CCIMAs.push(result[i].CCIMA);
 				}
 			}
 
@@ -36,10 +38,10 @@ var CCIchart = echarts.init(document.getElementById('CCIchart'));
 	})
 
 	option = {
-		title : {
-			text : 'CCI分析图表',
-			left : 40
-		},
+//		title : {
+//			text : 'CCI分析图表',
+//			left : 40
+//		},
 		tooltip : {
 			trigger : 'axis',
 			axisPointer : {
@@ -47,7 +49,7 @@ var CCIchart = echarts.init(document.getElementById('CCIchart'));
 			}
 		},
 		legend :  {
-			data : [ 'CCI'],
+			data : [ 'CCI','CCIMA'],
 			left:'right'
 		},
 		grid :  {
@@ -83,6 +85,11 @@ var CCIchart = echarts.init(document.getElementById('CCIchart'));
 					name : 'CCI',
 					type : 'line',
 					data : CCIs,
+				},
+				{
+					name : 'CCIMA',
+					type : 'line',
+					data : CCIMAs,
 				}]
 	};
 

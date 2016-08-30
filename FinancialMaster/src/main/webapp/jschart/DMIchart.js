@@ -42,10 +42,10 @@ var DMIchart = echarts.init(document.getElementById('DMIchart'));
 	})
 
 	option = {
-		title : {
-			text : 'DMI分析图表',
-			left : 40
-		},
+//		title : {
+//			text : 'DMI分析图表',
+//			left : 40
+//		},
 		tooltip : {
 			trigger : 'axis',
 			axisPointer : {

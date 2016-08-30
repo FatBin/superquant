@@ -40,10 +40,10 @@ var WRchart = echarts.init(document.getElementById('WRchart'));
 	})
 
 	option = {
-		title : {
-			text : 'WR分析图表',
-			left : 40
-		},
+//		title : {
+//			text : 'WR分析图表',
+//			left : 40
+//		},
 		tooltip : {
 			trigger : 'axis',
 			axisPointer : {
@@ -55,8 +55,8 @@ var WRchart = echarts.init(document.getElementById('WRchart'));
 			left:'right'
 		},
 		grid :  {
-			left : '5%',
-			right : '0%',
+			left : '8%',
+			right : '5%',
 			top:  '15%',
 			height : '63%'
 		},

@@ -40,10 +40,10 @@ function initMACD(){
 	})
 
 	option = {
-		title : {
-			text : 'MACD分析图表',
-			left : 40
-		},
+//		title : {
+//			text : 'MACD分析图表',
+//			left : 40
+//		},
 		tooltip : {
 			trigger : 'axis',
 			axisPointer : {
