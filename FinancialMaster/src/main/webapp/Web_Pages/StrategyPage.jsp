@@ -199,7 +199,7 @@
 			<div id="stocks_buyed">
 				<div id="stock_each_copy" style="display: none;">
 					<span>浦发银行</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>5000</span>&nbsp;&nbsp;
-					<i class="fa fa-pencil mod_del_btn" onclick="modifyST(this)"></i> <i
+					<i class="fa fa-pencil mod_del_btn" onclick="modifyST_pen(this)"></i> <i
 						class="fa fa-times mod_del_btn" onclick="delSingle(this)"></i>
 				</div>
 			</div>
