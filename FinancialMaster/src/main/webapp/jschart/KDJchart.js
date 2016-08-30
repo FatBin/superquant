@@ -40,10 +40,10 @@ var KDJchart = echarts.init(document.getElementById('KDJchart'));
 	})
 
 	option = {
-		title : {
-			text : 'KDJ分析图表',
-			left : 40
-		},
+//		title : {
+//			text : 'KDJ分析图表',
+//			left : 40
+//		},
 		tooltip : {
 			trigger : 'axis',
 			axisPointer : {

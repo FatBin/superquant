@@ -1,6 +1,8 @@
 package web.bl.StrategyHandle;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import DAO.pojo.TradeRecord;
@@ -11,6 +13,8 @@ import dataservice.StockDataService.StockDataService;
 import web.blservice.StrategyHandleService.StrategyHandleService;
 
 public class StrategyHandle implements StrategyHandleService {
+
+	
 	// 计算这段时间内每天整个策略的收益
 	public ArrayList<profitPO> handle(ArrayList<StrategyPO> arrayList1, ArrayList<StrategyPO> arrayList2) {
 		ArrayList<ArrayList<profitPO>> eachResultList = new ArrayList<>();
@@ -60,47 +64,97 @@ public class StrategyHandle implements StrategyHandleService {
 
 	// 每个小策略的策略时间内每天的收益
 	public ArrayList<profitPO> getEachResult(StrategyPO po1, StrategyPO po2) {
+
 		StockDataService service = new StockData();
 		ArrayList<profitPO> arrayList = new ArrayList<>();
 		try {
 			List list = service.getStockRecord(po1.getStockId(), po1.getStarttime(), po1.getEndtime());
 			ArrayList<TradeRecord> temp = new ArrayList<>();
 			ArrayList<TradeRecord> result = new ArrayList<>();
-			System.out.println("recordsize "+list.size());
 			for (Object object : list) {
 				temp.add((TradeRecord) object);
 			}
 			for (int i = temp.size() - 1; i >= 0; i--) {
-				if (check(po1, temp.get(i))) {
 					result.add(temp.get(i));
-					System.out.println(temp.get(i).getId().getDate());
-				}
 			}
-
-			// 买入量
-			double volume = 0.0001;
-			try {
-				volume = po1.getCost() / result.get(0).getClose();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			System.out.println("volume "+volume);
+			System.out.print(result.size());
+			
+			//是否已买入的状态，true为已买入
+			boolean buy=false;
+			
 			// 原本金
+			double originalCost=po1.getCost();
+			//使用的资金
 			double cost = po1.getCost();
 			System.out.println("cost "+cost);
+			
+			// 买入量
+			double volume = 0.0;
+			
+			//最初的日期
+			Date date=null;
+			SimpleDateFormat simpleDateFormat=new SimpleDateFormat( "yyyy-MM-dd");
+			date=simpleDateFormat.parse(result.get(0).getId().getDate());
+			
+			
+
 			for (TradeRecord tradeRecord : result) {
-				profitPO profitPO = new profitPO(tradeRecord.getId().getDate(), volume * tradeRecord.getClose() - cost);
-				System.out.println("tradeRecord"+(volume * tradeRecord.getClose() - cost));
-				arrayList.add(profitPO);
-				if (check(po2, tradeRecord)&&avoid(po2)) {
-					break;
+				//每条记录的当天时间
+				Date now=null;
+				now=simpleDateFormat.parse(tradeRecord.getId().getDate());
+				
+				//和初始时间相差的时间
+				long l=now.getTime()-date.getTime();
+				long day=l/(24*60*60*1000);
+				
+				
+				if(buy==false){
+					//可买入时
+					if(check(po1, tradeRecord)&&(day%po1.getFrequency()==0)){
+						volume=cost/tradeRecord.getClose();
+						profitPO profitPO = new profitPO(tradeRecord.getId().getDate(), cost-originalCost);
+						arrayList.add(profitPO);
+						buy=true;
+						System.out.println(profitPO.getDate()+" ; "+profitPO.getProfit()+" ;1 "+buy);
+					}else{
+						//不可买入但曾买过时
+						if (arrayList.size()!=0) {
+							profitPO oldprofitPO=arrayList.get(arrayList.size()-1);
+							profitPO newprofitPO=new profitPO(tradeRecord.getId().getDate(), oldprofitPO.getProfit());
+							arrayList.add(newprofitPO);
+							System.out.println(newprofitPO.getDate()+" ; "+newprofitPO.getProfit()+" ;2 "+buy);
+						//不可买入也不曾买过时
+						}else {
+							profitPO profitPO=new profitPO(tradeRecord.getId().getDate(), 0.0);
+							arrayList.add(profitPO);
+							System.out.println(profitPO.getDate()+" ; "+profitPO.getProfit()+" ;3 "+buy);
+						}
+					}
+				}else {
+					//可卖出时
+					Date temp1=simpleDateFormat.parse(po2.getStarttime());
+					Date temp2=simpleDateFormat.parse(po2.getEndtime());
+					//要符合时间上的条件
+					if(check(po2, tradeRecord)&&(day%po2.getFrequency()==0)
+							&&(!now.before(temp1))&&(!now.after(temp2))){
+						
+						cost=volume*tradeRecord.getClose();
+						profitPO profitPO=new profitPO(tradeRecord.getId().getDate(), cost-originalCost);
+						arrayList.add(profitPO);
+						buy=false;
+						System.out.println(profitPO.getDate()+" ; "+profitPO.getProfit()+" ;4 "+buy);
+					}else {
+						profitPO profitPO=new profitPO(tradeRecord.getId().getDate(), volume*tradeRecord.getClose()-originalCost);
+						arrayList.add(profitPO);
+						System.out.println(profitPO.getDate()+" ; "+profitPO.getProfit()+" ;5 "+buy);
+					}
 				}
 			}
-			System.out.println("arraylist "+arrayList.size());
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return arrayList;
 	}
 
@@ -126,4 +180,6 @@ public class StrategyHandle implements StrategyHandleService {
 			return true;
 		}
 	}
+	
+	
 }

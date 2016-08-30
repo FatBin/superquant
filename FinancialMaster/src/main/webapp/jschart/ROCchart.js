@@ -40,10 +40,10 @@ var ROCchart = echarts.init(document.getElementById('ROCchart'));
 	})
 
 	option = {
-		title : {
-			text : 'ROC分析图表',
-			left : 40
-		},
+//		title : {
+//			text : 'ROC分析图表',
+//			left : 40
+//		},
 		tooltip : {
 			trigger : 'axis',
 			axisPointer : {

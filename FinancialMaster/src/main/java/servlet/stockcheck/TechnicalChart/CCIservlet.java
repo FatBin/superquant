@@ -34,28 +34,57 @@ public class CCIservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	
-		StockDetailVO sv=(StockDetailVO)request.getSession().getAttribute("StockDetail");
+	StockDetailVO sv=(StockDetailVO)request.getSession().getAttribute("StockDetail");
 //		日期、开盘价、收盘价、最高价、最低价、后复权价、成交量、换手率、市盈率、市净率
 	 String[][] historyData=sv.getHistoryData();
 	 int length=historyData.length;
-	 double close;
-	 double high;
-	 double low;
-	 double volumn;
-	 double cci[]=new double[length];
+	 double close[]=new double[length];
+	 double high[]=new double[length];
+	 double low[]=new double[length];
+	
+	 
 	 
 	 for(int i=0;i<length;i++){	
-		 close=Double.parseDouble(historyData[i][2]);
-         high=Double.parseDouble(historyData[i][3]);
-         low=Double.parseDouble(historyData[i][4]);
-         volumn=Double.parseDouble(historyData[i][6]);
-         cci[i]=((close-low)-(high-close))/(high-low)*volumn;
+		 close[i]=Double.parseDouble(historyData[i][2]);
+         high[i]=Double.parseDouble(historyData[i][3]);
+         low[i]=Double.parseDouble(historyData[i][4]);
 	 }
 	
+	 length-=6;
+	 double cci[]=new double[length];
+	 double tp,ma,md;
+	 for (int i = 0; i < length; i++) {
+		tp=(close[i]+high[i]+low[i])/3;
+		ma=0;
+		for (int j = 0; j < 7; j++) {
+			ma+=close[i+j];			
+		}
+		ma/=7;
+		md=0;
+		for (int j = 0; j < 7; j++) {
+			md+=Math.abs(close[i+j]-ma);			
+		}
+		md/=7;
+		
+		cci[i]=(tp-ma)/md/0.015;
+	}
+	 
+	length-=5;
+	double macci[]=new double[length];
+	
+	for (int i = 0; i < length; i++) {
+		macci[i]=0;
+		for (int j = 0; j < 6; j++) {
+			macci[i]+=cci[i+j];
+		}
+		macci[i]/=6;
+	}
+	 
 	String data="[";
 	for (int i = length-1; i >=0; i--) {
 		data=data+"{'date':"+historyData[i][0]+
-				",'CCI':"+cci[i]+"},";
+				",'CCI':"+cci[i]+
+				",'CCIMA':"+macci[i]+"},";
 	}
 	data+="]";
 	JSONArray json = new JSONArray(data);
