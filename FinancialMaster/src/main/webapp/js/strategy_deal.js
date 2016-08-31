@@ -18,12 +18,6 @@ var texts = [ "getprice_low", "getprice_high", "getvolume_low",
 		"getpe_high", "getpb_low", "getpb_high" ];
 var comboxs = [ "price_box", "volume_box", "turnover_box", "pe_box", "pb_box" ];
 
-var texts_2 = [ "getprice_low_2", "getprice_high_2", "getvolume_low_2",
-		"getvolume_high_2", "getturnover_low_2", "getturnover_high_2",
-		"getpe_low_2", "getpe_high_2", "getpb_low_2", "getpb_high_2" ];
-var comboxs_2 = [ "price_box_2", "volume_box_2", "turnover_box_2", "pe_box_2",
-		"pb_box_2" ];
-
 function addStrategy() {
 
 	var getInfo = [];
@@ -104,15 +98,19 @@ function addStrategy() {
 	var tempcount = 0;
 	for (var i = 0; i < getInfo.length; i++) {
 		var td = document.createElement("td");
-		td.innerHTML = getInfo[i];
+		
+		if(i == 4) {
+			td.innerHTML = stDeal(buytemp, 0);
+		} else if(i == 5) {
+			td.innerHTML = stDeal(soldtemp, 1);
+		} else {
+			td.innerHTML = getInfo[i];
+		}
+		
 		if (i != 4 && i != 5 && i != 6) {
 			perST[count][tempcount] = getInfo[i];
 			tempcount++;
 		}
-		if (i != 6) {
-			td.style.cursor = "pointer";
-		}
-		td.setAttribute("onclick", "modifyST(this)");
 		tr.appendChild(td);
 	}
 
@@ -139,6 +137,32 @@ function addStrategy() {
 	resetAll();
 
 	runST();
+}
+
+//  策略文字化; 0买入，1卖出
+function stDeal(st, sybol) {
+	var str = [ "股价", "成交量", "换手率", "pe", "pb" ];
+	var BorS = [ "时买入", "时卖出" ]
+	var via = "落在";
+	var result = "当";
+	var other = [ "您未限定买入条件", "始终持有该股" ];
+
+	var douhao = 0;
+	for (var i = 0; i < 5; i++) {
+		if (st[i * 2] != 0 || st[i * 2 + 1] != 0) {
+			if (douhao == 1) {
+				result += "、";
+			}
+			result = result + str[i] + via + st[i * 2] + "~" + st[i * 2 + 1];
+			douhao = 1;
+		}
+	}
+
+	if (douhao == 1) {
+		return (result + BorS[sybol]);
+	} else {
+		return other[sybol];
+	}
 }
 
 function resetAll() {
@@ -171,129 +195,12 @@ function modifyST_pen(elem_i) {
 	delSingle(elem_i);
 }
 
-// 表格修改
-function modifyST(td) {
-	modifyCancel();
-
-	var dialogtype = [ "textfieldMod", "textfieldMod", "timepickMod",
-			"timepickMod", "stMod", "stMod", "stMod", "textfieldMod" ];
-	var inputtype = [ "modtext", "modtext", "moddate", "moddate", "modselect",
-			"modselect", "modselect", "modtext" ];
-	var buttontype = [ "modCon_1", "modCon_1", "modCon_2", "modCon_2", "stbtn",
-			"stbtn", "stbtn", "modCon_1" ];
-
-	// td的列数
-	var col = ($(td).parents("tr").find("td").index($(td))) - 1;
-	var row = $(td).parents("tr").parents("table").find("tr").index(
-			$(td).parents("tr")) - 1;
-	var rowcount = document.getElementById("strategyTable").rows.length - 1;
-	var pos = rowcount - 1 - row;
-
-	if (col != 6) {
-		var modiv = document.getElementById(dialogtype[col]);
-		if (modiv.style.display == "none") {
-			modiv.style.display = "block";
-		}
-
-		if (col == 4 || col == 5) {
-			for (var i = 0; i < comboxs_2.length; i++) {
-				var combox = document.getElementById(comboxs_2[i]);
-				combox.setAttribute("onclick", "setLimit_2(" + i + ")")
-			}
-		}
-		// 策略内容
-		if (col == 4) {
-			for (var i = 0; i < texts_2.length; i++) {
-				document.getElementById(texts_2[i]).value = buylist[pos][i];
-			}
-
-			for (var i = 0; i < comboxs_2.length; i++) {
-				if (buylist[pos][2 * i] == "" && buylist[pos][2 * i + 1] == "") {
-					document.getElementById(texts_2[2 * i]).readOnly = true;
-					document.getElementById(texts_2[2 * i + 1]).readOnly = true;
-					document.getElementById(comboxs_2[i]).checked = false;
-				} else {
-					document.getElementById(texts_2[2 * i]).readOnly = false;
-					document.getElementById(texts_2[2 * i + 1]).readOnly = false;
-					document.getElementById(comboxs_2[i]).checked = true;
-				}
-			}
-
-		} else if (col == 5) {
-			for (var i = 0; i < texts_2.length; i++) {
-				document.getElementById(texts_2[i]).value = soldlist[pos][i];
-			}
-
-			for (var i = 0; i < comboxs_2.length; i++) {
-				if (soldlist[pos][2 * i] == ""
-						&& soldlist[pos][2 * i + 1] == "") {
-					document.getElementById(texts_2[2 * i]).readOnly = true;
-					document.getElementById(texts_2[2 * i + 1]).readOnly = true;
-					document.getElementById(comboxs_2[i]).checked = false;
-				} else {
-					document.getElementById(texts_2[2 * i]).readOnly = false;
-					document.getElementById(texts_2[2 * i + 1]).readOnly = false;
-					document.getElementById(comboxs_2[i]).checked = true;
-				}
-			}
-		}
-
-		var table_h = rowcount * 35;
-		if (document.getElementById("strategyLineChart").style.display == "none") {
-			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115)
-					+ "px";
-		} else {
-			modiv.style.marginTop = (td.offsetTop - table_h + 10 - 300 - 115 - 430)
-					+ "px";
-		}
-		modiv.style.marginLeft = td.getBoundingClientRect().left + "px";
-
-		var confirmMod = document.getElementById(buttontype[col]);
-		confirmMod.onclick = function() {
-			if (col == 4) {
-				for (var i = 0; i < texts_2.length; i++) {
-					buylist[pos][i] = document.getElementById(texts_2[i]).value;
-				}
-			} else if (col == 5) {
-				for (var i = 0; i < texts_2.length; i++) {
-					soldlist[pos][i] = document.getElementById(texts_2[i]).value;
-				}
-			} else if (col != 6) {
-				if (col == 1) {
-					var minus = parseInt(document
-							.getElementById(inputtype[col]).value)
-							- parseInt(td.innerHTML);
-					if (tempcost - minus >= 0) {
-						tempcost -= minus;
-						document.getElementById("moneyleft").innerHTML = tempcost;
-					} else {
-						alert("资金不够啦");
-						return;
-					}
-				}
-				if (document.getElementById(inputtype[col]).value != "") {
-					td.innerHTML = document.getElementById(inputtype[col]).value;
-					perST[pos][i] = document.getElementById(inputtype[col]).value;
-				}
-			}
-			modifyCancel();
-		}
-	}
-}
-
 // 取消修改
 function modifyCancel() {
-	var dialogtype = [ "textfieldMod", "timepickMod", "stMod", "stMake" ];
-	var modiv;
-	for (var i = 0; i < dialogtype.length; i++) {
-		modiv = document.getElementById(dialogtype[i]);
-		if (modiv.style.display == "block") {
-			modiv.style.display = "none";
-		}
+	var modiv = document.getElementById("stMake");
+	if (modiv.style.display == "block") {
+		modiv.style.display = "none";
 	}
-
-	document.getElementById("modtext").value = "";
-	document.getElementById("moddate").value = "";
 }
 
 function delSingle(elem_i) {
