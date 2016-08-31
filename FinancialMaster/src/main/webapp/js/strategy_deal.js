@@ -63,8 +63,11 @@ function addStrategy() {
 		soldlist[count][i] = soldtemp[i];
 	}
 
+	if(document.getElementById("myST").style.display == "none") {
+		document.getElementById("myST").style.display = "";
+	}
 	var table = document.getElementById("strategyTable");
-
+	
 	var tr = table.insertRow(1);
 	tr.style.height = "35px";
 	tr.align = "center";
@@ -76,6 +79,8 @@ function addStrategy() {
 	boxtd.appendChild(boxdiv);
 	var checkbox = document.createElement("input");
 	checkbox.type = "checkbox";
+	checkbox.style.float = "left";
+	checkbox.style.marginLeft = "10px";
 	boxdiv.appendChild(checkbox);
 	checkbox.onclick = function() {
 		var boxs = table.getElementsByTagName("input");
@@ -95,18 +100,35 @@ function addStrategy() {
 		}
 	}
 
+	var elem_pen = document.createElement("div");
+	elem_pen.setAttribute("class", "fa fa-pencil mod_del_btn");
+	elem_pen.style.float = "right";
+	elem_pen.style.marginRight = "7px";
+	elem_pen.style.display = "none";
+	boxdiv.appendChild(elem_pen);
+
+	tr.onmouseover = function() {
+		elem_pen.style.display = "";
+		elem_pen.onclick = function() {
+			modifyST(this);
+		}
+	}
+	tr.onmouseout = function() {
+		elem_pen.style.display = "none";
+	}
+
 	var tempcount = 0;
 	for (var i = 0; i < getInfo.length; i++) {
 		var td = document.createElement("td");
-		
-		if(i == 4) {
+
+		if (i == 4) {
 			td.innerHTML = stDeal(buytemp, 0);
-		} else if(i == 5) {
+		} else if (i == 5) {
 			td.innerHTML = stDeal(soldtemp, 1);
 		} else {
 			td.innerHTML = getInfo[i];
 		}
-		
+
 		if (i != 4 && i != 5 && i != 6) {
 			perST[count][tempcount] = getInfo[i];
 			tempcount++;
@@ -125,21 +147,19 @@ function addStrategy() {
 
 	document.getElementById("usedmoney").innerHTML = totalcost - tempcost;
 
-	var div_each = document.createElement("div");
-	div_each.innerHTML = document.getElementById("stock_each_copy").innerHTML;
-	div_each.getElementsByTagName("span")[0].innerHTML = getInfo[0];
-	div_each.getElementsByTagName("span")[1].innerHTML = getInfo[1];
-	document.getElementById("stocks_buyed").insertBefore(div_each,
-			document.getElementById("stocks_buyed").childNodes[0]);
-
 	zebra();
 	count++;
 	resetAll();
-
 	runST();
+
+	var addbtn = document.getElementById("addST");
+	if ((addbtn.innerHTML).trim() == "完成修改") {
+		addbtn.innerHTML = "添加股票项";
+		document.getElementById("resetbtn").innerHTML = "重置";
+	}
 }
 
-//  策略文字化; 0买入，1卖出
+// 策略文字化; 0买入，1卖出
 function stDeal(st, sybol) {
 	var str = [ "股价", "成交量", "换手率", "pe", "pb" ];
 	var BorS = [ "时买入", "时卖出" ]
@@ -174,14 +194,31 @@ function resetAll() {
 	soldtemp = [ "", "", "", "", "", "", "", "", "", "" ];
 }
 
-// 铅笔修改
-function modifyST_pen(elem_i) {
-	var index = $(elem_i).parents("div").parents("#stocks_buyed").find("div")
-			.index($(elem_i).parents("div"));
+// 重置按钮，可以取消
+function resetAll_btn() {
 
-	var pos = document.getElementById("stocks_buyed").getElementsByTagName(
-			"div").length
-			- 2 - index;
+	var resetbtn = document.getElementById("resetbtn");
+	if ((resetbtn.innerHTML).trim() == "取消") {
+		addStrategy();
+		resetbtn.innerHTML = "重置";
+		return;
+	}
+
+	for (var i = 0; i < getID.length; i++) {
+		document.getElementById(getID[i]).value = "";
+	}
+	buytemp = [ "", "", "", "", "", "", "", "", "", "" ];
+	soldtemp = [ "", "", "", "", "", "", "", "", "", "" ];
+}
+
+// 修改
+function modifyST(elem_i) {
+	var index = $(elem_i).parents("tr").parents("#strategyTable").find("tr")
+			.index($(elem_i).parents("tr"));
+
+	var pos = document.getElementById("strategyTable").getElementsByTagName(
+			"tr").length
+			- 1 - index;
 
 	for (var i = 0; i < 4; i++) {
 		document.getElementById(getID[i]).value = perST[pos][i];
@@ -192,7 +229,17 @@ function modifyST_pen(elem_i) {
 	buytemp_mod = buylist[pos];
 	soldtemp_mod = soldlist[pos];
 
-	delSingle(elem_i);
+	var table = document.getElementById("strategyTable");
+	var boxs = table.getElementsByTagName("input");
+	boxs[index].checked = true;
+	deleteST();
+
+	$("body,html").animate({
+		scrollTop : 0
+	}, 500);
+
+	document.getElementById("addST").innerHTML = "完成修改";
+	document.getElementById("resetbtn").innerHTML = "取消";
 }
 
 // 取消修改
@@ -201,17 +248,6 @@ function modifyCancel() {
 	if (modiv.style.display == "block") {
 		modiv.style.display = "none";
 	}
-}
-
-function delSingle(elem_i) {
-
-	var index = $(elem_i).parents("div").parents("#stocks_buyed").find("div")
-			.index($(elem_i).parents("div"));
-
-	var table = document.getElementById("strategyTable");
-	var boxs = table.getElementsByTagName("input");
-	boxs[index + 1].checked = true;
-	deleteST();
 }
 
 // 删除
@@ -231,19 +267,16 @@ function deleteST() {
 			soldlist.splice(boxlen - 1 - i, 1);
 			perST.splice(boxlen - 1 - i, 1)
 			count--;
-
-			var buyed_div = document.getElementById("stocks_buyed");
-			buyed_div.removeChild(buyed_div.getElementsByTagName("div")[i - 1]);
 		}
 	}
 
 	zebra();
 
-	var isLast = document.getElementById("stocks_buyed").getElementsByTagName(
-			"div").length;
+	var isLast = table.getElementsByTagName("tr").length;
 	if (isLast <= 1) {
 		document.getElementById("add_before").style.display = "";
 		document.getElementById("add_after").style.display = "none";
+		document.getElementById("myST").style.display = "none";
 	} else {
 		runST();
 	}

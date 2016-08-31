@@ -113,10 +113,10 @@ table td {
 
 .makest_div {
 	width: 85%;
-	height: 443px;
 	margin: 30px auto;
 	margin-top: 160px;
 	padding-top: 25px;
+	padding-bottom: 35px;
 	background-color: #f9f6f4;
 	border-radius: 4px;
 	border: none;
@@ -136,7 +136,16 @@ table td {
 	padding-left: 13px;
 }
 
-.st_textfileds::-webkit-input-placeholder {
+.st_textfileds_readonly {
+	width: 140px;
+	height: 36px;
+	border: none;
+	background-color: #EEEFF2;
+	padding-left: 13px;
+}
+
+.st_textfileds::-webkit-input-placeholder,
+.st_textfileds_readonly::-webkit-input-placeholder {
 	color: #90949b;
 	font-size: 16px;
 }
@@ -240,17 +249,7 @@ table td {
 	margin-left: 80px;
 }
 
-#stocks_buyed {
-	overflow: auto;
-	height: 50px;
-	width: 230px; font-size : 16px;
-	color: #90949b;
-	margin-top: 5px;
-	font-size: 16px;
-}
-
 .mod_del_btn {
-	margin-left: 10px;
 	cursor: pointer;
 }
 
@@ -260,7 +259,7 @@ table td {
 
 .run_pic {
 	width: 95%;
-	height: 204px;
+	height: 254px;
 	margin-top: 8px;
 	background-color: #fbfafa;
 }

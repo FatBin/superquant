@@ -162,8 +162,8 @@
 
 			<div>
 				<div class="selectStyle date_divs">
-					<input id="otherst" class="st_textfileds" placeholder="其他策略"
-						readonly>
+					<input id="otherst" class="st_textfileds_readonly"
+						placeholder="其他策略" readonly>
 				</div>
 
 				<div class="date_divs" style="margin-left: 10px;">
@@ -175,9 +175,9 @@
 				剩余本金:&nbsp;&nbsp;<span id="moneyleft"></span>
 			</div>
 
-			<div class="add_st_btn" onclick="addStrategy()">添加股票项</div>
+			<div id="addST" class="add_st_btn" onclick="addStrategy()">添加股票项</div>
 
-			<div class="reset_st_btn" onclick="resetAll()">重置</div>
+			<div id="resetbtn" class="reset_st_btn" onclick="resetAll_btn()">重置</div>
 		</div>
 
 		<div id="add_before" class="st_run_div">
@@ -193,21 +193,13 @@
 			<div class="add_st_btn save_btn" onclick="saveST();">保存策略</div>
 
 			<span id="savesuccess"
-				style="margin-left:380px; margin-top: -20px; display: none;"><span
+				style="margin-left: 380px; margin-top: -20px; display: none;"><span
 				class="glyphicon glyphicon-ok"></span> 保存成功</span>
 
-			<div id="stocks_buyed">
-				<div id="stock_each_copy" style="display: none;">
-					<span>浦发银行</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>5000</span>&nbsp;&nbsp;
-					<i class="fa fa-pencil mod_del_btn" onclick="modifyST_pen(this)"></i> <i
-						class="fa fa-times mod_del_btn" onclick="delSingle(this)"></i>
-				</div>
-			</div>
 
 			<div class="run_pic">
-
 				<div id="strategyLineChart"
-					style="width: 580px; height: 204px; display: none;"></div>
+					style="width: 580px; height: 254px; display: none;"></div>
 			</div>
 
 			<div class="benifit_compare">
@@ -219,55 +211,54 @@
 
 		</div>
 
-	</div>
+		<!-- 股票策略列表 -->
+		<div id="myST" style="display: none;">
+			<!-- 我的策略  -->
+			<div
+				style="font-size: 20px; line-height: 35px; margin-top: 40px; margin-left: 45px;">
+				<span id="stname">我的策略</span><span id="stcost"
+					style="font-size: 13px;"></span>
+			</div>
 
-	<!-- 我的策略  -->
-	<div
-		style="font-size: 20px; line-height: 35px; margin-top: 40px; margin-left: 135px;">
-		<span id="stname">我的策略</span><span id="stcost"
-			style="font-size: 13px;"></span>
-	</div>
+			<hr
+				style="width: 210px; border: solid 1px rgb(235, 235, 235); margin-left: 45px; margin-top: 0px;" />
 
-	<hr
-		style="width: 210px; border: solid 1px rgb(235, 235, 235); margin-left: 135px; margin-top: 0px;" />
+			<!-- 删除、保存 -->
+			<div>
+				<div>
+					<input type="button" class="btn add_cancel_btn" name="deletebtn"
+						value="删除选中股票"
+						style="margin-top: -10px; margin-bottom: 10px; margin-left: 45px; width: 100px;"
+						onclick="deleteST();" />
+				</div>
+			</div>
 
-	<!-- 删除、保存 -->
-	<div>
-		<div>
-			<input type="button" class="btn add_cancel_btn" name="deletebtn"
-				value="删除选中策略"
-				style="margin-top: -10px; margin-bottom: 10px; margin-left: 135px; width: 100px;"
-				onclick="deleteST();" /> <input type="button"
-				class="btn add_cancel_btn" name="runbtn" value="策略模拟"
-				style="margin-top: -10px; margin-bottom: 10px; margin-left: 20px; width: 90px;"
-				onclick="runST();" />
+			<div
+				style="margin-left: 45px; width: 1000px; border: dashed 1px rgb(200, 200, 200);">
+
+				<table id="strategyTable" rules="rows">
+					<thead>
+						<tr align="center" valign="middle"
+							style="background-color: rgb(230, 230, 230); font-size: 16px;">
+							<td width="60">
+								<div style="margin-left: -20px;">
+									<input type="checkbox" onchange="selectAll();" />
+								</div>
+							</td>
+
+							<td width="105" height="40">股票名称</td>
+							<td width="85">投资成本</td>
+							<td width="105">开始日期</td>
+							<td width="105">结束日期</td>
+							<td width="192">买入策略</td>
+							<td width="192">卖出策略</td>
+							<td width="90">其他策略</td>
+							<td width="80">买卖频率</td>
+						</tr>
+					</thead>
+				</table>
+			</div>
 		</div>
-	</div>
-
-	<div
-		style="margin-left: 135px; width: 1000px; border: dashed 1px rgb(200, 200, 200);">
-
-		<table id="strategyTable" rules="rows">
-			<thead>
-				<tr align="center" valign="middle"
-					style="background-color: rgb(230, 230, 230); font-size: 16px;">
-					<td width="30">
-						<div>
-							<input type="checkbox" onchange="selectAll();" />
-						</div>
-					</td>
-
-					<td width="105" height="40">股票名称</td>
-					<td width="95">投资成本</td>
-					<td width="110">开始日期</td>
-					<td width="110">结束日期</td>
-					<td width="192">买入策略</td>
-					<td width="192">卖出策略</td>
-					<td width="90">其他策略</td>
-					<td width="90">买卖频率</td>
-				</tr>
-			</thead>
-		</table>
 	</div>
 
 	<!-- Modal -->
