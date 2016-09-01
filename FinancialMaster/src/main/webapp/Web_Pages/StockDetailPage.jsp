@@ -108,7 +108,7 @@
 	<div class="headdiv">
 		<span class="headlbl"><%=uptodateStock.getStockName()%>〔<%=uptodateStock.getStockId()%>〕</span>
 		
-		<a class="toAnalysis" href="AnalysisPage.jsp" style="">更专业的分析 ›</a>
+		<a class="toAnalysis" href="AnalysisPage.jsp">更专业的分析 ›</a>
 
 		<span id="now"><%=uptodateStock.getNow()%></span> <span id="rise_fall"><%=uptodateStock.getRise_fall()%></span>
 		
