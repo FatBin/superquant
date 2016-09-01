@@ -25,9 +25,7 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
  	public BenchListVO getBenchCode() {
 		BenchListVO vo=new BenchListVO();
 		try {
-			System.out.println(System.currentTimeMillis());
 			List<Bench>  benchList=bds.getBench();
-			System.out.println(System.currentTimeMillis());
 			int length=benchList.size();
 			String[] nameList=new String[length];
 			int index=0;
@@ -47,9 +45,7 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		String id="";
 		List<Bench> benchList;
 		try {
-			System.out.println(System.currentTimeMillis());
 			benchList = bds.getBench();
-			System.out.println(System.currentTimeMillis());
 			for (Bench bench : benchList) {
 				if(bench.getBenchName().equals(benchCode)){
 					id=bench.getBenchId();
@@ -95,9 +91,7 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		String id="";
 		List<Bench> benchList;
 		try {
-			System.out.println(System.currentTimeMillis());
 			benchList = bds.getBench();
-			System.out.println(System.currentTimeMillis());
 			for (Bench bench : benchList) {
 				if(bench.getBenchName().equals(benchName)){
 					id=bench.getBenchId();
