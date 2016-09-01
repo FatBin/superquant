@@ -32,23 +32,23 @@ function addStrategy() {
 		}
 
 		if (getInfo[i] == '') {
-			alert("请制订完整策略");
+			slidein(2, "请制订完整策略");
 			return;
 		}
 	}
 
 	if (getInfo[2] > getInfo[3]) {
-		alert("开始日期和结束日期是不是反啦");
+		slidein(2, "日期设定无效");
 		return;
 	}
 
 	if (document.getElementById("stname").innerHTML == "我的策略") {
-		alert("请设定策略名和本金");
+		slidein(2, "请设定策略名和本金");
 		return;
 	}
 
 	if (tempcost - getInfo[1] < 0) {
-		alert("资金不够啦");
+		slidein(2, "资金不够啦");
 		return;
 	} else {
 		tempcost -= getInfo[1];
@@ -196,7 +196,6 @@ function resetAll() {
 
 // 重置按钮，可以取消
 function resetAll_btn() {
-
 	var resetbtn = document.getElementById("resetbtn");
 	if ((resetbtn.innerHTML).trim() == "取消") {
 		addStrategy();
@@ -313,20 +312,15 @@ function saveST() {
 		dataType : "json",
 		success : function(result) {
 			if (result[0].SaveResult == "Succeed") {
-				document.getElementById("savesuccess").style.display = "block";
-				setTimeout(hide, "3000");
+				slidein(0, "保存成功");
 			} else if (result[0].SaveResult == "Unlogin") {
-				alert("您还没登录呢")
+				slidein(2, "您还没登录");
 			} else {
-				alert("策略重名啦");
-			}
-
-			function hide() {
-				document.getElementById("savesuccess").style.display = "none";
+				slidein(2, "该策略名已存在");
 			}
 		},
 		error : function() {
-			alert("策略保存失败");
+			slidein(1, "保存失败请稍候再试");
 		}
 	})
 
@@ -375,7 +369,7 @@ function setName() {
 		tempcost = totalcost;
 		document.getElementById("moneyleft").innerHTML = stcost.value;
 	} else {
-		alert('请输入完整信息');
+		slidein(2, '请输入完整信息');
 	}
 }
 
@@ -386,7 +380,7 @@ function showSTmake(field) {
 		stdiv.style.display = "block";
 	}
 	stdiv.style.position = "absolute";
-	stdiv.style.top = (field.offsetTop + 421) + "px";
+	stdiv.style.top = (field.offsetTop + 371) + "px";
 	stdiv.style.marginLeft = field.getBoundingClientRect().left + "px";
 
 	for (var i = 0; i < comboxs.length; i++) {
@@ -525,7 +519,7 @@ function runST() {
 			getLinechart("../RunStrategy");
 		},
 		error : function() {
-			alert("策略模拟失败");
+			slidein(1, "策略模拟失败");
 		}
 	})
 }

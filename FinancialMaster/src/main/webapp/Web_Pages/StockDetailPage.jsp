@@ -113,11 +113,7 @@
 		<span id="now"><%=uptodateStock.getNow()%></span> <span id="rise_fall"><%=uptodateStock.getRise_fall()%></span>
 		
 		<img title="关注该股" id="heartdiv" onclick="changePic()"
-			src="../webImage/heart.png"> <span id="concernsuccess">
-			<span class="glyphicon glyphicon-ok"></span> 关注成功
-		</span> 
-		
-		
+			src="../webImage/heart.png"> 
 		
 		<hr class="hrstyle" />
 
@@ -130,7 +126,6 @@
 			class="fontcontent" style="left: 305px"><%=uptodateStock.getTongchilv()%></span>
 		<span class="fontlbl" style="left: 405px">行业</span> <span
 			class="fontcontent" style="left: 405px; font-size: 15px;"><%=uptodateStock.getIndustry()%></span>
-
 	</div>
 
 	<!-- k线图 -->
@@ -267,6 +262,14 @@
 				SuperQuant</p>
 		</div>
 	</div>
+	
+	<%-- 无阻塞提示框 --%>
+	<div id="toaster_close">
+		<div id="toaster">
+			<div id="pic_div" class="green_pic"></div>
+			<div id="remind" class="green_word">提示消息</div>
+		</div>
+	</div>
 
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
@@ -285,7 +288,7 @@
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../jschart/ScoreBarChart.js"></script>
 	<script src="../js/stockdetail_deal.js"></script>
-
+	<script src="../js/toaster.js"></script>
 	<script type="text/javascript">init_Pic(<%=isConcerned%>);</script>
 </body>
 </html>

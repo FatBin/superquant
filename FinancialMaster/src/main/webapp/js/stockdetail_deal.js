@@ -34,22 +34,17 @@ function changePic() {
 					document.getElementById("heartdiv").setAttribute("src",
 							"../webImage/heart-selected.png");
 					
-					document.getElementById("concernsuccess").style.display = "block";
-					setTimeout(hide, "3000");
+					slidein(0, "关注成功");
 				} else if (result[0].AddResult == 'Unlogin') {
-					alert("请先登录再添加关注");
+					slidein(2, "请先登录再添加关注");
 				} else if (result[0].AddResult == 'Fail') {
-					alert("您已关注啦");
+					slidein(2, "您已关注该股票");
 				} else {
-					alert("sorry，服务器请求失败啦");
-				}
-				
-				function hide() {
-					document.getElementById("concernsuccess").style.display = "none";
+					slidein(1, "服务器请求失败");
 				}
 			},
 			error : function(errorMsg) {
-				alert("不好意思，请求数据失败啦!");
+				slidein(1, "请求失败请稍候再试");
 			}
 		})
 
@@ -65,15 +60,15 @@ function changePic() {
 					document.getElementById("heartdiv").setAttribute("src",
 							"../webImage/heart.png")
 				} else if (result[0].DeleteResult == 'Unlogin') {
-					alert("请先登录再管理个人关注");
+					slidein(2, "请先登录再管理个人关注");
 				} else if (result[0].DeleteResult == 'Fail') {
-					alert("您还没关注这支股哦");
+					slidein(2, "您还没关注这支股哦");
 				} else {
-					alert("sorry，服务器请求失败啦");
+					slidein(1, "服务器请求失败");
 				}
 			},
 			error : function(errorMsg) {
-				alert("不好意思，请求数据失败啦!");
+				slidein(1, "请求失败请稍候再试");
 			}
 		})
 	}

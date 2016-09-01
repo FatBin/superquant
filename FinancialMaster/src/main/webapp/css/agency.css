@@ -187,11 +187,12 @@ h1, h2, h3, h4, h5, h6 {
 @media ( min-width :768px) {
 	.navbar-default {
 		background-color: transparent;
-		padding: 25px 0;
+		padding: 5px 0;
 		-webkit-transition: padding .3s;
 		-moz-transition: padding .3s;
 		transition: padding .3s;
-		border: 0
+		border: 0;
+		height: 55px;
 	}
 	.navbar-default .navbar-brand {
 		font-size: 2em;
@@ -204,7 +205,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 	.navbar-default.navbar-shrink {
 		background-color: #222;
-		padding: 10px 0
+		padding: 3px 0
 	}
 	.navbar-default.navbar-shrink .navbar-brand {
 		font-size: 1.5em
@@ -807,3 +808,91 @@ img::-moz-selection {
 body {
 	webkit-tap-highlight-color: #fed136
 } 
+
+/* 	无阻塞消息提示框  */
+/* 滑入界面 */
+#toaster {
+    width: 250px;
+    height: 60px;
+    display: inline-block;
+    background: white;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 10px;
+    font-size: 30px;
+    font-weight: normal;
+    position: fixed;
+    right: -270px;
+    top: 60px;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    outline: none;
+    -webkit-box-shadow: 0 0px 10px #bdccee;
+    -moz-box-shadow: 0 0px 10px #bdccee;
+    box-shadow: 0 0px 10px #bdccee;
+}
+
+#toaster:target {
+    right: 10px;
+}
+
+#toaster_close:target #toaster {
+    right: -270px;
+}
+
+/* 滑出界面 */
+#toaster_close {
+    position: fixed;
+    top: -60px;
+    right: 0;
+    display: inline-block;
+    z-index: 9999;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    outline: none;
+    -webkit-box-shadow: 0 0px 10px #bdccee;
+    -moz-box-shadow: 0 0px 10px #bdccee;
+    box-shadow: 0 0px 10px #bdccee;
+}
+
+#pic_div {
+    width: 40px;
+    height: 40px;
+    border-radius: 60px;
+}
+
+#remind {
+    margin-left: 50px;
+    margin-top: -40px;
+    font-size: 19px;
+    line-height: 40px;
+    vertical-align: middle;
+    font-family: "PingFang SC";
+    display: inline-block;
+}
+
+.green_pic {
+    background-image: url("../webImage/yes.svg");
+}
+.green_word {
+    color: #35C48A;
+}
+
+.red_pic {
+    background-image: url("../webImage/no.svg");
+}
+.red_word {
+    color: #D47859;
+}
+
+.yellow_pic {
+    background-image: url("../webImage/alert.svg");
+}
+.yellow_word {
+    color: #ECC63B;
+}

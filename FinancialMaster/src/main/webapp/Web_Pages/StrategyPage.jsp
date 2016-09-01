@@ -192,11 +192,6 @@
 
 			<div class="add_st_btn save_btn" onclick="saveST();">保存策略</div>
 
-			<span id="savesuccess"
-				style="margin-left: 380px; margin-top: -20px; display: none;"><span
-				class="glyphicon glyphicon-ok"></span> 保存成功</span>
-
-
 			<div class="run_pic">
 				<div id="strategyLineChart"
 					style="width: 580px; height: 254px; display: none;"></div>
@@ -224,14 +219,9 @@
 				style="width: 210px; border: solid 1px rgb(235, 235, 235); margin-left: 45px; margin-top: 0px;" />
 
 			<!-- 删除、保存 -->
-			<div>
-				<div>
-					<input type="button" class="btn add_cancel_btn" name="deletebtn"
-						value="删除选中股票"
-						style="margin-top: -10px; margin-bottom: 10px; margin-left: 45px; width: 100px;"
-						onclick="deleteST();" />
-				</div>
-			</div>
+			<div class="reset_st_btn"
+				style="margin-top: -10px; margin-bottom: 10px; margin-left: 45px; width: 140px;"
+				onclick="deleteST();">删除选中股票</div>
 
 			<div
 				style="margin-left: 45px; width: 1000px; border: dashed 1px rgb(200, 200, 200);">
@@ -258,6 +248,14 @@
 					</thead>
 				</table>
 			</div>
+		</div>
+	</div>
+
+	<%-- 无阻塞提示框 --%>
+	<div id="toaster_close">
+		<div id="toaster">
+			<div id="pic_div" class="green_pic"></div>
+			<div id="remind" class="green_word">提示消息</div>
 		</div>
 	</div>
 
@@ -383,6 +381,7 @@
 	<script type="text/javascript" src="../js/strategyhint.js"></script>
 	<script type="text/javascript" src="../js/strategy_deal.js"></script>
 	<script src="../js/common.min.js"></script>
+	<script src="../js/toaster.js"></script>
 	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
 		charset="UTF-8"></script>
 	<script type="text/javascript">

@@ -11,7 +11,7 @@ li {
 }
 
 .titlediv {
-	margin-top: 130px;
+	margin-top: 90px;
 	margin-left: 17%;
 }
 
@@ -180,7 +180,7 @@ li {
 	height: 227px;
 	position: fixed;
 	right: 100px;
-	top: 184px;
+	top: 144px;
 	border: solid 1px rgb(235, 235, 235);
 	border-radius: 4px;
 }

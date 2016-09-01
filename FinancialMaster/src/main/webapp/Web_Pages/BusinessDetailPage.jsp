@@ -103,7 +103,7 @@ li {
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div class="compare">
+	<div class="compare" >
 		<%
 			BusinessVO businessVO = (BusinessVO) session.getAttribute("BusinessDetail");
 			industriesPO update_message = businessVO.getUptodate_message();
@@ -111,7 +111,7 @@ li {
 			ArrayList<BusinessItemVO> businessItemVOs = businessVO.getBusinessItemVOs();
 		%>
 
-		<div class="headdiv">
+		<div class="headdiv" style="margin-top: 100px;">
 			<span class="headlbl"><%=update_message.getIndustry()%></span> <span
 				id="now"><%=update_message.getAverage_price()%></span> <span
 				id="rise_fall"><%=update_message.getRise_fall()%></span>

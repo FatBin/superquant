@@ -320,24 +320,13 @@ li {
 	</div>
 	<!-- End Modal -->
 
-	<!-- jQuery -->
 	<script src="../js/jquery.js"></script>
-
-	<!-- Bootstrap Core JavaScript -->
 	<script src="../js/bootstrap.min.js"></script>
-
-	<!-- Plugin JavaScript -->
 	<script
 		src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
-
-	<!-- Contact Form JavaScript -->
 	<script src="../js/jqBootstrapValidation.js"></script>
-
-	<!-- Custom Theme JavaScript -->
-	<script src="../js/agency.js"></script>
-
 	<script src='http://s1.yuehetong.com/sitemedia/js/jquery-2.2.1.min.js'></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>

@@ -110,7 +110,7 @@ li {
 
 	<div class="container">
 		<div class="compare" style="height: 450px;">
-			<h2 class="title" style="margin-top: 140px;">行业涨跌榜</h2>
+			<h2 class="title" style="margin-top: 100px;">行业涨跌榜</h2>
 			<div id="business_barchart"
 				style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
 		</div>

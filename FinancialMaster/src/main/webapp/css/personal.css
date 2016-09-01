@@ -14,7 +14,7 @@
 .portrait {
 	height: 140px;
 	width: 100px;
-	margin-top: 180px;
+	margin-top: 110px;
 }
 
 .username {
@@ -261,7 +261,7 @@ span_d_2.iner {
 	background-color: transparent;
 	border: 1px solid rgb(204, 204, 204);
 	position: absolute;
-	left: 50px;
+	left: 10px;
 	top: 10px;
 }
 
