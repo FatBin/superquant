@@ -35,7 +35,7 @@ $.ajax({
 
 option = {
 	 title: {
-	        text: '近一年波动情况'
+//	        text: '近一年波动情况'
 	    },
 	tooltip : {
 		trigger : 'axis'

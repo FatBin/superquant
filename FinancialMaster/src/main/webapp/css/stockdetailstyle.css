@@ -45,7 +45,7 @@ th {
 	background-color: rgb(249, 248, 243);
 	border-radius: 2px;
 	margin: 20px auto;
-	margin-top: 140px;
+	margin-top: 100px;
 	position: relative;
 }
 
@@ -128,7 +128,7 @@ th {
 .comprehensive_div {
 	height: 400px;
 	width: 910px;
-	margin: 20px auto;
+	margin: 0px auto;
 	position: relative;
 }
 
@@ -154,12 +154,6 @@ th {
 	height: 400px;
 	width: 800px;
 	margin: 20px auto;
-}
-
-.quotelbl {
-	position: absolute;
-	right: 10px;
-	top: 10px;
 }
 
 .toAnalysis {
