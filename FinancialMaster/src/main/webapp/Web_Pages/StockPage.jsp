@@ -121,8 +121,10 @@ th {
 	<!-- /.container-fluid --> </nav>
 
 	<div>
-		<p style="margin-top: 90px; font-size: 22px; margin-left: 18%;">热门股票推荐</p>
 		<div style="width: 850px; margin: 20px auto;">
+			
+			<p style="margin-top: 90px;margin-bottom:15px; font-size: 22px; margin-left: 5px;">热门股票推荐</p>
+			
 			<!-- 股票列表 -->
 			<div>
 

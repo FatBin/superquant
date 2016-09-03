@@ -106,6 +106,9 @@
 		BenchVO benchVO = (BenchVO) session.getAttribute("BenchMarket");
 	%>
 
+
+<div style="width: 800px;margin: 20px auto;">
+
 	<div class="combox">
 		<select id="stockSelect" class="form-control" style="width: 120px;"
 			onchange="changeStock(this.value);">
@@ -122,8 +125,8 @@
 				}
 			%>
 		</select>
-
 	</div>
+
 
 	<div class="headdiv">
 		<span id="now"><%=benchVO.getNow()%></span> <span id="rise_fall"><%=benchVO.getRise_fall_price()%></span>
@@ -153,6 +156,7 @@
 		<span class="fontlbl" style="left: 710px">平家数</span> <span id="com"
 			class="fontcontent" style="left: 710px"><%=benchVO.getCompany()%></span>
 	</div>
+</div>
 
 	<div id="klinechart" class="kline_div"></div>
 
