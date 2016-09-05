@@ -77,6 +77,7 @@
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
+				<li><a class="page-scroll" href="SimulatePage.jsp">模拟投资</a></li>
 			</ul>
 		</div>
 

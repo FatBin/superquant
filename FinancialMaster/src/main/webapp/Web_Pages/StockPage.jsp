@@ -96,12 +96,13 @@ th {
 			<ul class="nav navbar-nav navbar-left ">
 				<li class="hidden"><a href="#page-top"></a></li>
 
-				<li><a class="page-scroll active" href="HomePage.jsp">首页</a></li>
+				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
-				<li><a class="page-scroll" href="../ToStockPageServlet"
-					style="color: rgb(253,208,72);">个股</a></li>
+				<li><a class="page-scroll" style="color: rgb(253, 208, 72);"
+					href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
+				<li><a class="page-scroll" href="SimulatePage.jsp">模拟投资</a></li>
 			</ul>
 		</div>
 
@@ -122,9 +123,10 @@ th {
 
 	<div>
 		<div style="width: 850px; margin: 20px auto;">
-			
-			<p style="margin-top: 90px;margin-bottom:15px; font-size: 22px; margin-left: 5px;">热门股票推荐</p>
-			
+
+			<p
+				style="margin-top: 90px; margin-bottom: 15px; font-size: 22px; margin-left: 5px;">热门股票推荐</p>
+
 			<!-- 股票列表 -->
 			<div>
 

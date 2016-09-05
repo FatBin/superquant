@@ -9,24 +9,20 @@
 
 <link href="../css/LoginAndReg.css" rel="stylesheet">
 
-<!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-<!-- Custom CSS -->
 <link href="../css/agency.css" rel="stylesheet" type="text/css">
 
-<!-- Custom Fonts -->
 <link href="../css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
 
-<style>
-li {
-	list-style-type: none;
-}
-</style>
+<link href="../css/mycheckbox.css" rel="stylesheet" type="text/css">
 
+<link href="../css/simulatepage.css" rel="stylesheet" type="text/css">
+
+<link href="../css/strategystyle.css" rel="stylesheet" type="text/css">
 </head>
 
 <body id="page-top" class="index">
@@ -74,13 +70,13 @@ li {
 			<ul class="nav navbar-nav navbar-left ">
 				<li class="hidden"><a href="#page-top"></a></li>
 
-				<li><a class="page-scroll active" href="HomePage.jsp"
-					style="color: rgb(253,208,72);">首页</a></li>
+				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
-				<li><a class="page-scroll" href="SimulatePage.jsp">模拟投资</a></li>
+				<li><a class="page-scroll" style="color: rgb(253, 208, 72);"
+					href="SimulatePage.jsp">模拟投资</a></li>
 			</ul>
 		</div>
 
@@ -100,119 +96,9 @@ li {
 		<!-- /.container-fluid -->
 	</nav>
 
-	<!-- Header -->
-	<header>
-	<div class="jumbotron" style="background-color: #4A433B;">
-		<div class="container" id="header"
-			style="background-color: #4A433B; height: 479px;">
-			<div class="row" style="margin-top: 130px; width: 100%">
-				<div class="col-md-7">
-					<img class="img-responsive" src="../webImage/decorate.png">
-				</div>
-				<div class="col-md-1"></div>
-				<div class="col-md-3" style="margin-top: 45px;">
-					<div>
-						<span class="logoName" style="color: #FFFFFF;">Super</span> <span
-							class="logoName" style="color: orange;">Quant</span>
-					</div>
-					<div class="slogan">您的第一手证券信息</div>
-
-					<%
-						if (session.getAttribute("User") == null) {
-					%>
-
-					<input type="button" value="立即注册" name="regbtn"
-						class="bottons regbtns" data-toggle="modal"
-						data-target="#modalReg" /> <input type="button" value="登录"
-						name="login" class="bottons loginbtn" data-toggle="modal"
-						data-target="#modalLogin" />
-					<%
-						}
-					%>
-				</div>
-				<div class="col-md-1"></div>
-
-			</div>
-		</div>
-	</div>
-	</header>
 
 
-	<!-- Services Section -->
-	<section id="services"
-		style="background-color:#FFFCF6;height:500px; margin-top:-10px;">
-	<div class="container">
-		<div class="row" style="margin-top: -120px;">
-			<div class="col-lg-12 text-center">
-				<h2 class="section-heading">我们的服务</h2>
-				<h3 class="section-subheading text-muted">全面、丰富、多样 -
-					为您提供更简单、更高效的理财服务！</h3>
-			</div>
-		</div>
 
-		<div class="row text-center">
-			<div class="col-md-4" style="margin-top: -140px;">
-
-				<div
-					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
-					<img src="../webImage/dataImage.svg">
-				</div>
-
-				<p class="text-muted" align="left">
-					<strong>更全面的数据</strong> - 我们提供大盘、个股、行业更新更全面的信息。
-				</p>
-				<p class="text-muted" align="left">
-					<strong>主要内容</strong>
-				<ul align="left">
-					<li align="left" class="text-muted">数据：大盘、个股、行业的最新数据及历史数据！</li>
-					<li align="left" class="text-muted">分析：技术、大盘、行业、资金等多方面分析！</li>
-				</ul>
-
-				</p>
-			</div>
-
-			<div class="col-md-4" style="margin-top: -140px;">
-
-				<div
-					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
-					<img src="../webImage/graphImage.svg">
-				</div>
-
-				<p class="text-muted" align="left">
-					<strong>更丰富的图表</strong> - 将枯燥的数据可视化，给您更直观的对比和分析展示。
-				</p>
-				<p class="text-muted" align="left">
-					<strong>主要内容</strong>
-				<ul align="left">
-					<li align="left" class="text-muted">使用k线图、柱状图、折线图、饼状图等多种图表！</li>
-					<li align="left" class="text-muted">根据不同内容使用不同颜色展示，更直观！</li>
-					<li align="left" class="text-muted">不同图表添加到同一种表，对比更简单！</li>
-				</ul>
-			</div>
-
-			<div class="col-md-4" style="margin-top: -140px;">
-
-				<div
-					style="width: 124px; height: 124px; border-radius: 90px; position: relative; left: 100px; margin-top: 110px; margin-bottom: 20px;">
-					<img src="../webImage/functionImage.svg">
-				</div>
-
-				<p class="text-muted" align="left">
-					<strong>更多样的功能</strong> - 针对不同用户提供更加多样的功能，让您的理财过程更简洁高效。
-				</p>
-				<p class="text-muted" align="left">
-					<strong>主要内容</strong>
-				<ul align="left">
-					<li align="left" class="text-muted">提供登录功能，让收藏关注更简单！</li>
-					<li align="left" class="text-muted">提供策略模拟，给您展示能力的舞台！</li>
-					<li align="left" class="text-muted">支持名称和编码搜索，让查找更高效！</li>
-				</ul>
-
-			</div>
-
-		</div>
-	</div>
-	</section>
 
 	<!-- bottom section -->
 	<div style="background-color: #766F67; height: 200px;"></div>
@@ -332,6 +218,7 @@ li {
 	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/common.min.js"></script>
+	<script src="../js/simulatepage.js"></script>
 
 	<script>
 		(function() {

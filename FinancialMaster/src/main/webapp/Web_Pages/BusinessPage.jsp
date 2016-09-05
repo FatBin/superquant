@@ -79,12 +79,13 @@ li {
 			<ul class="nav navbar-nav navbar-left ">
 				<li class="hidden"><a href="#page-top"></a></li>
 
-				<li><a class="page-scroll active" href="HomePage.jsp">首页</a></li>
+				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet"
 					style="color: rgb(253, 208, 72);">行业</a></li>
 				<li><a class="page-scroll" href="StrategyPage.jsp">策略</a></li>
+				<li><a class="page-scroll" href="SimulatePage.jsp">模拟投资</a></li>
 			</ul>
 		</div>
 
@@ -110,7 +111,8 @@ li {
 
 	<div class="container">
 		<div class="compare" style="height: 450px;">
-			<h3 class="title" style="margin-top: 100px; height: 50px; line-height: 50px;">行业涨跌榜</h3>
+			<h3 class="title"
+				style="margin-top: 100px; height: 50px; line-height: 50px;">行业涨跌榜</h3>
 			<div id="business_barchart"
 				style="width: 100%; height: 400px; margin-left: auto; margin-right: auto;"></div>
 		</div>

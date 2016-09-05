@@ -12,6 +12,9 @@ function slidein(index, remindness) {
 
     if (remindness.length < 8) {
         document.getElementById("remind").style.marginLeft = "65px";
+    } else if(remindness.length > 8) {
+    	document.getElementById("remind").style.fontSize = "15px";
+    	document.getElementById("remind").style.marginLeft = "55px";
     }
 
     window.location.href = '#toaster';

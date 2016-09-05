@@ -78,12 +78,12 @@
 			<ul class="nav navbar-nav navbar-left ">
 				<li class="hidden"><a href="#page-top"></a></li>
 
-				<li><a class="page-scroll active" href="HomePage.jsp">首页</a></li>
+				<li><a class="page-scroll" href="HomePage.jsp">首页</a></li>
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
-				<li><a class="page-scroll" href="StrategyPage.jsp"
-					style="color: rgb(253, 208, 72);">策略</a></li>
+				<li><a class="page-scroll" style="color: rgb(253, 208, 72);" href="StrategyPage.jsp">策略</a></li>
+				<li><a class="page-scroll" href="SimulatePage.jsp">模拟投资</a></li>
 			</ul>
 		</div>
 
@@ -104,8 +104,11 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
-	<div class="makest_div">
+	<!-- 新建策略 -->
+	<div class="makest_div" id="makest" style="display: block;">
 
+		<i class="fa fa-times close_st" onclick="closeST()"></i>
+	
 		<!-- left part -->
 		<div style="display: inline-block;">
 			<div class="div_title">制定策略</div>

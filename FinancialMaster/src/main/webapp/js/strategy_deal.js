@@ -10,6 +10,7 @@ var tempcost = 0;
 var after_mod = 0; // 未修改为0， 经过修改为1
 var buytemp_mod = [ "", "", "", "", "", "", "", "", "", "" ]; // 修改的缓存
 var soldtemp_mod = [ "", "", "", "", "", "", "", "", "", "" ];
+var isSaved = 1; // 判断是否已保存，0未保存，1保存;
 
 var getID = [ "stockchoose", "cost", "startdate", "enddate", "buyinst",
 		"soldoutst", "otherst", "frequency" ];
@@ -63,11 +64,11 @@ function addStrategy() {
 		soldlist[count][i] = soldtemp[i];
 	}
 
-	if(document.getElementById("myST").style.display == "none") {
+	if (document.getElementById("myST").style.display == "none") {
 		document.getElementById("myST").style.display = "";
 	}
 	var table = document.getElementById("strategyTable");
-	
+
 	var tr = table.insertRow(1);
 	tr.style.height = "35px";
 	tr.align = "center";
@@ -157,6 +158,8 @@ function addStrategy() {
 		addbtn.innerHTML = "添加股票项";
 		document.getElementById("resetbtn").innerHTML = "重置";
 	}
+
+	isSaved = 0;
 }
 
 // 策略文字化; 0买入，1卖出
@@ -279,6 +282,8 @@ function deleteST() {
 	} else {
 		runST();
 	}
+
+	isSaved = 0;
 }
 
 // save
@@ -324,6 +329,7 @@ function saveST() {
 		}
 	})
 
+	isSaved = 1;
 }
 
 function selectAll() {
@@ -523,3 +529,54 @@ function runST() {
 		}
 	})
 }
+
+// 关闭新建策略块
+function closeST() {
+
+	// 判断策略是否已保存
+	if (isSaved == 0) {
+		slidein(2, "再次点击放弃未保存更改");
+		return;
+	}
+
+	var elem = document.getElementById("makest");
+	var speed = 15;
+	var opacity = 0;
+
+	var val = 100;
+	(function() {
+		iBase.SetOpacity(elem, val);
+		val -= 5;
+		if (val >= opacity) {
+			setTimeout(arguments.callee, speed);
+		} else if (val < 0) {
+			elem.style.display = 'none';
+		}
+	})();
+}
+
+// 打开新建策略块
+function launchST() {
+
+	var elem = document.getElementById("makest");
+	var speed = 20;
+	var opacity = 100;
+
+	elem.style.display = "block";
+	iBase.SetOpacity(elem, 0);
+	var val = 0;
+	(function() {
+		iBase.SetOpacity(elem, val);
+		val += 5;
+		if (val <= opacity) {
+			setTimeout(arguments.callee, speed)
+		}
+	})();
+}
+
+var iBase = {
+	SetOpacity : function(ev, v) {
+		ev.filters ? ev.style.filter = 'alpha(opacity=' + v + ')'
+				: ev.style.opacity = v / 100;
+	}
+};
