@@ -2,37 +2,52 @@
  *   大盘和个股分时图
  */
 
+
+function getTimeSharingDiagram(kind){
 var TimeSharingDiagram = echarts
 		.init(document.getElementById('timeSharingDiagram'));
-var kinds = [];
-var gaps = [];
+
+var servlet_url;
+var timeInterval;
+
+if (kind == "market") {
+	servlet_url = "../GetBenchTimeSharingDiagram";
+	timeInterval=10000;
+} else if (kind == "stock") {
+	servlet_url = "../GetStockTimeSharingDiagram";
+	timeInterval=300000;
+} else {
+	alert("不好意思，分时图类型未匹配到！！！");
+}
+
+
+var dates=[];
+var datas=[];
 
 $.ajax({
 	type : "get",
 	async : false, //同步执行
-	url : '../GetStockInflowPieChart',
+	url : servlet_url,
 	dataType : "json", //返回数据形式为json
 	success : function(result) {
 		if (result) {
 			for (var i = 0; i < result.length; i++) {
-				kinds.push(result[i].name);
-				gaps.push(result[i].gap);
+				dates.push(result[i].date);
+				datas.push(result[i].data);
 			}
 		}
 	},
 	error : function(errorMsg) {
-		alert("不好意思，资金流向差柱状图数据加载失败啦!");
+		alert("不好意思，时分图数据加载失败啦!");
 		myChart.hideLoading();
 	}
 })
 
-date=['8:00','9:00','10:00','11:00','12:00','13:00']
-data=[1,2,3,4,5,6]
 
 option = {
-    title: {
-        text: '大盘分时图'
-    },
+//    title: {
+//        text: '大盘分时图'
+//    },
     tooltip: {
         trigger: 'axis',
         // formatter: function (params) {
@@ -45,14 +60,14 @@ option = {
     },
     xAxis: {
         type: 'category',
-        data:date,
+        data:dates,
         splitLine: {
             show: false
         }
     },
     yAxis: {
         type: 'value',
-        boundaryGap: [0, '100%'],
+        scale:true,
         splitLine: {
             show: false
         }
@@ -74,7 +89,7 @@ option = {
         type: 'line',
         // showSymbol: false,
         hoverAnimation: false,
-        data: data
+        data: datas
     }]
 };
 
@@ -89,12 +104,13 @@ app.timeTicket = setInterval(function () {
 
     myChart.setOption({
         xAxis: {
-            data: date    //填入X轴数据
+            data: dates    //填入X轴数据
         },
         series: [{
-            data: data
+            data: datas
         }]
     });
-}, 2000);
+}, timeInterval);
 
 TimeSharingDiagram.setOption(option);
+}
