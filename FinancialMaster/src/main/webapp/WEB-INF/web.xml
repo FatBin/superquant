@@ -164,6 +164,16 @@
     <servlet-name>UpdateBenchVOServlet</servlet-name>
     <url-pattern>/UpdateBenchVO</url-pattern>
   </servlet-mapping>
+  
+    <!-- get：实时更新个股最新数据，post：得到更新后的个股最新数据（json返回） -->    
+  <servlet>
+    <servlet-name>UpdateStockDetailVOServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.UpdateStockDetailVOServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateStockDetailVOServlet</servlet-name>
+    <url-pattern>/UpdateStockDetailVO</url-pattern>
+  </servlet-mapping>
  
    <!-- get：为大盘历史数据表格提供数据，post： -->   
   <servlet>
@@ -326,6 +336,26 @@
   <servlet-mapping>
     <servlet-name>WRChartServlet</servlet-name>
     <url-pattern>/GetWRChart</url-pattern>
+  </servlet-mapping>
+  
+        <!-- get：为大盘分时图提供数据，post： -->    
+  <servlet>
+    <servlet-name>BenchTimeSharingServlet</servlet-name>
+    <servlet-class>servlet.stockmarket.GetBenchTimeSharingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BenchTimeSharingServlet</servlet-name>
+    <url-pattern>/GetBenchTimeSharingDiagram</url-pattern>
+  </servlet-mapping>
+  
+        <!-- get：为个股分时图提供数据，post： -->    
+  <servlet>
+    <servlet-name>StockTimeSharingServlet</servlet-name>
+    <servlet-class>servlet.stockcheck.GetStockTimeSharingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StockTimeSharingServlet</servlet-name>
+    <url-pattern>/GetStockTimeSharingDiagram</url-pattern>
   </servlet-mapping>
   
    <!-- get：增加关注的股票，post：删除我关注的股票 -->    
