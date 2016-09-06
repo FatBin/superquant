@@ -97,7 +97,31 @@
 		<!-- /.container-fluid -->
 	</nav>
 
+	<div class="makest_div" style="height: 345px;">
 
+		<div class="div_title">
+			新建委托
+			<div class="checkbox_div">
+				<input class="mui-switch mui-switch-animbg" type="checkbox">
+				<span class="usest_tip">使用策略</span>
+			</div>
+
+		</div>
+
+		<div
+			style="margin-left: 45px; margin-top: 15px; display: inline-block;">
+			<input class="st_textfileds" id="stockchoose" placeholder="输入股票"
+				onkeyup="showHint_st(this.value)">
+		</div>
+		<div id="stHint"></div>
+
+		<div class="selectStyle date_divs" style="margin-left: 11px;">
+			<input id="buyORsold" class="st_textfileds" placeholder="买入" readonly
+				onclick="buyORsold(this.value);">
+		</div>
+		<div id="buy_combox"></div>
+		
+	</div>
 
 
 
@@ -220,7 +244,7 @@
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/common.min.js"></script>
 	<script src="../js/simulatepage.js"></script>
-
+	<script type="text/javascript" src="../js/strategyhint.js"></script>
 	<script>
 		(function() {
 			var bp = document.createElement('script');

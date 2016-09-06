@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="VO.UserVO"%>
+<%@page import="java.util.*"%>
+<%@page import="DAO.pojo.Stock"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -82,7 +85,8 @@
 				<li><a class="page-scroll" href="../ToMarketPageServlet">大盘</a></li>
 				<li><a class="page-scroll" href="../ToStockPageServlet">个股</a></li>
 				<li><a class="page-scroll" href="../ToBusinessPageServlet">行业</a></li>
-				<li><a class="page-scroll" style="color: rgb(253, 208, 72);" href="StrategyPage.jsp">策略</a></li>
+				<li><a class="page-scroll" style="color: rgb(253, 208, 72);"
+					href="StrategyPage.jsp">策略</a></li>
 				<li><a class="page-scroll" href="SimulatePage.jsp">模拟投资</a></li>
 			</ul>
 		</div>
@@ -104,11 +108,69 @@
 	</div>
 	<!-- /.container-fluid --> </nav>
 
+	<!-- 未打开新建策略块 -->
+	<div id="launchST_before">
+		<div class="myST_title">
+			我的策略
+			<div class="reset_st_btn newST_btn" onclick="launchST();">新建</div>
+		</div>
+
+		<%
+			if (session.getAttribute("User") != null) {
+				UserVO userVO = (UserVO) session.getAttribute("User");
+				ArrayList<String> strategyList = userVO.getStrategy();
+
+				if (strategyList.size() > 0) {
+					for (int i = 0; i < strategyList.size(); i++) {
+						String strategy = strategyList.get(i);
+		%>
+
+		<div class="myst_copy">
+			<blockquote class="stname_title"><%=strategy %></blockquote>
+			<div>
+				<div class="myst_btn" style="width: 107px;">删除该策略</div>
+				<div class="myst_btn">策略模拟</div>
+				<div class="myst_btn">修改</div>
+			</div>
+
+			<table rules="rows" style="margin-top: 15px;">
+				<thead>
+					<tr align="center" valign="middle"
+						style="background-color: rgb(230, 230, 230); font-size: 16px; width: 100%;">
+						<td width="120" height="40">股票名称</td>
+						<td width="120">投资成本</td>
+						<td width="120">开始日期</td>
+						<td width="120">结束日期</td>
+						<td width="110">买卖频率</td>
+						<td width="250">买入策略</td>
+						<td width="250">卖出策略</td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+		<%
+			}
+				} else {
+		%>
+		<div class="noST_tip">您还没有已保存策略</div>
+		<%
+			}
+			} else {
+		%>
+		<div class="noST_tip">
+			您还未登录<br>新建策略将无法保存
+		</div>
+		<%
+			}
+		%>
+	</div>
+	
 	<!-- 新建策略 -->
-	<div class="makest_div" id="makest" style="display: block;">
+	<div class="makest_div" id="makest" style="display: none;">
 
 		<i class="fa fa-times close_st" onclick="closeST()"></i>
-	
+
 		<!-- left part -->
 		<div style="display: inline-block;">
 			<div class="div_title">制定策略</div>
@@ -375,6 +437,10 @@
 		</div>
 	</div>
 
+	<%-- 用来存放userId --%>
+	<a id="storage" style="display: none;"><%=session.getAttribute("User")%>
+	</a>
+
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
@@ -399,6 +465,8 @@
 			timepicker : false,
 			format : 'Y-m-d'
 		});
+		
+		initSTlist();
 	</script>
 </body>
 </html>

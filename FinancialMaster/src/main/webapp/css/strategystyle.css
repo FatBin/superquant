@@ -145,10 +145,11 @@ table td {
 	padding-left: 13px;
 }
 
-.st_textfileds::-webkit-input-placeholder,
-.st_textfileds_readonly::-webkit-input-placeholder {
+.st_textfileds::-webkit-input-placeholder, .st_textfileds_readonly::-webkit-input-placeholder
+	{
 	color: #90949b;
 	font-size: 16px;
+	font-weight: 300;
 }
 
 .st_textfileds:hover, .st_textfileds:focus {
@@ -294,3 +295,69 @@ table td {
 	cursor: pointer;
 }
 
+.myST_title {
+	width: 85%;
+	margin: 30px auto;
+	margin-top: 100px;
+	font-size: 28px;
+	color: #4a433b;
+}
+
+.newST_btn {
+	width: 50px;
+	height: 28px;
+	border: 1px solid #F8B31D;
+	background-color: #F8B31D;
+	color: #fff;
+	font-size: 14px;
+	line-height: 28px;
+	display: inline-block;
+	margin-left: 20px;
+	position: relative;
+	top: -5px;
+}
+
+.newST_btn:hover {
+	background-color: #f5d273;
+}
+
+.noST_tip {
+	font-size: 26px;
+	color: #cacaca;
+	text-align: center;
+	margin-top: 70px;
+	margin-bottom: 375px;
+}
+
+.myst_copy {
+	width: 85%;
+	margin: 20px auto;
+	margin-bottom: 50px;
+}
+
+.stname_title {
+	font-size: 20px;
+	color: #767676;
+	border-left:10px solid #ed8a20;
+	padding: 0;
+	padding-left: 15px;
+}
+
+.myst_btn {
+	width: 79px;
+	height: 29px;
+	border: 1px solid #4A433B;
+	border-radius: 4px;
+	color: #4A433B;
+	background-color: transparent;
+	font-size: 14px;
+	line-height: 29px;
+	text-align: center;
+	cursor: pointer;
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.myst_btn:hover {
+	opacity: 0.7;
+}

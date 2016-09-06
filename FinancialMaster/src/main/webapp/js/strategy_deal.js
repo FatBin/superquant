@@ -533,6 +533,8 @@ function runST() {
 // 关闭新建策略块
 function closeST() {
 
+	document.getElementById("launchST_before").style.display = "";
+
 	// 判断策略是否已保存
 	if (isSaved == 0) {
 		slidein(2, "再次点击放弃未保存更改");
@@ -558,6 +560,8 @@ function closeST() {
 // 打开新建策略块
 function launchST() {
 
+	document.getElementById("launchST_before").style.display = "none";
+
 	var elem = document.getElementById("makest");
 	var speed = 20;
 	var opacity = 100;
@@ -580,3 +584,79 @@ var iBase = {
 				: ev.style.opacity = v / 100;
 	}
 };
+
+function initSTlist() {
+
+	var userId = document.getElementById("storage").innerHTML.trim();
+	if (userId != null) {
+		var divs = document.getElementsByClassName("myst_copy");
+
+		for (var i = 0; i < divs.length; i++) {
+
+			var table = divs[i].getElementsByTagName("table")[0];
+			var stname = divs[i].getElementsByTagName("blockquote")[0].innerHTML.trim();
+			
+			var totalcost;
+			var buylist;
+			var soldlist;
+			var stlist;
+
+			$.ajax({
+				type : "post",
+				async : false, // 同步执行
+				url : "../ToStrategyPageServlet",
+				data : {
+					'StrategyName' : stname
+				},
+				dataType : "json",
+				success : function(result) {
+					totalcost = result[0].totalcost,
+							buylist = result[0].BuyList,
+							soldlist = result[0].SoldList,
+							stlist = result[0].perST
+				},
+				error : function(errorMsg) {
+					alert("不好意思，请求数据失败啦!");
+				}
+			});
+
+			var buyList = buylist.toString().split(";");
+			var stList = stlist.toString().split(";");
+			var soldList = soldlist.toString().split(";");
+
+			for (var k = 0; k < stList.length - 1; k++) {
+
+				var stl = stList[k].toString().split(",");
+				var buy = buyList[k].toString().split(",");
+				var sold = soldList[k].toString().split(",");
+
+				var tr = table.insertRow(1);
+				tr.style.height = "35px";
+				tr.align = "center";
+				tr.valign = "middle";
+				tr.style.fontSize = "16px";
+				for (var j = 0; j < stl.length; j++) {
+					var td = document.createElement("td");
+					if (j == stl.length - 1) {
+						td.innerHTML = "每" + stl[j] + "天";
+					} else {
+						td.innerHTML = stl[j];
+					}
+					tr.appendChild(td);
+				}
+
+				// 买入策略
+				var td = document.createElement("td");
+				td.style.fontSize = "13px";
+				td.innerHTML = stDeal(buy, 0);
+				tr.appendChild(td);
+
+				// 卖出策略
+				var td = document.createElement("td");
+				td.style.fontSize = "13px";
+				td.innerHTML = stDeal(sold, 1);
+				tr.appendChild(td);
+			}
+		}
+	}
+}

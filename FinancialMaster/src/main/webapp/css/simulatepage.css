@@ -1,3 +1,30 @@
 li {
 	list-style-type: none;
 }
+
+.checkbox_div {
+	margin-left: 49px;
+	display: inline-block;
+	position: relative;
+	top: 6px;
+}
+
+.usest_tip {
+	font-size: 18px;
+	font-weight: 200;
+	color: #90949b;
+	margin-left: 10px;
+	position: relative;
+	top: -8px;
+}
+
+#buy_combox {
+	position: absolute;
+	background-color: #fff;
+	width: 140px;
+	height: 30px;
+	text-align: center;
+	margin-left: 200px;
+	margin-top: 4px;
+	z-index: 10;
+}

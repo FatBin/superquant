@@ -44,3 +44,7 @@ function launchST(elem_id) {
 	})();
 }
 
+function buyORsold(str){
+	
+}
+

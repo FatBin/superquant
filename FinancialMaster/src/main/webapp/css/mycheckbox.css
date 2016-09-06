@@ -35,9 +35,9 @@
 }
 
 .mui-switch:checked {
-	border-color: #8eabf0;
-	box-shadow: #8eabf0 0 0 0 16px inset;
-	background-color: #8eabf0;
+	border-color: #e9bd8d;
+	box-shadow: #e9bd8d 0 0 0 16px inset;
+	background-color: #e9bd8d;
 }
 
 .mui-switch:checked:before {
@@ -54,7 +54,7 @@
 
 .mui-switch.mui-switch-animbg:checked {
 	box-shadow: #dfdfdf 0 0 0 0 inset;
-	background-color: #8eabf0;
+	background-color: #e9bd8d;
 	transition: border-color 0.4s, background-color ease 0.4s;
 }
 
