@@ -64,8 +64,10 @@ public class UpToDateStocksUpdate implements Runnable{
 						Double.parseDouble(temp[30]));
 				arrayList.add(po);
 			}
+			System.out.println(arrayList.size());
 			return arrayList;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new ArrayList<>();
 		}
 	}

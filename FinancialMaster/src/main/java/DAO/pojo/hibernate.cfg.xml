@@ -20,5 +20,10 @@
         <mapping class="DAO.pojo.UserStock" />
         <mapping class="DAO.pojo.Benchrecord" />
         <mapping class="DAO.pojo.Industries" />
+        <mapping class="DAO.pojo.Simulationcommission" />
+        <mapping class="DAO.pojo.TradeRecordAccurate" />
+        <mapping class="DAO.pojo.Simulation" />
+        <mapping class="DAO.pojo.BenchdataAccurate" />
+        <mapping class="DAO.pojo.Simulationprofit" />
     </session-factory>
 </hibernate-configuration>
