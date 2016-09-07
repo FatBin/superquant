@@ -2,10 +2,12 @@
  * 
  */
 
-var StrategyLineChart = echarts.init(document
-		.getElementById('strategyLineChart'));
 
-function getLinechart(url) {
+
+function getLinechart(url,id) {
+	
+	var StrategyLineChart = echarts.init(document
+			.getElementById(id));
 
 	var dates = [];
 

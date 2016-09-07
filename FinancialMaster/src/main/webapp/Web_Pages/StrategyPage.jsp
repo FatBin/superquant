@@ -129,8 +129,8 @@
 			<blockquote class="stname_title"><%=strategy %></blockquote>
 			<div>
 				<div class="myst_btn" style="width: 107px;">删除该策略</div>
-				<div class="myst_btn">策略模拟</div>
-				<div class="myst_btn">修改</div>
+				<div class="myst_btn"  onclick="runmyST(<%=i %>)">策略模拟</div>
+				<div class="myst_btn" onclick="modmyST(<%=i %>)">修改</div>
 			</div>
 
 			<table rules="rows" style="margin-top: 15px;">
@@ -435,6 +435,17 @@
 				class="btn add_cancel_btn cancel_btn" value="取消"
 				onclick="modifyCancel()" />
 		</div>
+	</div>
+	
+	<!-- 策略模拟 -->
+	<div id="mystRun" class="content_st"
+		style="display: none;">
+		<span_d_2 class="out"></span_d_2>
+		<span_d_2 class="iner"></span_d_2>
+	
+		<div id="strategyLineChart_2" style="width: 950px; height: 360px;margin: 20px auto;"></div>
+
+		<input id="backbtn_2" type="button" class="btn" value='返回' />
 	</div>
 
 	<%-- 用来存放userId --%>

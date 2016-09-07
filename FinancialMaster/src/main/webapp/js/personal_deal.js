@@ -121,8 +121,7 @@ function runST(pos) {
 	var nameId = "name" + (pos + "");
 	var stName = document.getElementById(nameId).innerHTML;
 
-	$
-			.ajax({
+	$.ajax({
 				type : "post",
 				async : false, // 同步执行
 				url : "../RunMyStrategy",
@@ -147,7 +146,7 @@ function runST(pos) {
 						div.style.display = "none";
 					}
 
-					getLinechart("../RunMyStrategy");
+					getLinechart("../RunMyStrategy", 'strategyLineChart');
 				},
 				error : function(errorMsg) {
 					alert("不好意思，请求数据失败啦!");

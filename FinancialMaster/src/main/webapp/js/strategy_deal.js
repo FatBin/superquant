@@ -471,24 +471,6 @@ function setLimit(pos) {
 	}
 }
 
-// 修改策略块
-function setLimit_2(pos) {
-
-	var combox = document.getElementById(comboxs_2[pos]);
-
-	pos = pos * 2;
-
-	if (combox.checked == true) {
-		document.getElementById(texts_2[pos]).readOnly = false;
-		document.getElementById(texts_2[pos + 1]).readOnly = false;
-	} else {
-		document.getElementById(texts_2[pos]).value = "";
-		document.getElementById(texts_2[pos + 1]).value = "";
-		document.getElementById(texts_2[pos]).readOnly = true;
-		document.getElementById(texts_2[pos + 1]).readOnly = true;
-	}
-}
-
 function runST() {
 
 	var buydata = new Array();
@@ -522,7 +504,7 @@ function runST() {
 			if (div.style.display == "none") {
 				div.style.display = "block";
 			}
-			getLinechart("../RunStrategy");
+			getLinechart("../RunStrategy", 'strategyLineChart');
 		},
 		error : function() {
 			slidein(1, "策略模拟失败");
@@ -533,13 +515,14 @@ function runST() {
 // 关闭新建策略块
 function closeST() {
 
-	document.getElementById("launchST_before").style.display = "";
-
 	// 判断策略是否已保存
 	if (isSaved == 0) {
 		slidein(2, "再次点击放弃未保存更改");
+		isSaved = 1;
 		return;
 	}
+	
+	document.getElementById("launchST_before").style.display = "";
 
 	var elem = document.getElementById("makest");
 	var speed = 15;
@@ -555,6 +538,19 @@ function closeST() {
 			elem.style.display = 'none';
 		}
 	})();
+	
+	resetAll();
+	perST = new Array();
+	count = 0;
+	var table = document.getElementById("strategyTable");
+	var trs = table.getElementsByTagName("tr");
+	var rowslen = trs.length - 1;
+	if(rowslen > 0) {
+		for(var m=rowslen; m>0; m--) {
+			table.deleteRow(m);
+			table.removeChild(trs[m]);
+		}
+	}
 }
 
 // 打开新建策略块
@@ -594,8 +590,9 @@ function initSTlist() {
 		for (var i = 0; i < divs.length; i++) {
 
 			var table = divs[i].getElementsByTagName("table")[0];
-			var stname = divs[i].getElementsByTagName("blockquote")[0].innerHTML.trim();
-			
+			var stname = divs[i].getElementsByTagName("blockquote")[0].innerHTML
+					.trim();
+
 			var totalcost;
 			var buylist;
 			var soldlist;
@@ -659,4 +656,114 @@ function initSTlist() {
 			}
 		}
 	}
+}
+
+// 删除大的策略
+function delmyST() {
+
+}
+
+// 修改大的策略
+function modmyST(pos) {
+	
+	var stname = document.getElementsByClassName("myst_copy")[pos]
+					.getElementsByTagName("blockquote")[0].innerHTML.trim();
+	
+	var totalcost;
+	var buylist;
+	var soldlist;
+	var stlist;
+	
+	$.ajax({
+		type : "post",
+		async : false, // 同步执行
+		url : "../ToStrategyPageServlet",
+		data : {
+			'StrategyName' : stname
+		},
+		dataType : "json",
+		success : function(result) {
+			totalcost = result[0].totalcost,
+			buylist = result[0].BuyList,
+			soldlist = result[0].SoldList,
+			stlist = result[0].perST
+			
+			launchST();
+		},
+		error : function(errorMsg) {
+			alert("不好意思，请求数据失败啦!");
+		}
+	});
+	
+	document.getElementById("strategyname").value = stname;
+	document.getElementById("totalcost").value  = totalcost;
+	setName();
+		
+	var buyList = buylist.toString().split(";");
+	var stList = stlist.toString().split(";");
+	var soldList = soldlist.toString().split(";");
+
+	for (var i = 0; i < stList.length - 1; i++) {
+		
+		var eachst = stList[i].split(",");
+		for(var j=0; j<eachst.length - 1; j++) {
+			document.getElementById(getID[j]).value = eachst[j];
+		}
+		document.getElementById(getID[getID.length - 1]).value = eachst[eachst.length - 1];
+		
+		buytemp = buyList[i].split(",");
+		soldtemp = soldList[i].split(",");
+		
+		for(var k=0; k<comboxs.length; k++) {
+			if(buytemp[k*2] == 0 && buytemp[k*2 + 1] == 0) {
+				buytemp[k*2] = "";
+				buytemp[k*2 + 1] = "";
+			}
+			
+			if(soldtemp[k*2] == 0 && soldtemp[k*2 + 1] == 0) {
+				soldtemp[k*2] = "";
+				soldtemp[k*2 + 1] = "";
+			}
+		}
+		
+		addStrategy();
+	}
+	
+}
+
+// 模拟大的策略
+function runmyST(pos) {
+	
+	var stName = document.getElementsByClassName("myst_copy")[pos]
+			.getElementsByTagName("blockquote")[0].innerHTML.trim();
+	
+	$.ajax({
+				type : "post",
+				async : false, // 同步执行
+				url : "../RunMyStrategy",
+				data : {
+					'StrategyName' : stName
+				},
+				dataType : "json",
+				success : function(result) {
+					var div = document.getElementById("mystRun");
+					if (div.style.display == "none") {
+						div.style.display = "block";
+					}
+					div.style.position = "absolute";
+					div.style.top = (document.getElementsByClassName("myst_copy")[pos].offsetTop + 75)
+							+ "px";
+					div.style.left = (document.getElementsByClassName("myst_copy")[pos].offsetLeft)
+							+ "px";
+
+					document.getElementById("backbtn_2").onclick = function() {
+						div.style.display = "none";
+					}
+
+					getLinechart("../RunMyStrategy", 'strategyLineChart_2');
+				},
+				error : function(errorMsg) {
+					alert("不好意思，请求数据失败啦!");
+				}
+			})
 }
