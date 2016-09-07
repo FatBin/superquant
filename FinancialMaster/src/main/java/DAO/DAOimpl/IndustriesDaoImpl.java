@@ -45,6 +45,7 @@ public class IndustriesDaoImpl implements IndustriesDao{
 		Session session=DBconnection.getSession();
 		Query query=session.createQuery(hql);
 		List list=query.list();
+		session.close();
 		return list;
 	}
 
