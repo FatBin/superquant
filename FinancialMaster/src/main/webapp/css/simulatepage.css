@@ -18,13 +18,11 @@ li {
 	top: -8px;
 }
 
-#buy_combox {
-	position: absolute;
-	background-color: #fff;
-	width: 140px;
-	height: 30px;
-	text-align: center;
-	margin-left: 200px;
-	margin-top: 4px;
-	z-index: 10;
+.tips_word {
+	width: 291px;
+	margin-left: 45px;
+	margin-top: 20px;
+	font-size: 12px;
+	font-weight: 200;
+	color: #acaaa8;
 }

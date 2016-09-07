@@ -238,6 +238,7 @@ table td {
 
 .used_money {
 	font-size: 20px;
+	font-weight: 300;
 	color: #e9bd8c;
 	display: inline-block;
 }

@@ -242,7 +242,7 @@
 
 			<div id="addST" class="add_st_btn" onclick="addStrategy()">添加股票项</div>
 
-			<div id="resetbtn" class="reset_st_btn" onclick="resetAll_btn()">重置</div>
+			<div id="resetbtn" class="reset_st_btn" onclick="resetAll_btn()">重&nbsp;&nbsp;置</div>
 		</div>
 
 		<div id="add_before" class="st_run_div">

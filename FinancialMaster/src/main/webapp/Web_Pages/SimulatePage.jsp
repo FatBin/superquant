@@ -97,30 +97,55 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-	<div class="makest_div" style="height: 345px;">
+	<div class="makest_div">
 
-		<div class="div_title">
-			新建委托
-			<div class="checkbox_div">
-				<input class="mui-switch mui-switch-animbg" type="checkbox">
-				<span class="usest_tip">使用策略</span>
+		<div style="display: inline-block;">
+			<div class="div_title">
+				新建交易
+				<div class="checkbox_div">
+					<input class="mui-switch mui-switch-animbg" type="checkbox">
+					<span class="usest_tip">使用策略</span>
+				</div>
+
 			</div>
 
-		</div>
+			<div
+				style="margin-left: 45px; margin-top: 15px; display: inline-block;">
+				<input class="st_textfileds" id="stockchoose" placeholder="股票代码/名称"
+					onkeyup="showHint_st(this.value)">
+			</div>
+			<div id="stHint"></div>
 
-		<div
-			style="margin-left: 45px; margin-top: 15px; display: inline-block;">
-			<input class="st_textfileds" id="stockchoose" placeholder="输入股票"
-				onkeyup="showHint_st(this.value)">
-		</div>
-		<div id="stHint"></div>
+			<div
+				style="margin-left: 11px; margin-top: 15px; display: inline-block;">
+				<input id="stocknums" class="st_textfileds" placeholder="买入股数">
+			</div>
 
-		<div class="selectStyle date_divs" style="margin-left: 11px;">
-			<input id="buyORsold" class="st_textfileds" placeholder="买入" readonly
-				onclick="buyORsold(this.value);">
+			<div class="tips_word">tips: 模拟交易与真实交易略有不同，将会直接以最新价格成交</div>
+
+			<div class="money_left" style="margin-top: 70px;">
+				剩余本金:&nbsp;&nbsp;<span id="moneyleft">10000</span>
+			</div>
+
+			<div class="add_st_btn" onclick="">购&nbsp;&nbsp;买</div>
+
+			<div class="reset_st_btn" onclick="">取&nbsp;&nbsp;消</div>
 		</div>
-		<div id="buy_combox"></div>
 		
+		<!-- 时分图 -->
+		<div class="st_run_div" style="height: 295px; display: inline-block;">
+			
+			<div class="used_money">
+				已用本金：<span id="usedmoney">10000</span>
+			</div>
+			
+			<div class="run_pic" style="height: 220px;">
+				<div id="strategyLineChart"
+					style="width: 580px; height: 200px; display: none;"></div>
+			</div>
+			
+		</div>
+
 	</div>
 
 
