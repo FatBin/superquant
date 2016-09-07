@@ -1,4 +1,4 @@
-package DAO.test;
+package TestBenchData;
 
 import static org.junit.Assert.*;
 

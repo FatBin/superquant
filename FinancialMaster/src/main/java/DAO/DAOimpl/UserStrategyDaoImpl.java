@@ -65,7 +65,9 @@ public class UserStrategyDaoImpl implements UserStrategyDao {
 	public List getData(String hql) throws Exception{
 		Session session=DBconnection.getSession();
 		Query query=session.createQuery(hql);
-		return query.list();
+		List list=query.list();
+		session.close();
+		return list;
 	}
 	
 	
