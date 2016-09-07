@@ -33,6 +33,7 @@ function getLinechart(url,id) {
 	})
 
 	option = {
+		backgroundColor: "transparent",
 		tooltip : {
 			trigger : 'axis',
 			position : function(pt) {

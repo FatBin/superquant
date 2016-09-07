@@ -128,7 +128,7 @@
 		<div class="myst_copy">
 			<blockquote class="stname_title"><%=strategy %></blockquote>
 			<div>
-				<div class="myst_btn" style="width: 107px;">删除该策略</div>
+				<div class="myst_btn" style="width: 107px;" onclick="delmyST(this)">删除该策略</div>
 				<div class="myst_btn"  onclick="runmyST(<%=i %>)">策略模拟</div>
 				<div class="myst_btn" onclick="modmyST(<%=i %>)">修改</div>
 			</div>

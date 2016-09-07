@@ -318,6 +318,8 @@ function saveST() {
 		success : function(result) {
 			if (result[0].SaveResult == "Succeed") {
 				slidein(0, "保存成功");
+				
+				setTimeout("window.location.reload()", 1800);
 			} else if (result[0].SaveResult == "Unlogin") {
 				slidein(2, "您还没登录");
 			} else {
@@ -539,9 +541,16 @@ function closeST() {
 		}
 	})();
 	
+	// 重置	
 	resetAll();
 	perST = new Array();
 	count = 0;
+	document.getElementById("strategyname").value = "";
+	document.getElementById("totalcost").value = "";
+	document.getElementById("add_before").style.display = "";
+	document.getElementById("add_after").style.display = "none";
+	document.getElementById("myST").style.display = "none";
+	
 	var table = document.getElementById("strategyTable");
 	var trs = table.getElementsByTagName("tr");
 	var rowslen = trs.length - 1;
@@ -572,6 +581,10 @@ function launchST() {
 			setTimeout(arguments.callee, speed)
 		}
 	})();
+	
+	$("body,html").animate({
+		scrollTop : 20
+	}, 500);
 }
 
 var iBase = {
@@ -659,8 +672,32 @@ function initSTlist() {
 }
 
 // 删除大的策略
-function delmyST() {
+function delmyST(chnode) {
 
+	var childnode = chnode.parentNode.parentNode;
+	var stName = childnode.getElementsByTagName("blockquote")[0].innerHTML.trim();
+	
+	$.ajax({
+		type : "post",
+		async : false, // 同步执行
+		url : "../ManageMyStrategy",
+		data : {
+			'stName' : stName
+		},
+		dataType : "json",
+		success : function(result) {
+			if (result[0].DeleteResult == "Succeed") {
+				slidein(0, "删除成功");
+			}
+		},
+		error : function(errorMsg) {
+			alert("不好意思，请求数据失败啦!");
+		}
+	});
+	
+	var parentdiv = document.getElementById("launchST_before");
+	parentdiv.removeChild(childnode);
+	
 }
 
 // 修改大的策略
@@ -669,11 +706,11 @@ function modmyST(pos) {
 	var stname = document.getElementsByClassName("myst_copy")[pos]
 					.getElementsByTagName("blockquote")[0].innerHTML.trim();
 	
+ 	// 获取策略信息
 	var totalcost;
 	var buylist;
 	var soldlist;
 	var stlist;
-	
 	$.ajax({
 		type : "post",
 		async : false, // 同步执行
@@ -726,6 +763,22 @@ function modmyST(pos) {
 			}
 		}
 		
+		// 删除原有策略
+	 	$.ajax({
+			type : "post",
+			async : false, // 同步执行
+			url : "../ManageMyStrategy",
+			data : {
+				'stName' : stname
+			},
+			dataType : "json",
+			success : function(result) {
+			},
+			error : function(errorMsg) {
+				alert("不好意思，请求数据失败啦!");
+			}
+		});
+	 	
 		addStrategy();
 	}
 	
