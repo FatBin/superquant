@@ -11,4 +11,6 @@ public interface BenchInfo {
 	//根据指定的大盘指数返回对应的大盘VO
 	public BenchVO getStockMarket(String benchCode);
 	
+	//返回指定大盘当日分时图所需数据
+	public String[][] getTimeSharingData(String benchCode);
 }

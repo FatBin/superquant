@@ -23,8 +23,9 @@ import web.bl.businessImpl.BusinessImpl;
 import web.blservice.benchInfo.BenchInfo;
 import web.blservice.businessInfo.BusinessInfo;
 import web.blservice.stockInfo.StockInfo;
+import web.blservice.stockInfo.StockUpdateInfo;
 
-public class StockImpl implements StockInfo {
+public class StockImpl implements StockInfo,StockUpdateInfo {
 
 	@Override
 	public StockDetailVO getStock(String code) {
@@ -217,6 +218,18 @@ public class StockImpl implements StockInfo {
 	private void analyze(StockDetailVO stockDetailVO) {
 		StockAnalyze stockAnalyze=new StockAnalyze();
 		stockAnalyze.comprehensiveAnalyze(stockDetailVO);
+	}
+
+	@Override
+	public String[][] getTimeSharingData(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UpToDateStockPO update(UpToDateStockPO upToDateMessage) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

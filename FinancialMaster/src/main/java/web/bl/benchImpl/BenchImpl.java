@@ -125,4 +125,39 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		return ManageState.Fail;
 	}
 
+	@Override
+	public String[][] getTimeSharingData(String benchCode) {
+		String id="";
+		List<Bench> benchList;
+		try {
+			benchList = bds.getBench();
+			for (Bench bench : benchList) {
+				if(bench.getBenchName().equals(benchCode)){
+					id=bench.getBenchId();
+					break;
+				}
+			}
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		
+		
+		return null;
+	}
+
+	@Override
+	public String getState() {
+		BenchRecordService benchRecordService=new BenchRecord();
+		try {
+			benchCurrentDataPO currentBenchPO=benchRecordService.getLastestRecord("sh000300");
+			return currentBenchPO.getStatus();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "数据获取失败";
+	}
+
 }

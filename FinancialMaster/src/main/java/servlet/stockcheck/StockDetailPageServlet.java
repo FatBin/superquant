@@ -49,6 +49,7 @@ public class StockDetailPageServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id=request.getParameter("Stockid");
+		request.getSession().setAttribute("Stockid", id);
 		StockInfo stockInfo=new StockImpl();
 		StockDetailVO detailVO=stockInfo.getStock(id);
 		boolean isConcerned=false;
