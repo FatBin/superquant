@@ -24,6 +24,8 @@
 
 <link href="../css/strategystyle.css" rel="stylesheet" type="text/css">
 
+<link rel="stylesheet"
+	href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 
 <body id="page-top" class="index">
@@ -97,7 +99,66 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-	<div class="makest_div">
+	<div style="width: 80%; margin: 30px auto; margin-top: 90px;">
+
+		<div class="my_sim_title">
+			<div style="display: inline-block;">
+				资产净值：<span id="totalfund">10000元</span>
+
+				<div class="init_fund">1W原始资本</div>
+
+			</div>
+
+			<div style="display: inline-block; margin-left: 50px;">
+				我的收益：<span id="myprofit" style="color: #e35339;">+1000元</span>
+			</div>
+
+			<div style="display: inline-block; margin-left: 50px;">
+				购买力：<span id="buyability" style="color: #f8b31d;">10000元</span>
+			</div>
+
+			<div class="reset_st_btn newST_btn"
+				style="width: 84px; height: 29px; display: inline-block; margin-left: 80px;"
+				onclick="addStore();">增加持仓</div>
+
+		</div>
+
+		<!-- 引导图/持有股表格 -->
+		<div id="intro_img"
+			style="width: 100%; height: 316px; margin-top: 30px; margin-bottom: 90px; background-color: gray;">
+
+			<img style="width: 60%; display: block;"
+				src="../webImage/strategy_tip.png">
+
+			<!-- 持有股表格 -->
+			<table id="strategyTable" rules="rows">
+				<thead>
+					<tr align="center" valign="middle"
+						style="background-color: rgb(230, 230, 230); font-size: 16px;">
+						<td width="60">
+							<div style="margin-left: -20px;">
+								<input type="checkbox" onchange="selectAll();" />
+							</div>
+						</td>
+
+						<td width="105" height="40">股票名称</td>
+						<td width="85">投资成本</td>
+						<td width="105">开始日期</td>
+						<td width="105">结束日期</td>
+						<td width="192">买入策略</td>
+						<td width="192">卖出策略</td>
+						<td width="90">其他策略</td>
+						<td width="90">买卖频率</td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+
+	<div id="new_buy" class="makest_div"
+		style="display: none; margin-top: 0; width: 80%; margin-bottom: 90px;">
+
+		<i class="fa fa-times close_st" onclick="closeStore()"></i>
 
 		<div style="display: inline-block;">
 			<div class="div_title">
@@ -131,24 +192,101 @@
 
 			<div class="reset_st_btn" onclick="">取&nbsp;&nbsp;消</div>
 		</div>
-		
+
 		<!-- 时分图 -->
 		<div class="st_run_div" style="height: 295px; display: inline-block;">
-			
+
 			<div class="used_money">
 				已用本金：<span id="usedmoney">10000</span>
 			</div>
-			
+
 			<div class="run_pic" style="height: 220px;">
 				<div id="strategyLineChart"
 					style="width: 580px; height: 200px; display: none;"></div>
 			</div>
-			
+
 		</div>
 
 	</div>
 
+	<!-- 历史交易、累计盈亏 -->
+	<div style="width: 80%; margin: 30px auto; margin-top: 140px; vertical-align:top">
 
+		<div style="width: 55%; display: inline-block;">
+
+			<blockquote class="stname_title">历史交易</blockquote>
+
+			<div style="width: 100%; background-color: #fcfcfc;">
+
+				<!-- 买 -->
+				<div class="his_each">
+					<div class="syb_buy" style="display: inline-block;">买</div>
+					
+					<div class="usest_syb" style="display: none;">策略</div>
+
+					<div style="margin-left: 85px; display: inline-block;">
+						<span style="font-size: 18px; color: #4a433b;">浦发银行</span><br>
+						<span style="font-size: 14px; color: #9e9a95;">sh600000</span>
+					</div>
+					
+					<div style="margin-left: 40px; display: inline-block;">
+						<span style="font-size: 18px; color: #4a433b;">30元</span><br>
+						<span style="font-size: 14px; color: #9e9a95;">200股</span>
+					</div>
+					
+					<div style="margin-left: 80px; display: inline-block;">
+						<span style="font-size: 18px; color: #f8b31d">-3000元</span><br>
+						<span style="font-size: 14px; color: #9e9a95;">2016-9-10 14:59:00</span>
+					</div>
+				</div>
+				
+				<!-- 卖 -->
+				<div class="his_each" style="background-color: #fff8ea;">
+					<div class="syb_buy" style="display: inline-block;">卖</div>
+					
+					<div class="usest_syb">策略</div>
+
+					<div style="margin-left: 60px; display: inline-block;">
+						<span style="font-size: 18px; color: #4a433b;">浦发银行</span><br>
+						<span style="font-size: 14px; color: #9e9a95;">sh600000</span>
+					</div>
+					
+					<div style="margin-left: 40px; display: inline-block;">
+						<span style="font-size: 18px; color: #4a433b;">30元</span><br>
+						<span style="font-size: 14px; color: #9e9a95;">200股</span>
+					</div>
+					
+					<div style="margin-left: 80px; display: inline-block;">
+						<span style="font-size: 18px; color: #f8b31d">+3000元</span><br>
+						<span style="font-size: 14px; color: #9e9a95;">2016-9-10 14:59:00</span>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div style="width: 40%; margin-left: 4%; display: inline-block; vertical-align:top">
+
+			<blockquote class="stname_title">策略累计盈亏</blockquote>
+
+			<div style="width: 100%; background-color: #fcfcfc;">
+			
+				<div class="used_sts">
+					<span>MyStrategy</span>
+					<span style="color: #c4330c; float: right;">+5000元</span>
+				</div>
+				
+				<div class="used_sts">
+					<span>technical</span>
+					<span style="color: #186b03; float: right;">-1000元</span>
+				</div>
+			
+			</div>
+
+		</div>
+
+	</div>
 
 	<!-- bottom section -->
 	<div style="background-color: #766F67; height: 200px;"></div>

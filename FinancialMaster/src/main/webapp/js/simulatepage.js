@@ -44,3 +44,12 @@ function launchST(elem_id) {
 	})();
 }
 
+function addStore() {
+	document.getElementById("intro_img").style.display = "none";
+	launchST("new_buy");
+}
+
+function closeStore() {
+	document.getElementById("new_buy").style.display = "none";
+	launchST("intro_img");
+}
