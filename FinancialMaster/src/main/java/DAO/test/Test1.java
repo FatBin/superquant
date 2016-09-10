@@ -18,11 +18,24 @@ public class Test1 {
 
 	public static void main(String[] args) {
 		
+//		try {
+//			Document document=Jsoup.connect("http://data.10jqka.com.cn/rank/ljqs/field/count/order/desc/page/2/ajax/1/").get();
+//			System.out.println(document);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		
+		DBconnection dBconnection=new DBconnection();
 		try {
-			Document document=Jsoup.connect("http://data.10jqka.com.cn/rank/ljqs/field/count/order/desc/page/2/ajax/1/").get();
-			System.out.println(document);
+			String hql="delete from Simulation where 1=1";
+			Session session=dBconnection.getSession();
+			Transaction transaction=session.beginTransaction();
+			session.createQuery(hql).executeUpdate();
+			transaction.commit();
+			session.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
