@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 
 import VO.StockDetailVO;
+import VO.TechnicalChart.CCI_VO;
+import web.bl.stockImpl.TechnicalChartImpl;
+import web.blservice.stockInfo.TechnicalChartInfo;
 
 /**
  * Servlet implementation class CCIservlet
@@ -40,9 +43,7 @@ public class CCIservlet extends HttpServlet {
 	 int length=historyData.length;
 	 double close[]=new double[length];
 	 double high[]=new double[length];
-	 double low[]=new double[length];
-	
-	 
+	 double low[]=new double[length];		 
 	 
 	 for(int i=0;i<length;i++){	
 		 close[i]=Double.parseDouble(historyData[i][2]);
@@ -50,38 +51,13 @@ public class CCIservlet extends HttpServlet {
          low[i]=Double.parseDouble(historyData[i][4]);
 	 }
 	
-	 length-=6;
-	 double cci[]=new double[length];
-	 double tp,ma,md;
-	 for (int i = 0; i < length; i++) {
-		tp=(close[i]+high[i]+low[i])/3;
-		ma=0;
-		for (int j = 0; j < 7; j++) {
-			ma+=close[i+j];			
-		}
-		ma/=7;
-		md=0;
-		for (int j = 0; j < 7; j++) {
-			md+=Math.abs(close[i+j]-ma);			
-		}
-		md/=7;
-		
-		cci[i]=(tp-ma)/md/0.015;
-	}
-	 
-	length-=5;
-	double macci[]=new double[length];
-	
-	for (int i = 0; i < length; i++) {
-		macci[i]=0;
-		for (int j = 0; j < 6; j++) {
-			macci[i]+=cci[i+j];
-		}
-		macci[i]/=6;
-	}
+	 TechnicalChartInfo technicalChartInfo=new TechnicalChartImpl();
+	 CCI_VO cci_VO=technicalChartInfo.getCCI(close, high, low);
+	 double cci[]=cci_VO.getCci();
+	 double macci[]=cci_VO.getMacci();
 	 
 	String data="[";
-	for (int i = length-1; i >=0; i--) {
+	for (int i = macci.length-1; i >=0; i--) {
 		data=data+"{'date':"+historyData[i][0]+
 				",'CCI':"+cci[i]+
 				",'CCIMA':"+macci[i]+"},";

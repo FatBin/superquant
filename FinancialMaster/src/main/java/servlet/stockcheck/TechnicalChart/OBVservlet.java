@@ -41,21 +41,21 @@ public class OBVservlet extends HttpServlet {
 	 double close;
 	 double high;
 	 double low;
-	 double volumn;
+	 double volume;
 	 double obv[]=new double[length];
 	 
 	 for(int i=0;i<length;i++){	
 		 close=Double.parseDouble(historyData[i][2]);
          high=Double.parseDouble(historyData[i][3]);
          low=Double.parseDouble(historyData[i][4]);
-         volumn=Double.parseDouble(historyData[i][6]);
-         obv[i]=((close-low)-(high-close))/(high-low)*volumn;
+         volume=Double.parseDouble(historyData[i][6]);
+         obv[i]=((close-low)-(high-close))/(high-low)*volume;
 	 }
 	
 	String data="[";
 	for (int i = length-1; i >=0; i--) {
 		data=data+"{'date':"+historyData[i][0]+
-				",'OBV':"+obv[i]+"},";
+				",'OBV':"+obv[i]/100000000+"},";
 	}
 	data+="]";
 	JSONArray json = new JSONArray(data);

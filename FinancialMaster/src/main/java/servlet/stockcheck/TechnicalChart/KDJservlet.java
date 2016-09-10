@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 
 import VO.StockDetailVO;
+import VO.TechnicalChart.KDJ_VO;
+import web.bl.stockImpl.TechnicalChartImpl;
+import web.blservice.stockInfo.TechnicalChartInfo;
 
 /**
  * Servlet implementation class KDJservlet
@@ -44,42 +47,16 @@ public class KDJservlet extends HttpServlet {
          high[i]=Double.parseDouble(historyData[i][3]);
          low[i]=Double.parseDouble(historyData[i][4]);
 	 }
-	 int result_length=length-8;
-	 double rsv[]=new double[result_length];
-	 double k[]=new double[result_length];
-	 double d[]=new double[result_length];
-	 double j[]=new double[result_length];
+
+	 TechnicalChartInfo technicalChartInfo=new TechnicalChartImpl();
+	 KDJ_VO kdj_VO=technicalChartInfo.getKDJ(close, high, low);
 	 
-	 for (int i = 0; i < result_length; i++) {
-		double h9=Double.MIN_VALUE;
-		double l9=Double.MAX_VALUE;
-		for (int l = 0; l < 9; l++) {
-			if(high[i+l]>h9){
-				h9=high[i+l];
-			}
-			if(low[i+l]<l9){
-				l9=low[i+l];
-			}
-		}
-		
-		rsv[i]=(close[i]-l9)/(h9-l9)*100;			
-		
-	}	 
+	double k[]=kdj_VO.getK();
+	double d[]=kdj_VO.getD();
+	double j[]=kdj_VO.getJ();
 	 
-    k[result_length-1]=50.0*2/3+rsv[result_length-1]/3;
-    d[result_length-1]=50.0*2/3+k[result_length-1]/3;
-    j[result_length-1]=3*k[result_length-1]-2*d[result_length-1];
-    
-	for (int i = result_length-2; i >=0; i--) {
-		k[i]=k[i+1]*2/3+rsv[i]/3;
-	    d[i]=d[i+1]*2/3+k[i]/3;
-	    j[i]=3*k[i]-2*d[i];
-		
-	}
-    
- 	 
 	String data="[";
-	for (int i = result_length-1; i >=0; i--) {
+	for (int i = length-9; i >=0; i--) {
 		data=data+"{'date':"+historyData[i][0]+
 				",'K':"+k[i]+
 				",'D':"+d[i]+

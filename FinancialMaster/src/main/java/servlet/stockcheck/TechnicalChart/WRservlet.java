@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 
 import VO.StockDetailVO;
+import VO.TechnicalChart.WR_VO;
+import web.bl.stockImpl.TechnicalChartImpl;
+import web.blservice.stockInfo.TechnicalChartInfo;
 
 /**
  * Servlet implementation class WRservlet
@@ -44,11 +47,12 @@ public class WRservlet extends HttpServlet {
          high[i]=Double.parseDouble(historyData[i][3]);
          low[i]=Double.parseDouble(historyData[i][4]);
 	 }
-	 double wr9[]=getWR(9, close, high, low);
-	 double wr14[]=getWR(14, close, high, low);
-	 double wr20[]=getWR(20, close, high, low);
 	 
-    
+	 TechnicalChartInfo technicalChartInfo=new TechnicalChartImpl();
+	 WR_VO wr_Vo=technicalChartInfo.getWR(close, high, low);
+	 double wr9[]=wr_Vo.getWr9();
+	 double wr14[]=wr_Vo.getWr14();
+	 double wr20[]=wr_Vo.getWr20();  
  	 
 	String data="[";
 	for (int i = wr20.length-1; i >=0; i--) {
@@ -65,30 +69,6 @@ public class WRservlet extends HttpServlet {
 	out.close();
 	}
 
-	
-	private double[] getWR(int N,double close[],double high[],double low[]) {
-		int length=close.length-N+1;
-		double[] result=new double[length];
-		
-		 for (int i = 0; i < length; i++) {
-				double hn=Double.MIN_VALUE;
-				double ln=Double.MAX_VALUE;
-				for (int l = 0; l < N; l++) {
-					if(high[i+l]>hn){
-						hn=high[i+l];
-					}
-					if(low[i+l]<ln){
-						ln=low[i+l];
-					}
-				}
-				
-				result[i]=100-(close[i]-ln)/(hn-ln)*100;			
-				
-			}	
-				
-		return result;
-		
-	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -55,7 +55,7 @@ function initMACD(){
 			left:'right'
 		},
 		grid :  {
-			left : '5%',
+			left : '8%',
 			right : '0%',
 			top:  '15%',
 			height : '63%'

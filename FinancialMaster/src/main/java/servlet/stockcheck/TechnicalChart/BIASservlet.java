@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 
 import VO.StockDetailVO;
+import VO.TechnicalChart.BIAS_VO;
+import web.bl.stockImpl.TechnicalChartImpl;
+import web.blservice.stockInfo.TechnicalChartInfo;
 
 /**
  * Servlet implementation class BIASservlet
@@ -41,9 +44,13 @@ public class BIASservlet extends HttpServlet {
 	 for(int i=0;i<length;i++){	
 		 close[i]=Double.parseDouble(historyData[i][2]);
 	 }
-	 double BIAS6[]=getBIAS(6,close);
-	 double BIAS12[]=getBIAS(12,close);
-	 double BIAS24[]=getBIAS(24,close);
+	 
+	 TechnicalChartInfo technicalChartInfo=new TechnicalChartImpl();
+	 BIAS_VO bias_VO=technicalChartInfo.getBIAS(close);
+	 
+	 double BIAS6[]=bias_VO.getBIAS6();
+	 double BIAS12[]=bias_VO.getBIAS12();
+	 double BIAS24[]=bias_VO.getBIAS24();
 	 
 	 
 	String data="[";
@@ -70,22 +77,7 @@ public class BIASservlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
-	private double[] getBIAS(int n,double[] close){
-		double result[] =new double[close.length-n+1];
-		
-		for (int i = 0; i < result.length; i++) {
-			double ma=0;
-			for (int j = 0; j < n; j++) {
-				ma+=close[i+j];
-			}
-			ma/=n;
-			
-			result[i]=(close[i]-ma)/ma*100;
-		}
-		
-		return result;
-	}
+	
 	
 	
 }

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 
 import VO.StockDetailVO;
+import VO.TechnicalChart.ROC_VO;
+import web.bl.stockImpl.TechnicalChartImpl;
+import web.blservice.stockInfo.TechnicalChartInfo;
 
 /**
  * Servlet implementation class ROCservlet
@@ -41,28 +44,12 @@ public class ROCservlet extends HttpServlet {
 		 close[i]=Double.parseDouble(historyData[i][2]);
 	 }
 	 
-	 int N=12,M=6,X=9;
+	 TechnicalChartInfo technicalChartInfo=new TechnicalChartImpl();
+	 ROC_VO roc_Vo=technicalChartInfo.getROC(close);
+	 double roc12[]=roc_Vo.getRoc12();
+	 double rocMA[]=roc_Vo.getRocMA();
+	 double rocEMA[]=roc_Vo.getRocEMA();		 
 	 
-	 int result_length=length-N+1;
-	 double roc12[]=new double[result_length];
-	 double rocMA[]=new double[result_length-M+1];
-	 double rocEMA[]=new double[result_length-M+1];
-	 
-	 for (int i = result_length-1; i >=0; i--) {
-	
-		roc12[i]=(close[i]-close[i+N-1])/close[i+N-1];		
-	}	 
-	 
-	 for (int i = 0; i < rocEMA.length; i++) {
-		rocMA[i]=0;
-		for (int j = 0; j < M; j++) {
-			rocMA[i]+=roc12[i+j];
-		}
-		rocMA[i]/=M;		
-		rocEMA[i]=(2*roc12[i]+(X-1)*roc12[i+1])/(X+1);
-	}
-	    
- 	 
 	String data="[";
 	for (int i = rocEMA.length-1; i >=0; i--) {
 		data=data+"{'date':"+historyData[i][0]+

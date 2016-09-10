@@ -51,7 +51,7 @@ var OBVchart = echarts.init(document.getElementById('OBVchart'));
 			left:'right'
 		},
 		grid :  {
-			left : '5%',
+			left : '8%',
 			right : '0%',
 			top:  '15%',
 			height : '63%'
@@ -62,7 +62,7 @@ var OBVchart = echarts.init(document.getElementById('OBVchart'));
 			scale : true
 		},
 		yAxis :  {
-//			name : '',
+			name : '单位：亿',
 			scale : true,
 			splitArea : {
 				show : true
