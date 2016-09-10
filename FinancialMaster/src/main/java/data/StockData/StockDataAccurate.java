@@ -13,4 +13,10 @@ public class StockDataAccurate implements StockDataAccurateService{
 		return null;
 	}
 
+	@Override
+	public boolean clean() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

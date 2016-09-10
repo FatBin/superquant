@@ -13,4 +13,10 @@ public class BenchDataAccurate implements BenchDataAccurateService{
 		return null;
 	}
 
+	@Override
+	public boolean clean() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
