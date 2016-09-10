@@ -9,8 +9,9 @@
         <property name="hibernate.connection.password">141250089</property>
         <property name="hibernate.connection.url">jdbc:mysql://115.159.122.196:3306/superquant?useSSL=false&amp;autoReconnect=true</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="show_sql">true</property>
         <mapping class="DAO.pojo.Bench" />
         <mapping class="DAO.pojo.User" />
         <mapping class="DAO.pojo.TradeRecord" />
@@ -24,6 +25,6 @@
         <mapping class="DAO.pojo.TradeRecordAccurate" />
         <mapping class="DAO.pojo.Simulation" />
         <mapping class="DAO.pojo.BenchdataAccurate" />
-        <mapping class="DAO.pojo.Simulationprofit" />
+        <mapping class="DAO.pojo.SimulationProfit" />
     </session-factory>
 </hibernate-configuration>

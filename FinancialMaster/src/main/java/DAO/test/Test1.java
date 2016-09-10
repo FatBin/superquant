@@ -5,42 +5,37 @@ import java.util.Calendar;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import DAO.connection.DBconnection;
 import DAO.pojo.Bench;
 import DAO.pojo.Simulation;
+import DAO.pojo.SimulationProfit;
 
 
 public class Test1 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		DBconnection dBconnection=new DBconnection();
-//		IndustryData industryData=new IndustryData();
+		
 //		try {
-//			industryData.getIndustry("光学光电子");
+//			Document document=Jsoup.connect("http://data.10jqka.com.cn/rank/ljqs/field/count/order/desc/page/2/ajax/1/").get();
+//			System.out.println(document);
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
 		
+		
+		DBconnection dBconnection=new DBconnection();
 		try {
+			String hql="delete from Simulation where 1=1";
 			Session session=dBconnection.getSession();
-			Simulation simulation=new Simulation();
-			simulation.setId(1);
-			simulation.setPrice(100);
-			simulation.setStockId("213");
-			simulation.setTime(Calendar.getInstance().getTime());
-			simulation.setUserId("123");
-//			Bench bench=new Bench();
-//			bench.setBenchId("123");
-//			bench.setBenchName("123123");
 			Transaction transaction=session.beginTransaction();
-			session.save(simulation);
+			session.createQuery(hql).executeUpdate();
 			transaction.commit();
 			session.close();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
