@@ -13,7 +13,6 @@ public class RecommendedStock implements RecommendedStockService{
 
 	@Override
 	public ArrayList<PeakPO> getPeakPOs() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
