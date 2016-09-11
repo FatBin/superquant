@@ -7,13 +7,17 @@ import java.util.List;
 
 import DAO.pojo.Bench;
 import DAO.pojo.Benchdata;
+import DAO.pojo.BenchdataAccurate;
+import DAO.pojo.BenchdataAccurateId;
 import DAO.pojo.BenchdataId;
 import ENUM.ManageState;
 import PO.benchCurrentDataPO;
 import VO.BenchListVO;
 import VO.BenchVO;
 import data.BenchData.BenchData;
+import data.BenchData.BenchDataAccurate;
 import data.BenchData.BenchRecord;
+import dataservice.BenchDataService.BenchDataAccurateService;
 import dataservice.BenchDataService.BenchDataService;
 import dataservice.BenchDataService.BenchRecordService;
 import web.blservice.benchInfo.BenchInfo;
@@ -125,6 +129,7 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		return ManageState.Fail;
 	}
 
+	//返回大盘时分图数据
 	@Override
 	public String[][] getTimeSharingData(String benchCode) {
 		String id="";
@@ -141,10 +146,21 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 			e1.printStackTrace();
 		}
 		
+		BenchDataAccurateService benchDataAccurateService=new BenchDataAccurate(); 
+		ArrayList<BenchdataAccurate> list=benchDataAccurateService.getBenchdataAccurates();
 		
+		int length=list.size();
+		String[][] result=new String[length][2];
+		int index=0;
 		
-		
-		return null;
+		for (BenchdataAccurate benchdataAccurate : list) {
+			BenchdataAccurateId benchdataAccurateId=benchdataAccurate.getId();
+			result[index][0]=benchdataAccurateId.getDate().toString();
+			result[index][1]=benchdataAccurate.getPrice()+"";
+			index++;
+		}
+	
+		return result;
 	}
 
 	@Override
