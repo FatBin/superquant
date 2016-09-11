@@ -34,6 +34,7 @@ $.ajax({
 })
 
 option = {
+	backgroundColor: "rgb(246,246,246)",
 	 title: {
 //	        text: '近一年波动情况'
 	    },
@@ -41,7 +42,7 @@ option = {
 		trigger : 'axis'
 	},
 	 toolbox: {
-	        show: true,
+	        show: false,
 	        feature: {
 	            dataView: {readOnly: false},
 	            magicType: {type: ['line', 'bar']},
