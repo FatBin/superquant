@@ -127,28 +127,23 @@
 		<div id="intro_img"
 			style="width: 100%; height: 316px; margin-top: 30px; margin-bottom: 90px; background-color: gray;">
 
-			<img style="width: 60%; display: block;"
+			<img style="width: 60%; display: none;"
 				src="../webImage/strategy_tip.png">
 
 			<!-- 持有股表格 -->
-			<table id="strategyTable" rules="rows">
+			<table id="strategyTable" rules="rows" style="display: none;">
 				<thead>
 					<tr align="center" valign="middle"
 						style="background-color: rgb(230, 230, 230); font-size: 16px;">
-						<td width="60">
-							<div style="margin-left: -20px;">
-								<input type="checkbox" onchange="selectAll();" />
-							</div>
-						</td>
 
 						<td width="105" height="40">股票名称</td>
-						<td width="85">投资成本</td>
+						<td width="100">投资成本</td>
 						<td width="105">开始日期</td>
 						<td width="105">结束日期</td>
-						<td width="192">买入策略</td>
-						<td width="192">卖出策略</td>
-						<td width="90">其他策略</td>
-						<td width="90">买卖频率</td>
+						<td width="195">买入策略</td>
+						<td width="195">卖出策略</td>
+						<td width="110">其他策略</td>
+						<td width="110">买卖频率</td>
 					</tr>
 				</thead>
 			</table>
@@ -395,6 +390,18 @@
 	</div>
 	<!-- End Modal -->
 
+	<%-- 用来存放userId --%>
+	<a id="storage" style="display: none;"><%=session.getAttribute("User")%>
+	</a>
+	
+	<%-- 无阻塞提示框 --%>
+	<div id="toaster_close">
+		<div id="toaster">
+			<div id="pic_div" class="green_pic"></div>
+			<div id="remind" class="green_word">提示消息</div>
+		</div>
+	</div>
+
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script
@@ -407,6 +414,7 @@
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 	<script src="../js/common.min.js"></script>
 	<script src="../js/simulatepage.js"></script>
+	<script src="../js/toaster.js"></script>
 	<script type="text/javascript" src="../js/strategyhint.js"></script>
 	<script>
 		(function() {

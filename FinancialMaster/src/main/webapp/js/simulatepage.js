@@ -45,6 +45,13 @@ function launchST(elem_id) {
 }
 
 function addStore() {
+	
+	var userId = document.getElementById("storage").innerHTML.trim();
+	if(userId == "null") {
+		slidein(2, "您还没登录");
+		return;
+	}
+	
 	document.getElementById("intro_img").style.display = "none";
 	launchST("new_buy");
 }
