@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import DAO.DAOimpl.SimulationDaoImpl;
+import DAO.DAOimpl.SimulationProfitDaoImpl;
 import DAO.connection.DBconnection;
 import DAO.pojo.Bench;
 import DAO.pojo.Simulation;
@@ -42,17 +43,8 @@ public class Test1 {
 //		}
 		
 		try {
-			Simulation simulation=new Simulation();
-			simulation.setPrice(0);
-			simulation.setStockId("");
-			simulation.setTime(Calendar.getInstance().getTime());
-			simulation.setUserId("");
-			simulation.setVolume(0);
-			SimulationDaoImpl simulationDaoImpl=new SimulationDaoImpl();
-			System.out.println(simulationDaoImpl.persist(simulation));
-//			System.out.println(simulationDaoImpl.getAllSimulations().size());
-			SimulationData simulationData=new SimulationData();
-			System.out.println(simulationData.getAllSimulations().size());
+			SimulationProfitDaoImpl simulationProfitDaoImpl=new SimulationProfitDaoImpl();
+			System.out.println(simulationProfitDaoImpl.getAmontOfProfits());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
