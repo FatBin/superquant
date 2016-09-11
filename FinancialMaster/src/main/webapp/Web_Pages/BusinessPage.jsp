@@ -210,21 +210,22 @@ li {
 			<%
 				}
 			%>
-			<!-- <nav>
-			<ul class="pagination">
-				<li><a href="#" aria-label="Previous"> <span
-						aria-hidden="true">&laquo;</span>
+			<nav>
+			<ul class="pagination" style="display: block;">
+				<li><a onclick=previousPage() aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
 				</a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">6</a></li>
-				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+				<li class="active"><a onclick=switchPage(this)>1</a></li>
+				<li><a onclick=switchPage(this)>2</a></li>
+				<li><a onclick=switchPage(this)>3</a></li>
+				<li><a onclick=switchPage(this)>4</a></li>
+				<li><a onclick=switchPage(this)>5</a></li>
+				<li><a onclick=switchPage(this)>6</a></li>
+				<li><a onclick=nextPage() aria-label="Next"> <span
+						aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul>
-			</nav> -->
+			</nav>
 		</div>
 	</div>
 
@@ -286,6 +287,7 @@ li {
 	<!-- Plugin JavaScript -->
 
 	<script src="../js/classie.js"></script>
+	<script src="../js/business.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
 	<script src="../jschart/businessBarChart.js"></script>
 	<script src="../js/jquery.js"></script>
@@ -294,7 +296,7 @@ li {
 	<script src="../jschart/PieChart_StockMessage.js"></script>
 	<script src="../js/common.min.js"></script>
 	<script type="text/javascript">
-	 <%for (int i = 0; i < 66; i++) {
+	 <%for (int i = 0; i < businessList.size(); i++) {
 				industriesPO list = businessList.get(i);%>
 		pieChart('成交量', <%=list.getVolume()%>, 0, 0, 18, 'a'+(3*<%=i%>+''), '#D34E4E')
 		pieChart('总成交额', <%=list.getTurnover()%>, 0, 1, 18, 'a'+(3*<%=i%>+1+''), '#4A433B')
