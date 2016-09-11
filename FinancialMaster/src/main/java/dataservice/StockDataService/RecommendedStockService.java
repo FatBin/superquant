@@ -10,13 +10,23 @@ import PO.recommendedStock.breakthroughPO;
 import web.bl.StrategyHandle.Price;
 
 public interface RecommendedStockService {
-	public ArrayList<PeakPO> getPeakPOs();
+	public ArrayList<PeakPO> getPeakUp();
 	
-	public ArrayList<ContinuingTrendPO> getContinuingTrendPOs();
+	public ArrayList<PeakPO> getPeakDown();
 	
-	public ArrayList<ContinuingQuantityPO> getContinuingQuantityPOs();
+	public ArrayList<ContinuingTrendPO> getContinuingTrendUp();
 	
-	public ArrayList<breakthroughPO> getBreakthroughPOs();
+	public ArrayList<ContinuingTrendPO> getContinuingTrendDown();
 	
-	public ArrayList<PricePO> getPricePOs();
+	public ArrayList<ContinuingQuantityPO> getContinuingQuantityUp();
+	
+	public ArrayList<ContinuingQuantityPO> getContinuingQuantityDown();
+	
+	public ArrayList<breakthroughPO> getBreakthroughUp();
+	
+	public ArrayList<breakthroughPO> getBreakthroughDown();
+	
+	public ArrayList<PricePO> getPriceUp();
+	
+	public ArrayList<PricePO> getPriceDown();
 }
