@@ -104,6 +104,7 @@ function getKLine(kind) {
 		return result;
 	}
 	option = {
+		backgroundColor: "rgb(246,246,246)",
 		title : {
 			text : '',
 			left : 40

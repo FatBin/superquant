@@ -112,15 +112,14 @@ th {
 }
 
 .kline_div {
-	width: 850px;
+	width: 800px;
 	height: 910px;
 	margin: 20px auto;
-	width: 850px;
 }
 
 .tendcy_div {
 	height: 300px;
-	width: 910px;
+	width: 800px;
 	background-color: #F8F7F6;
 	margin: 20px auto;
 }

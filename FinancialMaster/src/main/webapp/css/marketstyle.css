@@ -27,11 +27,12 @@ a {
 
 .quotediv {
 	height: 50px;
-	width: 760px;
-	background-color: rgb(249, 248, 243);
+	width: 800px;
+	background-color: #fbf7f2;
 	border-radius: 2px;
 	margin: auto;
 	margin-top: 20px;
+	height: 50px;
 }
 
 .headdiv {
@@ -105,7 +106,7 @@ a {
 }
 
 .headtext {
-	color: #4A433B;
+	color: #69625c;
 	font-size: 20px;
 	line-height: 32px;
 	font-family: PingFangSC-Regular;
@@ -113,7 +114,7 @@ a {
 }
 
 .kline_div {
-	width: 850px;
+	width: 800px;
 	height: 910px;
 	margin: auto;
 	margin-top: 20px;
@@ -127,4 +128,29 @@ a {
 .pagelbl {
 	margin-left: 35%;
 	margin-top: 15px;
+}
+
+/*select*/
+.selectBox {
+	cursor: pointer;
+	width: 140px;
+	font-size: 28px;
+	color: #4A433B;
+	/*复写Chrome和Firefox里面的边框*/
+	border: none;
+	/*清除默认样式*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*在选择框的最右侧中间显示小箭头图片*/
+	background: url("../webImage/triangle-yellow.png") no-repeat scroll
+		right center transparent;
+	/*为下拉小箭头留出一点位置，避免被文字覆盖*/
+	padding-right: 14px;
+	width: 140px;
+}
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand {
+	display: none;
 }
