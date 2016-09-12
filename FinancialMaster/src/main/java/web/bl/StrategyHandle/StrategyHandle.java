@@ -6,10 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import DAO.pojo.TradeRecord;
+import DAO.pojo.UserStrategy;
 import PO.StrategyPO;
 import PO.profitPO;
 import data.StockData.StockData;
+import data.UserData.UserStrategyData;
 import dataservice.StockDataService.StockDataService;
+import dataservice.UserDataService.UserStrategyDataService;
 import web.blservice.StrategyHandleService.StrategyHandleService;
 
 public class StrategyHandle implements StrategyHandleService {
@@ -180,6 +183,74 @@ public class StrategyHandle implements StrategyHandleService {
 			return true;
 		}
 	}
-	
+
+	@Override
+	public profitPO getProfit(String userId, String stockId, String strategyName, String starttime, String endtime) {
+		UserStrategyDataService userStrategyDataService=new UserStrategyData();
+		profitPO po=new profitPO("", 0);
+		try {
+			//获取原策略
+			List list=userStrategyDataService.getUserStrategys(userId, strategyName);
+			UserStrategy userStrategy=new UserStrategy();
+			for (Object object : list) {
+				UserStrategy temp=(UserStrategy) object;
+				if (temp.getId().getStockId().equals(stockId)) {
+					userStrategy=temp;
+					break;
+				}
+			}
+			
+			//获取数据
+			String[] buydatas=userStrategy.getBuystrategy().split(",");
+			String[] selldatas=userStrategy.getSellstrategy().split(",");
+			
+			
+			//封装
+			ArrayList<StrategyPO> buy=new ArrayList<>();
+			ArrayList<StrategyPO> sell=new ArrayList<>();
+			StrategyPO buyPO=new StrategyPO(
+					stockId,
+					starttime, 
+					endtime, 
+					Double.parseDouble(buydatas[0]), 
+					Double.parseDouble(buydatas[1]), 
+					Double.parseDouble(buydatas[2]), 
+					Double.parseDouble(buydatas[3]), 
+					Double.parseDouble(buydatas[4]), 
+					Double.parseDouble(buydatas[5]), 
+					Double.parseDouble(buydatas[6]), 
+					Double.parseDouble(buydatas[7]), 
+					Double.parseDouble(buydatas[8]), 
+					Double.parseDouble(buydatas[9]), 
+					userStrategy.getFrequency(), 
+					userStrategy.getWeight());
+			buy.add(buyPO);
+			
+			StrategyPO sellPO=new StrategyPO(
+					stockId, 
+					starttime, 
+					endtime, 
+					Double.parseDouble(selldatas[0]), 
+					Double.parseDouble(selldatas[1]), 
+					Double.parseDouble(selldatas[2]), 
+					Double.parseDouble(selldatas[3]), 
+					Double.parseDouble(selldatas[4]), 
+					Double.parseDouble(selldatas[5]), 
+					Double.parseDouble(selldatas[6]), 
+					Double.parseDouble(selldatas[7]), 
+					Double.parseDouble(selldatas[8]), 
+					Double.parseDouble(selldatas[9]), 
+					userStrategy.getFrequency(), 
+					userStrategy.getWeight());
+			
+			sell.add(sellPO);
+			
+			ArrayList<profitPO> arrayList=handle(buy, sell);
+			return arrayList.get(arrayList.size()-1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return po;
+	}
 	
 }

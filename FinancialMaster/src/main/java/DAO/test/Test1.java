@@ -1,8 +1,12 @@
 package DAO.test;
 
 
+import java.sql.Timestamp;
+import java.text.Normalizer.Form;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -37,6 +41,7 @@ import data.StockData.RecommendedData.PeakUp;
 import data.StockData.RecommendedData.PriceDown;
 import data.StockData.RecommendedData.PriceUp;
 import data.StockData.RecommendedData.breakthroughDown;
+import javassist.expr.NewArray;
 
 
 public class Test1 {
@@ -103,8 +108,11 @@ public class Test1 {
 //		BenchdataAccurateDaoImpl benchdataAccurateDaoImpl=new BenchdataAccurateDaoImpl();
 //		System.out.println(benchdataAccurateDaoImpl.getBenchdataAccurate("123"));;
 		
-//		TradeRecordAccurateUpdate tradeRecordAccurateUpdate=new TradeRecordAccurateUpdate();
-		
+		TradeRecordAccurateUpdate tradeRecordAccurateUpdate=new TradeRecordAccurateUpdate();
+//		Date date=Calendar.getInstance().getTime();
+//		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		String string=simpleDateFormat.format(date);
+//		System.out.print(Timestamp.valueOf(string));
 	}
 
 }
