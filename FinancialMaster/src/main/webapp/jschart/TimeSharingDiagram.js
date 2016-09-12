@@ -59,9 +59,9 @@ function getTimeSharingDiagram(kind) {
 			dataType : "json", //返回数据形式为json
 			success : function(result) {
 				if (result) {
-					if(result.status!='已收盘'){
-						dates.push(result.time);
-						datas.push(result.now);
+					if(result[0].status!='已收盘'){
+						dates.push(result[0].time);
+						datas.push(result[0].now);
 					}
 				}
 			},
@@ -120,16 +120,10 @@ function getTimeSharingDiagram(kind) {
 			data : datas
 		} ]
 	};
+	setInterval(function() {
 
-	TimeSharingDiagram.setOption(option);
-	
-	app.timeTicket = setInterval(function() {
-
-		//  data.shift();
-		//  date.shift();
 		addNewData();
-
-		myChart.setOption({
+		TimeSharingDiagram.setOption({
 			xAxis : {
 				data : dates
 			//填入X轴数据
@@ -139,5 +133,5 @@ function getTimeSharingDiagram(kind) {
 			} ]
 		});
 	}, timeInterval);
-	
+	TimeSharingDiagram.setOption(option);
 }
