@@ -33,5 +33,17 @@ public class SimulationCommissionData implements SimulationCommissionDataService
 		return arrayList;
 	}
 
+	@Override
+	public ArrayList<Simulationcommission> getAllSimulationcommissions(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Simulationcommission findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

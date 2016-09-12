@@ -31,4 +31,16 @@ public class SimulationData implements SimulationDataService{
  		return arrayList;
 	}
 
+	@Override
+	public Simulation getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Simulation> getUserRecords(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

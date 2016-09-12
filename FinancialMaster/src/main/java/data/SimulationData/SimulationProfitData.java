@@ -1,5 +1,7 @@
 package data.SimulationData;
 
+import java.util.ArrayList;
+
 import DAO.DAOimpl.SimulationDaoImpl;
 import DAO.DAOimpl.SimulationProfitDaoImpl;
 import DAO.dao.SimulationDao;
@@ -32,6 +34,24 @@ public class SimulationProfitData implements SimulationProfitDataService{
 	public double getProfit() {
 		simulationProfitDaoImpl=new SimulationProfitDaoImpl();
 		return simulationProfitDaoImpl.getAmontOfProfits();
+	}
+
+	@Override
+	public boolean remove(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public double getProfit(String userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<SimulationProfit> getAllSimulationProfits() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

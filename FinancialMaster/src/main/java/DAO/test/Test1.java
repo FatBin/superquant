@@ -38,25 +38,9 @@ public class Test1 {
 
 	public static void main(String[] args) {
 		
-		try {
-//			Document document=Jsoup.connect("http://data.10jqka.com.cn/rank/cxg/board/4/field/stockcode/order/asc/page/1/ajax/1/").get();
-//			Elements elements=document.select("tbody").select("tr");
-//			for (Element element : elements) {
-//				System.out.println(element.text());
-//			}
-			PriceDown breakthrough=new PriceDown();
-			ArrayList<PricePO> arrayList=breakthrough.getDatas();
-			System.out.println("yes");
-			System.out.println(arrayList.size());
-			for (PricePO breakthroughPO : arrayList) {
-				System.out.println(breakthroughPO.getStockName());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
 		
-//		DBconnection dBconnection=new DBconnection();
+		DBconnection dBconnection=new DBconnection();
 //		try {
 //			String hql="delete from Simulation where 1=1";
 //			Session session=dBconnection.getSession();
@@ -68,12 +52,19 @@ public class Test1 {
 //			e.printStackTrace();
 //		}
 //		
-//		try {
-//			SimulationProfitDaoImpl simulationProfitDaoImpl=new SimulationProfitDaoImpl();
-//			System.out.println(simulationProfitDaoImpl.getAmontOfProfits());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			SimulationProfitDaoImpl simulationProfitDaoImpl=new SimulationProfitDaoImpl();
+			SimulationProfit simulationProfit=new SimulationProfit();
+			simulationProfit.setOperation("");
+			simulationProfit.setProfit(0);
+			simulationProfit.setState("");
+			simulationProfit.setStockId("");
+			simulationProfit.setUserId("");
+			simulationProfit.setDate(Calendar.getInstance().getTime());
+			System.out.println(simulationProfitDaoImpl.persist(simulationProfit));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.Date;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -22,6 +25,7 @@ public class SimulationProfit implements java.io.Serializable {
 	private double profit;
 	private String operation;
 	private String state;
+	private Date time;
 
 	public SimulationProfit() {
 	}
@@ -91,4 +95,12 @@ public class SimulationProfit implements java.io.Serializable {
 		this.state = state;
 	}
 
+	@Column(name = "time", nullable = false, length = 19)
+	public Date getDate() {
+		return this.time;
+	}
+
+	public void setDate(Date time) {
+		this.time = time;
+	}
 }
