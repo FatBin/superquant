@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
+import DAO.pojo.Stock;
 import ENUM.ManageState;
 import PO.profitPO;
 import VO.SimulationStockVO;
 import VO.UserVO;
+import servlet.factory.InitFactoryServlet;
 import web.bl.simulationImpl.SimulationStockImpl;
 import web.blservice.simulationInfo.SimulationStockInfo;
 
@@ -47,8 +49,11 @@ public class SimulationStockServlet extends HttpServlet {
 		ArrayList<SimulationStockVO> simulationStockVOs = simulationStockInfo.getStockList(userID);
 		String data = "[";
 		for (SimulationStockVO simulationStockVO : simulationStockVOs) {
+			String stockID=simulationStockVO.getStockID();
+			Stock stock=InitFactoryServlet.getStock(stockID);
 			data += "{'id':'" + simulationStockVO.getId() + 
-					"','stockID':'" + simulationStockVO.getStockID() + 
+					"','stockID':'" + stockID + 
+					"','stockName':'" + stock.getStockName() + 
 					"','time':'"+ simulationStockVO.getTime() +
 					"','price':'" + simulationStockVO.getPrice() + 
 					"','number':'"+ simulationStockVO.getNumber() + 
