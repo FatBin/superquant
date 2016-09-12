@@ -9,7 +9,7 @@ public interface SimulationStockInfo {
 
 	
 	//买入一条持仓股票
-	public ManageState buyStock(SimulationStockVO simulationStockVO); 
+	public int buyStock(SimulationStockVO simulationStockVO); 
 	
 	//计算一条持有股票的盈亏结果  
 	public double getResult(String id);	

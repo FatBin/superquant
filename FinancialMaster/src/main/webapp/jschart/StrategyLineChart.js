@@ -27,7 +27,7 @@ function getLinechart(url,id) {
 			}
 		},
 		error : function(errorMsg) {
-			alert("不好意思，策略结果请求数据失败啦!");
+			alert("不好意思，请求数据失败啦!");
 			myChart.hideLoading();
 		}
 	})
@@ -47,10 +47,6 @@ function getLinechart(url,id) {
 				fontSize : 16, 
 				fontWeight : 400
 			},
-		},
-		legend : {
-			top : 'bottom',
-			data : [ '意向' ]
 		},
 		grid : [ {
 			top: "25"
