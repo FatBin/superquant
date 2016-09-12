@@ -273,7 +273,10 @@ function buyStock() {
 			},
 			dataType : "json",
 			success : function(result) {
-				alert(result[0].BuyResult)
+				if(result[0].BuyResult > -1) {
+					slidein(0, "购买成功");
+					setTimeout("window.location.reload()", 1800);
+				}
 			},
 			error : function(errorMsg) {
 				alert("不好意思，请求数据失败啦!");
