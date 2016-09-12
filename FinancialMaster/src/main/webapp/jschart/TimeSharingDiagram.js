@@ -72,6 +72,7 @@ function getTimeSharingDiagram(kind) {
 		//    title: {
 		//        text: '大盘分时图'
 		//    },
+		backgroundColor: "rgb(246,246,246)",
 		tooltip : {
 			trigger : 'axis',
 			// formatter: function (params) {

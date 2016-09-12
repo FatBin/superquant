@@ -33,7 +33,7 @@ function changePic() {
 				if (result[0].AddResult == 'Succeed') {
 					document.getElementById("heartdiv").setAttribute("src",
 							"../webImage/heart-selected.png");
-					
+
 					slidein(0, "关注成功");
 				} else if (result[0].AddResult == 'Unlogin') {
 					slidein(2, "请先登录再添加关注");
@@ -73,3 +73,52 @@ function changePic() {
 		})
 	}
 }
+
+// 0分时；1日K
+function changeTab(syb) {
+
+	var timechart = document.getElementById("timeSharingDiagram");
+	var kline = document.getElementById("klinechart");
+	var tabs = document.getElementsByClassName("tab_each");
+
+	if (syb == 0) {
+		if (timechart.style.display == "none") {
+			kline.style.display = "none";
+			launchDiv(timechart);
+			tabs[0].style.borderBottom = "3px solid #f8b31d";
+			tabs[1].style.borderBottom = "";
+		}
+	} else {
+		if (kline.style.display == "none") {
+			timechart.style.display = "none";
+			launchDiv(kline);
+			tabs[1].style.borderBottom = "3px solid #f8b31d";
+			tabs[0].style.borderBottom = "";
+		}
+	}
+}
+
+// 打开块
+function launchDiv(elem) {
+
+	var speed = 20;
+	var opacity = 100;
+
+	elem.style.display = "";
+	iBase.SetOpacity(elem, 0);
+	var val = 0;
+	(function() {
+		iBase.SetOpacity(elem, val);
+		val += 5;
+		if (val <= opacity) {
+			setTimeout(arguments.callee, speed)
+		}
+	})();
+}
+
+var iBase = {
+	SetOpacity : function(ev, v) {
+		ev.filters ? ev.style.filter = 'alpha(opacity=' + v + ')'
+				: ev.style.opacity = v / 100;
+	}
+};

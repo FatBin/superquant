@@ -113,6 +113,27 @@ a {
 	margin-left: 5px;
 }
 
+.tab_title {
+	width: 800px; 
+	height: 28px;
+	margin: 0 auto;
+	margin-bottom: -10px;
+	font-size: 18px;
+	line-height: 28px;
+	color: #807161;
+	font-family: PingFang SC;
+}
+
+.tab_each {
+	display: inline-block;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.tab_each:hover {
+	border-bottom: 3px solid #f8b31d;
+}
+
 .kline_div {
 	width: 800px;
 	height: 910px;

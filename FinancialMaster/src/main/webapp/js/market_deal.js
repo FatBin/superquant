@@ -13,7 +13,7 @@ function refreshData() {
 			setNewest(result);
 		},
 		error : function(errorMsg) {
-//			alert("不好意思，最新数据刷新失败啦!");
+			// alert("不好意思，最新数据刷新失败啦!");
 		}
 	})
 }
@@ -83,7 +83,8 @@ function changeStock(stockname) {
 function setNewest(result) {
 	document.getElementById("now").innerHTML = result[0].now;
 	document.getElementById("rise_fall").innerHTML = result[0].rise_fall_price;
-	document.getElementById("rise_fall_percent").innerHTML = result[0].rise_fall_percent + "%";
+	document.getElementById("rise_fall_percent").innerHTML = result[0].rise_fall_percent
+			+ "%";
 	document.getElementById("status").innerHTML = result[0].status;
 	document.getElementById("time").innerHTML = result[0].time;
 	document.getElementById("highprice").innerHTML = result[0].high;
@@ -96,3 +97,52 @@ function setNewest(result) {
 	document.getElementById("fallcom").innerHTML = result[0].fall_company;
 	document.getElementById("com").innerHTML = result[0].company;
 }
+
+// 0分时；1日K
+function changeTab(syb) {
+
+	var timechart = document.getElementById("timeSharingDiagram");
+	var kline = document.getElementById("klinechart");
+	var tabs = document.getElementsByClassName("tab_each");
+
+	if (syb == 0) {
+		if (timechart.style.display == "none") {
+			kline.style.display = "none";
+			launchDiv(timechart);
+			tabs[0].style.borderBottom = "3px solid #f8b31d";
+			tabs[1].style.borderBottom = "";
+		}
+	} else {
+		if (kline.style.display == "none") {
+			timechart.style.display = "none";
+			launchDiv(kline);
+			tabs[1].style.borderBottom = "3px solid #f8b31d";
+			tabs[0].style.borderBottom = "";
+		}
+	}
+}
+
+// 打开块
+function launchDiv(elem) {
+
+	var speed = 20;
+	var opacity = 100;
+
+	elem.style.display = "";
+	iBase.SetOpacity(elem, 0);
+	var val = 0;
+	(function() {
+		iBase.SetOpacity(elem, val);
+		val += 5;
+		if (val <= opacity) {
+			setTimeout(arguments.callee, speed)
+		}
+	})();
+}
+
+var iBase = {
+	SetOpacity : function(ev, v) {
+		ev.filters ? ev.style.filter = 'alpha(opacity=' + v + ')'
+				: ev.style.opacity = v / 100;
+	}
+};

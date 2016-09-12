@@ -7,48 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>SuperQuant--您的第一手证券信息</title>
 
-<!-- Bootstrap Core CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
-
-<!-- Custom CSS -->
 <link href="../css/agency.css" rel="stylesheet" type="text/css">
 <link href="../css/LoginAndReg.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
 <link href="../css/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
 
 <link href="../css/headNav.css" rel="stylesheet" type="text/css">
-
-<style>
-li {
-	list-style-type: none;
-}
-
-td {
-	height: 35px;
-	cursor: pointer;
-}
-
-a {
-	cursor: pointer;
-}
-
-th {
-	text-align: center;
-	valign: middle;
-	height: 40px;
-	font-weight: normal;
-}
-
-#searchHint {
-	position: absolute;
-	background-color: rgb(235, 235, 235);
-	width: 150px;
-	margin-left: 935px;
-	margin-top: -10px;
-}
-</style>
+<link href="../css/stockpage.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -124,11 +90,25 @@ th {
 	<div>
 		<div style="width: 850px; margin: 20px auto;">
 
-			<p
-				style="margin-top: 90px; margin-bottom: 15px; font-size: 22px; margin-left: 5px;">热门股票推荐</p>
+			<div
+				style="margin-top: 90px; margin-bottom: 15px; font-size: 22px;">热门股票推荐</div>
+
+			<div class="tab_title">
+				<div class="tab_each" style="border-bottom: 2px solid #f8b31d;"
+					onclick="changeTab(0)">连续上涨</div>
+				<div class="tab_each">连续下跌</div>
+				<div class="tab_each" onclick="changeTab(2)">创新高</div>
+				<div class="tab_each">创新低</div>
+				<div class="tab_each">持续放量</div>
+				<div class="tab_each">持续缩量</div>
+				<div class="tab_each">向上突破</div>
+				<div class="tab_each">向下突破</div>
+				<div class="tab_each">量价齐升</div>
+				<div class="tab_each">量价齐跌</div>
+			</div>
 
 			<!-- 股票列表 -->
-			<div>
+			<div style="margin-top: 15px;">
 
 				<%
 					StockListVO stockListVO = (StockListVO) session.getAttribute("StockList");

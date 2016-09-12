@@ -1,0 +1,48 @@
+li {
+	list-style-type: none;
+}
+
+td {
+	height: 35px;
+	cursor: pointer;
+}
+
+a {
+	cursor: pointer;
+}
+
+th {
+	text-align: center;
+	valign: middle;
+	height: 40px;
+	font-weight: normal;
+}
+
+#searchHint {
+	position: absolute;
+	background-color: rgb(235, 235, 235);
+	width: 150px;
+	margin-left: 935px;
+	margin-top: -10px;
+}
+
+.tab_title {
+	width: 100%; 
+	height: 28px;
+	margin: 0 auto;
+	margin-bottom: -10px;
+	font-size: 13px;
+	line-height: 25px;
+	color: #807161;
+	font-family: PingFang SC;
+}
+
+.tab_each {
+	display: inline-block;
+	margin-right: 15px;
+	cursor: pointer;
+}
+
+.tab_each:hover {
+	border-bottom: 2px solid #f8b31d;
+}

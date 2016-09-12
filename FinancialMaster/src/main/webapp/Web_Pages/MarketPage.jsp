@@ -161,7 +161,16 @@
 		</div>
 	</div>
 
-	<div id="klinechart" class="kline_div"></div>
+	<div class="tab_title">
+		<div class="tab_each" style="border-bottom: 3px solid #f8b31d;" onclick="changeTab(0)">分时</div>
+		<div class="tab_each" onclick="changeTab(1)">日K</div>
+		<div class="tab_each">周K</div>
+		<div class="tab_each">月K</div>
+	</div>
+
+	<div id="timeSharingDiagram" class="kline_div" style="height: 400px;"></div>
+
+	<div id="klinechart" class="kline_div" style="display: none;"></div>
 
 	<blockquote class="quotediv">
 		<span class="headtext">历史数据</span>
@@ -285,8 +294,12 @@
 	<script src="../js/cbpAnimatedHeader.js"></script>
 	<script src="../js/table_pages.js"></script>
 	<script src="../jschart/kLineChart.js"></script>
+	<script type="text/javascript" src="../jschart/TimeSharingDiagram.js"></script>
 	<script src="../js/jquery.js"></script>
-	<script>getKLine("market");</script>
+	<script>
+		getKLine("market");
+		/* getTimeSharingDiagram("market"); */
+	</script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/common.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>

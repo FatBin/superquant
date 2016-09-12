@@ -401,7 +401,7 @@
 			<div id="remind" class="green_word">提示消息</div>
 		</div>
 	</div>
-
+	
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script
