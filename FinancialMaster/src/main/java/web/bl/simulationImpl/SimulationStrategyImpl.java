@@ -10,7 +10,7 @@ public class SimulationStrategyImpl implements SimulationStrategyInfo{
 
 	@Override
 	public int addSimulationStrategy(SimulationStrategyVO simulationStrategyVO) {
-		// TODO Auto-generated method stub
+		
 		return -1;
 	}
 

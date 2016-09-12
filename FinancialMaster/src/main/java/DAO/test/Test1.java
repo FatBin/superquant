@@ -28,6 +28,7 @@ import PO.recommendedStock.PricePO;
 import PO.recommendedStock.breakthroughPO;
 import data.BenchData.BenchdataAccurateUpdate;
 import data.SimulationData.SimulationData;
+import data.StockData.TradeRecordAccurateUpdate;
 import data.StockData.RecommendedData.ContinuingQuantityDown;
 import data.StockData.RecommendedData.ContinuingTrendDown;
 import data.StockData.RecommendedData.ContinuingTrendUp;
@@ -59,11 +60,10 @@ public class Test1 {
 //		try {
 //			SimulationProfitDaoImpl simulationProfitDaoImpl=new SimulationProfitDaoImpl();
 //			SimulationProfit simulationProfit=new SimulationProfit();
-//			simulationProfit.setOperation("");
+//			simulationProfit.setOperation("121");
 //			simulationProfit.setProfit(0);
-//			simulationProfit.setState("");
-//			simulationProfit.setStockId("");
-//			simulationProfit.setUserId("");
+//			simulationProfit.setStockId("222");
+//			simulationProfit.setUserId("333");
 //			simulationProfit.setDate(Calendar.getInstance().getTime());
 //			System.out.println(simulationProfitDaoImpl.persist(simulationProfit));
 //		} catch (Exception e) {
@@ -89,15 +89,22 @@ public class Test1 {
 //		}
 		
 //		try {
-//			Document document=Jsoup.connect("https://gupiao.baidu.com/stock/sh000001.html?from=aladingpc").get();
-//			System.out.println(document.select("div[class=price s-down ]").text());
+//			Document document=Jsoup.connect("http://www.shdjt.com/sh.htm").get();
+//			Elements elements=document.select("tr[height=25]");
+//			for (Element element : elements) {
+//				System.out.println(element.text());
+//			}
+//
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
 		
 //		BenchdataAccurateUpdate accurateUpdate=new BenchdataAccurateUpdate();
-		BenchdataAccurateDaoImpl benchdataAccurateDaoImpl=new BenchdataAccurateDaoImpl();
-		benchdataAccurateDaoImpl.clean();
+//		BenchdataAccurateDaoImpl benchdataAccurateDaoImpl=new BenchdataAccurateDaoImpl();
+//		System.out.println(benchdataAccurateDaoImpl.getBenchdataAccurate("123"));;
+		
+//		TradeRecordAccurateUpdate tradeRecordAccurateUpdate=new TradeRecordAccurateUpdate();
+		
 	}
 
 }

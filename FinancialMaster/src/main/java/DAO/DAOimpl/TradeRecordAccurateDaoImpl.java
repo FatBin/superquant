@@ -1,5 +1,10 @@
 package DAO.DAOimpl;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +18,8 @@ import DAO.pojo.TradeRecordAccurate;
 public class TradeRecordAccurateDaoImpl implements TradeRecordAccurateDao{
 
 	@Override
-	public List getTradeRecordAccurate() {
-		String hql="from TradeRecordAccurate t order by t.id.date asc";
+	public List getTradeRecordAccurate(String stockId) {
+		String hql="from TradeRecordAccurate t where t.id.stockId=:stockId order by t.id.date asc";
 		try {
 			Session session=DBconnection.getSession();
 			try {
@@ -51,24 +56,41 @@ public class TradeRecordAccurateDaoImpl implements TradeRecordAccurateDao{
 	}
 
 	@Override
-	public boolean persist(TradeRecordAccurate tradeRecordAccurate) {
-		try {
-			Session session=DBconnection.getSession();
-			try {
-				session.save(tradeRecordAccurate);
-				Transaction transaction=session.beginTransaction();
-				transaction.commit();
-				session.close();
-				return true;
-			} catch (Exception e) {
-				session.close();
-				e.printStackTrace();
-				return false;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	public boolean persist(ArrayList<TradeRecordAccurate> arrayList) {
+        String url="jdbc:mysql://115.159.122.196:3306/superquant";  
+        String userName="root";  
+        String password="141250089";  
+        Connection conn=null;  
+        try {        
+              Class.forName("com.mysql.jdbc.Driver");        
+              conn =  DriverManager.getConnection(url+"?useSSL=false&useServerPrepStmts=false&rewriteBatchedStatements=true", userName, password);        
+              conn.setAutoCommit(false);        
+              String sql = "insert into trade_record_accurate(stockId,date,price) values(?,?,?)";        
+              PreparedStatement prest = conn.prepareStatement(sql);        
+              long a=System.currentTimeMillis();  
+              for(TradeRecordAccurate po:arrayList){        
+                 prest.setString(1, po.getId().getStockId());       
+                 prest.setDate(2, (Date) po.getId().getDate());
+                 prest.setDouble(3, po.getPrice());
+                 prest.addBatch();
+              }        
+
+              prest.executeBatch();
+              prest.clearBatch();
+              conn.commit();
+              long b=System.currentTimeMillis();  
+              System.out.println("MySql非批量插入10万条记录用时"+ (b-a)+" ms");  
+              return true;
+        } catch (Exception ex) {  
+            ex.printStackTrace();  
+            return false;
+        }finally{  
+            try {  
+                if(conn!=null)conn.close();  
+            } catch (SQLException e) {  
+                e.printStackTrace();  
+            }     
+        }  
 	}
 
 }

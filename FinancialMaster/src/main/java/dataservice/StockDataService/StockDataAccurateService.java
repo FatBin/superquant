@@ -9,4 +9,6 @@ public interface StockDataAccurateService {
 	
 	//delete all the record
 	public boolean clean();
+	
+	public void persist(ArrayList<TradeRecordAccurate> arrayList);
 }
