@@ -367,4 +367,64 @@
     <servlet-name>ManageMyStockServlet</servlet-name>
     <url-pattern>/ManageMyStock</url-pattern>
   </servlet-mapping>
+  
+     <!-- get：得到所以持有股票的链表及持有股票盈亏汇总结果，post：增加或删除一条持有股票-->    
+  <servlet>
+    <servlet-name>SimulationStockServlet</servlet-name>
+    <servlet-class>servlet.simulation.SimulationStockServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimulationStockServlet</servlet-name>
+    <url-pattern>/SimulationStock</url-pattern>
+  </servlet-mapping>
+  
+     <!-- get：，post：为持有股模拟结果提供数据 -->    
+  <servlet>
+    <servlet-name>GetSimulationStockResultServlet</servlet-name>
+    <servlet-class>servlet.simulation.GetSimulationStockResultServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetSimulationStockResultServlet</servlet-name>
+    <url-pattern>/GetSimulationStockResult</url-pattern>
+  </servlet-mapping>
+  
+     <!-- get：得到所有历史记录的链表，post：增加、删除、隐藏一条历史盈亏记录 -->    
+  <servlet>
+    <servlet-name>SimulationRecordServlet</servlet-name>
+    <servlet-class>servlet.simulation.SimulationRecordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimulationRecordServlet</servlet-name>
+    <url-pattern>/SimulationRecord</url-pattern>
+  </servlet-mapping>
+  
+     <!-- get：得到历史盈亏的汇总结果，post：-->    
+  <servlet>
+    <servlet-name>GetSimulationRecordResultServlet</servlet-name>
+    <servlet-class>servlet.simulation.GetSimulationRecordResultServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetSimulationRecordResultServlet</servlet-name>
+    <url-pattern>/GetSimulationRecordResult</url-pattern>
+  </servlet-mapping>
+  
+     <!-- get：得到所有策略的使用结果及策略的汇总计算结果，post：增加删除一条策略回测 -->    
+  <servlet>
+    <servlet-name>SimulationStrategyServlet</servlet-name>
+    <servlet-class>servlet.simulation.SimulationStrategyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimulationStrategyServlet</servlet-name>
+    <url-pattern>/SimulationStrategy</url-pattern>
+  </servlet-mapping>
+  
+     <!-- get：，post：为策略的回测结果图表提供数据 -->    
+  <servlet>
+    <servlet-name>GetSimulationStrategyResultServlet</servlet-name>
+    <servlet-class>servlet.simulation.GetSimulationStrategyResultServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetSimulationStrategyResultServlet</servlet-name>
+    <url-pattern>/GetSimulationStrategyResult</url-pattern>
+  </servlet-mapping>
 </web-app>

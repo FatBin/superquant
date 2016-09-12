@@ -36,8 +36,7 @@ public class SimulationStockImpl implements SimulationStockInfo {
 		return simulationDataService.persist(simulation);
 	}
 
-	@Override
-	public double getResult(String id) {
+	private double getResult(String id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
