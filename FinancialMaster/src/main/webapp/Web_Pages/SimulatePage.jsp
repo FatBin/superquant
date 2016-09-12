@@ -160,7 +160,7 @@ table td {
 	</div>
 
 	<div id="new_buy" class="makest_div"
-		style="display: none; margin-top: 0; width: 80%; margin-bottom: 90px;">
+		style="display: none; margin-top: 0; width: 80%; margin-bottom: 40px;">
 
 		<i class="fa fa-times close_st" onclick="closeStore()"></i>
 
@@ -256,7 +256,7 @@ table td {
 			<blockquote class="stname_title" style="margin: 0 auto;">历史交易</blockquote>
 
 			<div id="histrades"
-				style="width: 100%; margin-top: 18px; background-color: #fcfcfc;">
+				style="width: 100%; height:420px; overflow:auto; margin-top: 18px; background-color: #fcfcfc;">
 
 				<div class="noHis_tip" style="display: none">暂无历史交易记录</div>
 
