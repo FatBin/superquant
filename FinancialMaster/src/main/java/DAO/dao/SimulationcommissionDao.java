@@ -12,4 +12,6 @@ public interface SimulationcommissionDao {
 	public Simulationcommission findById(int id);
 	
 	public List getAllSimualtioncommissions();
+	
+	public List getAllSimualtioncommissions(String userId);
 }

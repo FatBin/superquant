@@ -25,5 +25,5 @@ public interface SimulationProfitDataService {
 	public double getProfit(String userId);
 	
 	//get all the records
-	public ArrayList<SimulationProfit> getAllSimulationProfits();
+	public ArrayList<SimulationProfit> getAllSimulationProfits(String userId);
 }

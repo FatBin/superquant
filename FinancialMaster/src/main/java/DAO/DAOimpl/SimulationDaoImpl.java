@@ -100,4 +100,24 @@ public class SimulationDaoImpl implements SimulationDao{
 		}
 	}
 
+	@Override
+	public List getAllSimulations(String userId) {
+		String hql="from Simulation s where s.userId=:userId";
+		try {
+			Session session=DBconnection.getSession();
+			try {
+				List list=session.createQuery(hql).setString("userId", userId).list();
+				session.close();
+				return list;
+			} catch (Exception e) {
+				session.close();
+				e.printStackTrace();
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

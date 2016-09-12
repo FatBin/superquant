@@ -14,6 +14,7 @@ import org.jsoup.select.Elements;
 
 import DAO.DAOimpl.SimulationDaoImpl;
 import DAO.DAOimpl.SimulationProfitDaoImpl;
+import DAO.DAOimpl.SimulationcommissionDaoImpl;
 import DAO.connection.DBconnection;
 import DAO.pojo.Bench;
 import DAO.pojo.Simulation;
@@ -52,16 +53,23 @@ public class Test1 {
 //			e.printStackTrace();
 //		}
 //		
+//		try {
+//			SimulationProfitDaoImpl simulationProfitDaoImpl=new SimulationProfitDaoImpl();
+//			SimulationProfit simulationProfit=new SimulationProfit();
+//			simulationProfit.setOperation("");
+//			simulationProfit.setProfit(0);
+//			simulationProfit.setState("");
+//			simulationProfit.setStockId("");
+//			simulationProfit.setUserId("");
+//			simulationProfit.setDate(Calendar.getInstance().getTime());
+//			System.out.println(simulationProfitDaoImpl.persist(simulationProfit));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
 		try {
-			SimulationProfitDaoImpl simulationProfitDaoImpl=new SimulationProfitDaoImpl();
-			SimulationProfit simulationProfit=new SimulationProfit();
-			simulationProfit.setOperation("");
-			simulationProfit.setProfit(0);
-			simulationProfit.setState("");
-			simulationProfit.setStockId("");
-			simulationProfit.setUserId("");
-			simulationProfit.setDate(Calendar.getInstance().getTime());
-			System.out.println(simulationProfitDaoImpl.persist(simulationProfit));
+			SimulationProfitDaoImpl impl=new SimulationProfitDaoImpl();
+			System.out.println(impl.getAllSimulationProfits("123").size());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

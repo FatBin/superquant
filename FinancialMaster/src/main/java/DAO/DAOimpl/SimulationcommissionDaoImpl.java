@@ -2,6 +2,7 @@ package DAO.DAOimpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -97,6 +98,26 @@ public class SimulationcommissionDaoImpl implements SimulationcommissionDao{
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public List getAllSimualtioncommissions(String userId) {
+		String hql="from Simulationcommission s where s.userId=:userId";
+		try {
+			Session session=DBconnection.getSession();
+			try {
+				List list=session.createQuery(hql).setString("userId", userId).list();
+				session.close();
+				return list;
+			} catch (Exception e) {
+				session.close();
+				e.printStackTrace();
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

@@ -14,4 +14,10 @@ public interface SimulationProfitDao {
 	public SimulationProfit findById(int id);
 	
 	public double getAmontOfProfits();
+	
+	public boolean remove(int id);
+	
+	public double getUserProfit(String userId);
+	
+	public List getAllSimulationProfits(String userId);
 }

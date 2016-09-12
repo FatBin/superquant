@@ -12,4 +12,6 @@ public interface SimulationDao {
 	public List getAllSimulations();
 	
 	public Simulation findById(int id);
+	
+	public List getAllSimulations(String userId);
 }

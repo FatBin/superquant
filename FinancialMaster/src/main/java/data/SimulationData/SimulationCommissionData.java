@@ -35,13 +35,19 @@ public class SimulationCommissionData implements SimulationCommissionDataService
 
 	@Override
 	public ArrayList<Simulationcommission> getAllSimulationcommissions(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		SimulationcommissionDaoImpl=new SimulationcommissionDaoImpl();
+		ArrayList<Simulationcommission> arrayList=new ArrayList<>();
+		if (SimulationcommissionDaoImpl.getAllSimualtioncommissions(userId)!=null) {
+			arrayList=(ArrayList<Simulationcommission>) SimulationcommissionDaoImpl.getAllSimualtioncommissions(userId);
+		}
+		return arrayList;
 	}
 
 	@Override
 	public Simulationcommission findById(int id) {
 		// TODO Auto-generated method stub
+		SimulationcommissionDaoImpl impl=new SimulationcommissionDaoImpl();
+		Simulationcommission simulationcommission=impl.findById(id);
 		return null;
 	}
 

@@ -38,20 +38,24 @@ public class SimulationProfitData implements SimulationProfitDataService{
 
 	@Override
 	public boolean remove(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		simulationProfitDaoImpl=new SimulationProfitDaoImpl();
+		return simulationProfitDaoImpl.remove(id);
 	}
 
 	@Override
 	public double getProfit(String userId) {
-		// TODO Auto-generated method stub
-		return 0;
+		simulationProfitDaoImpl=new SimulationProfitDaoImpl();
+		return simulationProfitDaoImpl.getUserProfit(userId);
 	}
 
 	@Override
-	public ArrayList<SimulationProfit> getAllSimulationProfits() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<SimulationProfit> getAllSimulationProfits(String userId) {
+		simulationProfitDaoImpl=new SimulationProfitDaoImpl();
+		ArrayList<SimulationProfit> arrayList=new ArrayList<>();
+		if (simulationProfitDaoImpl.getAllSimulationProfits(userId)!=null) {
+			arrayList=(ArrayList<SimulationProfit>) simulationProfitDaoImpl.getAllSimulationProfits(userId);
+		}
+ 		return arrayList;
 	}
 
 }

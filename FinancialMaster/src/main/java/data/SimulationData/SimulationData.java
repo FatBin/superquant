@@ -34,13 +34,18 @@ public class SimulationData implements SimulationDataService{
 	@Override
 	public Simulation getById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		SimulationDaoImpl=new SimulationDaoImpl();
+		return SimulationDaoImpl.findById(id);
 	}
 
 	@Override
 	public ArrayList<Simulation> getUserRecords(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		SimulationDaoImpl=new SimulationDaoImpl();
+		ArrayList<Simulation> arrayList=new ArrayList<>();
+		if (SimulationDaoImpl.getAllSimulations(userId)!=null) {
+			arrayList=(ArrayList<Simulation>) SimulationDaoImpl.getAllSimulations(userId);
+		}
+ 		return arrayList;
 	}
 
 }
