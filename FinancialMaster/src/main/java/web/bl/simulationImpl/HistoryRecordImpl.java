@@ -42,7 +42,7 @@ public class HistoryRecordImpl implements HistoryRecordInfo{
 		for (SimulationProfit s : list) {
 			SimulationRecordVO simulationRecordVO=new SimulationRecordVO();
 			simulationRecordVO.setId(s.getId()+"");
-			simulationRecordVO.setStockID(s.getUserId());			
+			simulationRecordVO.setStockID(s.getStockId());			
 			simulationRecordVO.setTime(simpleDateFormat.format(s.getDate()));
 			simulationRecordVO.setDeal(Deal_enum.valueOf(s.getOperation()));
 			simulationRecordVO.setMoney(s.getProfit());

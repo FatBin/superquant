@@ -241,7 +241,7 @@ table td {
 			剩余本金:&nbsp;&nbsp;<span id="moneyleft">10000</span>
 		</div>
 
-		<div class="add_st_btn" onclick="">购&nbsp;&nbsp;买</div>
+		<div class="add_st_btn" onclick="buyStock();">购&nbsp;&nbsp;买</div>
 
 		<div class="reset_st_btn" onclick="closeStore();">取&nbsp;&nbsp;消</div>
 
@@ -253,51 +253,27 @@ table td {
 
 		<div style="width: 55%; display: inline-block;">
 
-			<blockquote class="stname_title">历史交易</blockquote>
+			<blockquote class="stname_title" style="margin: 0 auto;">历史交易</blockquote>
 
-			<div style="width: 100%; background-color: #fcfcfc;">
+			<div id="histrades"
+				style="width: 100%; margin-top: 18px; background-color: #fcfcfc;">
+
+				<div class="noHis_tip" style="display: none">暂无历史交易记录</div>
 
 				<!-- 买 -->
-				<div class="his_each">
+				<div id="his_copy" class="his_each" style="display: none;">
 					<div class="syb_buy" style="display: inline-block;">买</div>
 
 					<div class="usest_syb" style="display: none;">策略</div>
 
-					<div style="margin-left: 85px; display: inline-block;">
+					<div
+						style="width: 120px; margin-left: 130px; display: inline-block;">
 						<span style="font-size: 18px; color: #4a433b;">浦发银行</span><br>
 						<span style="font-size: 14px; color: #9e9a95;">sh600000</span>
-					</div>
-
-					<div style="margin-left: 40px; display: inline-block;">
-						<span style="font-size: 18px; color: #4a433b;">30元</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">200股</span>
 					</div>
 
 					<div style="margin-left: 80px; display: inline-block;">
 						<span style="font-size: 18px; color: #f8b31d">-3000元</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">2016-9-10
-							14:59:00</span>
-					</div>
-				</div>
-
-				<!-- 卖 -->
-				<div class="his_each" style="background-color: #fff8ea;">
-					<div class="syb_buy" style="display: inline-block;">卖</div>
-
-					<div class="usest_syb">策略</div>
-
-					<div style="margin-left: 60px; display: inline-block;">
-						<span style="font-size: 18px; color: #4a433b;">浦发银行</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">sh600000</span>
-					</div>
-
-					<div style="margin-left: 40px; display: inline-block;">
-						<span style="font-size: 18px; color: #4a433b;">30元</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">200股</span>
-					</div>
-
-					<div style="margin-left: 80px; display: inline-block;">
-						<span style="font-size: 18px; color: #f8b31d">+3000元</span><br>
 						<span style="font-size: 14px; color: #9e9a95;">2016-9-10
 							14:59:00</span>
 					</div>
@@ -474,17 +450,7 @@ table td {
 	<script src="../js/toaster.js"></script>
 	<script type="text/javascript" src="../js/strategyhint.js"></script>
 	<script>
-		(function() {
-			var bp = document.createElement('script');
-			var curProtocol = window.location.protocol.split(':')[0];
-			if (curProtocol === 'https') {
-				bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-			} else {
-				bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-			}
-			var s = document.getElementsByTagName("script")[0];
-			s.parentNode.insertBefore(bp, s);
-		})();
+		initHis();
 	</script>
 
 </body>

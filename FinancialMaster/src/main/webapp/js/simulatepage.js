@@ -73,10 +73,8 @@ function closeStore() {
 }
 
 function setTimechart(stockname) {
-	
 	setId(stockname);
 	getTimeSharingDiagram("stock");
-	
 }
 
 function useST(checked) {
@@ -203,7 +201,7 @@ function useST(checked) {
 		tablediv.style.display = "none";
 		notST_left.style.display = "";
 		notST_right.style.display = "";
-		
+
 		var trs = table.getElementsByTagName("tr");
 		for (var i = trs.length - 1; i > 0; i--) {
 			table.deleteRow(i);
@@ -251,5 +249,96 @@ function selectAll() {
 			if (boxs[i].type == "checkbox")
 				boxs[i].checked = true;
 		}
+	}
+}
+
+function buyStock() {
+
+	var stockname = document.getElementById("stockchoose").value;
+	var stocknums = document.getElementById("stocknums").value;
+
+	if (document.getElementById("useST_box").checked == true) {
+		// 使用策略
+
+	} else {
+		// 不使用策略
+		$.ajax({
+			type : "post",
+			async : false, // 同步执行
+			url : "../SimulationStock",
+			data : {
+				"Order" : "Buy",
+				"StockID" : stockname,
+				"Number" : stocknums
+			},
+			dataType : "json",
+			success : function(result) {
+				alert(result[0].BuyResult)
+			},
+			error : function(errorMsg) {
+				alert("不好意思，请求数据失败啦!");
+			}
+		});
+	}
+}
+
+// 历史交易记录
+function initHis() {
+
+	var userId = document.getElementById("storage").innerHTML.trim();
+	if (userId != "null") {
+		document.getElementsByClassName("noHis_tip")[0].style.display = "none";
+		
+		$.ajax({
+					type : "get",
+					async : false, // 同步执行
+					url : "../SimulationRecord",
+					dataType : "json",
+					success : function(result) {
+
+						if (result.length > 0) {
+							for (var i = 0; i < result.length; i++) {
+
+								var div = document.createElement("div");
+								div.innerHTML = document
+										.getElementById("his_copy").innerHTML;
+								div.setAttribute("class", "his_each");
+
+								var BorS = "-";
+
+								if (result[i].deal == "Sell"
+										|| result[i].deal == "ST_Sell") {
+									div.getElementsByClassName("syb_buy")[0].innerHTML = "卖";
+									BorS = "+";
+								}
+
+								if (result[i].deal == "ST_Buy"
+										|| result[i].deal == "ST_Sell") {
+									div.getElementsByClassName("usest_syb")[0].style.display = "";
+									div.getElementsByTagName("div")[2].style.marginLeft = "105px";
+									div.style.backgroundColor = "#fff8ea";
+								}
+
+								var spans = div.getElementsByTagName("span");
+								spans[0].innerHTML = result[i].stockName;
+								spans[1].innerHTML = result[i].stockID;
+								spans[2].innerHTML = BorS + result[i].money;
+								spans[3].innerHTML = result[i].time;
+
+								document.getElementById("histrades")
+										.appendChild(div);
+
+							}
+						} else {
+							document.getElementsByClassName("noHis_tip")[0].style.display = "";
+						}
+					},
+					error : function(errorMsg) {
+						alert("不好意思，请求数据失败啦!");
+					}
+				});
+	} else {
+		document.getElementsByClassName("noHis_tip")[0].style.display = "";
+		document.getElementsByClassName("noHis_tip")[0].innerHTML = "您还没登录";
 	}
 }
