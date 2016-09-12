@@ -1,11 +1,16 @@
 package web.bl.stockImpl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import DAO.pojo.BenchdataAccurate;
+import DAO.pojo.BenchdataAccurateId;
 import DAO.pojo.Stock;
 import DAO.pojo.TradeRecord;
+import DAO.pojo.TradeRecordAccurate;
+import DAO.pojo.TradeRecordAccurateId;
 import ENUM.ManageState;
 import PO.UpToDateStockPO;
 import VO.Analyze_BasicItemsVO;
@@ -16,6 +21,8 @@ import VO.BusinessItemVO;
 import VO.BusinessVO;
 import VO.StockDetailVO;
 import data.StockData.StockData;
+import data.StockData.StockDataAccurate;
+import dataservice.StockDataService.StockDataAccurateService;
 import dataservice.StockDataService.StockDataService;
 import servlet.factory.InitFactoryServlet;
 import web.bl.benchImpl.BenchImpl;
@@ -222,14 +229,32 @@ public class StockImpl implements StockInfo,StockUpdateInfo {
 
 	@Override
 	public String[][] getTimeSharingData(String code) {
-		// TODO Auto-generated method stub
-		return null;
+		StockDataAccurateService stockDataAccurateService=new StockDataAccurate();
+		ArrayList<TradeRecordAccurate> list=stockDataAccurateService.geTradeRecordAccurates(code);
+		int length=list.size();
+		String[][] result=new String[length][2];
+		int index=0;
+		
+		SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
+		for (TradeRecordAccurate tradeRecordAccurate : list) {
+			TradeRecordAccurateId tradeRecordAccurateId=tradeRecordAccurate.getId();
+			result[index][0]=sdf.format( tradeRecordAccurateId.getDate());
+			result[index][1]=tradeRecordAccurate.getPrice()+"";
+			index++;
+		}	
+		return result;
 	}
 
 	@Override
 	public UpToDateStockPO update(UpToDateStockPO upToDateMessage) {
-		// TODO Auto-generated method stub
-		return null;
+		StockDataService stockDataService=new StockData();
+		try {
+			UpToDateStockPO newUpDateStockPO=stockDataService.getUpToDateStockPO(upToDateMessage.getStockId());
+			return newUpDateStockPO;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return upToDateMessage;
 	}
 
 }
