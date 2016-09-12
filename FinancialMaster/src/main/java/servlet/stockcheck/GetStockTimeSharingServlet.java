@@ -34,8 +34,10 @@ public class GetStockTimeSharingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		String id=(String) request.getSession().getAttribute("Stockid");
+		String id=request.getParameter("stockId");
+		if(id.equals("null")){
+			id=(String) request.getSession().getAttribute("Stockid");
+		}
 		StockInfo stockInfo=new StockImpl();
 		String[][] datas=stockInfo.getTimeSharingData(id);
 				
