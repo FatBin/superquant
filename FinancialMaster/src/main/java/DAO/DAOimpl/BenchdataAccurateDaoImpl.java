@@ -14,7 +14,7 @@ public class BenchdataAccurateDaoImpl implements BenchdataAccurateDao{
 
 	@Override
 	public List getBenchdataAccurate(String benchId) {
-		String hql="from BenchdataAccurate b where b.benchId=:benchId order by b.id.date asc";
+		String hql="from BenchdataAccurate b where b.id.benchId=:benchId order by b.id.date asc";
 		try {
 			Session session=DBconnection.getSession();
 			try {

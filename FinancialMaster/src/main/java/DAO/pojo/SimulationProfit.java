@@ -28,6 +28,7 @@ public class SimulationProfit implements java.io.Serializable {
 	private Date time;
 
 	public SimulationProfit() {
+		state="DISPLAY";
 	}
 
 	public SimulationProfit(String userId, String stockId, double profit, String operation, String state) {
@@ -86,7 +87,7 @@ public class SimulationProfit implements java.io.Serializable {
 		this.operation = operation;
 	}
 
-	@Column(name = "state", nullable = false, length = 20)
+	@Column(name = "state", nullable = false, length = 20, columnDefinition="varchar(20) default 'DISPLAY'")
 	public String getState() {
 		return this.state;
 	}
