@@ -90,7 +90,13 @@ li {
 	padding: 20px 25px;
 }
 
-
+.noHis_tip {
+	font-size: 26px;
+	color: #cacaca;
+	text-align: center;
+	margin-top: 18px;
+	margin-bottom: 0;
+}
 
 
 

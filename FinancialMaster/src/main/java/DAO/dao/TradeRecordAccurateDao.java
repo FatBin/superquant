@@ -6,9 +6,9 @@ import java.util.List;
 import DAO.pojo.TradeRecordAccurate;
 
 public interface TradeRecordAccurateDao {
-	public List getTradeRecordAccurate();
+	public List getTradeRecordAccurate(String stockId);
 	
 	public void clean();
 	
-	public boolean persist(TradeRecordAccurate tradeRecordAccurate);
+	public boolean persist(ArrayList<TradeRecordAccurate> arrayList);
 }

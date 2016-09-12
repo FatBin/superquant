@@ -1,6 +1,11 @@
 /**
  *   大盘和个股分时图
  */
+var stockId = "null";
+
+function setId(stockid) {
+	stockId = stockid;
+}
 
 function getTimeSharingDiagram(kind) {
 	var TimeSharingDiagram = echarts.init(document
@@ -30,6 +35,7 @@ function getTimeSharingDiagram(kind) {
 		async : false, //同步执行
 		url : servlet_url,
 		dataType : "json", //返回数据形式为json
+		data: {"stockId": stockId},
 		success : function(result) {
 			if (result) {
 				for (var i = 0; i < result.length; i++) {
@@ -53,9 +59,9 @@ function getTimeSharingDiagram(kind) {
 			dataType : "json", //返回数据形式为json
 			success : function(result) {
 				if (result) {
-					if(result.status!='未开盘'){
-						dates.push(result.date);
-						datas.push(result.data);
+					if(result[0].status!='已收盘'){
+						dates.push(result[0].time);
+						datas.push(result[0].now);
 					}
 				}
 			},
@@ -114,14 +120,10 @@ function getTimeSharingDiagram(kind) {
 			data : datas
 		} ]
 	};
+	setInterval(function() {
 
-	app.timeTicket = setInterval(function() {
-
-		//  data.shift();
-		//  date.shift();
 		addNewData();
-
-		myChart.setOption({
+		TimeSharingDiagram.setOption({
 			xAxis : {
 				data : dates
 			//填入X轴数据
@@ -131,6 +133,5 @@ function getTimeSharingDiagram(kind) {
 			} ]
 		});
 	}, timeInterval);
-
 	TimeSharingDiagram.setOption(option);
 }

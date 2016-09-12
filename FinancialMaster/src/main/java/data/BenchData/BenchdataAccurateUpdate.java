@@ -51,7 +51,6 @@ public class BenchdataAccurateUpdate implements Runnable{
 			try {
 				Thread.sleep(10000);
 				persist();
-				System.out.println("tes");
 				Calendar calendar=Calendar.getInstance();
 				int hour=calendar.get(Calendar.HOUR);
 				int minute=calendar.get(Calendar.MINUTE);

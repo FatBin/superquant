@@ -90,8 +90,7 @@
 	<div>
 		<div style="width: 850px; margin: 20px auto;">
 
-			<div
-				style="margin-top: 90px; margin-bottom: 15px; font-size: 22px;">热门股票推荐</div>
+			<div style="margin-top: 90px; margin-bottom: 15px; font-size: 22px;">热门股票推荐</div>
 
 			<div class="tab_title">
 				<div class="tab_each" style="border-bottom: 2px solid #f8b31d;"
@@ -233,14 +232,15 @@
 	<!-- Plugin JavaScript -->
 	<script src="../js/classie.js"></script>
 	<script src="../js/cbpAnimatedHeader.js"></script>
-
 	<script src="../js/table_pages.js"></script>
 	<script src="../js/common.min.js"></script>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
 
-	<script type="text/javascript">setPerPage(15);</script>
+	<script type="text/javascript">
+		setPerPage(15);
+	</script>
 </body>
 
 </html>

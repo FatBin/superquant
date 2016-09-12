@@ -42,7 +42,7 @@ public class SimulationRecordServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		response.setContentType("text/html;charset=utf-8");
 		UserVO userVO = (UserVO) request.getSession().getAttribute("User");
 		String userID = userVO.getUsername();
 		HistoryRecordInfo historyRecordInfo=new HistoryRecordImpl();

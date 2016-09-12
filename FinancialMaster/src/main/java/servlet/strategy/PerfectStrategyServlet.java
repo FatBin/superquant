@@ -1,7 +1,8 @@
-package servlet.stockcheck;
+package servlet.strategy;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,20 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
-import web.bl.stockImpl.StockImpl;
-import web.blservice.stockInfo.StockInfo;
+import PO.profitPO;
+import web.bl.StrategyHandle.PerfectStrategyHandle;
+import web.blservice.StrategyHandleService.perfectStrategyService;
 
 /**
- * Servlet implementation class GetStockTimeSharingServlet
+ * Servlet implementation class PerfectStrategyServlet
  */
-@WebServlet("/GetStockTimeSharingServlet")
-public class GetStockTimeSharingServlet extends HttpServlet {
+@WebServlet("/PerfectStrategyServlet")
+public class PerfectStrategyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetStockTimeSharingServlet() {
+    public PerfectStrategyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,27 +35,23 @@ public class GetStockTimeSharingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		perfectStrategyService psService=new PerfectStrategyHandle();
+		String stockId=request.getParameter("stockId");
+		String startTime=request.getParameter("startTime");
+		String endTime=request.getParameter("endTime");
+		String cost=request.getParameter("cost");
+		ArrayList<profitPO> result=psService.getProfit(stockId, startTime, endTime, Double.parseDouble(cost));
+	    int size=result.size();
+	    profitPO po=result.get(size-1);
+	    double profit=po.getProfit();
+	    
+	    String data = "[{'profit':" +  profit + "}]";
 		
-		String id=request.getParameter("stockId");
-		if(id.equals("null")){
-			id=(String) request.getSession().getAttribute("Stockid");
-		}
-		StockInfo stockInfo=new StockImpl();
-		String[][] datas=stockInfo.getTimeSharingData(id);
-				
-		String data="[";
-		for(int i=datas.length-1;i>=0;i--){
-			data=data+"{'date':'"+datas[i][0]+
-					"','data':"+datas[i][1]+
-					"},";
-		}
-		data+="]";
-
 		JSONArray json = new JSONArray(data);
 		PrintWriter out = response.getWriter();
 		out.println(json);
 		out.flush();
-		out.close();	
+		out.close();
 	}
 
 	/**

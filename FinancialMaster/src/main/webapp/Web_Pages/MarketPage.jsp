@@ -298,7 +298,7 @@
 	<script src="../js/jquery.js"></script>
 	<script>
 		getKLine("market");
-		/* getTimeSharingDiagram("market"); */
+		getTimeSharingDiagram("market");
 	</script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/common.min.js"></script>

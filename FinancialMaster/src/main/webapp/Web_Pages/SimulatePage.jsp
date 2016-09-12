@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="VO.UserVO"%>
+<%@page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,7 +27,16 @@
 
 <link rel="stylesheet"
 	href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<script src="../js/echarts.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 </head>
+
+<style>
+table td {
+	border: 1px dashed #fff;
+}
+</style>
 
 <body id="page-top" class="index">
 
@@ -127,8 +137,7 @@
 		<div id="intro_img"
 			style="width: 100%; height: 316px; margin-top: 30px; margin-bottom: 90px; background-color: gray;">
 
-			<img style="width: 60%; display: none;"
-				src="../webImage/strategy_tip.png">
+			<img style="width: 100%;" src="../webImage/simulate-introduce.png">
 
 			<!-- 持有股表格 -->
 			<table id="strategyTable" rules="rows" style="display: none;">
@@ -151,109 +160,122 @@
 	</div>
 
 	<div id="new_buy" class="makest_div"
-		style="display: none; margin-top: 0; width: 80%; margin-bottom: 90px;">
+		style="display: none; margin-top: 0; width: 80%; margin-bottom: 40px;">
 
 		<i class="fa fa-times close_st" onclick="closeStore()"></i>
 
-		<div style="display: inline-block;">
+		<div style="display: inline-block; vertical-align: top;">
 			<div class="div_title">
 				新建交易
 				<div class="checkbox_div">
-					<input class="mui-switch mui-switch-animbg" type="checkbox">
-					<span class="usest_tip">使用策略</span>
+					<input id="useST_box" class="mui-switch mui-switch-animbg"
+						type="checkbox" onchange="useST(this.checked);"> <span
+						class="usest_tip">使用策略</span>
 				</div>
 
 			</div>
 
-			<div
-				style="margin-left: 45px; margin-top: 15px; display: inline-block;">
-				<input class="st_textfileds" id="stockchoose" placeholder="股票代码/名称"
-					onkeyup="showHint_st(this.value)">
+			<div id="notST_left">
+				<div
+					style="margin-left: 45px; margin-top: 15px; display: inline-block;">
+					<input class="st_textfileds" id="stockchoose" placeholder="股票代码/名称"
+						onkeyup="showHint_st(this.value);"
+						onBlur="setTimechart(this.value);">
+				</div>
+				<div id="stHint"></div>
+
+				<div
+					style="margin-left: 11px; margin-top: 15px; display: inline-block;">
+					<input id="stocknums" class="st_textfileds" placeholder="买入股数">
+				</div>
+
+				<div class="tips_word">tips: 模拟交易与真实交易略有不同，将会直接以最新价格成交</div>
 			</div>
-			<div id="stHint"></div>
 
-			<div
-				style="margin-left: 11px; margin-top: 15px; display: inline-block;">
-				<input id="stocknums" class="st_textfileds" placeholder="买入股数">
-			</div>
-
-			<div class="tips_word">tips: 模拟交易与真实交易略有不同，将会直接以最新价格成交</div>
-
-			<div class="money_left" style="margin-top: 70px;">
-				剩余本金:&nbsp;&nbsp;<span id="moneyleft">10000</span>
-			</div>
-
-			<div class="add_st_btn" onclick="">购&nbsp;&nbsp;买</div>
-
-			<div class="reset_st_btn" onclick="">取&nbsp;&nbsp;消</div>
 		</div>
 
 		<!-- 时分图 -->
-		<div class="st_run_div" style="height: 295px; display: inline-block;">
-
+		<div id="notST_right" class="st_run_div"
+			style="height: 295px; display: inline-block; vertical-align: top;">
 			<div class="used_money">
 				已用本金：<span id="usedmoney">10000</span>
 			</div>
 
 			<div class="run_pic" style="height: 220px;">
-				<div id="strategyLineChart"
-					style="width: 580px; height: 200px; display: none;"></div>
-			</div>
+				<div id="timeSharingDiagram" style="width: 580px; height: 200px;">
 
+					<!-- <img src="../webImage/timechart-introduce.png"
+						style="width: 100%; margin: auto auto;"> -->
+
+				</div>
+			</div>
 		</div>
+
+		<div id="noSTtip" class="noST_tip"
+			style="margin-bottom: 20px; display: none;">您还没有已保存策略</div>
+
+		<div id="table_div" style="display: none; margin-bottom: 0;">
+			<table id="tableST" rules="rows"
+				style="margin: 15px auto; margin-bottom: -50px; border: 1px solid #e9bd8d;">
+				<thead>
+					<tr align="center" valign="middle"
+						style="background-color: #e9bd8d; font-size: 16px; width: 95%; color: #fff;">
+
+						<td width="20px;"><input type="checkbox"
+							onclick="selectAll();"></td>
+
+						<td width="105" height="40">股票名称</td>
+						<td width="100">投资成本</td>
+						<td width="103">开始日期</td>
+						<td width="103">结束日期</td>
+						<td width="103">买卖频率</td>
+						<td width="140">买入策略</td>
+						<td width="136">卖出策略</td>
+						<td width="132">其他策略</td>
+					</tr>
+				</thead>
+			</table>
+		</div>
+
+		<div class="money_left" style="margin-top: 70px;">
+			剩余本金:&nbsp;&nbsp;<span id="moneyleft">10000</span>
+		</div>
+
+		<div class="add_st_btn" onclick="buyStock();">购&nbsp;&nbsp;买</div>
+
+		<div class="reset_st_btn" onclick="closeStore();">取&nbsp;&nbsp;消</div>
 
 	</div>
 
 	<!-- 历史交易、累计盈亏 -->
-	<div style="width: 80%; margin: 30px auto; margin-top: 140px; vertical-align:top">
+	<div
+		style="width: 80%; margin: 30px auto; margin-top: 140px; vertical-align: top">
 
 		<div style="width: 55%; display: inline-block;">
 
-			<blockquote class="stname_title">历史交易</blockquote>
+			<blockquote class="stname_title" style="margin: 0 auto;">历史交易</blockquote>
 
-			<div style="width: 100%; background-color: #fcfcfc;">
+			<div id="histrades"
+				style="width: 100%; height:420px; overflow:auto; margin-top: 18px; background-color: #fcfcfc;">
+
+				<div class="noHis_tip" style="display: none">暂无历史交易记录</div>
 
 				<!-- 买 -->
-				<div class="his_each">
+				<div id="his_copy" class="his_each" style="display: none;">
 					<div class="syb_buy" style="display: inline-block;">买</div>
-					
+
 					<div class="usest_syb" style="display: none;">策略</div>
 
-					<div style="margin-left: 85px; display: inline-block;">
+					<div
+						style="width: 120px; margin-left: 130px; display: inline-block;">
 						<span style="font-size: 18px; color: #4a433b;">浦发银行</span><br>
 						<span style="font-size: 14px; color: #9e9a95;">sh600000</span>
 					</div>
-					
-					<div style="margin-left: 40px; display: inline-block;">
-						<span style="font-size: 18px; color: #4a433b;">30元</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">200股</span>
-					</div>
-					
+
 					<div style="margin-left: 80px; display: inline-block;">
 						<span style="font-size: 18px; color: #f8b31d">-3000元</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">2016-9-10 14:59:00</span>
-					</div>
-				</div>
-				
-				<!-- 卖 -->
-				<div class="his_each" style="background-color: #fff8ea;">
-					<div class="syb_buy" style="display: inline-block;">卖</div>
-					
-					<div class="usest_syb">策略</div>
-
-					<div style="margin-left: 60px; display: inline-block;">
-						<span style="font-size: 18px; color: #4a433b;">浦发银行</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">sh600000</span>
-					</div>
-					
-					<div style="margin-left: 40px; display: inline-block;">
-						<span style="font-size: 18px; color: #4a433b;">30元</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">200股</span>
-					</div>
-					
-					<div style="margin-left: 80px; display: inline-block;">
-						<span style="font-size: 18px; color: #f8b31d">+3000元</span><br>
-						<span style="font-size: 14px; color: #9e9a95;">2016-9-10 14:59:00</span>
+						<span style="font-size: 14px; color: #9e9a95;">2016-9-10
+							14:59:00</span>
 					</div>
 				</div>
 
@@ -261,22 +283,21 @@
 
 		</div>
 
-		<div style="width: 40%; margin-left: 4%; display: inline-block; vertical-align:top">
+		<div
+			style="width: 40%; margin-left: 4%; display: inline-block; vertical-align: top">
 
 			<blockquote class="stname_title">策略累计盈亏</blockquote>
 
 			<div style="width: 100%; background-color: #fcfcfc;">
-			
+
 				<div class="used_sts">
-					<span>MyStrategy</span>
-					<span style="color: #c4330c; float: right;">+5000元</span>
+					<span>MyStrategy</span> <span style="color: #c4330c; float: right;">+5000元</span>
 				</div>
-				
+
 				<div class="used_sts">
-					<span>technical</span>
-					<span style="color: #186b03; float: right;">-1000元</span>
+					<span>technical</span> <span style="color: #186b03; float: right;">-1000元</span>
 				</div>
-			
+
 			</div>
 
 		</div>
@@ -393,7 +414,18 @@
 	<%-- 用来存放userId --%>
 	<a id="storage" style="display: none;"><%=session.getAttribute("User")%>
 	</a>
-	
+
+	<%
+		ArrayList<String> strategyList = new ArrayList<String>();
+		if (session.getAttribute("User") != null) {
+			UserVO userVO = (UserVO) session.getAttribute("User");
+			strategyList = userVO.getStrategy();
+		}
+	%>
+
+	<%-- 用来存放策略名称 --%>
+	<a id="storageST" style="display: none;"><%=strategyList%> </a>
+
 	<%-- 无阻塞提示框 --%>
 	<div id="toaster_close">
 		<div id="toaster">
@@ -401,7 +433,7 @@
 			<div id="remind" class="green_word">提示消息</div>
 		</div>
 	</div>
-	
+
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script
@@ -412,22 +444,13 @@
 	<script src='http://s1.yuehetong.com/sitemedia/js/jquery-2.2.1.min.js'></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/searchHint.js"></script>
+	<script type="text/javascript" src="../jschart/TimeSharingDiagram.js"></script>
 	<script src="../js/common.min.js"></script>
 	<script src="../js/simulatepage.js"></script>
 	<script src="../js/toaster.js"></script>
 	<script type="text/javascript" src="../js/strategyhint.js"></script>
 	<script>
-		(function() {
-			var bp = document.createElement('script');
-			var curProtocol = window.location.protocol.split(':')[0];
-			if (curProtocol === 'https') {
-				bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-			} else {
-				bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-			}
-			var s = document.getElementsByTagName("script")[0];
-			s.parentNode.insertBefore(bp, s);
-		})();
+		initHis();
 	</script>
 
 </body>

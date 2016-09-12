@@ -114,6 +114,16 @@
     <servlet-name>ManageMyStrategyServlet</servlet-name>
     <url-pattern>/ManageMyStrategy</url-pattern>
   </servlet-mapping>
+  
+      <!-- get：返回完美策略盈利结果，post： -->  
+  <servlet>
+    <servlet-name>PerfectStrategyServlet</servlet-name>
+    <servlet-class>servlet.strategy.PerfectStrategyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PerfectStrategyServlet</servlet-name>
+    <url-pattern>/PerfectStrategy</url-pattern>
+  </servlet-mapping>
 
   <!-- get：退出登录，post：登录 -->    
   <servlet>

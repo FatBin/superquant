@@ -24,6 +24,6 @@
         <mapping class="DAO.pojo.TradeRecordAccurate" />
         <mapping class="DAO.pojo.Simulation" />
         <mapping class="DAO.pojo.BenchdataAccurate" />
-        <mapping class="DAO.pojo.SimulationProfit" />
+        <mapping class="DAO.pojo.SimulationProfit"/>
     </session-factory>
 </hibernate-configuration>
