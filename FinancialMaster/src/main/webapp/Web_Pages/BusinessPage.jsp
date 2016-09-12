@@ -109,6 +109,8 @@ li {
 		ArrayList<industriesPO> businessList = businessListVO.getBusinessList();
 	%>
 
+	<div id="listLength" style="display: none;"><%=businessList.size()%></div>
+
 	<div class="container">
 		<div class="compare" style="height: 450px;">
 			<h3 class="title"
@@ -212,8 +214,8 @@ li {
 			%>
 			<nav>
 			<ul class="pagination" style="display: block;">
-				<li><a onclick=previousPage() aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span>
+				<li><a onclick=previousPage() aria-label="Previous"> <span
+						aria-hidden="true">&laquo;</span>
 				</a></li>
 				<li class="active"><a onclick=switchPage(this)>1</a></li>
 				<li><a onclick=switchPage(this)>2</a></li>
