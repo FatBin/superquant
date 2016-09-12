@@ -147,15 +147,16 @@ public class BenchImpl implements BenchInfo,BenchUpdateInfo{
 		}
 		
 		BenchDataAccurateService benchDataAccurateService=new BenchDataAccurate(); 
-		ArrayList<BenchdataAccurate> list=benchDataAccurateService.getBenchdataAccurates();
+		ArrayList<BenchdataAccurate> list=benchDataAccurateService.getBenchdataAccurates(id);
 		
 		int length=list.size();
 		String[][] result=new String[length][2];
 		int index=0;
 		
+		SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
 		for (BenchdataAccurate benchdataAccurate : list) {
 			BenchdataAccurateId benchdataAccurateId=benchdataAccurate.getId();
-			result[index][0]=benchdataAccurateId.getDate().toString();
+			result[index][0]=sdf.format( benchdataAccurateId.getDate());
 			result[index][1]=benchdataAccurate.getPrice()+"";
 			index++;
 		}
