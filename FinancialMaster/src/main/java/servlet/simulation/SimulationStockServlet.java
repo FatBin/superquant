@@ -42,7 +42,7 @@ public class SimulationStockServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		response.setContentType("text/html;charset=utf-8");
 		UserVO userVO = (UserVO) request.getSession().getAttribute("User");
 		String userID = userVO.getUsername();
 		SimulationStockInfo simulationStockInfo = new SimulationStockImpl();
@@ -57,6 +57,7 @@ public class SimulationStockServlet extends HttpServlet {
 					"','time':'"+ simulationStockVO.getTime() +
 					"','price':'" + simulationStockVO.getPrice() + 
 					"','number':'"+ simulationStockVO.getNumber() + 
+					"','now':'"+ 22.5 + 
 					"','profitability':" + simulationStockVO.getProfitability()
 					+ "},";
 		}

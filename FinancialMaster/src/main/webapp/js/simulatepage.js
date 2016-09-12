@@ -273,7 +273,7 @@ function buyStock() {
 			},
 			dataType : "json",
 			success : function(result) {
-				if(result[0].BuyResult > -1) {
+				if (result[0].BuyResult > -1) {
 					slidein(0, "购买成功");
 					setTimeout("window.location.reload()", 1800);
 				}
@@ -291,8 +291,9 @@ function initHis() {
 	var userId = document.getElementById("storage").innerHTML.trim();
 	if (userId != "null") {
 		document.getElementsByClassName("noHis_tip")[0].style.display = "none";
-		
-		$.ajax({
+
+		$
+				.ajax({
 					type : "get",
 					async : false, // 同步执行
 					url : "../SimulationRecord",
@@ -344,4 +345,63 @@ function initHis() {
 		document.getElementsByClassName("noHis_tip")[0].style.display = "";
 		document.getElementsByClassName("noHis_tip")[0].innerHTML = "您还没登录";
 	}
+}
+
+function initStocks() {
+
+	var userId = document.getElementById("storage").innerHTML.trim();
+	if (userId != "null") {
+
+		$.ajax({
+					type : "get",
+					async : false, // 同步执行
+					url : "../SimulationStock",
+					dataType : "json",
+					success : function(result) {
+						if (result.length > 0) {
+							$("#StockListImg").hide();
+							for (var i = 0; i < result.length; i++) {
+								var div = document.createElement("div");
+								div.setAttribute("class", "myList");
+								div.innerHTML = document
+										.getElementById("myStockList").innerHTML;
+								div.getElementsByClassName("listName")[0].innerHTML = result[i].stockName;
+								div.getElementsByClassName("listNum")[0].innerHTML = result[i].stockID;
+								div.getElementsByClassName("buyPrice")[0].innerHTML = "买入："
+										+ result[i].price;
+								div.getElementsByClassName("buyTime")[0].innerHTML = result[i].time;
+								div.getElementsByClassName("buyNum")[0].innerHTML = result[i].number + "股";
+								// div.getElementsByClassName("nowPrice")[0].innerHTML
+								// = result[i].now;
+								div.getElementsByClassName("nowBonus")[0].innerHTML = result[i].profitability;
+
+								document.getElementById("intro_img").appendChild(div);
+							}
+						}
+					},
+					error : function(errorMsg) {
+						alert("不好意思，请求数据失败啦!");
+					}
+				});
+	}
+}
+
+function sell() {
+	$.ajax({
+		type : "post",
+		async : false, // 同步执行
+		url : "../SimulationStock",
+		data : {
+			"Order" : "Buy",
+			"id" : id,
+		},
+		dataType : "json",
+		success : function(result) {
+			alert(result[0].BuyResult)
+			window.reload();
+		},
+		error : function(errorMsg) {
+			alert("不好意思，请求数据失败啦!");
+		}
+	});
 }
