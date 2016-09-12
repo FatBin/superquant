@@ -8,7 +8,7 @@ import dataservice.StockDataService.StockDataAccurateService;
 public class StockDataAccurate implements StockDataAccurateService{
 
 	@Override
-	public ArrayList<TradeRecordAccurate> geTradeRecordAccurates() {
+	public ArrayList<TradeRecordAccurate> geTradeRecordAccurates(String stockId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

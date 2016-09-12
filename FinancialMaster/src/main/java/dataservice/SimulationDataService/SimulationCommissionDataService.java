@@ -15,5 +15,9 @@ public interface SimulationCommissionDataService {
 	//it will return all the record in the table of simulation
 	public ArrayList<Simulationcommission> getAllSimulationcommissions();
 	
+	//get all the records relative to the user
+	public ArrayList<Simulationcommission> getAllSimulationcommissions(String userId);
 	
+	//get the record according to the id
+	public Simulationcommission findById(int id);
 }

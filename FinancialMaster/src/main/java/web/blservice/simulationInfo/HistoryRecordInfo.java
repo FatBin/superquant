@@ -8,7 +8,7 @@ import VO.SimulationRecordVO;
 public interface HistoryRecordInfo {
 
 	//增加一条历史盈亏记录
-	public ManageState addRecord(SimulationRecordVO simulationRecordVO);
+	public int addRecord(SimulationRecordVO simulationRecordVO);
 	
 	//隐藏一条历史盈亏记录
 	public ManageState hideRecord(String id);

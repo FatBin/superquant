@@ -15,7 +15,15 @@ public interface SimulationProfitDataService {
 	//need the id.It will return a corresponding po
 	public SimulationProfit findById(int id);
 	
-	
 	//get the amount of the profit
 	public double getProfit();
+	
+	//need the id of the record.It will return a boolean value if it remove the record successfully
+	public boolean remove(int id);
+	
+	//get the amount of the user's profit
+	public double getProfit(String userId);
+	
+	//get all the records
+	public ArrayList<SimulationProfit> getAllSimulationProfits();
 }

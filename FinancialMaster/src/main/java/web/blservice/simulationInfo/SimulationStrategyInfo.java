@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import ENUM.ManageState;
 import VO.SimulationStrategyVO;
 
-public interface SimulationStrategy {
+public interface SimulationStrategyInfo {
 
 	//增加一条回测策略的记录
-	public ManageState addSimulationStrategy(SimulationStrategyVO simulationStrategyVO);
+	public int addSimulationStrategy(SimulationStrategyVO simulationStrategyVO);
 	
 	//停止使用一条策略
 	public ManageState deleteSimulationStrategy(String id);

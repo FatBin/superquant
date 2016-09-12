@@ -14,5 +14,9 @@ public interface SimulationDataService {
 	//it will return all the record in the table of simulation
 	public ArrayList<Simulation> getAllSimulations();
 	
+	//need the id of the record
+	public Simulation getById(int id);
 	
+	//get all the records relative to the userId
+	public ArrayList<Simulation> getUserRecords(String userId);
 }
