@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,10 +69,12 @@ public class TradeRecordAccurateDaoImpl implements TradeRecordAccurateDao{
               conn.setAutoCommit(false);        
               String sql = "insert into trade_record_accurate(stockId,date,price) values(?,?,?)";        
               PreparedStatement prest = conn.prepareStatement(sql);        
-              long a=System.currentTimeMillis();  
+
               for(TradeRecordAccurate po:arrayList){        
-                 prest.setString(1, po.getId().getStockId());       
-                 prest.setDate(2, (Date) po.getId().getDate());
+                 prest.setString(1, po.getId().getStockId());
+         		SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        		String string=simpleDateFormat.format(po.getId().getDate());
+                 prest.setTimestamp(2,Timestamp.valueOf(string));
                  prest.setDouble(3, po.getPrice());
                  prest.addBatch();
               }        
@@ -78,8 +82,6 @@ public class TradeRecordAccurateDaoImpl implements TradeRecordAccurateDao{
               prest.executeBatch();
               prest.clearBatch();
               conn.commit();
-              long b=System.currentTimeMillis();  
-              System.out.println("MySql非批量插入10万条记录用时"+ (b-a)+" ms");  
               return true;
         } catch (Exception ex) {  
             ex.printStackTrace();  

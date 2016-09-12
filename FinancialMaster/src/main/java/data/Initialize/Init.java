@@ -2,9 +2,11 @@ package data.Initialize;
 
 import DAO.connection.DBconnection;
 import data.BenchData.BenchRecordUpdate;
+import data.BenchData.BenchdataAccurateUpdate;
 import data.Database.Update;
 import data.IndustryData.IndustriesUpdate;
 import data.StockData.RiseStockUpdate;
+import data.StockData.TradeRecordAccurateUpdate;
 import data.StockData.UpToDateStocksUpdate;
 import data.StockData.RecommendedData.ContinuingQuantityDown;
 import data.StockData.RecommendedData.ContinuingQuantityUp;
@@ -37,5 +39,8 @@ public class Init {
 		PeakUp peakUp=new PeakUp();
 		PriceDown priceDown=new PriceDown();
 		PriceUp priceUp=new PriceUp();
+		
+		BenchdataAccurateUpdate benchdataAccurateUpdate=new BenchdataAccurateUpdate();
+		TradeRecordAccurateUpdate tradeRecordAccurateUpdate=new TradeRecordAccurateUpdate();
 	}
 }
