@@ -1,6 +1,11 @@
 /**
  *   大盘和个股分时图
  */
+var stockId = "null";
+
+function setId(stockid) {
+	stockId = stockid;
+}
 
 function getTimeSharingDiagram(kind) {
 	var TimeSharingDiagram = echarts.init(document
@@ -30,6 +35,7 @@ function getTimeSharingDiagram(kind) {
 		async : false, //同步执行
 		url : servlet_url,
 		dataType : "json", //返回数据形式为json
+		data: {"stockId": stockId},
 		success : function(result) {
 			if (result) {
 				for (var i = 0; i < result.length; i++) {
@@ -53,9 +59,9 @@ function getTimeSharingDiagram(kind) {
 			dataType : "json", //返回数据形式为json
 			success : function(result) {
 				if (result) {
-					if(result.status!='未开盘'){
-						dates.push(result.date);
-						datas.push(result.data);
+					if(result.status!='已收盘'){
+						dates.push(result.time);
+						datas.push(result.now);
 					}
 				}
 			},
@@ -115,6 +121,8 @@ function getTimeSharingDiagram(kind) {
 		} ]
 	};
 
+	TimeSharingDiagram.setOption(option);
+	
 	app.timeTicket = setInterval(function() {
 
 		//  data.shift();
@@ -131,6 +139,5 @@ function getTimeSharingDiagram(kind) {
 			} ]
 		});
 	}, timeInterval);
-
-	TimeSharingDiagram.setOption(option);
+	
 }

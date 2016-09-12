@@ -286,8 +286,10 @@
 	<script src="../js/cbpAnimatedHeader.js"></script>
 
 	<script src="../jschart/kLineChart.js"></script>
+	<script type="text/javascript" src="../jschart/TimeSharingDiagram.js"></script>
 	<script type="text/javascript">
 		getKLine("stock");
+		getTimeSharingDiagram("stock");
 	</script>
 	<script src="../jschart/StockHistoryChart.js"></script>
 	<script src="../jschart/Dashboard.js"></script>
