@@ -6,6 +6,7 @@ import java.util.List;
 import DAO.DAOfactory.DaoFactory;
 import DAO.DaoProxyService.StockDaoProxyService;
 import DAO.DaoProxyService.TradeRecordDaoProxyService;
+import DAO.pojo.Stock;
 import PO.RiseStockPO;
 import PO.UpToDateStockPO;
 import dataservice.StockDataService.StockDataService;
@@ -61,6 +62,25 @@ public class StockData implements StockDataService{
 			}
 		}
 		return new UpToDateStockPO();
+	}
+
+
+	@Override
+	public boolean findById(String stockId) {
+		StockDaoProxyService stockDaoProxyService=DaoFactory.getStockDaoProxy();
+		try {
+			Stock stock=stockDaoProxyService.findByID(stockId);
+			if (stock!=null) {
+				return true;
+			}else {
+				return false;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }

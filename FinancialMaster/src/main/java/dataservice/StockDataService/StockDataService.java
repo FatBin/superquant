@@ -28,4 +28,8 @@ public interface StockDataService {
 	 * return the list contain the Dao.POJO.Stock
 	 */
 	public List getStockInfos() throws Exception;
+	
+	
+	//need the stockId,it will judge whether the stockId has been persisted in the database
+	public boolean findById(String stockId);
 }
