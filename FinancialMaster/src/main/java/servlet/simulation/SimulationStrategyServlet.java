@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 
 import DAO.pojo.Stock;
+import ENUM.ManageState;
 import VO.SimulationStockVO;
 import VO.SimulationStrategyVO;
 import VO.UserVO;
@@ -72,8 +73,33 @@ public class SimulationStrategyServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String order=request.getParameter("Order");
+		SimulationStrategyInfo simulationStrategyInfo=new SimulationStrategyImpl();
+		String data="[]";
+		if(order.equals("Start")){
+			UserVO userVO = (UserVO) request.getSession().getAttribute("User");
+			String userID = userVO.getUsername();
+			String stockID = request.getParameter("StockID");
+			String strategyName = request.getParameter("StrategyName");
+			
+			SimulationStrategyVO simulationStrategyVO=new SimulationStrategyVO();
+            simulationStrategyVO.setUserID(userID);
+            simulationStrategyVO.setStockID(stockID);
+            simulationStrategyVO.setStrategyName(strategyName);
+			int result=simulationStrategyInfo.addSimulationStrategy(simulationStrategyVO);
+			data="[{'StartStrategyResult':"+result+"}]";
+				
+		}else{
+			String id=request.getParameter("id");
+			ManageState result=simulationStrategyInfo.deleteSimulationStrategy(id);
+			data="[{'EndStrategyResult':"+result+"}]";
+		}
+		
+		JSONArray json = new JSONArray(data);
+		PrintWriter out = response.getWriter();
+		out.println(json);
+		out.flush();
+		out.close();	
 	}
 
 }
