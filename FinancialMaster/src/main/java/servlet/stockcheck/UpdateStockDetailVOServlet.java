@@ -43,8 +43,9 @@ public class UpdateStockDetailVOServlet extends HttpServlet {
 		StockDetailVO sv=(StockDetailVO)request.getSession().getAttribute("StockDetail");
 		UpToDateStockPO up=sv.getUpToDateMessage();
 		StockUpdateInfo stockUpdateInfo =new StockImpl();
-		UpToDateStockPO newMessage=stockUpdateInfo.update(up);
-		sv.setUpToDateMessage(newMessage);
+		UpToDateStockPO newMessage=stockUpdateInfo.update(up.getStockId());
+		if(newMessage!=null)
+		     sv.setUpToDateMessage(newMessage);
 
 	}
 

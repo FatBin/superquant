@@ -246,15 +246,15 @@ public class StockImpl implements StockInfo,StockUpdateInfo {
 	}
 
 	@Override
-	public UpToDateStockPO update(UpToDateStockPO upToDateMessage) {
+	public UpToDateStockPO update(String stockID) {
 		StockDataService stockDataService=new StockData();
 		try {
-			UpToDateStockPO newUpDateStockPO=stockDataService.getUpToDateStockPO(upToDateMessage.getStockId());
+			UpToDateStockPO newUpDateStockPO=stockDataService.getUpToDateStockPO(stockID);
 			return newUpDateStockPO;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return upToDateMessage;
+		return null;
 	}
 
 }

@@ -8,6 +8,7 @@ public class SimulationStockVO {
 	private String stockID;
 	private double price;  //买入价
 	private long number;  //买入股数
+	private double now;
 	private double profitability;  //盈亏情况
 	
 	public SimulationStockVO() {
@@ -60,6 +61,14 @@ public class SimulationStockVO {
 
 	public void setNumber(long number) {
 		this.number = number;
+	}
+	
+	public double getNow() {
+		return now;
+	}
+
+	public void setNow(double now) {
+		this.now = now;
 	}
 
 	public double getProfitability() {

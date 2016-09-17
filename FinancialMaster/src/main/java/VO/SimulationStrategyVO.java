@@ -7,6 +7,9 @@ public class SimulationStrategyVO {
 	private String strategyName;
 	private String stockID;
 	private String startTime;
+	private double profit;
+	private double now;
+	
 	public SimulationStrategyVO() {
 		super();
 	}
@@ -40,6 +43,19 @@ public class SimulationStrategyVO {
 	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
+	public double getProfit() {
+		return profit;
+	}
+	public void setProfit(double profit) {
+		this.profit = profit;
+	}
+	public double getNow() {
+		return now;
+	}
+	public void setNow(double now) {
+		this.now = now;
+	}
+
 	
 	
 	

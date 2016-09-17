@@ -59,7 +59,7 @@ function getTimeSharingDiagram(kind) {
 			dataType : "json", //返回数据形式为json
 			success : function(result) {
 				if (result) {
-					if(result[0].status!='已收盘'){
+					if(result[0].status=='交易中'){
 						dates.push(result[0].time);
 						datas.push(result[0].now);
 					}

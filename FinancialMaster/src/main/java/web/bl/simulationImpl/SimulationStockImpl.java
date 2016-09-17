@@ -19,7 +19,9 @@ import data.StockData.StockData;
 import dataservice.SimulationDataService.SimulationDataService;
 import dataservice.SimulationDataService.SimulationProfitDataService;
 import dataservice.StockDataService.StockDataService;
+import web.bl.stockImpl.StockImpl;
 import web.blservice.simulationInfo.SimulationStockInfo;
+import web.blservice.stockInfo.StockUpdateInfo;
 
 public class SimulationStockImpl implements SimulationStockInfo {
 
@@ -31,13 +33,10 @@ public class SimulationStockImpl implements SimulationStockInfo {
 		simulation.setStockId(simulationStockVO.getStockID());
 		simulation.setTime(new Date());
 		StockDataService stockDataService=new StockData();
-		double price=0;
-		try {
-			UpToDateStockPO upToDateMessage=stockDataService.getUpToDateStockPO(simulationStockVO.getStockID());
-			price=upToDateMessage.getNow();			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
+		
+		StockUpdateInfo stockUpdateInfo=new StockImpl();
+		UpToDateStockPO upToDateMessage=stockUpdateInfo.update(simulationStockVO.getStockID());
+		double price=upToDateMessage.getNow();
 		simulation.setPrice(price);
 		simulation.setVolume(simulationStockVO.getNumber());
 		
@@ -57,16 +56,10 @@ public class SimulationStockImpl implements SimulationStockInfo {
 		SimulationDataService simulationDataService=new SimulationData();
 		Simulation simulation=simulationDataService.getById(id);
 
-		StockDataService stockDataService=new StockData();
-		double result=0;
-		try {
-			UpToDateStockPO upToDateMessage=stockDataService.getUpToDateStockPO(id+"");
-			result=upToDateMessage.getNow()-simulation.getPrice();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		StockUpdateInfo stockUpdateInfo=new StockImpl();
+		UpToDateStockPO upToDateMessage=stockUpdateInfo.update(simulation.getStockId());
 		
-		return result;
+		return upToDateMessage.getNow()-simulation.getPrice();
 	}
 
 	@Override
@@ -123,6 +116,8 @@ public class SimulationStockImpl implements SimulationStockInfo {
 		ArrayList<Simulation> simulations=simulationDataService.getUserRecords(userID);
 		ArrayList<SimulationStockVO> simulationStockVOs=new ArrayList<SimulationStockVO>();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		StockUpdateInfo stockUpdateInfo=new StockImpl();
+		
 		for (Simulation simulation : simulations) {
 			SimulationStockVO simulationStockVO=new SimulationStockVO();
 			simulationStockVO.setId(simulation.getId()+"");
@@ -131,6 +126,8 @@ public class SimulationStockImpl implements SimulationStockInfo {
 			simulationStockVO.setTime(sdf.format(simulation.getTime()));
 			simulationStockVO.setPrice(simulation.getPrice());
 			simulationStockVO.setNumber(simulation.getVolume());
+			UpToDateStockPO upToDateMessage=stockUpdateInfo.update(simulation.getStockId());
+			simulationStockVO.setNow(upToDateMessage.getNow());
 			simulationStockVO.setProfitability(getResult(simulation.getId()));
 			simulationStockVOs.add(simulationStockVO);
 		}		
